@@ -47,7 +47,6 @@
 
 h1 {
     font-size: var(--font-size-h1);
-    color: var(--orange);
 }
 
 h2 {
@@ -102,9 +101,6 @@ input:valid {
 .page-one .input:focus~label,
 input:valid~label {
     display: none;
-    /* background-color: #212121; */
-    /* padding: 0 0.2rem; */
-    /* color: #2196f3; */
 }
 
 .second-pages .input:focus,
