@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/styles/location.module.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faHandPointer} from '@fortawesome/free-solid-svg-icons'
 export default function Location() {
   return (
     <>
@@ -58,6 +59,7 @@ export default function Location() {
               style={{ border: 0, borderRadius: '5%' }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google 地图"
             />
           </div>
           <div className={styles['address-right']}>
@@ -170,14 +172,16 @@ export default function Location() {
       <section className={styles['carousel']}>
         <div className={styles['swiper']}>
           <div className={styles['swiper-slide']}>
-            <img src={`/img/about-us.jpg`} alt="" />
+            <img src={`/img/adout.jpg`} alt="" />
             <div className={styles['adopt-title']}>
               <h1 className={styles['heart']}>心動了嗎?</h1>
               <h1 className={styles['ml3']}>快來袋走我們吧~</h1>
             </div>
             <button className={styles['btn']}>
               <a href="">領養專區</a>
-              <i className={styles['fa-solid fa-angles-right']} />
+              <a className={styles['icon']}>
+              <FontAwesomeIcon icon={faHandPointer} />
+              </a>
             </button>
           </div>
         </div>

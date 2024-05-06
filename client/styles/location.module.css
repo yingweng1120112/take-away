@@ -325,7 +325,7 @@ color: var(--orange);
   margin-left: 1rem;
 }
 .carousel {
-  height: 11.1rem;
+  height: 11.6rem;
   width: 100%;
   margin: 0rem;
   position: relative;
@@ -355,14 +355,14 @@ color: var(--orange);
 .carousel .heart {
   font-size: 1rem;
   letter-spacing: 0.5rem;
-  color: #fff5eb;
+  color: var(--orange);
   margin-bottom: 0.1rem;
 }
 .carousel .ml3 {
   display: flex;
   font-weight: bolder;
   font-size: 1rem;
-  color: #616161;
+  color: var(--orange);
   letter-spacing: 0.5rem;
 }
 .carousel .ml3 .letter {
@@ -374,7 +374,7 @@ color: var(--orange);
   top: 45%;
   left: 70%;
   width: 25%;
-  height: 15%;
+  height: 18%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -383,9 +383,12 @@ color: var(--orange);
 }
 .carousel .swiper-slide .btn a {
   font-size: 0.9375rem;
-  color: #df7240;
+  color: var(--orange);
 }
-
+.carousel .swiper-slide .btn .icon{
+  width: 10%;
+  margin:auto;
+}
 @media screen and (min-width: 1025px) {
   .container {
     width: 80%;
@@ -613,10 +616,10 @@ color: var(--orange);
   }
 
   .address .address-right .socail {
-    width: 50%;
+    width: 40%;
     height: auto;
     display: flex;
-
+    margin-left: 20px; ;
     justify-content: space-around;
     align-items: center;
   }
@@ -766,9 +769,10 @@ color: var(--orange);
   }
 
   .carousel .swiper-slide {
-    width: 100%;
+    width: 99%;
     height: 100%;
     position: relative;
+    margin: 0rem auto;
   }
 
   .carousel .swiper-slide img {
@@ -776,7 +780,6 @@ color: var(--orange);
     height: 100%;
     object-fit: cover;
     border-radius: 2rem;
-    border: 0.5rem solid var(--light-gray);
   }
 
   .carousel .swiper-slide .adopt-title {
@@ -788,7 +791,7 @@ color: var(--orange);
   .carousel .heart {
     font-size: 2rem;
     letter-spacing: 2rem;
-    color: var(--red);
+    color: var(--orange);
     margin-bottom: 2rem;
   }
   .carousel .ml3 {
@@ -804,14 +807,17 @@ color: var(--orange);
     left: 81%;
     width: 14%;
     height: 11%;
-    background-color: var(--deep-gray);
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    background-color: var(--orange);
     padding: 0.875rem 2.5rem;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.125rem;
     cursor: pointer;
     border-radius: 0.625rem;
-    border: 0.125rem dashed var(--deep-gray);
+    border: 0.125rem dashed var(--orange);
     box-shadow: rgba(50, 50, 93, 0.25) 0rem 0.125rem 0.3125rem -0.0625rem,
       rgba(0, 0, 0, 0.3) 0rem 0.0625rem 0.1875rem -0.0625rem;
     transition: 0.4s;
@@ -827,18 +833,22 @@ color: var(--orange);
   .carousel .swiper-slide .btn a {
     transition: 0.4s;
     color: white;
-    font-size: 1.4rem;
-    width: 100%;
+    font-size: 1.3rem;
+    width: 90%;
+  }
+  .carousel .swiper-slide .btn .icon{
+    width: 10%;
+    margin:auto;
   }
   .carousel .swiper-slide .btn:hover a {
     transition: 0.4s;
-    color: var(--deep-gray);
+    color: var(--orange);
   }
   .btn:active {
     background-color: #87dbd0;
   }
   .carousel .swiper-slide .btn:hover i {
     transition: 0.4s;
-    color: var(--deep-gray);
+    color: var(--orange);
   }
 }
