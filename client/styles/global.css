@@ -31,7 +31,8 @@
     --blue: #427d9d;
     --green: #b6c12f;
     --border-color: #895e3c;
-    --font-family: 'Noto Sans TC', sans-serif;
+    --font-family: 'Noto Sans TC',
+     sans-serif;
     --font-size-h1: 2rem;
     /* h1 標題文字大小 ,32px*/
     --font-size-h2: 1.8rem;
@@ -47,7 +48,6 @@
 
 h1 {
     font-size: var(--font-size-h1);
-    color: var(--orange);
 }
 
 h2 {
