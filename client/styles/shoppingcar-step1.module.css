@@ -1,3 +1,6 @@
+.sectionstyle{
+  height: auto;
+}
 /* 上花邊 */
 .roof {
   margin: 0;
@@ -16,7 +19,7 @@
   margin-bottom: 80px;
 }
 .stepbg {
-  background-image: url(/images/step.png);
+  background-image: url(/cart/step.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom;
@@ -264,7 +267,7 @@
   flex-direction: row;
 } */
 .commend {
-  background-image: url(/images/commendbg.png);
+  background-image: url(/cart/commendbg.png);
   background-size: contain;
   margin: 0;
 }
@@ -299,7 +302,7 @@
 .carousel-item .img-box {
   display: flex;
   justify-content: center;
-  background-image: url(/images/itemborder.png);
+  background-image: url(/cart/itemborder.png);
   background-repeat: no-repeat;
   background-size: 100% 180px;
   background-position: center;
