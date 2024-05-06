@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '@/styles/location.module.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope, faHandPointer} from '@fortawesome/free-solid-svg-icons'
 export default function Location() {
   return (
     <>
@@ -54,10 +55,11 @@ export default function Location() {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9585094222593!2d120.22379571188887!3d23.025295579085018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e771f2995cba5%3A0x3bfd449f1e46ffef!2z5Y2X6Ie656eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1713363284909!5m2!1szh-TW!2stw"
               width={800}
-              height={600}
+              height={400}
               style={{ border: 0, borderRadius: '5%' }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google 地图"
             />
           </div>
           <div className={styles['address-right']}>
@@ -168,16 +170,18 @@ export default function Location() {
         </div>
       </section>
       <section className={styles['carousel']}>
-        <div className={styles['swiper mySwiper']}>
+        <div className={styles['swiper']}>
           <div className={styles['swiper-slide']}>
-            <img src={`/img/about-us.jpg`} alt="" />
+            <img src={`/img/adout.jpg`} alt="" />
             <div className={styles['adopt-title']}>
               <h1 className={styles['heart']}>心動了嗎?</h1>
               <h1 className={styles['ml3']}>快來袋走我們吧~</h1>
             </div>
             <button className={styles['btn']}>
               <a href="">領養專區</a>
-              <i className={styles['fa-solid fa-angles-right']} />
+              <a className={styles['icon']}>
+              <FontAwesomeIcon icon={faHandPointer} />
+              </a>
             </button>
           </div>
         </div>
