@@ -102,9 +102,6 @@ input:valid {
 .page-one .input:focus~label,
 input:valid~label {
     display: none;
-    /* background-color: #212121; */
-    /* padding: 0 0.2rem; */
-    /* color: #2196f3; */
 }
 
 .second-pages .input:focus,
@@ -131,7 +128,7 @@ input:valid~label {
 
 @media screen and (min-width: 1025px) {
 
-/* reserve page buttin */
+    /* reserve page button */
     .page-one .input:focus,
     input:valid {
         outline: none;
@@ -141,9 +138,6 @@ input:valid~label {
     .page-one .input:focus~label,
     input:valid~label {
         display: none;
-        /* background-color: #212121; */
-        /* padding: 0 0.2rem; */
-        /* color: #2196f3; */
     }
 
     .second-pages .input:focus,
