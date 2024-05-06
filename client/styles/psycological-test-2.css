@@ -1,0 +1,18 @@
+body {
+  display: initial;
+}
+
+header {
+  height: 80px;
+  background-color: #e4ceb5;
+}
+
+footer {
+  height: 400px;
+}
+
+@media screen and (max-width: 414px) {
+  footer {
+    margin-top: -250px;
+  }
+}

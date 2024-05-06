@@ -1,0 +1,139 @@
+.hearttest {
+  margin: 0 10%;
+  height: 800px;
+  background-color: #bacdd1;
+  background-image: url(/images/hearttestbg.png);
+  background-size: contain;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+}
+.testtitle {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 40px;
+  margin-top: 80px;
+}
+.testtitle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  background-color: #aeb884;
+  border-radius: 50px;
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.testtitle > div:nth-child(even) {
+  background-color: #f2ebd8;
+  color: black;
+}
+.testcontent {
+  width: 50%;
+  height: fit-content;
+  line-height: 3.5rem;
+  letter-spacing: 3px;
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  background-color: white;
+  opacity: 0.7;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin: auto 0;
+}
+.testcontent input {
+  border: none;
+  letter-spacing: 3px;
+  width: 250px;
+  border-bottom: 1px var(--deep-gray) solid;
+  outline: none;
+  background: none;
+  margin: 25px 0 10px 0;
+}
+/* 按鈕 */
+.testcontent > div:nth-child(3) {
+  display: flex;
+  justify-content: end;
+}
+.testcontent button {
+  width: 200px;
+  height: 50px;
+  letter-spacing: 5px;
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  background-color: var(--creamy-yellow);
+  border: none;
+  border-radius: 1rem;
+  color: black;
+  box-shadow: 0 0.4rem #dfd9d9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testcontent button:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+}
+
+.testcontent button:hover:not(:disabled) {
+  background: var(--deep-gray);
+  color: white;
+  text-shadow: 0 0.05rem #bcb4b4;
+}
+
+.testcontent button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+@media screen and (max-width: 414px) {
+  .hearttest {
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    align-items: center;
+  }
+  .testtitle {
+    width: 250px;
+    height: fit-content;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 0px;
+    margin-top: 40px;
+  }
+  .testtitle > div {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-h4);
+  }
+  .testcontent {
+    width: 85%;
+    font-size: 14px;
+    line-height: 1.75rem;
+    font-weight: 500;
+    padding: 25px;
+    text-align: justify;
+    margin: 30px 0;
+  }
+  .testcontent > div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .testcontent button {
+    font-size: 14px;
+    width: 100px;
+    height: 35px;
+    box-shadow: 0 0.2rem #dfd9d9;
+  }
+}
