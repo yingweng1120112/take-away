@@ -130,7 +130,8 @@ input:valid~label {
 }
 
 @media screen and (min-width: 1025px) {
-    
+
+/* reserve page buttin */
     .page-one .input:focus,
     input:valid {
         outline: none;
