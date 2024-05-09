@@ -61,7 +61,7 @@
   height: auto;
   display: flex;
   justify-content: center;
-  margin: 0rem auto;
+  margin: 1rem auto;
 }
 
 .about-pet .pet-photo img {
@@ -103,14 +103,18 @@
 }
 
 .about-pet .pet-name {
+  display:none;
+}
+.about-pet .pet-namet{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size:5px;
   align-items: center;
   line-height: 2.2rem;
   margin: 1rem auto;
 }
-.about-pet .pet-name h3{
+.about-pet .pet-namet h3{
   font-size: 1.2rem;
 }
 .about-pet .pet-img {
@@ -147,7 +151,7 @@
 }
 
 .about-pet .pet-character h3 {
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
   font-size: 1.2rem;
 }
 
@@ -174,33 +178,6 @@
   font-size: 0.8rem;
 }
 
-/* 顯示更多 */
-.about-pet .pet-title .label-more{
-  margin-top: 1.25rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: start;
-}
-.about-pet .pet-title .label-more .label{
-  float: left;
-  
-}
-.about-pet .pet-title .extra {
-  display: none;
-}
-
-.about-pet .ch{
-  display: none;
-}
-
-.about-pet .ch:checked ~ .extra{
-  display: block;
-}
-
-.about-pet .ch:checked ~ .label-more{
-  display: none;
-}
-
 .about-pet .label{
   display: inline-block;
   cursor: pointer;
@@ -209,9 +186,10 @@
   padding: 0.6rem;
   border-radius: 0.5rem;
 }
-.about-pet .less{
-  margin-left: .3125rem;
+.about-pet .pet-donate{
+  height: auto;
 }
+/* 顯示更多 */
 
 /*form styles*/
 .form {
@@ -970,18 +948,10 @@ background: var(--reddish-brown);
 }
 
 .about-pet .pet-photo {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  justify-content: center;
-  margin: 1rem auto;
+display:none;
 }
 
-.about-pet .pet-photo img {
-  width: 50%;
-  border-radius: 300%;
-  border: .3125rem solid var(--bean-paste);
-}
+
 
 .about-pet .pet-title {
   position: relative;
@@ -1014,7 +984,7 @@ background: var(--reddish-brown);
   background-color: var(--bean-paste);
 }
 
-.about-pet .pet-name {
+.about-pet .pet-name{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1022,14 +992,20 @@ background: var(--reddish-brown);
   line-height: 3.125rem;
   margin: 0rem auto;
 }
-
+.about-pet .pet-name h3{
+  font-weight: bolder;
+  margin-top: 1rem
+}
+.about-pet .pet-namet{
+  display: none;
+}
 .about-pet .pet-img {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  /* width: 100%; */
+  display: none;
+  /* flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto;
+  margin: 1rem auto; */
 }
 
 .about-pet .pet-img image {
@@ -1079,18 +1055,17 @@ background: var(--reddish-brown);
   font-size: var(--font-size-p);
 }
 /* 顯示更多 */
-.about-pet .pet-title .extra {
-  display: block;
-}
-
-.about-pet .ch{
-  display: none;
-}
-
-.about-pet .label{
-  display: none;
-}
-
+/* .about-pet .morebutton {
+    display: inline-block;
+    cursor: pointer;
+    background-color: var(--border-color);
+    color:  #ffffff;
+    padding:  0.6rem;
+    border-radius: 0.5rem;
+    width: 50%;
+    height: 3rem;
+    padding: auto;
+} */
 
 /*form styles*/
 .form {
