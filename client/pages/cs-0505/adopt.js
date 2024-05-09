@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt.module.css'
+import Carousel from '@/components/swiper/swiper'
+
 const parageStyles = {
   WebkitLineClamp: 1,
   WebkitBoxOrient: 'vertical',
@@ -46,8 +48,8 @@ export default function Adopt() {
                 alt=""
                 className={styles['pet-foot']}
               />
-              <div>
-              {/* //輪播 */}
+              <div className={styles['petswiper']}>
+              <Carousel  style={{'margin': '1rem',}}/>
               </div>
 
               <div className={styles['pet-photo']}>

@@ -101,6 +101,9 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: var(--bean-paste);
 }
+.petswiper {
+ display: none;
+}
 
 .about-pet .pet-name {
   display:none;
@@ -854,8 +857,8 @@ background: var(--reddish-brown);
   width: 7rem;
   height: 7rem;
   z-index: 21;
-  left: 55%;
-  top: 58%;
+  left: 70%;
+  top: 65%;
   transform: rotate(-80deg);
 }
 
@@ -870,13 +873,7 @@ background: var(--reddish-brown);
 }
 
 .about-pet .pet-foot:nth-child(2) {
-  position: absolute;
-  width: 9.375rem;
-  height: 9.375rem;
-  z-index: 3;
-  left: 0%;
-  top: 23%;
-  transform: rotate(80deg);
+  display: none;
 }
 
 .adout .popup-image .print {
@@ -944,9 +941,16 @@ background: var(--reddish-brown);
   border-radius: 3rem;
   border-radius: 1.55rem;
   background-color: var(--white);
-
 }
 
+
+.petswiper {
+  display: block;
+  width: 80%;
+  height: 35%;
+  margin:1rem;
+  border: 4px soild var(--border-color);
+}
 .about-pet .pet-photo {
 display:none;
 }
