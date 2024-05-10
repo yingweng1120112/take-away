@@ -6,11 +6,11 @@ export default function Step1() {
     <>
       <header />
       {/* 背景樣式上 */}
-      <section className={styles['roof']}>
+      <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/cart/roof.png" alt="" />
       </section>
       {/* 步驟 */}
-      <section className={styles['step']}>
+      <section className={`${styles['step']} ${styles['sectionstyle']}`}>
         <div className={styles['stepbg']}>
           <div className={styles['everystep']}>
             <div className={styles['nextto']}>
@@ -564,6 +564,7 @@ export default function Step1() {
           </div>
         </div>
       </section>
+
       {/* 下花邊 */}
       <section className={styles['wall']}>
         <img src="/cart/wall.png" alt="" />

@@ -1,3 +1,9 @@
+.bgcolor {
+  background-color: #d9d5ca;
+}
+.sectionstyle {
+  width: 80%;
+}
 .result {
   background-color: #d9d5ca;
 }
@@ -6,7 +12,7 @@
   height: 750px;
   display: flex;
   justify-content: space-between;
-  background-image: url(/images/resultbg.png);
+  background-image: url(/psycological-test/resultbg.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

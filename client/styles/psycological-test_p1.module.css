@@ -1,8 +1,11 @@
+.sectionstyle {
+  width: 80%;
+}
 .hearttest {
   margin: 0 10%;
   height: 800px;
   background-color: #bacdd1;
-  background-image: url(/images/hearttestbg.png);
+  background-image: url(/psycological-test/hearttestbg.png);
   background-size: contain;
   opacity: 0.9;
   display: flex;

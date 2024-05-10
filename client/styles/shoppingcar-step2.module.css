@@ -1,3 +1,6 @@
+.sectionstyle {
+  height: 150px;
+}
 /* 上花邊 */
 .roof {
   margin: 0;
@@ -16,7 +19,7 @@
   margin-bottom: 80px;
 }
 .stepbg {
-  background-image: url(/images/step.png);
+  background-image: url(/cart/step.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom;
@@ -88,7 +91,7 @@
 
 .cartbottomstyle {
   width: 100%;
-  background-color: var(--creamy-yellow);
+  background-color: rgb(243, 241, 231);
   font-size: var(--font-size-h4);
   display: flex;
   flex-direction: column;
@@ -191,7 +194,7 @@
   overflow-y: scroll;
 }
 .itemscroll::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
   /* background-color: var(--creamy-yellow); */
   height: auto;
 }
