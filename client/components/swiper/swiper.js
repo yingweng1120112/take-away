@@ -11,9 +11,6 @@ import 'swiper/css/thumbs'
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
-// 範例出處
-// https://swiperjs.com/demos#thumbs-gallery
-// https://codesandbox.io/s/k3cyyc
 export default function Carousel() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
@@ -26,10 +23,10 @@ export default function Carousel() {
           'width': '100%',
           'height': '100%',
           'border-radius': '10%',
-          'border': '4px soild var(--border-color)',
+          // 'border': '4px soild var(--border-color)',
         }}
         autoplay={{
-          delay: 2500,
+          delay: 2000,
           disableOnInteraction: false,
         }}
         spaceBetween={10}

@@ -53,7 +53,7 @@ export default function Adopt() {
               </div>
 
               <div className={styles['pet-photo']}>
-                <img src={`/img/螢幕擷取畫面 2024-02-03 215120.png`} alt="" />
+                <img src={`/img/dandan.png`} alt="" />
               </div>
               <div className={styles['pet-name']}>
                 <h3>認養滷蛋</h3>
@@ -77,7 +77,7 @@ export default function Adopt() {
               <div className={styles['extra']}>
                 <div className={styles['pet-character']}>
                   <h3>性格特色</h3>
-                  <p style={open ? null : parageStyles}>
+                  <h4 style={open ? null : parageStyles}>
                     1.很活潑好動，但只要讓她適當消耗精力，也能乖乖安靜待著
                     <br />
                     2.面對陌生人會先觀察，但一旦認定你就會開始黏人，看到熟人時也會非常興奮。
@@ -86,10 +86,12 @@ export default function Adopt() {
                     <br />
                     4.對環境適應力快、勇於探索，但警戒性也很高。
                     <br />
+                    <br />
                     ※本專案募資項目扣除Ludan（滷蛋）生活等相關費用，餘款將用於支付250隻等家狗狗每日的生活開銷※
                     <br />
                     ※您每一筆捐款將可以「列舉扣除額」方式申報扣抵所得稅※
-                  </p>
+                  </h4>
+                  <br />
                   <button
                     onClick={() => {
                       setOpen(!open)
