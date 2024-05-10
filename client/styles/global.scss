@@ -99,72 +99,72 @@ section {
   width: 100%;
 }
 
-.page-one .input:focus,
-input:valid {
-  outline: none;
-  border: 0.125rem solid var(--deep-gray);
-}
+// .page-one .input:focus,
+// input:valid {
+//   outline: none;
+//   border: 0.125rem solid var(--deep-gray);
+// }
 
-.page-one .input:focus ~ label,
-input:valid ~ label {
-  display: none;
-}
+// .page-one .input:focus ~ label,
+// input:valid ~ label {
+//   display: none;
+// }
 
-.second-pages .input:focus,
-input:valid {
-  outline: none;
-  border: 0.125rem solid var(--deep-gray);
-}
+// .second-pages .input:focus,
+// input:valid {
+//   outline: none;
+//   border: 0.125rem solid var(--deep-gray);
+// }
 
-.second-pages .input:focus ~ label,
-input:valid ~ label {
-  display: none;
-}
+// .second-pages .input:focus ~ label,
+// input:valid ~ label {
+//   display: none;
+// }
 
-.page-third .input:focus,
-input:valid {
-  outline: none;
-  border: 0.125rem solid var(--deep-gray);
-}
+// .page-third .input:focus,
+// input:valid {
+//   outline: none;
+//   border: 0.125rem solid var(--deep-gray);
+// }
 
-.page-third .input:focus ~ label,
-input:valid ~ label {
-  display: none;
-}
+// .page-third .input:focus ~ label,
+// input:valid ~ label {
+//   display: none;
+// }
 
 @media screen and (min-width: 1025px) {
   /* reserve page button */
 
-  .page-one .input:focus,
-  input:valid {
-    outline: none;
-    border: 0.125rem solid var(--deep-gray);
-  }
+  // .page-one .input:focus,
+  // input:valid {
+  //   outline: none;
+  //   border: 0.125rem solid var(--deep-gray);
+  // }
 
-  .page-one .input:focus ~ label,
-  input:valid ~ label {
-    display: none;
-  }
+  // .page-one .input:focus ~ label,
+  // input:valid ~ label {
+  //   display: none;
+  // }
 
-  .second-pages .input:focus,
-  input:valid {
-    outline: none;
-    border: 0.125rem solid var(--deep-gray);
-  }
+  // .second-pages .input:focus,
+  // input:valid {
+  //   outline: none;
+  //   border: 0.125rem solid var(--deep-gray);
+  // }
 
-  .second-pages .input:focus ~ label,
-  input:valid ~ label {
-    display: none;
-  }
+  // .second-pages .input:focus ~ label,
+  // input:valid ~ label {
+  //   display: none;
+  // }
 
-  .page-third .input:focus,
-  input:valid {
-    outline: none;
-    border: 0.125rem solid var(--deep-gray);
-  }
+  // .page-third .input:focus,
+  // input:valid {
+  //   outline: none;
+  //   border: 0.125rem solid var(--deep-gray);
+  // }
 
-  .page-third .input:focus ~ label,
-  input:valid ~ label {
-    display: none;
-  }
+  // .page-third .input:focus ~ label,
+  // input:valid ~ label {
+  //   display: none;
+  // }
 }
