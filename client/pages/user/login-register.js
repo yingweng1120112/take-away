@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from '@/styles/login-register.css'
+import styles from '@/styles/login-register.module.css'
 
 export default function LoginRegister() {
   return (
     <>
       <section>
         <p className="tip">點選圖片中的按鈕以切換登入、註冊</p>
-        <div className="cont">
+        <div className={styles['cont']}>
           <div className="form sign-in">
             <h2 className="h2">立即參觀！</h2>
             <label className="label">
