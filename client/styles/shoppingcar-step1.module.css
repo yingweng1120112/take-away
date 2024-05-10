@@ -262,14 +262,11 @@
 }
 
 /* 產品推薦 */
-/* #commendbody {
-  display: flex;
-  flex-direction: row;
-} */
 .commend {
   background-image: url(/cart/commendbg.png);
   background-size: contain;
   margin: 0;
+  height: 20rem;
 }
 .commend > h4 {
   font-size: var(--font-size-h3);
@@ -278,111 +275,10 @@
   letter-spacing: 10px;
   color: var(--deep-gray);
 }
-.carousel {
-  margin: 30px auto 60px;
-  padding: 0 80px;
-}
-.carousel .carousel-item {
-  text-align: center;
-  overflow: hidden;
-}
-.carousel .carousel-item h4 {
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 3px;
-}
-.carousel .carousel-item img {
-  max-width: 100%;
-  display: inline-block;
-}
-.carousel .thumb-wrapper {
-  margin: 5px;
-  text-align: left;
-}
-.carousel-item .img-box {
-  display: flex;
-  justify-content: center;
-  background-image: url(/cart/itemborder.png);
-  background-repeat: no-repeat;
-  background-size: 100% 180px;
-  background-position: center;
-  height: 180px;
-}
-.carousel .thumb-content {
-  border: 2px solid white;
-  color: var(--deep-gray);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  background: #fff;
-  position: relative;
-  top: -30px;
-}
-.carousel .thumb-content p {
-  margin-bottom: 0;
-  color: var(--deep-gray);
-  font-weight: 700;
-  font-size: 20px;
-  padding: 0;
-}
-.carousel .thumb-content div {
-  display: flex;
-  align-items: center;
-  margin-left: 125px;
-  justify-content: space-between;
-  width: 55%;
-}
-.carousel .thumb-content i {
-  font-size: 2rem;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  height: 44px;
-  width: 44px;
-  background: none;
-  margin: auto 0;
-  border-radius: 50%;
-  border: 3px solid white;
-}
-.carousel-control-prev i,
-.carousel-control-next i {
-  font-size: 36px;
-  position: absolute;
-  top: 50%;
-  display: inline-block;
-  margin: -19px 0 0 0;
-  z-index: 5;
-  left: 0;
-  right: 0;
-  color: grey;
-  text-shadow: none;
-  font-weight: bold;
-}
-.carousel-control-prev i {
-  margin-left: -3px;
-}
-.carousel-control-next i {
-  margin-right: -3px;
-}
-.carousel-indicators {
-  bottom: -25px;
-}
-.carousel-indicators li,
-.carousel-indicators li.active {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin: 4px;
-  border: none;
-}
-.carousel-indicators li {
-  background: #ffffff;
-}
-.carousel-indicators li.active {
-  background: #858383;
+.carouselstyle {
+  width: 100%;
+  height: 300px;
+  border: 1px solid red;
 }
 
 /* 按鈕 */
