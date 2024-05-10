@@ -38,16 +38,6 @@ export default function Adopt() {
           </div> */}
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
-              <img
-                src={`/img/foot.png`}
-                alt=""
-                className={styles['pet-foot']}
-              />
-              <img
-                src={`/img/foot.png`}
-                alt=""
-                className={styles['pet-foot']}
-              />
               <div className={styles['petswiper']}>
               <Carousel  style={{'margin': '1rem',}}/>
               </div>
