@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import '@/styles/global.scss'
+import '@/styles/form.scss'
 import DefaultLayout from '@/components/layout/default-layout'
 //  3. 最外(上)元件階層包裹提供者元件，讓⽗⺟元件可以提供它:
 import { ThemeProvider } from '@/hooks/use-theme'
