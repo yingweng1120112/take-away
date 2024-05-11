@@ -214,6 +214,7 @@ export default function Step1() {
           </div>
         </div>
       </div>
+
       {/* 商品推薦 */}
       <section className={styles['commend']}>
         <h4>相關商品推薦</h4>

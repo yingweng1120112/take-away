@@ -266,7 +266,7 @@
   background-image: url(/cart/commendbg.png);
   background-size: contain;
   margin: 0;
-  height: 20rem;
+  height: 34rem;
 }
 .commend > h4 {
   font-size: var(--font-size-h3);
@@ -277,8 +277,7 @@
 }
 .carouselstyle {
   width: 100%;
-  height: 300px;
-  border: 1px solid red;
+  height: fit-content;
 }
 
 /* 按鈕 */
