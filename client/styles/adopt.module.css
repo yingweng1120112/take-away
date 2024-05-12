@@ -20,6 +20,7 @@
   justify-content: space-around;
   width: 100%;
   height:auto;
+  margin: 20rem 0rem;
 }
 .adout .container {
   position: relative;
@@ -147,20 +148,26 @@
 }
 
 .about-pet .pet-character {
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   letter-spacing: .125rem;
   line-height: 2.7rem;
-  margin: 0.5rem;
+  margin: 0.5rem auto;
 }
 
 .about-pet .pet-character h3 {
-  margin-bottom: 1rem;
-  font-size: 1.45rem;
+  margin: 1rem 0rem;
+  padding-top: 1rem;
+  padding-left: 0.8rem;
+  width:40%;
+  height: 60px;
+  font-size: 1.2rem;
   color: var(--border-color);
   font-weight: bolder;
+  background-color: #DAA06D;
+  border-radius: 1rem;
 }
 
 .about-pet .pet-character h4 {

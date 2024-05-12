@@ -94,9 +94,10 @@ export default function Adopt() {
                       'color': ' #ffffff',
                       'padding': ' 0.6rem',
                       'border-radius': '0.5rem',
-                      'width': '50%',
+                      'width': '45%',
                       'height': '3.3rem',
                       'padding': 'auto',
+                      'margin-left': '1rem',
                     }}
                   >
                     {open ? 'Read Less...' : 'Read More...'}
@@ -106,7 +107,6 @@ export default function Adopt() {
             </div>
           </section>
           <section className={styles['form']}>
-            {/* <form className={styles['msform']}> */}
             <AdoptForm className={styles['msform']}/>
             {/* </form> */}
           </section>
