@@ -85,7 +85,7 @@
   letter-spacing: 5px;
   padding-left: 15px;
   color: var(--light-gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 .cartdetail {
   display: flex;
@@ -103,6 +103,11 @@
   margin-left: 5px;
   width: 49%;
   height: 100%;
+}
+.cartdetailleft > input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-right: 4px;
 }
 .cartdetailright {
   display: flex;
@@ -149,6 +154,10 @@
   flex-direction: row;
   align-items: center;
 }
+.carti input {
+  width: 1rem;
+  height: 1rem;
+}
 .cartitemleft .itemlist {
   display: flex;
   align-items: center;
@@ -185,11 +194,11 @@
 }
 .cartitemright > div:nth-child(5) {
   background-color: white;
-  padding-left: 8px;
+  padding-left: 15px;
   padding-top: 8px;
   height: 30%;
+  width: 50px;
   border-radius: 10px;
-  font-weight: 500;
   color: var(--deep-gray);
 }
 .cartitemright .itemamount {
@@ -239,7 +248,7 @@
   letter-spacing: 5px;
   padding-left: 15px;
   color: var(--deep-gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 .shoppingcarright {
   width: 35%;
@@ -259,6 +268,7 @@
 .cartbottomstyle > div {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 /* 產品推薦 */
@@ -282,34 +292,44 @@
 
 /* 按鈕 */
 .buttonstyle {
-  width: 30%;
-  letter-spacing: 5px;
-  font-size: var(--font-size-h4);
-  font-weight: 500;
+  width: fit-content;
+  letter-spacing: 3px;
+  font-size: var(var(--font-size-h4));
+  font-weight: 600;
   background-color: white;
   border: none;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 1rem;
   color: var(--deep-gray);
-  box-shadow: 0 0.4rem #dfd9d9;
+  box-shadow: 0 0.2rem #dfd9d9;
   cursor: pointer;
 }
-.nextButton {
-  width: 100%;
+.cartbutton button:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+.iconstyle1 {
+  margin-right: 6px;
+}
+.iconstyle2 {
+  margin-left: 6px;
+}
+.cartbutton button:nth-child(2) {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
-
 .buttonstyle:active {
   color: white;
-  box-shadow: 0 0.2rem #dfd9d9;
-  transform: translateY(0.2rem);
+  /* box-shadow: 0 0.2rem #dfd9d9; */
+  /* transform: translateY(0.2rem); */
 }
 
 .buttonstyle:hover:not(:disabled) {
-  background: var(--deep-gray);
-  color: white;
-  text-shadow: 0 0.05rem #bcb4b4;
+  background: var(--yellow);
+  opacity: 0.8;
+  color: grey;
+  /* text-shadow: 0 0.05rem #bcb4b4; */
 }
 
 .buttonstyle:disabled {

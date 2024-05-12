@@ -1,6 +1,14 @@
 import React from 'react'
 import styles from '@/styles/shoppingcar-step1.module.css'
 import Carousel from '@/components/shoppingcart/carousel'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faSquareMinus,
+  faSquarePlus,
+  faTrashCan,
+  faStore,
+  faAnglesRight,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function Step1() {
   return (
@@ -38,12 +46,7 @@ export default function Step1() {
           </div>
           <div className={styles['cartdetail']}>
             <div className={styles['cartdetailleft']}>
-              <i
-                className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-              >
-                {' '}
-                商品資料
-              </i>
+              <input type="checkbox" /> 商品資料
             </div>
             <div className={styles['cartdetailright']}>
               <div>優惠</div>
@@ -56,9 +59,7 @@ export default function Step1() {
             <div className={styles['cartitem']}>
               <div className={styles['cartitemleft']}>
                 <div className={styles['carti']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-                  />
+                  <input type="checkbox" />
                 </div>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
@@ -71,24 +72,20 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-minus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquarePlus} />
                   <div>2</div>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-plus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquareMinus} />
                 </div>
                 <div>$90</div>
-                <div>刪除</div>
+                <div>
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </div>
               </div>
             </div>
             <div className={styles['cartitem']}>
               <div className={styles['cartitemleft']}>
                 <div className={styles['carti']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-                  />
+                  <input type="checkbox" />
                 </div>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
@@ -101,24 +98,20 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-minus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquarePlus} />
                   <div>2</div>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-plus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquareMinus} />
                 </div>
                 <div>$90</div>
-                <div>刪除</div>
+                <div>
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </div>
               </div>
             </div>
             <div className={styles['cartitem']}>
               <div className={styles['cartitemleft']}>
                 <div className={styles['carti']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-                  />
+                  <input type="checkbox" />
                 </div>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
@@ -131,24 +124,20 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-minus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquarePlus} />
                   <div>2</div>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-plus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquareMinus} />
                 </div>
                 <div>$90</div>
-                <div>刪除</div>
+                <div>
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </div>
               </div>
             </div>
             <div className={styles['cartitem']}>
               <div className={styles['cartitemleft']}>
                 <div className={styles['carti']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-                  />
+                  <input type="checkbox" />
                 </div>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
@@ -161,16 +150,14 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-minus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquarePlus} />
                   <div>2</div>
-                  <i
-                    className={`${styles['fa-solid']} ${styles['fa-square-plus']}`}
-                  />
+                  <FontAwesomeIcon icon={faSquareMinus} />
                 </div>
                 <div>$90</div>
-                <div>刪除</div>
+                <div>
+                  <FontAwesomeIcon icon={faTrashCan} />
+                </div>
               </div>
             </div>
           </div>
@@ -199,15 +186,17 @@ export default function Step1() {
             </div>
             <div className={styles['cartbutton']}>
               <button className={styles['buttonstyle']}>
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-caret-left']}`}
+                <FontAwesomeIcon
+                  icon={faStore}
+                  className={styles['iconstyle1']}
                 />
                 繼續購物
               </button>
               <button className={styles['buttonstyle']}>
                 填寫資料
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-caret-right']}`}
+                <FontAwesomeIcon
+                  icon={faAnglesRight}
+                  className={styles['iconstyle2']}
                 />
               </button>
             </div>

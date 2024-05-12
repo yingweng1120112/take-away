@@ -86,7 +86,7 @@
   letter-spacing: 5px;
   padding-left: 15px;
   color: var(--light-gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .cartbottomstyle {
@@ -126,6 +126,7 @@
 .cartbottomstyle > div select,
 .cartbottomstyle > div textarea {
   width: 550px;
+  height: 30px;
   font-size: var(--font-size-p);
   color: var(--deep-gray);
   border: var(--deep-gray) 2px solid;
@@ -187,6 +188,16 @@
 .writebill > div:nth-child(3) {
   justify-content: end;
 }
+.checklinestyle {
+  justify-content: start !important;
+  width: 400px !important;
+  align-items: center;
+}
+
+.checkboxstyle {
+  width: 20px !important;
+  margin-right: 5px;
+}
 
 /* 左側scroll條 */
 .itemscroll {
@@ -226,7 +237,7 @@
   letter-spacing: 5px;
   padding-left: 15px;
   color: var(--deep-gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 .writemessageright {
   width: 35%;
@@ -236,34 +247,44 @@
 
 /* 按鈕 */
 .buttonstyle {
-  width: 30%;
-  letter-spacing: 5px;
-  font-size: var(--font-size-h4);
-  font-weight: 500;
+  width: fit-content;
+  letter-spacing: 3px;
+  font-size: var(var(--font-size-h4));
+  font-weight: 600;
   background-color: white;
   border: none;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 1rem;
   color: var(--deep-gray);
-  box-shadow: 0 0.4rem #dfd9d9;
+  box-shadow: 0 0.2rem #dfd9d9;
   cursor: pointer;
 }
-.nextButton {
-  width: 100%;
+.cartbutton button:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+.iconstyle1 {
+  margin-right: 6px;
+}
+.iconstyle2 {
+  margin-left: 6px;
+}
+.cartbutton button:nth-child(2) {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
-
 .buttonstyle:active {
   color: white;
-  box-shadow: 0 0.2rem #dfd9d9;
-  transform: translateY(0.2rem);
+  /* box-shadow: 0 0.2rem #dfd9d9; */
+  /* transform: translateY(0.2rem); */
 }
 
 .buttonstyle:hover:not(:disabled) {
-  background: var(--deep-gray);
-  color: white;
-  text-shadow: 0 0.05rem #bcb4b4;
+  background: var(--yellow);
+  opacity: 0.8;
+  color: grey;
+  /* text-shadow: 0 0.05rem #bcb4b4; */
 }
 
 .buttonstyle:disabled {

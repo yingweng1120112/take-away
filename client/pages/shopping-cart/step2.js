@@ -1,5 +1,10 @@
 import React from 'react'
 import styles from '@/styles/shoppingcar-step2.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faAnglesLeft,
+  faClipboardCheck,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function Step1() {
   return (
@@ -44,25 +49,25 @@ export default function Step1() {
               <div>
                 <div>會員姓名</div>
                 <div>
-                  <input defaultValue="王小明" readOnly="" />
+                  <input readOnly="王小明" />
                 </div>
               </div>
               <div>
                 <div>電子郵件</div>
                 <div>
-                  <input defaultValue="a123456789@gmail.com" readOnly="" />
+                  <input readOnly="a123456789@gmail.com" />
                 </div>
               </div>
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input defaultValue={'0912345678'} readOnly="" />
+                  <input readOnly="0912345678" />
                 </div>
               </div>
               <div>
                 <div>地址</div>
                 <div>
-                  <input defaultValue="台南市中西區健康路一段1號" readOnly="" />
+                  <input readOnly="台南市中西區健康路一段1號" />
                 </div>
               </div>
             </div>
@@ -87,13 +92,9 @@ export default function Step1() {
                 </div>
               </div>
               {/*  */}
-              <div>
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-square-check']}`}
-                >
-                  {' '}
-                  收件人資料與會員資料相同
-                </i>
+              <div className={styles['checklinestyle']}>
+                <input type="checkbox" className={styles['checkboxstyle']} />
+                <span>收件人資料與會員資料相同</span>
               </div>
               {/*  */}
               <div>
@@ -206,15 +207,17 @@ export default function Step1() {
             </div>
             <div className={styles['cartbutton']}>
               <button className={styles['buttonstyle']}>
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-caret-left']}`}
+                <FontAwesomeIcon
+                  icon={faAnglesLeft}
+                  className={styles['iconstyle1']}
                 />
                 回上一步
               </button>
               <button className={styles['buttonstyle']}>
                 提交訂單
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-caret-right']}`}
+                <FontAwesomeIcon
+                  icon={faClipboardCheck}
+                  className={styles['iconstyle2']}
                 />
               </button>
             </div>
