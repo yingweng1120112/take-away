@@ -1,0 +1,691 @@
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --beige: #fef9f2;
+  --brown: #967b4a;
+  --reddish-brown: #895e3c;
+  --khaki: #d7b67a;
+  --bean-paste: #d3ad9a;
+  --yellow: #fecc5f;
+  --light-yellow: #faeed1;
+  --creamy-yellow: #fdf7e4;
+  --gray: #ebebeb;
+  --dark-gray: #ebe6d4;
+  --bright-gary: #f5ebd9;
+  --heavy-gary: #cab897;
+  --light-gray: #dbd2c6;
+  --deep-gray: #89837c;
+  --light-pink: #fce9d4;
+  --red: #e83d3d;
+  --orange: #e24800;
+  --light-blue: #b9d8ef;
+  --deep-blue: #292f36;
+  --dark-green: #018786;
+  --pink: #f29999;
+  --blue: #427d9d;
+  --green: #b6c12f;
+  --border-color: #895e3c;
+  --font-family: 'Noto Sans TC', sans-serif;
+  --font-size-h1: 2rem;
+
+  /* h1 標題文字大小 ,32px*/
+  --font-size-h2: 1.8rem;
+
+  /* h2 標題文字大小,28.8px */
+  --font-size-h3: 1.5rem;
+
+  /* h3 標題文字大小,24px  */
+  --font-size-h4: 1.25rem;
+
+  /* h4 標題文字大小,20px */
+  --font-size-p: 16px;
+
+  /* 段落文字大小 */
+  --bg-color: #fdf7e4;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+p {
+  font-size: var(--font-size-p);
+  padding: 0rem;
+}
+
+a {
+  color: #89837c;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.form1 {
+  padding-top: 1rem;
+  background-color: var(--bean-paste);
+  width: 90%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  border: 2px solid black;
+}
+
+.page-one h4 {
+  width: 85%;
+  margin: 1.5rem auto;
+  font-size: 1.4375rem;
+  font-weight: bolder;
+  color: var(--reddish-brown);
+}
+
+.form-title {
+  width: 80%;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+}
+
+.input-title {
+  font-size: 1rem;
+  margin: 0.8rem;
+}
+
+.page {
+  height: 100%;
+}
+
+//TODO:button
+.donate-button-group {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: auto;
+}
+
+.donate-button {
+  margin: 0.5rem auto;
+  height: 3.5rem;
+  width: 45%;
+  border-radius: 0.5rem;
+  outline: none;
+  color: #DAA06D;
+  border: 2px dashed #DAA06D;
+  background-color: #EADDCA;
+  box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+  transition: .1s ease-in-out, .4s color;
+}
+
+.donate-button:active {
+  transform: translateX(0.1em) translateY(0.1em) !important;
+  box-shadow: 0 0 0 4px #EADDCA, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
+}
+
+.next-button{
+  width: 100%;
+  height: 2.8rem;
+}
+.next-page-button{
+  width: 45%;
+  height: 2.2rem;
+  border-radius: .625rem;
+  font-size: 0.8rem;
+}
+//TODO:NTD500 ntd-group
+.ntd-group {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem auto;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: .9375rem;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 9.375rem;
+  height: 6.25rem;
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.ntd-input {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+  border: .125rem solid var(--creamy-yellow);
+  border-radius: .625rem;
+  z-index: 10;
+  box-shadow: .0625rem .0625rem .625rem var(--creamy-yellow),
+    -0.0625rem -0.0625rem .625rem var(--creamy-yellow);
+}
+
+.ntd-input+.check::before {
+  content: "";
+  position: absolute;
+  top: .9375rem;
+  right: .9375rem;
+  width: 1rem;
+  height: 1rem;
+  border: .125rem solid #d0d0d0;
+  border-radius: 50%;
+  background-color: #E8E8E8;
+}
+
+.ntd-input:checked+.check::after {
+  content: '';
+  position: absolute;
+  top: 1.07rem;
+  right: 1.07rem;
+  width: .75rem;
+  height: .75rem;
+  background-color: var(--brown);
+  border-radius: 50%;
+}
+
+.ntd-input[value="1000"]:checked+.check::after {
+  background-color: var(--brown);
+}
+
+.ntd-input[value="2000"]:checked+.check::after {
+  background-color: var(--brown);
+}
+
+.ntd-input[value="500"]:checked {
+  border: .125rem solid var(--brown);
+}
+
+.ntd-input[value="1000"]:checked {
+  border: .125rem solid var(--brown);
+}
+
+.ntd-input[value="2000"]:checked {
+  border: .125rem solid var(--brown);
+}
+
+.ntd-label {
+  color: #323232;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 40%;
+  left: 7%;
+  z-index: 0;
+  margin-left: 0.5rem;
+}
+
+.ntd-label .title {
+  // margin: 1rem 0rem 0rem 0rem;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+}
+
+.ntd-label .price {
+  // margin: 1rem 0rem 0rem 0rem;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.ntd-label .span {
+  color: gray;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+//TODO:Input
+.form-Input-group {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-label {
+  height: 3.5rem;
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  line-height: 2rem;
+}
+
+.form-input {
+  color: var(--creamy-yellow);
+  font-size: 1.5rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+
+.input-border {
+  position: absolute;
+  background: var(--creamy-yellow);
+  width: 0%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+.form-input:hover {
+  background: var(--input-hovered-color);
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-input:focus~.input-border {
+  width: 100%;
+}
+
+//TODO:捐贈用途 radio
+.radio-group {
+  width: 80%;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  line-height: 2.5rem;
+}
+
+//radio checkbox樣式
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5rem;
+  color: #333;
+  transition: color 0.3s;
+  font-weight: bolder;
+  margin: 0.5rem 0rem;
+}
+
+.custom-checkbox .radio-input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox .checkmark {
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid #333;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+  transform-style: preserve-3d;
+}
+
+.custom-checkbox .checkmark::before {
+  content: "\2713";
+  font-size: 1.37rem;
+  color: transparent;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.custom-checkbox .radio-input[type="checkbox"]:checked+.checkmark {
+  background-color: #333;
+  border-color: #333;
+  transform: scale(1.1) rotateZ(360deg) rotateY(360deg);
+}
+
+.custom-checkbox .radio-input[type="checkbox"]:checked+.checkmark::before {
+  color: #fff;
+}
+
+.custom-checkbox:hover {
+  color: #666;
+}
+
+.custom-checkbox:hover .checkmark {
+  border-color: #666;
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.custom-checkbox .radio-input[type="checkbox"]:focus+.checkmark {
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.custom-checkbox .checkmark,
+.custom-checkbox .radio-input[type="checkbox"]:checked+.checkmark {
+  transition: background-color 1.3s, border-color 1.3s, color 1.3s, transform 0.3s;
+}
+
+//TODO:感謝認養
+.thanks {
+  display: flex;
+  flex-direction: column;
+}
+
+.thanks-title {
+  width: 80%;
+  margin: 0rem 0rem 1rem 1.5rem;
+  font-size: 1.0rem;
+  color:var(--reddish-brown);
+  font-weight:bolder;
+}
+
+.thanks-group {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  width: 100%;
+  height: 9rem;
+  margin:auto;
+}
+
+.thank-img {
+  width: 100%;
+  height: 100%;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.thanks-group-p {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//TODO:換頁按鈕
+.button-group {
+  width: 90%;
+  // height: 100px;
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.learn-more {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 10rem;
+  height: auto;
+  margin: 1rem auto;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0rem;
+  width: 3rem;
+  height: 3rem;
+  background: var(--deep-gray);
+  border-radius: 1.625rem;
+}
+
+.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+// arrow上一頁
+// .learn-more .circle .icon2.arrow::before {
+//   position: absolute;
+//   content: "";
+//   top: 1.2rem;
+//   right: 1.0625rem;
+//   width: 0.625rem;
+//   height: 0.625rem;
+//   border-top: 0.125rem solid #fff;
+//   border-right: 0.125rem solid #fff;
+//   right: 0.625rem; /* 修改这里 */
+//   transform: scaleX(-1); /* 新增这一行，将箭头图标水平翻转 */
+// }
+
+// arrow下一頁
+.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.24rem;
+  right: 0.0505rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+// arrow上一頁
+
+
+.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.55rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.learn-more:hover .circle {
+  width: 100%;
+}
+
+.learn-more:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+.learn-more:hover .button-text {
+  color: #fff;
+}
+
+//TODO: page-two
+.page-two .page-title {
+  width: 85%;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: var(--reddish-brown);
+  margin: 1rem auto
+}
+
+.page-two .input-title {
+  margin: 0.5rem 0rem;
+  color: var(--reddish-brown);
+  font-weight: bolder;
+  font-size: 1.0rem;
+}
+
+.page-two .form-label {
+  height: 2.2rem;
+  margin: 0.5rem auto;
+}
+
+.page-two .form-input {
+  font-size: 1.25rem;
+}
+
+.page-two .form-Input-group {
+  margin: 1rem auto;
+  width: 85%;
+}
+
+.page-two .radio-title {
+  margin: 0.5rem 1.5rem;
+  color: var(--reddish-brown);
+  font-weight: bolder;
+  font-size: 1.0rem;
+}
+
+//radio checkbox樣式
+.page-two .custom-checkbox {
+  font-size: 1.1rem;
+}
+
+.page-two .custom-checkbox .checkmark {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.custom-checkbox .checkmark::before {
+  content: "\2713";
+  font-size: 0.9rem;
+}
+//TODO: page-two
+.page-third .page-title {
+  width: 85%;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: var(--reddish-brown);
+  margin: 1rem auto
+}
+
+.page-third .input-title {
+  margin: 0.5rem 0rem;
+  color: var(--reddish-brown);
+  font-weight: bolder;
+  font-size: 1.0rem;
+}
+
+.page-third .form-label {
+  height: 2.2rem;
+  margin: 0.5rem auto;
+}
+
+.page-third .form-input {
+  font-size: 1.25rem;
+}
+
+.page-third .form-Input-group {
+  margin: 1rem auto;
+  width: 85%;
+}
+
+.page-third .radio-title {
+  margin: 0.5rem 1.5rem;
+  color: var(--reddish-brown);
+  font-weight: bolder;
+  font-size: 1.0rem;
+}
+@media screen and (min-width: 1025px) {
+  .page-one h4 {
+    width: 85%;
+    margin: 1.5rem auto;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    color: var(--reddish-brown);
+  }
+  .form-input {
+    font-size: 1.2rem;
+  }
+  .form-label {
+    height: 2.2rem;
+    line-height: 1rem;
+  }
+  .radio-group {
+    margin: 1rem auto;
+    line-height: 2rem;
+  }
+  .custom-checkbox{
+    font-size: 1.2rem;
+  }
+  .custom-checkbox .checkmark {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  .custom-checkbox .checkmark::before {
+    font-size: 1rem;
+  }
+  .page-two .input-title{
+    font-size:1.2rem;
+  }
+  .page-two .form-label {
+    --width-of-input: 90%;
+  }
+  .page-third .input-title{
+    font-size:1.2rem;
+  }
+  .page-third .form-label {
+    --width-of-input: 90%;
+  }
+  .thanks-title{
+    font-size:1.2rem;
+    margin-left:2rem;
+  }
+  .thanks-group{
+    margin:0.5rem auto;
+  }
+}

@@ -20,6 +20,7 @@
   justify-content: space-around;
   width: 100%;
   height:auto;
+  margin: 20rem 0rem;
 }
 .adout .container {
   position: relative;
@@ -61,7 +62,7 @@
   height: auto;
   display: flex;
   justify-content: center;
-  margin: 0rem auto;
+  margin: 1rem auto;
 }
 
 .about-pet .pet-photo img {
@@ -101,17 +102,27 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: var(--bean-paste);
 }
+.petswiper {
+ display: none;
+}
 
 .about-pet .pet-name {
+  display:none;
+}
+.about-pet .pet-namet{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size:5px;
   align-items: center;
   line-height: 2.2rem;
   margin: 1rem auto;
 }
-.about-pet .pet-name h3{
-  font-size: 1.2rem;
+.about-pet .pet-namet h3{
+  font-size: 1.45rem;
+  color: var(--border-color);
+  font-weight: bolder;
+  margin: 0.5rem 0rem;
 }
 .about-pet .pet-img {
   width: 100%;
@@ -137,30 +148,34 @@
 }
 
 .about-pet .pet-character {
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   letter-spacing: .125rem;
   line-height: 2.7rem;
-  margin: 0.5rem;
+  margin: 0.5rem auto;
 }
 
 .about-pet .pet-character h3 {
-  margin-bottom: 0rem;
+  margin: 1rem 0rem;
+  padding-top: 1rem;
+  padding-left: 0.8rem;
+  width:40%;
+  height: 60px;
   font-size: 1.2rem;
+  color: var(--border-color);
+  font-weight: bolder;
+  background-color: #DAA06D;
+  border-radius: 1rem;
 }
 
-.about-pet .pet-character li {
-  margin-bottom: 0rem;
-  font-size: 0.8rem;
-}
-
-.about-pet ul {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.about-pet .pet-character h4 {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-h5);
+  font-weight: bolder;
+  line-height: 2.5rem;
+  color: var(--deep-gray);
 }
 
 .about-pet .pet-donate {
@@ -174,33 +189,6 @@
   font-size: 0.8rem;
 }
 
-/* 顯示更多 */
-.about-pet .pet-title .label-more{
-  margin-top: 1.25rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: start;
-}
-.about-pet .pet-title .label-more .label{
-  float: left;
-  
-}
-.about-pet .pet-title .extra {
-  display: none;
-}
-
-.about-pet .ch{
-  display: none;
-}
-
-.about-pet .ch:checked ~ .extra{
-  display: block;
-}
-
-.about-pet .ch:checked ~ .label-more{
-  display: none;
-}
-
 .about-pet .label{
   display: inline-block;
   cursor: pointer;
@@ -209,9 +197,10 @@
   padding: 0.6rem;
   border-radius: 0.5rem;
 }
-.about-pet .less{
-  margin-left: .3125rem;
+.about-pet .pet-donate{
+  height: auto;
 }
+/* 顯示更多 */
 
 /*form styles*/
 .form {
@@ -870,37 +859,15 @@ background: var(--reddish-brown);
   top: 90%;
   transform: rotate(-0deg);
 }
-
-.about-pet .pet-foot {
+.adout .foot:nth-child(2) {
   position: absolute;
-  width: 7rem;
-  height: 7rem;
-  z-index: 21;
-  left: 55%;
-  top: 58%;
-  transform: rotate(-80deg);
+  width: 9rem;
+  height: 9rem;
+  z-index: 4;
+  left: 40%;
+  top: -5%;
+  transform: rotate(-180deg);
 }
-
-.about-pet .pet-foot:nth-child(2) {
-  position: absolute;
-  width: 9.375rem;
-  height: 9.375rem;
-  z-index: 3;
-  left: 1%;
-  top: 20%;
-  transform: rotate(80deg);
-}
-
-.about-pet .pet-foot:nth-child(2) {
-  position: absolute;
-  width: 9.375rem;
-  height: 9.375rem;
-  z-index: 3;
-  left: 0%;
-  top: 23%;
-  transform: rotate(80deg);
-}
-
 .adout .popup-image .print {
   position: absolute;
   width: 10rem;
@@ -966,22 +933,21 @@ background: var(--reddish-brown);
   border-radius: 3rem;
   border-radius: 1.55rem;
   background-color: var(--white);
-
 }
 
+
+.petswiper {
+  display: block;
+  width: 80%;
+  height: 35%;
+  margin:0.5rem 0rem;
+  border: 4px soild var(--border-color);
+}
 .about-pet .pet-photo {
-  width: 100%;
-  height: 30%;
-  display: flex;
-  justify-content: center;
-  margin: 1rem auto;
+display:none;
 }
 
-.about-pet .pet-photo img {
-  width: 50%;
-  border-radius: 300%;
-  border: .3125rem solid var(--bean-paste);
-}
+
 
 .about-pet .pet-title {
   position: relative;
@@ -1014,22 +980,30 @@ background: var(--reddish-brown);
   background-color: var(--bean-paste);
 }
 
-.about-pet .pet-name {
+.about-pet .pet-name{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   line-height: 3.125rem;
-  margin: 0rem auto;
+  margin: 0.5rem auto;
 }
-
+.about-pet .pet-name h3{
+  font-weight: bolder;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--border-color);
+}
+.about-pet .pet-namet{
+  display: none;
+}
 .about-pet .pet-img {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  /* width: 100%; */
+  display: none;
+  /* flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto;
+  margin: 1rem auto; */
 }
 
 .about-pet .pet-img image {
@@ -1050,25 +1024,25 @@ background: var(--reddish-brown);
   flex-direction: column;
   justify-content: space-around;
   letter-spacing: .125rem;
-  line-height: 3.125rem;
   margin-bottom: 1rem;
 }
 
 .about-pet .pet-character h3 {
+  margin: 1rem 0rem;
+  font-weight: bolder;
   font-size: var(--font-size-h3);
-  margin-bottom: 0rem;
+  width: 88%;
+  margin: 1rem auto;
+  color: var(--border-color);
+}
+.about-pet .pet-character h4 {
+  line-height: 3.125rem;
+  font-weight: bolder;
+  font-size: var(--font-size-h5);
+  width: 88%;
+  margin: auto;
 }
 
-.about-pet ul {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: start;
-}
-.about-pet .pet-character li{
-  font-size: var(--font-size-p);
-}
 .about-pet .pet-donate {
   letter-spacing: .125rem;
   line-height: 2.5rem;
@@ -1079,18 +1053,17 @@ background: var(--reddish-brown);
   font-size: var(--font-size-p);
 }
 /* 顯示更多 */
-.about-pet .pet-title .extra {
-  display: block;
-}
-
-.about-pet .ch{
-  display: none;
-}
-
-.about-pet .label{
-  display: none;
-}
-
+/* .about-pet .morebutton {
+    display: inline-block;
+    cursor: pointer;
+    background-color: var(--border-color);
+    color:  #ffffff;
+    padding:  0.6rem;
+    border-radius: 0.5rem;
+    width: 50%;
+    height: 3rem;
+    padding: auto;
+} */
 
 /*form styles*/
 .form {
