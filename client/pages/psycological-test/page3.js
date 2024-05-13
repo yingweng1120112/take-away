@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '@/styles/psycological-test_p3.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 export default function Page3() {
   return (
@@ -69,15 +71,11 @@ export default function Page3() {
             <div className={styles['button']}>
               <button>
                 保存結果
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-download']}`}
-                />
+                <FontAwesomeIcon icon={faDownload} />
               </button>
               <button>
                 前往專區
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-right-to-bracket']}`}
-                />
+                <FontAwesomeIcon icon={faRightToBracket} />
               </button>
             </div>
           </section>

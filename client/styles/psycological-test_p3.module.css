@@ -87,7 +87,7 @@
 .result-right > div:nth-child(2) {
   font-size: var(--font-size-h2);
   height: 45px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* 數據 */
@@ -124,7 +124,7 @@
 }
 .graph .text > div {
   font-size: var(--font-size-h4);
-  font-weight: 500;
+  font-weight: 600;
   color: #a8564f;
 }
 .bar {
@@ -152,10 +152,10 @@
   margin-top: 600px;
 }
 .testresult .button > button {
-  width: 100px;
+  width: 120px;
   height: 50px;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   background-color: var(--creamy-yellow);
   border: none;
   border-radius: 20px;
@@ -166,6 +166,7 @@
   display: flex;
   align-items: center;
   overflow-wrap: break-word;
+  justify-content: space-evenly;
 }
 
 .testresult button:active {
@@ -229,7 +230,7 @@
   }
   .result-right > div:nth-child(2) {
     font-size: var(--font-size-p);
-    font-weight: 500;
+    font-weight: 600;
     height: 23px;
   }
   .result-right > div:nth-child(3) {

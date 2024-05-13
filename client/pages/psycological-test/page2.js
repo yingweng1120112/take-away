@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '@/styles/psycological-test_p2.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function Page1() {
   return (
@@ -8,13 +10,12 @@ export default function Page1() {
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
-            <div>
-              <a href="">
-                <i
-                  className={`${styles['fa-solid']} ${styles['fa-chevron-left']}`}
-                />
-              </a>
-            </div>
+            <button>
+              <FontAwesomeIcon
+                icon={faCircleChevronLeft}
+                className={styles['iconstyle']}
+              />
+            </button>
             <div className={styles['questioncontent']}>
               睜開眼，你發現處在一片迷霧森林中，進退兩難。這時候你會？
             </div>
