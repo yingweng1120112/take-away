@@ -29,7 +29,7 @@ export default function Reserve() {
             所以也期待您撥空來現場看看他們!
           </h5>
           <div className={styles['reserve-img']}>
-            <img src={`/img/Image.jpg`} alt="" />
+            <img src={`/images/pet-info/10008/10008-5.jpg`} alt="" />
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
