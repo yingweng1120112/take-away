@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import pagination from '@/styles/pagination.module.css'
 import styles from '@/styles/menu.module.css'
+import Swiper from 'swiper'
 
 export default function Menu() {
+  useEffect(() => {
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 3,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+  }, [])
   return (
     <>
       {/* 搜尋數 */}
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
           <div className={styles['search-results']}>
             <h5>找到 10 筆商品</h5>
@@ -48,11 +59,11 @@ export default function Menu() {
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -68,16 +79,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -93,16 +104,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -118,16 +129,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -143,16 +154,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -168,16 +179,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -193,16 +204,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -218,16 +229,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -243,16 +254,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -268,16 +279,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -293,16 +304,16 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
             <li>
-              <a href="#" className="products-card">
-                <img src="../images/related-products.jpg" alt="" />
+              <a href="#" className={styles['products-card']}>
+                <img src="/img/menu/related-products.jpg" alt="" />
                 <p className="p">斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)</p>
                 <div>
-                  <button className="cart-btn">
+                  <button className={styles['cart-btn']}>
                     <svg
                       id="arrow-horizontal"
                       xmlns="http://www.w3.org/2000/svg"
@@ -318,75 +329,102 @@ export default function Menu() {
                       />
                     </svg>
                   </button>
-                  <p className="p">$207</p>
+                  <p className={styles.p}>$207</p>
                 </div>
               </a>
             </li>
           </ol>
-          <div className="wp-pagenavi" role="navigation">
-            <a className="first" aria-label="First Page" href="#">
+          <div
+            className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
+            role="navigation"
+          >
+            <a className={pagination.first} aria-label="First Page" href="#">
               «{' '}
             </a>
             <a
-              className="previouspostslink"
+              className={pagination.previouspostslink}
               rel="prev"
               aria-label="Following-page"
               href="#"
             >
               &lt;
             </a>
-            <a className="page" href="#">
+            <a className={pagination.page} href="#">
               1
             </a>
-            <a className="page" href="#">
+            <a className={pagination.page} href="#">
               2
             </a>
-            <a className="page" href="#">
+            <a className={pagination.page} href="#">
               3
             </a>
             {/* <span aria-current="page" class="current">5</span> */}
-            <a className="page" href="#">
+            <a className={pagination.page} href="#">
               4
             </a>
-            <a className="page" href="#">
+            <a className={pagination.page} href="#">
               5
             </a>
             <a
-              className="nextpostslink"
+              className={pagination.nextpostslink}
               rel="next"
               aria-label="次のページ"
               href="#"
             >
               &gt;
             </a>
-            <a className="last" aria-label="Last Page" href="#">
+            <a className={pagination.last} aria-label="Last Page" href="#">
               {' '}
               »
             </a>
           </div>
         </div>
-        <img className="dog-palm" src="../images/dog-palm.svg" alt="" />
-        <img className="dog-palm2" src="../images/dog-palm.svg" alt="" />
-        <img className="dog-palm3" src="../images/dog-palm.svg" alt="" />
-        <img className="dog-palm4" src="../images/dog-palm2.svg" alt="" />
-        <img className="dog-palm5" src="../images/dog-palm2.svg" alt="" />
-        <img className="dog-palm6" src="../images/dog-palm2.svg" alt="" />
         <img
-          className="dog-footprints"
-          src="../images/dog-footprints.svg"
+          className={styles['dog-palm']}
+          src="/img/menu/dog-palm.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm2']}
+          src="/img/menu/dog-palm.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm3']}
+          src="/img/menu/dog-palm.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm4']}
+          src="/img/menu/dog-palm2.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm5']}
+          src="/img/menu/dog-palm2.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm6']}
+          src="/img/menu/dog-palm2.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-footprints']}
+          src="/img/menu/dog-footprints.svg"
           alt=""
         />
       </section>
       {/* 裝飾字 */}
-      <section className="section">
+      <section className={styles.section}>
         {/* <img class="decorative-words-img2" src="../images/Productpage-decorative-words2.svg" alt=""> */}
-        <div className="decorative-words-info">
-          <p className="p">
-            商品<span className="emphasize">Take Away</span>之前
+        <div className={styles['decorative-words-info']}>
+          <p className={styles.p}>
+            商品<span className={styles.emphasize}>Take Away</span>之前
           </p>
-          <p className="p">也可以順路去看看我們令人喜愛的浪浪們</p>
-          <button className="cta">
-            <span className="hover-underline-animation"> Go to </span>
+          <p className={styles.p}>也可以順路去看看我們令人喜愛的浪浪們</p>
+          <button className={styles.cta}>
+            <span className={styles['hover-underline-animation']}> Go to </span>
             <svg
               id="arrow-horizontal"
               xmlns="http://www.w3.org/2000/svg"
@@ -405,42 +443,42 @@ export default function Menu() {
         </div>
       </section>
       {/* 推薦浪浪 */}
-      <section className="section recommend">
-        <div className="swiper">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+      <section className={`${styles['section']} ${styles['recommend']}`}>
+        <div className={styles.swiper}>
+          <div className={styles['swiper-wrapper']}>
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
-            <div className="swiper-slide">
-              <a href="#" className="related-products-card">
-                <img src="../images/recommended-dog1.jpg" alt="" />
+            <div className={styles['swiper-slide']}>
+              <a href="#" className={styles['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
               </a>
             </div>
           </div>
-          <div className="swiper-button-next" />
-          <div className="swiper-button-prev" />
+          <div className={styles['swiper-button-next']} />
+          <div className={styles['swiper-button-prev']} />
         </div>
       </section>
     </>

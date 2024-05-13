@@ -3,6 +3,7 @@
   margin-bottom: 0rem;
   width: 100%;
   position: relative;
+  height: auto;
 }
 
 .p {
@@ -93,6 +94,9 @@
 .dog-silhouette {
   width: 15%;
 }
+.search{
+  height: 4rem;
+}
 
 /* 商品選單 */
 .products-menu {
@@ -100,7 +104,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-left: 0rem;
+  padding-left: 1rem;
   margin-bottom: 0rem;
 }
 .products-menu li {
@@ -138,9 +142,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0.5rem 0rem;
 }
 .products .content {
   flex-direction: column;
+}
+.wp-pagenavi{
+  margin: 0rem auto;
 }
 .cart-btn #arrow-horizontal {
   height: 1.375rem;
@@ -158,7 +166,7 @@
 .cart-btn::before {
   content: '加入購物車'; /* 設置偽元素的內容 */
   position: absolute; /* 絕對定位，相對於父容器 */
-  top: -0.25rem; /* 距離按鈕頂部的距離 */
+  top: 0.2rem; /* 距離按鈕頂部的距離 */
   left: 50%; /* 水平置中 */
   transform: translateX(18%); /* 將偽元素水平置中 */
   padding: 0.1875rem 0.5rem; /* 文字框的內邊距 */
@@ -167,7 +175,8 @@
   border-radius: 0.25rem; /* 圓角 */
   opacity: 0; /* 初始透明度為0，不可見 */
   transition: opacity 0.3s ease; /* 添加過渡效果 */
-  width: 6.25rem;
+  width: 5.5rem;
+  font-size: 0.8rem;
 }
 .cart-btn:hover svg path {
   fill: var(--deep-blue); /* 將SVG的填充颜色设置為文字框的背景颜色 */
@@ -191,7 +200,7 @@
 .dog-palm2 {
   position: absolute;
   top: 52rem;
-  right: -6.5rem;
+  right: -6rem;
   z-index: 1;
   transform: scale(0.3);
 }
@@ -205,7 +214,7 @@
 .dog-palm4 {
   position: absolute;
   top: 14rem;
-  right: -6.5rem;
+  right: -6rem;
   z-index: 1;
   transform: rotate(180deg) scale(0.3);
   animation: fade-out 1s ease infinite;
@@ -221,14 +230,14 @@
 .dog-palm6 {
   position: absolute;
   top: 90rem;
-  right: -6.5rem;
+  right: -6rem;
   z-index: 1;
   transform: scale(0.3);
   animation: fade-out 3s ease infinite;
 }
 .dog-footprints {
   position: absolute;
-  top: 105rem;
+  top: 99rem;
   right: -3.8rem;
   z-index: 1;
   transform: scale(0.5);
@@ -262,11 +271,11 @@
 .decorative-words-info p:nth-child(1) {
   padding: 0rem;
   margin-top: 0.3125rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--white);
 }
 .decorative-words-info p:nth-child(2) {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--white);
 }
 .decorative-words-info .emphasize {
@@ -345,12 +354,15 @@
   .dog-silhouette {
     width: 10%;
   }
+  .search{
+    height: 10rem;
+  }
   /* 商品選單 */
   .products-menu {
     padding-left: 3.4375rem;
   }
   .products-menu li {
-    margin-right: 4.375rem;
+    margin-right: 4rem;
     width: 20%;
   }
   .products-card img {
@@ -363,7 +375,9 @@
     width: 7.5rem;
     padding: 0.3125rem 0.75rem;
   }
-
+  .wp-pagenavi{
+    margin: 4rem 0rem 0rem 0rem;
+  }
   /* 背景狗掌區 */
   .dog-palm {
     position: absolute;
@@ -393,12 +407,12 @@
     transform: rotate(248deg) scale(0.5);
   }
   .dog-palm6 {
-    top: 70rem;
+    top: 65rem;
     right: -0.5rem;
     transform: rotate(54deg) scale(0.5);
   }
   .dog-footprints {
-    top: 71rem;
+    top: 68rem;
     right: 18rem;
     transform: scale(1);
   }
