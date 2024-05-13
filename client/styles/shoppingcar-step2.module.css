@@ -249,7 +249,7 @@
 .buttonstyle {
   width: fit-content;
   letter-spacing: 3px;
-  font-size: var(var(--font-size-h4));
+  /* font-size: var(var(--font-size-h4)); */
   font-weight: 600;
   background-color: white;
   border: none;

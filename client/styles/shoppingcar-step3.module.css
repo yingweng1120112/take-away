@@ -84,7 +84,7 @@
   letter-spacing: 5px;
   padding-left: 15px;
   color: var(--light-gray);
-  font-weight: 500;
+  font-weight: 600;
 }
 .cartdetail {
   display: flex;
@@ -114,6 +114,9 @@
 .cartdetailright > div {
   width: fit-content;
   margin-right: 20px;
+}
+.cartitemright > div:nth-child(3) {
+  margin-left: 40px;
 }
 
 .cartitem {
@@ -147,6 +150,7 @@
   background-color: white;
   height: 100px;
   margin-left: 5px;
+  margin-right: 15px;
 }
 .cartitemleft .itemlist .cartimg > img {
   width: auto;
@@ -195,34 +199,44 @@
 
 /* 按鈕 */
 .buttonstyle {
-  width: 30%;
-  letter-spacing: 5px;
-  font-size: var(--font-size-h4);
-  font-weight: 500;
+  width: fit-content;
+  letter-spacing: 3px;
+  /* font-size: var(--font-size-p); */
+  font-weight: 600;
   background-color: white;
   border: none;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 1rem;
   color: var(--deep-gray);
-  box-shadow: 0 0.4rem #dfd9d9;
+  box-shadow: 0 0.2rem #dfd9d9;
   cursor: pointer;
 }
-.nextButton {
-  width: 100%;
+.cartbutton button:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+.iconstyle1 {
+  margin-right: 6px;
+}
+.iconstyle2 {
+  margin-left: 6px;
+}
+.cartbutton button:nth-child(2) {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
-
 .buttonstyle:active {
   color: white;
-  box-shadow: 0 0.2rem #dfd9d9;
-  transform: translateY(0.2rem);
+  /* box-shadow: 0 0.2rem #dfd9d9; */
+  /* transform: translateY(0.2rem); */
 }
 
 .buttonstyle:hover:not(:disabled) {
-  background: var(--deep-gray);
-  color: white;
-  text-shadow: 0 0.05rem #bcb4b4;
+  background: var(--yellow);
+  opacity: 0.8;
+  color: grey;
+  /* text-shadow: 0 0.05rem #bcb4b4; */
 }
 
 .buttonstyle:disabled {

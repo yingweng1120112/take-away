@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '@/styles/shoppingcar-step3.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
 
 export default function Step1() {
   return (
@@ -154,8 +156,20 @@ export default function Step1() {
             <div>$350</div>
           </div>
           <div className={styles['cartbutton']}>
-            <button className={styles['buttonstyle']}>回到商城首頁</button>
-            <button className={styles['buttonstyle']}>查看訂單紀錄</button>
+            <button className={styles['buttonstyle']}>
+              <FontAwesomeIcon
+                icon={faStore}
+                className={styles['iconstyle1']}
+              />
+              回到商城首頁
+            </button>
+            <button className={styles['buttonstyle']}>
+              查看訂單紀錄
+              <FontAwesomeIcon
+                icon={faRectangleList}
+                className={styles['iconstyle2']}
+              />
+            </button>
           </div>
         </div>
       </div>

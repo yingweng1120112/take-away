@@ -49,25 +49,25 @@ export default function Step1() {
               <div>
                 <div>會員姓名</div>
                 <div>
-                  <input readOnly="王小明" />
+                  <input readOnly value="王小明" />
                 </div>
               </div>
               <div>
                 <div>電子郵件</div>
                 <div>
-                  <input readOnly="a123456789@gmail.com" />
+                  <input readOnly value="a123456789@gmail.com" />
                 </div>
               </div>
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input readOnly="0912345678" />
+                  <input readOnly value="0912345678" />
                 </div>
               </div>
               <div>
                 <div>地址</div>
                 <div>
-                  <input readOnly="台南市中西區健康路一段1號" />
+                  <input readOnly value="台南市中西區健康路一段1號" />
                 </div>
               </div>
             </div>
