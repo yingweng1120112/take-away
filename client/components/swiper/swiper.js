@@ -42,32 +42,28 @@ export default function Carousel() {
               'width': '100%',
               'height': '100%',
             }}
-            src="/images/product/slide/t3.jpg" />
+            src="/images/pet-adopt/pet-1/柯基1.jpg" />
             {/* 720x480 */}
         </SwiperSlide>
         <SwiperSlide>
           <img
             style={{
-              'position': 'relative',
-              'top': '-40%',
-              'left': '0%',
+              'width': '100%',
+            'height': '100%',
             }}
-            src="/img/dan.png" />
+            src="/images/pet-adopt/pet-1/柯基2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/product/slide/t3.jpg" />
+          }} src="/images/pet-adopt/pet-1/柯基3.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/product/slide/t4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t5.jpg" />
+          }} src="/images/pet-adopt/pet-1/柯基4.jpg" />
         </SwiperSlide>
       </Swiper>
       
