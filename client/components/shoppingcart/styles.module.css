@@ -60,3 +60,26 @@
   border: solid 4px white;
   border-radius: 10px;
 }
+@media screen and (max-width: 414px) {
+  .myswiper {
+    height: 304px;
+  }
+  .container img {
+    top: 23px;
+    border-radius: 8px;
+  }
+  .text {
+    margin-top: 32px;
+  }
+  .text p {
+    font-size: 12px;
+  }
+  .icon {
+    width: 55%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .iconstyle {
+    font-size: 16px;
+  }
+}

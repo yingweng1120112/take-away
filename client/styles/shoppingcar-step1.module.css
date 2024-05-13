@@ -72,6 +72,8 @@
   height: 600px;
   border-radius: 30px 30px 0 0;
   background-color: rgb(243, 241, 231);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1), -5px 0 20px rgba(0, 0, 0, 0.1),
+    0 5px 20px rgba(0, 0, 0, 0.1);
 }
 .carttopstyle {
   font-size: var(--font-size-h3);
@@ -252,8 +254,12 @@
 }
 .shoppingcarright {
   width: 35%;
-  height: auto;
+  height: 460px;
   position: relative;
+  border-radius: 30px 30px 0 0;
+
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1), -5px 0 20px rgba(0, 0, 0, 0.1),
+    0 5px 20px rgba(0, 0, 0, 0.1);
 }
 .cartbottomstyle {
   width: 100%;
@@ -350,6 +356,7 @@
   .roof {
     overflow: hidden;
     width: 100%;
+    height: 75px;
   }
   .roof img {
     height: 75px;
@@ -363,8 +370,8 @@
   .stepbg {
     background-size: 170%;
     background-position: right;
-    width: 100%;
-    height: 90px;
+    width: 90%;
+    height: 95px;
     /* border: 1px red solid; */
   }
   .step .nextto:nth-child(1) h1 {
@@ -374,7 +381,7 @@
     font-size: 32px;
   }
   .step .nextto:nth-child(1) h2 {
-    margin-top: 0px;
+    margin-top: 12px;
     font-size: var(--font-size-p);
     height: 100%;
     margin-right: 6px;
@@ -382,6 +389,7 @@
   .step .nextto:nth-child(n + 2) h2 {
     margin-top: 0px;
     font-size: var(--font-size-p);
+    width: 50px;
   }
   .everystep {
     letter-spacing: 4px;
@@ -401,15 +409,21 @@
       0 5px 20px rgba(0, 0, 0, 0.1);
   }
   .carttopstyle {
-    font-size: var(--font-size-p);
     width: 100%;
     height: 30px;
     border-radius: 10px 10px 0 0;
     /* border: 1px red solid; */
   }
-  .cartdetail {
+  .carttopstyle > div {
+    font-size: var(--font-size-p);
+  }
+  .cartdetail div {
     font-size: 14px;
   }
+  .cartdetail input {
+    width: 14px;
+  }
+
   .cartdetailleft {
     /* border: 3px rgb(27, 123, 136) solid; */
     width: 45%;
@@ -427,9 +441,11 @@
     margin-left: 8px;
   }
   .cartitem {
-    font-size: 12px;
     height: 120px;
     border-bottom: 5px dotted var(--dark-gray);
+  }
+  .cartitem div {
+    font-size: 12px;
   }
   .cartitemleft .itemlist {
     margin-right: 10px;
@@ -456,7 +472,17 @@
     padding-top: 0;
   }
   .cartitemright .itemamount div {
-    margin: 0 8px;
+    margin: 3px 8px 0px 8px;
+  }
+  .itemamount > .iconstyle {
+    width: 12px;
+  }
+  .cartitemright .iconstyle {
+    width: 12px;
+    /* margin-left: 5px; */
+  }
+  .carti input {
+    width: 13px;
   }
   /* 訂單資訊 */
   .shoppingcarright {
@@ -464,6 +490,9 @@
     height: fit-content;
     margin-top: 40px;
     margin-bottom: 40px;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1), -5px 0 20px rgba(0, 0, 0, 0.1),
+      0 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0;
   }
   .carttopstyle1 {
     font-size: var(--font-size-p);
@@ -471,77 +500,40 @@
     height: 30px;
     border-radius: 10px 10px 0 0;
   }
+  .carttopstyle1 > div {
+    font-size: var(--font-size-p);
+  }
   .cartbottomstyle {
-    font-size: 14px;
     padding: 15px;
     height: 250px;
   }
+  .cartbottomstyle div {
+    font-size: 14px;
+    align-items: center;
+  }
 
   .buttonstyle {
-    width: 25%;
+    width: 28%;
     height: fit-content;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     box-shadow: 0 0.1rem #dfd9d9;
   }
+  .iconstyle1 {
+    width: 16px;
+  }
+
+  .iconstyle2 {
+    width: 16px;
+  }
   /* 推薦 */
+  .commend {
+    height: 21rem;
+  }
   .commend > h4 {
     font-size: var(--font-size-p);
     letter-spacing: 5px;
-  }
-  .carousel {
-    margin: 0;
-    padding: 0 18px;
-  }
-  .carousel-control-prev {
-    left: -4px;
-  }
-  .carousel-control-next {
-    right: -6px;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 20px;
-    border: none;
-  }
-  .col-3 {
-    padding: 0;
-  }
-  .carousel-item .img-box {
-    background-size: 100% 100px;
-    height: 120px;
-  }
-  .carousel .carousel-item img {
-    max-width: 80%;
-    height: auto;
-  }
-  .carousel .thumb-content {
-    top: -20px;
-  }
-  .carousel .carousel-item h4 {
-    font-size: 12px;
-    padding: 5px;
-    text-align: center;
-  }
-  .carousel .thumb-content p {
-    font-size: 12px;
-  }
-  .carousel .thumb-content i {
-    font-size: 1rem;
-    margin-left: 3px;
-  }
-  .carousel .thumb-content div {
-    margin-left: 12px;
-  }
-  .carousel-indicators li,
-  .carousel-indicators li.active {
-    width: 7px;
-    height: 7px;
-  }
-  .mx-auto {
-    height: 250px;
   }
 
   /* 下花邊 */

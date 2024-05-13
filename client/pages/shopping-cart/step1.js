@@ -72,13 +72,22 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <FontAwesomeIcon icon={faSquarePlus} />
+                  <FontAwesomeIcon
+                    icon={faSquarePlus}
+                    className={styles['iconstyle']}
+                  />
                   <div>2</div>
-                  <FontAwesomeIcon icon={faSquareMinus} />
+                  <FontAwesomeIcon
+                    icon={faSquareMinus}
+                    className={styles['iconstyle']}
+                  />
                 </div>
                 <div>$90</div>
                 <div>
-                  <FontAwesomeIcon icon={faTrashCan} />
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className={styles['iconstyle']}
+                  />
                 </div>
               </div>
             </div>
@@ -98,13 +107,22 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <FontAwesomeIcon icon={faSquarePlus} />
+                  <FontAwesomeIcon
+                    icon={faSquarePlus}
+                    className={styles['iconstyle']}
+                  />
                   <div>2</div>
-                  <FontAwesomeIcon icon={faSquareMinus} />
+                  <FontAwesomeIcon
+                    icon={faSquareMinus}
+                    className={styles['iconstyle']}
+                  />
                 </div>
                 <div>$90</div>
                 <div>
-                  <FontAwesomeIcon icon={faTrashCan} />
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className={styles['iconstyle']}
+                  />
                 </div>
               </div>
             </div>
@@ -124,13 +142,22 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <FontAwesomeIcon icon={faSquarePlus} />
+                  <FontAwesomeIcon
+                    icon={faSquarePlus}
+                    className={styles['iconstyle']}
+                  />
                   <div>2</div>
-                  <FontAwesomeIcon icon={faSquareMinus} />
+                  <FontAwesomeIcon
+                    icon={faSquareMinus}
+                    className={styles['iconstyle']}
+                  />
                 </div>
                 <div>$90</div>
                 <div>
-                  <FontAwesomeIcon icon={faTrashCan} />
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className={styles['iconstyle']}
+                  />
                 </div>
               </div>
             </div>
@@ -150,13 +177,22 @@ export default function Step1() {
                 <div>0</div>
                 <div>$45</div>
                 <div className={styles['itemamount']}>
-                  <FontAwesomeIcon icon={faSquarePlus} />
+                  <FontAwesomeIcon
+                    icon={faSquarePlus}
+                    className={styles['iconstyle']}
+                  />
                   <div>2</div>
-                  <FontAwesomeIcon icon={faSquareMinus} />
+                  <FontAwesomeIcon
+                    icon={faSquareMinus}
+                    className={styles['iconstyle']}
+                  />
                 </div>
                 <div>$90</div>
                 <div>
-                  <FontAwesomeIcon icon={faTrashCan} />
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className={styles['iconstyle']}
+                  />
                 </div>
               </div>
             </div>
