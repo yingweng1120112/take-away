@@ -53,12 +53,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -76,12 +78,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -99,12 +103,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -122,12 +128,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -145,12 +153,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -168,12 +178,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -191,12 +203,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -214,12 +228,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
@@ -237,12 +253,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
