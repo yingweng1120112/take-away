@@ -1,27 +1,38 @@
 .banner {
-  background-image: url("../images/background_petlist-navbar.png") !important;
+  /* background-image: url("../images/background_petlist-navbar.png") !important; */
   background-size: cover;
   background-position: center;
   z-index: 2;
 }
 
-ul{
+/* ul{
   padding: 0;
   margin: 0;
-}
+} */
 
-br{
+/* br{
   display: none;
+} */
+
+/* 原本body */
+.commendbody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
 }
 
 .br-block{
   display: block;
 }
 
-#title {
-  margin-top: 6.25rem;
+.title {
+  margin-top: 100px;
   width: 100%;
-  background-image: url("../images/background-list.png");
+  height: auto;
+  background-image: url('../public/img/background-list.png');
   background-size: 100%;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -29,31 +40,35 @@ br{
   margin: 0 0 -20% 0;
 }
 
-#title>h1 {
-  font-size: 3.9375rem;
-  color: white;
+.title>h1 {
+  font-size: 63px;
+  color: var(--white);
   font-weight: 700;
+  width: 100%;
 }
 
-#pet-card {
+.pet-card {
   width: 80%;
   display: grid;
   justify-items: center;
+  align-items: center;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 6.25rem;
+  gap: 100px;
 }
 
 .card {
   --bs-card-bg: none;
   --bs-card-border-width: 0px;
+  height: auto;
+  width: auto;
 }
 
 .state {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.3s linear;
-  font-size: 1.25rem;
+  font-size: 20px;
   line-height: 50px;
   letter-spacing: 5px;
   text-align: center;
@@ -81,30 +96,32 @@ br{
 }
 
 .card-img > img {
-  height: 18.75rem;
-  width: 18.75rem;
+  height: 300px;
+  width: 300px;
   object-fit: cover;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
   margin-top: 10px;
 }
 
-.card-img>.fa-heart {
+.favorite {
   z-index: 1;
-  font-size: 3.25rem;
+  /* font-size: 52px; */
   margin-top: -10%;
-  margin-left: 85%;
-  color: var(--beige);
-  height: 30px;
-  width: 0;
+  margin-left: 100%;
+  color: var(--gray);
+  height: 60px;
+  width: 60px;
   cursor: pointer;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.35); */
+  filter:drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
   transition: all .1s linear;
+  /* border: 1px solid black; */
 }
 
-.card-img>.fa-heart:hover {
+.favorite:hover {
   color: var(--red);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  filter:drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
 }
 
 .card>div {
@@ -113,18 +130,28 @@ br{
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.125rem;
+  font-size: 18px;
   font-weight: 600;
   color: rgba(24, 39, 71, 0.5);
+}
+
+.pet-name{
+  margin-top: 0 !important;
+  text-align: center;
+}
+
+.pet-name span{
+  font-size: 18px;
 }
 
 .pet-name>p{
   padding: 0;
   margin: 0;
+  text-align: center;
   letter-spacing: 20px;
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 600;
-  line-height: 3rem;
+  line-height: 48px;
   color: var(--brown);
 }
 
@@ -135,6 +162,7 @@ br{
   padding-right: 30px;
   display: flex;
   align-items: center;
+  text-align: left;
   justify-content: space-between;
 }
 
@@ -258,7 +286,7 @@ br{
   align-items: end;
   justify-content: space-between;
   width: 100%;
-  background-image: url("../images/background-list.png");
+  /* background-image: url("../images/background-list.png"); */
   background-size: 130%;
   background-position: top;
   background-repeat: no-repeat;
@@ -267,7 +295,7 @@ br{
 }
 
 #ending>h1 {
-  font-size: 3.9375rem;
+  font-size: 63px;
   color: white;
   font-weight: 700;
 }
@@ -301,7 +329,7 @@ br{
 /* 商品跑馬燈 */
 /* Marquee styles */
 .marquee {
-  --gap: 4rem;
+  --gap: 64x;
   position: relative;
   display: flex;
   overflow: hidden;
@@ -380,7 +408,7 @@ br{
   width: 100%;
   padding-top: 100px;
   padding-bottom: 100px;
-  background-image: url("../images/bg_marquee.png");
+  /* background-image: url("../images/bg_marquee.png"); */
   background-size: contain;
   background-repeat: repeat-x;
   background-position: center;
@@ -397,21 +425,21 @@ br{
 /* TODO: 手機版 */
 /* 手機版 */
 @media screen and (max-width: 414px) {
-  br{
+  /* br{
     display: block;
-  }
+  } */
 
-  #title{
+  .title{
     background-size: 250%;
     background-position: 60% 80%;
   }
 
-  #title>h1 {
+  .title>h1 {
     font-size: 24px;
     font-weight: 600;
   }
 
-  #pet-card{
+  .pet-card{
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
     gap: 20px;
@@ -432,7 +460,7 @@ br{
   }
 
   .card-img>.fa-heart {
-    font-size: 2rem;
+    font-size: 32px;
     margin-left: 75%;
   }
 
@@ -458,8 +486,8 @@ br{
   }
 
   .pet-name>p{
-    letter-spacing: 1rem;
-    font-size: 1.25rem;
+    letter-spacing: 16px;
+    font-size: 20px;
     order: 1;
   }
 
@@ -530,7 +558,7 @@ br{
   }
 
   .marquee{
-    --gap: 2rem;
+    --gap: 32px;
   }
 
   .marquee__content>li>img {

@@ -1,6 +1,10 @@
 import React from 'react'
 import styles from '@/styles/petInfo.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaRegCircleQuestion } from "react-icons/fa6";
+
+
+
 
 export default function PetInfo() {
   return (
@@ -358,10 +362,7 @@ export default function PetInfo() {
             </button>
             <button className={styles['cta']}>
               <span className={styles['hover-underline-animation']}>
-                <FontAwesomeIcon
-                  icon="fa-regular fa-circle-question"
-                  className={styles['fontawesome-icon']}
-                />
+                <FaRegCircleQuestion  className={styles['fontawesome-icon']}/>
                 {'  '}領養流程
               </span>
               <svg
