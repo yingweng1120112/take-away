@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '@/styles/location.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faHandPointer} from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faHandPointer } from '@fortawesome/free-solid-svg-icons'
 export default function Location() {
   return (
     <>
@@ -20,7 +20,7 @@ export default function Location() {
             <div className={styles['space']}>
               <h1>關於我們</h1>
               <p>
-                我們的流浪之家致力於提供基本生活支援，一個團隊聚集，心懷同一願景：建立一個流浪之家，幫助無家可歸者。群策群力下，他們籌措資金、尋找場地，終於在短短幾個月內建成了一座避風港。流浪之家不僅提供臨時住所和食物，更提供工作培訓和心理支持，讓無家可歸者重拾自信、尋找生活方向。開幕後，社區響應熱烈，紛紛前來支持。流浪之家成為了社區的中心，促進著社會共融和理解。
+                我們的流浪之家致力於提供基本生活支援，一個團隊聚集，心懷同一願景：建立一個流浪之家，幫助無家可歸者。<br />群策群力下，他們籌措資金、尋找場地，終於在短短幾個月內建成了一座避風港。<br />流浪之家不僅提供臨時住所和食物，更提供工作培訓和心理支持，讓無家可歸者重拾自信、尋找生活方向。<br />流浪之家成為了社區的中心，促進著社會共融和理解。
               </p>
             </div>
           </div>
@@ -34,7 +34,7 @@ export default function Location() {
             <div className={styles['start']}>
               <h1>成立宗旨</h1>
               <p>
-                為了提供流浪者一個安全、溫暖和支持性的環境，幫助他們重建生活。我們的使命是確保每個人都受到尊重、關愛和支持，並提供他們所需的基本生活必需品、心理健康支持、就業援助和社區聯繫服務，以幫助他們可重新融入社會。我们致力於打造一個包容、溫馨的環境，讓流浪者感受到他們的價值和重要性，幫助他們重建自己的生活，並實現他們的夢想和目標。
+                為了提供流浪者一個安全、溫暖和支持性的環境，幫助他們重建生活。<br />我們的使命是確保每個人都受到尊重、關愛和支持，並提供他們所需的基本生活必需品、心理健康支持、就業援助和社區聯繫服務，以幫助他們可重新融入社會。<br />我们致力於打造一個包容、溫馨的環境，讓流浪者感受到他們的價值和重要性，幫助他們重建自己的生活，並實現他們的夢想和目標。
               </p>
             </div>
           </div>
@@ -67,10 +67,8 @@ export default function Location() {
             <div className={styles['tainan']}>
               <h2>臺南總部 </h2>
               <h4>台南市東區裕農路375號</h4>
-              <div className={styles['tainan-p']}>
                 <p>TEL:(06)236-1111</p>
                 <p>FAX:(06)236-1111</p>
-              </div>
               <br />
               <div className={styles['socail']}>
                 <a>
@@ -98,25 +96,10 @@ export default function Location() {
                 <img src={`/img/location/location1.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
-                <h4>臺中分布</h4>
-                <br />
-                <h5>臺中市北區中清路一段79號</h5>
-                <br />
-                <p>TEL:(05)236-3333</p>
-                <p>FAX:(05)236-3333</p>
-              </div>
-            </div>
-            <div className={styles['single-blog-area']}>
-              <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location/location1.jpg`} alt="" />
-              </div>
-              <div className={styles['single-blog-content']}>
-                <h4>高雄分布</h4>
-                <br />
-                <h5>高雄市苓雅區光明街79號</h5>
-                <br />
-                <p>TEL:(07)236-4444</p>
-                <p>FAX:(07)236-4444</p>
+                <h4>臺北分布</h4>
+                <p>臺北市信義區信義路63號</p>
+                <p>TEL:(02)581-1111</p>
+                <p>FAX:(02)581-1111</p>
               </div>
             </div>
             <div className={styles['single-blog-area']}>
@@ -125,13 +108,23 @@ export default function Location() {
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>新北分布</h4>
-                <br />
-                <h5>新北市板橋區忠孝路63號</h5>
-                <br />
-                <p>TEL:(03)581-1111</p>
-                <p>FAX:(03)581-1111</p>
+                <p>新北市板橋區忠孝路忠義巷9弄63號</p>
+                <p>TEL:(03)236-3333</p>
+                <p>FAX:(03)236-3333</p>
               </div>
             </div>
+            <div className={styles['single-blog-area']}>
+              <div className={styles['single-blog-thumbnail']}>
+                <img src={`/img/location/location3.jpg`} alt="" />
+              </div>
+              <div className={styles['single-blog-content']}>
+                <h4>臺中分布</h4>
+                <p>臺中市北區中清路一段79號</p>
+                <p>TEL:(05)236-3333</p>
+                <p>FAX:(05)236-3333</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -142,28 +135,24 @@ export default function Location() {
           <div className={styles['find-two']}>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location/location2.jpg`} alt="" />
+                <img src={`/img/location/location4.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
-                <h4>臺中分布</h4>
-                <br />
-                <h5>臺中市北區中清路一段79號</h5>
-                <br />
-                <p>TEL:(05)236-3333</p>
-                <p>FAX:(05)236-3333</p>
+                <h4>高雄分布</h4>
+                <p>高雄市苓雅區光明街79號</p>
+                <p>TEL:(07)236-3333</p>
+                <p>FAX:(07)236-3333</p>
               </div>
             </div>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location/location2.jpg`} alt="" />
+                <img src={`/img/location/location5.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
-                <h4>臺北分布</h4>
-                <br />
-                <h5>臺北市信義區信義路63號</h5>
-                <br />
-                <p>TEL:(02)581-1111</p>
-                <p>FAX:(02)581-1111</p>
+                <h4>台東分布</h4>
+                <p>台東縣善化市光復路230號</p>
+                <p>TEL:(09)236-3333</p>
+                <p>FAX:(09)236-3333</p>
               </div>
             </div>
           </div>
@@ -180,7 +169,7 @@ export default function Location() {
             <button className={styles['btn']}>
               <a href="">領養專區</a>
               <a className={styles['icon']}>
-              <FontAwesomeIcon icon={faHandPointer} />
+                <FontAwesomeIcon icon={faHandPointer} />
               </a>
             </button>
           </div>

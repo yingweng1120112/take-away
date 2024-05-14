@@ -51,14 +51,19 @@
   margin: 10% auto;
 }
 .location .space-right h1 {
-  text-align: center;
   color: var(--orange);
+  font-size:2rem;
+  margin:0; 
+  font-weight: bolder;
 }
 .location .space p {
-  line-height: 1.5rem;
+  width: 95%;
+  margin:1rem auto;
+  line-height: 1.2rem;
+  letter-spacing: 0.3rem ;
   color: var(--reddish-brown);
   font-size: 0.9rem;
-  padding-top: 1.25rem;
+  font-weight: bolder;
 }
 
 .location .place-img {
@@ -140,10 +145,10 @@ color: var(--orange);
 
 .address .foot {
   position: absolute;
-  height: 10rem;
-  width: 10rem;
-  top: 60%;
-  left: 50%;
+  height: 8rem;
+  width: 8rem;
+  top: 63%;
+  left: 60%;
   transform: rotate(-80deg);
 }
 
@@ -153,8 +158,8 @@ color: var(--orange);
   height: 10rem;
   width: 10rem;
   top: 30%;
-  left: -5%;
-  transform: rotate(100deg);
+  left: -15%;
+  transform: rotate(80deg);
 }
 
 .address .address-left {
@@ -190,9 +195,18 @@ color: var(--orange);
   justify-content: space-around;
   align-items: center;
 }
-
-.address .tainan-p {
+.address .tainan h2 {
+  color:var(--orange);
+  font-weight:bolder;
+} 
+.address .tainan h4 {
+  font-weight:bolder;
+  letter-spacing:0.1875rem;
+}
+.address p {
   line-height: 1.875rem;
+  font-weight:bolder;
+  margin: 0rem;
 }
 
 .address .socail {
@@ -202,7 +216,10 @@ color: var(--orange);
   justify-content: space-between;
   align-items: center;
 }
-
+.address .socail a{
+  display: flex;
+  justify-content: center;
+}
 .address .socail img {
   width: 60%;
 }
@@ -250,6 +267,7 @@ color: var(--orange);
 }
 
 .fond-us .single-blog-area {
+  height: 25rem;
   margin: 3rem 0rem;
   background-color: var(--creamy-yellow);
   padding-bottom: 2rem;
@@ -259,16 +277,33 @@ color: var(--orange);
 
 .fond-us .single-blog-thumbnail {
   width: 100%;
+  height: 60%;
 }
 
 .fond-us .single-blog-thumbnail img {
   width: 100%;
+  height: 100%;
   border-radius: 3%;
 }
 
 .fond-us .single-blog-content {
   margin-top: 1rem;
   margin-left: 1rem;
+  width: 80%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.fond-us .single-blog-content h4{
+  margin: 0rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--orange);
+}
+.fond-us .single-blog-content p{
+  margin: 0rem;
+  font-weight: bolder;
 }
 .fond-two {
   background-color: white;
@@ -304,6 +339,7 @@ color: var(--orange);
 }
 
 .fond-two .single-blog-area {
+  height: 25rem;
   margin-bottom: 3rem;
   background-color: var(--creamy-yellow);
   padding-bottom: 2rem;
@@ -313,6 +349,7 @@ color: var(--orange);
 
 .fond-two .single-blog-thumbnail {
   width: 100%;
+  height: 60%;
 }
 
 .fond-two .single-blog-thumbnail img {
@@ -323,6 +360,20 @@ color: var(--orange);
 .fond-two .single-blog-content {
   margin-top: 1rem;
   margin-left: 1rem;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.fond-two .single-blog-content h4{
+  margin: 0rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: var(--orange);
+}
+.fond-two .single-blog-content p{
+  margin: 0rem;
+  font-weight: bolder;
 }
 .carousel {
   height: 11.6rem;
@@ -668,7 +719,7 @@ color: var(--orange);
     justify-content: center;
     align-items: flex-start;
     width: 25%;
-    height: 100%;
+    height: 25rem;
     background-color: var(--bright-gary);
     border-radius: 1.25rem;
   }
@@ -687,7 +738,7 @@ color: var(--orange);
 
   .fond-us .single-blog-content {
     width: 100%;
-    height: 30%;
+    height: 38%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -695,6 +746,9 @@ color: var(--orange);
     line-height: 1.5625rem;
     letter-spacing: 0.1rem;
     margin: 1rem 1.5rem;
+  }
+  .fond-us .single-blog-content p{
+    margin-bottom: 0.5rem;
   }
   .fond-two {
     height: 37rem;
@@ -728,7 +782,7 @@ color: var(--orange);
   }
   .fond-two .single-blog-content {
     width: 100%;
-    height: 40%;
+    height: 38%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -743,6 +797,9 @@ color: var(--orange);
   .fond-two .single-blog-thumbnail img {
     height: 100%;
     border-radius: 1.25rem 1.25rem 0 0;
+  }
+  .fond-two .single-blog-content p{
+    margin-bottom: 0.5rem;
   }
   .fond-two .single-blog-area {
     display: flex;
