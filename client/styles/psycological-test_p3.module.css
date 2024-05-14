@@ -194,7 +194,7 @@
   .testresult {
     display: flex;
     flex-direction: column;
-    height: 550px;
+    height: 597px;
     background-size: 100% 385px;
     align-items: center;
     margin: 40px 0;
@@ -207,6 +207,7 @@
     flex-direction: row;
     align-items: center;
     margin: 0;
+    margin-top: 25px;
   }
   .testtitle > div {
     width: 50px;
