@@ -1,4 +1,4 @@
-body {
+.commendbody {
   /* overflow-x: hidden;
   overflow-y: scroll; */
   overflow: hidden;
@@ -7,25 +7,25 @@ body {
   scroll-snap-points-y: repeat(100vh);
 }
 
-header {
+/* header {
   z-index: 2;
   scroll-snap-align: start;
   position: relative;
-}
+} */
 
 /* banner */
 .banner {
-  background-image: url("../images/background-notice.png");
+  /* background-image: url("../images/background-notice.png"); */
   background-position-y: 25%;
   z-index: 1;
   position: relative;
 }
 
-footer {
+/* footer {
   scroll-snap-align: start;
   z-index: 1;
   position: relative;
-}
+} */
 
 .roll {
   overflow-y: scroll;
@@ -34,7 +34,7 @@ footer {
   scroll-snap-type: y mandatory;
 }
 
-section {
+.section {
   margin: 0;
   width: 100%;
   height: 100svh;
@@ -42,29 +42,33 @@ section {
   justify-content: space-between;
   scroll-snap-align: start;
   overflow-x: hidden;
-  /* align-items: center; */
 }
 
-br {
+/* br {
   display: none;
-}
+} */
 
 .br-block {
   display: block;
 }
 
-section>hr {
+.br-mobile {
+  display: none;
+}
+
+.section>hr {
   opacity: 1;
   border-top: 5px solid;
   border-radius: 50px;
   z-index: 1;
 }
 
-section>h2 {
-  font-size: 3rem;
-  line-height: 4rem;
-  font-weight: 500;
+.section h2 {
+  font-size: 48px;
+  line-height: 70px;
+  font-weight: 600;
   z-index: 1;
+  letter-spacing: 1px;
 }
 
 .title {
@@ -80,7 +84,7 @@ section>h2 {
 }
 
 .title>h1 {
-  font-size: 4.5rem;
+  font-size: 72px;
   color: var(--dark-green);
   font-weight: 600;
   z-index: 1;
@@ -114,23 +118,23 @@ section>h2 {
 }
 
 .choose>div>h2 {
-  font-size: 3rem;
-  line-height: 4rem;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 60px;
   z-index: 1;
   position: relative;
 }
 
 .choose>div>ul {
   flex-direction: column;
-  list-style-image: url(../images/icon_pet_ulli.png);
-  /* text-align: justify; */
+  list-style-image: url('../public/img/icon_pet_ulli.png');
 }
 
 .choose>div>ul>li {
   width: 100%;
   text-align: justify;
-  font-size: 2rem;
-  line-height: 3.125rem;
+  font-size: 32px;
+  line-height: 50px;
   margin-top: 30px;
   z-index: 1;
 }
@@ -180,23 +184,23 @@ section>h2 {
 }
 
 .fix>div>h2 {
-  font-size: 3rem;
-  line-height: 4rem;
+  font-size: 48px;
+  line-height: 60px;
   z-index: 1;
   position: relative;
 }
 
 .fix>div>ul {
   flex-direction: column;
-  list-style-image: url(../images/icon_pet_ulli.png);
+  list-style-image: url('../public/img/icon_pet_ulli.png');
   /* text-align: justify; */
 }
 
 .fix>div>ul>li {
   width: 100%;
   text-align: justify;
-  font-size: 2rem;
-  line-height: 3.125rem;
+  font-size: 32px;
+  line-height: 50px;
   margin-top: 30px;
   z-index: 1;
 }
@@ -220,7 +224,7 @@ section>h2 {
 
 /* 背景圖案 */
 .paws1 {
-  position: absolute;
+  position: fixed;
   /* z-index: -1; */
   animation-name: paws1;
   animation-duration: 8s;
@@ -246,7 +250,7 @@ section>h2 {
 }
 
 .paws2{
-  position: absolute;
+  position: fixed;
   animation-name: paws2;
   animation-duration: 10s;
   animation-direction: ease-in;
@@ -277,30 +281,180 @@ section>h2 {
   }
 }
 
+/* 小卡片 */
+.card {
+  z-index: 1;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+  transition: 0.2s linear;
+  position: fixed;
+  top: 30%;
+  right: -15%;
+  transform: rotate(-10deg);
+}
+
+.card:hover{
+  top: 30%;
+  right: 1%;
+  transform: rotate(0deg);
+}
+
+.card-img > img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+}
+
+.card > div:not(.card-img) {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 600;
+  color: rgba(24, 39, 71, 0.5);
+}
+
+.pet-name {
+  text-align: center;
+}
+
+.pet-name span {
+  font-size: 20px;
+}
+
+.pet-name > p {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 50px;
+  color: var(--brown);
+}
+
+.pet-desc {
+  /* border: 1px solid black; */
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.pet-desc > img {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  opacity: 50%;
+}
+
+
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  /* border: 1px solid black; */
+  margin-top: 30px;
+  /* width: 25%; */
+  border-radius: 50px;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 90%;
+  height: 60px;
+  background-color: var(--khaki);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 20px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+  filter: invert(1);
+}
+
+.cta:hover {
+  background-color: var(--deep-blue);
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: rgb(255, 255, 255);
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
 
 /* 手機版 */
 @media screen and (max-width: 414px) {
-  section {
+  /* section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+  } */
 
-  section>h2 {
-    font-size: 2.25rem;
-  }
+  /* section>h2 {
+    font-size: 36px;
+  } */
 
-  br {
+  /* br {
     display: block;
-  }
+  } */
 
   .title>h1 {
-    font-size: 3.125rem;
+    font-size: 50px;
     line-height: 70px;
   }
 
   .title>h2 {
-    font-size: 2.5rem;
+    font-size: 40px;
   }
 
   .title>hr {
@@ -330,13 +484,13 @@ section>h2 {
   }
 
   .choose>div>h2 {
-    font-size: 2.5rem;
-    line-height: 3.125rem;
+    font-size: 40px;
+    line-height: 50px;
   }
 
   .choose>div>ul>li {
-    font-size: 1.25rem;
-    line-height: 2rem;
+    font-size: 20px;
+    line-height: 32px;
     margin-top: 15px;
   }
 
@@ -360,13 +514,13 @@ section>h2 {
   }
 
   .fix>div>h2 {
-    font-size: 2.5rem;
-    line-height: 3.125rem;
+    font-size: 40px;
+    line-height: 50px;
   }
 
   .fix>div>ul>li {
-    font-size: 1.25rem;
-    line-height: 2rem;
+    font-size: 20px;
+    line-height: 32px;
     margin-top: 15px;
   }
 
