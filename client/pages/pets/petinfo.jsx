@@ -1,9 +1,6 @@
 import React from 'react'
 import styles from '@/styles/petInfo.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FaRegCircleQuestion } from "react-icons/fa6";
-
-
+import { FaRegCircleQuestion } from 'react-icons/fa6'
 
 export default function PetInfo() {
   return (
@@ -204,11 +201,7 @@ export default function PetInfo() {
         </section>
 
         <section className={styles['pet-skill']}>
-          <img
-            src="/img/agatha-D1yh6_OQjcM-unsplash.jpg"
-            alt=""
-            draggable="false"
-          />
+          <img src="/img/pet-info/10003/10003-5.jpg" alt="" draggable="false" />
           <table>
             <tbody>
               <tr>
@@ -361,7 +354,7 @@ export default function PetInfo() {
             </button>
             <button className={styles['cta']}>
               <span className={styles['hover-underline-animation']}>
-                <FaRegCircleQuestion  className={styles['fontawesome-icon']}/>
+                <FaRegCircleQuestion className={styles['question-icon']} />
                 {'  '}領養流程
               </span>
               <svg
@@ -381,6 +374,38 @@ export default function PetInfo() {
             </button>
           </div>
         </section>
+
+        {/* TODO: 背景圖片 肉球 */}
+        {/* <img
+          src="/img/paws.png"
+          className={styles['paws1']}
+          alt=""
+          draggable="false"
+        /> */}
+        <img
+          src="/img/paws.png"
+          className={styles['paws2']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/paws.png"
+          className={styles['paws3']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/background-paws.png"
+          className={styles['background-paws1']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/background-paws.png"
+          className={styles['background-paws2']}
+          alt=""
+          draggable="false"
+        />
       </div>
     </>
   )

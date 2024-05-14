@@ -153,11 +153,15 @@
   text-transform: uppercase;
 }
 
-.cta svg:not(.fontawesome-icon) {
+.cta svg:not(.question-icon) {
   transform: translateX(-8px);
   transition: all 0.3s ease;
   filter: invert(1);
   width: auto;
+}
+
+.question-icon{
+  margin-bottom: 3px;
 }
 
 .cta:hover svg {
@@ -486,7 +490,7 @@
   background-position: center;
   background-size: 100%;
   padding: 600px 10% 600px 10%;
-  margin: -500px 0 0px 0;
+  margin: -300px 0 0px 0;
 }
 
 .pet-habit > div {
@@ -586,7 +590,7 @@
 .pet-score {
   width: 80%;
   height: auto;
-  margin-top: 100px;
+  margin: 100px 0;
   padding: 30px;
   align-items: center;
   justify-content: center;
@@ -734,7 +738,7 @@
   /* border: 1px solid black; */
   color: white;
   font-size: 20px;
-  /* padding-bottom: 0; */
+  padding-bottom: 0;
 }
 
 .hover-underline-animation {
@@ -783,7 +787,7 @@
   position: absolute;
   /* z-index: -1; */
   animation-name: paws2;
-  animation-duration: 8s;
+  animation-duration: 1s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   transform: rotate(45deg);
@@ -798,7 +802,7 @@
     transform: rotate(45deg);
   }
   to {
-    left: 93%;
+    left: 90%;
     /* top: 120%; */
     transform: rotate(730deg);
   }
@@ -855,7 +859,7 @@
   transform: rotate(-95deg);
   height: 550px;
   object-fit: contain;
-  right: -5%;
+  right: 2%;
   top: 475%;
 }
 
