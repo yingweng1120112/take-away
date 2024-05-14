@@ -107,6 +107,7 @@
   background-color: white;
   width: 150px;
   margin: 10px 35px;
+  border-radius: 15px;
 }
 .barOverflow {
   /* Wraps the rotating .bar */
@@ -123,7 +124,7 @@
   margin-top: -30px;
 }
 .graph .text > div {
-  font-size: var(--font-size-h4);
+  font-size: var(--font-size-p);
   font-weight: 600;
   color: #a8564f;
 }
@@ -139,6 +140,9 @@
   border-bottom-color: #7c877d; /* half azure */
   border-right-color: #7c877d;
 }
+.text > span::after {
+  content: '%';
+}
 
 /* 按鈕 */
 .testresult .button {
@@ -147,9 +151,9 @@
   justify-content: space-between;
   /* align-items: end; */
   width: 8%;
-  height: 20%;
+  height: 30%;
   /* border: yellow 2px solid; */
-  margin-top: 600px;
+  margin-top: 490px;
 }
 .testresult .button > button {
   width: 120px;
@@ -190,7 +194,8 @@
   .testresult {
     display: flex;
     flex-direction: column;
-    height: 420px;
+    height: 550px;
+    background-size: 100% 385px;
     align-items: center;
     margin: 40px 0;
     width: 100%;
@@ -206,21 +211,26 @@
   .testtitle > div {
     width: 50px;
     height: 50px;
-    font-size: var(--font-size-h4);
+    font-size: 18px;
   }
   .testresult > div:nth-child(2) {
     width: 100%;
   }
   .result-left {
     width: 30%;
-    height: fit-content;
+    height: 100%;
+    position: relative;
+    top: -57px;
+    left: 48px;
   }
-  .testresult > div:nth-child(2) {
-    margin: 45px 0px 0px 130px;
+  .result-left img {
+    width: 120%;
   }
+
   .result-right {
     width: 42%;
-    margin-top: 0;
+    margin-top: -16px;
+    margin-left: 95px;
     line-height: 20px;
     letter-spacing: 2px;
     height: 300px;
@@ -237,25 +247,26 @@
     font-size: 11px;
   }
   .result-right .graph {
+    display: flex;
     position: relative;
-    left: -193px;
-    bottom: 60px;
-    width: 180px;
-    height: 66px;
+    right: 178px;
+    width: 339px;
   }
   .progress {
     margin: 0;
     width: 80px;
-    height: 30px !important;
+    height: 60px !important;
     margin-right: 8px;
-    margin-bottom: 4px;
+    margin-top: 6px;
+    border-radius: 10px;
   }
   .barOverflow {
-    width: 40px;
-    height: 20px;
+    width: 50px;
+    height: 25px;
   }
   .graph .text {
-    margin-left: 23px;
+    margin-top: -15px;
+    margin-left: 2px;
   }
   .graph .text > div {
     font-size: 8px;
@@ -264,29 +275,27 @@
     font-size: 8px;
     position: relative;
     bottom: 24px;
-    left: 8px;
   }
   .text > span::after {
     content: '%';
   }
   .bar {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 5px solid #eee;
     border-bottom-color: #7c877d;
     border-right-color: #7c877d;
     position: relative;
-    left: -15px;
   }
   .barOverflow {
-    overflow: initial;
+    overflow: hidden;
   }
   .testresult .button {
     flex-direction: row;
-    width: 230px;
+    width: 320px;
     align-items: center;
     justify-content: space-between;
-    margin: -50px auto 0 auto;
+    margin: -90px auto 0 auto;
   }
   .result > div {
     overflow-x: hidden;
@@ -295,5 +304,9 @@
     height: 30px;
     font-size: 12px;
     width: fit-content;
+  }
+  .iconstyle {
+    font-size: 14px;
+    padding: 4px;
   }
 }
