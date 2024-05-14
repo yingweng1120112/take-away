@@ -5,9 +5,9 @@
 
 .text {
   color: var(--deep-gray);
-  font-weight: 600;
+  font-weight: 500;
   width: fit-content;
-  height: fit-content;
+  height: 126px;
   margin-top: 70px;
   background-color: #fff;
   border-radius: 0 0 10px 10px;
@@ -15,7 +15,6 @@
 }
 .text p {
   font-size: 20px;
-  padding: 4px;
 }
 .container {
   display: flex;

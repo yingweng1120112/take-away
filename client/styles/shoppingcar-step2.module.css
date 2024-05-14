@@ -53,6 +53,7 @@
 .step .nextto:nth-child(2) h2 {
   margin-top: 28px;
   color: var(--deep-gray);
+  font-weight: 600;
 }
 .step .nextto:nth-child(odd) h2 {
   color: var(--light-gray);

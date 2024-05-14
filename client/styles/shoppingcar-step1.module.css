@@ -53,6 +53,7 @@
 .step .nextto:nth-child(1) h2 {
   margin-top: 28px;
   color: var(--deep-gray);
+  font-weight: 600;
 }
 .step .nextto:nth-child(n + 2) h2 {
   color: var(--light-gray);
@@ -290,6 +291,7 @@
   text-align: center;
   letter-spacing: 10px;
   color: var(--deep-gray);
+  font-weight: 600;
 }
 .carouselstyle {
   width: 100%;
