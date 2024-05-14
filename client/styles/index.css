@@ -31,7 +31,7 @@
   --blue: #427d9d;
   --green: #b6c12f;
   --border-color: #895e3c;
-  --font-family: "Noto Sans TC", sans-serif;
+  --font-family: 'Noto Sans TC', sans-serif;
   --font-size-h1: 2rem; /* h1 標題文字大小 ,32px*/
   --font-size-h2: 1.8rem; /* h2 標題文字大小,28.8px */
   --font-size-h3: 1.5rem; /* h3 標題文字大小,24px  */
@@ -96,9 +96,6 @@ section {
 /* 手機版 */
 
 /* header */
-header{
-  height:auto;
-}
 .navbar {
   background-color: var(--creamy-yellow);
 }
@@ -228,8 +225,8 @@ footer img {
   justify-content: space-between;
   align-items: center;
 }
-.sponsor > img{
-  width:40%;
+.sponsor > img {
+  width: 40%;
 }
 
 .footerItem:nth-child(7) img {
@@ -275,7 +272,7 @@ footer img {
   }
 
   /* header */
-  .nav-item{
+  .nav-item {
     justify-content: space-between;
   }
   /* banner */
@@ -360,7 +357,7 @@ footer img {
   .sponsor {
     justify-content: center;
   }
-  .sponsor > img{
+  .sponsor > img {
     /* width:0%; */
   }
   .footerItem:nth-child(7) img {
