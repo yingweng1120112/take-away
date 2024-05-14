@@ -385,7 +385,7 @@ export default function AdoptForm() {
               <h5 className='thanks-title'>感謝認養</h5>
               <div className='thanks-group'>
                 <div className='thanks-img'>
-                  <img src={`/images/pet-info/10008/10008-4p.jpg`} alt="" className='img' />
+                  <img src={`/img/pet-info/10008/10008-4p.jpg`} alt="" className='img' />
                 </div>
                 <p className='thanks-group-p'>謝謝乾爹乾媽</p>
               </div>
