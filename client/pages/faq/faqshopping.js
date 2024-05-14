@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from '@/styles/faqshopping.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaMagnifyingGlass, FaCartShopping, FaBox } from 'react-icons/fa6'
+import Testheader from './testheader'
 
 export default function Faqshopping() {
   return (
     <>
+      <Testheader />
       <div className={styles['container_faq']}>
         <div className={styles['box_search']}>
           <input
@@ -13,23 +15,28 @@ export default function Faqshopping() {
             name="searchBar"
             placeholder="搜尋常見問題"
           />
-          <i
+          <a href="#" className={styles['faq_icons']}>
+            <FaMagnifyingGlass className={styles['faq_icons']} />
+          </a>
+          {/* <i
             className={`${styles['faq_icons']} fa-solid fa-magnifying-glass`}
-          ></i>
+          ></i> */}
         </div>
       </div>
       <div className={styles['box_options']}>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaCartShopping className={styles['faq_icons']} />
+            {/* <i
               className={`${styles['faq_icons']} fa-solid fa-cart-shopping`}
-            ></i>
+            ></i> */}
             <h4 className={styles['faq_text']}>訂單相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-box"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaBox className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-box"></i> */}
             <h4 className={styles['faq_text']}>退換貨相關</h4>
           </a>
         </div>
@@ -80,7 +87,7 @@ export default function Faqshopping() {
               <div className={styles['content_ans']}>
                 <img
                   className={styles['img_ans']}
-                  src="../img/ans_dog1.png"
+                  src="../img/ans_dog1.jpg"
                   alt=""
                 />
                 <p>
