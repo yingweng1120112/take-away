@@ -121,12 +121,18 @@
   }
   .testcontent {
     width: 85%;
-    font-size: 14px;
-    line-height: 1.75rem;
     font-weight: 600;
     padding: 25px;
     text-align: justify;
     margin: 30px 0;
+  }
+  .testcontent > div {
+    font-size: 14px;
+    line-height: 1.5rem;
+  }
+  .testcontent div > input {
+    font-size: 14px;
+    width: 230px;
   }
   .testcontent > div:nth-child(3) {
     display: flex;

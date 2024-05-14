@@ -94,7 +94,9 @@ export default function Step1() {
               {/*  */}
               <div className={styles['checklinestyle']}>
                 <input type="checkbox" className={styles['checkboxstyle']} />
-                <span>收件人資料與會員資料相同</span>
+                <span className={styles['spanstyle']}>
+                  收件人資料與會員資料相同
+                </span>
               </div>
               {/*  */}
               <div>

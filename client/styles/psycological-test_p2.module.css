@@ -143,12 +143,19 @@
 }
 
 @media screen and (max-width: 414px) {
+  .sectionstyle {
+    width: 100%;
+  }
+  .hearttest {
+    margin: 0;
+  }
   .hearttest > .question > div {
     width: 100%;
   }
   .questioncontent {
     font-size: var(--font-size-p);
-    padding: 20px;
+    padding: 15px;
+    text-align: center;
   }
   .hearttest > .question .fa-solid {
     font-size: 32px;
@@ -163,7 +170,7 @@
     content: url(/psycological-test/hearttestoption2.png);
     top: -172px;
     width: 140%;
-    left: -67px;
+    left: -83px;
   }
 
   .testoption .everyimg {
@@ -179,5 +186,13 @@
   .testoption .option {
     width: 90%;
     margin-top: -120px;
+  }
+  .questioncontent {
+    width: 65%;
+    margin-left: -50px;
+  }
+  .iconstyle {
+    left: -5px;
+    width: 30px;
   }
 }

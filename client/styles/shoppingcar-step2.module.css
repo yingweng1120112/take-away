@@ -305,6 +305,7 @@
   .roof {
     overflow: hidden;
     width: 100%;
+    height: 75px;
   }
   .roof img {
     height: 75px;
@@ -318,9 +319,8 @@
   .stepbg {
     background-size: 170%;
     background-position: right;
-    width: 100%;
-    height: 90px;
-    /* border: 1px red solid; */
+    width: 90%;
+    height: 95px;
   }
   .step .nextto:nth-child(1) h1 {
     font-size: 32px;
@@ -329,7 +329,7 @@
     font-size: 32px;
   }
   .step .nextto:nth-child(1) h2 {
-    margin-top: 0px;
+    margin-top: 12px;
     font-size: var(--font-size-p);
     height: 100%;
     margin-right: 6px;
@@ -337,22 +337,25 @@
   .step .nextto:nth-child(n + 2) h2 {
     margin-top: 0px;
     font-size: var(--font-size-p);
+    width: 50px;
   }
   .everystep {
     letter-spacing: 4px;
     margin-left: 0;
   }
-  /* 購物車 */
+  /* 填寫資料 */
   .writemessage {
     flex-direction: column;
-    margin: auto;
-    width: 92%;
+    margin: 0px 20px;
+    width: 90%;
     border-radius: 10px 10px 0 0;
+    overflow-x: hidden;
   }
   .writemessageleft {
     width: 100%;
     height: fit-content;
   }
+
   .writemessageleft > div:nth-child(1) {
     margin-bottom: 40px;
   }
@@ -360,13 +363,23 @@
     margin-bottom: 40px;
   }
   .carttopstyle1 {
-    font-size: var(--font-size-p);
     width: 100%;
     height: 30px;
     border-radius: 10px 10px 0 0;
   }
-  .cartbottomstyle {
+  .carttopstyle1 > div {
+    font-size: var(--font-size-p);
+  }
+  .cartbottomstyle div {
     font-size: 14px;
+  }
+  .checkboxstyle {
+    width: 13px !important;
+    position: relative;
+    top: 7px;
+  }
+  .checklinestyle > .spanstyle {
+    font-size: 14px !important;
   }
   .cartbottomstyle > div {
     display: block;
@@ -439,16 +452,24 @@
   }
 
   .buttonstyle {
-    width: 25%;
+    width: 28%;
     height: fit-content;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     box-shadow: 0 0.1rem #dfd9d9;
+  }
+  .iconstyle1 {
+    width: 16px;
+  }
+
+  .iconstyle2 {
+    width: 16px;
   }
   .wall {
     width: 100%;
     overflow: hidden;
+    height: fit-content;
   }
   .wall img {
     width: 180%;

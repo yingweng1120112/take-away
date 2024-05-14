@@ -540,6 +540,7 @@
   .wall {
     width: 100%;
     overflow: hidden;
+    height: fit-content;
   }
   .wall img {
     width: 180%;
