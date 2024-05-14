@@ -287,7 +287,7 @@
 }
 .commend > h4 {
   font-size: var(--font-size-h3);
-  padding-top: 30px;
+  padding-top: 25px;
   text-align: center;
   letter-spacing: 10px;
   color: var(--deep-gray);
@@ -347,6 +347,7 @@
 /* 下花邊 */
 .wall {
   margin: 40px 0 0 0;
+  height: fit-content;
 }
 .wall img {
   margin: 0;
@@ -468,6 +469,7 @@
     width: 50%;
   }
   .cartitemright > div:nth-child(5) {
+    background-color: transparent;
     height: fit-content;
     text-align: center;
     padding-left: 0;
