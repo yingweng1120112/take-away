@@ -787,14 +787,14 @@
   position: absolute;
   /* z-index: -1; */
   animation-name: paws2;
-  animation-duration: 1s;
+  animation-duration: 8s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   transform: rotate(45deg);
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 140%;
+  top: 120%;
 }
 
 @keyframes paws2 {

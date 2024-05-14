@@ -296,7 +296,7 @@
   font-weight: 700;
 }
 
-.br-block {
+.br-none {
   display: none;
 }
 
@@ -518,7 +518,7 @@
     margin: 0;
   }
 
-  .br-block {
+  .br-block, .br-none {
     display: block;
   }
 

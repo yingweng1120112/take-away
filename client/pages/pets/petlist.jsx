@@ -198,7 +198,7 @@ export default function PetList() {
             聽說好像很好玩
             <br />
             一起看看那些
-            <br className={styles['br-block']} />
+            <br className={styles['br-none']} />
             回家的朋友們都在幹嘛
           </h1>
           <button className={styles.cta}>
