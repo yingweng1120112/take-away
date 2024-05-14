@@ -31,7 +31,7 @@
   --blue: #427d9d;
   --green: #b6c12f;
   --border-color: #895e3c;
-  --font-family: "Noto Sans TC", sans-serif;
+  --font-family: 'Noto Sans TC', sans-serif;
   --font-size-h1: 2rem; /* h1 標題文字大小 ,32px*/
   --font-size-h2: 1.8rem; /* h2 標題文字大小,28.8px */
   --font-size-h3: 1.5rem; /* h3 標題文字大小,24px  */
@@ -185,8 +185,7 @@ footer img {
 
 .icon {
   display: flex;
-  flex-direction: row;
-  width: auto;
+  flex-direction: column;
 }
 
 .icon > li {
@@ -211,7 +210,7 @@ footer img {
 
 .footerItem ol {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .footerItem:nth-child(6) ol {
@@ -225,6 +224,9 @@ footer img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.sponsor > img {
+  width: 40%;
 }
 
 .footerItem:nth-child(7) img {
@@ -270,9 +272,12 @@ footer img {
   }
 
   /* header */
+  .nav-item {
+    justify-content: space-between;
+  }
   /* banner */
   .banner {
-    background-image: url(/images/banner.jpg);
+    /* background-image: url(/images/banner.jpg); */
     background-size: cover;
     height: 20rem;
     display: flex;
@@ -351,6 +356,9 @@ footer img {
   }
   .sponsor {
     justify-content: center;
+  }
+  .sponsor > img {
+    /* width:0%; */
   }
   .footerItem:nth-child(7) img {
     display: flex;

@@ -7,8 +7,7 @@ export default function Home() {
   return (
     <>
       <h1>header</h1>
-      <h1>footer</h1>
-      {/* <h1 className="mb-3 display-5 fw-bold text-body-emphasis">
+      <h1 className="mb-3 display-5 fw-bold text-body-emphasis">
         Next + Bootstrap5 範例
       </h1>
 
@@ -215,7 +214,8 @@ export default function Home() {
             text-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
           }
         `}
-      </style> */}
+      </style>
+      <h1>footer</h1>
     </>
   )
 }
