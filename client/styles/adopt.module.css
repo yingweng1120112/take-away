@@ -113,13 +113,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size:5px;
   align-items: center;
   line-height: 2.2rem;
   margin: 1rem auto;
 }
 .about-pet .pet-namet h3{
-  font-size: 1.45rem;
+  font-size: 1.2rem;
   color: var(--border-color);
   font-weight: bolder;
   margin: 0.5rem 0rem;
@@ -134,17 +133,18 @@
   margin: 0.5rem auto;
 }
 
-.about-pet .pet-img image {
+.about-pet .pet-img .image {
   width: 100%;
   height: 100%;
-
+  margin: 0rem 0.3rem;
 }
 .about-pet .pet-img .image:hover img {
-  transform: scale(0.8);
+  transform: scale(1.05);
 }
 .about-pet .pet-img img {
   width: 100%;
-  padding: 0.2rem;
+  border-radius: 50%;
+  border: 5px solid var(--bean-paste) ;
 }
 
 .about-pet .pet-character {
@@ -158,21 +158,34 @@
 }
 
 .about-pet .pet-character h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 1rem 0rem;
-  padding-top: 1rem;
-  padding-left: 0.8rem;
-  width:40%;
-  height: 60px;
-  font-size: 1.2rem;
+  width:35%;
+  height: 3rem;
+  font-size: 1rem;
   color: var(--border-color);
   font-weight: bolder;
   background-color: #DAA06D;
   border-radius: 1rem;
 }
-
+.about-pet .pet-character .date-p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0rem;
+  width:35%;
+  height: 3rem;
+  font-size: 1rem;
+  color: var(--border-color);
+  font-weight: bolder;
+  background-color: #DAA06D;
+  border-radius: 1rem;
+}
 .about-pet .pet-character h4 {
   margin-bottom: 1rem;
-  font-size: var(--font-size-h5);
+  font-size: 1rem ;
   font-weight: bolder;
   line-height: 2.5rem;
   color: var(--deep-gray);
@@ -188,7 +201,6 @@
 .about-pet .pet-donate li {
   font-size: 0.8rem;
 }
-
 .about-pet .label{
   display: inline-block;
   cursor: pointer;
@@ -201,7 +213,20 @@
   height: auto;
 }
 /* 顯示更多 */
-
+.Read-More{
+  display: inline-block;
+  cursor: pointer;
+  background-color:#b87a43;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size:1rem;
+  border-radius: 0.5rem;
+  width: 45%;
+  height: 3rem;
+}
 /*form styles*/
 .form {
   width: 100%;
@@ -211,37 +236,14 @@
   position: relative;
 }
 
-.form .msform {
+/* .form .msform {
   width: 95%;
   height: 100%;
   text-align: start;
   position: relative;
   margin: 3rem auto;
-}
+} */
 
-.form .msform fieldset {
-  background: var(--bean-paste);
-  border: 0 none;
-  border-radius: .3rem;
-  box-shadow: 0 0 .9375rem .0625rem rgba(0, 0, 0, 0.4);
-  padding: 1rem 1.5rem;
-  box-sizing: border-box;
-  width: 90%;
-  height: 100%;
-  margin: 0 1rem;
-  position: absolute;
-}
-
-.form .msform .fs-title {
-  font-size: var(--font-size-h5);
-  color: var(--reddish-brown);
-  margin: 1.5rem auto;
-}
-
-/*Hide all except first fieldset*/
-.form .msform fieldset:not(:first-of-type) {
-  display: none;
-}
 
 /*inputs*/
 
@@ -659,7 +661,7 @@ background: var(--reddish-brown);
 
 .page-third .ntd-group .input {
   width: 95%;
-  border: solid .125rem var(--border-color);
+  border: .125rem solid var(--border-color);
   border-radius: 1rem;
   background: none;
   padding: 1rem;
@@ -1028,21 +1030,16 @@ display:none;
 }
 
 .about-pet .pet-character h3 {
-  margin: 1rem 0rem;
-  font-weight: bolder;
-  font-size: var(--font-size-h3);
-  width: 88%;
-  margin: 1rem auto;
-  color: var(--border-color);
+  margin-left:0.5rem;
 }
 .about-pet .pet-character h4 {
-  line-height: 3.125rem;
-  font-weight: bolder;
-  font-size: var(--font-size-h5);
-  width: 88%;
+  font-size: 1rem;
+  width: 90%;
   margin: auto;
 }
+.about-pet .pet-character .date-p {
 
+}
 .about-pet .pet-donate {
   letter-spacing: .125rem;
   line-height: 2.5rem;
@@ -1053,117 +1050,13 @@ display:none;
   font-size: var(--font-size-p);
 }
 /* 顯示更多 */
-/* .about-pet .morebutton {
-    display: inline-block;
-    cursor: pointer;
-    background-color: var(--border-color);
-    color:  #ffffff;
-    padding:  0.6rem;
-    border-radius: 0.5rem;
-    width: 50%;
-    height: 3rem;
-    padding: auto;
-} */
-
 /*form styles*/
 .form {
-  width: 55%;
+  width: 50%;
   height: 100%;
   justify-content: space-around;
   height: 50rem;
   position: relative;
-}
-
-.form .msform {
-  width: 100%;
-  height: 100%;
-
-  position: relative;
-  margin: 0rem;
-}
-
-.form .msform fieldset {
-  background: var(--bean-paste);
-  border: 0 none;
-  border-radius: .3rem;
-  box-shadow: 0 0 .9375rem .0625rem rgba(0, 0, 0, 0.4);
-  box-sizing: border-box;
-  width: 80%;
-  height: 100%;
-  margin: 0 10%;
-  /*stacking fieldsets above each other*/
-  position: absolute;
-}
-
-.form .msform .fs-title {
-  font-size: var(--font-size-h5);
-  color: var(--reddish-brown);
-  margin: 1.5rem auto;
-}
-
-/*Hide all except first fieldset*/
-.form .msform fieldset:not(:first-of-type) {
-  display: none;
-}
-
-/*inputs*/
-
-.form .msform textarea {
-  padding: .9375rem;
-  border: .0625rem solid #ccc;
-  border-radius: .1875rem;
-  margin-bottom: .625rem;
-  width: 20%;
-  box-sizing: border-box;
-  font-family: montserrat;
-  color: #2C3E50;
-  font-size: .8125rem;
-}
-
-/*buttons*/
-.form .page-one .action-button {
-  width: 100%;
-  background: var(--reddish-brown);
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: .9375rem;
-  cursor: pointer;
-  padding: .625rem;
-  margin: .625rem .3125rem;
-  text-decoration: none;
-  font-size: .875rem;
-}
-
-.form .page-one .action-button:hover,
-.form .page-one .action-button:focus {
-  box-shadow: 0 0 0 .125rem white, 0 0 0 .3125rem var(--reddish-brown);
-}
-
-.form .page-one .pay {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 6%;
-}
-
-.form .page-one .pay button {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  color: #DAA06D;
-  margin: 0px .525rem;
-  border: .125rem dashed #DAA06D;
-  border-radius: .9375rem;
-  background-color: #EADDCA;
-  box-shadow: 0 0 0 .25rem #EADDCA, .125rem .125rem .25rem .125rem rgba(0, 0, 0, 0.5);
-  transition: .1s ease-in-out, .4s color;
-}
-
-.form .page-one.pay button:active {
-  transform: translateX(0.1em) translateY(0.1em);
-  box-shadow: 0 0 0 .25rem #EADDCA, .0938rem .0938rem .1563rem .0938rem rgba(0, 0, 0, 0.5);
 }
 
 /* 點選捐款金額 */
