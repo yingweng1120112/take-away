@@ -33,6 +33,8 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 @media (min-width: 768px) {
   #sidebar-wrapper {
     margin-left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   #page-content-wrapper {
@@ -183,6 +185,14 @@ div.scroll {
   height: 80%;
   width: 100%;
 }
+
+
+
+.mySwiper3 {
+  height: 18.75rem;
+  width: 100%;
+}
+
 
 .mySwiper {
   height: 20%;
