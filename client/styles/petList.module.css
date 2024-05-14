@@ -1,0 +1,570 @@
+.banner {
+  /* background-image: url("../images/background_petlist-navbar.png") !important; */
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+}
+
+/* ul{
+  padding: 0;
+  margin: 0;
+} */
+
+/* br{
+  display: none;
+} */
+
+/* 原本body */
+.commendbody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+}
+
+.br-block{
+  display: block;
+}
+
+.title {
+  margin-top: 100px;
+  width: 100%;
+  height: auto;
+  background-image: url('../public/img/background-list.png');
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  padding: 5% 10% 20% 10%;
+  margin: 0 0 -20% 0;
+}
+
+.title>h1 {
+  font-size: 63px;
+  color: var(--white);
+  font-weight: 700;
+  width: 100%;
+}
+
+.pet-card {
+  width: 80%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 100px;
+}
+
+.card {
+  --bs-card-bg: none;
+  --bs-card-border-width: 0px;
+  height: auto;
+  width: auto;
+}
+
+.state {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+  font-size: 20px;
+  line-height: 50px;
+  letter-spacing: 5px;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(24, 39, 71, 0.5);
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+  border-radius: 10px;
+  width: 80%;
+  padding: 0 10%;
+  margin: 0 10%;
+}
+
+.card:hover .state {
+  visibility: visible;
+  opacity: 1;
+}
+
+.welcome::before {
+  content: "歡迎帶我回家";
+}
+
+.pause::before {
+  content: "先暫停認養哦";
+}
+
+.card-img > img {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+  margin-top: 10px;
+}
+
+.favorite {
+  z-index: 1;
+  /* font-size: 52px; */
+  margin-top: -10%;
+  margin-left: 100%;
+  color: var(--gray);
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+  /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.35); */
+  filter:drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
+  transition: all .1s linear;
+  /* border: 1px solid black; */
+}
+
+.favorite:hover {
+  color: var(--red);
+  filter:drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
+}
+
+.card>div {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(24, 39, 71, 0.5);
+}
+
+.pet-name{
+  margin-top: 0 !important;
+  text-align: center;
+}
+
+.pet-name span{
+  font-size: 18px;
+}
+
+.pet-name>p{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 48px;
+  color: var(--brown);
+}
+
+.pet-desc {
+  /* border: 1px solid black; */
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.pet-desc>img {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  opacity: 50%;
+}
+
+/* 頁碼 */
+.wp-pagenavi {
+  width: 100%;
+  z-index: 1;
+  margin: 40px auto;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+.wp-pagenavi a {
+  color: #333;
+}
+
+.wp-pagenavi a:hover {
+  color: #77a0d1;
+}
+
+.wp-pagenavi span.current,
+.wp-pagenavi a.page {
+  margin: 0 10px;
+  line-height: 2;
+  padding: 0 12px;
+  transition: .03s;
+  display: block;
+  border-bottom: 4px solid transparent;
+}
+
+.wp-pagenavi span.current {
+  border-bottom: 4px solid #77a0d1;
+}
+
+.wp-pagenavi a.page {
+  background: none;
+}
+
+.wp-pagenavi a.page:hover {
+  border-bottom: 4px solid #77a0d1;
+}
+
+.wp-pagenavi .first,
+.wp-pagenavi .extend {
+  margin-right: 15px;
+}
+
+.wp-pagenavi .previouspostslink,
+.wp-pagenavi .nextpostslink {
+  display: none;
+}
+
+
+
+/* btn */
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+#ending {
+  /* width: 80%; */
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  width: 100%;
+  /* background-image: url("../images/background-list.png"); */
+  background-size: 130%;
+  background-position: top;
+  background-repeat: no-repeat;
+  padding: 19% 10% 2% 10%;
+  margin: -10% 0 -0% 0;
+}
+
+#ending>h1 {
+  font-size: 63px;
+  color: white;
+  font-weight: 700;
+}
+
+#ending>button {
+  /* border: 1px solid black; */
+  margin-top: 30px;
+  /* width: 25%; */
+  border-radius: 50px;
+  align-items: center;
+  text-align: center;
+  color: white;
+  width: 20%;
+  height: 80px;
+  background-color: var(--khaki);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+#ending > button:hover{
+  background-color: var(--deep-blue);
+}
+
+#ending>button>span {
+  /* border: 1px solid black; */
+  color: white;
+  font-size: 20px;
+  width: 100px;
+}
+
+
+/* 商品跑馬燈 */
+/* Marquee styles */
+.marquee {
+  --gap: 64x;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Pause animation when reduced-motion is set */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__content {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Enable animation */
+.enable-animation .marquee__content {
+  animation: scroll 10s linear infinite;
+}
+
+/* Reverse animation */
+.marquee--reverse .marquee__content {
+  animation-direction: reverse;
+}
+
+/* Pause on hover */
+.marquee--hover-pause:hover .marquee__content {
+  animation-play-state: paused;
+}
+
+/* Attempt to size parent based on content. Keep in mind that the parent width is equal to both content containers that stretch to fill the parent. */
+.marquee--fit-content {
+  max-width: fit-content;
+}
+
+/* A fit-content sizing fix: Absolute position the duplicate container. This will set the size of the parent wrapper to a single child container. Shout out to Olavi's article that had this solution 👏 @link: https://olavihaapala.fi/2021/02/23/modern-marquee.html  */
+.marquee--pos-absolute .marquee__content:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Enable position absolute animation on the duplicate content (last-child) */
+.enable-animation .marquee--pos-absolute .marquee__content:last-child {
+  animation-name: scroll-abs;
+}
+
+@keyframes scroll-abs {
+  from {
+    transform: translateX(calc(100% + var(--gap)));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+#marquee {
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  /* background-image: url("../images/bg_marquee.png"); */
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-position: center;
+  margin-bottom: 0px;
+}
+
+.marquee__content>li>img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+/* TODO: 手機版 */
+/* 手機版 */
+@media screen and (max-width: 414px) {
+  /* br{
+    display: block;
+  } */
+
+  .title{
+    background-size: 250%;
+    background-position: 60% 80%;
+  }
+
+  .title>h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .pet-card{
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+/* TODO: 變成橫的 */
+  .card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card-img > img{
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+  }
+
+  .card-img>.fa-heart {
+    font-size: 32px;
+    margin-left: 75%;
+  }
+
+  .state{
+    font-size: 12px;
+    line-height: 30px;
+    border-radius: 5px;
+    /* width: 60%; */
+    padding: 0;
+    margin: 0;
+  }
+
+  .card>div {
+    margin-top: 0;
+    font-size: 12px;
+    align-items: flex-start;
+  }
+
+  .pet-name{
+    margin-top: 30px !important;
+    margin-left: 10px;
+    /* gap: 5px; */
+  }
+
+  .pet-name>p{
+    letter-spacing: 16px;
+    font-size: 20px;
+    order: 1;
+  }
+
+  .pet-name>span{
+    order: 2;
+  }
+
+  .pet-desc{
+    padding: 0;
+    width: 80%;
+    order: 3;
+  }
+
+  .pet-desc > img{
+    width: 20px;
+    height: 20px;
+  }
+
+
+  .wp-pagenavi{
+    font-size: 12px;
+  }
+
+  .wp-pagenavi span.current {
+    margin: 0;
+  }
+
+  .wp-pagenavi a.page {
+    margin: 0;
+  }
+
+  #ending{
+    background-size: 300%;
+    background-repeat: no-repeat;
+    background-position: 90% 50%;
+    flex-direction: column;
+    align-items: start;
+    padding: 20% 10% 5% 10%;
+    margin: -20% 0 0 0;
+  }
+
+  #ending > h1{
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  #ending > button{
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+    height: 35px;
+    /* margin: 10px 10% 0 10%; */
+  }
+
+  #ending > button > span{
+    font-size: 12px;
+    line-height: 15px;
+    padding-bottom: 5px;
+  }
+
+  #marquee {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-size: cover;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+
+  .marquee{
+    --gap: 32px;
+  }
+
+  .marquee__content>li>img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 0;
+  }
+}
