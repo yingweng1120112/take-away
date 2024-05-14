@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="/css/index-banner-finish.css " />
+    <link rel="stylesheet" href="/css/life-finish-fix.css" />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>追蹤日誌 | TAKE AWAY</title>
+    <style></style>
+  </head>
+
+  <body class="commendbody">
+    <!-- header -->
+    <header class="header w-100">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img class="w-50" src="../images/logo-removebg-preview.png"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDarkDropdown"
+            aria-controls="navbarNavDarkDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav col-lg-9">
+              <li class="nav-item dropdown w-100">
+                <button
+                  class="btn dropdown-toggle w-100"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  關於我們
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">關於我們</a></li>
+                  <li><a class="dropdown-item" href="#">組織故事</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown w-100">
+                <button
+                  class="btn dropdown-toggle w-100"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  活動專區
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">活動訊息</a></li>
+                  <li><a class="dropdown-item" href="#">公告事項</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown w-100">
+                <button
+                  class="btn dropdown-toggle w-100"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  認養資訊
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">心理測驗</a></li>
+                  <li><a class="dropdown-item" href="#">認養流程</a></li>
+                  <li><a class="dropdown-item" href="#">注意事項</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown w-100">
+                <button
+                  class="btn dropdown-toggle w-100"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  領養專區
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">收容資訊</a></li>
+                  <li><a class="dropdown-item" href="#">動物之家</a></li>
+                  <li><a class="dropdown-item" href="#">定期追蹤</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown w-100">
+                <button
+                  class="btn dropdown-toggle w-100"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  寵物商城
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">寵物商城</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <!-- icon -->
+            <div
+              class="nav-icon col-sm-12 col-lg-3 d-flex justify-content-center align-items-center"
+            >
+              <!-- shopping cart -->
+              <ul
+                class="nav-item dropdown list-unstyled col-lg-3 d-flex align-items-lg-center m-lg-auto w-lg-25"
+              >
+                <button class="btn-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3.5 4.5H5.05848C5.7542 4.5 6.10206 4.5 6.36395 4.68876C6.62584 4.87752 6.73584 5.20753 6.95585 5.86754L7.5 7.5"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M17.5 17.5H8.05091C7.90471 17.5 7.83162 17.5 7.77616 17.4938C7.18857 17.428 6.78605 16.8695 6.90945 16.2913C6.92109 16.2367 6.94421 16.1674 6.99044 16.0287V16.0287C7.04177 15.8747 7.06743 15.7977 7.09579 15.7298C7.38607 15.0342 8.04277 14.5608 8.79448 14.5054C8.8679 14.5 8.94906 14.5 9.11137 14.5H14.5"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.1787 14.5H11.1376C9.85836 14.5 9.21875 14.5 8.71781 14.1697C8.21687 13.8394 7.96492 13.2515 7.461 12.0757L7.29218 11.6818C6.48269 9.79294 6.07794 8.84853 6.52255 8.17426C6.96715 7.5 7.99464 7.5 10.0496 7.5H15.3305C17.6295 7.5 18.779 7.5 19.2126 8.24711C19.6462 8.99422 19.0758 9.99229 17.9352 11.9884L17.6517 12.4846C17.0897 13.4679 16.8088 13.9596 16.3432 14.2298C15.8776 14.5 15.3113 14.5 14.1787 14.5Z"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="17"
+                      cy="20"
+                      r="1"
+                      fill="#222222"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                    />
+                    <circle
+                      cx="9"
+                      cy="20"
+                      r="1"
+                      fill="#222222"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                    />
+                  </svg>
+                </button>
+                <!-- heart -->
+                <button class="btn-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.45067 13.9082L11.4033 20.4395C11.6428 20.6644 11.7625 20.7769 11.9037 20.8046C11.9673 20.8171 12.0327 20.8171 12.0963 20.8046C12.2375 20.7769 12.3572 20.6644 12.5967 20.4395L19.5493 13.9082C21.5055 12.0706 21.743 9.0466 20.0978 6.92607L19.7885 6.52734C17.8203 3.99058 13.8696 4.41601 12.4867 7.31365C12.2913 7.72296 11.7087 7.72296 11.5133 7.31365C10.1304 4.41601 6.17972 3.99058 4.21154 6.52735L3.90219 6.92607C2.25695 9.0466 2.4945 12.0706 4.45067 13.9082Z"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                    />
+                  </svg>
+                </button>
+                <!-- user -->
+                <button
+                  class="btn btn-icon dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.7274 20.4471C19.2716 19.1713 18.2672 18.0439 16.8701 17.2399C15.4729 16.4358 13.7611 16 12 16C10.2389 16 8.52706 16.4358 7.12991 17.2399C5.73276 18.0439 4.72839 19.1713 4.27259 20.4471"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="8"
+                      r="4"
+                      stroke="#895e3c"
+                      stroke-width="1"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">會員中心</a></li>
+                  <li><a class="dropdown-item" href="#">註冊</a></li>
+                  <li><a class="dropdown-item" href="#">登入</a></li>
+                  <li><a class="dropdown-item" href="#">登出</a></li>
+                </ul>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- banner -->
+    <div class="banner banner-life-1"></div>
+    <div class="life-container">
+      <div>
+        <div class="banner-fixed">
+          <div class="banner banner-life-2">
+            <div class="left">
+              <p class="menu-a">LIFE</p>
+              <p class="menu-b">生活紀錄</p>
+            </div>
+            <div class="middle">
+              <div class="accordion" id="accordionExample">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <p class="middle-page-title">選項</p>
+                  <span class="middle-page-title">日誌列表</span>
+                  <span>選擇日誌分類</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- container -->
+
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
+          >
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="select">
+                  <div class="select-left">
+                    <div class="select-item-a">
+                      <p class="select-title">選擇年齡</p>
+                      <div class="select-item">
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>幼年 0~1</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>青年 2~3</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>中年 4~7</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>老年 8以上</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="select-item-a">
+                      <p class="select-title">寵物體型</p>
+                      <div class="select-item">
+                        <label class="cl-checkbox">
+                          <input type="checkbox" />
+                          <span>大型(20kg以上)</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>中型(8-20kg)</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>小型(8kg以下)</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="select-right">
+                    <div class="select-item-a">
+                      <p class="select-title">適用物種</p>
+                      <div class="select-item">
+                        <label class="cl-checkbox">
+                          <input type="checkbox" />
+                          <span>狗寶貝</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="checkbox" />
+                          <span>貓寶貝</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="select-item-b">
+                      <p class="select-title">姓別</p>
+                      <div class="select-item">
+                        <label class="cl-checkbox">
+                          <input checked="" type="radio" name="a" />
+                          <span>男生</span>
+                        </label>
+                        <label class="cl-checkbox">
+                          <input checked="" type="radio" name="a" />
+                          <span>女生</span>
+                        </label>
+                      </div>
+                      <p class="select-title">毛孩搜尋</p>
+                      <div class="mb-3 shop-select-out">
+                        <input
+                          type="text"
+                          class="form-control shop-select"
+                          id="exampleFormControlInput1"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden">
+          <!-- 文字1 -->
+          <div class="container-main-1">
+            <img src="/images/bg2.svg" class="bg-1" />
+            <h1 class="content-word">
+              這裡是大家細心照料的<br />孩子們，要來看看嗎 ?
+            </h1>
+          </div>
+          <!-- 搜尋的資料 -->
+          <div class="container-a">
+            <div class="project-list">
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓1</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年1歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓2</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年8歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pict"
+                />
+                <div class="project-info">
+                  <h3>貓3</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年5歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                      
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓4</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年3歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                     
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓1</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年1歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓2</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年8歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pict"
+                />
+                <div class="project-info">
+                  <h3>貓3</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年5歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                     
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓4</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年3歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                     
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓1</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年1歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓2</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年8歲</p>
+                    <i class="fa-solid fa-venus fa-lg"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓3</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年5歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                     
+                    ></i>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img
+                  src="images/貓貓6 1.jpg"
+                  alt=""
+                  class="project-pic"
+                />
+                <div class="project-info">
+                  <h3>貓4</h3>
+                  <div class="cat-info">
+                    <p class="desc">今年3歲</p>
+                    <i
+                      class="fa-solid fa-mars fa-lg"
+                     
+                    ></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 頁數 -->
+      <div class="hidden">
+        <div class="wp-pagenavi" role="navigation">
+          <a class="first" aria-label="First Page" href="#">« </a>
+          <a class="previouspostslink" rel="prev">&lt;</a>
+          <a class="page smaller">1</a>
+          <a class="page smaller">2</a>
+          <span aria-current="page" class="current">3</span>
+          <a class="page larger">4</a>
+          <a class="page larger">5</a>
+          <a class="nextpostslink" rel="next" aria-label="次のページ" href="#"
+            >&gt;
+          </a>
+          <a class="last" aria-label="Last Page" href="#"> »</a>
+        </div>
+        <!-- 文字2 -->
+        <div class="container-main-2">
+          <img src="/images/bg2.svg" class="bg-2" />
+          <h1 class="content-word">
+            有了狗狗和貓貓<br />那是不是就可以買一些他們的東西呢
+          </h1>
+          <!-- 商城連結按鈕 -->
+          <div>
+            <button class="cta btn-more">
+              <span class="hover-underline-animation"> 來去看看 </span>
+              <svg
+                id="arrow-horizontal"
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="10"
+                viewBox="0 0 46 16"
+              >
+                <path
+                  id="Path_10"
+                  data-name="Path 10"
+                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                  transform="translate(30)"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- 商品輪播-pc -->
+      <div class="shop-Carousel-pc">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 商品輪播-手機 -->
+      <div class="shop-Carousel-phone">
+        <div class="swiper mySwiper2">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+            <div class="swiper-slide">
+              <a href=""><img src="images/food.svg" alt="" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        position: fixed;
+        background-image: url(images/cat111.svg);
+        top: 70%;
+        right: 3%;
+        width: 54px;
+        height: 203px;
+        z-index: 100;
+      "
+    >
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          height: 140px;
+          margin-top: 20px;
+          align-items: center;
+          justify-content: space-around;
+        "
+      >
+        <a href=""><img src="images/LINE1.svg" alt="" /></a>
+        <a href=""><img src="images/magic-hat.svg" alt="" /></a>
+        <a href=""><img src="images/top.svg" alt="" /></a>
+      </div>
+    </div>
+    <!-- footer -->
+    <footer>
+      <div class="container">
+        <div class="footerLogo">
+          <img class="w-50" src="../images/logo-removebg-preview.png" alt="" />
+        </div>
+
+        <div class="footerInfo">
+          <!-- 認養資訊 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>認養資訊</h4>
+            <hr class="footerHr" />
+            <ol>
+              <li><a class="dropdown-item" href="">心理測驗</a></li>
+              <li><a class="dropdown-item" href="">認養流程</a></li>
+              <li><a class="dropdown-item" href="">注意事項</a></li>
+            </ol>
+          </div>
+          <!-- 顧客服務 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>顧客服務</h4>
+            <hr class="footerHr" />
+            <ol>
+              <li><a class="dropdown-item" href="">會員中心</a></li>
+              <li><a class="dropdown-item" href="">常見問題</a></li>
+            </ol>
+          </div>
+          <!-- 領養專區 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>領養專區</h4>
+            <hr class="footerHr" />
+            <ol>
+              <li><a class="dropdown-item" href="">收容資訊</a></li>
+              <li><a class="dropdown-item" href="">動物之家</a></li>
+              <li><a class="dropdown-item" href="">定期追蹤</a></li>
+            </ol>
+          </div>
+          <!-- 隱私政策 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>隱私政策</h4>
+            <hr class="footerHr" />
+            <ol>
+              <li><a class="dropdown-item" href="">隱私條款</a></li>
+            </ol>
+          </div>
+          <!-- 聯絡我們 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>聯絡我們</h4>
+            <hr class="footerHr" />
+            <p class="desc">營業人名稱:袋寵物走股份有限公司</p>
+            <p class="desc">線上克服:週一~週五 : 08:00 - 17:00</p>
+            <p class="desc">電話: 06 253 3131</p>
+            <p class="desc">信箱:xinpetfood@gmail.com</p>
+            <p class="desc">地址:71005 台南市永康區南台街1號</p>
+          </div>
+          <!-- 社群連結 -->
+          <div class="footerItem flex-sm-column mt-2">
+            <h4>社群連結</h4>
+            <hr class="footerHr" />
+            <ol class="icon">
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100090898966387"
+                  class="footerLink"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/cookie_chocolate_0228/?hl=zh-tw"
+                  class="footerLink"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://store.line.me/stickershop/product/1043153/zh-Hant"
+                  class="footerLink"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      d="M311 196.8v81.3c0 2.1-1.6 3.7-3.7 3.7h-13c-1.3 0-2.4-.7-3-1.5l-37.3-50.3v48.2c0 2.1-1.6 3.7-3.7 3.7h-13c-2.1 0-3.7-1.6-3.7-3.7V196.9c0-2.1 1.6-3.7 3.7-3.7h12.9c1.1 0 2.4 .6 3 1.6l37.3 50.3V196.9c0-2.1 1.6-3.7 3.7-3.7h13c2.1-.1 3.8 1.6 3.8 3.5zm-93.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 2.1 1.6 3.7 3.7 3.7h13c2.1 0 3.7-1.6 3.7-3.7V196.8c0-1.9-1.6-3.7-3.7-3.7zm-31.4 68.1H150.3V196.8c0-2.1-1.6-3.7-3.7-3.7h-13c-2.1 0-3.7 1.6-3.7 3.7v81.3c0 1 .3 1.8 1 2.5c.7 .6 1.5 1 2.5 1h52.2c2.1 0 3.7-1.6 3.7-3.7v-13c0-1.9-1.6-3.7-3.5-3.7zm193.7-68.1H327.3c-1.9 0-3.7 1.6-3.7 3.7v81.3c0 1.9 1.6 3.7 3.7 3.7h52.2c2.1 0 3.7-1.6 3.7-3.7V265c0-2.1-1.6-3.7-3.7-3.7H344V247.7h35.5c2.1 0 3.7-1.6 3.7-3.7V230.9c0-2.1-1.6-3.7-3.7-3.7H344V213.5h35.5c2.1 0 3.7-1.6 3.7-3.7v-13c-.1-1.9-1.7-3.7-3.7-3.7zM512 93.4V419.4c-.1 51.2-42.1 92.7-93.4 92.6H92.6C41.4 511.9-.1 469.8 0 418.6V92.6C.1 41.4 42.2-.1 93.4 0H419.4c51.2 .1 92.7 42.1 92.6 93.4zM441.6 233.5c0-83.4-83.7-151.3-186.4-151.3s-186.4 67.9-186.4 151.3c0 74.7 66.3 137.4 155.9 149.3c21.8 4.7 19.3 12.7 14.4 42.1c-.8 4.7-3.8 18.4 16.1 10.1s107.3-63.2 146.5-108.2c27-29.7 39.9-59.8 39.9-93.1z"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ol>
+          </div>
+
+          <!-- 贊助方案 -->
+          <div class="footerItem col-12 mt-2">
+            <h4>贊助方案</h4>
+            <hr class="footerHr" />
+            <div class="fosponsor">
+              <div class="sponsor">
+                <img src="../images/footer_linepay.jpg" alt="" />
+                <img src="../images/footer_lineQR.jpg" alt="" />
+              </div>
+              <div>
+                <p class="desc">戶名:汪喵星球</p>
+                <p class="desc">銀行：喵汪銀行-熊熊分行</p>
+                <p class="desc">帳號：059-004-167249</p>
+              </div>
+            </div>
+            <hr />
+          </div>
+          <div class="copyright">
+            <p class="desc">
+              Copyright © Interno | Designed by Victorflow Templates - Powered
+              by Webflow
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/life-shop-carousel.js"></script>
+  </body>
+</html>
