@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 3.125rem;
-  padding-top: 0.1875rem; 
+  padding-top: 0.1875rem;
   box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
 }
 
@@ -60,7 +60,7 @@
 }
 
 .hover-underline-animation:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -94,7 +94,7 @@
 .dog-silhouette {
   width: 15%;
 }
-.search{
+.search {
   height: 4rem;
 }
 
@@ -147,7 +147,7 @@
 .products .content {
   flex-direction: column;
 }
-.wp-pagenavi{
+.wp-pagenavi {
   margin: 0rem auto;
 }
 .cart-btn #arrow-horizontal {
@@ -277,6 +277,7 @@
 .decorative-words-info p:nth-child(2) {
   font-size: 1.1rem;
   color: var(--white);
+  margin-bottom: 0rem;
 }
 .decorative-words-info .emphasize {
   font-size: 2.5rem;
@@ -285,6 +286,7 @@
   width: 80%;
   margin-top: 0.3125rem;
   background: var(--yellow);
+  height: 40px;
 }
 .decorative-words-info .cta:hover {
   color: var(--white);
@@ -302,46 +304,21 @@
 /* 推薦浪浪 */
 .recommend {
   background: var(--yellow);
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 0.875rem;
-  color: #000;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  border-top: 1.5625rem solid var(--yellow);
-  border-bottom: 1.5625rem solid var(--yellow);
+  height: auto;
+  padding: 1rem 0rem;
 }
-.swiper {
-  width: 80%;
-  height: 37.5rem;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 1.125rem;
+.frame {
   background: var(--light-yellow);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .related-products-card {
-  width: 70%;
-  background: var(--beige);
+  width: 100%;
   border-radius: 3.125rem;
 }
 .related-products-card img {
   width: 100%;
-  border-radius: 1.25rem;
-}
-.swiper-button-next {
-  right: 1.25rem;
-  transform: rotate(90deg);
+  border-radius: 0.4rem;
 }
 
-.swiper-button-prev {
-  left: 1.25rem;
-  transform: rotate(90deg);
-}
 /* 電腦版 */
 @media screen and (min-width: 1025px) {
   /* 搜尋數 */
@@ -354,7 +331,7 @@
   .dog-silhouette {
     width: 10%;
   }
-  .search{
+  .search {
     height: 10rem;
   }
   /* 商品選單 */
@@ -375,7 +352,7 @@
     width: 7.5rem;
     padding: 0.3125rem 0.75rem;
   }
-  .wp-pagenavi{
+  .wp-pagenavi {
     margin: 4rem 0rem 0rem 0rem;
   }
   /* 背景狗掌區 */
@@ -442,15 +419,11 @@
     margin-top: 0.625rem;
   }
   /* 推薦浪浪 */
-  .swiper {
-    width: 100%;
-    height: 100%;
+  .recommend {
+    padding: 1.875rem 0rem;
   }
-  .swiper-button-next {
-    transform: rotate(0deg);
-  }
-
-  .swiper-button-prev {
-    transform: rotate(0deg);
+  .related-products-card img {
+    padding: 1.875rem;
+    border-radius: 4rem;
   }
 }

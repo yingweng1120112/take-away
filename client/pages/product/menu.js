@@ -2,17 +2,9 @@ import React, { useEffect } from 'react'
 import pagination from '@/styles/pagination.module.css'
 import styles from '@/styles/menu.module.css'
 import Swiper from 'swiper'
+import App from '@/pages/product/App'
 
 export default function Menu() {
-  useEffect(() => {
-    const swiper = new Swiper('.swiper', {
-      slidesPerView: 3,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    })
-  }, [])
   return (
     <>
       {/* 搜尋數 */}
@@ -443,44 +435,7 @@ export default function Menu() {
         </div>
       </section>
       {/* 推薦浪浪 */}
-      <section className={`${styles['section']} ${styles['recommend']}`}>
-        <div className={styles.swiper}>
-          <div className={styles['swiper-wrapper']}>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-            <div className={styles['swiper-slide']}>
-              <a href="#" className={styles['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </div>
-          </div>
-          <div className={styles['swiper-button-next']} />
-          <div className={styles['swiper-button-prev']} />
-        </div>
-      </section>
+      <App />
     </>
   )
 }
