@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+
+import CarouselPc from '@/components/swiper/shop-swiper-pc'
+import CarouselPhone from '@/components/swiper/shop-swiper-phone'
+import Banner from '@/components/banner'
 import styles from '@/styles/life.module.css'
 
 export default function life() {
@@ -8,124 +12,7 @@ export default function life() {
       <div className={styles['life-container']}>
         <div>
           <div className={styles['banner-fixed']}>
-            <div className={`${styles['banner']} ${styles['banner-life-2']}`}>
-              <div className={styles['left']}>
-                <p className={styles['menu-a']}>LIFE</p>
-                <p className={styles['menu-b']}>生活紀錄</p>
-              </div>
-              <div className={styles['middle']}>
-                <div className={styles['accordion']} id="accordionExample">
-                  <button
-                    className={styles['accordion-button']}
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
-                  >
-                    <p className={styles['middle-page-title']}>選項</p>
-                    <span className={styles['middle-page-title']}>
-                      日誌列表
-                    </span>
-                    <span>選擇日誌分類</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div
-              id="collapseOne"
-              className={`${styles['accordion-collapse']} ${styles['collapse']} ${styles['show']}`}
-              data-bs-parent="#accordionExample"
-            >
-              <div
-                id="collapseOne"
-                className={`${styles['accordion-collapse']} ${styles['collapse']} ${styles['show']}`}
-                data-bs-parent="#accordionExample"
-              >
-                <div className={styles['accordion-body']}>
-                  <div className={styles['select']}>
-                    <div className={styles['select-left']}>
-                      <div className={styles['select-item-a']}>
-                        <p className={styles['select-title']}>選擇年齡</p>
-                        <div className={styles['select-item']}>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>幼年 0~1</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>青年 2~3</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>中年 4~7</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span> 老年 8以上</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className={styles['select-item-a']}>
-                        <p className={styles['select-title']}>寵物體型</p>
-                        <div className={styles['select-item']}>
-                          <label className={styles['cl-checkbox']}>
-                            <input type="checkbox" />
-                            <span>大型20kg以上</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>中型8-20kg</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>小型8kg以下</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={styles['select-right']}>
-                      <div className={styles['select-item-a']}>
-                        <p className={styles['select-title']}>適用物種</p>
-                        <div className={styles['select-item']}>
-                          <label className={styles['cl-checkbox']}>
-                            <input type="checkbox" />
-                            <span>狗寶貝</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="checkbox" />
-                            <span>貓寶貝</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div className={styles['select-item-b']}>
-                        <p className={styles['select-title']}>姓別</p>
-                        <div className={styles['select-item']}>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="radio" name="a" />
-                            <span>男生</span>
-                          </label>
-                          <label className={styles['cl-checkbox']}>
-                            <input defaultChecked="" type="radio" name="a" />
-                            <span>女生</span>
-                          </label>
-                        </div>
-                        <p className={styles['select-title']}> 毛孩搜尋 </p>
-                        <div
-                          className={`${styles['mb-3']} ${styles['shop-select-out']}`}
-                        >
-                          <input
-                            type="text"
-                            className={`${styles['form-control']} ${styles['shop-select']}`}
-                            id="exampleFormControlInput1"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Banner />
           </div>
           <div className={styles['hidden']}>
             <div className={styles['container-main-1']}>
@@ -147,7 +34,7 @@ export default function life() {
                   <div className={styles['project-info']}>
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
-                      <p className={styles['desc']} 今年1歲 />
+                      <p className={styles['desc']}>今年1歲 </p>
                       <i className={styles['fa-solid fa-venus fa-lg']} />
                     </div>
                   </div>
@@ -368,106 +255,10 @@ export default function life() {
           </div>
         </div>
         <div className={styles['shop-Carousel-pc']}>
-          <div className={styles['swiper mySwiper']}>
-            <div className={styles['swiper-wrapper']}>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
+          <CarouselPc />
         </div>
         <div className={styles['shop-Carousel-phone']}>
-          <div className={styles['swiper mySwiper2']}>
-            <div className={styles['swiper-wrapper']}>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-              <div className={styles['swiper-slide']}>
-                <a href="">
-                  <img src="/img/food.svg" alt="" />
-                </a>
-              </div>
-            </div>
-          </div>
+          <CarouselPhone />
         </div>
       </div>
     </>
