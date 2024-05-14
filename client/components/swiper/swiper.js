@@ -1,5 +1,4 @@
 import { useState } from 'react'
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
@@ -17,14 +16,6 @@ export default function Carousel() {
   return (
     <>
       <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-          'width': '100%',
-          'height': '100%',
-          'border-radius': '10%',
-          // 'border': '4px soild var(--border-color)',
-        }}
         autoplay={{
           delay: 2000,
           disableOnInteraction: false,
@@ -33,8 +24,7 @@ export default function Carousel() {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
-
+        className="adoptswiper"
       >
         <SwiperSlide>
           <img
@@ -42,32 +32,28 @@ export default function Carousel() {
               'width': '100%',
               'height': '100%',
             }}
-            src="/images/product/slide/t3.jpg" />
+            src="/images/pet-info/10020/10020-1.jpg" />
             {/* 720x480 */}
         </SwiperSlide>
         <SwiperSlide>
           <img
             style={{
-              'position': 'relative',
-              'top': '-40%',
-              'left': '0%',
+              'width': '100%',
+            'height': '100%',
             }}
-            src="/img/dan.png" />
+            src="/images/pet-info/10020/10020-2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/product/slide/t3.jpg" />
+          }} src="/images/pet-info/10020/10020-5.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/product/slide/t4.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/images/product/slide/t5.jpg" />
+          }} src="/images/pet-info/10020/10020-4.jpg" />
         </SwiperSlide>
       </Swiper>
       

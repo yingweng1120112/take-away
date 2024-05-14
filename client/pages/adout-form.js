@@ -35,7 +35,7 @@ export default function AdoptForm() {
     <div className='form1'>
       {currentStep === 1 && (
         <form className='page-one' onSubmit={handleSubmit}>
-          <h4 className='form-title'>填寫捐款金額及方式</h4>
+          <h5 className='page-title'>填寫捐款金額及方式</h5>
           <h4>點選捐款方式</h4>
           <div title="button-group" className='donate-button-group'>
             <button
@@ -148,7 +148,7 @@ export default function AdoptForm() {
             </label>
           </div>
           <div className='button-group'>
-            <button type="button" className='next-button donate-button' onClick={nextStep}>下一頁
+            <button type="button" className='next-button donate-button page-one-button' onClick={nextStep}>下一頁
             </button>
           </div>
         </form>
@@ -385,7 +385,7 @@ export default function AdoptForm() {
               <h5 className='thanks-title'>感謝認養</h5>
               <div className='thanks-group'>
                 <div className='thanks-img'>
-                  <img src={`/img/pet-img.jpg`} alt="" className='img' />
+                  <img src={`/images/pet-info/10008/10008-4p.jpg`} alt="" className='img' />
                 </div>
                 <p className='thanks-group-p'>謝謝乾爹乾媽</p>
               </div>

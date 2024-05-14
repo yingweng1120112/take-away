@@ -11,7 +11,7 @@ export default function Location() {
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <div className={styles['space-left']}>
             <img
-              src={`/img/petlogo.png`}
+              src={`/img/location/petlogo.png`}
               alt=""
               className={styles['place-img']}
             />
@@ -40,7 +40,7 @@ export default function Location() {
           </div>
           <div className={styles['space-left-two']}>
             <img
-              src={`/img/saveimg.jpg`}
+              src={`/img/location/saveimg.jpg`}
               alt=""
               className={styles['place-img']}
             />
@@ -74,13 +74,13 @@ export default function Location() {
               <br />
               <div className={styles['socail']}>
                 <a>
-                  <img src={`/img/facebook.jpg`} alt="" />
+                  <img src={`/img/location/facebook.jpg`} alt="" />
                 </a>
                 <a>
-                  <img src={`/img/ig.jpg`} alt="" />
+                  <img src={`/img/location/ig.jpg`} alt="" />
                 </a>
                 <a>
-                  <img src={`/img/gmail.jpg`} alt="" />
+                  <img src={`/img/location/gmail.jpg`} alt="" />
                 </a>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function Location() {
           <div className={styles['find-us']}>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location1.jpg`} alt="" />
+                <img src={`/img/location/location1.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>臺中分布</h4>
@@ -108,7 +108,7 @@ export default function Location() {
             </div>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location1.jpg`} alt="" />
+                <img src={`/img/location/location1.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>高雄分布</h4>
@@ -121,7 +121,7 @@ export default function Location() {
             </div>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location2.jpg`} alt="" />
+                <img src={`/img/location/location2.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>新北分布</h4>
@@ -142,7 +142,7 @@ export default function Location() {
           <div className={styles['find-two']}>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location2.jpg`} alt="" />
+                <img src={`/img/location/location2.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>臺中分布</h4>
@@ -155,7 +155,7 @@ export default function Location() {
             </div>
             <div className={styles['single-blog-area']}>
               <div className={styles['single-blog-thumbnail']}>
-                <img src={`/img/location2.jpg`} alt="" />
+                <img src={`/img/location/location2.jpg`} alt="" />
               </div>
               <div className={styles['single-blog-content']}>
                 <h4>臺北分布</h4>
@@ -172,7 +172,7 @@ export default function Location() {
       <section className={styles['carousel']}>
         <div className={styles['swiper']}>
           <div className={styles['swiper-slide']}>
-            <img src={`/img/adout.jpg`} alt="" />
+            <img src={`/img/location/adout.jpg`} alt="" />
             <div className={styles['adopt-title']}>
               <h1 className={styles['heart']}>心動了嗎?</h1>
               <h1 className={styles['ml3']}>快來袋走我們吧~</h1>

@@ -24,7 +24,7 @@ export default function Adopt() {
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
-          {/* <div className={styles['popup-image']}>
+          <div className={styles['popup-image']}>
             <a>
               <i
                 className={`${styles['fa-regular']}
@@ -36,34 +36,36 @@ export default function Adopt() {
             <img src={`/img/foot.png`} alt="" className={styles['foot']} />
             <img src={`/img/foot.png`} alt="" className={styles['myfoot']} />
             <img src={`/img/foot.png`} alt="" className={styles['feet']} />
-          </div> */}
+          </div>
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-              <Carousel  style={{'margin': '1rem',}}/>
+                <Carousel style={{ 'margin': '1rem', }} />
               </div>
 
               <div className={styles['pet-photo']}>
-                <img src={`/img/dandan.png`} alt="" />
+                <img src={`/images/pet-info/10008/10008-1p.jpg`} alt="" />
               </div>
               <div className={styles['pet-name']}>
+                {/* TODO:姓名抓資料庫 */}
                 <h3>認養滷蛋</h3>
                 <h3>妹妹 • 5歲 • 射手座 • 鬆獅犬</h3>
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-img(1).png`} alt="" />
+                  <img src={`/images/pet-info/10008/10008-2p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-img(2).png`} alt="" />
+                  <img src={`/images/pet-info/10008/10008-3p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-img(3).png`} alt="" />
+                  <img src={`/images/pet-info/10008/10008-4p.jpg`} alt="" />
                 </div>
               </div>
               <div className={styles['pet-namet']}>
+                {/* TODO:姓名抓資料庫 */}
                 <h3>認養滷蛋</h3>
-                <h3>妹妹&nbsp;• 5歲 • 射手座 • 鬆獅犬</h3>
+                <h3>妹妹• 5歲 • 射手座 • 鬆獅犬</h3>
               </div>
               <div className={styles['extra']}>
                 <div className={styles['pet-character']}>
@@ -73,11 +75,12 @@ export default function Adopt() {
                     <br />
                     2.面對陌生人會先觀察，但一旦認定你就會開始黏人，看到熟人時也會非常興奮。
                     <br />
+                    {/* TODO:姓名抓資料庫 */}
                     3.滷蛋願意跟隨人類、聽從指令。
                     <br />
                     4.對環境適應力快、勇於探索，但警戒性也很高。
                     <br />
-                    <br />
+                    <p className={styles['date-p']}>捐款須知</p>
                     ※本專案募資項目扣除Ludan（滷蛋）生活等相關費用，餘款將用於支付250隻等家狗狗每日的生活開銷※
                     <br />
                     ※您每一筆捐款將可以「列舉扣除額」方式申報扣抵所得稅※
@@ -87,18 +90,7 @@ export default function Adopt() {
                     onClick={() => {
                       setOpen(!open)
                     }}
-                    style={{
-                      'display': 'inline-block',
-                      'cursor': 'pointer',
-                      'background-color': 'var(--border-color)',
-                      'color': ' #ffffff',
-                      'padding': ' 0.6rem',
-                      'border-radius': '0.5rem',
-                      'width': '45%',
-                      'height': '3.3rem',
-                      'padding': 'auto',
-                      'margin-left': '1rem',
-                    }}
+                    className={styles['Read-More']}
                   >
                     {open ? 'Read Less...' : 'Read More...'}
                   </button>
@@ -107,8 +99,7 @@ export default function Adopt() {
             </div>
           </section>
           <section className={styles['form']}>
-            <AdoptForm className={styles['msform']}/>
-            {/* </form> */}
+            <AdoptForm />
           </section>
         </div>
       </div>
