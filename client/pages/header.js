@@ -1,44 +1,225 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
-
+import { useState, React } from 'react'
+import { IoIosArrowDown } from 'react-icons/io'
+import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
+import { CiHeart } from 'react-icons/ci'
+import { GoPerson } from 'react-icons/go'
+import { CiShoppingCart } from 'react-icons/ci'
+import {
+  faCartShopping,
+  faHeart,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons'
 export default function Header() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible)
+  }
   return (
     <>
       <header>
-        <nav>
-          <ul className="nav-bar">
-            <li className="logo">
-              <a href="#">
-                <img src="./images/logo.png" />
-              </a>
-            </li>
-            <input type="checkbox" id="check" />
-            <span className="menu">
+        <div className="header1">
+          <a href="" className="logo">
+            <img src={`/img/logo.jpg`} />
+          </a>
+          <nav className="navbar2">
+            <ul>
               <li>
-                <a href>Home</a>
+                <a>關於我們</a>
+                <ul>
+                  <li><a href="#">關於我們</a></li>
+                </ul>
               </li>
               <li>
-                <a href>Products</a>
+                <a>領養資訊</a>
+                <ul>
+                  <li>
+                    <a href="#">心理測驗</a>
+                  </li>
+                  <li>
+                    <a href="#">領養流程</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href>Services</a>
+                <a>相關問題</a>
+                <ul>
+                  <li>
+                    <a href="#">常見問題</a>
+                  </li>
+                  <li>
+                    <a href="#" style={{ "text-align": 'center' }}>客服中心(智能客服)</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href>About</a>
+                <a>領養專區</a>
+                <ul>
+                  <li>
+                    <a href="#" >追蹤日誌</a>
+                  </li>
+                  <li>
+                    <a href="#" style={{ "text-align": 'center' }}>浪浪列表(貓狗)</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href>Contact</a>
+                <a>寵物商城</a>
+                <ul>
+                  <li>
+                    <a href="#">寵物商城</a>
+                  </li>
+                </ul>
               </li>
-              <label htmlFor="check" className="close-menu">
-              <FontAwesomeIcon icon={faTimes} className="menu" />
-              </label>
-            </span>
-            <label htmlFor="check" className="open-menu">
-            <FontAwesomeIcon icon={faBars} className="menu"/>
-            </label>
-          </ul>
-        </nav>
+              <li>
+                <a>會員中心</a>
+                <ul>
+                  <li>
+                    <a href="#">會員中心</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div className="nav-shop-group">
+            <div className="shop-group">
+              <CiShoppingCart className="shop-icon"/>
+              <a href="#" className="shop">購物車</a>
+            </div>
+            <div className="shop-group">
+              <CiHeart className="shop-icon"/>
+              <a href="#" className="shop">收藏</a>
+            </div>
+            <div className="shop-group">
+              <GoPerson className="shop-icon"  />
+              <a href="#" className="shop">登入</a>
+            </div>
+          </div>
+        </div>
+        <div className="header2">
+          <div className="phone-header">
+            <div className="logo">
+              <img src={`/img/logo.jpg`} />
+            </div>
+            <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
+              {isVisible ? <RiMenuSearchFill /> : <RiMenuSearchLine />}
+            </div>
+          </div>
+          {isVisible && (
+            <nav className="navbar3">
+              <ul>
+                <ul>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      關於我們
+                      <IoIosArrowDown style={{ float: 'right' }} />
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="#">關於我們</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      領養資訊
+                      <IoIosArrowDown style={{ float: 'right' }} />
+                    </a>
+                    <ul>
+                      <li style={{ 'border-bottom': '2px solid #fdf7e4' }}>
+                        <a href="#">心理測驗</a>
+                      </li>
+                      <li>
+                        <a href="#">領養流程</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      相關問題
+                      <IoIosArrowDown style={{ float: 'right' }} />
+                    </a>
+
+                    <ul>
+                      <li style={{ 'border-bottom': '1px solid var(--creamy-yellow)' }}>
+                        <a href="#">常見問題</a>
+                      </li>
+                      <li>
+                        <a href="#">客服中心(智能客服)</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      領養專區
+                      <IoIosArrowDown style={{ float: 'right' }} />{' '}
+                    </a>
+
+                    <ul>
+                      <li style={{ 'border-bottom': '1px solid var(--creamy-yellow)' }}>
+                        <a href="#">浪浪列表(貓狗)</a>
+                      </li>
+                      <li>
+                        <a href="#">追蹤日誌</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      寵物商城 <IoIosArrowDown style={{ float: 'right' }} />
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="#">寵物商城</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a style={{ color: 'var( --reddish-brown)' }}>
+                      會員中心 <IoIosArrowDown style={{ float: 'right' }} />
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="#">會員中心</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+              <div className="phone-li">
+                <a href="#"
+                  className="phone-title"
+                  style={{ 'border-radius': '0px 0px 0px 19px' }}
+                >
+                  <CiShoppingCart
+                    className="title-img"
+                    style={{ color: 'var( --reddish-brown)' }}
+                  />
+                  <a href="#">購物車</a>
+                </a>
+                <a
+                href="#"
+                className="phone-title">
+                  <CiHeart
+                    className="title-img"
+                    style={{ color: 'var( --reddish-brown)' }}
+                  />
+                  <a href="#">收藏</a>
+                </a>
+                <a href="https://www.google.com.tw/"
+                  className="phone-title"
+                  style={{ 'border-radius': '0px 0px 19px 0px',}}
+                >
+                  <GoPerson
+                    className="title-img"
+                    style={{ color: 'var( --reddish-brown)' }}
+                  />
+                  <a href="#">登入</a>
+                </a>
+              </div>
+            </nav>
+          )}
+        </div>
       </header>
     </>
   )
