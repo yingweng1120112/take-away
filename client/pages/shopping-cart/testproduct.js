@@ -1,34 +1,35 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { loadProducts } from '@/services/my-product'
+import { loadProducts } from '@/services/testproduct'
 
 export default function List() {
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await loadProducts()
-        setProducts(data.products)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+  const getProducts = async () => {
+    const data = await loadProducts()
+    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
+    // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+    if (Array.isArray(data)) {
+      setProducts(data)
     }
-
-    fetchData()
+    console.log(data)
+  }
+  // 樣式2: 元件初次渲染之後(after)執行一次，之後不會再執行
+  useEffect(() => {
+    getProducts()
   }, [])
 
   return (
     <>
       <h1>商品列表頁</h1>
       <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            <Link href={`/product/${product.id}`}>
-              {product.name} (價格: {product.price})
-            </Link>
-          </li>
-        ))}
+        {products.map((v, i) => {
+          return (
+            <li key={v.product_id}>
+              <Link href={`/testproduct/${v.product_id}`}>{v.name}</Link>
+            </li>
+          )
+        })}
       </ul>
     </>
   )
