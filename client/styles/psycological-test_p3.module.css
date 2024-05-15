@@ -1,0 +1,299 @@
+.bgcolor {
+  background-color: #d9d5ca;
+}
+.sectionstyle {
+  width: 80%;
+}
+.result {
+  background-color: #d9d5ca;
+}
+.testresult {
+  margin: 40px 10%;
+  height: 750px;
+  display: flex;
+  justify-content: space-between;
+  background-image: url(/psycological-test/resultbg.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* border: 3px red solid; */
+}
+.testresult > div:nth-child(2) {
+  height: 80%;
+  display: flex;
+  margin: 100px 0px;
+  /* border: 3px rgb(212, 134, 248) solid; */
+  width: 63%;
+}
+
+.testtitle {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 110px;
+  margin-left: 0px;
+  /* border: 2px rgb(68, 175, 35) solid; */
+}
+.testtitle > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  background-color: #728e75;
+  border-radius: 50px;
+  font-size: 2rem;
+  color: white;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.testtitle > div:nth-child(even) {
+  background-color: white;
+  border: 3px solid #a8564f;
+  color: #a8564f;
+}
+/* 左側 */
+.result-left {
+  display: flex;
+  align-items: center;
+
+  width: 50%;
+  height: 100%;
+  /* border: 2px blue solid; */
+}
+.result-left img {
+  width: 90%;
+  clip-path: polygon(20% 0, 100% 0, 100% 90%, 80% 100%, 0 100%, 0 10%);
+  border: 5px white solid;
+}
+
+/* 右側 */
+.result-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 95%;
+  /* border: 2px yellow solid; */
+  margin-top: 40px;
+  margin-left: 30px;
+  letter-spacing: 3px;
+  line-height: 40px;
+}
+.result-right > div:nth-child(1) {
+  font-size: var(--font-size-h4);
+}
+.result-right > div:nth-child(2) {
+  font-size: var(--font-size-h2);
+  height: 45px;
+  font-weight: 600;
+}
+
+/* 數據 */
+.result-right .graph {
+  /* border: 2px solid red; */
+  width: 100%;
+  height: 50%;
+}
+.progress {
+  position: relative;
+  margin: 4px;
+  float: left;
+  text-align: center;
+  display: initial !important;
+  height: initial !important;
+  font-size: initial;
+  background-color: white;
+  width: 150px;
+  margin: 10px 35px;
+}
+.barOverflow {
+  /* Wraps the rotating .bar */
+  position: relative;
+  overflow: hidden;
+  width: 120px;
+  height: 60px; /* Half circle (overflow) */
+  margin: 10px auto -10px auto;
+}
+.graph .text {
+  width: 100%;
+  height: 60px;
+  line-height: 30px;
+  margin-top: -30px;
+}
+.graph .text > div {
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  color: #a8564f;
+}
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px; /* full circle! */
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 10px solid #eee; /* half gray, */
+  border-bottom-color: #7c877d; /* half azure */
+  border-right-color: #7c877d;
+}
+
+/* 按鈕 */
+.testresult .button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: end; */
+  width: 8%;
+  height: 20%;
+  /* border: yellow 2px solid; */
+  margin-top: 600px;
+}
+.testresult .button > button {
+  width: 120px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: var(--creamy-yellow);
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: black;
+  box-shadow: 0 0.2rem white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow-wrap: break-word;
+  justify-content: space-evenly;
+}
+
+.testresult button:active {
+  color: white;
+  box-shadow: 0 0.2rem white;
+  transform: translateY(0.2rem);
+}
+
+.testresult button:hover:not(:disabled) {
+  background: var(--deep-gray);
+  color: white;
+  text-shadow: 0 0.02rem #bcb4b4;
+}
+
+.testresult button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+@media screen and (max-width: 414px) {
+  .testresult {
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+    align-items: center;
+    margin: 40px 0;
+    width: 100%;
+  }
+  .testtitle {
+    width: 250px;
+    height: fit-content;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+  }
+  .testtitle > div {
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-size-h4);
+  }
+  .testresult > div:nth-child(2) {
+    width: 100%;
+  }
+  .result-left {
+    width: 30%;
+    height: fit-content;
+  }
+  .testresult > div:nth-child(2) {
+    margin: 45px 0px 0px 130px;
+  }
+  .result-right {
+    width: 42%;
+    margin-top: 0;
+    line-height: 20px;
+    letter-spacing: 2px;
+    height: 300px;
+  }
+  .result-right > div:nth-child(1) {
+    font-size: 12px;
+  }
+  .result-right > div:nth-child(2) {
+    font-size: var(--font-size-p);
+    font-weight: 600;
+    height: 23px;
+  }
+  .result-right > div:nth-child(3) {
+    font-size: 11px;
+  }
+  .result-right .graph {
+    position: relative;
+    left: -193px;
+    bottom: 60px;
+    width: 180px;
+    height: 66px;
+  }
+  .progress {
+    margin: 0;
+    width: 80px;
+    height: 30px !important;
+    margin-right: 8px;
+    margin-bottom: 4px;
+  }
+  .barOverflow {
+    width: 40px;
+    height: 20px;
+  }
+  .graph .text {
+    margin-left: 23px;
+  }
+  .graph .text > div {
+    font-size: 8px;
+  }
+  .graph .text > span {
+    font-size: 8px;
+    position: relative;
+    bottom: 24px;
+    left: 8px;
+  }
+  .text > span::after {
+    content: '%';
+  }
+  .bar {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #eee;
+    border-bottom-color: #7c877d;
+    border-right-color: #7c877d;
+    position: relative;
+    left: -15px;
+  }
+  .barOverflow {
+    overflow: initial;
+  }
+  .testresult .button {
+    flex-direction: row;
+    width: 230px;
+    align-items: center;
+    justify-content: space-between;
+    margin: -50px auto 0 auto;
+  }
+  .result > div {
+    overflow-x: hidden;
+  }
+  .testresult .button > button {
+    height: 30px;
+    font-size: 12px;
+    width: fit-content;
+  }
+}

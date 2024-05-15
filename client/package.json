@@ -27,7 +27,7 @@
     "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.10.1",
+    "react-icons": "^4.12.0",
     "react-infinite-scroll-hook": "^4.1.1",
     "react-multistep": "^5.5.9",
     "react-paginate": "^8.2.0",
