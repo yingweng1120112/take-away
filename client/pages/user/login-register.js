@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import styles from '@/styles/login-register.module.scss'
+import styles from '@/styles/user/login-register.module.scss'
 
 export default function LoginRegister() {
   useEffect(() => {

@@ -1,0 +1,183 @@
+/* footer */
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bean-paste);
+}
+
+.container {
+  text-align: center;
+  display: block;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footerLogo {
+  margin: 0 auto;
+}
+.footer img {
+  margin-top: 40px;
+  width: 60%;
+}
+
+.footerInfo {
+  width: 90%;
+  margin: 2rem;
+  width: 80%;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-flow: column wrap;
+}
+.footerItem {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1rem;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.footerItem > h4 {
+  text-align: center;
+}
+
+/* footer的p標籤 */
+.desc {
+  font-size: var(--font-size-p);
+  text-align: center;
+  padding: 0.3rem;
+}
+.footerHr {
+  margin: 0 auto;
+  border: none;
+  height: 2px;
+  background-color: var(--white);
+}
+
+.footerItem > ol {
+  height: auto;
+  padding: 1rem;
+}
+
+.footerItem h4 {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+}
+
+.icon > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink > svg {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink {
+  width: 80%;
+  display: flex;
+}
+
+.footerItem ol {
+  display: flex;
+  flex-direction: row;
+}
+
+.footerItem:nth-child(6) ol {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 贊助方案的圖片  */
+.sponsor {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sponsor > img {
+  width: 40%;
+}
+
+.footerItem:nth-child(7) img {
+  display: flex;
+  flex-flow: row wrap;
+  width: 40%;
+  margin: 0.5rem;
+}
+
+/* copyright */
+.copyright {
+  margin-top: 1rem;
+  width: 100%;
+  color: #292f36;
+}
+
+.copyright p {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+/* 電腦版 */
+@media screen and (min-width: 1025px) {
+  /* footer */
+  /* body {
+    width: 100%;
+  } */
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  /* .footerContainer{
+    justify-content: center;
+  } */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .footerInfo {
+    width: 80%;
+    margin-bottom: 10rem;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .footerItem {
+    width: 28%;
+  }
+  .footerItem:nth-child(7) {
+    display: block;
+    justify-content: center;
+    width: 100%;
+  }
+  .fosponsor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sponsor {
+    justify-content: center;
+  }
+  .footerItem:nth-child(7) img {
+    display: flex;
+    flex-flow: row wrap;
+    width: 30%;
+    margin: 0.5rem;
+  }
+  .footerHr {
+    margin: 1rem;
+  }
+}

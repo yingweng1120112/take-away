@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/user-edit.module.css'
+import styles from '@/styles/user/user-edit.module.css'
 
 export default function UserEdit() {
   return (
@@ -8,10 +8,10 @@ export default function UserEdit() {
       <img className={styles.bgfeet2} src="/img/user/loading.png" alt="" />
       <div className="container">
         <div className={`${styles.book} d-flex`}>
-          <div className={`${styles.bookInfo} ${styles.w100} d-flex justify-content-center`}>
-            <div
-              className={`${styles.bookContainer} ${styles.hAuto} bg-light`}
-            >
+          <div
+            className={`${styles.bookInfo} ${styles.w100} d-flex justify-content-center`}
+          >
+            <div className={`${styles.bookContainer} ${styles.hAuto} bg-light`}>
               <h2>編輯資料</h2>
               <div className={styles.rope}></div>
               <div
@@ -32,7 +32,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>姓名</label>
@@ -42,7 +46,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>電話：</label>
@@ -52,7 +60,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>生日：</label>
@@ -62,7 +74,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>密碼：</label>
@@ -72,7 +88,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>確認密碼：</label>
@@ -82,7 +102,11 @@ export default function UserEdit() {
                   <div className={styles.bookItem}>
                     <img src="/img/user/user-dog.png" alt="" />
                     <div className={styles.group}>
-                      <input className="form-control" type="text" required />
+                      <input
+                        // className={styles.form-control}
+                        type="text"
+                        required
+                      />
                       <span className={styles.highlight}></span>
                       <span className={styles.bar}></span>
                       <label className={styles.label}>地址：</label>
