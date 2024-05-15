@@ -409,9 +409,9 @@
 /* TODO: 手機版 */
 /* 手機版 */
 @media screen and (max-width: 414px) {
-  /* br{
+  .br-block{
     display: block;
-  } */
+  }
 
   .title {
     background-size: 250%;
@@ -419,7 +419,7 @@
   }
 
   .title > h1 {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: 600;
   }
 
@@ -443,13 +443,15 @@
     border-radius: 10px;
   }
 
-  .card-img > .fa-heart {
-    font-size: 32px;
-    margin-left: 75%;
+  .card-img > .favorite {
+    margin-left: 70%;
+    height: 40px;
+    width: 40px;
   }
 
   .state {
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 2px;
     line-height: 30px;
     border-radius: 5px;
     /* width: 60%; */
@@ -459,20 +461,25 @@
 
   .card > div {
     margin-top: 0;
-    font-size: 12px;
+    /* font-size: 12px; */
     align-items: flex-start;
   }
 
   .pet-name {
-    margin-top: 30px !important;
+    margin-top: 20px !important;
     margin-left: 10px;
     /* gap: 5px; */
   }
 
   .pet-name > p {
     letter-spacing: 16px;
-    font-size: 20px;
+    font-size: 24px;
     order: 1;
+  }
+
+  .pet-name span{
+    font-size: 15px;
+    /* margin-bottom: 5px; */
   }
 
   .pet-name > span {
@@ -481,7 +488,7 @@
 
   .pet-desc {
     padding: 0;
-    width: 80%;
+    width: 90%;
     order: 3;
   }
 
@@ -505,7 +512,7 @@
   .ending {
     background-size: 300%;
     background-repeat: no-repeat;
-    background-position: 90% 50%;
+    background-position: 85% 50%;
     flex-direction: column;
     align-items: start;
     padding: 20% 10% 5% 10%;
@@ -513,7 +520,7 @@
   }
 
   .ending > h1 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
     margin: 0;
   }
@@ -525,18 +532,19 @@
   .ending > button {
     margin-top: 10px;
     padding: 0;
-    width: 100%;
-    height: 35px;
+    width: 90%;
+    height: 40px;
     /* margin: 10px 10% 0 10%; */
   }
 
   .ending > button > span {
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 14px;
+    line-height: 20px;
     padding-bottom: 5px;
   }
 
-  #marquee {
+  .marquee {
+    --gap: 32px;
     padding-top: 30px;
     padding-bottom: 30px;
     background-size: cover;
@@ -544,13 +552,9 @@
     background-position: center;
   }
 
-  .marquee {
-    --gap: 32px;
-  }
-
   .marquee__content > li > img {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     border-radius: 10px;
     padding: 0;
   }
