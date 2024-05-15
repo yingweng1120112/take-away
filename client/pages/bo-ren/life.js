@@ -90,7 +90,7 @@ export default function life() {
                   <div className={styles['project-info']}>
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
-                      <p className={styles['desc']} 今年1歲 />
+                      <p className={styles['desc']}>今年1歲</p>
                       <i className={styles['fa-solid fa-venus fa-lg']} />
                     </div>
                   </div>
@@ -146,7 +146,7 @@ export default function life() {
                   <div className={styles['project-info']}>
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
-                      <p className={styles['desc']} 今年1歲 />
+                      <p className={styles['desc']}>今年1歲</p>
                       <i className={styles['fa-solid fa-venus fa-lg']} />
                     </div>
                   </div>
@@ -204,13 +204,13 @@ export default function life() {
               «
             </a>
             <a className={styles['previouspostslink']}>&lt;</a>
-            <a className={styles['page smaller']}>1</a>
-            <a className={styles['page smaller']}>2</a>
+            <a className={`${styles['page']} ${styles['smaller']}`}> 1 </a>
+            <a className={`${styles['page']} ${styles['smaller']}`}>2</a>
             <span aria-current="page" className={styles['current']}>
               3
             </span>
-            <a className={styles['page larger']}>4</a>
-            <a className={styles['page larger']}>5</a>
+            <a className={`${styles['page']} ${styles['smaller']}`}>4</a>
+            <a className={`${styles['page']} ${styles['smaller']}`}>5</a>
             <a
               className={styles['nextpostslink']}
               rel="next"
@@ -231,7 +231,7 @@ export default function life() {
               那是不是就可以買一些他們的東西呢
             </h1>
             <div>
-              <button className={styles['cta btn-more']}>
+              <button className={`${styles['cta']} ${styles['btn-more']}`}>
                 <span className={styles['hover-underline-animation']}>
                   來去看看
                 </span>

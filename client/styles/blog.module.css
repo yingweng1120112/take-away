@@ -273,6 +273,7 @@
 .container {
   align-items: flex-start;
   width:90%;
+  margin: auto;
 }
 .pet-info {
   display: flex;
@@ -474,13 +475,6 @@
   height: auto;
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .swiper {
   width: 100%;
   height: 300px;
@@ -524,7 +518,7 @@
   object-fit: contain;
   padding: 5% 5% 12% 5%;
 }
-.swiper-slide img {
+.img {
   display: block;
   width: 100%;
   height: 100%;

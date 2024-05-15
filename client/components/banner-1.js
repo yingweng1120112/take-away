@@ -1,24 +1,42 @@
-import { Accordion } from 'react-bootstrap'
-
+import Accordion from 'react-bootstrap/Accordion'
+import { useAccordionButton } from 'react-bootstrap/AccordionButton'
+import Card from 'react-bootstrap/Card'
 import styles from '@/styles/life.module.css'
+
+function CustomToggle({ children, eventKey }) {
+  const decoratedOnClick = useAccordionButton(eventKey, () => console.log(''))
+
+  return (
+    <button
+      type="button"
+      style={{ backgroundColor: 'white' }}
+      onClick={decoratedOnClick}
+      className={styles['accordion-button']}
+    >
+      {children}
+    </button>
+  )
+}
+
 export default function Banner() {
   return (
     <Accordion defaultActiveKey="0">
-      <Accordion.Item eventKey="0">
-        <div className={`${styles['banner']} ${styles['banner-life-2']}`}>
-          <div className={styles['left']}>
-            <p className={styles['menu-a']}>LIFE</p>
-            <p className={styles['menu-b']}>生活紀錄</p>
-          </div>
-          <div className={styles['middle']}>
-            <Accordion.Header className={styles['accordion']}>
-            {/* ${styles['accordion-button']} */}
+      <div className={`${styles['banner']} ${styles['banner-life-2']}`}>
+        <div className={styles['left']}>
+          <p className={styles['menu-a']}>LIFE</p>
+          <p className={styles['menu-b']}>生活紀錄</p>
+        </div>
+        <div className={styles['middle']}>
+          <Card.Header className={styles['accordion']}>
+            <CustomToggle eventKey="0">
               <span className={styles['middle-page-title']}>日誌列表</span>
               <span>選擇日誌分類</span>
-            </Accordion.Header>
-          </div>
+            </CustomToggle>
+          </Card.Header>
         </div>
-        <Accordion.Body className={styles['accordion-body']}>
+      </div>
+      <Accordion.Collapse eventKey="0" className={styles['accordion-body']}>
+        <Card.Body className={styles['accordion-body']}>
           <div className={styles['select']}>
             <div className={styles['select-left']}>
               <div className={styles['select-item-a']}>
@@ -99,8 +117,8 @@ export default function Banner() {
               </div>
             </div>
           </div>
-        </Accordion.Body>
-      </Accordion.Item>
+        </Card.Body>
+      </Accordion.Collapse>
     </Accordion>
   )
 }

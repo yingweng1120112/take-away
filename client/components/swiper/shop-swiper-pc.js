@@ -12,7 +12,7 @@ import styles from '@/styles/life.module.css'
 // import required modules
 import { Autoplay } from 'swiper/modules'
 
-export default function App() {
+export default function ShopSwiperPC() {
   return (
     <>
       <Swiper

@@ -1,4 +1,6 @@
 import React from 'react'
+import CarouselPetInfo from '@/components/swiper/blog-pet-img-swiper'
+import CarouselPetLife from '@/components/swiper/blog-pet-life-img-swiper'
 import styles from '@/styles/blog.module.css'
 
 export default function life() {
@@ -20,48 +22,7 @@ export default function life() {
       <div className={styles['container']}>
         <div className={styles['pet-info']}>
           <div className={styles['swiper-container']}>
-            <div className={styles['swiper mySwiper2']}>
-              <div className={styles['swiper-wrapper']}>
-                <div className={styles['swiper-slide']}>
-                  <img src="./images/bg2.svg" />
-                </div>
-                <div className={styles['swiper-slide']}>
-                  <img src="./images/banner.jpg" />
-                </div>
-                <div className={styles['swiper-slide']}>
-                  <img src="./images/cat_cookie1.jpg" />
-                </div>
-                <div className={styles['swiper-slide']}>
-                  <img src="./images/cat_chocolate1.jpg" />
-                </div>
-                <div className={styles['swiper-slide']}>
-                  <img src="./images/貓貓6 1.jpg" />
-                </div>
-              </div>
-            </div>
-            <div className={styles['swiper-btn']}>
-              <div className={styles['swiper-button-prev']}/>
-              <div className={styles['swiper-button-next']}/>
-              <div thumbsslider="" className={styles['swiper mySwiper']}>
-                <div className={styles['swiper-wrapper']}>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/bg2.svg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/banner.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/cat_cookie1.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/cat_chocolate1.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/貓貓6 1.jpg" />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <CarouselPetInfo />
           </div>
           <div className={styles['info-line']}>
             <span className={styles['info-title']}>寵物資訊 </span>
@@ -76,10 +37,14 @@ export default function life() {
             </h5>
           </div>
         </div>
-        <img className={styles['cat-icon']} src="./images/Frame 51.svg" alt="" />
+        <img
+          className={styles['cat-icon']}
+          src="./images/Frame 51.svg"
+          alt=""
+        />
         {/* 上傳 */}
         <div className={styles['post']}>
-          <img src="./images/貓貓6 1.jpg" alt="" className={styles['head-img']}/>
+          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']} style={{ width: '100%' }}>
             <textarea
               id="message"
@@ -92,11 +57,11 @@ export default function life() {
               <form name="form1">
                 <div className={styles['post-upload-btn-container']}>
                   <div>
-                    <label  className={styles['button']}>
+                    <label className={styles['button']}>
                       <i className={styles['fa-solid fa-image']}>圖片上傳</i>
                     </label>
                     <input
-                      id="file-upload" 
+                      id="file-upload"
                       type="file"
                       className={styles['input-pic']}
                       multiple=""
@@ -105,20 +70,22 @@ export default function life() {
                   <input
                     type="submit"
                     acceptf="image/*"
-                    className={styles['button upload-btn-pc']}
+                    className={
+                      styles[`${styles['button']} ${styles['upload-btn-pc']}`]
+                    }
                   />
                 </div>
                 <div className={styles['post-upload-pic']}>
-                  <img id="show_image1" src="" className={styles['show-img']}/>
-                  <img id="show_image2" src="" className={styles['show-img']}/>
-                  <img id="show_image3" src="" className={styles['show-img']}/>
-                  <img id="show_image4" src="" className={styles['show-img']}/>
-                  <img id="show_image5" src="" className={styles['show-img']}/>
+                  <img id="show_image1" src="" className={styles['show-img']} />
+                  <img id="show_image2" src="" className={styles['show-img']} />
+                  <img id="show_image3" src="" className={styles['show-img']} />
+                  <img id="show_image4" src="" className={styles['show-img']} />
+                  <img id="show_image5" src="" className={styles['show-img']} />
                 </div>
                 <input
                   type="submit"
                   acceptf="image/*"
-                  className={styles['button upload-btn-phone']}
+                  className={styles[`${styles['button']} ${styles['upload-btn-pc']}`]}
                 />
               </form>
             </div>
@@ -126,7 +93,7 @@ export default function life() {
         </div>
         {/* 貼文 */}
         <div className={styles['post']}>
-          <img src="./images/貓貓6 1.jpg" alt="" className={styles['head-img']} />
+          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']}>
             <p className={styles['content-word']}>
               今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。我看到它躲藏的小角落，發揮了我的靈敏和技巧，最終成功地捕獲了它。現在，我可以自豪地展示我的成就給我的主人，展現我作為家中捕鼠專家的地位！今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。我看到它躲藏的小角落，發揮了我的靈敏和技巧，最終成功地捕獲了它。現在，我可以自豪地展示我的成就給我的主人，展現我作為家中捕鼠專家的地位！
@@ -138,36 +105,13 @@ export default function life() {
           </div>
         </div>
         <div className={styles['post']}>
-          <img src="./images/貓貓6 1.jpg" alt="" className={styles['head-img']}/>
+          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']}>
             <p className={styles['content-word']}>
               今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。
             </p>
             <div className={styles['post-swiper-container']}>
-              <div className={styles['swiper mySwiper3']}>
-                <div className={styles['swiper-wrapper']}>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/bg2.svg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/banner.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/image 11.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/cat_chocolate1.jpg" />
-                  </div>
-                  <div className={styles['swiper-slide']}>
-                    <img src="./images/貓貓6 1.jpg" />
-                  </div>
-                </div>
-                <div className={styles['swiper-btn']}>
-                  <div className={styles['swiper-button-next']}/>
-                  <div className={styles['swiper-pagination']}/>
-                  <div className={styles['swiper-button-prev']}/>
-                </div>
-              </div>
+              <CarouselPetLife />
             </div>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
