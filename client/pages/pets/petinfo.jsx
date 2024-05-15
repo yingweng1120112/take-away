@@ -376,12 +376,12 @@ export default function PetInfo() {
         </section>
 
         {/* TODO: 背景圖片 肉球 */}
-        {/* <img
+        <img
           src="/img/paws.png"
           className={styles['paws1']}
           alt=""
           draggable="false"
-        /> */}
+        />
         <img
           src="/img/paws.png"
           className={styles['paws2']}

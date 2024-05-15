@@ -1,17 +1,11 @@
 .commendbody {
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
-  overflow: hidden;
-  /* height: 100svh; */
-  scroll-snap-type: y mandatory;
-  scroll-snap-points-y: repeat(100vh);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
 }
-
-/* header {
-  z-index: 2;
-  scroll-snap-align: start;
-  position: relative;
-} */
 
 /* banner */
 .banner {
@@ -21,26 +15,12 @@
   position: relative;
 }
 
-/* footer {
-  scroll-snap-align: start;
-  z-index: 1;
-  position: relative;
-} */
-
-.roll {
-  overflow-y: scroll;
-  height: 100svh;
-  scroll-snap-points-y: repeat(100svh);
-  scroll-snap-type: y mandatory;
-}
-
 .section {
   margin: 0;
   width: 100%;
   height: 100svh;
   display: flex;
   justify-content: space-between;
-  scroll-snap-align: start;
   overflow-x: hidden;
 }
 
@@ -52,7 +32,7 @@
   display: none;
 }
 
-.section>hr {
+.section > hr {
   opacity: 1;
   border-top: 5px solid;
   border-radius: 50px;
@@ -72,21 +52,20 @@
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
-  /* scroll-snap-type: none; */
   padding: 0 10% 0 10%;
   flex-direction: column;
   justify-content: center;
   background-color: var(--beige);
 }
 
-.title>h1 {
+.title > h1 {
   font-size: 72px;
   color: var(--dark-green);
   font-weight: 600;
   z-index: 1;
 }
 
-.title>img {
+.title > img {
   width: 60%;
   position: absolute;
   top: 20%;
@@ -98,10 +77,10 @@
   width: 100%;
   align-items: center;
   padding: 0 10% 0 10%;
-  background-color: #EBFAFF;
+  background-color: #ebfaff;
 }
 
-.age>img {
+.age > img {
   width: 50%;
   z-index: 1;
 }
@@ -113,7 +92,7 @@
   background-color: var(--beige);
 }
 
-.choose>div>h2 {
+.choose > div > h2 {
   font-size: 48px;
   font-weight: 600;
   line-height: 60px;
@@ -121,12 +100,12 @@
   position: relative;
 }
 
-.choose>div>ul {
+.choose > div > ul {
   flex-direction: column;
   list-style-image: url('../public/img/icon_pet_ulli.png');
 }
 
-.choose>div>ul>li {
+.choose > div > ul > li {
   width: 100%;
   text-align: justify;
   font-size: 32px;
@@ -135,18 +114,18 @@
   z-index: 1;
 }
 
-.choose>img {
+.choose > img {
   width: 50%;
   z-index: 1;
 }
 
 .docs {
-  background-color: #EBFAFF;
+  background-color: #ebfaff;
   padding: 0 15%;
   align-items: center;
 }
 
-.docs>img {
+.docs > img {
   width: 50%;
   z-index: 1;
 }
@@ -154,10 +133,10 @@
 .register {
   padding: 0 10%;
   align-items: center;
-  background-color: #FFF8EC;
+  background-color: #fff8ec;
 }
 
-.register>img {
+.register > img {
   width: 50%;
   z-index: 1;
 }
@@ -167,7 +146,7 @@
   align-items: center;
 }
 
-.prevent>img {
+.prevent > img {
   width: 50%;
   z-index: 1;
 }
@@ -179,20 +158,20 @@
   background-color: var(--beige);
 }
 
-.fix>div>h2 {
+.fix > div > h2 {
   font-size: 48px;
   line-height: 60px;
   z-index: 1;
   position: relative;
 }
 
-.fix>div>ul {
+.fix > div > ul {
   flex-direction: column;
   list-style-image: url('../public/img/icon_pet_ulli.png');
   /* text-align: justify; */
 }
 
-.fix>div>ul>li {
+.fix > div > ul > li {
   width: 100%;
   text-align: justify;
   font-size: 32px;
@@ -201,7 +180,7 @@
   z-index: 1;
 }
 
-.fix>img {
+.fix > img {
   width: 50%;
   z-index: 1;
 }
@@ -209,14 +188,13 @@
 .free {
   align-items: center;
   padding: 0 15%;
-  background-color: #EBFAFF;
+  background-color: #ebfaff;
 }
 
 .free img {
   width: 50%;
   z-index: 1;
 }
-
 
 /* 背景圖案 */
 .paws1 {
@@ -245,7 +223,7 @@
   }
 }
 
-.paws2{
+.paws2 {
   position: fixed;
   /* animation-name: paws2; */
   animation-duration: 10s;
@@ -256,29 +234,29 @@
   top: -10%;
 }
 
-@keyframes paws2{
-  from{
+@keyframes paws2 {
+  from {
     right: 70%;
     top: 0%;
   }
-  50%{
+  50% {
     right: 90%;
     top: 20%;
     transform: rotate(80deg);
   }
-  75%{
+  75% {
     /* right: 70%;
     top: 30%;
     transform: rotate(100deg); */
   }
-  to{
+  to {
     right: 70%;
     top: 0%;
   }
 }
 
 /* 浮動卡片 */
-.card-border{
+.card-border {
   z-index: 1;
   height: auto;
   width: auto;
@@ -290,7 +268,7 @@
   transition: 0.15s linear;
 }
 
-.card-border:hover{
+.card-border:hover {
   top: 30%;
   right: 0%;
   transform: rotate(0deg);
@@ -361,7 +339,6 @@
   opacity: 50%;
 }
 
-
 .cta {
   border: none;
   background: none;
@@ -430,34 +407,33 @@
   transform-origin: bottom left;
 }
 
-
-
 /* 手機版 */
 @media screen and (max-width: 414px) {
-  /* section {
+  .section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  } */
+  }
 
-  /* section>h2 {
+  .section>h2 {
     font-size: 36px;
-  } */
+  }
 
-  /* br {
+  .br-block, .br-mobile{
     display: block;
-  } */
+  }
 
-  .title>h1 {
+  .title > h1 {
     font-size: 50px;
     line-height: 70px;
   }
 
-  .title>h2 {
+  .title > h2 {
     font-size: 40px;
+    margin: 0;
   }
 
-  .title>hr {
+  .title > hr {
     transform: rotate(90deg);
     position: relative;
     right: 50%;
@@ -465,7 +441,7 @@
     margin-left: -10%;
   }
 
-  .title>img {
+  .title > img {
     top: 62%;
     width: 85%;
   }
@@ -474,8 +450,7 @@
     flex-direction: column-reverse;
   }
 
-
-  .age>img {
+  .age > img {
     width: 100%;
   }
 
@@ -483,48 +458,48 @@
     width: 100%;
   }
 
-  .choose>div>h2 {
+  .choose > div > h2 {
     font-size: 40px;
     line-height: 50px;
   }
 
-  .choose>div>ul>li {
+  .choose > div > ul > li {
     font-size: 20px;
     line-height: 32px;
     margin-top: 15px;
   }
 
-  .choose>img {
+  .choose > img {
     width: 50%;
     position: relative;
     right: -30%;
   }
 
-  .docs>img {
+  .docs > img {
     width: 100%;
   }
 
-  .register>img {
+  .register > img {
     width: 100%;
   }
 
-  .prevent>img {
+  .prevent > img {
     width: 100%;
     margin: -10%;
   }
 
-  .fix>div>h2 {
+  .fix > div > h2 {
     font-size: 40px;
     line-height: 50px;
   }
 
-  .fix>div>ul>li {
+  .fix > div > ul > li {
     font-size: 20px;
     line-height: 32px;
     margin-top: 15px;
   }
 
-  .fix>img {
+  .fix > img {
     width: 80%;
     position: relative;
     right: -20%;
@@ -535,16 +510,24 @@
     flex-direction: column-reverse;
   }
 
-  .free>img {
+  .free > img {
     width: 100%;
   }
 
-  .paws2{
-    display: none;
+  .paws2 {
+    position: fixed;
+    width: 150px;
+    /* animation-name: paws2; */
+    animation-duration: 10s;
+    animation-direction: ease-in;
+    animation-iteration-count: infinite;
+    transform: rotate(150deg);
+    right: 70%;
+    top: -5%;
   }
 
   .paws1 {
-    position: absolute;
+    position: fixed;
     /* z-index: -1; */
     animation-duration: 5s;
     transform: rotate(45deg);
@@ -564,4 +547,84 @@
       transform: rotate(340deg);
     }
   }
+
+  .card-border {
+    width: 50%;
+    padding-right: 30px;
+    position: fixed;
+    top: 70%;
+    left: 55%;
+    transform: rotate(0deg);
+    transition: 0.15s linear;
+    display: none;
+  }
+
+  /* .card-border:hover {
+    top: 30%;
+    right: 0%;
+    transform: rotate(0deg);
+  } */
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .card-img > img {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+  }
+
+  .card > div:not(.card-img) {
+    margin-top: 20px;
+    color: rgba(24, 39, 71, 0.5);
+  }
+
+  .pet-name span {
+    font-size: 16px;
+  }
+
+  .pet-name > p {
+    font-size: 20px;
+    line-height: 50px;
+  }
+
+  .pet-desc {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+  }
+
+  .pet-desc > img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+  }
+
+  .cta{
+    display: none;
+  }
+  
+  /* .cta{
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  .cta span {
+    padding-bottom: 7px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    padding-right: 15px;
+  }
+
+  .cta svg {
+    width: 15%;
+  } */
 }

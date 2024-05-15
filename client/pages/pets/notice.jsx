@@ -9,7 +9,7 @@ export default function Notice() {
           <h1>寵物認養流程</h1>
           <h2>認養須知</h2>
           <hr />
-          <h1 className={styles['title-secondary']}>Adopt, Don't Shop!</h1>
+          <h1>Adopt, <br className={styles['br-mobile']}/> Don't Shop!</h1>
           <img src="../img/notice/notice_sleeping_cat.png" alt="" />
         </section>
 
