@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/psycological-test_p3.module.css'
+import styles from '@/styles/psycological-test/psycological-test_p3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faDownload,

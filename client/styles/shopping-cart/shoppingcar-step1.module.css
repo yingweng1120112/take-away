@@ -19,7 +19,7 @@
   margin-bottom: 80px;
 }
 .stepbg {
-  background-image: url(/cart/step.png);
+  background-image: url(/shopping-cart/step.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom;
@@ -280,7 +280,7 @@
 
 /* 產品推薦 */
 .commend {
-  background-image: url(/cart/commendbg.png);
+  background-image: url(/shopping-cart/commendbg.png);
   background-size: contain;
   margin: 0;
   height: 34rem;
