@@ -44,10 +44,6 @@
   overflow-x: hidden;
 }
 
-/* br {
-  display: none;
-} */
-
 .br-block {
   display: block;
 }
@@ -243,21 +239,21 @@
   }
 
   to {
-    left: 93%;
+    left: 80%;
     /* top: 120%; */
-    transform: rotate(730deg);
+    transform: rotate(750deg);
   }
 }
 
 .paws2{
   position: fixed;
-  animation-name: paws2;
+  /* animation-name: paws2; */
   animation-duration: 10s;
   animation-direction: ease-in;
   animation-iteration-count: infinite;
-  transform: rotate(200deg);
-  right: 70%;
-  top: 0%;
+  transform: rotate(150deg);
+  right: 90%;
+  top: -10%;
 }
 
 @keyframes paws2{
@@ -281,11 +277,26 @@
   }
 }
 
-/* 小卡片 */
-.card {
+/* 浮動卡片 */
+.card-border{
   z-index: 1;
   height: auto;
   width: auto;
+  padding-right: 30px;
+  position: fixed;
+  top: 30%;
+  right: -20%;
+  transform: rotate(-10deg);
+  transition: 0.15s linear;
+}
+
+.card-border:hover{
+  top: 30%;
+  right: 0%;
+  transform: rotate(0deg);
+}
+
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -293,17 +304,6 @@
   background-color: white;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
-  transition: 0.2s linear;
-  position: fixed;
-  top: 30%;
-  right: -15%;
-  transform: rotate(-10deg);
-}
-
-.card:hover{
-  top: 30%;
-  right: 1%;
-  transform: rotate(0deg);
 }
 
 .card-img > img {

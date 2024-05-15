@@ -81,37 +81,39 @@ export default function Notice() {
         <img src="../img/paws.png" className={styles['paws1']} alt="" />
         <img src="../img/paws.png" className={styles['paws2']} alt="" />
 
-        <div className={styles['card']}>
-          <div className={styles['card-img']}>
-            <img src="/img/pet-info/10008/10008-1.jpg" alt="" />
-          </div>
-          <div className={styles['pet-name']}>
-            <span>卍煞氣A歐歐乂</span>
-            <p>歐告</p>
-            <div className={styles['pet-desc']}>
-              <span>今年約莫3歲</span>
-              <img src="/img/icon_boy.png" alt="" />
+        <div className={styles['card-border']}>
+          <div className={styles['card']}>
+            <div className={styles['card-img']}>
+              <img src="/img/pet-info/10008/10008-1.jpg" alt="" />
             </div>
+            <div className={styles['pet-name']}>
+              <span>卍煞氣A歐歐乂</span>
+              <p>歐告</p>
+              <div className={styles['pet-desc']}>
+                <span>今年約莫3歲</span>
+                <img src="/img/icon_boy.png" alt="" />
+              </div>
+            </div>
+            <button className={styles['cta']}>
+              <span className={styles['hover-underline-animation']}>
+                來看看我
+              </span>
+              <svg
+                id="arrow-horizontal"
+                xmlns="http://www.w3.org/2000/svg"
+                width={30}
+                height={10}
+                viewBox="0 0 46 16"
+              >
+                <path
+                  id="Path_10"
+                  data-name="Path 10"
+                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                  transform="translate(30)"
+                />
+              </svg>
+            </button>
           </div>
-          <button className={styles['cta']}>
-            <span className={styles['hover-underline-animation']}>
-              來看看我
-            </span>
-            <svg
-              id="arrow-horizontal"
-              xmlns="http://www.w3.org/2000/svg"
-              width={30}
-              height={10}
-              viewBox="0 0 46 16"
-            >
-              <path
-                id="Path_10"
-                data-name="Path 10"
-                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                transform="translate(30)"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </>
