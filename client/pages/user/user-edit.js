@@ -8,9 +8,9 @@ export default function UserEdit() {
       <img className={styles.bgfeet2} src="/img/user/loading.png" alt="" />
       <div className="container">
         <div className={`${styles.book} d-flex`}>
-          <div className={`${styles.bookInfo} d-flex`}>
+          <div className={`${styles.bookInfo} ${styles.w100} d-flex justify-content-center`}>
             <div
-              className={`${styles.bookContainer} ${styles.w100} ${styles.hAuto} bg-light`}
+              className={`${styles.bookContainer} ${styles.hAuto} bg-light`}
             >
               <h2>編輯資料</h2>
               <div className={styles.rope}></div>
