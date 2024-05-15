@@ -160,7 +160,7 @@
   width: auto;
 }
 
-.question-icon{
+.question-icon {
   margin-bottom: 3px;
 }
 
@@ -545,7 +545,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url("../public/img/bg-pet-story.png");
+  background-image: url('../public/img/bg-pet-story.png');
   padding: 0 10% 0 10%;
   background-repeat: repeat-x;
   background-size: contain;
@@ -595,7 +595,7 @@
 .pet-score {
   width: 80%;
   height: auto;
-  margin: 100px 0;
+  margin: 300px 0;
   padding: 30px;
   align-items: center;
   justify-content: center;
@@ -893,7 +893,7 @@
     margin: 0;
     background-image: url('../public/img/background-petinfo-mobile.png');
     background-size: 150%;
-    background-position: 15% 73%;
+    background-position: 15% 80%;
   }
 
   .pet-img {
@@ -931,7 +931,7 @@
   }
 
   .pet-name > p {
-    font-size: 42px;
+    font-size: 50px;
     margin-bottom: 10px;
   }
 
@@ -995,17 +995,17 @@
 
   .story-desc > h1 {
     width: 100%;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 50px;
     letter-spacing: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     margin-top: -50px;
     position: static;
   }
 
-  .story-desc > p{
+  .story-desc > p {
     position: static;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 38px;
   }
 
@@ -1019,7 +1019,7 @@
   }
 
   .pet-health > h1 {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 70px;
     letter-spacing: 20px;
     border-top-left-radius: 30px;
@@ -1033,7 +1033,7 @@
   }
 
   .pet-health > ul {
-    padding-bottom: 10px;
+    padding: 20px 0 20px 15%;
   }
 
   .pet-health > ul > li {
@@ -1054,13 +1054,13 @@
     left: 1px;
     width: 8px;
     height: 5px;
-    margin-top: 3px;
+    margin-top: 2px;
     border: solid 2px transparent;
     border-right: none;
     border-top: none;
   }
 
-  .cl-checkbox > span{
+  .cl-checkbox > span {
     font-size: 16px;
   }
 
@@ -1106,29 +1106,34 @@
     padding: 0 10% 30px 10%;
     background-repeat: repeat-x;
     background-size: 400%;
-    background-position: bottom;
+    background-position: 0 30%;
   }
 
   .pet-skill > img {
     width: 80%;
+    order: 2;
   }
 
   .pet-skill > table {
     width: 100%;
-    height: 120%;
+    height: auto;
+    margin-bottom: -30px;
+    order: 1;
   }
 
   .pet-skill > table > tbody > tr > th > h1 {
-    width: 90%;
-    font-size: 24px;
+    width: 100%;
+    font-size: 28px;
     margin: 30px 0 0 0;
-    padding-top: 10px;
-    padding-left: 30px;
+    padding-top: 15px;
+    padding-left: 50px;
     letter-spacing: 20px;
+    /* top: -30%; */
+    position: static;
   }
 
   .pet-skill > table > tbody > tr > td > label {
-    margin: 20px;
+    margin: 15px 20px;
     font-size: 16px;
   }
 
@@ -1136,15 +1141,16 @@
     margin-top: 50px;
     padding: 30px 20px;
     border-radius: 20px;
+    width: 90%;
   }
 
   .pet-score > h1 {
     width: 100%;
-    margin: 10px 0 20px 0;
-    padding-top: 10px;
+    margin: 0px 0 30px 0;
+    padding-top: 15px;
     padding-right: 30px;
-    font-size: 24px;
-    line-height: 50px;
+    font-size: 28px;
+    /* line-height: 50px; */
     letter-spacing: 20px;
   }
 
@@ -1181,7 +1187,7 @@
 
   .score-btn {
     margin-top: 10px;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
   }
@@ -1189,8 +1195,8 @@
   .score-btn > button {
     width: 100%;
     margin: 10px 0;
-    line-height: 40px;
     height: 50px;
+    line-height: 50px;
   }
 
   .score-btn > button > span {

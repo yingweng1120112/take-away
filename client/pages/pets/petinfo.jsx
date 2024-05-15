@@ -212,13 +212,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>呼叫</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>趴下</span>
                   </label>
                 </td>
@@ -226,13 +226,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>等等</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>隨行</span>
                   </label>
                 </td>
@@ -240,13 +240,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>坐下</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>握手</span>
                   </label>
                 </td>
@@ -254,13 +254,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>定點尿尿</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>不亂吠叫</span>
                   </label>
                 </td>
