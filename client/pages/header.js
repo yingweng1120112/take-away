@@ -17,8 +17,9 @@ export default function Header() {
   }
   return (
     <>
-      <header>
-        <div className="header1">
+      <header  style={{"margin-botton": "2rem" }}>
+      <div style={{position: 'relative'}}>
+        <div className="header1" style={{position: 'absolute', width: '100%',"z-index":'100'}}>
           <a href="" className="logo">
             <img src={`/img/logo.jpg`} />
           </a>
@@ -219,6 +220,7 @@ export default function Header() {
               </div>
             </nav>
           )}
+          </div>
         </div>
       </header>
     </>

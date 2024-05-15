@@ -2,9 +2,11 @@ import React from 'react'
 import styles from '@/styles/location.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandPointer } from '@fortawesome/free-solid-svg-icons'
+import Header from './header'
 export default function Location() {
   return (
     <>
+    <Header style={{ height: '5rem' }}/>
       <section className={styles['location']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
