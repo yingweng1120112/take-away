@@ -5,6 +5,10 @@
   align-items: center;
   font-family: var(--font-family);
   background-color: var(--bg-color);
+  transition: 0s;
+
+  /* TODO: npm fullpage 會吃到header高度 */
+  margin-top: -30px;
 }
 
 /* banner */
