@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
-import Swiper from 'swiper'
-import App from '@/pages/product/App'
+import MenuSwiper from '@/pages/product/menu_swiper'
 
 export default function Menu() {
   return (
@@ -435,7 +434,7 @@ export default function Menu() {
         </div>
       </section>
       {/* 推薦浪浪 */}
-      <App />
+      <MenuSwiper />
     </>
   )
 }
