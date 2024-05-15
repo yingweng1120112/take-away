@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/notice.module.css'
+import styles from '@/styles/pets/notice.module.css'
 import { FullPage, Slide } from 'react-full-page'
 
 export default function Notice() {
@@ -8,7 +8,7 @@ export default function Notice() {
       <div className={styles['commendbody']}>
         <FullPage>
           {/* TODO: 可能和其他套件互相干擾 有點卡 */}
-          {/* TODO: 無法砍掉header footer高度 footer 跑到上面 */}
+          {/* 無法砍掉header footer高度 footer 跑到上面 */}
           <Slide>
             <section className={`${styles['title']} ${styles['section']}`}>
               <h1>寵物認養流程</h1>
@@ -17,13 +17,13 @@ export default function Notice() {
               <h1>
                 Adopt, <br className={styles['br-mobile']} /> Don't Shop!
               </h1>
-              <img src="../img/notice/notice_sleeping_cat.png" alt="" />
+              <img src="../img/pets/notice_sleeping_cat.png" alt="" />
             </section>
           </Slide>
 
           <Slide>
             <section className={`${styles['age']} ${styles['section']}`}>
-              <img src="../img/notice/notice_gaming_cat.png" alt="" />
+              <img src="../img/pets/notice_gaming_cat.png" alt="" />
               <h2>
                 年滿18歲 <br className={styles['br-mobile']} />
                 即攜帶身分證
@@ -49,13 +49,13 @@ export default function Notice() {
                   </li>
                 </ul>
               </div>
-              <img src="../img/notice/notice_jumpimg_cat.png" alt="" />
+              <img src="../img/pets/notice_jumpimg_cat.png" alt="" />
             </section>
           </Slide>
 
           <Slide>
             <section className={`${styles['docs']} ${styles['section']}`}>
-              <img src="../img/notice/notice_computer_cat.png" alt="" />
+              <img src="../img/pets/notice_computer_cat.png" alt="" />
               <h2>
                 填寫
                 <br className={styles['br-mobile']} />
@@ -81,13 +81,13 @@ export default function Notice() {
                   </li>
                 </ul>
               </div>
-              <img src="../img/notice/notice_eating_cat.png" alt="" />
+              <img src="../img/pets/notice_eating_cat.png" alt="" />
             </section>
           </Slide>
 
           <Slide>
             <section className={`${styles['free']} ${styles['section']}`}>
-              <img src="../img/notice/notice_sofa_shark.png" alt="" />
+              <img src="../img/pets/notice_sofa_shark.png" alt="" />
               <h2>
                 絕育費用：
                 <br className={styles['br-mobile']} />
@@ -97,8 +97,8 @@ export default function Notice() {
           </Slide>
         </FullPage>
 
-        <img src="../img/paws.png" className={styles['paws1']} alt="" />
-        <img src="../img/paws.png" className={styles['paws2']} alt="" />
+        <img src="../img/pets/paws.png" className={styles['paws1']} alt="" />
+        <img src="../img/pets/paws.png" className={styles['paws2']} alt="" />
 
         <div className={styles['card-border']}>
           <div className={styles['card']}>
@@ -110,7 +110,7 @@ export default function Notice() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
             <button className={styles['cta']}>

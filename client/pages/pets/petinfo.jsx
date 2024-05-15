@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/petInfo.module.css'
+import styles from '@/styles/pets/petInfo.module.css'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 
 export default function PetInfo() {
@@ -47,7 +47,7 @@ export default function PetInfo() {
             <p className={styles['pet-hashtag']}># 描述寵物的文字</p>
             <div className={styles['pet-name']}>
               <p>歐告</p>
-              <img src="/img/icon_boy.png" alt="" draggable="false" />
+              <img src="/img/pets/icon_boy.png" alt="" draggable="false" />
             </div>
             <ul>
               <li>性別</li>
@@ -375,33 +375,33 @@ export default function PetInfo() {
           </div>
         </section>
 
-        {/* TODO: 背景圖片 肉球 */}
+        {/* TODO: 背景圖片 位置修改 */}
         <img
-          src="/img/paws.png"
+          src="/img/pets/paws.png"
           className={styles['paws1']}
           alt=""
           draggable="false"
         />
         <img
-          src="/img/paws.png"
+          src="/img/pets/paws.png"
           className={styles['paws2']}
           alt=""
           draggable="false"
         />
         <img
-          src="/img/paws.png"
+          src="/img/pets/paws.png"
           className={styles['paws3']}
           alt=""
           draggable="false"
         />
         <img
-          src="/img/background-paws.png"
+          src="/img/pets/background-paws.png"
           className={styles['background-paws1']}
           alt=""
           draggable="false"
         />
         <img
-          src="/img/background-paws.png"
+          src="/img/pets/background-paws.png"
           className={styles['background-paws2']}
           alt=""
           draggable="false"

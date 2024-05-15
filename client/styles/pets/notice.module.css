@@ -106,7 +106,7 @@
 
 .choose > div > ul {
   flex-direction: column;
-  list-style-image: url('../public/img/icon_pet_ulli.png');
+  list-style-image: url('../../public/img/pets/icon_pet_ulli.png');
 }
 
 .choose > div > ul > li {
@@ -171,7 +171,7 @@
 
 .fix > div > ul {
   flex-direction: column;
-  list-style-image: url('../public/img/icon_pet_ulli.png');
+  list-style-image: url('../../public/img/pets/icon_pet_ulli.png');
   /* text-align: justify; */
 }
 

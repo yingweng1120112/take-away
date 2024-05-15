@@ -197,12 +197,12 @@
 }
 
 /* banner */
-.banner {
+/* .banner {
   background-image: url('../public/img/petinfo-navbar.png');
   background-size: cover;
   background-position: center;
   z-index: 2;
-}
+} */
 
 /* 寵物主頁 */
 .commendbody {
@@ -225,7 +225,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-image: url('../public/img/bg-pet-info.png');
+  background-image: url('../../public/img/pets/bg-pet-info.png');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 90%;
@@ -319,7 +319,7 @@
   display: inline;
   width: 100%;
   padding-left: 30px;
-  list-style-image: url('../public/img/icon_pet_ulli.png');
+  list-style-image: url('../../public/img/pets/icon_pet_ulli.png');
 }
 
 .pet-info > ul > li {
@@ -369,7 +369,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../public/img/bg-pet-story.png');
+  background-image: url('../../public/img/pets/bg-pet-story.png');
   padding: 0 10% 0 10%;
   background-repeat: repeat-x;
   background-position: 50%;
@@ -398,7 +398,7 @@
   letter-spacing: 40px;
   background-position: 50% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
   position: relative;
   top: -120px;
@@ -470,7 +470,7 @@
 .health-underline {
   width: 100%;
   height: 50px;
-  background-image: url('../public/img/underline-paws.png');
+  background-image: url('../../public/img/pets/underline-paws.png');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center;
@@ -487,7 +487,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../public/img/bg-pet-habit.png');
+  background-image: url('../../public/img/pets/bg-pet-habit.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -545,7 +545,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../public/img/bg-pet-story.png');
+  background-image: url('../../public/img/pets/bg-pet-story.png');
   padding: 0 10% 0 10%;
   background-repeat: repeat-x;
   background-size: contain;
@@ -579,7 +579,7 @@
   letter-spacing: 40px;
   background-position: 0% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
   position: absolute;
   top: -43%;
@@ -618,7 +618,7 @@
   letter-spacing: 40px;
   background-position: 50% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
 }
 
@@ -893,7 +893,7 @@
     height: auto;
     padding: 50px 10% 10% 10%;
     margin: 0;
-    background-image: url('../public/img/background-petinfo-mobile.png');
+    background-image: url('../../public/img/pets/background-petinfo-mobile.png');
     background-size: 150%;
     background-position: 15% 80%;
   }
@@ -1077,7 +1077,7 @@
     background-position: center;
     padding: 450px 10% 500px 10%;
     margin: -250px 0 -100px 0;
-    background-image: url(../public/img//bg-pet-habit-mobile.png);
+    background-image: url('../../public/img/pets/bg-pet-habit-mobile.png');
   }
 
   .pet-habit > div > h1 {

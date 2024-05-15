@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/petList.module.css'
+import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
@@ -27,7 +27,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
@@ -147,12 +147,13 @@ export default function PetList() {
               <p>歐告</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
           </div>
         </section>
 
+        {/* TODO: load商品 */}
         <section className={styles['wp-pagenavi']}>
           <span>
             <a
