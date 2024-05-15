@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import pagination from '@/styles/pagination.module.css'
-import styles from '@/styles/menu.module.css'
+import pagination from '@/styles/product/pagination.module.css'
+import styles from '@/styles/product/menu.module.css'
 import Swiper from 'swiper'
 import App from '@/pages/product/App'
 

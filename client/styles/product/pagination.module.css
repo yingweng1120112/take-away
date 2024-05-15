@@ -6,6 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	color: #333;
+	width: 100%;
 }
 .wp-pagenavi a {
     color: #333;
@@ -21,6 +22,7 @@
 	transition: .03s;
 	display: block;
 	border-bottom: 4px solid transparent;
+	font-size: 14px;
 }
 .wp-pagenavi span.current {
 	border-bottom: 4px solid #77a0d1;

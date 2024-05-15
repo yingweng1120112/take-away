@@ -8,7 +8,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import styles from '@/pages/product/styles.module.css'
-import styles2 from '@/styles/menu.module.css'
+import styles2 from '@/styles/product/menu.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
