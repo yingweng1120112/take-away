@@ -30,7 +30,7 @@ export default function Quantity() {
           <input
             type="text"
             className="form-control text-center"
-            value={quantity}
+            defaultValue={quantity}
             id="quantityInput"
           />
           <button

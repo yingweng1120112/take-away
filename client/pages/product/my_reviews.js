@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/product/information.module.css'
 
 export default function MyReviews() {
@@ -42,8 +42,8 @@ export default function MyReviews() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      defaultValue="小金黃"
-                      readOnly="true"
+                      Value={'小金黃'}
+                      readOnly={true}
                     />
                   </div>
                   <div className="mb-3 w-100">
@@ -61,6 +61,7 @@ export default function MyReviews() {
                       defaultValue={
                         '我們家很挑嘴的小土豆，原本只是抱著姑且一試的態度買看看，沒想到牠意外喜歡，會再回購。'
                       }
+                      readOnly={false}
                     />
                   </div>
                 </div>
