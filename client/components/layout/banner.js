@@ -1,22 +1,24 @@
 import React from 'react'
-import styles from '@/styles/banner.module.css'
-
+import banner from '@/styles/banner.module.css'
+// 請複製貼上出去
 export default function Banner() {
   return (
-    //  若要更換圖片，請在外面加上一個div 並放置style
-    //   background-image: url(/img/banner-life-1.jpg);
-    //   background-size:cover;
-    //   background-position: center;
-    <div className={`${styles['banner']}`}>
-      <div className={styles['left']}>
-        <p className={styles['menu-a']}>LIFE</p>
-        <p className={styles['menu-b']}>生活紀錄</p>
+    //要修改banner圖片，請直接更改下面連結
+    <div
+      className={banner['banner']}
+      style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+    >
+      <div className={banner['left']}>
+        <p className={banner['menu-a']}>LIFE</p>
+        <p className={banner['menu-b']}>生活紀錄</p>
       </div>
-      <div className={styles['middle']}>
-        <div className={`${styles['accordion']}`}>
-          <div className={`accordion-button ${styles['accordion-button']}`}>
-            <span className={styles['middle-page-title']}>日誌列表</span>
+      <div className={banner['middle']}>
+        <div className={`${banner['accordion']}`}>
+          <div className={`accordion-button ${banner['accordion-button']}`}>
+            {/* span為pc版文字，p為phone版文字 */}
+            <span className={banner['middle-page-title']}>日誌列表</span>
             <span>選擇日誌分類</span>
+            <p className={banner['middle-page-title']}>選項</p>
           </div>
         </div>
       </div>
