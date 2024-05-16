@@ -53,6 +53,7 @@ li a{
 	height: 100px;
 	background-color: var(--creamy-yellow);
 	color: var(--textColor);
+  border-bottom:2px solid var(--reddish-brown);
 }
 .logo{
   height: 60%;
@@ -104,20 +105,27 @@ flex-direction: column;
   left: 0;
   padding: 0;
   height: auto;
-  background:var(--creamy-yellow);
   display:none;
-
+  border-radius:0px 0px 1.25rem  1.25rem
 }
 
 .navbar2 ul li ul li{
-  background: var(--creamy-yellow);
   width: 140px;
+  border-top: 2px solid var(--reddish-brown);
+  background:var(--bean-paste);
+  border-radius:0px 0px 1.25rem  1.25rem;
+}
+.navbar2 .bor0  {
+  border-radius:0px;
 }
 .navbar2 ul li ul li a{
   width:100%;
   justify-content: center;
 }
-.navbar2 ul li  ul li a:hover {
+.navbar2 .bor0 a:hover {
+  border-radius:0px;
+}
+.navbar2 ul li ul li a:hover {
   background: var(--reddish-brown);
   width: 140px;
   border-radius:0px 0px 1.25rem  1.25rem;
@@ -197,8 +205,8 @@ flex-direction: column;
   }
 .navbar3 ul li{
   width: 100%;
-  background: white;
-  border-top:2px solid  var(--bean-paste) ;
+  background: var(--bean-paste);
+  border-top:2px solid var(--border-color) ;
   cursor: default;
 }
 
@@ -211,7 +219,7 @@ flex-direction: column;
 }
 
 .navbar3 ul li a:hover {
-  background: var(--creamy-yellow);
+  // background: var(--creamy-yellow);
   color: black;
 }
 
@@ -226,10 +234,10 @@ flex-direction: column;
 }
 
 .navbar3 ul li ul li{
- background:white;
+ background:var(--creamy-yellow);
  width:100%;
  border:0rem;
- border-top:2px solid var(--bean-paste) ;
+ border-top:2px solid var(--khaki);
 }
 .navbar3 ul li ul li a{
 text-align: center;
@@ -237,7 +245,7 @@ padding-right: 1.9rem;
 // padding:;
 }
 .navbar3 ul li  ul li a:hover {
-  background: var(--bean-paste);
+  // background: var(--bean-paste);
   color: black;
 }
 .navbar3 .phone-li{
@@ -307,7 +315,8 @@ padding-right: 1.9rem;
 }
 .phone-header{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding:0rem 1.2rem;
   align-items: center;
   height: 3.75rem;
   background-color: var(--creamy-yellow);

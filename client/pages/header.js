@@ -33,41 +33,41 @@ export default function Header() {
               </li>
               <li>
                 <a>領養資訊</a>
-                <ul>
-                  <li>
+                <ul >
+                  <li className="bor0">
                     <a href="#">心理測驗</a>
                   </li>
-                  <li>
+                  <li style={{"border-top": "2px solid var(--reddish-brown)",}}>
                     <a href="#">領養流程</a>
                   </li>
                 </ul>
               </li>
               <li>
                 <a>相關問題</a>
-                <ul>
-                  <li>
+                <ul >
+                  <li className="bor0">
                     <a href="#">常見問題</a>
                   </li>
-                  <li>
-                    <a href="#" style={{ "text-align": 'center' }}>客服中心(智能客服)</a>
+                  <li style={{"border-top": "2px solid var(--reddish-brown)",}}>
+                    <a href="#">客服中心</a>
                   </li>
                 </ul>
               </li>
               <li>
                 <a>領養專區</a>
-                <ul>
-                  <li>
-                    <a href="#" >追蹤日誌</a>
+                <ul >
+                  <li className="bor0">
+                    <a href="#">浪浪列表</a>
                   </li>
-                  <li>
-                    <a href="#" style={{ "text-align": 'center' }}>浪浪列表(貓狗)</a>
+                  <li style={{"border-top": "2px solid var(--reddish-brown)",}}>
+                    <a href="#">追蹤日誌</a>
                   </li>
                 </ul>
               </li>
               <li>
                 <a>寵物商城</a>
                 <ul>
-                  <li>
+                  <li >
                     <a href="#">寵物商城</a>
                   </li>
                 </ul>
@@ -75,7 +75,7 @@ export default function Header() {
               <li>
                 <a>會員中心</a>
                 <ul>
-                  <li>
+                  <li >
                     <a href="#">會員中心</a>
                   </li>
                 </ul>
@@ -110,8 +110,8 @@ export default function Header() {
             <nav className="navbar3">
               <ul>
                 <ul>
-                  <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                  <li style={{"border-top": '0px' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       關於我們
                       <IoIosArrowDown style={{ float: 'right' }} />
                     </a>
@@ -122,7 +122,7 @@ export default function Header() {
                     </ul>
                   </li>
                   <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       領養資訊
                       <IoIosArrowDown style={{ float: 'right' }} />
                     </a>
@@ -130,13 +130,14 @@ export default function Header() {
                       <li style={{ 'border-bottom': '2px solid #fdf7e4' }}>
                         <a href="#">心理測驗</a>
                       </li>
-                      <li>
+
+                      <li style={{ 'border-top': '2px solid black' }}>
                         <a href="#">領養流程</a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       相關問題
                       <IoIosArrowDown style={{ float: 'right' }} />
                     </a>
@@ -146,19 +147,19 @@ export default function Header() {
                         <a href="#">常見問題</a>
                       </li>
                       <li>
-                        <a href="#">客服中心(智能客服)</a>
+                        <a href="#">客服中心</a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       領養專區
                       <IoIosArrowDown style={{ float: 'right' }} />{' '}
                     </a>
 
                     <ul>
                       <li style={{ 'border-bottom': '1px solid var(--creamy-yellow)' }}>
-                        <a href="#">浪浪列表(貓狗)</a>
+                        <a href="#">浪浪列表</a>
                       </li>
                       <li>
                         <a href="#">追蹤日誌</a>
@@ -166,7 +167,7 @@ export default function Header() {
                     </ul>
                   </li>
                   <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       寵物商城 <IoIosArrowDown style={{ float: 'right' }} />
                     </a>
                     <ul>
@@ -176,7 +177,7 @@ export default function Header() {
                     </ul>
                   </li>
                   <li>
-                    <a style={{ color: 'var( --reddish-brown)' }}>
+                    <a style={{ color: 'var( --deep-blue)' }}>
                       會員中心 <IoIosArrowDown style={{ float: 'right' }} />
                     </a>
                     <ul>
@@ -190,7 +191,7 @@ export default function Header() {
               <div className="phone-li">
                 <a href="#"
                   className="phone-title"
-                  style={{ 'border-radius': '0px 0px 0px 19px' }}
+                  style={{ 'border-radius': '0px 0px 0px 16px' }}
                 >
                   <CiShoppingCart
                     className="title-img"
