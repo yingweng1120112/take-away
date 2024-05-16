@@ -3,7 +3,7 @@ import styles from '@/styles/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
 import AdoptForm from './adout-form'
 import Header from '../components/layout/header'
-
+import Footer from '@/components/layout/footer' 
 
 const parageStyles = {
   WebkitLineClamp: 1,
@@ -107,9 +107,7 @@ export default function Adopt() {
         </div>
       </div>
       <footer>
-        <div>
-          <h1>footer</h1>
-        </div>
+        <Footer />
       </footer>
     </>
   )
