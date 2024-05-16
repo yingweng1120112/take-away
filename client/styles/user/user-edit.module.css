@@ -1,4 +1,3 @@
-
 /* user edit */
 .bgfeet1 {
   position: absolute;
@@ -89,7 +88,7 @@
 .rope {
   width: 3%;
   height: 88%;
-  background-image: url('/img/user//user-rope.png');
+  background-image: url('/img/user/user-rope.png');
   background-repeat: repeat-y;
   position: absolute;
   right: 99%;
@@ -207,8 +206,8 @@
   right: 50%;
 }
 
-.input:focus ~ .bar:before,
-.input:focus ~ .bar:after {
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
   width: 50%;
 }
 
@@ -222,7 +221,7 @@
   opacity: 0.5;
 }
 
-.input:focus ~ .highlight {
+input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
 

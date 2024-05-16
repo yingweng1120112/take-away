@@ -15,7 +15,7 @@ export default function Reserve() {
             className={styles['print']}
           />
           <div className={styles['reserve-title']}>
-            <h1>緣分</h1>
+            <h1 className={styles['reserve-title-h1']}>緣分</h1>
             <p className={styles['lap-top']}>
               _____________________________________________
             </p>
@@ -29,7 +29,7 @@ export default function Reserve() {
             所以也期待您撥空來現場看看他們!
           </h5>
           <div className={styles['reserve-img']}>
-            <img src={`/images/pet-info/10008/10008-5.jpg`} alt="" />
+            <img src={`/img/pet-info/10008/10008-5.jpg`} alt="" />
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
@@ -46,7 +46,7 @@ export default function Reserve() {
               placeholder="浪浪名稱"
             >
               <div className={styles['text-group']}>
-                <h4>浪浪名稱</h4>
+                <h4 className={styles['input-h4']}>浪浪名稱</h4>
                 <div className={styles['form-input']}>
                   <input
                     className={styles['input']}
@@ -56,10 +56,9 @@ export default function Reserve() {
                   />
                   <span className={styles['input-border']} />
                 </div>
-                <hr />
               </div>
               <div className={styles['text-group']}>
-                <h4>預約人</h4>
+                <h4 className={styles['input-h4']}>預約人</h4>
                 <div className={styles['form-input']}>
                   <input
                     className={styles['input']}
@@ -69,10 +68,9 @@ export default function Reserve() {
                   />
                   <span className={styles['input-border']} />
                 </div>
-                <hr />
               </div>
               <div className={styles['text-group']}>
-                <h4>預約時間</h4>
+                <h4 className={styles['input-h4']}>預約時間</h4>
                 <div className={styles['form-input']}>
                   <input
                     className={styles['input']}
@@ -82,13 +80,12 @@ export default function Reserve() {
                   />
                   <span className={styles['input-border']} />
                 </div>
-                <hr />
               </div>
-              <button>BUTTON</button>
+              <button className={styles['button']}>送出</button>
             </form>
           </div>
           <div className={styles['play']}>
-            <h5>他們也一定很期待能和你一同交流、認識與玩耍</h5>
+            <h5 className={styles['play-title']}>他們也一定很期待能和你一同交流、認識與玩耍</h5>
           </div>
         </div>
       </section>
