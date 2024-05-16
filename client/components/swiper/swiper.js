@@ -32,7 +32,7 @@ export default function Carousel() {
               'width': '100%',
               'height': '100%',
             }}
-            src="/images/pet-info/10020/10020-1.jpg" />
+            src="/img/pet-info/10010/10010-1.jpg" />
             {/* 720x480 */}
         </SwiperSlide>
         <SwiperSlide>
@@ -41,19 +41,19 @@ export default function Carousel() {
               'width': '100%',
             'height': '100%',
             }}
-            src="/images/pet-info/10020/10020-2.jpg" />
+            src="/img/pet-info/10010/10010-2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/pet-info/10020/10020-5.jpg" />
+          }} src="/img/pet-info/10010/10010-3.jpg" />
         </SwiperSlide>
         <SwiperSlide>
           <img style={{
             'width': '100%',
             'height': '100%',
-          }} src="/images/pet-info/10020/10020-4.jpg" />
+          }} src="/img/pet-info/10010/10010-4.jpg" />
         </SwiperSlide>
       </Swiper>
       
