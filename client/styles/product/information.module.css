@@ -295,6 +295,8 @@
   background: var(--light-blue);
   border-top: 0.625rem solid var(--white);
   border-bottom: 0.625rem solid var(--white);
+  height: auto;
+  margin-top: 3.75rem;
 }
 .decorative-words {
   width: 100%;

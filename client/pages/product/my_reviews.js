@@ -88,8 +88,8 @@ export default function MyReviews() {
           </div>
         </div>
         <img
-          className="decorative-words-img"
-          src="../images/Productpage-decorative-words.png"
+          className={styles['decorative-words-img']}
+          src="/img/information/Productpage-decorative-words.png"
           alt=""
         />
       </section>

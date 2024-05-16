@@ -178,9 +178,11 @@
   width: 5.5rem;
   font-size: 0.8rem;
 }
+.cart-btn:hover{
+  transform: scale(1.05);
+}
 .cart-btn:hover svg path {
   fill: var(--deep-blue); /* 將SVG的填充颜色设置為文字框的背景颜色 */
-  transform: scale(1.05);
 }
 .cart-btn:hover svg {
   transform: scale(1.05);
