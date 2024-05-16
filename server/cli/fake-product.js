@@ -1,12 +1,18 @@
+// !! 注意: 此檔案並不是express執行時用，指令為`node ./cli/fake-product.js 100`，最後的100數字代表100筆
 // eslint-disable-next-line
 import { fakerZH_TW as faker } from '@faker-js/faker'
 
 // 讓console.log可以呈現檔案與行號, 呈現顏色用
-import { extendLog, toKebabCase } from '#utils/tool.js'
+import {
+  extendLog,
+  toKebabCase,
+  readJsonFile,
+  writeJsonFile,
+} from '#utils/tool.js'
 import 'colors'
 extendLog()
 
-import { readJsonFile, writeJsonFile } from '#utils/tool.js'
+//import { readJsonFile, writeJsonFile } from '#utils/tool.js'
 
 // 預設產生檔案目錄(相對於根目錄)
 const folder = './seeds-tmp/'
@@ -140,7 +146,7 @@ const createProducts = async (num = 1, filename = 'Product.json') => {
   )
 }
 
-// 使用指令 `node ./cli/fake-user.js 100`
+// 使用指令 `node ./cli/fake-product.js 100`
 const args = process.argv
 // 預設為10筆
 const num = Number(args[2]) || 100

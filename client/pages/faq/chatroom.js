@@ -1,5 +1,21 @@
 import React from 'react'
 import styles from '@/styles/chatroom.module.css'
+import {
+  FaBars,
+  FaBookOpen,
+  FaMusic,
+  FaSquarePollVertical,
+  FaPencil,
+  FaTicket,
+  FaGear,
+  FaFilter,
+  FaMagnifyingGlass,
+  FaUserPlus,
+  FaStar,
+  FaCircleInfo,
+  FaEllipsisVertical,
+  FaPaperPlane,
+} from 'react-icons/fa6'
 
 export default function Chatroom() {
   return (
@@ -8,25 +24,37 @@ export default function Chatroom() {
         {/* 聊天室左側功能列 */}
         <div className={styles['chatA']}>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-bars`}></i>
+            <FaBars className={styles['cr_icons']} />
+            {/* <i className={`cr_icons fa-solid fa-bars`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-book-open`}></i>
+            <FaBookOpen className={styles['cr_icons']} />
+            {/* <i className={`cr_icons fa-solid fa-book-open`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-music`}></i>
+            <FaMusic className={styles['cr_icons']} />
+
+            {/* <i className={`cr_icons fa-solid fa-music`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-square-poll-vertical`}></i>
+            <FaSquarePollVertical className={styles['cr_icons']} />
+
+            {/* <i className={`cr_icons fa-solid fa-square-poll-vertical`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-pencil`}></i>
+            <FaPencil className={styles['cr_icons']} />
+
+            {/* <i className={`cr_icons fa-solid fa-pencil`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-ticket`}></i>
+            <FaTicket className={styles['cr_icons']} />
+
+            {/* <i className={`cr_icons fa-solid fa-ticket`}></i> */}
           </a>
           <a href="#">
-            <i className={`cr_icons fa-solid fa-gear`}></i>
+            <FaGear className={styles['cr_icons']} />
+
+            {/* <i className={`cr_icons fa-solid fa-gear`}></i> */}
           </a>
         </div>
 
@@ -35,13 +63,15 @@ export default function Chatroom() {
           <div className={styles['chat_title']}>
             <h2>Chat</h2>
             <div>
-              <i className={`cr_icons fa-solid fa-filter`}></i>
+              <FaFilter className={styles['cr_icons']} />
+              {/* <i className={`cr_icons fa-solid fa-filter`}></i> */}
               <span>Newest</span>
             </div>
           </div>
           <div className={styles['chat_search']}>
             <div>
-              <i className={`cr_icons fa-solid fa-magnifying-glass`}></i>
+              <FaMagnifyingGlass className={styles['cr_icons']} />
+              {/* <i className={`cr_icons fa-solid fa-magnifying-glass`}></i> */}
               <input type="text" placeholder="Search..." />
             </div>
           </div>
@@ -71,16 +101,20 @@ export default function Chatroom() {
               </div>
               <div className={styles['cmt_tools']}>
                 <a href="#">
-                  <i className={`cr_icons fa-solid fa-user-plus`}></i>
+                  <FaUserPlus className={styles['cr_icons']} />
+                  {/* <i className={`cr_icons fa-solid fa-user-plus`}></i> */}
                 </a>
                 <a href="#">
-                  <i className={`cr_icons fa-regular fa-star`}></i>
+                  <FaStar className={styles['cr_icons']} />
+                  {/* <i className={`cr_icons fa-regular fa-star`}></i> */}
                 </a>
                 <a href="#">
-                  <i className={`cr_icons fa-solid fa-circle-info`}></i>
+                  <FaCircleInfo className={styles['cr_icons']} />
+                  {/* <i className={`cr_icons fa-solid fa-circle-info`}></i> */}
                 </a>
                 <a href="#">
-                  <i className={`cr_icons fa-solid fa-sliders`}></i>
+                  <FaEllipsisVertical className={styles['cr_icons']} />
+                  {/* <i className={`cr_icons fa-solid fa-sliders`}></i> */}
                 </a>
               </div>
             </div>
@@ -92,7 +126,8 @@ export default function Chatroom() {
             <div className={styles['message_box']}>
               <input className={styles['message_input']} type="text" />
               <button>
-                <i className={`cr_icons fa-regular fa-paper-plane`}></i>
+                <FaPaperPlane className={styles['cr_icons']} />
+                {/* <i className={`cr_icons fa-regular fa-paper-plane`}></i> */}
               </button>
             </div>
           </div>

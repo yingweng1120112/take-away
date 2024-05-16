@@ -1,12 +1,22 @@
 import React from 'react'
 import styles from '@/styles/faqshopping.module.css'
-import { FaMagnifyingGlass, FaCartShopping, FaBox } from 'react-icons/fa6'
-import Testheader from './testheader'
+import {
+  FaMagnifyingGlass,
+  FaCartShopping,
+  FaBox,
+  FaReceipt,
+  FaBowlFood,
+  FaHand,
+  FaDog,
+  FaCat,
+  FaGear,
+  FaPaw,
+} from 'react-icons/fa6'
+import { IoPawOutline } from "react-icons/io5"
 
 export default function Faqshopping() {
   return (
     <>
-      <Testheader />
       <div className={styles['container_faq']}>
         <div className={styles['box_search']}>
           <input
@@ -27,9 +37,7 @@ export default function Faqshopping() {
         <div className={styles['faq_options']}>
           <a href="#" className={styles[('faq_links', 'faq_icons')]}>
             <FaCartShopping className={styles['faq_icons']} />
-            {/* <i
-              className={`${styles['faq_icons']} fa-solid fa-cart-shopping`}
-            ></i> */}
+            {/* <i className={`${styles['faq_icons']} fa-solid fa-cart-shopping`}></i> */}
             <h4 className={styles['faq_text']}>訂單相關</h4>
           </a>
         </div>
@@ -41,48 +49,56 @@ export default function Faqshopping() {
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-receipt"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaReceipt className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-receipt"></i> */}
             <h4 className={styles['faq_text']}>發票相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-bowl-food"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaBowlFood className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-bowl-food"></i> */}
             <h4 className={styles['faq_text']}>商品相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-hand"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaHand className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-hand"></i> */}
             <h4 className={styles['faq_text']}>領養相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-dog"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaDog className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-dog"></i> */}
             <h4 className={styles['faq_text']}>狗狗相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-cat"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaCat className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-cat"></i> */}
             <h4 className={styles['faq_text']}>貓貓相關</h4>
           </a>
         </div>
         <div className={styles['faq_options']}>
-          <a href="#" className={styles['faq_links']}>
-            <i className="faq_icons fa-solid fa-gear"></i>
+          <a href="#" className={styles[('faq_links', 'faq_icons')]}>
+            <FaGear className={styles['faq_icons']} />
+            {/* <i className="faq_icons fa-solid fa-gear"></i> */}
             <h4 className={styles['faq_text']}>其他相關</h4>
           </a>
         </div>
       </div>
-      <section>
+      <div>
         <div className={styles['box_ans']}>
           <div className={styles['container_ans']}>
             <div className={styles['wrapper']}>
               <button className={styles['toggle']}>
-                我該如何訂購商品？<i className="icon fa-solid fa-paw"></i>
+                我該如何訂購商品？
+                <FaPaw className={styles['faq_icons']} />
+                {/* <i className="icon fa-solid fa-paw"></i> */}
               </button>
               <div className={styles['content_ans']}>
                 <img
@@ -97,7 +113,9 @@ export default function Faqshopping() {
             </div>
             <div className={styles['wrapper']}>
               <button className={styles['toggle']}>
-                我們可以更改訂單嗎？<i className="icon fa-solid fa-paw"></i>
+                我們可以更改訂單嗎？
+                <FaPaw className={styles['faq_icons']} />
+                {/* <i className="icon fa-solid fa-paw"></i> */}
               </button>
               <div className={styles['content_ans']}>
                 <img
@@ -112,7 +130,9 @@ export default function Faqshopping() {
             </div>
             <div className={styles['wrapper']}>
               <button className={styles['toggle']}>
-                有哪些付款方式？<i className="icon fa-solid fa-paw"></i>
+                有哪些付款方式？
+                <FaPaw className={styles['faq_icons']} />
+                {/* <i className="icon fa-solid fa-paw"></i> */}
               </button>
               <div className={styles['content_ans']}>
                 <img
@@ -128,7 +148,9 @@ export default function Faqshopping() {
             </div>
             <div className={styles['wrapper']}>
               <button className={styles['toggle']}>
-                多久可以收到我的訂單？<i className="icon fa-solid fa-paw"></i>
+                多久可以收到我的訂單？
+                <FaPaw className={styles['faq_icons']} />
+                {/* <i className="icon fa-solid fa-paw"></i> */}
               </button>
               <div className={styles['content_ans']}>
                 <img
@@ -144,7 +166,8 @@ export default function Faqshopping() {
             <div className={styles['wrapper']}>
               <button className={styles['toggle']}>
                 如果我收到損壞的商品怎麼辦？
-                <i className="icon fa-solid fa-paw"></i>
+                <FaPaw className={styles['faq_icons']} />
+                {/* <i className="icon fa-solid fa-paw"></i> */}
               </button>
               <div className={styles['content_ans']}>
                 <img
@@ -159,20 +182,26 @@ export default function Faqshopping() {
             </div>
           </div>
         </div>
-      </section>
-      <div className={styles['faq_pagination']}>
-        <a href="#">&laquo;</a>
-        <a className={styles['active']} href="#">
-          1
-        </a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">&raquo;</a>
+      </div>
+      <div className={styles['faq_pagebox']}>
+        <div className={styles['faq_pagination']}>
+          <a href="#">&laquo;</a>
+          <a className={styles['active']} href="#">
+            1
+          </a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">&raquo;</a>
+        </div>
       </div>
       <div className={styles['faq_res']}>
-        <a href="#">
-          <img className={styles['img_res']} src="../img/faq_res.jpg" alt="" />
-        </a>
+          <a href="#">
+            <img
+              className={styles['img_res']}
+              src="../img/faq_res.jpg"
+              alt=""
+            />
+          </a>
         <a href="#">
           <img
             className={styles['img_res2']}

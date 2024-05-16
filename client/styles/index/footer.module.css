@@ -1,0 +1,201 @@
+/* footer */
+.footer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  background-color: var(--bean-paste);
+}
+
+.container {
+  text-align: center;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footerLogo {
+  margin: 0.1rem auto;
+  margin-left: 6.2rem;
+  margin-bottom: 2rem;
+  width: 50%;
+  justify-content: center;
+}
+.footerLogo img {
+  margin-top: 40px;
+  width: 60%;
+}
+
+.footerInfo {
+  margin: 0.5rem auto;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  /* justify-content: center; */
+}
+.footerItem {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: 0 2.5rem;
+  flex-direction: column;
+}
+.footerItem > h4 {
+  text-align: center;
+}
+
+.dropdown-item {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* footer的p標籤 */
+.desc {
+  font-size: var(--font-size-p);
+  text-align: center;
+  padding: 0.3rem;
+}
+
+.footerHr {
+  margin: 0.5rem auto;
+  border: none;
+  height: 2px;
+  background-color: var(--white);
+}
+
+.footerItem > ol {
+  height: auto;
+  padding: 0.1rem;
+}
+
+.footerItem h4 {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon > li {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink > svg {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.footerItem ol {
+  display: block;
+  flex-direction: row;
+}
+
+.footerItem:nth-child(6) ol {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 贊助方案的圖片  */
+.sponsor {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerItem:nth-child(7) img {
+  display: flex;
+  flex-flow: row wrap;
+  width: 25%;
+  margin: 0.5rem;
+}
+
+/* copyright */
+.copyright {
+  margin-top: 1rem;
+  width: 100%;
+  color: #292f36;
+}
+
+.copyrightDesc {
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+/* 電腦版 */
+@media screen and (min-width: 1025px) {
+  .footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .footerLogo {
+    margin: 0.1rem auto;
+    width: 20%;
+  }
+
+  .footerInfo {
+    width: 75%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .footerItem {
+    width: 30%;
+    margin: 0.5em;
+  }
+  .footerItem:nth-child(7) {
+    display: block;
+    justify-content: center;
+    width: 96.5%;
+  }
+
+  .fosponsor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sponsor {
+    /* width: 50%; */
+    justify-content: center;
+  }
+  .sponsor img {
+    width: 50%;
+  }
+  .footerItem:nth-child(7) img {
+    display: flex;
+    flex-flow: row wrap;
+    width: 30%;
+    margin: 0.5rem;
+  }
+  .footerHr {
+    /* width: 200px; */
+    margin: 0.5rem 0;
+  }
+  .desc {
+    font-size: var(--font-size-p);
+    text-align: center;
+    padding: 0.3rem;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/psycological-test_p1.module.css'
+import styles from '@/styles/psycological-test/psycological-test_p1.module.css'
 
 export default function Page1() {
   return (

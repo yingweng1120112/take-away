@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '@/styles/faqreport2.module.css'
+import { PiCatBold } from "react-icons/pi";
 
 export default function Reportform() {
   return (
@@ -59,7 +60,8 @@ export default function Reportform() {
                 type="submit"
                 value="送出表單"
               />
-              <i className="fa-solid fa-paw"></i>
+              <PiCatBold className={styles['rf_icons']}/>
+              {/* <i className="fa-solid fa-paw"></i> */}
             </div>
             <br />
             <div className={styles['rf_btn2']}>
@@ -68,7 +70,8 @@ export default function Reportform() {
                 type="reset"
                 value="清除表單"
               />
-              <i className="fa-solid fa-paw"></i>
+              <PiCatBold className={styles['rf_icons']}/>
+              {/* <i className="fa-solid fa-paw"></i> */}
             </div>
             <br />
           </form>

@@ -153,11 +153,15 @@
   text-transform: uppercase;
 }
 
-.cta svg:not(.fontawesome-icon) {
+.cta svg:not(.question-icon) {
   transform: translateX(-8px);
   transition: all 0.3s ease;
   filter: invert(1);
   width: auto;
+}
+
+.question-icon {
+  margin-bottom: 3px;
 }
 
 .cta:hover svg {
@@ -193,12 +197,12 @@
 }
 
 /* banner */
-.banner {
+/* .banner {
   background-image: url('../public/img/petinfo-navbar.png');
   background-size: cover;
   background-position: center;
   z-index: 2;
-}
+} */
 
 /* 寵物主頁 */
 .commendbody {
@@ -221,7 +225,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-image: url('../public/img/bg-pet-info.png');
+  background-image: url('../../public/img/pets/bg-pet-info.png');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 90%;
@@ -315,7 +319,7 @@
   display: inline;
   width: 100%;
   padding-left: 30px;
-  list-style-image: url('../public/img/icon_pet_ulli.png');
+  list-style-image: url('../../public/img/pets/icon_pet_ulli.png');
 }
 
 .pet-info > ul > li {
@@ -360,12 +364,12 @@
 /* 我的故事 */
 .pet-story {
   /* width: 80%; */
-  /* margin-top: 15%; */
+  margin-top: 10%;
   margin-bottom: 150px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../public/img/bg-pet-story.png');
+  background-image: url('../../public/img/pets/bg-pet-story.png');
   padding: 0 10% 0 10%;
   background-repeat: repeat-x;
   background-position: 50%;
@@ -390,10 +394,11 @@
   line-height: 80px;
   text-align: center;
   color: white;
+  font-weight: 600;
   letter-spacing: 40px;
   background-position: 50% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
   position: relative;
   top: -120px;
@@ -424,6 +429,7 @@
 
 .pet-health > h1 {
   margin: 0;
+  font-weight: 600;
   line-height: 100px;
   letter-spacing: 40px;
   display: flex;
@@ -464,7 +470,7 @@
 .health-underline {
   width: 100%;
   height: 50px;
-  background-image: url('../public/img/underline-paws.png');
+  background-image: url('../../public/img/pets/underline-paws.png');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center;
@@ -481,12 +487,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../public/img/bg-pet-habit.png');
+  background-image: url('../../public/img/pets/bg-pet-habit.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
   padding: 600px 10% 600px 10%;
-  margin: -500px 0 0px 0;
+  margin: -300px 0 0px 0;
 }
 
 .pet-habit > div {
@@ -539,7 +545,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url("../public/img/bg-pet-story.png");
+  background-image: url('../../public/img/pets/bg-pet-story.png');
   padding: 0 10% 0 10%;
   background-repeat: repeat-x;
   background-size: contain;
@@ -566,14 +572,17 @@
   padding-top: 20px;
   padding-left: 60px;
   margin-bottom: 30px;
+  font-weight: 600;
   line-height: 80px;
   text-align: left;
   color: white;
   letter-spacing: 40px;
   background-position: 0% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
+  position: absolute;
+  top: -43%;
 }
 
 .pet-skill > table > tbody > tr > td > label {
@@ -586,7 +595,7 @@
 .pet-score {
   width: 80%;
   height: auto;
-  margin-top: 100px;
+  margin: 300px 0;
   padding: 30px;
   align-items: center;
   justify-content: center;
@@ -602,13 +611,14 @@
   width: 100%;
   margin-bottom: 30px;
   padding-top: 20px;
+  font-weight: 600;
   line-height: 80px;
   text-align: center;
   color: white;
   letter-spacing: 40px;
   background-position: 50% 50%;
   background-size: contain;
-  background-image: url('../public/img/titlebg.png');
+  background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
 }
 
@@ -734,7 +744,7 @@
   /* border: 1px solid black; */
   color: white;
   font-size: 20px;
-  /* padding-bottom: 0; */
+  padding-bottom: 0;
 }
 
 .hover-underline-animation {
@@ -746,6 +756,7 @@
 }
 
 /* 背景圖案 */
+/* TODO: 圖案位置 加了header位置會跑掉 */
 .paws1 {
   position: absolute;
   /* z-index: -1; */
@@ -764,7 +775,7 @@
     top: 40%;
   }
   50% {
-    left: 90%;
+    left: 85%;
     top: 80%;
     transform: rotate(80deg);
   }
@@ -790,7 +801,7 @@
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 140%;
+  top: 120%;
 }
 
 @keyframes paws2 {
@@ -798,11 +809,12 @@
     transform: rotate(45deg);
   }
   to {
-    left: 93%;
+    left: 90%;
     /* top: 120%; */
     transform: rotate(730deg);
   }
 }
+
 .paws3 {
   position: absolute;
   /* z-index: -1; */
@@ -855,7 +867,7 @@
   transform: rotate(-95deg);
   height: 550px;
   object-fit: contain;
-  right: -5%;
+  right: 2%;
   top: 475%;
 }
 
@@ -878,15 +890,17 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 50px 10% 0 10%;
+    height: auto;
+    padding: 50px 10% 10% 10%;
     margin: 0;
-    /* background-image: url("../images/background-petinfo-mobile.png"); */
+    background-image: url('../../public/img/pets/background-petinfo-mobile.png');
     background-size: 150%;
-    background-position: 65% 50%;
+    background-position: 15% 80%;
   }
 
   .pet-img {
     width: 100%;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -899,7 +913,7 @@
   }
 
   .img-small {
-    width: 100%;
+    width: 90%;
   }
 
   .img-small > img {
@@ -910,16 +924,16 @@
 
   .pet-info {
     width: 100%;
-    padding: 25px 0;
+    padding: 10px 0 0 0;
   }
 
   .pet-hashtag {
-    font-size: 20px;
+    font-size: 24px;
     height: 10px;
   }
 
   .pet-name > p {
-    font-size: 36px;
+    font-size: 50px;
     margin-bottom: 10px;
   }
 
@@ -929,13 +943,13 @@
   }
 
   .pet-info > ul > li {
-    width: 33%;
-    line-height: 40px;
-    font-size: 16px;
-    /* list-style-image: url(); */
+    width: 45%;
+    line-height: 50px;
+    font-size: 18px;
     padding-left: 5px;
-    background-size: 10px;
-    /* background-image: url("../images/icon_pet_ulli.png"); */
+    margin-left: 5%;
+    /* border: 1px solid black; */
+    /* background-size: 10px; */
   }
 
   .pet-info > ul {
@@ -944,15 +958,20 @@
 
   .pet-btn {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .pet-btn > button {
     border-radius: 50px;
     line-height: 50px;
+    margin: 10px;
+    width: 90%;
   }
 
   .pet-btn > button > span {
-    font-size: 14px;
+    font-size: 16px;
     padding-right: 5px;
   }
 
@@ -966,6 +985,8 @@
     background-size: 450%;
     background-position: top;
     margin-top: 30%;
+    margin-bottom: 20%;
+    height: auto;
   }
 
   .story-desc {
@@ -976,11 +997,18 @@
 
   .story-desc > h1 {
     width: 100%;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 50px;
     letter-spacing: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     margin-top: -50px;
+    position: static;
+  }
+
+  .story-desc > p {
+    position: static;
+    font-size: 16px;
+    line-height: 38px;
   }
 
   .story-img {
@@ -989,10 +1017,11 @@
 
   .pet-health {
     margin: 50px 0;
+    width: 90%;
   }
 
   .pet-health > h1 {
-    font-size: 24px;
+    font-size: 28px;
     line-height: 70px;
     letter-spacing: 20px;
     border-top-left-radius: 30px;
@@ -1005,16 +1034,19 @@
     width: 20px;
   }
 
+  .pet-health > ul {
+    padding: 20px 0 20px 15%;
+  }
+
   .pet-health > ul > li {
-    margin: 5px 0;
+    margin: 15px 0;
     width: 50%;
-    font-size: 16px;
   }
 
   .cl-checkbox > span::before {
     margin: 3px 15px 3px 1px;
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
     align-items: center;
   }
 
@@ -1024,9 +1056,14 @@
     left: 1px;
     width: 8px;
     height: 5px;
+    margin-top: 2px;
     border: solid 2px transparent;
     border-right: none;
     border-top: none;
+  }
+
+  .cl-checkbox > span {
+    font-size: 16px;
   }
 
   .health-underline {
@@ -1040,7 +1077,7 @@
     background-position: center;
     padding: 450px 10% 500px 10%;
     margin: -250px 0 -100px 0;
-    /* background-image: url(../images/bg-pet-habit-mobile.png); */
+    background-image: url('../../public/img/pets/bg-pet-habit-mobile.png');
   }
 
   .pet-habit > div > h1 {
@@ -1064,52 +1101,58 @@
   }
 
   .pet-skill {
-    margin-top: 100px;
+    margin: 150px 0;
     display: flex;
     flex-direction: column;
     /* background-image: url(../images/bg-pet-story.png); */
     padding: 0 10% 30px 10%;
     background-repeat: repeat-x;
     background-size: 400%;
-    background-position: bottom;
+    background-position: 0 30%;
   }
 
   .pet-skill > img {
     width: 80%;
+    order: 2;
   }
 
   .pet-skill > table {
     width: 100%;
-    height: 120%;
+    height: auto;
+    margin-bottom: -30px;
+    order: 1;
   }
 
   .pet-skill > table > tbody > tr > th > h1 {
-    width: 90%;
-    font-size: 24px;
+    width: 100%;
+    font-size: 28px;
     margin: 30px 0 0 0;
-    padding-top: 10px;
-    padding-left: 30px;
+    padding-top: 15px;
+    padding-left: 50px;
     letter-spacing: 20px;
+    /* top: -30%; */
+    position: static;
   }
 
   .pet-skill > table > tbody > tr > td > label {
-    margin: 20px;
+    margin: 15px 20px;
     font-size: 16px;
   }
 
   .pet-score {
-    margin-top: 50px;
+    margin: 50px 0;
     padding: 30px 20px;
     border-radius: 20px;
+    width: 90%;
   }
 
   .pet-score > h1 {
     width: 100%;
-    margin: 10px 0 20px 0;
-    padding-top: 10px;
+    margin: 0px 0 30px 0;
+    padding-top: 15px;
     padding-right: 30px;
-    font-size: 24px;
-    line-height: 50px;
+    font-size: 28px;
+    /* line-height: 50px; */
     letter-spacing: 20px;
   }
 
@@ -1146,7 +1189,7 @@
 
   .score-btn {
     margin-top: 10px;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
   }
@@ -1154,8 +1197,8 @@
   .score-btn > button {
     width: 100%;
     margin: 10px 0;
-    line-height: 40px;
     height: 50px;
+    line-height: 50px;
   }
 
   .score-btn > button > span {

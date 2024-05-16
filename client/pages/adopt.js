@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
-import AdoptForm from '../adout-form'
+import AdoptForm from './adout-form'
 
 const parageStyles = {
   WebkitLineClamp: 1,
@@ -44,7 +44,7 @@ export default function Adopt() {
               </div>
 
               <div className={styles['pet-photo']}>
-                <img src={`/images/pet-info/10008/10008-1p.jpg`} alt="" />
+                <img src={`/img/pet-info/10008/10008-1p.jpg`} alt="" />
               </div>
               <div className={styles['pet-name']}>
                 {/* TODO:姓名抓資料庫 */}
@@ -53,13 +53,13 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
-                  <img src={`/images/pet-info/10008/10008-2p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008/10008-2p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/images/pet-info/10008/10008-3p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008/10008-3p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/images/pet-info/10008/10008-4p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008/10008-4p.jpg`} alt="" />
                 </div>
               </div>
               <div className={styles['pet-namet']}>
