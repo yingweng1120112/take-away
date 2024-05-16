@@ -9,7 +9,7 @@ import { faCartPlus, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
-import styles from '@/components/shoppingcart/styles.module.css'
+import styles from '@/components/shopping-cart/styles.module.css'
 
 // import required modules
 import { Pagination } from 'swiper/modules'
@@ -42,7 +42,7 @@ export default function App() {
       >
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -53,19 +53,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -76,19 +78,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -99,19 +103,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -122,19 +128,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -145,19 +153,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -168,19 +178,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -191,19 +203,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -214,19 +228,21 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className={styles['item']}>
           <div className={styles['container']}>
-            <img src="/cart/car-item1.png" alt="" />
+            <img src="/shopping-cart/car-item1.png" alt="" />
             <div className={styles['text']}>
               <p>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</p>
               <p>$45</p>
@@ -237,12 +253,14 @@ export default function App() {
                   icon={faCircleInfo}
                   className={styles['iconstyle']}
                 />
+                <div>商品資訊</div>
               </button>
               <button className={styles['button']}>
                 <FontAwesomeIcon
                   className={styles['iconstyle']}
                   icon={faCartPlus}
                 />
+                <div>新增商品</div>
               </button>
             </div>
           </div>

@@ -190,9 +190,11 @@
   .questioncontent {
     width: 65%;
     margin-left: -50px;
+    z-index: 1;
   }
   .iconstyle {
-    left: -5px;
+    left: 17px;
     width: 30px;
+    z-index: 2;
   }
 }

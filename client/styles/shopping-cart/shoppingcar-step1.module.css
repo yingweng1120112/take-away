@@ -19,7 +19,7 @@
   margin-bottom: 80px;
 }
 .stepbg {
-  background-image: url(/cart/step.png);
+  background-image: url(/shopping-cart/step.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom;
@@ -53,6 +53,7 @@
 .step .nextto:nth-child(1) h2 {
   margin-top: 28px;
   color: var(--deep-gray);
+  font-weight: 600;
 }
 .step .nextto:nth-child(n + 2) h2 {
   color: var(--light-gray);
@@ -279,17 +280,18 @@
 
 /* 產品推薦 */
 .commend {
-  background-image: url(/cart/commendbg.png);
+  background-image: url(/shopping-cart/commendbg.png);
   background-size: contain;
   margin: 0;
   height: 34rem;
 }
 .commend > h4 {
   font-size: var(--font-size-h3);
-  padding-top: 30px;
+  padding-top: 25px;
   text-align: center;
   letter-spacing: 10px;
   color: var(--deep-gray);
+  font-weight: 600;
 }
 .carouselstyle {
   width: 100%;
@@ -345,6 +347,7 @@
 /* 下花邊 */
 .wall {
   margin: 40px 0 0 0;
+  height: fit-content;
 }
 .wall img {
   margin: 0;
@@ -466,6 +469,7 @@
     width: 50%;
   }
   .cartitemright > div:nth-child(5) {
+    background-color: transparent;
     height: fit-content;
     text-align: center;
     padding-left: 0;
