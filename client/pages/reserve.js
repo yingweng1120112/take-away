@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from '@/styles/reserve.module.css'
-import Header from '../components/layout/header'
-
+// import Header from '../components/layout/header'
+import { IoRemoveOutline } from "react-icons/io5";
 export default function Reserve() {
   return (
     <>
-    <Header />
+    {/* <Header /> */}
       <section className={styles['reserve']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`}
@@ -21,7 +21,7 @@ export default function Reserve() {
             <p className={styles['lap-top']}>
               _____________________________________________
             </p>
-            <p className={styles['phone']}>______________________________</p>
+            <p className={styles['phone']}><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /></p>
           </div>
           <h5 className={styles['reserve-inner']}>
             這些孩子在等待著一些機會，
@@ -35,7 +35,7 @@ export default function Reserve() {
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
-                ___________________________________
+                _______________________________________
               </p>
             </div>
           </div>

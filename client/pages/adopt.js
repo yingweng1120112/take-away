@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
-import styles from '@/styles/adopt.module.css'
+import styles from '@/styles/adopt/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
-import AdoptForm from './adout-form'
-import Header from '../components/layout/header'
-import Footer from '@/components/layout/footer' 
+import AdoptForm from './adopt-form'
+// import DefaultLayout from '@/components/layout/default-layout'
 
 const parageStyles = {
   WebkitLineClamp: 1,
@@ -22,8 +21,7 @@ export default function Adopt() {
   }, [])
   return (
     <>
-    <Header />
-      <div className={styles['adout']}>
+      <section className={styles['adout']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
@@ -43,7 +41,7 @@ export default function Adopt() {
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel style={{ 'margin': '1rem', }} />
+                <Carousel style={{ 'margin': '1rem', width:"100%"}} />
               </div>
 
               <div className={styles['pet-photo']}>
@@ -105,10 +103,7 @@ export default function Adopt() {
             <AdoptForm />
           </section>
         </div>
-      </div>
-      <footer>
-        <Footer />
-      </footer>
+      </section>
     </>
   )
 }

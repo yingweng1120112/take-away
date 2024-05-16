@@ -1,25 +1,30 @@
+.reserve{
+  background-color: var(--creamy-yellow);
+  height: 55rem;
+  padding-top: 4rem;
+}
 .reserve .container {
   width: 80%;
-  height: auto;
-  margin: 3rem auto;
+  height: 90%;
+  margin:auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
 }
 .reserve .foot {
   position: absolute;
-  width: 7rem;
-  top:45%;
-  left: 71%;
+  width: 8rem;
+  top:42%;
+  left: 72%;
   z-index: 4;
   transform: rotate(-80deg);
 }
 .reserve .print {
   position: absolute;
-  width: 7rem;
-  top:88%;
+  width: 8rem;
+  top:85%;
   left: -9%;
   z-index: 1;
   transform: rotate(0deg);
@@ -31,13 +36,13 @@
   display: none;
 }
 .reserve .reserve-title {
- width: 80%;
- height:10%;
+ width: 90%;
+ /* height:10%; */
  display: flex;
  flex-direction: column;
  align-items: start;
  margin: 0rem auto;
- line-height: 1.5rem;
+ /* line-height: 1.5rem; */
  color: var(--border-color);
 }
 .reserve .reserve-title .lap-top {
@@ -45,17 +50,17 @@
  }
  .reserve .reserve-title .reserve-title-h1{
   margin:0rem;
-  font-size:1.5rem;
+  font-size:1.6rem;
  }
  .reserve .reserve-title .phone{
   display: flex;
   justify-content:start;
   align-items: start;
-  margin-bottom:0.5rem;
+  margin-bottom:0.3rem;
  }
  .reserve .reserve-img{
   width: 90%;
-  height: 20rem;
+  height: 23rem;
   position: relative;
   left:5%;
   /* top:1% */
@@ -74,7 +79,7 @@
   width: 100%;
   height: 100%;
   top: 10px;
-  color: var(--white);
+  color: var(--creamy-yellow);
  }
  .reserve .img-title .img-h1{
   order: 2;
@@ -120,14 +125,14 @@ display: none;
 /* styling of Input */
 .reserve .form-input .input {
   color: var(--black);
-  font-size: 0.9rem;
+  font-size: 1rem;
   background-color: transparent;
   width: 100%;
   box-sizing: border-box;
   padding-inline: 0.5em;
   padding-block: 0.7em;
   border: none;
-  border-bottom: var(--border-height) solid var(--border-before-color);
+  border-bottom: var(--border-height) solid black;
 }
 
 /* styling of animated border */
@@ -135,10 +140,10 @@ display: none;
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
-  height: 2px;
+  height: 3px;
   bottom: 0;
   left: 0;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 /* Hover on Input */
@@ -158,7 +163,11 @@ display: none;
 .reserve input[type=date]:invalid::-webkit-datetime-edit {
   color: black;
 }
-
+.reserve .input-h4{
+  margin-bottom: 0rem;
+  font-size:1.2rem;
+  font-weight:border;
+}
 .reserve .button {
   outline: none;
   display:flex;
@@ -211,9 +220,9 @@ text-align: center;
     display: block;
   }
   .reserve {
-    width: 100%;
-    height: 53rem;
-    margin: 6rem auto;
+    /* width: 100%; */
+    height: 60rem;
+    margin: 0rem auto;
   }
 
   .reserve .container {
@@ -228,15 +237,15 @@ text-align: center;
   .reserve .foot {
     position: absolute;
     width: 10rem;
-    top: 4rem;
-    left: 69rem;
+    top: 7%;
+    left: 79%;
     z-index: 4;
   }
   .reserve .print {
     position: absolute;
     width: 10rem;
-    top:72%;
-    left: 50.5%;
+    top:71.5%;
+    left:48%;
     z-index: 3;
     transform: rotate(0deg);
   }
@@ -251,7 +260,8 @@ text-align: center;
     color: var(--border-color);
   }
   .reserve .reserve-title h1{
-    font-size:1.6rem
+    font-size:2rem;
+    font-weight: bolder;
   }
   .reserve .reserve-title .lap-top {
     display: block;
@@ -262,12 +272,12 @@ text-align: center;
   .reserve .reserve-inner {
     display: block;
     width: 40%;
-    font-size:0.9rem;
+    font-size:1rem;
     font-weight:bolder;
     position: absolute;
     margin: auto;
     top: 5rem;
-    left: 47rem;
+    left: 52rem;
     line-height: 1.55rem;
     letter-spacing: 0.5rem;
     color: var(--border-color);
@@ -277,15 +287,15 @@ text-align: center;
     width: 35%;
     position: absolute;
     margin: auto;
-    top: 43rem;
-    left: 15rem;
-    font-size: 1rem;
+    top: 45rem;
+    left: 17rem;
     line-height: 1.35rem;
     letter-spacing: 0.3rem;
     color: var(--border-color);
   }
   .reserve .play-title{
-    font-size:0.9rem;
+    font-size:1rem;
+    font-weight: bolder;
   }
   .reserve .reserve-img {
     width: 36%;
@@ -309,7 +319,7 @@ text-align: center;
     position: absolute;
     display: flex;
     flex-direction: row;
-    top: 33rem;
+    top: 35rem;
     left: 0rem;
     z-index: 0;
     color: white;
@@ -320,7 +330,7 @@ text-align: center;
     width: 100%;
     text-align: left;
     margin: 0;
-    font-size: 1.2rem
+    font-size: 1.5rem
   }
   .reserve .reserve-img .img-title p {
     display: block;
@@ -339,15 +349,17 @@ text-align: center;
     height: 70%;
     position: absolute;
     top: 10rem;
-    left: 45rem;
+    left: 48rem;
     background-color: var(--white);
     z-index: 1;
     box-shadow: 5px 8px 2px rgba(0, 0, 0, 0.2);
     margin: auto;
 
   }
-  .reserve .input-h4{
-    font-size: 1rem;
+  .reserve .text-group .input-h4{
+    font-size: 1.2rem;
+    margin-bottom: 0rem;
+    font-weight: bolder;
   }
   .reserve .input-group {
     margin-top: 0rem;
@@ -378,7 +390,7 @@ text-align: center;
     padding-inline: 0.5em;
     padding-block: 0.7em;
     border: none;
-    border-bottom: var(--border-height) solid var(--border-before-color);
+    border-bottom: var(--border-height) solid black;
   }
 
   /* styling of animated border */
@@ -389,7 +401,7 @@ text-align: center;
     height: 2px;
     bottom: 0;
     left: 0;
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   /* Hover on Input */

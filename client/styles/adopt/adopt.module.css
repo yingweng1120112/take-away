@@ -18,7 +18,6 @@
 .adout {
   display: flex;
   justify-content: space-around;
-  width: 100%;
   height:auto;
   margin: 1rem auto;
 }
@@ -26,7 +25,8 @@
   position: relative;
   width: 100%;
   height:auto;
-  margin: 6.25rem auto;
+  margin: 2rem auto;
+  margin-top: 0rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -233,17 +233,9 @@
   width: 100%;
   height: auto;
   justify-content: space-around;
-  height: 50rem;
   position: relative;
+  margin-top: 2rem;
 }
-
-/* .form .msform {
-  width: 95%;
-  height: 100%;
-  text-align: start;
-  position: relative;
-  margin: 3rem auto;
-} */
 
 
 /*inputs*/
@@ -826,7 +818,7 @@ background: var(--reddish-brown);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 55rem;
+  height: auto;
 }
 
 .adout  .container {
@@ -837,7 +829,7 @@ background: var(--reddish-brown);
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-around;
+  justify-content: center;
   z-index: 1;
 }
 .foot{
@@ -926,8 +918,10 @@ background: var(--reddish-brown);
 }
 
 .about-pet {
-  width: 50%;
-  height: 100%;
+  width: 40%;
+  height: 45rem;
+  padding: 0.5rem;
+  margin-right: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -941,7 +935,7 @@ background: var(--reddish-brown);
 
 .petswiper {
   display: block;
-  width: 80%;
+  width: 350px;
   height: 35%;
   margin:0.5rem 0rem;
   border: 4px soild var(--border-color);
@@ -954,8 +948,9 @@ display:none;
 
 .about-pet .pet-title {
   position: relative;
+  width: 100%;
+  margin:0rem auto;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -1053,11 +1048,12 @@ display:none;
 /* 顯示更多 */
 /*form styles*/
 .form {
-  width: 50%;
-  height: 100%;
+  width: 40%;
+  height: auto;
   justify-content: space-around;
-  height: 50rem;
   position: relative;
+  margin-top: 0rem;
+  margin-left: 2rem;
 }
 
 /* 點選捐款金額 */

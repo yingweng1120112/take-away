@@ -85,8 +85,8 @@ ol {
   padding-top: 1rem;
   background-color: var(--bean-paste);
   width: 90%;
-  height: auto;
-  margin: 2rem auto;
+  height: 100%;
+  margin: 1rem auto;
   border-radius: 1rem;
   border: 2px solid black;
 }
@@ -182,16 +182,16 @@ ol {
   
 }
 
-.card {
+.input-card {
   position: relative;
-  width: 9.375rem;
-  height: 6.25rem;
+  width:30%;
+  height: 100%;
   background: #fff;
   border-radius: 10px;
   transition: all 0.3s;
 }
 
-.card:hover {
+.input-card:hover {
   transform: scale(1.05);
 }
 
@@ -669,11 +669,11 @@ ol {
 @media screen and (min-width: 1025px) {
   .form1 {
     margin: 0rem auto;
-    width: 80%;
+    width: 100%;
   }
 
   .page-one {
-    width: 26.4375rem;
+    width: 100%;
   }
 
   .page-one h4 {
@@ -689,7 +689,7 @@ ol {
     flex-direction: row;
     justify-content: center;
     width: 80%;
-    margin-left: 2.2rem;
+    margin: 2rem auto;
   }
 
   .donate-button {
@@ -707,13 +707,32 @@ ol {
 
   .ntd-group {
     width: 100%;
+    height: 6rem;
     margin: 0;
+    justify-content: center;
   }
 
   .radio-group {
     margin: 1rem auto;
     line-height: 2rem;
   }
+
+  .ntd-label {
+
+    top: 34%;
+    left: 3%;
+    z-index: 0;
+  }
+.ntd-label .title {
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+}
+
+.ntd-label .price {
+  font-size: 1.1rem;
+}
+
   .wrapper{
     width: 80%;
     height:90%;
@@ -724,18 +743,37 @@ ol {
   }
 
   .custom-checkbox .checkmark {
-    width: 1.1rem;
+    width: 1.2rem;
     height: 1.1rem;
   }
 
   .custom-checkbox .checkmark::before {
     font-size: 1rem;
   }
-
+  .ntd-input+.check::before {
+    content: "";
+    position: absolute;
+    top: .6rem;
+    right: .7rem;
+    width: .9rem;
+    height: .9rem;
+    border: .125rem solid #d0d0d0;
+    border-radius: 50%;
+    background-color: #E8E8E8;
+  }
+  
+  .ntd-input:checked+.check::after {
+    content: '';
+    position: absolute;
+    top: .6rem;
+    right: .7rem;
+    width: .9rem;
+    height: .9rem;
+    background-color: var(--brown);
+    border-radius: 50%;
+  }
   .page-one .form-Input-group {
-    width: 60%;
-    margin: 0rem;
-    margin-left: 2.5rem;
+    width: 70%;
   }
 
   .page-one .input-title {
@@ -750,10 +788,10 @@ ol {
     height: 2.2rem;
     width: 80%;
     font-size: 0.8rem;
-    // margin: auto;
-    margin-left: 1.8rem;
   }
-
+  .page-two {
+    width:100%;
+  }
   .page-two .input-title {
     font-size: 1.1rem;
   }
@@ -792,7 +830,7 @@ ol {
   }
 
   .page-one .button-group{
-    margin: 1rem 0.1rem;
+    margin: 1rem auto;
   }
   .page-one .next-button{
     height: 35px;
