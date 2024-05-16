@@ -33,5 +33,4 @@ export default function MyApp({ Component, pageProps }) {
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return getLayout(<Component {...pageProps} />)
-
 }
