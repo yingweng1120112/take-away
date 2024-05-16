@@ -11,7 +11,7 @@
 
 .location {
   height: auto;
-  margin-top: 10%;
+background-color: var(--creamy-yellow);
 }
 
 .location .foot {
@@ -39,6 +39,7 @@
   height: 100%;
   justify-content: center;
   margin: 0rem auto;
+  
 }
 
 .location .space-left {
@@ -136,7 +137,8 @@
 }
 .address {
   height: 33rem;
-  margin-top: 2rem;
+background-color: var(--creamy-yellow);
+
 }
 
 .address .container {
@@ -170,8 +172,9 @@
 
 .address .address-left {
   width: 100%;
-  height: 40%;
+  height: 50%;
   z-index: 2;
+  margin-top: 2rem;
 }
 
 .address .address-left iframe {
@@ -181,7 +184,8 @@
 
 .address .address-right {
   width: 100%;
-  height: 60%;
+  height: 50%;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -382,7 +386,7 @@
   font-weight: bolder;
 }
 .carousel {
-  height: 11.6rem;
+  height: 9rem;
   width: 100%;
   margin: 0rem;
   position: relative;
@@ -404,10 +408,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 60%;
+  width: 50%;
   height: 30%;
-  top: 12%;
-  left: 40%;
+  top: 35%;
+  left: 50%;
 }
 .carousel .heart {
   font-size: 1rem;
@@ -428,10 +432,10 @@
 }
 .carousel .btn {
   position: absolute;
-  top: 45%;
+  top: 70%;
   left: 70%;
   width: 25%;
-  height: 18%;
+  height: 25%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -444,7 +448,7 @@
 }
 .carousel .swiper-slide .btn .icon{
   width: 10%;
-  margin:auto;
+  margin-left:0.5rem;
 }
 @media screen and (min-width: 1025px) {
   .container {
