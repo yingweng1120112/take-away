@@ -1,0 +1,531 @@
+.section {
+  margin-bottom: 5rem;
+}
+
+.p {
+  padding: 0rem;
+}
+
+.content {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+/* 按鈕原始css */
+.cta {
+  border: none;
+  background: var(--white);
+  height: 3.125rem;
+  width: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3.125rem;
+  padding-top: 0.1875rem;
+  box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+
+.cta span {
+  letter-spacing: 0.25rem;
+  font-size: 0.875rem;
+  padding-right: 0.9375rem;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 0.125rem;
+  bottom: 0;
+  left: 0;
+  background-color: 0;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.dropdown-item {
+  margin: 0.625rem auto;
+}
+/* banner區域 */
+.banner {
+  width: 100%;
+  height: 29.25rem;
+  background-position: top center;
+
+  background-image: url(/img/pet_mall/mall-banner2.jpg);
+  background-size: cover; /* 讓背景圖片覆蓋整個元素 */
+  background-repeat: no-repeat; /* 不重複背景圖片 */
+}
+
+.banner-item {
+  width: 100%;
+  margin-top: 3.75rem;
+}
+.banner-right {
+  margin-top: 2.5rem;
+}
+
+.mall-title {
+  color: var(--white);
+  font-size: 3rem;
+}
+
+.yellow {
+  color: var(--yellow);
+  font-size: 3rem;
+}
+.light-blue {
+  color: var(--light-blue);
+  font-size: 3rem;
+}
+.mall-info {
+  font-size: 1.5rem;
+  color: var(--white);
+}
+.dropdown {
+  margin-top: 1.875rem;
+}
+.btn-secondary {
+  background: var(--white);
+  color: var(--deep-blue);
+  border-radius: 1.25rem;
+  border: 0.125rem solid var(--yellow);
+}
+.btn:hover {
+  color: var(--black);
+  background-color: var(--yellow);
+  border-color: var(--yellow);
+}
+.dropdown-menu {
+  border: 0.15rem solid var(--bean-paste);
+  background: var(--bg-color);
+}
+.dropdown-item:hover {
+  background: var(--khaki);
+  color: var(--white);
+}
+.btn:first-child:active {
+  background-color: var(--bean-paste);
+}
+.btn.show {
+  background-color: var(var(--yellow));
+}
+.active {
+  background-color: var(var(--yellow));
+}
+.company-name {
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+/* 商品分類標題 */
+.classificationimg {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.classification {
+  margin-top: 3.125rem;
+  width: 80%;
+  z-index: 0;
+}
+
+/* 寵物飼料 */
+.feed-card {
+  height: auto;
+  margin-bottom: 1rem;
+}
+.mall-card {
+  margin-top: 3.125rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+}
+
+.mallcard-left {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 1.25rem;
+}
+
+.mallcard-left .cta {
+  display: flex;
+  width: 100%;
+}
+.mallcard-left .cta:hover {
+  color: var(--white);
+  background: var(--deep-blue);
+}
+.mallcard-left .cta:hover span {
+  color: var(--white);
+}
+.mallcard-left .cta:hover svg {
+  fill: var(--white);
+}
+.cta:hover .hover-underline-animation:after {
+  background-color: var(--white);
+}
+.mallcard-right > img {
+  width: 100%;
+  border-radius: 1.875rem;
+}
+/* 背景狗掌區 */
+.dog-palm {
+  position: absolute;
+  top: 59.375rem;
+  right: 12.5rem;
+  z-index: 1;
+  transform: rotate(75deg) scale(0.5);
+}
+.dog-palm2 {
+  position: absolute;
+  top: 95.625rem;
+  left: 10.625rem;
+  z-index: 1;
+  transform: scale(0.5);
+}
+.dog-palm3 {
+  position: absolute;
+  top: 132rem;
+  right: 11.25rem;
+  z-index: 1;
+  transform: rotate(260deg) scale(0.5);
+}
+.dog-palm4 {
+  position: absolute;
+  top: 176.875rem;
+  left: 7.5rem;
+  z-index: 1;
+  transform: scale(0.4);
+}
+.dog-palm5 {
+  position: absolute;
+  top: 83.125rem;
+  right: 12.5rem;
+  z-index: 1;
+  transform: rotate(75deg) scale(0.5);
+  animation: fade-out 1.5s ease infinite;
+}
+.dog-palm6 {
+  position: absolute;
+  top: 25.625rem;
+  right: 13.4375rem;
+  z-index: 1;
+  transform: rotate(75deg) scale(0.3);
+  animation: fade-out 2.5s ease infinite;
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1; /* 初始不透明度为 1 */
+  }
+  50% {
+    opacity: 0.5; /* 末尾不透明度为 0 */
+  }
+  100% {
+    opacity: 0; /* 末尾不透明度为 0 */
+  }
+}
+.dog-footprints {
+  position: absolute;
+  top: 149.6875rem;
+  left: 7.1875rem;
+  z-index: 1;
+  transform: scale(0.4);
+}
+
+/* 寵物用品 */
+.necessities-card .mall-card {
+  background: var(--white);
+  padding: 0.625rem;
+  border-radius: 1.875rem;
+  box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+}
+.necessities-card .mallcard-left .cta {
+  background: var(--bean-paste);
+  box-shadow: none;
+}
+.necessities-card .mallcard-left .cta:hover {
+  background: var(--khaki);
+}
+/* section第4區 */
+.section4 {
+  width: 100%;
+}
+
+.section4 img {
+  width: 100%;
+}
+.section4-bg2 {
+  display: none;
+}
+
+.section4-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.section4-text-left {
+  display: none;
+}
+.section4-text-right h1 {
+  display: none;
+}
+
+.mall-card2 {
+  width: 100%;
+  padding: 10%;
+}
+.mallcard-top img {
+  width: 100%;
+  margin-top: 1.25rem;
+  border-radius: 1.875rem;
+}
+.mallcard-button {
+  margin-top: 1.25rem;
+}
+.section4 .mallcard-button .cta {
+  width: 100%;
+}
+.section4 .mallcard-button .cta:hover {
+  color: var(--white);
+  background: var(--deep-blue);
+}
+.section4 .mallcard-button .cta:hover span {
+  color: var(--white);
+}
+.section4 .mallcard-button .cta:hover svg {
+  fill: var(--white);
+}
+
+/* 電腦版 */
+@media screen and (min-width: 1025px) {
+  .banner {
+    background-image: url(/img/pet_mall/mall-banner1.jpg);
+    height: 46.875rem;
+  }
+  .banner-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46.875rem;
+    margin-top: 0rem;
+  }
+  .mall-title {
+    font-size: 5rem;
+  }
+  .yellow {
+    font-size: 5rem;
+  }
+  .light-blue {
+    font-size: 5rem;
+  }
+  .mall-info {
+    font-size: 1.5rem;
+  }
+  .banner-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 37.5rem;
+  }
+  .company-name {
+    font-size: 1.5rem;
+  }
+
+  /* 商品分類標題 */
+  .classification {
+    margin-top: 3.125rem;
+    width: 20%;
+  }
+  /* 寵物飼料 */
+  .mall-card {
+    width: 70%;
+    justify-content: space-between;
+    flex-direction: initial;
+  }
+  .mallcard-left {
+    width: 40%;
+    margin-top: 0rem;
+  }
+  .mallcard-left .cta {
+    width: 60%;
+  }
+  .mallcard-right {
+    width: 50%;
+  }
+  .mallcard-right > img {
+    width: 100%;
+  }
+  .mallcard-info {
+    line-height: 2.1rem;
+  }
+  /* 背景狗掌區 */
+  .dog-palm {
+    top: 59.375rem;
+    right: 6.25rem;
+    transform: scale(1.5);
+  }
+  .dog-palm2 {
+    top: 83rem;
+    left: 6.25rem;
+    transform: rotate(75deg) scale(2);
+  }
+  .dog-palm3 {
+    position: absolute;
+    top: 106.25rem;
+    right: 6.25rem;
+    z-index: 1;
+    transform: rotate(330deg) scale(1);
+  }
+  .dog-palm4 {
+    top: -15rem;
+    left: 40.75rem;
+    transform: rotate(0deg) scale(0.3);
+    z-index: 0;
+  }
+  .dog-palm5 {
+    position: absolute;
+    top: 83.125rem;
+    right: 12.5rem;
+    z-index: 1;
+    transform: rotate(75deg) scale(0.5);
+  }
+  .dog-palm6 {
+    top: 50rem;
+    right: 100rem;
+    transform: scale(0.6);
+  }
+  .dog-footprints {
+    top: -54rem;
+    left: -47rem;
+    transform: scale(0.2);
+    z-index: 0;
+  }
+  /* 寵物罐頭 */
+  .can-card .mall-card {
+    flex-direction: row-reverse;
+  }
+
+  /* 寵物用品 */
+  .necessities-card .mall-card {
+    flex-direction: row-reverse;
+    border-radius: 1.875rem;
+    padding: 0rem;
+  }
+
+  .necessities-card .mallcard-left {
+    padding: 1.875rem 1.875rem 1.875rem 0rem;
+  }
+  .necessities-card .mallcard-left .cta {
+    width: 100%;
+  }
+
+  /* section第4區 */
+
+  .section4 > img:first-child {
+    display: none;
+  }
+  .section4 {
+    position: relative;
+    z-index: 2;
+  }
+  .section4-bg2 {
+    display: block;
+    width: 100%;
+    /* position: relative; */
+    position: absolute;
+    top: 2rem;
+    z-index: 1;
+  }
+  .section4-text-left {
+    display: flex;
+    width: 21%;
+  }
+  .section4-text-right {
+    width: 70%;
+  }
+  .right-decorative-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .section4-text-right h1 {
+    display: inline;
+  }
+
+  .section4-img-text {
+    display: flex;
+  }
+  .section4-text3 {
+    margin-left: 100%;
+  }
+
+  .section4-text1,
+  .section4-text2 {
+    width: 5rem;
+    font-size: 5rem;
+    color: var(--white);
+  }
+  .section4-text1 {
+    margin: 5.3125rem 3rem 2rem 4rem;
+  }
+  .section4-text2 {
+    margin-top: 15.75rem;
+  }
+  .section4-text3 {
+    font-size: 6.25rem;
+    color: var(--white);
+    margin-top: 2.5rem;
+  }
+  .section4-text4 {
+    font-size: 3.125rem;
+    color: var(--white);
+  }
+
+  .section4-card {
+    display: flex;
+  }
+  .mall-card2 {
+    width: 70%;
+    padding: 5%;
+  }
+}
