@@ -118,7 +118,7 @@ export default function Header() {
           <div className="header2">
             <div className="phone-header">
               <div className="logo">
-                <img src={`/img/logo.jpg`} />
+                <img src={`/img/index/logo-removebg-preview.png`} />
               </div>
               <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
                 {isVisible ? <RiMenuSearchFill /> : <RiMenuSearchLine />}
