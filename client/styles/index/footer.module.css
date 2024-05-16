@@ -22,19 +22,19 @@
 
 .footerInfo {
   width: 90%;
-  margin: 2rem;
+  /* margin: 2rem; */
   width: 80%;
-  margin-bottom: 10rem;
+  /* margin-bottom: 10rem; */
   display: flex;
   flex-flow: column wrap;
 }
 .footerItem {
   display: block;
-  width: 80%;
+  width: 100%;
   height: auto;
   margin: 0.2rem;
+  /* margin-top: 0.5rem; */
   flex-direction: column;
-  margin-top: 0.5rem;
 }
 .footerItem > h4 {
   text-align: center;
@@ -51,6 +51,7 @@
   text-align: center;
   padding: 0.3rem;
 }
+
 .footerHr {
   margin: 0 auto;
   border: none;
@@ -143,6 +144,7 @@
 
   .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
   }
 
@@ -154,12 +156,13 @@
     justify-content: center;
   }
   .footerItem {
-    width: 28%;
+    width: 30%;
+    margin: 0.85em;
   }
   .footerItem:nth-child(7) {
     display: block;
     justify-content: center;
-    width: 100%;
+    width: 96.5%;
   }
 
   .fosponsor {
