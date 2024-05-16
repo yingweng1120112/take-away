@@ -1,7 +1,6 @@
 /* banner */
 .banner {
   background-size:cover;
-  background-position: center;
   height: 8rem;
   width: 100%;
   display: flex;
@@ -413,6 +412,6 @@ margin: 0 10px
     display:flex;
   }
   .banner-life-2{
-    height: 198px;
+    height: 150px;
   }
 }
