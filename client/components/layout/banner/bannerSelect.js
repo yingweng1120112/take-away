@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/life.module.css'
-import banner from '@/styles/banner.module.css'
+import banner from '@/styles/banner/banner.module.css'
 // 請複製貼上出去修改
 // banner要滑動的範圍，請用一個div包住banner，並把範圍放進div內
 // 要滑動需放兩張切割過後的圖片，分別為banner-life-1 高度為233 banner-life-1 高度為150，若圖片無法對齊，請把兩張圖片寬度改為1440

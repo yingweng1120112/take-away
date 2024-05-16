@@ -1,20 +1,28 @@
 import React from 'react'
-import CarouselPetInfo from '@/components/swiper/blog-pet-img-swiper'
-import CarouselPetLife from '@/components/swiper/blog-pet-life-img-swiper'
+import CarouselPetInfo from '@/components/swiper/testSwiper'
+import CarouselPetLife from '@/components/swiper/blogPetLifeImgSwiper'
 import styles from '@/styles/blog.module.css'
+import banner from '@/styles/banner/banner.module.css'
 
 export default function life() {
   return (
     <>
-      <div className={styles['banner']}>
-        <div className={styles['left']}>
-          <p className={styles['menu-a']}>BLOG</p>
-          <p className={styles['menu-b']}>經歷分享</p>
+      <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>LIFE</p>
+          <p className={banner['menu-b']}>生活紀錄</p>
         </div>
-        <div className={styles['middle']}>
-          <div className={styles['middle-title']}>
-            <span className={styles['middle-page-title']}>毛孩日誌</span>
-            <span>pet Diary</span>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>日誌列表</span>
+              <span>選擇日誌分類</span>
+              <p className={banner['middle-page-title']}>選項</p>
+            </div>
           </div>
         </div>
       </div>
@@ -57,7 +65,7 @@ export default function life() {
               <form name="form1">
                 <div className={styles['post-upload-btn-container']}>
                   <div>
-                    <label className={styles['button']}>
+                    <label className={styles['button']} for="file-upload">
                       <i className={styles['fa-solid fa-image']}>圖片上傳</i>
                     </label>
                     <input
@@ -85,7 +93,9 @@ export default function life() {
                 <input
                   type="submit"
                   acceptf="image/*"
-                  className={styles[`${styles['button']} ${styles['upload-btn-pc']}`]}
+                  className={
+                    styles[`${styles['button']} ${styles['upload-btn-pc']}`]
+                  }
                 />
               </form>
             </div>

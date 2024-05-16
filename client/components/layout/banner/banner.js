@@ -1,5 +1,5 @@
 import React from 'react'
-import banner from '@/styles/banner.module.css'
+import banner from '@/styles/banner/banner.module.css'
 // 請複製貼上出去
 export default function Banner() {
   return (

@@ -20,14 +20,14 @@ export default function App() {
     <>
       <Swiper
         style={{
-          '--swiper-navigation-color': '#000',
+          '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
         }}
         loop={true}
         spaceBetween={4}
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Navigation, Thumbs]}
         className={styles['mySwiper2']}
       >
         <SwiperSlide className={styles['swiper-slide']}>
@@ -52,10 +52,9 @@ export default function App() {
         loop={true}
         spaceBetween={4}
         slidesPerView={3}
-        freeMode={true}
-        watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        watchSlidesProgress
+        modules={[Navigation, Thumbs]}
+        className={styles['mySwiper']}
       >
         <SwiperSlide className={styles['swiper-slide']}>
           <img className={styles['img']} src="/img/bg2.svg" />

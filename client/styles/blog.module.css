@@ -355,7 +355,9 @@
   width:100%
 }
 
-
+.input-pic[type='file']::file-selector-button {
+  display: none;
+}
 
 .wp-pagenavi {
   margin: 40px auto;
