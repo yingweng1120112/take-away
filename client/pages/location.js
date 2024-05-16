@@ -6,7 +6,7 @@ import Header from '../components/layout/header'
 export default function Location() {
   return (
     <>
-    <Header style={{ height: '5rem' }}/>
+    <Header />
       <section className={styles['location']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />

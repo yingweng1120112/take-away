@@ -1,9 +1,11 @@
 import React from 'react'
 import styles from '@/styles/reserve.module.css'
+import Header from '../components/layout/header'
 
 export default function Reserve() {
   return (
     <>
+    <Header />
       <section className={styles['reserve']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`}

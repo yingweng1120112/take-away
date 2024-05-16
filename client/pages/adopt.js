@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
 import AdoptForm from './adout-form'
+import Header from '../components/layout/header'
+
 
 const parageStyles = {
   WebkitLineClamp: 1,
@@ -20,6 +22,7 @@ export default function Adopt() {
   }, [])
   return (
     <>
+    <Header />
       <div className={styles['adout']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
