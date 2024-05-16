@@ -1,11 +1,12 @@
 .reserve{
   background-color: var(--creamy-yellow);
-  height: 55rem;
-  padding-top: 4rem;
+  height: 60rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 .reserve .container {
   width: 80%;
-  height: 90%;
+  height: 100%;
   margin:auto;
   display: flex;
   flex-direction: column;
@@ -16,15 +17,14 @@
 .reserve .foot {
   position: absolute;
   width: 8rem;
-  top:42%;
-  left: 72%;
+  top:44%;
+  left: 62%;
   z-index: 4;
-  transform: rotate(-80deg);
 }
 .reserve .print {
   position: absolute;
   width: 8rem;
-  top:85%;
+  top:87%;
   left: -9%;
   z-index: 1;
   transform: rotate(0deg);
@@ -95,7 +95,7 @@ display: none;
  }
  .reserve .reserve-form{
   position: relative;
-  height:25rem;  
+  height:40rem;  
   background-color: white;
   display: flex;
   flex-direction: row;

@@ -8,7 +8,7 @@ export default function Reserve() {
     {/* <Header /> */}
       <section className={styles['reserve']}>
         <div className={styles['container']}>
-          <img src={`/img/foot.png`}
+          <img src={`/img/print.png`}
             alt=""
             className={styles['foot']}
           />
