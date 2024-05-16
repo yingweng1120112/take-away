@@ -68,7 +68,7 @@ export default function PetMall() {
         <img className={styles.classification} src="/img/pet_mall/title-bg.png" alt="" />
       </div>
       {/* 寵物飼料卡片 */}
-      <section id={styles['feed-card']}>
+      <section id='feed-card' className={styles['feed-card']}>
         <div className={styles.content}>
           <div className={styles['mall-card']}>
             <div className={styles['mallcard-left']}>
@@ -108,7 +108,7 @@ export default function PetMall() {
         <img  className={styles['dog-palm6']} src="\img\pet_mall\dog-palm2.svg" alt="" />
       </section>
       {/* 寵物罐頭卡片 */}
-      <section className={styles['can-card']}>
+      <section id='can-card' className={styles['can-card']}>
         <div className={styles.content}>
           <div className={styles['mall-card']}>
             <div className={styles['mallcard-left']}>
@@ -143,7 +143,7 @@ export default function PetMall() {
         </div>
       </section>
       {/* 寵物用品卡片 */}
-      <section className={styles['necessities-card']}>
+      <section id='necessities-card' className={styles['necessities-card']}>
         <div className={styles.content}>
           <div className={styles['mall-card']}>
             <div className={styles['mallcard-left']}>
@@ -178,7 +178,7 @@ export default function PetMall() {
         </div>
       </section>
       {/* section第4區 */}
-      <section className={styles.section4}>
+      <section id='section4' className={styles.section4}>
         <img src="\img\pet_mall\section4-bg1.jpg" alt="" />
         <div className={styles['section4-content']}>
           <div className={styles['section4-img-text']}>

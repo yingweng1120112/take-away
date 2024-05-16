@@ -221,7 +221,7 @@
 }
 .dog-palm3 {
   position: absolute;
-  top: 132rem;
+  top: 134rem;
   right: 11.25rem;
   z-index: 1;
   transform: rotate(260deg) scale(0.5);
@@ -267,8 +267,16 @@
   z-index: 1;
   transform: scale(0.4);
 }
+.can-card{
+  height: auto;
+  margin-bottom: 1rem;
+}
 
 /* 寵物用品 */
+.necessities-card {
+  height: auto;
+  margin-bottom: 3rem;
+}
 .necessities-card .mall-card {
   background: var(--white);
   padding: 0.625rem;
@@ -285,6 +293,7 @@
 /* section第4區 */
 .section4 {
   width: 100%;
+  height: auto;
 }
 
 .section4 img {
