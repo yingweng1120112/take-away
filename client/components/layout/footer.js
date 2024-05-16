@@ -38,7 +38,7 @@ export default function Footer() {
             <div className={styles['footerItem']}>
               <h3>領養專區</h3>
               <hr className={styles['footerHr']} />
-              <ol className={styles['footerol']}>
+              <ol>
                 <li>
                   <a
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
@@ -53,52 +53,6 @@ export default function Footer() {
                     href=""
                   >
                     追蹤日誌
-                  </a>
-                </li>
-              </ol>
-            </div>
-
-            {/* 聯絡我們 */}
-            <div className={styles['footerItem'] + ' flex-sm-column mt-2'}>
-              <h3>聯絡我們</h3>
-              <hr className={styles['footerHr']} />
-              <ol className={styles['footerol']}>
-                {/* className="flex-lg-column mt-2"> */}
-                <li>
-                  <a
-                    className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
-                  >
-                    營業人名稱:袋寵物走股份有限公司
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
-                  >
-                    線上客服:週一~週五 : 08:00 - 17:00
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
-                  >
-                    電話: 06 253 3131
-                  </a>
-                </li>
-                <li>
-                  <a className={`${styles['dropdown-item']} ${styles['desc']}`}>
-                    信箱:xinpetfood@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
-                  >
-                    地址:71005 台南市永康區南台街1號
                   </a>
                 </li>
               </ol>
@@ -144,19 +98,60 @@ export default function Footer() {
               </ol>
             </div>
 
+            {/* 聯絡我們 */}
+            <div className={styles['footerItem']}>
+              <h3>聯絡我們</h3>
+              <hr className={styles['footerHr']} />
+              <ol className={styles['footerol']}>
+                <li>
+                  <a
+                    className={`${styles['dropdown-item']} ${styles['desc']}`}
+                    href=""
+                  >
+                    營業人名稱:袋寵物走股份有限公司
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className={`${styles['dropdown-item']} ${styles['desc']}`}
+                    href=""
+                  >
+                    線上客服:週一~週五 : 08:00 - 17:00
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className={`${styles['dropdown-item']} ${styles['desc']}`}
+                    href=""
+                  >
+                    電話: 06 253 3131
+                  </a>
+                </li>
+                <li>
+                  <a className={`${styles['dropdown-item']} ${styles['desc']}`}>
+                    信箱:xinpetfood@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className={`${styles['dropdown-item']} ${styles['desc']}`}
+                    href=""
+                  >
+                    地址:71005 台南市永康區南台街1號
+                  </a>
+                </li>
+              </ol>
+            </div>
+
             {/* 社群連結 */}
-            <div
-              className={`${styles['footerItem']} ${styles['flex-sm-column']} ${styles['mt-2']}`}
-            >
+            <div className={`${styles['footerItem']} `}>
               <h3>社群連結</h3>
               <hr className={`${styles['footerHr']} `} />
-              <ol
-                className={`${styles['icon']} ${styles['justify-content-center']}`}
-              >
+              <ol className={`${styles['icon']}`}>
                 <li>
                   <a
                     href="https://www.facebook.com/profile.php?id=100090898966387"
-                    className={`${styles['footerLink']} ${styles['justify-content-center']}`}
+                    className={`${styles['footerLink']}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +164,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="https://www.instagram.com/cookie_chocolate_0228/?hl=zh-tw"
-                    className={`${styles['footerLink']} ${styles['justify-content-center']}`}
+                    className={`${styles['footerLink']}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +177,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="https://store.line.me/stickershop/product/1043153/zh-Hant"
-                    className={`${styles['footerLink']} ${styles['justify-content-center']}`}
+                    className={`${styles['footerLink']}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -196,26 +191,20 @@ export default function Footer() {
             </div>
 
             {/* 贊助方案 */}
-            <div
-              className={`${styles['footerItem']} ${styles['w-lg-90']} ${styles['col-12']} ${styles['mt-2']}`}
-            >
+            <div className={`${styles['footerItem']}`}>
               <h3>贊助方案</h3>
               <hr className={styles['footerHr']} />
               <div className={styles['fosponsor']}>
-                <div
-                  className={`${styles['sponsor']} ${styles['w-lg-80']} ${styles['me-lg-2']} ${styles['ms-lg-1']} ${styles['justify-content-around']}`}
-                >
+                <div className={`${styles['sponsor']}`}>
                   <img src="/img/index/footer_linepay.jpg" alt="" />
                   <img src="/img/index/footer_lineQR.jpg" alt="" />
                 </div>
-                <div className={`${styles['mt-4']} ${styles['text-left']}`}>
-                  <p className={`${styles['sponDesc']} ${styles['ms-lg-3']}`}>
-                    戶名：Take Pet Away
-                  </p>
-                  <p className={`${styles['sponDesc']} ${styles['ms-lg-3']}`}>
+                <div>
+                  <p className={`${styles['sponDesc']}`}>戶名：Take Pet Away</p>
+                  <p className={`${styles['sponDesc']}`}>
                     銀行：喵汪銀行-熊熊分行
                   </p>
-                  <p className={`${styles['sponDesc']} ${styles['ms-lg-3']}`}>
+                  <p className={`${styles['sponDesc']}`}>
                     帳號：059-004-167249
                   </p>
                 </div>
