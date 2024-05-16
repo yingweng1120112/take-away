@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '@/styles/location/location.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandPointer } from '@fortawesome/free-solid-svg-icons'
-import Header from '../components/layout/header'
+import Header from '../../components/layout/header'
 import Footer from '@/components/layout/footer'
 export default function Location() {
   return (

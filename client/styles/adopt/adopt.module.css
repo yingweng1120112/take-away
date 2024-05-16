@@ -850,9 +850,9 @@ background: var(--reddish-brown);
   width: 9rem;
   height: 9rem;
   z-index: 4;
-  left: -5%;
-  top: 90%;
-  transform: rotate(-0deg);
+  left: 2%;
+  top: 82%;
+  /* transform: rotate(-10deg); */
 }
 .adout .foot:nth-child(2) {
   position: absolute;
@@ -1034,7 +1034,8 @@ display:none;
   margin: auto;
 }
 .about-pet .pet-character .date-p {
-
+margin-left: -1.2rem;
+width: 40%;
 }
 .about-pet .pet-donate {
   letter-spacing: .125rem;

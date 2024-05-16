@@ -237,8 +237,8 @@ text-align: center;
   .reserve .foot {
     position: absolute;
     width: 10rem;
-    top: 7%;
-    left: 79%;
+    top: 18%;
+    left: 76%;
     z-index: 4;
   }
   .reserve .print {

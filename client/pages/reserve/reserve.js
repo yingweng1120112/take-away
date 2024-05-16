@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/reserve.module.css'
+import styles from '@/styles/reserve/reserve.module.css'
 // import Header from '../components/layout/header'
 import { IoRemoveOutline } from "react-icons/io5";
 export default function Reserve() {

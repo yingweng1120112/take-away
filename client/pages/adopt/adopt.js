@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
 import AdoptForm from './adopt-form'
-// import DefaultLayout from '@/components/layout/default-layout'
 
 const parageStyles = {
   WebkitLineClamp: 1,

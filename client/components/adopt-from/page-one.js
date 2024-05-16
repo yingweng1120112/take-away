@@ -40,7 +40,7 @@ export default function Pageone() {
           <h4>點選金額或自訂金額</h4>
           <div title="ntd-button-group" className='ntd-group'>
             <div className='wrapper'>
-              <div className="card">
+              <div className="input-card">
                 <input className="ntd-input" type="radio" name="card" value="500" />
                 <span className="check"></span>
                 <label className="ntd-label">
@@ -48,7 +48,7 @@ export default function Pageone() {
                   <div className="price">500</div>
                 </label>
               </div>
-              <div className="card">
+              <div className="input-card">
                 <input className="ntd-input" type="radio" name="card" value="1000" />
                 <span className="check"></span>
                 <label className="ntd-label">
@@ -58,7 +58,7 @@ export default function Pageone() {
                   </div>
                 </label>
               </div>
-              <div className="card">
+              <div className="input-card">
                 <input className="ntd-input" type="radio" name="card" value="2000" />
                 <span className="check"></span>
                 <label className="ntd-label">
