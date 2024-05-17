@@ -3,7 +3,7 @@ import styles from '@/styles/user/user-edit.module.css'
 
 export default function UserEdit() {
   return (
-    <section className={styles['section']}>
+    <section>
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
       <div className={styles['container']}>
