@@ -49,11 +49,3 @@
   margin: 0 10px;
   font-size: 13px;
 }
-.div1904{
-  width: 414px;
-}
-@media screen and (min-width: 1025px){
-  .div1904{
-    width: 1904px;
-  }
-}

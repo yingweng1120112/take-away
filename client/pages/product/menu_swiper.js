@@ -15,51 +15,49 @@ import { Pagination, Navigation } from 'swiper/modules'
 export default function App() {
   return (
     <>
-      <div className={styles.div1904}>
-        <section className={styles2.recommend}>
-          <div className={styles2.frame}>
-            <Swiper
-              slidesPerView={3}
-              centeredSlides={true}
-              spaceBetween={30}
-              navigation={true}
-              modules={[Pagination, Navigation]}
-              className={styles['mySwiper']}
-            >
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-              <SwiperSlide>
-                <a href="#" className={styles2['related-products-card']}>
-                  <img src="/img/menu/recommended-dog1.jpg" alt="" />
-                </a>
-              </SwiperSlide>
-            </Swiper>
-          </div>
-        </section>
-      </div>
+      <section className={styles2.recommend}>
+        <div className={styles2.frame}>
+          <Swiper
+            slidesPerView={3}
+            centeredSlides={true}
+            spaceBetween={30}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className={styles['mySwiper']}
+          >
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="#" className={styles2['related-products-card']}>
+                <img src="/img/menu/recommended-dog1.jpg" alt="" />
+              </a>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </section>
     </>
   )
 }

@@ -198,7 +198,6 @@ export default function InfoSwiper() {
                 </a>
               </div>
             </SwiperSlide>
-            
           </Swiper>
         </div>
       </section>
