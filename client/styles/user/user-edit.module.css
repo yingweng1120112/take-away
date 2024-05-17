@@ -1,21 +1,29 @@
 /* user edit */
+.section {
+  width: 100%;
+  background-color: var(--bg-color);
+  margin-bottom: -100px;
+  padding-bottom: 100px;
+}
+
 .bgfeet1 {
   position: absolute;
   width: 20%;
-  right: 80%;
-  top: 50%;
-  z-index: -1;
+  right: 78%;
+  top: 10%;
+  z-index: 0;
 }
 
 .bgfeet2 {
   position: absolute;
   width: 20%;
   left: 77%;
-  top: 140%;
-  z-index: -1;
+  top: 70%;
+  z-index: 0;
 }
 
 .book {
+  display: flex;
   width: 100%;
   padding: 0;
   border-radius: solid 3px var(--black);
@@ -23,7 +31,8 @@
 }
 
 .bookInfo {
-  width: 70%;
+  display: flex;
+  width: 65%;
 }
 
 .book h2 {
@@ -58,6 +67,9 @@
 }
 
 .bookItems {
+  display: block;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -96,6 +108,10 @@
 }
 
 .bookContainer {
+  width: 80%;
+  height: auto;
+  margin: 50px auto;
+  background: white;
   border-radius: 30px;
   position: relative;
   overflow: visible;
@@ -126,7 +142,7 @@
   align-items: end;
 }
 
-.bookItem input {
+.input {
   width: 280px;
 }
 
@@ -140,7 +156,7 @@
   position: absolute;
   width: 20%;
   right: 84%;
-  top: 80%;
+  top: 84%;
   z-index: 1;
 }
 
@@ -184,7 +200,7 @@
 .bar {
   position: relative;
   display: block;
-  width: 280px;
+  width: 300px;
 }
 
 .bar:before,
@@ -206,8 +222,8 @@
   right: 50%;
 }
 
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
+.input:focus ~ .bar:before,
+.input:focus ~ .bar:after {
   width: 50%;
 }
 
@@ -221,7 +237,7 @@ input:focus ~ .bar:after {
   opacity: 0.5;
 }
 
-input:focus ~ .highlight {
+.input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
 
@@ -250,6 +266,9 @@ input:focus ~ .highlight {
   .book {
     width: 100%;
   }
+  .bookContainer {
+    width: 100%;
+  }
   .stickers {
     width: 80px;
     height: 80px;
@@ -259,6 +278,7 @@ input:focus ~ .highlight {
     width: 100%;
     height: auto;
   }
+
   .bookItems {
     justify-content: center;
   }
@@ -277,10 +297,12 @@ input:focus ~ .highlight {
     width: 10%;
     margin: 10px;
   }
+
   .items h5 {
     font-size: var(--font-size-h6);
     margin: 0.8rem;
   }
+
   .bookItem {
     margin: 15px 0 5px 15px;
     width: 100%;
@@ -288,7 +310,7 @@ input:focus ~ .highlight {
     border-bottom: none;
   }
 
-  .bookItem input {
+  .input {
     width: 80%;
   }
 
