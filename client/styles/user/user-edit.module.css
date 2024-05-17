@@ -3,7 +3,7 @@
   position: absolute;
   width: 20%;
   right: 78%;
-  top: 10%;
+  top: 13%;
   z-index: 0;
 }
 
@@ -13,6 +13,9 @@
   left: 77%;
   top: 70%;
   z-index: 0;
+}
+.bookInfo {
+  margin-top: 30px;
 }
 
 .book {
