@@ -85,8 +85,8 @@ ol {
   padding-top: 1rem;
   background-color: var(--bean-paste);
   width: 90%;
-  height: auto;
-  margin: 2rem auto;
+  height: 100%;
+  margin: 1rem auto;
   border-radius: 1rem;
   border: 2px solid black;
 }
@@ -108,8 +108,8 @@ ol {
 
 .page-one h4 {
   width: 85%;
-  margin: 1.5rem auto;
-  font-size: 1.4375rem;
+  margin: 1.2rem auto;
+  font-size: 1rem;
   font-weight: bolder;
   color: var(--reddish-brown);
 }
@@ -126,14 +126,15 @@ ol {
 .donate-button-group {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 
 .donate-button {
   margin: 0.5rem auto;
-  height: 3.5rem;
-  width: 45%;
+  height: 3rem;
+  width: 40%;
+  font-size: 1rem;
   border-radius: 0.5rem;
   outline: none;
   color: #DAA06D;
@@ -150,9 +151,12 @@ ol {
 
 .next-button {
   width: 100%;
-  height: 2.8rem;
+  height: 2rem;
 }
-
+.page-one .next-button {
+  width: 90%;
+  // height: 100%;
+}
 .next-page-button {
   width: 45%;
   height: 2.2rem;
@@ -162,6 +166,7 @@ ol {
 
 //TODO:NTD500 ntd-group
 .ntd-group {
+  height: 5.3rem;
   width: 85%;
   display: flex;
   flex-direction: row;
@@ -174,18 +179,19 @@ ol {
   flex-direction: row;
   gap: .9375rem;
   width: 100%;
+  
 }
 
-.card {
+.input-card {
   position: relative;
-  width: 9.375rem;
-  height: 6.25rem;
+  width:30%;
+  height: 100%;
   background: #fff;
   border-radius: 10px;
   transition: all 0.3s;
 }
 
-.card:hover {
+.input-card:hover {
   transform: scale(1.05);
 }
 
@@ -209,8 +215,8 @@ ol {
   position: absolute;
   top: .9375rem;
   right: .9375rem;
-  width: 1rem;
-  height: 1rem;
+  width: .7rem;
+  height: .7rem;
   border: .125rem solid #d0d0d0;
   border-radius: 50%;
   background-color: #E8E8E8;
@@ -219,10 +225,10 @@ ol {
 .ntd-input:checked+.check::after {
   content: '';
   position: absolute;
-  top: 1.07rem;
-  right: 1.07rem;
-  width: .75rem;
-  height: .75rem;
+  top: 0.9rem;
+  right: 1rem;
+  width: .7rem;
+  height: .7rem;
   background-color: var(--brown);
   border-radius: 50%;
 }
@@ -262,13 +268,13 @@ ol {
 .ntd-label .title {
   // margin: 1rem 0rem 0rem 0rem;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 0.8rem;
   letter-spacing: 1.5px;
 }
 
 .ntd-label .price {
   // margin: 1rem 0rem 0rem 0rem;
-  font-size: 20px;
+  font-size: 0.8rem;
   font-weight: 900;
 }
 
@@ -286,7 +292,9 @@ ol {
   flex-direction: column;
   justify-content: center;
 }
-
+.page-one .form-Input-group {
+  height:40px
+}
 .form-label {
   height: 3.5rem;
   --width-of-input: 100%;
@@ -301,7 +309,7 @@ ol {
 
 .form-input {
   color: var(--creamy-yellow);
-  font-size: 1.3rem;
+  font-size: 1rem;
   background-color: transparent;
   width: 100%;
   height: 100%;
@@ -310,7 +318,14 @@ ol {
   padding-block: 0.7em;
   border: none;
 }
-
+.page-one .form-input {
+  font-size: 1rem;
+  height: 100%;
+}
+.page-one .form-label {
+  font-size: 1rem;
+  height: 100%;
+}
 .input-border {
   position: absolute;
   background: var(--creamy-yellow);
@@ -354,7 +369,9 @@ ol {
   font-weight: bolder;
   margin: 0.5rem 0rem;
 }
-
+.page-one .custom-checkbox {
+  font-size: 1rem;
+}
 .custom-checkbox .radio-input[type="checkbox"] {
   display: none;
 }
@@ -371,7 +388,10 @@ ol {
   transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
   transform-style: preserve-3d;
 }
-
+.page-one  .custom-checkbox .checkmark {
+  width: 1.1rem;
+  height: 1.1rem;
+}
 .custom-checkbox .checkmark::before {
   content: "\2713";
   font-size: 1.37rem;
@@ -649,11 +669,11 @@ ol {
 @media screen and (min-width: 1025px) {
   .form1 {
     margin: 0rem auto;
-    width: 80%;
+    width: 100%;
   }
 
   .page-one {
-    width: 26.4375rem;
+    width: 100%;
   }
 
   .page-one h4 {
@@ -668,6 +688,8 @@ ol {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 80%;
+    margin: 2rem auto;
   }
 
   .donate-button {
@@ -685,35 +707,73 @@ ol {
 
   .ntd-group {
     width: 100%;
+    height: 6rem;
     margin: 0;
-    margin-left: 1.3rem;
+    justify-content: center;
   }
 
   .radio-group {
     margin: 1rem auto;
     line-height: 2rem;
   }
+
+  .ntd-label {
+
+    top: 34%;
+    left: 3%;
+    z-index: 0;
+  }
+.ntd-label .title {
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+}
+
+.ntd-label .price {
+  font-size: 1.1rem;
+}
+
   .wrapper{
     width: 80%;
-    margin:1rem;
+    height:90%;
+    margin:auto 2.1rem;
   }
   .custom-checkbox {
     font-size: 1rem;
   }
 
   .custom-checkbox .checkmark {
-    width: 1.1rem;
+    width: 1.2rem;
     height: 1.1rem;
   }
 
   .custom-checkbox .checkmark::before {
     font-size: 1rem;
   }
-
+  .ntd-input+.check::before {
+    content: "";
+    position: absolute;
+    top: .6rem;
+    right: .7rem;
+    width: .9rem;
+    height: .9rem;
+    border: .125rem solid #d0d0d0;
+    border-radius: 50%;
+    background-color: #E8E8E8;
+  }
+  
+  .ntd-input:checked+.check::after {
+    content: '';
+    position: absolute;
+    top: .6rem;
+    right: .7rem;
+    width: .9rem;
+    height: .9rem;
+    background-color: var(--brown);
+    border-radius: 50%;
+  }
   .page-one .form-Input-group {
-    width: 60%;
-    margin: 0rem;
-    margin-left: 2.5rem;
+    width: 70%;
   }
 
   .page-one .input-title {
@@ -728,10 +788,10 @@ ol {
     height: 2.2rem;
     width: 80%;
     font-size: 0.8rem;
-    // margin: auto;
-    margin-left: 1.8rem;
   }
-
+  .page-two {
+    width:100%;
+  }
   .page-two .input-title {
     font-size: 1.1rem;
   }
@@ -769,6 +829,12 @@ ol {
     font-size: 1rem;
   }
 
+  .page-one .button-group{
+    margin: 1rem auto;
+  }
+  .page-one .next-button{
+    height: 35px;
+  }
   .thanks-title {
     font-size: 1.1rem;
     margin-left: 1.5rem;

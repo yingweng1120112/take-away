@@ -12,7 +12,6 @@
   font-size: 18px;
   background: #fff;
   width: 30%;
-  
 
   /* Center slide text vertically */
   display: flex;
@@ -49,10 +48,11 @@
   margin: 0 10px;
   font-size: 13px;
 }
-.info{
+.info {
   display: flex;
   justify-content: center;
 }
+
 .products-card {
   display: flex;
   flex-direction: column;
@@ -63,8 +63,21 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   background: var(--khaki);
 }
-.info_swiper{
+.recommend {
+  background: var(--yellow);
+  height: auto;
+  padding: 1rem 0rem;
+  position: relative;
+  z-index: 2;
+}
+.frame {
+  background: var(--light-yellow);
+}
+.info_swiper {
   width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .products-card img {
   width: 100%;
