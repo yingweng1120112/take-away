@@ -37,7 +37,10 @@ flex-direction: column;
   margin:auto;
   cursor: default;
 }
-
+.navbar2 ul li:hover {
+  background: var(--creamy-yellow);
+  color:  var(--reddish-brown);
+}
 .navbar2 ul li a {
   font-size: 20px;
   padding: 20px;
@@ -52,7 +55,7 @@ flex-direction: column;
 
 .navbar2 ul li a:hover {
   background: var(--creamy-yellow);
-  color: black;
+  color:  var(--reddish-brown);
 }
 
 .navbar2 ul li ul {
