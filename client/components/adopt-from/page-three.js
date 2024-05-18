@@ -61,7 +61,19 @@ export default function PageThree() {
           />
           <span className="input-border"></span>
         </label>
-        <h4 className='input-title'>捐贈金額</h4>
+        <h4 className='input-title'>捐款方式及金額</h4>
+        <label className='form-label'>
+          {' '}
+          <input
+            type="text"
+            name="donationAmount"
+            className='form-input'
+            placeholder="捐贈方式"
+            value={formData.donationAmount}
+            onChange={handleChange}
+          />
+          <span className="input-border"></span>
+        </label>
         <label className='form-label'>
           {' '}
           <input
@@ -82,6 +94,19 @@ export default function PageThree() {
             name="donationPurpose"
             className='form-input'
             placeholder="捐贈用途"
+            value={formData.donationPurpose}
+            onChange={handleChange}
+          />
+          <span className="input-border"></span>
+        </label>
+        <h4 className='input-title'>捐獻證明寄送</h4>
+        <label className='form-label'>
+          {' '}
+          <input
+            type="text"
+            name="donationPurpose"
+            className='form-input'
+            placeholder="捐獻證明寄送"
             value={formData.donationPurpose}
             onChange={handleChange}
           />
