@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-edit.module.css'
 
 export default function UserEdit() {
+  const [inputValue, setInputValue] = useState('')
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value)
+  }
+
   return (
     <section>
+      <Header />
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
       <div className={styles['container']}>
@@ -31,7 +40,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="name"
                       />
                       <span className={styles['highlight']} />
@@ -50,7 +61,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="phone"
                       />
                       <span className={styles['highlight']} />
@@ -69,7 +82,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="birthday"
                       />
                       <span className={styles['highlight']} />
@@ -88,7 +103,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="password"
                       />
                       <span className={styles['highlight']} />
@@ -107,7 +124,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="confirm-password"
                       />
                       <span className={styles['highlight']} />
@@ -129,7 +148,9 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        required=""
+                        value={inputValue}
+                        onChange={handleChange}
+                        required
                         id="address"
                       />
                       <span className={styles['highlight']} />
@@ -157,6 +178,7 @@ export default function UserEdit() {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   )
 }

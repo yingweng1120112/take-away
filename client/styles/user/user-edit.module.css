@@ -200,8 +200,8 @@
   width: 400px;
 }
 
-.bar:before,
-.bar:after {
+.bar::before,
+.bar::after {
   content: '';
   height: 2px;
   width: 0;
@@ -211,16 +211,16 @@
   transition: 0.2s ease all;
 }
 
-.bar:before {
+.bar::before {
   left: 50%;
 }
 
-.bar:after {
+.bar::after {
   right: 50%;
 }
 
-.input:focus ~ .bar:before,
-.input:focus ~ .bar:after {
+.input:focus ~ .bar::before,
+.input:focus ~ .bar::after {
   width: 50%;
 }
 
