@@ -1,45 +1,99 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styles from '@/styles/reserve/reserve.module.css'
-// import Header from '../components/layout/header'
-import { IoRemoveOutline } from "react-icons/io5";
+import { IoRemoveOutline } from 'react-icons/io5'
+
 export default function Reserve() {
-  const [formData, setFormData] = useState({
+  const [reserve, setReserve] = useState({
+    pet: '',
+    name: '',
+    reserveTime: '',
+  })
+  // 記錄欄位錯誤訊息的狀態
+  const [errors, setErrors] = useState({
     pet: '',
     name: '',
     reserveTime: '',
   })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission, e.g., send data to server
-    console.log('Form submitted:', formData)
+    const { name, value } = e.target
+    setReserve({ ...reserve, [name]: value })
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    const newErrors = { pet: '', name: '', reserveTime: '' }
+
+    // 基本的表單驗證
+    if (!reserve.pet || reserve.pet.length < 2)
+      newErrors.pet = '浪浪名稱必須大於2個字'
+    if (!reserve.name || reserve.name.length < 2)
+      newErrors.name = '預約人必須大於2個字'
+    if (!reserve.reserveTime) newErrors.reserveTime = '預約時間必填'
+
+    if (newErrors.pet || newErrors.name || newErrors.reserveTime) {
+      setErrors(newErrors)
+      return
+    }
+
+    setErrors(newErrors)
+    console.log('Form submitted:', reserve)
+
+    try {
+      const res = await fetch('http://localhost:3005/api/reserve', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reserve),
+      })
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok')
+      }
+
+      const data = await res.json()
+      console.log(data)
+      alert(
+        `請確定預約細項為\n預約的寵物是${reserve.pet}\n預約人是${reserve.name}\n預約時間為${reserve.reserveTime}`
+      )
+
+      // 清空表單輸入字段
+      setReserve({ pet: '', name: '', reserveTime: '' })
+    } catch (error) {
+      console.error('Error:', error)
+      alert('預約失敗，請稍後再試')
+    }
+  }
+
   return (
     <>
-    {/* <Header /> */}
       <section className={styles['reserve']}>
         <div className={styles['container']}>
-          <img src={`/img/print.png`}
-            alt=""
-            className={styles['foot']}
-          />
-          <img
-            src={`/img/print.png`}
-            className={styles['print']}
-          />
+          <img src={`/img/print.png`} alt="" className={styles['foot']} />
+          <img src={`/img/print.png`} className={styles['print']} />
           <div className={styles['reserve-title']}>
             <h1 className={styles['reserve-title-h1']}>緣分</h1>
             <p className={styles['lap-top']}>
               _____________________________________________
             </p>
-            <p className={styles['phone']}><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /><IoRemoveOutline /></p>
+            <p className={styles['phone']}>
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+              <IoRemoveOutline />
+            </p>
           </div>
           <h5 className={styles['reserve-inner']}>
             這些孩子在等待著一些機會，
@@ -66,52 +120,70 @@ export default function Reserve() {
             >
               <div className={styles['text-group']}>
                 <h4 className={styles['input-h4']}>浪浪名稱</h4>
-                <label className={styles['form-input']}>
-                {' '}
-                  <input
-                  type="text"
-                  name="pet"
-                  className={styles['input']}
-                  placeholder="浪浪名稱"
-                  value={formData.pet}
-                  onChange={handleChange}
-                  />
-                  <span className={styles['input-border']} />
-                </label>
+                <div>
+                  <label className={styles['form-input']}>
+                    {''}
+                    <input
+                      type="text"
+                      name="pet"
+                      className={styles['input']}
+                      placeholder="浪浪名稱"
+                      value={reserve.pet}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className={styles['input-border']} />
+                  </label>
+                </div>
+                <div className="error">{errors.pet}</div>
               </div>
               <div className={styles['text-group']}>
                 <h4 className={styles['input-h4']}>預約人</h4>
-                <div className={styles['form-input']}>
-                  <input
-                    className={styles['input']}
-                    placeholder="預約人"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                  onChange={handleChange}
-                  />
-                  <span className={styles['input-border']} />
+                <div>
+                  <label className={styles['form-input']}>
+                    {''}
+                    <input
+                      className={styles['input']}
+                      placeholder="預約人"
+                      type="text"
+                      name="name"
+                      value={reserve.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className={styles['input-border']} />
+                  </label>
                 </div>
+                <div className="error">{errors.name}</div>
               </div>
               <div className={styles['text-group']}>
                 <h4 className={styles['input-h4']}>預約時間</h4>
-                <div className={styles['form-input']}>
-                  <input
-                    className={styles['input']}
-                    placeholder=""
-                    type="date"
-                    name="reserveTime"
-                    value={formData.reserveTime}
-                    onChange={handleChange}
-                  />
-                  <span className={styles['input-border']} />
+                <div>
+                  <label className={styles['form-input']}>
+                    {''}
+                    <input
+                      className={styles['input']}
+                      placeholder=""
+                      type="date"
+                      name="reserveTime"
+                      value={reserve.reserveTime}
+                      onChange={handleChange}
+                      required
+                    />
+                    <span className={styles['input-border']} />
+                  </label>
                 </div>
+                <div className="error">{errors.reserveTime}</div>
               </div>
-              <button className={styles['button']}>送出</button>
+              <button className={styles['button']} type="submit">
+                送出
+              </button>
             </form>
           </div>
           <div className={styles['play']}>
-            <h5 className={styles['play-title']}>他們也一定很期待能和你一同交流、認識與玩耍</h5>
+            <h5 className={styles['play-title']}>
+              他們也一定很期待能和你一同交流、認識與玩耍
+            </h5>
           </div>
         </div>
       </section>
