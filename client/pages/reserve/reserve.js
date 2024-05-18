@@ -130,7 +130,7 @@ export default function Reserve() {
                       placeholder="浪浪名稱"
                       value={reserve.pet}
                       onChange={handleChange}
-                      required
+                      // required
                     />
                     <span className={styles['input-border']} />
                   </label>
