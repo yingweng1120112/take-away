@@ -3,7 +3,8 @@ import React, { useRef, useEffect, useState } from 'react'
 import CarouselPc from '@/components/swiper/shopSwiperPc'
 import CarouselPhone from '@/components/swiper/shopSwiperPhone'
 import banner from '@/styles/banner/banner.module.css'
-import styles from '@/styles/life.module.css'
+import styles from '@/styles/bo-ren/life.module.css'
+import { FaVenus, FaMars } from 'react-icons/fa6'
 
 export default function life() {
   return (
@@ -78,15 +79,15 @@ export default function life() {
                       <div className={banner['select-item']}>
                         <label className={banner['cl-checkbox']}>
                           <input type="checkbox" />
-                          <span>大型20kg以上</span>
+                          <span>大型 20kg以上</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
                           <input type="checkbox" />
-                          <span>中型8-20kg</span>
+                          <span>中型 8-20kg</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
                           <input type="checkbox" />
-                          <span>小型8kg以下</span>
+                          <span>小型 8kg以下</span>
                         </label>
                       </div>
                     </div>
@@ -153,7 +154,7 @@ export default function life() {
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年1歲 </p>
-                      <i className={`fa-solid fa-venus fa-lg`} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -167,7 +168,7 @@ export default function life() {
                     <h3>貓2</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年8歲</p>
-                      <i className={styles['fa-solid fa-venus fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -181,7 +182,7 @@ export default function life() {
                     <h3>貓3</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年5歲</p>
-                      <i className={styles['fa-solid , fa-mars , fa-lg']} />
+                      <FaMars />
                     </div>
                   </div>
                 </div>
@@ -195,7 +196,7 @@ export default function life() {
                     <h3>貓4</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年3歲</p>
-                      <i className={styles['fa-solid fa-mars fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -209,7 +210,7 @@ export default function life() {
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年1歲</p>
-                      <i className={styles['fa-solid fa-venus fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -223,7 +224,7 @@ export default function life() {
                     <h3>貓2</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年8歲</p>
-                      <i className={styles['fa-solid fa-venus fa-lg']} />
+                      <FaMars />
                     </div>
                   </div>
                 </div>
@@ -237,7 +238,7 @@ export default function life() {
                     <h3>貓3</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年5歲</p>
-                      <i className={styles['fa-solid , fa-mars , fa-lg']} />
+                      <FaMars />
                     </div>
                   </div>
                 </div>
@@ -251,7 +252,7 @@ export default function life() {
                     <h3>貓4</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年3歲</p>
-                      <i className={styles['fa-solid fa-mars fa-lg']} />
+                      <FaMars />
                     </div>
                   </div>
                 </div>
@@ -265,7 +266,7 @@ export default function life() {
                     <h3>貓1</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年1歲</p>
-                      <i className={styles['fa-solid fa-venus fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -279,7 +280,7 @@ export default function life() {
                     <h3>貓2</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年8歲</p>
-                      <i className={styles['fa-solid fa-venus fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -293,7 +294,7 @@ export default function life() {
                     <h3>貓3</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年5歲</p>
-                      <i className={styles['fa-solid , fa-mars , fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>
@@ -307,7 +308,7 @@ export default function life() {
                     <h3>貓4</h3>
                     <div className={styles['cat-info']}>
                       <p className={styles['desc']}>今年3歲</p>
-                      <i className={styles['fa-solid fa-mars fa-lg']} />
+                      <FaVenus />
                     </div>
                   </div>
                 </div>

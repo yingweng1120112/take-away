@@ -1,7 +1,7 @@
 import React from 'react'
-import CarouselPetInfo from '@/components/swiper/testSwiper'
+import CarouselPetInfo from '@/components/swiper/blogPetImgSwiper'
 import CarouselPetLife from '@/components/swiper/blogPetLifeImgSwiper'
-import styles from '@/styles/blog.module.css'
+import styles from '@/styles/bo-ren/blog.module.css'
 import banner from '@/styles/banner/banner.module.css'
 
 export default function life() {
@@ -45,11 +45,7 @@ export default function life() {
             </h5>
           </div>
         </div>
-        <img
-          className={styles['cat-icon']}
-          src="./images/Frame 51.svg"
-          alt=""
-        />
+        <img className={styles['cat-icon']} src="/img/Frame 51.svg" alt="" />
         {/* 上傳 */}
         <div className={styles['post']}>
           <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
@@ -72,15 +68,13 @@ export default function life() {
                       id="file-upload"
                       type="file"
                       className={styles['input-pic']}
-                      multiple=""
+                      multiple
                     />
                   </div>
                   <input
                     type="submit"
                     acceptf="image/*"
-                    className={
-                      styles[`${styles['button']} ${styles['upload-btn-pc']}`]
-                    }
+                    className={`${styles['button']} ${styles['upload-btn-pc']}`}
                   />
                 </div>
                 <div className={styles['post-upload-pic']}>
@@ -93,9 +87,7 @@ export default function life() {
                 <input
                   type="submit"
                   acceptf="image/*"
-                  className={
-                    styles[`${styles['button']} ${styles['upload-btn-pc']}`]
-                  }
+                  className={`${styles['button']} ${styles['upload-btn-phone']}`}
                 />
               </form>
             </div>
@@ -110,7 +102,7 @@ export default function life() {
             </p>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
-              <img src="/images/Edit_1.svg" alt="" />
+              <img src="/img/Edit_1.svg" alt="" />
             </div>
           </div>
         </div>
@@ -125,9 +117,33 @@ export default function life() {
             </div>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
-              <img src="/images/Edit_1.svg" alt="" />
+              <img src="/img/Edit_1.svg" alt="" />
             </div>
           </div>
+        </div>
+        <div className={styles['wp-pagenavi']}>
+          <a className={styles['first']} href="#" aria-label="First Page">
+            «
+          </a>
+          <a className={styles['previouspostslink']}>&lt;</a>
+          <a className={`${styles['page']} smaller`}> 1 </a>
+          <a className={`${styles['page']} smaller`}>2</a>
+          <span aria-current="page" className={styles['current']}>
+            3
+          </span>
+          <a className={`${styles['page']} smaller`}>4</a>
+          <a className={`${styles['page']} smaller`}>5</a>
+          <a
+            className={styles['nextpostslink']}
+            rel="next"
+            aria-label="次のページ"
+            href="#"
+          >
+            &gt;
+          </a>
+          <a className={'last'} href="#" aria-label="Last Page">
+            »
+          </a>
         </div>
       </div>
     </>

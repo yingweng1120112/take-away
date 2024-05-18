@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-size: 1.125rem;
+  font-size: 1rem;
 }
 
 :root {
@@ -37,16 +37,16 @@
   --font-size-h1: 2rem;
 
   /* h1 標題文字大小 ,32px*/
-  --font-size-h2: 1.8rem;
+  --font-size-h2: 2rem;
 
   /* h2 標題文字大小,28.8px */
-  --font-size-h3: 1.5rem;
+  --font-size-h3: 1.8rem;
 
   /* h3 標題文字大小,24px  */
-  --font-size-h4: 1.25rem;
+  --font-size-h4: 1.5rem;
 
   /* h4 標題文字大小,20px */
-  --font-size-p: 16px;
+  --font-size-p: 20px;
 
   /* 段落文字大小 */
   --bg-color: #fdf7e4;
@@ -94,11 +94,10 @@ body {
   flex-direction: column;
 }
 
-section {
-  height: 60rem;
+.swiper {
   width: 100%;
+  height: 100%;
 }
-
 
 @media screen and (min-width: 1025px) {
   /* reserve page button */
