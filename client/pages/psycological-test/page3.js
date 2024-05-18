@@ -1,7 +1,11 @@
 import React from 'react'
-import styles from '@/styles/psycological-test_p3.module.css'
+import styles from '@/styles/psycological-test/psycological-test_p3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import {
+  faDownload,
+  faPen,
+  faRightToBracket,
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function Page3() {
   return (
@@ -35,7 +39,7 @@ export default function Page3() {
                     </div>
                     <div className={styles['text']}>
                       <div>依賴性</div>
-                      <span>10</span>%
+                      <span>10</span>
                     </div>
                   </div>
                   <div className={styles['progress']}>
@@ -44,7 +48,7 @@ export default function Page3() {
                     </div>
                     <div className={styles['text']}>
                       <div>焦慮性</div>
-                      <span>30</span>%
+                      <span>30</span>
                     </div>
                   </div>
                   <div className={styles['progress']}>
@@ -53,7 +57,7 @@ export default function Page3() {
                     </div>
                     <div className={styles['text']}>
                       <div>主動性</div>
-                      <span>70</span>%
+                      <span>70</span>
                     </div>
                   </div>
                   <div className={styles['progress']}>
@@ -62,7 +66,7 @@ export default function Page3() {
                     </div>
                     <div className={styles['text']}>
                       <div>穩定性</div>
-                      <span>100</span>%
+                      <span>100</span>
                     </div>
                   </div>
                 </div>
@@ -70,12 +74,22 @@ export default function Page3() {
             </div>
             <div className={styles['button']}>
               <button>
+                再測一次
+                <FontAwesomeIcon icon={faPen} className={styles['iconstyle']} />
+              </button>
+              <button>
                 保存結果
-                <FontAwesomeIcon icon={faDownload} />
+                <FontAwesomeIcon
+                  icon={faDownload}
+                  className={styles['iconstyle']}
+                />
               </button>
               <button>
                 前往專區
-                <FontAwesomeIcon icon={faRightToBracket} />
+                <FontAwesomeIcon
+                  icon={faRightToBracket}
+                  className={styles['iconstyle']}
+                />
               </button>
             </div>
           </section>

@@ -1,0 +1,200 @@
+.sectionstyle {
+  width: 80%;
+}
+.hearttest {
+  margin: 0 10%;
+  height: 750px;
+
+  display: flex;
+  flex-direction: column;
+}
+/* 題目 */
+.hearttest > .question {
+  width: 100%;
+  height: 500px;
+  background-color: #bacdd1;
+  background-image: url(/psycological-test/hearttestbg.png);
+  background-size: contain;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+}
+.hearttest > .question > div {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+.hearttest > .question .fa-solid {
+  margin-top: 150px;
+  color: white;
+  text-shadow: rgb(168, 167, 167) 1px 0 15px;
+  font-size: 60px;
+}
+
+.questioncontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 150px;
+  background-color: white;
+  margin-top: 100px;
+  border-radius: 20px;
+  opacity: 0.6;
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+}
+/* 選項 */
+.testoption {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  display: flex;
+  z-index: 1;
+}
+.testoption > img {
+  position: absolute;
+  top: -150px;
+  width: 100%;
+}
+.testoption .option {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  height: fit-content;
+  width: 65%;
+  z-index: 2;
+  position: relative;
+  margin-top: 20px;
+}
+.testoption .option span {
+  color: var(--deep-gray);
+  font-size: var(--font-size-p);
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  width: 155px;
+  height: fit-content;
+  background-color: #bacdd1;
+  border-radius: 5px;
+  word-wrap: break-word;
+}
+.link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.testoption .everyimg {
+  width: 140px;
+}
+.question button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  margin-top: -145px;
+  align-items: center;
+}
+.iconstyle {
+  color: white;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: 80px;
+}
+
+/* 按鈕 */
+.testcontent > div:nth-child(3) {
+  display: flex;
+  justify-content: end;
+}
+.testcontent button {
+  width: 200px;
+  height: 50px;
+  letter-spacing: 5px;
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  background-color: var(--creamy-yellow);
+  border: none;
+  border-radius: 1rem;
+  color: black;
+  box-shadow: 0 0.4rem #dfd9d9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testcontent button:active {
+  color: white;
+  box-shadow: 0 0.2rem #dfd9d9;
+  transform: translateY(0.2rem);
+}
+
+.testcontent button:hover:not(:disabled) {
+  background: var(--deep-gray);
+  color: white;
+  text-shadow: 0 0.05rem #bcb4b4;
+}
+
+.testcontent button:disabled {
+  cursor: auto;
+  color: grey;
+}
+
+@media screen and (max-width: 414px) {
+  .sectionstyle {
+    width: 100%;
+  }
+  .hearttest {
+    margin: 0;
+  }
+  .hearttest > .question > div {
+    width: 100%;
+  }
+  .questioncontent {
+    font-size: var(--font-size-p);
+    padding: 15px;
+    text-align: center;
+  }
+  .hearttest > .question .fa-solid {
+    font-size: 32px;
+  }
+  .hearttest > .question > div {
+    justify-content: space-around;
+  }
+  .testoption {
+    overflow-x: clip;
+  }
+  .testoption > img {
+    content: url(/psycological-test/hearttestoption2.png);
+    top: -172px;
+    width: 140%;
+    left: -83px;
+  }
+
+  .testoption .everyimg {
+    width: 50px;
+  }
+  .testoption .option span {
+    font-size: 10px;
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    width: 45px;
+  }
+  .testoption .option {
+    width: 90%;
+    margin-top: -120px;
+  }
+  .questioncontent {
+    width: 65%;
+    margin-left: -50px;
+    z-index: 1;
+  }
+  .iconstyle {
+    left: 17px;
+    width: 30px;
+    z-index: 2;
+  }
+}

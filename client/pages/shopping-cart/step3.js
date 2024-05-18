@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/shoppingcar-step3.module.css'
+import styles from '@/styles/shopping-cart/shoppingcar-step3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
 
@@ -9,7 +9,7 @@ export default function Step1() {
       <header />
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
-        <img src="/cart/roof.png" alt="" />
+        <img src="/shopping-cart/roof.png" alt="" />
       </section>
       {/* 步驟 */}
       <section className={`${styles['step']} ${styles['sectionstyle']}`}>
@@ -58,7 +58,7 @@ export default function Step1() {
               <div className={styles['cartitemleft']}>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
-                    <img src="/cart/car-item1.png" alt="" />
+                    <img src="/shopping-cart/car-item1.png" alt="" />
                   </div>
                   <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
@@ -74,7 +74,7 @@ export default function Step1() {
               <div className={styles['cartitemleft']}>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
-                    <img src="/cart/car-item1.png" alt="" />
+                    <img src="/shopping-cart/car-item1.png" alt="" />
                   </div>
                   <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
@@ -90,7 +90,7 @@ export default function Step1() {
               <div className={styles['cartitemleft']}>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
-                    <img src="/cart/car-item1.png" alt="" />
+                    <img src="/shopping-cart/car-item1.png" alt="" />
                   </div>
                   <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
@@ -106,7 +106,7 @@ export default function Step1() {
               <div className={styles['cartitemleft']}>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
-                    <img src="/cart/car-item1.png" alt="" />
+                    <img src="/shopping-cart/car-item1.png" alt="" />
                   </div>
                   <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
@@ -122,7 +122,7 @@ export default function Step1() {
               <div className={styles['cartitemleft']}>
                 <div className={styles['itemlist']}>
                   <div className={styles['cartimg']}>
-                    <img src="/cart/car-item1.png" alt="" />
+                    <img src="/shopping-cart/car-item1.png" alt="" />
                   </div>
                   <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
@@ -176,7 +176,7 @@ export default function Step1() {
 
       {/* 下花邊 */}
       <section className={styles['wall']}>
-        <img src="/cart/wall.png" alt="" />
+        <img src="/shopping-cart/wall.png" alt="" />
       </section>
       <footer></footer>
     </>

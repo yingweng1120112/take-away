@@ -1,0 +1,352 @@
+/* user edit */
+.bgfeet1 {
+  position: absolute;
+  width: 20%;
+  right: 78%;
+  top: 13%;
+  z-index: 0;
+}
+
+.bgfeet2 {
+  position: absolute;
+  width: 20%;
+  left: 77%;
+  top: 70%;
+  z-index: 0;
+}
+.bookInfo {
+  margin-top: 30px;
+}
+
+.book {
+  display: flex;
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 0;
+  border-radius: solid 3px var(--black);
+  justify-content: center;
+}
+
+.bookInfo {
+  display: flex;
+  width: 65%;
+}
+
+.book h2 {
+  background-color: var(--bean-paste);
+  color: var(--white);
+  margin: 0;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user {
+  width: 80%;
+  display: flex;
+  border-bottom: 1px solid black;
+  margin: 1rem 4rem;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.stickers {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.stickers img {
+  width: 100%;
+  height: auto;
+}
+
+.bookItems {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bookItem {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin: 1rem 0 0 4rem;
+  padding-bottom: 10px;
+}
+
+.bookItem {
+  display: flex;
+}
+
+.bookItem img {
+  margin-right: 1rem;
+}
+
+.items h5 {
+  margin: 1.5rem;
+  position: relative;
+}
+
+.rope {
+  width: 3%;
+  height: 88%;
+  background-image: url('/img/user/user-rope.png');
+  background-repeat: repeat-y;
+  position: absolute;
+  right: 99%;
+  z-index: 2;
+}
+
+.bookContainer {
+  width: 80%;
+  height: auto;
+  margin: 50px auto;
+  background: white;
+  border-radius: 30px;
+  position: relative;
+  overflow: visible;
+}
+
+.bookContainer h2 {
+  border-radius: 30px 30px 0 0;
+}
+
+.btnItem {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 2rem;
+  z-index: 2;
+}
+
+.btnConfirm {
+  margin: 0.5rem;
+  padding: 0.2rem 0.8rem;
+  font-size: var(--font-size-h4);
+  background-color: var(--khaki);
+  border-radius: 80px;
+}
+
+.text-danger {
+  font-size: 10px;
+  padding: 1rem;
+  align-items: end;
+}
+
+.input {
+  width: 280px;
+}
+
+.bell {
+  position: absolute;
+  width: 18%;
+  left: 83%;
+}
+
+.feet {
+  position: absolute;
+  width: 20%;
+  right: 84%;
+  top: 84%;
+  z-index: 1;
+}
+
+/* input */
+.group {
+  position: relative;
+  margin: 10px;
+}
+
+.input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 400px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+
+.input:focus ~ .label,
+.input:valid ~ .label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 400px;
+}
+
+.bar::before,
+.bar::after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+}
+
+.bar::before {
+  left: 50%;
+}
+
+.bar::after {
+  right: 50%;
+}
+
+.input:focus ~ .bar::before,
+.input:focus ~ .bar::after {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.input:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@media screen and (min-width: 414px) and (max-width: 828px) {
+  .rope {
+    width: 9.5%;
+    height: 80%;
+    right: 98%;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .book {
+    width: 100%;
+  }
+  .bookContainer {
+    width: 100%;
+  }
+  .stickers {
+    width: 80px;
+    height: 80px;
+  }
+
+  .stickers img {
+    width: 100%;
+    height: auto;
+  }
+
+  .bookItems {
+    justify-content: center;
+  }
+
+  .user {
+    margin: 10px;
+    width: 95%;
+    border-bottom: none;
+  }
+
+  .bookItem h6 {
+    display: none;
+  }
+
+  .bookItem img {
+    width: 10%;
+    margin: 10px;
+  }
+
+  .items h5 {
+    font-size: var(--font-size-h6);
+    margin: 0.8rem;
+  }
+
+  .bookItem {
+    margin: 15px 0 5px 15px;
+    width: 100%;
+    text-align: left;
+    border-bottom: none;
+  }
+
+  .input {
+    width: 80%;
+  }
+
+  .btnItem {
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .btnConfirm {
+    margin: 0.1rem;
+    padding: 0.3rem 0.4rem;
+    font-size: var(--font-size-h6);
+  }
+
+  .bell {
+    width: 35%;
+    left: 50%;
+    top: 7%;
+  }
+
+  .feet {
+    width: 30%;
+    right: 75%;
+    top: 88%;
+  }
+
+  .bar {
+    width: 164px;
+  }
+
+  .bgfeet1 {
+    width: 50%;
+    right: 65%;
+    top: 52%;
+  }
+
+  .bgfeet2 {
+    width: 35%;
+    left: 64%;
+    top: 130%;
+  }
+}

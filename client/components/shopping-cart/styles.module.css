@@ -1,0 +1,124 @@
+.myswiper {
+  width: 100%;
+  height: 510px;
+}
+
+.text {
+  color: var(--deep-gray);
+  font-weight: 500;
+  width: fit-content;
+  height: 126px;
+  margin-top: 70px;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+}
+.text p {
+  font-size: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background-image: url(/shopping-cart/itemborder.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+  margin-top: 20px;
+}
+.item {
+  flex-direction: column;
+  text-align: center;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.icon {
+  display: flex;
+  width: 40%;
+  height: 52px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.iconstyle {
+  font-size: 30px;
+  color: var(--deep-gray);
+  z-index: 1;
+}
+.button {
+  border: solid 4px white;
+  border-radius: 10px;
+}
+.button div {
+  display: none;
+  font-size: 15.5px;
+  position: relative;
+  top: -19px;
+  z-index: 2;
+  width: 35px;
+  height: 7px;
+  font-weight: 700;
+  color: var(--deep-gray);
+}
+.button:hover div {
+  display: block;
+}
+.button:hover {
+  background-color: var(--yellow);
+}
+.button:hover .iconstyle {
+  display: none;
+}
+.container img {
+  display: block;
+  width: 50%;
+  height: auto;
+  /* object-fit: cover; */
+  background-color: #fff;
+  position: relative;
+  top: 52px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 414px) {
+  .myswiper {
+    height: 304px;
+  }
+  .container img {
+    top: 23px;
+    border-radius: 8px;
+  }
+  .text {
+    margin-top: 32px;
+    height: 75px;
+  }
+  .text p {
+    font-size: 12px;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+  }
+  .icon {
+    width: 55%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .iconstyle {
+    font-size: 16px;
+  }
+  .button {
+    height: 38px;
+    width: 36px;
+  }
+  .button:hover div {
+    display: none;
+  }
+  .button:hover {
+    background-color: #f0f0f0;
+    width: 35px;
+  }
+  .button:hover .iconstyle {
+    display: block;
+  }
+}

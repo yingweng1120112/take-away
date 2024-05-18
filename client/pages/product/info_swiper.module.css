@@ -1,0 +1,155 @@
+#app {
+  height: 100%;
+}
+
+.swiper {
+  width: 30%;
+  height: 50px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: 30%;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 30%;
+  height: 300px;
+  margin: 20px auto;
+  background: #fecc5f;
+}
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.products-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--beige);
+}
+.products-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background: var(--khaki);
+}
+.recommend {
+  background: var(--yellow);
+  height: auto;
+  padding: 1rem 0rem;
+  position: relative;
+  z-index: 2;
+}
+.frame {
+  background: var(--light-yellow);
+}
+.info_swiper {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.products-card img {
+  width: 100%;
+}
+.products-card div {
+  display: flex;
+  justify-content: center;
+  background: var(--);
+}
+.products-card p:nth-child(2) {
+  text-align: left;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  margin-top: 0.625rem;
+  margin-bottom: 0rem;
+}
+.products-card p:nth-child(3) {
+  text-align: right;
+  padding-left: 0.625rem;
+  padding-right: 0.9375rem;
+  margin-bottom: 0.625rem;
+}
+.products-card div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0rem;
+}
+.products .content {
+  flex-direction: column;
+}
+.wp-pagenavi {
+  margin: 0rem auto;
+}
+.cart-btn #arrow-horizontal {
+  height: 1.375rem;
+  width: 2.9375rem;
+}
+.cart-btn {
+  background: none;
+  border: none;
+  position: relative;
+  display: inline-block;
+}
+.cart-btn #arrow-horizontal {
+  fill: var(--deep-gray);
+}
+.cart-btn::before {
+  content: '加入購物車'; /* 設置偽元素的內容 */
+  position: absolute; /* 絕對定位，相對於父容器 */
+  top: 0.2rem; /* 距離按鈕頂部的距離 */
+  left: 50%; /* 水平置中 */
+  transform: translateX(18%); /* 將偽元素水平置中 */
+  padding: 0.1875rem 0.5rem; /* 文字框的內邊距 */
+  background-color: var(--deep-blue); /* 背景色 */
+  color: white; /* 文字顏色 */
+  border-radius: 0.25rem; /* 圓角 */
+  opacity: 0; /* 初始透明度為0，不可見 */
+  transition: opacity 0.3s ease; /* 添加過渡效果 */
+  width: 5.5rem;
+  font-size: 0.8rem;
+}
+.cart-btn:hover {
+  transform: scale(1.05);
+}
+.cart-btn:hover svg path {
+  fill: var(--deep-blue); /* 將SVG的填充颜色设置為文字框的背景颜色 */
+}
+.cart-btn:hover svg {
+  transform: scale(1.05);
+}
+
+.cart-btn:hover::before {
+  opacity: 1; /* 當游標懸停時，將透明度設為1，顯示偽元素 */
+}
