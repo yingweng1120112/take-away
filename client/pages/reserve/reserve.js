@@ -1,8 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from '@/styles/reserve/reserve.module.css'
 // import Header from '../components/layout/header'
 import { IoRemoveOutline } from "react-icons/io5";
 export default function Reserve() {
+  const [formData, setFormData] = useState({
+    pet: '',
+    name: '',
+    reserveTime: '',
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Handle form submission, e.g., send data to server
+    console.log('Form submitted:', formData)
+  }
   return (
     <>
     {/* <Header /> */}
@@ -42,31 +60,35 @@ export default function Reserve() {
           <div className={styles['reserve-form']}>
             <form
               className={styles['input-group']}
-              name="email"
-              type="text"
               id="email"
               placeholder="浪浪名稱"
+              onSubmit={handleSubmit}
             >
               <div className={styles['text-group']}>
                 <h4 className={styles['input-h4']}>浪浪名稱</h4>
-                <div className={styles['form-input']}>
+                <label className={styles['form-input']}>
+                {' '}
                   <input
-                    className={styles['input']}
-                    placeholder=""
-                    required=""
-                    type="text"
+                  type="text"
+                  name="pet"
+                  className={styles['input']}
+                  placeholder="浪浪名稱"
+                  value={formData.pet}
+                  onChange={handleChange}
                   />
                   <span className={styles['input-border']} />
-                </div>
+                </label>
               </div>
               <div className={styles['text-group']}>
                 <h4 className={styles['input-h4']}>預約人</h4>
                 <div className={styles['form-input']}>
                   <input
                     className={styles['input']}
-                    placeholder=""
-                    required=""
+                    placeholder="預約人"
                     type="text"
+                    name="name"
+                    value={formData.name}
+                  onChange={handleChange}
                   />
                   <span className={styles['input-border']} />
                 </div>
@@ -77,8 +99,10 @@ export default function Reserve() {
                   <input
                     className={styles['input']}
                     placeholder=""
-                    required=""
                     type="date"
+                    name="reserveTime"
+                    value={formData.reserveTime}
+                    onChange={handleChange}
                   />
                   <span className={styles['input-border']} />
                 </div>
