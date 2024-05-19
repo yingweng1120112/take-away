@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
-
+/* CSS RESET */
 * {
-  box-sizing: border-box;
   margin: 0;
-  font-size: 1.125rem;
+  padding: 0;
+  box-sizing: border-box;
 }
-
+/* 設定全域變數 */
 :root {
   --black: #000000;
   --white: #ffffff;
@@ -20,12 +20,10 @@
   --gray: #ebebeb;
   --dark-gray: #ebe6d4;
   --bright-gary: #f5ebd9;
-  --heavy-gary: #cab897;
   --light-gray: #dbd2c6;
   --deep-gray: #89837c;
   --light-pink: #fce9d4;
   --red: #e83d3d;
-  --orange: #e24800;
   --light-blue: #b9d8ef;
   --deep-blue: #292f36;
   --dark-green: #018786;
@@ -35,49 +33,36 @@
   --border-color: #895e3c;
   --font-family: 'Noto Sans TC', sans-serif;
   --font-size-h1: 2rem;
-
   /* h1 標題文字大小 ,32px*/
   --font-size-h2: 1.8rem;
-
   /* h2 標題文字大小,28.8px */
   --font-size-h3: 1.5rem;
-
   /* h3 標題文字大小,24px  */
   --font-size-h4: 1.25rem;
-
   /* h4 標題文字大小,20px */
   --font-size-p: 16px;
-
   /* 段落文字大小 */
   --bg-color: #fdf7e4;
 }
-
 h1 {
   font-size: var(--font-size-h1);
 }
-
 h2 {
   font-size: var(--font-size-h2);
 }
-
 h3 {
   font-size: var(--font-size-h3);
 }
-
 h4 {
   font-size: var(--font-size-h4);
 }
-
 p {
   font-size: var(--font-size-p);
-  padding: 0rem;
 }
-
 a {
   color: #89837c;
   text-decoration: none;
 }
-
 ul,
 ol {
   display: flex;
@@ -85,22 +70,21 @@ ol {
   align-items: center;
   list-style: none;
 }
-
 body {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   font-family: var(--font-family);
-  background-color: var(--bg-color);
-  margin: 0;
+  background-color: var(--bg-color) !important;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
-
-section {
-  height: 60rem;
-  width: 100%;
-}
-
 
 @media screen and (min-width: 1025px) {
-  /* reserve page button */
-
 }

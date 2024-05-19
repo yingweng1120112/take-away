@@ -1,11 +1,88 @@
-import React from 'react'
-import styles from '@/styles/petInfo.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FaRegCircleQuestion } from "react-icons/fa6";
+import { useState, useEffect } from 'react'
+import styles from '@/styles/pets/petInfo.module.css'
+import { FaRegCircleQuestion } from 'react-icons/fa6'
+import DefaultLayout from '@/components/layout/default-layout'
 
+const sample = [
+  {
+    pet_id: '10001',
+    name: '露露',
+    tag: '太陽小精靈',
+    age: '2',
+    type: '狗狗',
+    weight: '5',
+    gender: '男生',
+    breeds: '混種犬',
+    color: '棕色',
+    adopted: '0',
+    state: '歡迎帶我回家',
+    fixed: '0',
+    microchip: '0',
+    vaccine: '0',
+    deworm: '0',
+    personality_type: '自信型',
+    sign: '雙子座',
+    blue: '0',
+    favorite: '0',
+    pee: '0',
+    skin: '0',
+    disability: '0',
+    blind: '0',
+    adopt1: '10001-1',
+    adopt2: '10001-2',
+    adopt3: '10001-3',
+    adopt4: '10001-4',
+    phone1: '10001-1p',
+    phone2: '10001-2p',
+    phone3: '10001-3p',
+    phone4: '10001-4p',
+    reserve1: '10001-5',
+    story:
+      '一隻黑色混種犬在收容所中等待著遇見新主人。它的眼神充滿期待，身體卻因長時間的等待而有些疲憊。每日靜靜地注視著外面的世界，希望有人能給予它一個永遠的家，一份溫暖的愛。',
+    habbit:
+      '每天早晨在籠舍裡舒展身軀，期待外面的陽光。午後，它享受散步，嗅著每一個角落的氣味。夜晚，它安靜地蜷曲在角落，凝視著閃爍的星空，期待著被一雙溫暖的手接回家。',
+  },
+  {
+    pet_id: '10002',
+    name: '馬克斯',
+    tag: '愛跑跳小夥伴',
+    age: '3',
+    type: '貓貓',
+    weight: '6',
+    gender: '女生',
+    breeds: '米克斯',
+    color: '橘色',
+    adopted: '0',
+    state: '歡迎帶我回家',
+    fixed: '0',
+    microchip: '0',
+    vaccine: '0',
+    deworm: '0',
+    personality_type: '獨立型',
+    sign: '天秤座',
+    blue: '0',
+    favorite: '0',
+    pee: '0',
+    skin: '0',
+    disability: '0',
+    blind: '0',
+    adopt1: '10002-1',
+    adopt2: '10002-2',
+    adopt3: '10002-3',
+    adopt4: '10002-4',
+    phone1: '10002-1p',
+    phone2: '10002-2p',
+    phone3: '10002-3p',
+    phone4: '10002-4p',
+    reserve1: '10002-5',
+    story:
+      '在收容所的角落，一隻橘色貓貓默默等待著被領養。它的眼眸充滿渴望，身體彷彿隨時準備好迎接新的家。每天都在靜靜期盼，希望有一天能有人願意給予它一份溫暖的愛和家。',
+    habbit:
+      '每天清晨在陽光下舒展身軀，午後喜歡在窗邊曬太陽。它愛玩耍，追逐光點和飄動的線。晚上，它總是蜷縮在軟軟的床上，靜靜地享受安逸的夜晚，期待著明天的到來。',
+  },
+]
 
-
-export default function PetInfo() {
+export default function PetInfo(sample) {
   return (
     <>
       <div className={styles['commendbody']}>
@@ -47,10 +124,10 @@ export default function PetInfo() {
             </div>
           </div>
           <div className={styles['pet-info']}>
-            <p className={styles['pet-hashtag']}># 描述寵物的文字</p>
+            <p className={styles['pet-hashtag']}>{sample.hashtag}</p>
             <div className={styles['pet-name']}>
               <p>歐告</p>
-              <img src="/img/icon_boy.png" alt="" draggable="false" />
+              <img src="/img/pets/icon_boy.png" alt="" draggable="false" />
             </div>
             <ul>
               <li>性別</li>
@@ -204,11 +281,7 @@ export default function PetInfo() {
         </section>
 
         <section className={styles['pet-skill']}>
-          <img
-            src="/img/agatha-D1yh6_OQjcM-unsplash.jpg"
-            alt=""
-            draggable="false"
-          />
+          <img src="/img/pet-info/10003/10003-5.jpg" alt="" draggable="false" />
           <table>
             <tbody>
               <tr>
@@ -219,13 +292,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>呼叫</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>趴下</span>
                   </label>
                 </td>
@@ -233,13 +306,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>等等</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>隨行</span>
                   </label>
                 </td>
@@ -247,13 +320,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>坐下</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>握手</span>
                   </label>
                 </td>
@@ -261,13 +334,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>定點尿尿</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="" type="checkbox" />
+                    <input defaultChecked="true" type="checkbox" />
                     <span>不亂吠叫</span>
                   </label>
                 </td>
@@ -361,7 +434,7 @@ export default function PetInfo() {
             </button>
             <button className={styles['cta']}>
               <span className={styles['hover-underline-animation']}>
-                <FaRegCircleQuestion  className={styles['fontawesome-icon']}/>
+                <FaRegCircleQuestion className={styles['question-icon']} />
                 {'  '}領養流程
               </span>
               <svg
@@ -381,6 +454,38 @@ export default function PetInfo() {
             </button>
           </div>
         </section>
+
+        {/* TODO: 背景圖片 位置修改 */}
+        <img
+          src="/img/pets/paws.png"
+          className={styles['paws1']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/pets/paws.png"
+          className={styles['paws2']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/pets/paws.png"
+          className={styles['paws3']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/pets/background-paws.png"
+          className={styles['background-paws1']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/pets/background-paws.png"
+          className={styles['background-paws2']}
+          alt=""
+          draggable="false"
+        />
       </div>
     </>
   )
