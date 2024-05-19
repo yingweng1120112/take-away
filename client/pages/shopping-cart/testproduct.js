@@ -2,16 +2,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { loadProducts } from '@/services/testproduct'
 import styles from '@/components/testproduct/cart.module.css'
+import { useCart } from '@/context/cartcontext'
 
 export default function List() {
   const [products, setProducts] = useState([])
-
-  // 加入到購物車的函數
-  const addProduct = (product) => {
-    const newProduct = { ...product, qty: 1 }
-    const nextProducts = [newProduct, ...products]
-    setProducts(nextProducts)
-  }
+  const { addToCart } = useCart()
 
   const getProducts = async () => {
     const data = await loadProducts()
@@ -27,18 +22,24 @@ export default function List() {
   useEffect(() => {
     getProducts()
   }, [])
-
   return (
     <div>
       <h1>商品列表頁</h1>
+      <Link href="/shopping-cart/step1-copy">連至 購物車</Link>
       <ul className={styles['list']}>
-        {products.map((v) => (
-          <li key={v.product_id} className={styles['item']}>
-            <Link href={`/shopping-cart/testproduct/${v.product_id}`}>
-              {v.name}
+        {products.map((product) => (
+          <li key={product.product_id} className={styles['item']}>
+            <Link href={`/shopping-cart/testproduct/${product.product_id}`}>
+              {product.name}
             </Link>
-            {v.price}
-            <button onClick={() => addProduct(v)}>加入購物車</button>
+            {product.price}
+            <button
+              onClick={() => {
+                addToCart(product)
+              }}
+            >
+              加入購物車
+            </button>
           </li>
         ))}
       </ul>

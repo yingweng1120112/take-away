@@ -10,26 +10,12 @@ import {
   faAnglesRight,
 } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/testproduct'
+import { useCart } from '@/context/cartcontext'
+import Link from 'next/link'
 
 export default function Step1() {
-  //所有可用的產品列表
-  const [products, setProducts] = useState([])
-  //購物車中的項目
-  const [items, setItems] = useState([])
+  const { cartItems } = useCart()
 
-  const getProducts = async () => {
-    const data = await loadProducts()
-    // 確認資料結構是否與原始專案相符，並設置到狀態中
-    if (Array.isArray(data.product)) {
-      setProducts(data.product)
-    } else {
-      console.error('資料結構不符')
-    }
-    console.log(data)
-  }
-  useEffect(() => {
-    getProducts()
-  }, [])
   return (
     <>
       <header />
@@ -61,7 +47,10 @@ export default function Step1() {
       <div className={styles['shoppingcar']}>
         <div className={styles['shoppingcarleft']}>
           <div className={`${styles['carttitle']} ${styles['carttopstyle']}`}>
-            <div>購物車（{products.length}件）</div>
+            <div>
+              購物車（{cartItems.length}件）
+              <Link href="/shopping-cart/testproduct">連至 商品頁</Link>
+            </div>
           </div>
           <div className={styles['cartdetail']}>
             <div className={styles['cartdetailleft']}>
@@ -76,7 +65,7 @@ export default function Step1() {
           </div>
           <div className={styles['itemscroll']}>
             {/* 商品列表 */}
-            {items.map((v, i) => {
+            {cartItems.map((v, i) => {
               return (
                 <div key={v.product_id} className={styles['cartitem']}>
                   <div className={styles['cartitemleft']}>
