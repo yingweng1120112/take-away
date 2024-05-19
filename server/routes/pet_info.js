@@ -9,7 +9,7 @@ import db from '#configs/mysql.js'
 // router.get('/', function (req, res, next) {
 //   res.render('index', { title: 'Express' })
 // })
-// GET - 得到所有pet_info資料
+// GET - 得到所有pet_info資料表資料
 router.get('/', async function (req, res) {
   const [rows] = await db.query('SELECT * FROM pet_info')
   const pet_info = rows

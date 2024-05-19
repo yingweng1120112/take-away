@@ -1,10 +1,36 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+import { loadPetInfos } from '@/services/pets'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import DefaultLayout from '@/components/layout/default-layout'
 
 export default function PetList() {
+  const [pets, setPets] = useState([])
+
+  const getPet = async () => {
+    const data = await loadPetInfos()
+    console.log('從 loadPetInfos 獲取的數據:', data)
+    // 確認資料結構是否與原始專案相符，並設置到狀態中
+
+    if (Array.isArray(data)) {
+      console.log('設pets 狀態: ', data)
+      setPets(data)
+    } else {
+      console.log('數據結構不符合預期:', data)
+    }
+    console.log(data)
+  }
+
+  useEffect(() => {
+    getPet()
+  }, [])
+
+
+  useEffect(() => {
+    console.log('當前的 pets 狀態:', pets) // 確認 pets 狀態更新
+  }, [pets])
+
   return (
     <>
       <div className={styles['commendbody']}>
@@ -17,7 +43,30 @@ export default function PetList() {
         </section>
 
         <section className={styles['pet-card']}>
-          <div className={styles['card']}>
+          {pets.map((v, i) => {
+            return (
+              <div className={styles['card']}>
+                <div className={styles['card-img']}>
+                  {/* TODO: 篩選已被領養的寵物 */}
+                  <p className={styles['state']} key={v.pet_id}>
+                    {v.state}
+                  </p>
+                  {/* TODO: 寵物照片 */}
+                  <img key={v.pet_id} src={v.adopt1} alt="" />
+                  <FaHeart className={styles['favorite']} />
+                </div>
+                <div className={styles['pet-name']}>
+                  <span key={v.pet_id}>{v.tag}</span>
+                  <p key={v.pet_id}>{v.name}</p>
+                  <div className={styles['pet-desc']}>
+                    <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                    <img src="/img/pets/icon_boy.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+          {/* <div className={styles['card']}>
             <div className={styles['card-img']}>
               <p className={styles['state']}>歡迎帶我回家</p>
               <img src="/img/pet-info/10008/10008-1.jpg" alt="" />
@@ -136,22 +185,7 @@ export default function PetList() {
                 <img src="/img/pets/icon_boy.png" alt="" />
               </div>
             </div>
-          </div>
-          <div className={styles['card']}>
-            <div className={styles['card-img']}>
-              <p className={styles['state']}>歡迎帶我回家</p>
-              <img src="/img/pet-info/10008/10008-1.jpg" alt="" />
-              <FaHeart className={styles['favorite']} />
-            </div>
-            <div className={styles['pet-name']}>
-              <span>卍煞氣A歐歐乂</span>
-              <p>歐告</p>
-              <div className={styles['pet-desc']}>
-                <span>今年約莫3歲</span>
-                <img src="/img/pets/icon_boy.png" alt="" />
-              </div>
-            </div>
-          </div>
+          </div> */}
         </section>
 
         {/* TODO: load商品 */}
@@ -231,43 +265,43 @@ export default function PetList() {
           >
             <ul className={styles['marquee__content']}>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
             </ul>
 
             <ul aria-hidden="true" className={styles['marquee__content']}>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
               <li>
-                <img src="/img/user/Kim_Soo_Hyun.jpg" alt="" />
+                <img src="/img/user/10001.jpg" alt="" />
               </li>
             </ul>
           </div>
