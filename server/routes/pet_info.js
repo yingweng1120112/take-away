@@ -11,7 +11,10 @@ import db from '#configs/mysql.js'
 // })
 // GET - 得到所有pet_info資料表資料
 router.get('/', async function (req, res) {
-  const [rows] = await db.query('SELECT * FROM pet_info')
+  // 直接下sql篩選出有領養狀態state
+  const [rows] = await db.query(
+    'SELECT * FROM `pet_info` WHERE `state` IS NOT NULL AND `state` != "";'
+  )
   const pet_info = rows
   // 處理如果沒找到資料
 
