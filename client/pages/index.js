@@ -2,12 +2,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import PlaceholderText from '@/components/common/placeholder-text'
-
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 export default function Home() {
   return (
     <>
-      {/* <h1>header</h1> */}
+      <Header />
       <h1 className="mb-3 display-5 fw-bold text-body-emphasis">
         Next + Bootstrap5 範例
       </h1>
@@ -216,7 +217,7 @@ export default function Home() {
           }
         `}
       </style>
-      {/* <h1>footer</h1> */}
+      <Footer />
     </>
   )
 }

@@ -29,7 +29,7 @@
 
 .bookInfo {
   display: flex;
-  width: 65%;
+  /* width: 900px; */
 }
 
 .book h2 {
@@ -105,7 +105,7 @@
 }
 
 .bookContainer {
-  width: 80%;
+  width: 900px;
   height: auto;
   margin: 50px auto;
   background: white;
@@ -236,6 +236,12 @@
 
 .input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
+}
+/* 新增樣式 */
+.label.active {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
 }
 
 @keyframes inputHighlighter {
