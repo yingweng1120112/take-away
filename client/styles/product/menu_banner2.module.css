@@ -225,10 +225,10 @@
       top: 40%;
     }
     .banner-life-1{
-      background-image: url(/img/menu/menubanner.jpg);
+      background-image: url(/img/menu/menubanner6.jpg);
     }
     .banner-life-2{
-      background-image: url(/img/menu/menubanner2.jpg);
+      background-image: url(/img/menu/menubanner4.jpg);
     }
     #pet-card {
       grid-template-columns: repeat(4, 1fr);
