@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Header from '@/components/layout/header'
+import Banner from './bannerShopSelect'
 import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
 import MenuSwiper from '@/pages/product/menu_swiper'
@@ -9,6 +10,7 @@ export default function Menu() {
   return (
     <>
     <Header />
+    <Banner />
       {/* 搜尋數 */}
       <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
