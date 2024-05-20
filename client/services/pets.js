@@ -1,6 +1,5 @@
 // const baseUrl = 'https://my-json-server.typicode.com/eyesofkids/json-fake-data/products'
 const baseUrl = 'http://localhost:3005/api/pet_info'
-const baseUrlAction = 'http://localhost:3005/api/pet_action'
 
 const sample = [
   {
@@ -49,46 +48,6 @@ export const loadPetInfo = async (pet_id = '') => {
     // 判斷是否成功
     if (resData.status === 'success') {
       return resData.data.pet_info
-    } else {
-      console.warn('沒有得到資料')
-      // 用範例資料當作例外資料
-      return sample[0]
-    }
-  } catch (e) {
-    console.error(e)
-    // 用範例資料當作例外資料
-    return sample[0]
-  }
-}
-
-export const loadPetActions = async () => {
-  // 要使用try...catch陳述式，讓與伺服器連線作REST更穩健
-  try {
-    const res = await fetch(baseUrlAction)
-    const resData = await res.json()
-    // 判斷是否成功
-    if (resData.status === 'success') {
-      return resData.data.pet_action
-    } else {
-      console.warn('沒有得到資料')
-      return {}
-    }
-  } catch (e) {
-    console.error(e)
-    // 用範例資料當作例外資料
-    return sample
-  }
-}
-
-export const loadPetAction = async (pet_id = '') => {
-  try {
-    if (!pet_id) throw new Error('pet_id是必要參數')
-
-    const res = await fetch(`${baseUrlAction}/${pet_id}`)
-    const resData = await res.json()
-    // 判斷是否成功
-    if (resData.status === 'success') {
-      return resData.data.pet_action
     } else {
       console.warn('沒有得到資料')
       // 用範例資料當作例外資料

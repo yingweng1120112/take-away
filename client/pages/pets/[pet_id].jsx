@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { loadPetInfo } from '@/services/pets'
+import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 import DefaultLayout from '@/components/layout/default-layout'
@@ -49,6 +50,23 @@ export default function PetInfo() {
     habbit: '',
   })
 
+  const [action, setAction] = useState({
+    action_id: 10000,
+    pet_id: 10000,
+    sit: 0,
+    down: 0,
+    hand: 0,
+    stay: 0,
+    toilet: 0,
+    bark: 0,
+    respond: 0,
+    follow: 0,
+    mobility: 0,
+    adaptability: 0,
+    lively: 0,
+    affectionate: 0,
+  })
+
   // 宣告一個指示是不是正在載入資料的狀態
   // 因為一開始一定是要載入資料，所以預設值為true
   const [isLoading, setIsLoading] = useState(true)
@@ -59,12 +77,13 @@ export default function PetInfo() {
   // // showLoader是開載入動畫函式，hideLoader為關動畫函式(手動控制關閉才有用)
   // const { showLoader, hideLoader, loading, delay } = useLoader()
 
+  // 寵物資料 pet_info
   const getPet = async (pet_id) => {
     // // 開載入動畫函式
     // showLoader()
 
     const data = await loadPetInfo(pet_id)
-    console.log(data)
+    console.log("info", data)
 
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
@@ -77,6 +96,25 @@ export default function PetInfo() {
     }
   }
 
+  // 寵物資料 pet_action
+  const getAction = async (pet_id) => {
+    // // 開載入動畫函式
+    // showLoader()
+
+    const data = await loadPetAction(pet_id)
+    console.log("action" ,data)
+
+    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
+    // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      setAction(data)
+      // // 關掉載入動畫，1.5s後
+      // setTimeout(() => {
+      //   setIsLoading(false)
+      // }, 1500)
+    }
+  }
+
   // 樣式3: didMount+didUpdate
   // 第2步: 在useEffect中監聽router.isReady為true時，才能得到網址上的pet_id，之後向伺服器要資料
   useEffect(() => {
@@ -85,13 +123,14 @@ export default function PetInfo() {
     if (router.isReady) {
       const { pet_id } = router.query
       getPet(pet_id)
+      getAction(pet_id)
     }
     // eslint-disable-next-line
   }, [router.isReady])
 
   return (
     <>
-    {/* TODO: 寵物圖片 */}
+      {/* TODO: 寵物圖片 */}
       <div className={styles['commendbody']}>
         <section className={styles['pet-desc']}>
           <div className={styles['pet-img']}>
@@ -134,7 +173,11 @@ export default function PetInfo() {
             <p className={styles['pet-hashtag']}>#{pet.tag}</p>
             <div className={styles['pet-name']}>
               <p>{pet.name}</p>
-              {pet.gender === "男生"?(<img src="/img/pets/icon_boy.png" alt="" draggable="false" />):(<img src="/img/pets/icon_girl.png" alt="" draggable="false" />)}
+              {pet.gender === '男生' ? (
+                <img src="/img/pets/icon_boy.png" alt="" draggable="false" />
+              ) : (
+                <img src="/img/pets/icon_girl.png" alt="" draggable="false" />
+              )}
             </div>
             <ul>
               <li>{pet.gender}</li>
@@ -194,7 +237,7 @@ export default function PetInfo() {
           </div>
           <img
             className={styles['story-img']}
-            src={`/img/pet-info/${pet.phone1}.jpg`}
+            src={`/img/pet-info/${pet.phone3}.jpg`}
             alt=""
             draggable="false"
           />
@@ -208,61 +251,61 @@ export default function PetInfo() {
           <ul>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.fixed} type="checkbox" />
                 <span>結紮</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.microchip} type="checkbox" />
                 <span>晶片</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.vaccine} type="checkbox" />
                 <span>疫苗</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.deworm} type="checkbox" />
                 <span>定期驅蟲</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.disability} type="checkbox" />
                 <span>殘疾</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.skin} type="checkbox" />
                 <span>癌症</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.pee} type="checkbox" />
                 <span>尿失禁</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.blue} type="checkbox" />
                 <span>憂鬱</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.skin} type="checkbox" />
                 <span>皮膚病</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked="true" type="checkbox" />
+                <input defaultChecked={pet.blind} type="checkbox" />
                 <span>失明</span>
               </label>
             </li>
@@ -284,7 +327,11 @@ export default function PetInfo() {
         </section>
 
         <section className={styles['pet-skill']}>
-          <img src={`/img/pet-info/${pet.phone2}.jpg`} alt="" draggable="false" />
+          <img
+            src={`/img/pet-info/${pet.phone2}.jpg`}
+            alt=""
+            draggable="false"
+          />
           <table>
             <tbody>
               <tr>
@@ -295,13 +342,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.respond} type="checkbox" />
                     <span>呼叫</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.down} type="checkbox" />
                     <span>趴下</span>
                   </label>
                 </td>
@@ -309,13 +356,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.stay} type="checkbox" />
                     <span>等等</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.follow} type="checkbox" />
                     <span>隨行</span>
                   </label>
                 </td>
@@ -323,13 +370,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.sit} type="checkbox" />
                     <span>坐下</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.hand} type="checkbox" />
                     <span>握手</span>
                   </label>
                 </td>
@@ -337,13 +384,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.toilet} type="checkbox" />
                     <span>定點尿尿</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked="true" type="checkbox" />
+                    <input defaultChecked={action.bark} type="checkbox" />
                     <span>不亂吠叫</span>
                   </label>
                 </td>
@@ -361,7 +408,7 @@ export default function PetInfo() {
                 <span
                   className={`${styles['score-level']} ${styles['score-energy']}`}
                 >
-                  80%
+                  {action.mobility}%
                 </span>
               </span>
             </li>
@@ -371,7 +418,7 @@ export default function PetInfo() {
                 <span
                   className={`${styles['score-level']} ${styles['score-adapt']}`}
                 >
-                  80%
+                  {action.adaptability}%
                 </span>
               </span>
             </li>
@@ -381,7 +428,7 @@ export default function PetInfo() {
                 <span
                   className={`${styles['score-level']} ${styles['score-lively']}`}
                 >
-                  80%
+                  {action.lively}%
                 </span>
               </span>
             </li>
@@ -391,7 +438,7 @@ export default function PetInfo() {
                 <span
                   className={`${styles['score-level']} ${styles['score-affectionate']}`}
                 >
-                  80%
+                  {action.affectionate}%
                 </span>
               </span>
             </li>
