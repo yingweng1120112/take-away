@@ -83,7 +83,7 @@ export default function PetInfo() {
     // showLoader()
 
     const data = await loadPetInfo(pet_id)
-    console.log("info", data)
+    console.log('info', data)
 
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
@@ -102,7 +102,7 @@ export default function PetInfo() {
     // showLoader()
 
     const data = await loadPetAction(pet_id)
-    console.log("action" ,data)
+    console.log('action', data)
 
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
@@ -188,44 +188,50 @@ export default function PetInfo() {
               <li>{pet.breeds}</li>
             </ul>
             <div className={styles['pet-btn']}>
-              <button className={styles['cta']}>
-                <span className={styles['hover-underline-animation']}>
-                  預約賞寵
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-              <button className={styles['cta']}>
-                <span className={styles['hover-underline-animation']}>
-                  線上認養
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
+            {/* TODO: link 連結 */}
+            {/* <Link href={`/pets/${v.pet_id}`}> */}
+              <Link href={`/pets/${pet.pet_id}&area=about`}>
+                <button className={styles['cta']}>
+                  <span className={styles['hover-underline-animation']}>
+                    預約賞寵
+                  </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={10}
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    />
+                  </svg>
+                </button>
+              </Link>
+              <Link href={``}>
+                <button className={styles['cta']}>
+                  <span className={styles['hover-underline-animation']}>
+                    線上認養
+                  </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={10}
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    />
+                  </svg>
+                </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -243,6 +249,7 @@ export default function PetInfo() {
           />
         </section>
 
+        {/* FIXME: chechbox 打勾狀態 */}
         <section className={styles['pet-health']}>
           <h1>
             <img src="/img/pets/icon_pet-pill.png" alt="" draggable="false" />
@@ -399,6 +406,7 @@ export default function PetInfo() {
           </table>
         </section>
 
+        {/* TODO: 進度條 */}
         <section className={styles['pet-score']}>
           <h1>綜合評分</h1>
           <ul>
@@ -443,65 +451,72 @@ export default function PetInfo() {
               </span>
             </li>
           </ul>
+          {/* TODO: link 連結 */}
           <div className={styles['score-btn']}>
-            <button className={styles['cta']}>
-              <span className={styles['hover-underline-animation']}>
-                預約賞寵
-              </span>
-              <svg
-                id="arrow-horizontal"
-                xmlns="http://www.w3.org/2000/svg"
-                width={30}
-                height={10}
-                viewBox="0 0 46 16"
-              >
-                <path
-                  id="Path_10"
-                  data-name="Path 10"
-                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                  transform="translate(30)"
-                />
-              </svg>
-            </button>
-            <button className={styles['cta']}>
-              <span className={styles['hover-underline-animation']}>
-                線上認養
-              </span>
-              <svg
-                id="arrow-horizontal"
-                xmlns="http://www.w3.org/2000/svg"
-                width={30}
-                height={10}
-                viewBox="0 0 46 16"
-              >
-                <path
-                  id="Path_10"
-                  data-name="Path 10"
-                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                  transform="translate(30)"
-                />
-              </svg>
-            </button>
-            <button className={styles['cta']}>
-              <span className={styles['hover-underline-animation']}>
-                <FaRegCircleQuestion className={styles['question-icon']} />
-                {'  '}領養流程
-              </span>
-              <svg
-                id="arrow-horizontal"
-                xmlns="http://www.w3.org/2000/svg"
-                width={30}
-                height={10}
-                viewBox="0 0 46 16"
-              >
-                <path
-                  id="Path_10"
-                  data-name="Path 10"
-                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                  transform="translate(30)"
-                />
-              </svg>
-            </button>
+            <Link href={`/pets/`}>
+              <button className={styles['cta']}>
+                <span className={styles['hover-underline-animation']}>
+                  預約賞寵
+                </span>
+                <svg
+                  id="arrow-horizontal"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={30}
+                  height={10}
+                  viewBox="0 0 46 16"
+                >
+                  <path
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                    transform="translate(30)"
+                  />
+                </svg>
+              </button>
+            </Link>
+            <Link href={`/pets/`}>
+              <button className={styles['cta']}>
+                <span className={styles['hover-underline-animation']}>
+                  線上認養
+                </span>
+                <svg
+                  id="arrow-horizontal"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={30}
+                  height={10}
+                  viewBox="0 0 46 16"
+                >
+                  <path
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                    transform="translate(30)"
+                  />
+                </svg>
+              </button>
+            </Link>
+            <Link href={`/pets/notice`}>
+              <button className={styles['cta']}>
+                <span className={styles['hover-underline-animation']}>
+                  <FaRegCircleQuestion className={styles['question-icon']} />
+                  {'  '}領養流程
+                </span>
+                <svg
+                  id="arrow-horizontal"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={30}
+                  height={10}
+                  viewBox="0 0 46 16"
+                >
+                  <path
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                    transform="translate(30)"
+                  />
+                </svg>
+              </button>
+            </Link>
           </div>
         </section>
 
