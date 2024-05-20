@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import { loadPetInfo } from '@/services/pets'
 import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
-import DefaultLayout from '@/components/layout/default-layout'
+
+
 
 export default function PetInfo() {
   // 第1步. 宣告能得到動態路由pet_id的路由器
@@ -130,6 +133,7 @@ export default function PetInfo() {
 
   return (
     <>
+    <Header />
       {/* TODO: 寵物圖片 */}
       <div className={styles['commendbody']}>
         <section className={styles['pet-desc']}>
@@ -552,6 +556,7 @@ export default function PetInfo() {
           draggable="false"
         />
       </div>
+    <Footer />
     </>
   )
 }

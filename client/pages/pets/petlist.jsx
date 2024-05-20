@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { loadPetInfos } from '@/services/pets'
 import Link from 'next/link'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import DefaultLayout from '@/components/layout/default-layout'
 
 export default function PetList() {
   const [pets, setPets] = useState([])
@@ -33,6 +34,7 @@ export default function PetList() {
 
   return (
     <>
+    <Header />
       <div className={styles['commendbody']}>
         <section className={styles['title']}>
           <h1>
@@ -191,6 +193,7 @@ export default function PetList() {
           </div>
         </section>
       </div>
+    <Footer />
     </>
   )
 }
