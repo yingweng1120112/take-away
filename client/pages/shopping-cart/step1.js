@@ -22,40 +22,38 @@ export default function Step1() {
     removeItem,
     increaseItem,
     decreaseItem,
-    totalPrice,
-    extraFee,
-    finalTotalPrice,
+    selectedItems,
+    setSelectedItems,
+    countSelectedTotalPrice,
+    countSelectedFinalTotalPrice,
+    countSelectedExtraFee,
   } = useCart()
 
-  const [selectedItems, setSelectedItems] = useState([])
+
 
   useEffect(() => {
-    const initState = cartItems.map((item) => ({
-      ...item,
-      checked:
-        selectedItems.find(
+    setSelectedItems(prevState => {
+      const nextState = cartItems.map((item) => ({
+        ...item,
+        checked: prevState.find(
           (selected) => selected.product_id === item.product_id
         )?.checked || false,
-    }))
-    setSelectedItems(initState)
-  }, [cartItems])
-
+      }));
+      return nextState;
+    });
+  }, [cartItems]);
+  
   const handleToggleChecked = (product_id) => {
-    const nextItems = selectedItems.map((item) =>
-      item.product_id === product_id
-        ? { ...item, checked: !item.checked }
-        : item
-    )
-    setSelectedItems(nextItems)
+    setSelectedItems(prevState => {
+      const nextItems = prevState.map((item) =>
+        item.product_id === product_id
+          ? { ...item, checked: !item.checked }
+          : item
+      );
+      return nextItems;
+    });
   }
-
-  const selectedTotalPrice = selectedItems
-    .filter((item) => item.checked)
-    .reduce((acc, item) => acc + item.subTotal, 0)
-
-  const selectedFinalTotalPrice =
-    selectedTotalPrice < 899 ? selectedTotalPrice + 80 : selectedTotalPrice
-  const selectedExtraFee = selectedTotalPrice < 899 ? '80' : '0'
+  
 
   return (
     <>
@@ -175,11 +173,11 @@ export default function Step1() {
               <>
                 <div>
                   <div>小計：</div>
-                  <div>${selectedTotalPrice}</div>
+                  <div>${countSelectedTotalPrice()}</div>
                 </div>
                 <div>
                   <div>運費(滿899免運)：</div>
-                  <div>${selectedExtraFee}</div>
+                  <div>${countSelectedExtraFee()}</div>
                 </div>
                 <div>
                   <div>優惠：</div>
@@ -187,7 +185,7 @@ export default function Step1() {
                 </div>
                 <div>
                   <div>合計：</div>
-                  <div>${selectedFinalTotalPrice}</div>
+                  <div>${countSelectedFinalTotalPrice()}</div>
                 </div>
               </>
             ) : (

@@ -18,6 +18,23 @@ export function CartProvider({ children }) {
     setSelectedItems(nextSelectedItems)
   }
 
+  //計算被選擇的商品
+  const countSelectedTotalPrice = () => {
+    return selectedItems
+      .filter((item) => item.checked)
+      .reduce((acc, item) => acc + item.subTotal, 0)
+  }
+
+  const countSelectedFinalTotalPrice = () => {
+    const selectedTotalPrice = countSelectedTotalPrice();
+    return selectedTotalPrice < 899 ? selectedTotalPrice + 80 : selectedTotalPrice;
+  }
+
+  const countSelectedExtraFee = () => {
+    return countSelectedTotalPrice() < 899 ? '80' : '0';
+  }
+
+
   const increaseItem = (product_id) => {
     // 1 2 展開每個成員
     const nextItems = cartItems.map((v, i) => {
@@ -103,9 +120,11 @@ export function CartProvider({ children }) {
         removeItem,
         increaseItem,
         decreaseItem,
-        totalPrice,
-        extraFee,
-        finalTotalPrice,
+        selectedItems,
+        setSelectedItems,
+        countSelectedTotalPrice,
+        countSelectedExtraFee,
+        countSelectedFinalTotalPrice,
       }}
     >
       {children}
