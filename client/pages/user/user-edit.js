@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-edit.module.css'
 
 export default function UserEdit() {
-  const [inputValue, setInputValue] = useState('')
+  const [startDate, setStartDate] = useState(null)
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value)
+  const date = (date) => {
+    setStartDate(date)
   }
 
   return (
@@ -40,8 +42,6 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        value={inputValue}
-                        onChange={handleChange}
                         required
                         id="name"
                       />
@@ -61,8 +61,6 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        value={inputValue}
-                        onChange={handleChange}
                         required
                         id="phone"
                       />
@@ -79,17 +77,21 @@ export default function UserEdit() {
                   <div className={styles['bookItem']}>
                     <img src={`/img/user/user-dog.png`} alt="" />
                     <div className={styles['group']}>
-                      <input
+                      <DatePicker
+                        selected={startDate}
+                        onChange={date}
+                        dateFormat="yyyy/MM/dd"
                         className={styles['input']}
-                        type="text"
-                        value={inputValue}
-                        onChange={handleChange}
-                        required
                         id="birthday"
                       />
                       <span className={styles['highlight']} />
                       <span className={styles['bar']} />
-                      <label className={styles['label']} htmlFor="birthday">
+                      <label
+                        className={`${styles['label']} ${
+                          startDate ? styles['active'] : ''
+                        }`}
+                        htmlFor="birthday"
+                      >
                         生日：
                       </label>
                     </div>
@@ -103,8 +105,6 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        value={inputValue}
-                        onChange={handleChange}
                         required
                         id="password"
                       />
@@ -124,8 +124,6 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        value={inputValue}
-                        onChange={handleChange}
                         required
                         id="confirm-password"
                       />
@@ -148,8 +146,6 @@ export default function UserEdit() {
                       <input
                         className={styles['input']}
                         type="text"
-                        value={inputValue}
-                        onChange={handleChange}
                         required
                         id="address"
                       />
