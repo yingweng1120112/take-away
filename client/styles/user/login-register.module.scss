@@ -1,11 +1,4 @@
 @media screen and (min-width: 1025px) {
-  .section {
-    // margin: 0 auto;
-    // height: auto;
-    background-color: var(--bg-color);
-    margin-bottom: -100px;
-    padding-bottom: 100px;
-  }
   .tip {
     font-size: 20px;
     margin: 0 auto;
@@ -28,7 +21,6 @@
     height: 100%;
     transition: transform 1.2s ease-in-out;
     padding: 50px 30px 0;
-    // border-radius: 1px solid black;
   }
 
   .sub-cont {
@@ -75,7 +67,7 @@
       top: 0;
       width: 900px;
       height: 100%;
-      background-image: url('/img/login-bg2.jpg');
+      background-image: url('/img/user/login-bg2.jpg');
       background-size: cover;
       transition: transform 1.2s ease-in-out;
     }
@@ -346,7 +338,7 @@
       top: 0;
       width: 360px;
       height: 100%;
-      background-image: url(/img/login-bg.jpg);
+      background-image: url(/img/user/login-bg.jpg);
       background-size: cover;
       transition: transform 1.2s ease-in-out;
     }

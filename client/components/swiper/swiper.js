@@ -7,6 +7,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 
+
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
@@ -29,34 +30,41 @@ export default function Carousel() {
         <SwiperSlide>
           <img
             style={{
-              'width': '100%',
-              'height': '100%',
+              width: '100%',
+              height: '100%',
             }}
-            src="/img/pet-info/10010/10010-1.jpg" />
-            {/* 720x480 */}
+            src="/images/pet-info/10020/10020-1.jpg"
+          />
+          {/* 720x480 */}
         </SwiperSlide>
         <SwiperSlide>
           <img
             style={{
-              'width': '100%',
-            'height': '100%',
+              width: '100%',
+              height: '100%',
             }}
-            src="/img/pet-info/10010/10010-2.jpg" />
+            src="/images/pet-info/10020/10020-2.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img style={{
-            'width': '100%',
-            'height': '100%',
-          }} src="/img/pet-info/10010/10010-3.jpg" />
+          <img
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            src="/images/pet-info/10020/10020-5.jpg"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img style={{
-            'width': '100%',
-            'height': '100%',
-          }} src="/img/pet-info/10010/10010-4.jpg" />
+          <img
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            src="/images/pet-info/10020/10020-4.jpg"
+          />
         </SwiperSlide>
       </Swiper>
-      
     </>
   )
 }

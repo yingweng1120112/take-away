@@ -71,11 +71,11 @@ ol {
   list-style: none;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
   font-family: var(--font-family);
-  background-color: var(--bg-color);
+  background-color: var(--bg-color) !important;
 }
 
 .container {
