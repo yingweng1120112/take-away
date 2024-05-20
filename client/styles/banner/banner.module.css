@@ -87,6 +87,13 @@ display:none;
   padding:1rem;
   width:100%;
 }
+.select-item-c {
+  display: flex;
+  flex-direction: column;
+  padding:1rem;
+  width:100%;
+  align-items: center;
+}
 .shop-select-out{
   display: flex; justify-content: center
 }
@@ -403,6 +410,13 @@ margin: 0 10px
     width:50%;
     margin-right: 10%;
     margin-left: 5%;
+  }
+  .select-item-c {
+    padding: 0;
+    width:50%;
+    margin-right: 10%;
+    margin-left: 5%;
+    align-items: center;
   }
   .accordion {
     --bs-accordion-btn-padding-x:1.25rem;
