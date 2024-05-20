@@ -434,7 +434,7 @@ export default function Menu() {
         </div>
       </section>
       {/* 推薦浪浪 */}
-      <MenuSwiper />
+      <MenuSwiper styles={{width:'1904px', height:'auto'}}/>
     </>
   )
 }

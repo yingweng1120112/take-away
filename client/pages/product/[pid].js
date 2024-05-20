@@ -2,6 +2,7 @@ import React from 'react'
 import Reviews from './reviews'
 import Info from './info'
 import MyReviews from './my_reviews'
+import InfoSwiper from './info_swiper'
 import styles from '@/styles/product/information.module.css'
 
 export default function Information() {
@@ -17,6 +18,7 @@ export default function Information() {
           <p>其他你也許有可能會喜歡的商品再看一眼吧</p>
         </div>
       </section>
+      <InfoSwiper />
     </>
   )
 }

@@ -1,48 +1,3 @@
-:root {
-  --black: #000000;
-  --white: #ffffff;
-  --beige: #fef9f2;
-  --brown: #967b4a;
-  --reddish-brown: #895e3c;
-  --khaki: #d7b67a;
-  --bean-paste: #d3ad9a;
-  --yellow: #fecc5f;
-  --light-yellow: #faeed1;
-  --creamy-yellow: #fdf7e4;
-  --gray: #ebebeb;
-  --dark-gray: #ebe6d4;
-  --bright-gary: #f5ebd9;
-  --heavy-gary: #cab897;
-  --light-gray: #dbd2c6;
-  --deep-gray: #89837c;
-  --light-pink: #fce9d4;
-  --red: #e83d3d;
-  --orange: #e24800;
-  --light-blue: #b9d8ef;
-  --deep-blue: #292f36;
-  --dark-green: #018786;
-  --pink: #f29999;
-  --blue: #427d9d;
-  --green: #b6c12f;
-  --border-color: #895e3c;
-  --font-family: 'Noto Sans TC', sans-serif;
-  --font-size-h1: 2rem;
-
-  /* h1 標題文字大小 ,32px*/
-  --font-size-h2: 1.8rem;
-
-  /* h2 標題文字大小,28.8px */
-  --font-size-h3: 1.5rem;
-
-  /* h3 標題文字大小,24px  */
-  --font-size-h4: 1.25rem;
-
-  /* h4 標題文字大小,20px */
-  --font-size-p: 16px;
-
-  /* 段落文字大小 */
-  --bg-color: #fdf7e4;
-}
 li a{
   text-decoration: none;
   color:var( --reddish-brown);
@@ -82,7 +37,10 @@ flex-direction: column;
   margin:auto;
   cursor: default;
 }
-
+.navbar2 ul li:hover {
+  background: var(--creamy-yellow);
+  color:  var(--reddish-brown);
+}
 .navbar2 ul li a {
   font-size: 20px;
   padding: 20px;
@@ -97,7 +55,7 @@ flex-direction: column;
 
 .navbar2 ul li a:hover {
   background: var(--creamy-yellow);
-  color: black;
+  color:  var(--reddish-brown);
 }
 
 .navbar2 ul li ul {
