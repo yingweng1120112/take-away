@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from '@/styles/user/login-register.module.scss'
-import DefaultLayout from '@/components/layout/default-layout'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 export default function LoginRegister() {
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function LoginRegister() {
   return (
     <>
       <section className={styles['section']}>
+        <Headers />
         <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
         <div className={styles['cont']}>
           <div className={`${styles['form']} ${styles['sign-in']}`}>
