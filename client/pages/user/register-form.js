@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import styles from '@/styles/user/login-register.module.scss'
+import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-// 解析accessToken用的函式
-const parseJwt = (token) => {
-  const base64Payload = token.split('.')[1]
-  const payload = Buffer.from(base64Payload, 'base64')
-  return JSON.parse(payload.toString())
-}
-
-export default function LoginRegister() {
+export default function RegisterForm() {
+  // 控制登入、註冊切換的特效
   useEffect(() => {
     // 添加事件監聽器
     const handleClick = () => {
@@ -28,80 +23,102 @@ export default function LoginRegister() {
     }
   }, [styles])
 
-  // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
+  // 註冊開始
+  // 狀態為物件，屬性對應到表單的欄位名稱
   const [user, setUser] = useState({
+    name: '',
     email: '',
+    username: '',
     password: '',
+    confirmPassword: '',
+    agree: false, // checkbox 同意會員註冊條款
   })
 
-  // 記錄欄位錯誤訊息的狀態
+  // 錯誤訊息狀態
   const [errors, setErrors] = useState({
+    name: '',
     email: '',
+    username: '',
     password: '',
+    confirmPassword: '',
+    agree: '', // 呈現錯誤訊息用字串
   })
 
-  // 顯示密碼的核取方塊用
+  // checkbox 呈現密碼用
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  // 多欄位共用事件處理函式
+  // 多欄位共用事件函式
   const handleFieldChange = (e) => {
-    // 可以利用e.target觀察目前是在輸入或操作哪個欄位上
-    console.log(e.target.name, e.target.type, e.target.value)
-    // ES6: computed property names (計算得來的屬性名稱)
-    // [e.target.name]: e.target.value }
-    // ^^^^^^^^^^^^^^^ 這裡可以動態的代入變數值或表達式，計算出物件屬性名稱(字串)
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
-    setUser({ ...user, [e.target.name]: e.target.value })
+    console.log(e.target.name, e.target.value, e.target.type)
+
+    if (e.target.name === 'agree') {
+      setUser({ ...user, [e.target.name]: e.target.checked })
+    } else {
+      setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
+    // ES6特性: 計算得來的屬性名稱(computed property names)
+    // [e.target.name]: e.target.value
+    // ^^^^^^^^^^^^^^^ 這樣可以動態的設定物件的屬性名稱
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Object_initializer#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%90%8D
   }
 
-  // 表單送出事件處理函式
   const handleSubmit = async (e) => {
     // 阻擋表單預設送出行為
     e.preventDefault()
 
-    // 表單檢查---START---
-    // 建立一個新的錯誤訊息物件
-    const newErrors = { email: '', password: '' }
+    // 表單檢查 --- START
+    // 建立一個新的錯誤物件
+    const newErrors = {
+      name: '',
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
+    }
 
-    // if (user.username === '') {
-    // 上面寫法常見改為下面這樣，`if(user.username)` 代表有填寫，
-    // 所以反相判斷 `if(!user.username)` 代表沒填寫
+    if (!user.name) {
+      newErrors.name = '姓名為必填'
+    }
     if (!user.email) {
-      newErrors.email = '帳號為必填'
+      newErrors.email = 'email為必填'
+    }
+    if (!user.username) {
+      newErrors.username = '帳號為必填'
     }
 
-    if (user.password && user.password.length < 6) {
-      newErrors.password = '密碼至少6個字元'
+    if (user.password !== user.confirmPassword) {
+      newErrors.password = '密碼與確認密碼需要一致'
+      newErrors.confirmPassword = '密碼與確認密碼需要一致'
     }
 
-    if (user.password === '') {
+    if (!user.password) {
       newErrors.password = '密碼為必填'
     }
 
-    // if (user.password2 === '') {
-    //   newErrors.password2 = '確認密碼為必填'
-    // }
+    if (!user.confirmPassword) {
+      newErrors.confirmPassword = '確認密碼為必填'
+    }
 
-    // if (user.password !== user.password2) {
-    //   newErrors.password = '密碼與確認密碼需要相同'
-    //   newErrors.password2 = '密碼與確認密碼需要相同'
-    // }
+    if (!user.agree) {
+      newErrors.agree = '請先同意會員註冊條款'
+    }
 
-    // 檢查完設定到狀態中
+    // 呈現錯誤訊息
     setErrors(newErrors)
 
     // 物件屬性值中有非空白字串時，代表有錯誤發生
     const hasErrors = Object.values(newErrors).some((v) => v)
 
-    // 有錯誤發生，不送到伺服器去
+    // 有錯誤，不送到伺服器，跳出submit函式
     if (hasErrors) {
-      return // 函式中作流程控制，會跳出函式不執行之後的程式碼
+      return
     }
-    // 表單檢查--- END ---
+    // 表單檢查 --- END
 
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/login', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
+    // 最後檢查完全沒問題才送到伺服器(ajax/fetch)
+    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -112,54 +129,9 @@ export default function LoginRegister() {
 
     const data = await res.json()
 
-    if (data.status === 'success') {
-      alert('登入成功')
-      const returnUser = parseJwt(data.data.accessToken)
-      console.log(returnUser)
-    } else {
-      alert(data.message)
-    }
-  }
+    console.log(data)
 
-  const handleLogout = async () => {
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/logout', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    })
-
-    const data = await res.json()
-
-    if (data.status === 'success') {
-      alert('登出成功')
-    } else {
-      alert(data.message)
-    }
-  }
-
-  const handleCheck = async () => {
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/check', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-
-    const data = await res.json()
-
-    if (data.status === 'success') {
-      console.log(data.data)
-    } else {
-      alert(data.message)
-    }
+    alert('送到伺服器')
   }
 
   return (
@@ -190,22 +162,22 @@ export default function LoginRegister() {
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 密碼：{' '}
               </span>
-              <input
-                className={styles['input']}
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={user.password}
-                onChange={handleFieldChange}
-              />
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={user.password}
+                  onChange={handleFieldChange}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
             </label>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={(e) => {
-                setShowPassword(e.target.checked)
-              }}
-            />
-            顯示密碼
             <div className="error">{errors.password}</div>
             <p className={styles['forgot-pass']}>忘記密碼？</p>
             <button
@@ -214,7 +186,7 @@ export default function LoginRegister() {
             >
               登入
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={() => {
                 setUser({
@@ -230,7 +202,7 @@ export default function LoginRegister() {
             </button>
             <button type="button" onClick={handleLogout}>
               登出
-            </button>
+            </button> */}
             <button
               type="button"
               className={`${styles['button']} ${styles['fb-btn']}`}
@@ -280,20 +252,74 @@ export default function LoginRegister() {
                 <span className={`${styles['span']} ${styles['spanl']}`}>
                   姓名：
                 </span>
-                <input className={styles['input']} type="text" />
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="name"
+                  value={user.name}
+                  onChange={handleFieldChange}
+                />
               </label>
+              <span className="error">{errors.name}</span>
               <label className={styles['label']}>
                 <span className={`${styles['span']} ${styles['spanl']}`}>
-                  Email：
+                  Email：{' '}
                 </span>
-                <input className={styles['input']} type="email" />
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="email"
+                  value={user.email}
+                  onChange={handleFieldChange}
+                />
               </label>
+              <span className="error">{errors.email}</span>
               <label className={styles['label']}>
                 <span className={`${styles['span']} ${styles['spanl']}`}>
                   密碼：
                 </span>
-                <input className={styles['input']} type="password" />
+                <div className="d-flex">
+                  <input
+                    className={styles['input']}
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={user.password}
+                    onChange={handleFieldChange}
+                  />
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
               </label>
+              <span className="error">{errors.password}</span>
+              <br />
+              <label className={styles['label']}>
+                <span className={`${styles['span']} ${styles['spanl']}`}>
+                  確認密碼:{' '}
+                </span>
+                <div className="d-flex">
+                  <input
+                    className={styles['input']}
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={user.confirmPassword}
+                    onChange={handleFieldChange}
+                  />
+                  <span
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+              </label>
+              <br />
+              <span className="error">{errors.confirmPassword}</span>
+              <br />
+              <span className="error">{errors.agree}</span>
               <button
                 type="submit"
                 className={`${styles['button']} ${styles['submit']}`}
