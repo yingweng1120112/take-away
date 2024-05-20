@@ -1,14 +1,16 @@
 import React from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import Link from 'next/link'
 import styles from '@/styles/shopping-cart/shoppingcar-step2.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faAnglesLeft,
   faClipboardCheck,
 } from '@fortawesome/free-solid-svg-icons'
+import { useCart } from '@/context/cartcontext'
 
-export default function Step1() {
+export default function Step2() {
   return (
     <>
       <Header />
@@ -210,20 +212,24 @@ export default function Step1() {
               <div>$350</div>
             </div>
             <div className={styles['cartbutton']}>
-              <button className={styles['buttonstyle']}>
-                <FontAwesomeIcon
-                  icon={faAnglesLeft}
-                  className={styles['iconstyle1']}
-                />
-                回上一步
-              </button>
-              <button className={styles['buttonstyle']}>
-                提交訂單
-                <FontAwesomeIcon
-                  icon={faClipboardCheck}
-                  className={styles['iconstyle2']}
-                />
-              </button>
+              <Link href="/shopping-cart/step1" passHref>
+                <a className={styles['buttonstyle']}>
+                  <FontAwesomeIcon
+                    icon={faAnglesLeft}
+                    className={styles['iconstyle1']}
+                  />
+                  回上一步
+                </a>
+              </Link>
+              <Link href="/shopping-cart/step3" passHref>
+                <a className={styles['buttonstyle']}>
+                  提交訂單
+                  <FontAwesomeIcon
+                    icon={faClipboardCheck}
+                    className={styles['iconstyle2']}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         </div>

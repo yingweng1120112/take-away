@@ -311,6 +311,7 @@
   color: var(--deep-gray);
   box-shadow: 0 0.2rem #dfd9d9;
   cursor: pointer;
+  text-decoration: none;
 }
 .cartbutton button:nth-child(1) {
   display: flex;

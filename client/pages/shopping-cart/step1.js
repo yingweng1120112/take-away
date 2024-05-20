@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import Link from 'next/link'
 import styles from '@/styles/shopping-cart/shoppingcar-step1.module.css'
 import Carousel from '@/components/shopping-cart/carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
-import Link from 'next/link'
 
 export default function Step1() {
   const {
@@ -194,20 +194,24 @@ export default function Step1() {
               <div>尚未選擇商品</div>
             )}
             <div className={styles['cartbutton']}>
-              <button className={styles['buttonstyle']}>
-                <FontAwesomeIcon
-                  icon={faStore}
-                  className={styles['iconstyle1']}
-                />
-                繼續購物
-              </button>
-              <button className={styles['buttonstyle']}>
-                填寫資料
-                <FontAwesomeIcon
-                  icon={faAnglesRight}
-                  className={styles['iconstyle2']}
-                />
-              </button>
+              <Link href="#" passHref>
+                <a className={styles['buttonstyle']}>
+                  <FontAwesomeIcon
+                    icon={faStore}
+                    className={styles['iconstyle1']}
+                  />
+                  繼續購物
+                </a>
+              </Link>
+              <Link href="/shopping-cart/step2" passHref>
+                <a className={styles['buttonstyle']}>
+                  填寫資料
+                  <FontAwesomeIcon
+                    icon={faAnglesRight}
+                    className={styles['iconstyle2']}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         </div>
