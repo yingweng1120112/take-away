@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
-import AdoptForm from './adopt-form'
+import AdoptForm from '../../components/adopt/adopt-form'
 
 const parageStyles = {
   WebkitLineClamp: 1,
@@ -40,7 +40,7 @@ export default function Adopt() {
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel style={{ 'margin': '1rem', width:"100%"}} />
+                <Carousel style={{ 'margin': '2rem', width:"100%"}} />
               </div>
 
               <div className={styles['pet-photo']}>

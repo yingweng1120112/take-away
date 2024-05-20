@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 export default function PageThree() {
   const [formData, setFormData] = useState({
@@ -8,15 +8,15 @@ export default function PageThree() {
     phone:'',
     donationAmount:'',
     donationPurpose: ''
-  });
+  })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData(prevState => ({
       ...prevState,
       [name]: value
-    }));
-  };
+    }))
+  }
 
   return (
     <>
@@ -123,5 +123,5 @@ export default function PageThree() {
         </div>
       </div>
     </>
-  );
+  )
 }

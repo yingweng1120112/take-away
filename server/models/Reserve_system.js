@@ -2,22 +2,22 @@ import { DataTypes } from 'sequelize'
 
 export default async function (sequelize) {
   return sequelize.define(
-    'Reserve_system ',
+    'Reserve_system',
     {
       reservation_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      pet_id: {
+      pet: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name_id: {
+      name: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      time: {
+      reserveTime: {
         type: DataTypes.TEXT,
         allowNull: true,
       },

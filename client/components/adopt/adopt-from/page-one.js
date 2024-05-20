@@ -16,50 +16,54 @@ export default function Pageone() {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setNtd({...ntd,[name]: value,})}
+    setNtd({ ...ntd, [name]: value })
+  }
   return (
     <>
       <h5 className="page-title">填寫捐款金額及方式</h5>
       <h4>點選捐款方式</h4>
-      <div title="button-group" 
-      className="donate-button-group">
-          {donateOptions.map((v, i) => {
-          return <button  className="donate-button" key={i}>
-            <input
-            type="button"
-            name={v}
-            value={v}
-            className="donate-input"
-            checked={donate === v}
-              onChange={(e) => {
-                setDonate(e.target.value)
+      <div title="button-group" className="donate-button-group">
+        {donateOptions.map((v, i) => {
+          return (
+            <button className="donate-button" key={i}>
+              <input
+                type="button"
+                name={v}
+                value={v}
+                className="donate-input"
+                checked={donate === v}
+                onChange={(e) => {
+                  setDonate(e.target.value)
                 }}
-            />
-          </button>
+              />
+            </button>
+          )
         })}
       </div>
       <h4>點選金額或自訂金額</h4>
       <div title="ntd-button-group" className="ntd-group">
         <div className="wrapper">
-        {giveOptions.map((v, i) => {
-          return <div className="input-card" key={i}>
-            <input
-            type="radio"
-            name={v}
-            value={v}
-            className="ntd-input"
-            checked={give === v}
-              onChange={(e) => {
-                setGive(e.target.value)
-                }}
-            />
-            <span className="check"></span>
-            <div className="ntd-label">
-              <div className="title">我想捐款</div>
-              <div className="price">{v}</div>
-            </div>
-          </div>
-        })}
+          {giveOptions.map((v, i) => {
+            return (
+              <div className="input-card" key={i}>
+                <input
+                  type="radio"
+                  name={v}
+                  value={v}
+                  className="ntd-input"
+                  checked={give === v}
+                  onChange={(e) => {
+                    setGive(e.target.value)
+                  }}
+                />
+                <span className="check"></span>
+                <div className="ntd-label">
+                  <div className="title">我想捐款</div>
+                  <div className="price">{v}</div>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
       <h4>NTD</h4>
@@ -81,8 +85,9 @@ export default function Pageone() {
 
       <div title="radio-button-group" className="radio-group">
         {payOptions.map((v, i) => {
-          return <label class="custom-checkbox" key={i}>
-          <input
+          return (
+            <label class="custom-checkbox" key={i}>
+              <input
                 type="checkbox"
                 name={v}
                 value={v}
@@ -92,9 +97,10 @@ export default function Pageone() {
                   setPay(e.target.value)
                 }}
               />
-          <span class="checkmark"></span>
+              <span class="checkmark"></span>
               {v}
-          </label>
+            </label>
+          )
         })}
       </div>
     </>

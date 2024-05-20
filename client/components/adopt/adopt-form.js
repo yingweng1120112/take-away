@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Pageone from '@/components/adopt-from/page-one'
-import PageTwo from '@/components/adopt-from/page-two';
-import PageThree from '@/components/adopt-from/page-three';
+import Pageone from '@/components/adopt/adopt-from/page-one'
+import PageTwo from '@/components/adopt/adopt-from/page-two'
+import PageThree from '@/components/adopt/page-three'
 export default function AdoptForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -29,7 +29,6 @@ export default function AdoptForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission, e.g., send data to server
     console.log('Form submitted:', formData)
   }
 
