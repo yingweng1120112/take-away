@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import CarouselPc from '@/components/swiper/shopSwiperPc'
 import CarouselPhone from '@/components/swiper/shopSwiperPhone'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import banner from '@/styles/banner/banner.module.css'
 import styles from '@/styles/bo-ren/life.module.css'
 import { FaVenus, FaMars } from 'react-icons/fa6'
@@ -10,6 +12,7 @@ export default function life() {
   return (
     <>
       <div>
+        <Header />
         <div className={styles['life-container']}>
           {/* banner start*/}
           <div
@@ -106,7 +109,7 @@ export default function life() {
                         </label>
                       </div>
                     </div>
-                    <div className={banner['select-item-b']}>
+                    <div className={banner['select-item-c']}>
                       <p className={banner['select-title']}>姓別</p>
                       <div className={banner['select-item']}>
                         <label className={banner['cl-checkbox']}>
@@ -379,6 +382,7 @@ export default function life() {
         <div className={styles['shop-Carousel-phone']}>
           <CarouselPhone />
         </div>
+        <Footer />
       </div>
     </>
   )
