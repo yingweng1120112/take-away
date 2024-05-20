@@ -40,7 +40,7 @@ export default function Adopt() {
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel style={{ 'margin': '2rem', width:"100%"}} />
+                <Carousel style={{ margin: '2rem', width: '100%' }} />
               </div>
 
               <div className={styles['pet-photo']}>

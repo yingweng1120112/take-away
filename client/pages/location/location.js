@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '@/styles/location/location.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandPointer } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -176,7 +176,7 @@ export default function Location() {
             <button className={styles['btn']}>
               <a href="">領養專區</a>
               <a className={styles['icon']}>
-                <FontAwesomeIcon icon={faHandPointer} />
+                {/* <FontAwesomeIcon icon={faHandPointer} /> */}
               </a>
             </button>
           </div>

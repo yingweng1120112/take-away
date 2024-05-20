@@ -1,69 +1,65 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Pageone() {
+export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
   const donateOptions = ['定期定額', '單筆捐款']
-  const [donate, setDonate] = useState('單筆捐款')
-
   const giveOptions = ['500', '1000', '2000']
-  const [give, setGive] = useState('500')
-  const [ntd, setNtd] = useState({
-    price: '',
-  })
-
   const payOptions = ['銀行轉帳', '信用卡', '超商付款']
-  // 使用者從多個選項中選擇一個
-  const [pay, setPay] = useState('銀行轉帳')
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setNtd({ ...ntd, [name]: value })
+  const handleAmountChange = (e) => {
+    setDonateInfo({ ...donateInfo, amount: '', customAmount: e.target.value })
   }
+
   return (
     <>
       <h5 className="page-title">填寫捐款金額及方式</h5>
+      <h4>我想認養</h4>
+      <div className="form-Input-group">
+        <label className="form-label">
+          {' '}
+          <input
+            type="text"
+            name="pet"
+            className="form-input"
+            placeholder="寵物"
+            value={donateInfo.pet}
+            onChange={handleChange}
+          />
+          <span className="input-border"></span>
+        </label>
+      </div>
       <h4>點選捐款方式</h4>
-      <div title="button-group" className="donate-button-group">
-        {donateOptions.map((v, i) => {
-          return (
-            <button className="donate-button" key={i}>
-              <input
-                type="button"
-                name={v}
-                value={v}
-                className="donate-input"
-                checked={donate === v}
-                onChange={(e) => {
-                  setDonate(e.target.value)
-                }}
-              />
-            </button>
-          )
-        })}
+      <div className="donate-button-group">
+        {donateOptions.map((v, i) => (
+          <button
+            key={i}
+            type='button'
+            className="donate-button"
+            onClick={() => setDonateInfo({ ...donateInfo, donation_method: v })}
+          >
+            {v}
+          </button>
+        ))}
       </div>
       <h4>點選金額或自訂金額</h4>
       <div title="ntd-button-group" className="ntd-group">
         <div className="wrapper">
-          {giveOptions.map((v, i) => {
-            return (
-              <div className="input-card" key={i}>
-                <input
-                  type="radio"
-                  name={v}
-                  value={v}
-                  className="ntd-input"
-                  checked={give === v}
-                  onChange={(e) => {
-                    setGive(e.target.value)
-                  }}
-                />
-                <span className="check"></span>
-                <div className="ntd-label">
-                  <div className="title">我想捐款</div>
-                  <div className="price">{v}</div>
-                </div>
+          {giveOptions.map((v, i) => (
+            <div className="input-card" key={i}>
+              <input
+                type="radio"
+                name="amount"
+                value={v}
+                className="ntd-input"
+                checked={donateInfo.amount === v}
+                onChange={handleChange}
+              />
+              <span className="check"></span>
+              <div className="ntd-label">
+                <div className="title">我想捐款</div>
+                <div className="price">{v}</div>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
       </div>
       <h4>NTD</h4>
@@ -72,36 +68,31 @@ export default function Pageone() {
           {' '}
           <input
             type="text"
-            name="price"
+            name="customAmount"
             className="form-input"
             placeholder="NTD"
-            value={ntd.price}
-            onChange={handleChange}
+            value={donateInfo.customAmount}
+            onChange={handleAmountChange}
           />
-          <span class="input-border"></span>
+          <span className="input-border"></span>
         </label>
       </div>
       <h4 className="payment">付款方式</h4>
-
-      <div title="radio-button-group" className="radio-group">
-        {payOptions.map((v, i) => {
-          return (
-            <label class="custom-checkbox" key={i}>
-              <input
-                type="checkbox"
-                name={v}
-                value={v}
-                className="radio-input"
-                checked={pay === v}
-                onChange={(e) => {
-                  setPay(e.target.value)
-                }}
-              />
-              <span class="checkmark"></span>
-              {v}
-            </label>
-          )
-        })}
+      <div className="radio-group">
+        {payOptions.map((v, i) => (
+          <label className="custom-checkbox" key={i}>
+            <input
+              type="checkbox"
+              name="payment"
+              value={v}
+              className="radio-input"
+              checked={donateInfo.payment === v}
+              onChange={handleChange}
+            />
+            <span className="checkmark"></span>
+            {v}
+          </label>
+        ))}
       </div>
     </>
   )
