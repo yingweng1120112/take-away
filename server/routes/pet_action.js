@@ -9,17 +9,14 @@ import db from '#configs/mysql.js'
 // router.get('/', function (req, res, next) {
 //   res.render('index', { title: 'Express' })
 // })
-// GET - 得到所有pet_info資料表資料
+// GET - 得到所有pet_action資料表資料
 router.get('/', async function (req, res) {
-  // 直接下sql篩選出有領養狀態state
-  const [rows] = await db.query(
-    'SELECT * FROM `pet_info` WHERE `state` IS NOT NULL AND `state` != "";'
-  )
-  const pet_info = rows
+  const [rows] = await db.query('SELECT * FROM `pet_action`')
+  const pet_action = rows
   // 處理如果沒找到資料
 
   // 標準回傳JSON
-  return res.json({ status: 'success', data: { pet_info } })
+  return res.json({ status: 'success', data: { pet_action } })
 })
 
 // GET - 得到單筆資料(注意，有動態參數時要寫在GET區段最後面)
@@ -27,9 +24,9 @@ router.get('/:id', async function (req, res) {
   // 轉為數字
   const id = getIdParam(req)
 
-  const [rows] = await db.query('SELECT * FROM `pet_info` WHERE pet_id=?', [id])
-  const pet_info = rows[0]
-  return res.json({ status: 'success', data: { pet_info } })
+  const [rows] = await db.query('SELECT * FROM `pet_action` WHERE pet_id=?', [id])
+  const pet_action = rows[0]
+  return res.json({ status: 'success', data: { pet_action } })
 })
 
 export default router
