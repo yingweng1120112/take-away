@@ -33,10 +33,13 @@ router.get('/:id', async function (req, res) {
   // 轉為數字
   const id = getIdParam(req)
 
-  const user = await Product.findByPk(id, {
-    raw: true, // 只需要資料表中資料
-  })
+  // const user = await Product.findByPk(id, {
+  //   raw: true, // 只需要資料表中資料
+  // })
 
-  return res.json({ status: 'success', data: { user } })
+  const [rows] = await db.query('SELECT * FROW product WHERE id=?', [id])
+  const product = rows[0]
+
+  return res.json({ status: 'success', data: { product } })
 })
 export default router
