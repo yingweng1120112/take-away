@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import styles from '@/styles/reserve/reserve.module.css'
 import { IoRemoveOutline } from 'react-icons/io5'
+import Header from '@/components/layout/header'
+import banner from '@/styles/reserve/banner.module.css'
+import Footer from '@/components/layout/footer'
 
 export default function Reserve() {
   const [reserve, setReserve] = useState({
@@ -70,6 +73,25 @@ export default function Reserve() {
 
   return (
     <>
+      <Header />
+      <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>Odds Us</p>
+          <p className={banner['menu-b']}>可不可以</p>
+        </div>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>預約賞寵</span>
+              <span>Reserve visit</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <section className={styles['reserve']}>
         <div className={styles['container']}>
           <img src={`/img/print.png`} alt="" className={styles['foot']} />
@@ -187,6 +209,7 @@ export default function Reserve() {
           </div>
         </div>
       </section>
+           <Footer />
     </>
   )
 }
