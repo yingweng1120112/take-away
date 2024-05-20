@@ -378,6 +378,7 @@
 .story-desc {
   z-index: 1;
   width: 45%;
+  height: 350px;
   padding-left: 50px;
   padding-right: 50px;
   margin-left: 50px;
@@ -401,11 +402,12 @@
   background-image: url('../../public/img/titlebg.png');
   background-repeat: no-repeat;
   position: relative;
-  top: -120px;
+  top: -100px;
 }
 
 .story-desc > p {
   margin-top: 10px;
+  height: 100%;
   line-height: 40px;
   letter-spacing: 1px;
   text-align: justify;
@@ -570,7 +572,7 @@
 .pet-skill > table > tbody > tr > th > h1 {
   width: 100%;
   padding-top: 20px;
-  padding-left: 60px;
+  padding-left: 40px;
   margin-bottom: 30px;
   font-weight: 600;
   line-height: 80px;
@@ -611,6 +613,7 @@
   width: 100%;
   margin-bottom: 30px;
   padding-top: 20px;
+  padding-right: 20px;
   font-weight: 600;
   line-height: 80px;
   text-align: center;
