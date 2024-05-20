@@ -2,6 +2,7 @@ import React from 'react'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import DefaultLayout from '@/components/layout/default-layout'
 
 export default function PetList() {
   return (
