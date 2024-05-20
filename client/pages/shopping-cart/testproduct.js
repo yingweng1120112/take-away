@@ -25,7 +25,7 @@ export default function List() {
   return (
     <div>
       <h1>商品列表頁</h1>
-      <Link href="/shopping-cart/step1-copy">連至 購物車</Link>
+      <Link href="/shopping-cart/step1">連至 購物車</Link>
       <ul className={styles['list']}>
         {products.map((product) => (
           <li key={product.product_id} className={styles['item']}>
