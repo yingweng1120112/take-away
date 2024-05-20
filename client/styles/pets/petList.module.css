@@ -64,6 +64,7 @@
   --bs-card-border-width: 0px;
   height: auto;
   width: auto;
+  cursor: pointer;
 }
 
 .state {

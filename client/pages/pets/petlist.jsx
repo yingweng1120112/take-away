@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadPetInfos } from '@/services/pets'
+import Link from 'next/link'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
@@ -44,12 +45,17 @@ export default function PetList() {
         <section className={styles['pet-card']}>
           {pets.map((v, i) => {
             return (
+            <Link href={`/pets/${v.pet_id}`}>
               <div className={styles['card']}>
                 <div className={styles['card-img']}>
                   <p className={styles['state']} key={v.pet_id}>
                     {v.state}
                   </p>
-                  <img key={v.pet_id} src={`/img/pet-info/${v.phone1}.jpg`} alt="" />
+                  <img
+                    key={v.pet_id}
+                    src={`/img/pet-info/${v.phone1}.jpg`}
+                    alt=""
+                  />
                   <FaHeart className={styles['favorite']} />
                 </div>
                 <div className={styles['pet-name']}>
@@ -61,6 +67,7 @@ export default function PetList() {
                   </div>
                 </div>
               </div>
+            </Link>
             )
           })}
           {/* <div className={styles['card']}>
