@@ -26,7 +26,6 @@ export default function PetList() {
     getPet()
   }, [])
 
-
   useEffect(() => {
     console.log('當前的 pets 狀態:', pets) // 確認 pets 狀態更新
   }, [pets])
@@ -47,12 +46,10 @@ export default function PetList() {
             return (
               <div className={styles['card']}>
                 <div className={styles['card-img']}>
-                  {/* TODO: 篩選已被領養的寵物 */}
                   <p className={styles['state']} key={v.pet_id}>
-                    {v.state}
+                    {v.pet_id}
                   </p>
-                  {/* TODO: 寵物照片 */}
-                  <img key={v.pet_id} src={v.adopt1} alt="" />
+                  <img key={v.pet_id} src={`/img/pet-info/${v.adopt1}.jpg`} alt="" />
                   <FaHeart className={styles['favorite']} />
                 </div>
                 <div className={styles['pet-name']}>
