@@ -97,7 +97,7 @@ export default function PetInfo() {
           <div className={styles['pet-img']}>
             <div className={styles['img-big']}>
               <img
-                src="/img/cat_bear1.jpg"
+                src={`/img/pet-info/${pet.adopt1}.jpg`}
                 id="img-view"
                 alt=""
                 draggable="false"
@@ -105,25 +105,25 @@ export default function PetInfo() {
             </div>
             <div className={styles['img-small']}>
               <img
-                src="/img/cat_bear1.jpg"
+                src={`/img/pet-info/${pet.adopt1}.jpg`}
                 id="img1"
                 alt=""
                 draggable="false"
               />
               <img
-                src="/img/cat_cookie1.jpg"
+                src={`/img/pet-info/${pet.adopt2}.jpg`}
                 id="img2"
                 alt=""
                 draggable="false"
               />
               <img
-                src="/img/cat_chocolate1.jpg"
+                src={`/img/pet-info/${pet.adopt3}.jpg`}
                 id="img3"
                 alt=""
                 draggable="false"
               />
               <img
-                src="/img/cat_hero1.jpg"
+                src={`/img/pet-info/${pet.adopt4}.jpg`}
                 id="img4"
                 alt=""
                 draggable="false"
@@ -194,7 +194,7 @@ export default function PetInfo() {
           </div>
           <img
             className={styles['story-img']}
-            src="/img/cat_hero1.jpg"
+            src={`/img/pet-info/${pet.phone1}.jpg`}
             alt=""
             draggable="false"
           />
@@ -284,7 +284,7 @@ export default function PetInfo() {
         </section>
 
         <section className={styles['pet-skill']}>
-          <img src="/img/pet-info/10003/10003-5.jpg" alt="" draggable="false" />
+          <img src={`/img/pet-info/${pet.phone2}.jpg`} alt="" draggable="false" />
           <table>
             <tbody>
               <tr>

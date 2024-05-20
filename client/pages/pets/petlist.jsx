@@ -49,7 +49,7 @@ export default function PetList() {
                   <p className={styles['state']} key={v.pet_id}>
                     {v.state}
                   </p>
-                  <img key={v.pet_id} src={`/img/pet-info/${v.adopt1}.jpg`} alt="" />
+                  <img key={v.pet_id} src={`/img/pet-info/${v.phone1}.jpg`} alt="" />
                   <FaHeart className={styles['favorite']} />
                 </div>
                 <div className={styles['pet-name']}>
