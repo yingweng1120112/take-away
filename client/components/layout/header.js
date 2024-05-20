@@ -18,7 +18,7 @@ export default function Header() {
   }
   return (
     <>
-      <header style={{ height: '100px' }}>
+      <header style={{ height: 'auto' }}>
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
