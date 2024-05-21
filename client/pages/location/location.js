@@ -11,7 +11,7 @@ export default function Location() {
       <Header />
       <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+        style={{ backgroundImage: 'url(/img/location/location.jpg)' }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>About Us</p>

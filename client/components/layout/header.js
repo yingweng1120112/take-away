@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <>
       {/* 更改容器高度 */}
-      <header style={{ height: 'auto' }}>
+      <header  className="header">
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
