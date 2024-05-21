@@ -42,11 +42,11 @@ export const loadProducts = async (params = {}) => {
   }
 }
 
-export const loadProduct = async (pid = '') => {
+export const loadProduct = async (product_id = '') => {
   try {
-    if (!pid) throw new Error('pid是必要參數')
+    if (!product_id) throw new Error('pid是必要參數')
 
-    const res = await fetch(`${baseUrl}/${pid}`)
+    const res = await fetch(`${baseUrl}/${product_id}`)
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
