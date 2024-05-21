@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/faqreport2.module.css'
+import styles from '@/styles//faq/faqreport2.module.css'
 import { PiCatBold } from "react-icons/pi";
 
 export default function Reportform() {
