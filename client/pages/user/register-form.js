@@ -1,6 +1,11 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import styles from '@/styles/user/register.module.scss'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 export default function RegisterForm() {
+  // 註冊開始
   // 狀態為物件，屬性對應到表單的欄位名稱
   const [user, setUser] = useState({
     name: '',
@@ -113,139 +118,171 @@ export default function RegisterForm() {
 
   return (
     <>
-      <h1>註冊表單</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          姓名:{' '}
-          <input
-            type="text"
-            name="name"
-            value={user.name}
-            onChange={handleFieldChange}
-          />
-        </label>
-        <br />
-        <span className="error">{errors.name}</span>
-        <br />
-        <label>
-          Email:{' '}
-          <input
-            type="text"
-            name="email"
-            value={user.email}
-            onChange={handleFieldChange}
-          />
-        </label>
-        <br />
-        <span className="error">{errors.email}</span>
-        <br />
-        <label>
-          帳號:{' '}
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleFieldChange}
-            // required
-          />
-        </label>
-        <br />
-        <span className="error">{errors.username}</span>
-        <br />
-        <label>
-          密碼:{' '}
-          <input
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            value={user.password}
-            onChange={handleFieldChange}
-          />
-        </label>
-        <input
-          type="checkbox"
-          checked={showPassword}
-          onChange={(e) => {
-            setShowPassword(e.target.checked)
-          }}
-        />{' '}
-        顯示密碼
-        <br />
-        <span className="error">{errors.password}</span>
-        <br />
-        <label>
-          確認密碼:{' '}
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            name="confirmPassword"
-            value={user.confirmPassword}
-            onChange={handleFieldChange}
-          />
-        </label>
-        <input
-          type="checkbox"
-          checked={showConfirmPassword}
-          onChange={(e) => {
-            setShowConfirmPassword(e.target.checked)
-          }}
-        />{' '}
-        顯示密碼
-        <br />
-        <span className="error">{errors.confirmPassword}</span>
-        <br />
-        <label>
-          <input
-            type="checkbox"
-            name="agree"
-            checked={user.agree}
-            onChange={handleFieldChange}
-          />{' '}
-          我同意網站會員註冊條款
-        </label>
-        <br />
-        <span className="error">{errors.agree}</span>
-        <br />
-        <button type="submit">註冊</button>
-        <button
-          type="button"
-          onClick={() => {
-            // 重置需要自行設定回初始化值
-            setUser({
-              name: '',
-              email: '',
-              username: '',
-              password: '',
-              confirmPassword: '',
-              agree: false,
-            })
-          }}
+      <section className={styles['section']}>
+        <Header />
+        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
+        <h1>註冊表單</h1>
+        <form
+          className={`${styles['form']} ${styles['sign-up']}`}
+          onSubmit={handleSubmit}
         >
-          重置
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            // 重置需要自行設定回初始化值
-            setUser({
-              name: '榮恩',
-              email: 'ron@test.com',
-              username: 'ron',
-              password: '123456',
-              confirmPassword: '123456',
-              agree: true,
-            })
-          }}
-        >
-          一鍵填入
-        </button>
-      </form>
-      <style jsx>
-        {`
-          .error {
-            color: red;
-            font-size: 12px;
-          }
-        `}
-      </style>
+          <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
+          <label className={styles['label']}>
+            姓名:{' '}
+            <input
+              className={styles['input']}
+              type="text"
+              name="name"
+              value={user.name}
+              onChange={handleFieldChange}
+            />
+          </label>
+          <br />
+          <span className="error">{errors.name}</span>
+          <br />
+          <label className={styles['label']}>
+            <span className={`${styles['span']} ${styles['spanl']}`}>
+              Email：{' '}
+            </span>
+            <input
+              className={styles['input']}
+              type="text"
+              name="email"
+              value={user.email}
+              onChange={handleFieldChange}
+            />
+          </label>
+          <br />
+          <span className="error">{errors.email}</span>
+          <br />
+          <label className={styles['label']}>
+            帳號:{' '}
+            <input
+              className={styles['input']}
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleFieldChange}
+              // required
+            />
+          </label>
+          <br />
+          <span className="error">{errors.username}</span>
+          <br />
+          <label className={styles['label']}>
+            密碼:{' '}
+            <div className="d-flex">
+              <input
+                className={styles['input']}
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={user.password}
+                onChange={handleFieldChange}
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ cursor: 'pointer' }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </label>
+          <br />
+          <span className="error">{errors.password}</span>
+          <br />
+          <label className={styles['label']}>
+            <span className={`${styles['span']} ${styles['spanl']}`}>
+              確認密碼:{' '}
+            </span>
+            <div className="d-flex">
+              <input
+                className={styles['input']}
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                value={user.confirmPassword}
+                onChange={handleFieldChange}
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{ cursor: 'pointer' }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+          </label>
+          <br />
+          <span className="error">{errors.confirmPassword}</span>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              name="agree"
+              checked={user.agree}
+              onChange={handleFieldChange}
+            />{' '}
+            我同意網站會員註冊條款
+          </label>
+          <br />
+          <span className="error">{errors.agree}</span>
+          <br />
+          <button
+            type="submit"
+            className={`${styles['button']} ${styles['submit']}`}
+          >
+            註冊
+          </button>
+          <button
+            type="button"
+            className={`${styles['button']} ${styles['fb-btn']}`}
+          >
+            Join with{' '}
+            <span className={`${styles['span']} ${styles['fb-btns']}`}>
+              Google
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              // 重置需要自行設定回初始化值
+              setUser({
+                name: '',
+                email: '',
+                username: '',
+                password: '',
+                confirmPassword: '',
+                agree: false,
+              })
+            }}
+          >
+            重置
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              // 重置需要自行設定回初始化值
+              setUser({
+                name: '榮恩',
+                email: 'ron@test.com',
+                username: 'ron',
+                password: '123456',
+                confirmPassword: '123456',
+                agree: true,
+              })
+            }}
+          >
+            一鍵填入
+          </button>
+        </form>
+        {/* <style jsx>
+          {`
+            .error {
+              color: red;
+              font-size: 12px;
+            }
+          `}
+        </style> */}
+        <Footer />
+      </section>
     </>
   )
 }
