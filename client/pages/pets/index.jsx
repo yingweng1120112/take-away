@@ -3,6 +3,7 @@ import { loadPetInfos } from '@/services/pets'
 import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import banner from '@/styles/banner/banner.module.css'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
@@ -35,6 +36,168 @@ export default function PetList() {
   return (
     <>
     <Header />
+
+    <div
+        className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`} style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)' }}
+      ></div>
+      <div className={banner['banner-select']}>
+        <div
+          className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}  style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
+        >
+          <div className={banner['left']}>
+            <p className={banner['menu-a']}>PETS</p>
+            <p className={banner['menu-b']}>汪汪喵喵</p>
+          </div>
+          <div className={banner['middle']}>
+            <div
+              className={`accordion ${banner['accordion']}`}
+              id="accordionExample"
+            >
+              <button
+                className={`accordion-button ${banner['accordion-button']}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <span className={banner['middle-page-title']}>收容資訊</span>
+                <span>選擇寵物</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div className={`accordion-body ${banner['accordion-body']}`}>
+            <div className={banner['select']}>
+              <div className={banner['select-left']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇年齡</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>幼年 0 ~ 1歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>青年 2 ~ 3歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中年 4 ~ 7歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>老年 8歲以上</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>寵物體型</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>大型 20kg以上</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中型 8 ~ 20kg</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>小型 8kg以下</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇物種</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>狗狗寶貝</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>貓貓寶貝</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className={banner['select-right']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇地區</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>北部</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中部</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>南部</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>測驗類別</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>敏感型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>樂天型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>獨立型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>自信型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>適應型</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-b']}>
+                  <p className={banner['select-title']}>姓別</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>男生</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>女生</span>
+                    </label>
+                  </div>
+                  <p className={banner['select-title']}> 毛孩搜尋 </p>
+                  <div className={`mb-3 ${banner['shop-select-out']}`}>
+                    <input
+                      type="text"
+                      className={`form-control ${banner['shop-select']}`}
+                      id="exampleFormControlInput1"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className={styles['commendbody']}>
         <section className={styles['title']}>
           <h1>

@@ -7,6 +7,7 @@ import { loadPetInfo } from '@/services/pets'
 import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
+import banner from '@/styles/banner/banner.module.css'
 
 export default function PetInfo() {
   // 第1步. 宣告能得到動態路由pet_id的路由器
@@ -70,12 +71,12 @@ export default function PetInfo() {
 
   // 點擊圖片
   let [imgSrc, setImgSrc] = useState(`/img/pet-info/${pet.adopt1}.jpg`)
-  const [selectedImg, setSelectedImg] = useState('img1');
+  const [selectedImg, setSelectedImg] = useState('img1')
   const handleImageClick = (src, id) => {
-    setImgSrc(src);
-    setSelectedImg(id);
-  };
-  console.log("imgSrc", imgSrc);
+    setImgSrc(src)
+    setSelectedImg(id)
+  }
+  console.log('imgSrc', imgSrc)
 
   // 宣告一個指示是不是正在載入資料的狀態
   // 因為一開始一定是要載入資料，所以預設值為true
@@ -138,6 +139,7 @@ export default function PetInfo() {
     // eslint-disable-next-line
   }, [router.isReady])
 
+  // 點擊圖片
   useEffect(() => {
     if (pet.adopt1) {
       setImgSrc(`/img/pet-info/${pet.adopt1}.jpg`)
@@ -147,17 +149,32 @@ export default function PetInfo() {
   return (
     <>
       <Header />
-      {/* TODO: 點擊寵物圖片 */}
+      {/* 要修改banner圖片，請直接更改下面連結 */}
+      <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(../../img/pets/petinfo-navbar.png)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>CUTE</p>
+          <p className={banner['menu-b']}>有小可愛</p>
+        </div>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>寵物資訊</span>
+              <span>pet information</span>
+              <p className={banner['middle-page-title']}>DINO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className={styles['commendbody']}>
         <section className={styles['pet-desc']}>
           <div className={styles['pet-img']}>
             <div className={styles['img-big']}>
-              <img
-                src={imgSrc}
-                id="img-view"
-                alt=""
-                draggable="false"
-              />
+              <img src={imgSrc} id="img-view" alt="" draggable="false" />
             </div>
             <div className={styles['img-small']}>
               <img
@@ -165,28 +182,40 @@ export default function PetInfo() {
                 id="img1"
                 alt=""
                 draggable="false"
-                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt1}.jpg`, 'img1')} className={selectedImg === 'img1' ? styles['img-click'] : ''}
+                onClick={() =>
+                  handleImageClick(`/img/pet-info/${pet.adopt1}.jpg`, 'img1')
+                }
+                className={selectedImg === 'img1' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt2}.jpg`}
                 id="img2"
                 alt=""
                 draggable="false"
-                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt2}.jpg`, 'img2')} className={selectedImg === 'img2' ? styles['img-click'] : ''}
+                onClick={() =>
+                  handleImageClick(`/img/pet-info/${pet.adopt2}.jpg`, 'img2')
+                }
+                className={selectedImg === 'img2' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt3}.jpg`}
                 id="img3"
                 alt=""
                 draggable="false"
-                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt3}.jpg`, 'img3')} className={selectedImg === 'img3' ? styles['img-click'] : ''}
+                onClick={() =>
+                  handleImageClick(`/img/pet-info/${pet.adopt3}.jpg`, 'img3')
+                }
+                className={selectedImg === 'img3' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt4}.jpg`}
                 id="img4"
                 alt=""
                 draggable="false"
-                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt4}.jpg`, 'img4')} className={selectedImg === 'img4' ? styles['img-click'] : ''}
+                onClick={() =>
+                  handleImageClick(`/img/pet-info/${pet.adopt4}.jpg`, 'img4')
+                }
+                className={selectedImg === 'img4' ? styles['img-click'] : ''}
               />
             </div>
           </div>
@@ -210,7 +239,6 @@ export default function PetInfo() {
             </ul>
             <div className={styles['pet-btn']}>
               {/* TODO: link 連結 */}
-              {/* <Link href={`/pets/${v.pet_id}`}> */}
               <Link href={`/pets/${pet.pet_id}&area=about`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
@@ -270,7 +298,6 @@ export default function PetInfo() {
           />
         </section>
 
-        {/* FIXME: chechbox 打勾狀態 */}
         <section className={styles['pet-health']}>
           <h1>
             <img src="/img/pets/icon_pet-pill.png" alt="" draggable="false" />
@@ -356,7 +383,7 @@ export default function PetInfo() {
 
         <section className={styles['pet-skill']}>
           <img
-            src={`/img/pet-info/${pet.phone2}.jpg`}
+            src={`/img/pet-info/${pet.phone4}.jpg`}
             alt=""
             draggable="false"
           />

@@ -1,12 +1,14 @@
 import React from 'react'
 import styles from '@/styles/pets/notice.module.css'
 import { FullPage, Slide } from 'react-full-page'
-import DefaultLayout from '@/components/layout/default-layout'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 
 export default function Notice() {
   return (
     <main>
+    <Header />
       <div className={styles['commendbody']}>
         <FullPage>
           {/* TODO: 可能和其他套件互相干擾 有點卡 */}
@@ -137,6 +139,7 @@ export default function Notice() {
           </div>
         </div>
       </div>
+    <Footer />
     </main>
   )
 }
