@@ -1,7 +1,8 @@
 import React from 'react'
-import styles from '@/styles/bo-ren/life.module.css'
+import styles from '@/styles/petDiary/petDiarySearch.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import PriceSilder from '@/components/layout/banner/bannerPriceSlider'
+import PriceSilder2 from '@/components/layout/banner/bannerPriceSlider2'
 
 // 請複製貼上出去修改
 // banner要滑動的範圍，請用一個div包住banner，並把範圍放進div內
