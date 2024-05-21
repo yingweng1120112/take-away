@@ -63,7 +63,7 @@ flex-direction: column;
 
 .navbar2 ul li ul {
   position: absolute;
-  left: 0;
+  left: -0.5rem;
   padding: 0;
   height: auto;
   display:none;
@@ -195,7 +195,7 @@ flex-direction: column;
 }
 
 .navbar3 ul li ul{
-  left: 0;
+  left: 0rem;
   padding: 0;
   height: auto;
   background: white;
@@ -212,8 +212,7 @@ flex-direction: column;
 }
 .navbar3 ul li ul li a{
 text-align: center;
-padding-right: 1.9rem;
-// padding:;
+padding-right:2.4rem;
 }
 .navbar3 ul li  ul li a:hover {
   // background: var(--bean-paste);

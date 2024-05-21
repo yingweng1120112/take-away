@@ -22,10 +22,10 @@ export default function Adopt() {
   }, [])
   return (
     <>
-    <Header />
+    <Header/>
     <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+        style={{ backgroundImage: 'url(/img/adopt.jpg)' }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>ADUS</p>
@@ -59,13 +59,16 @@ export default function Adopt() {
             <img src={`/img/foot.png`} alt="" className={styles['feet']} />
           </div>
           <section className={styles['about-pet']}>
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
                 <Carousel style={{ margin: '2rem', width: '100%' }} />
               </div>
 
               <div className={styles['pet-photo']}>
-                <img src={`/img/pet-info/10008/10008-1p.jpg`} alt="" />
+                <img src={`/img/pet-info/10008-1p.jpg`} alt="" />
               </div>
               <div className={styles['pet-name']}>
                 {/* TODO:姓名抓資料庫 */}
@@ -74,13 +77,13 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-2p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-2p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-3p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-3p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-4p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-4p.jpg`} alt="" />
                 </div>
               </div>
               <div className={styles['pet-namet']}>
