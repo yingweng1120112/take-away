@@ -1,13 +1,32 @@
 import React from 'react'
 import styles from '@/styles/location/location.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import banner from '@/styles/location/banner.module.css'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHandPointer } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/layout/header'
 import Footer from '@/components/layout/footer'
 export default function Location() {
   return (
     <>
-    {/* <Header /> */}
+      <Header />
+      <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>About Us</p>
+          <p className={banner['menu-b']}>關於我們</p>
+        </div>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>關於我們</span>
+              <span>about us</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <section className={styles['location']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
@@ -24,9 +43,12 @@ export default function Location() {
               <h1>關於我們</h1>
               <p>
                 我們的流浪之家致力於提供基本生活支援，一個團隊聚集，心懷同一願景：建立一個流浪之家，幫助無家可歸者。
-                <br />群策群力下，他們籌措資金、尋找場地，終於在短短幾個月內建成了一座避風港。
-                <br />流浪之家不僅提供臨時住所和食物，更提供工作培訓和心理支持，讓無家可歸者重拾自信、尋找生活方向。
-                <br />流浪之家成為了社區的中心，促進著社會共融和理解。
+                <br />
+                群策群力下，他們籌措資金、尋找場地，終於在短短幾個月內建成了一座避風港。
+                <br />
+                流浪之家不僅提供臨時住所和食物，更提供工作培訓和心理支持，讓無家可歸者重拾自信、尋找生活方向。
+                <br />
+                流浪之家成為了社區的中心，促進著社會共融和理解。
               </p>
             </div>
           </div>
@@ -40,8 +62,11 @@ export default function Location() {
             <div className={styles['start']}>
               <h1>成立宗旨</h1>
               <p>
-                為了提供流浪者一個安全、溫暖和支持性的環境，幫助他們重建生活。<br />我們的使命是確保每個人都受到尊重、關愛和支持，並提供他們所需的基本生活必需品、心理健康支持、就業援助和社區聯繫服務，以幫助他們可重新融入社會。
-                <br />我们致力於打造一個包容、溫馨的環境，讓流浪者感受到他們的價值和重要性，幫助他們重建自己的生活，並實現他們的夢想和目標。
+                為了提供流浪者一個安全、溫暖和支持性的環境，幫助他們重建生活。
+                <br />
+                我們的使命是確保每個人都受到尊重、關愛和支持，並提供他們所需的基本生活必需品、心理健康支持、就業援助和社區聯繫服務，以幫助他們可重新融入社會。
+                <br />
+                我们致力於打造一個包容、溫馨的環境，讓流浪者感受到他們的價值和重要性，幫助他們重建自己的生活，並實現他們的夢想和目標。
               </p>
             </div>
           </div>
@@ -131,7 +156,6 @@ export default function Location() {
                 <p>FAX:(05)236-3333</p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -176,13 +200,13 @@ export default function Location() {
             <button className={styles['btn']}>
               <a href="">領養專區</a>
               <a className={styles['icon']}>
-                <FontAwesomeIcon icon={faHandPointer} />
+                {/* <FontAwesomeIcon icon={faHandPointer} /> */}
               </a>
             </button>
           </div>
         </div>
       </section>
-    {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

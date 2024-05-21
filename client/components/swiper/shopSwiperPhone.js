@@ -29,32 +29,56 @@ export default function ShopSwiperPhone() {
       >
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/food.svg" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food.svg"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/test/food1.webp" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food1.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/test/food2.webp" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food2.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/test/food3.webp" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food3.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/test/food4.webp" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food4.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
           <a href="">
-            <img className={styles['img']} src="/img/test/food5.webp" alt="" />
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food5.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
       </Swiper>

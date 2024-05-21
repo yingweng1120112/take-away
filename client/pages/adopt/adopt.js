@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
-import AdoptForm from './adopt-form'
-
+import AdoptForm from '../../components/adopt/adopt-form'
+import Header from '@/components/layout/header'
+import banner from '@/styles/adopt/banner.module.css'
+import Footer from '@/components/layout/footer'
 const parageStyles = {
   WebkitLineClamp: 1,
   WebkitBoxOrient: 'vertical',
@@ -20,6 +22,25 @@ export default function Adopt() {
   }, [])
   return (
     <>
+    <Header />
+    <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>ADUS</p>
+          <p className={banner['menu-b']}>領養我們</p>
+        </div>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>線上認養</span>
+              <span>Online adoption</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <section className={styles['adout']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
@@ -40,7 +61,7 @@ export default function Adopt() {
           <section className={styles['about-pet']}>
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel style={{ 'margin': '1rem', width:"100%"}} />
+                <Carousel style={{ margin: '2rem', width: '100%' }} />
               </div>
 
               <div className={styles['pet-photo']}>
@@ -103,6 +124,7 @@ export default function Adopt() {
           </section>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

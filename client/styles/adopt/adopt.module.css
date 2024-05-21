@@ -19,7 +19,7 @@
   display: flex;
   justify-content: space-around;
   height:auto;
-  margin: 1rem auto;
+  margin: 2rem auto;
 }
 .adout .container {
   position: relative;
@@ -937,7 +937,7 @@ background: var(--reddish-brown);
   display: block;
   width: 350px;
   height: 35%;
-  margin:0.5rem 0rem;
+  margin:1rem 0rem;
   border: 4px soild var(--border-color);
 }
 .about-pet .pet-photo {
