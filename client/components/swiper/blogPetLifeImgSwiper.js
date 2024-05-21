@@ -22,19 +22,19 @@ export default function App() {
         className={`${styles['swiper']} ${styles['mySwiper3']} `}
       >
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src="/img/bg2.svg" />
+          <img className={styles['img']} src="/img/blog/cat1.jpg" />
         </SwiperSlide>
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src="/img/banner.jpg" />
+          <img className={styles['img']} src="/img/blog/cat2.jpg" />
         </SwiperSlide>
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src="/img/cat_cookie1.jpg" />
+          <img className={styles['img']} src="/img/blog/cat3.jpg" />
         </SwiperSlide>
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src="/img/cat_chocolate1.jpg" />
+          <img className={styles['img']} src="/img/blog/cat4.jpg" />
         </SwiperSlide>
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src="/img/貓貓6 1.jpg" />
+          <img className={styles['img']} src="/img/blog/cat5.jpg" />
         </SwiperSlide>
         <SwiperNavigations />
       </Swiper>

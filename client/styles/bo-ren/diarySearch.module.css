@@ -1,5 +1,5 @@
 .banner{
-  background-image: url(/img/banner-life.jpg);
+  background-image: url(/img/diarySearch/bannerDiarySearchOrigin.jpg);
 }
   .life-container {
     width: 100%;
@@ -225,10 +225,10 @@
       top: 40%;
     }
     .banner-life-1{
-      background-image: url(/img/banner-life-1.jpg);
+      background-image: url(/img/diarySearch/bannerDiarySearch1.jpg);
     }
     .banner-life-2{
-      background-image: url(/img/banner-life-2.jpg);
+      background-image: url(/img/diarySearch/bannerDiarySearch2.jpg);
     }
     #pet-card {
       grid-template-columns: repeat(4, 1fr);
