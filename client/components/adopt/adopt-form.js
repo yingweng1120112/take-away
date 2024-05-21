@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Pageone from '@/components/adopt/adopt-from/page-one'
 import PageTwo from '@/components/adopt/adopt-from/page-two'
 import PageThree from './page-three'
-export default function AdoptForm() {
+export default function AdoptForm(pet) {
   const [currentStep, setCurrentStep] = useState(1)
 
   const [donateInfo, setDonateInfo] = useState({
@@ -86,7 +86,7 @@ export default function AdoptForm() {
     <div className="form1">
       {currentStep === 1 && (
         <form className="page-one">
-          <Pageone
+          <Pageone name={pet.name}
             donateInfo={donateInfo}
             setDonateInfo={setDonateInfo}
             handleChange={handleChangeDonateInfo}
@@ -106,6 +106,7 @@ export default function AdoptForm() {
       {currentStep === 2 && (
         <form className="page-two">
           <PageTwo
+            name={pet.name}
             adopt={adopt}
             setAdopt={setAdopt}
             handleChange={handleChangeAdopt}
@@ -131,13 +132,9 @@ export default function AdoptForm() {
       )}
       {currentStep === 3 && (
         <form className="page-third">
-          <PageThree donateInfo={donateInfo} adopt={adopt} />
+          <PageThree donateInfo={donateInfo} adopt={adopt} phone1={pet.phone1} name={pet.name} />
           <div className="button-group">
-            <button
-              type="button"
-              className=" donate-button next-page-button"
-              onClick={prevStep}
-            >
+            <button type="button" className="donate-button next-page-button" onClick={prevStep}>
               上一頁
             </button>
             <button

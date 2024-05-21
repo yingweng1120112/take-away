@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
+export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name}) {
   const projectOptions = ['不指定', '急難救助', '絕育計畫']
   const addressOptions = ['電子郵件地址', '通訊地址']
 
@@ -26,7 +26,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="pet"
             className="form-input"
             placeholder="寵物"
-            value={adopt.pet}
+            value={donateInfo.pet=name}
             onChange={handleChange}
           />
           <span className="input-border"></span>

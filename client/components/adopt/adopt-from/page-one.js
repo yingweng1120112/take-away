@@ -1,13 +1,20 @@
 import React from 'react'
 
-export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
+export default function PageOne({ donateInfo, setDonateInfo, handleChange ,name}) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
   const payOptions = ['銀行轉帳', '信用卡', '超商付款']
 
   const handleAmountChange = (e) => {
-    setDonateInfo({ ...donateInfo, amount: '', customAmount: e.target.value })
-  }
+    const { value } = e.target;
+    // 只允許數字輸入並且不超過 10000
+    if (/^\d*$/.test(value) && (value === '' || parseInt(value) <= 10000)) {
+      // 只在輸入值為數字且不超過 10000 時更新狀態
+      setDonateInfo({ ...donateInfo, customAmount: value });
+    } else if (parseInt(value) > 10000) {
+      alert('金額不能超過 10000');
+    }
+  };
 
   return (
     <>
@@ -15,13 +22,13 @@ export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
       <h4>我想認養</h4>
       <div className="form-Input-group">
         <label className="form-label">
-          {' '}
+          {''}
           <input
             type="text"
-            name="pet"
+            name="name"
             className="form-input"
             placeholder="寵物"
-            value={donateInfo.pet}
+            value={donateInfo.pet=name}
             onChange={handleChange}
           />
           <span className="input-border"></span>

@@ -8,7 +8,6 @@ import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
 
-
 export default function Adopt() {
   const [open, setOpen] = useState(false)
   const [showButton, setShowButton] = useState(false)
@@ -56,13 +55,13 @@ export default function Adopt() {
     story: '',
     habbit: '',
   })
-  
+
   const [isLoading, setIsLoading] = useState(true)
-  
+
   const getPet = async (pet_id) => {
     const data = await loadPetInfo(pet_id)
     console.log('info', data)
-  
+
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setPet(data)
       // setReserve(prev => ({ ...prev, pet: data.name }))
@@ -71,7 +70,7 @@ export default function Adopt() {
       }, 1500)
     }
   }
-  
+
   useEffect(() => {
     if (router.isReady) {
       const { pet_id } = router.query
@@ -85,8 +84,8 @@ export default function Adopt() {
   }, [])
   return (
     <>
-    <Header/>
-    <div
+      <Header />
+      <div
         className={banner['banner']}
         style={{ backgroundImage: 'url(/img/adopt.jpg)' }}
       >
@@ -122,17 +121,17 @@ export default function Adopt() {
             <img src={`/img/foot.png`} alt="" className={styles['feet']} />
           </div>
           <section className={styles['about-pet']}>
-          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
-          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
-          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel 
-                  style={{ margin: '2rem', width: '100%' }} 
-                  adopt1={pet.adopt1} 
-                  adopt2={pet.adopt2} 
-                  adopt3={pet.adopt3} 
-                  adopt4={pet.adopt4} 
+                <Carousel
+                  style={{ margin: '2rem', width: '100%' }}
+                  adopt1={pet.adopt1}
+                  adopt2={pet.adopt2}
+                  adopt3={pet.adopt3}
+                  adopt4={pet.adopt4}
                 />
               </div>
 
@@ -146,13 +145,13 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
-                  <img  src={`/img/pet-info/${pet.phone2}.jpg`} alt="" />
+                  <img src={`/img/pet-info/${pet.phone2}.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img  src={`/img/pet-info/${pet.phone3}.jpg`} alt="" />
+                  <img src={`/img/pet-info/${pet.phone3}.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img  src={`/img/pet-info/${pet.phone4}.jpg`} alt="" />
+                  <img src={`/img/pet-info/${pet.phone4}.jpg`} alt="" />
                 </div>
               </div>
               <div className={styles['pet-namet']}>
@@ -192,7 +191,7 @@ export default function Adopt() {
             </div>
           </section>
           <section className={styles['form']}>
-            <AdoptForm />
+            <AdoptForm name={pet.name} phone1={pet.phone1}/>
           </section>
         </div>
       </section>
