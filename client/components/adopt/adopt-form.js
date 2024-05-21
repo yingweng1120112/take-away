@@ -21,10 +21,13 @@ export default function AdoptForm(pet) {
 
   const nextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1)
+    window.scrollTo({top:450, behavior:'smooth'})
   }
+  // TODO:預設是450px
 
   const prevStep = () => {
     setCurrentStep((prevStep) => prevStep - 1)
+    window.scrollTo({top:450,behavior:'smooth'})
   }
 
   const handleChangeDonateInfo = (e) => {
