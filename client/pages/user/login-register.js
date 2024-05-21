@@ -11,6 +11,7 @@ const parseJwt = (token) => {
 }
 
 export default function LoginRegister() {
+  // 控制登入登出滑動特效
   useEffect(() => {
     // 添加事件監聽器
     const handleClick = () => {
@@ -28,44 +29,61 @@ export default function LoginRegister() {
     }
   }, [styles])
 
-  // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
+  // 登入狀態
   const [user, setUser] = useState({
     email: '',
     password: '',
+    password2: '',
   })
 
-  // 記錄欄位錯誤訊息的狀態
-  const [errors, setErrors] = useState({
+  // 登入錯誤訊息
+  const [loginErrors, setLoginErrors] = useState({
     email: '',
     password: '',
+    password2: '',
   })
 
-  // 顯示密碼的核取方塊用
+  // 註冊狀態
+  const [registerUser, setRegisterUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agree: false,
+  })
+
+  // 註冊錯誤訊息
+  const [registerErrors, setRegisterErrors] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agree: '',
+  })
+
+  // 顯示密碼
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   // 多欄位共用事件處理函式
   const handleFieldChange = (e) => {
-    // 可以利用e.target觀察目前是在輸入或操作哪個欄位上
-    console.log(e.target.name, e.target.type, e.target.value)
-    // ES6: computed property names (計算得來的屬性名稱)
-    // [e.target.name]: e.target.value }
-    // ^^^^^^^^^^^^^^^ 這裡可以動態的代入變數值或表達式，計算出物件屬性名稱(字串)
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#computed_property_names
-    setUser({ ...user, [e.target.name]: e.target.value })
+    if (e.target.email in registerUser) {
+      if (e.target.name === 'agree') {
+        setRegisterUser({ ...registerUser, [e.target.email]: e.target.checked })
+      } else {
+        setRegisterUser({ ...registerUser, [e.target.email]: e.target.value })
+      }
+    } else {
+      setUser({ ...user, [e.target.email]: e.target.value })
+    }
   }
 
-  // 表單送出事件處理函式
-  const handleSubmit = async (e) => {
-    // 阻擋表單預設送出行為
+  // 登入表單送出事件處理函式
+  const handleLoginSubmit = async (e) => {
     e.preventDefault()
 
-    // 表單檢查---START---
-    // 建立一個新的錯誤訊息物件
-    const newErrors = { email: '', password: '' }
+    const newErrors = { email: '', password: '', password2: '' }
 
-    // if (user.username === '') {
-    // 上面寫法常見改為下面這樣，`if(user.username)` 代表有填寫，
-    // 所以反相判斷 `if(!user.username)` 代表沒填寫
     if (!user.email) {
       newErrors.email = '帳號為必填'
     }
@@ -78,30 +96,20 @@ export default function LoginRegister() {
       newErrors.password = '密碼為必填'
     }
 
-    // if (user.password2 === '') {
-    //   newErrors.password2 = '確認密碼為必填'
-    // }
+    if (user.password2 === '') {
+      newErrors.password2 = '確認密碼為必填'
+    }
 
-    // if (user.password !== user.password2) {
-    //   newErrors.password = '密碼與確認密碼需要相同'
-    //   newErrors.password2 = '密碼與確認密碼需要相同'
-    // }
+    setLoginErrors(newErrors)
 
-    // 檢查完設定到狀態中
-    setErrors(newErrors)
-
-    // 物件屬性值中有非空白字串時，代表有錯誤發生
     const hasErrors = Object.values(newErrors).some((v) => v)
 
-    // 有錯誤發生，不送到伺服器去
     if (hasErrors) {
-      return // 函式中作流程控制，會跳出函式不執行之後的程式碼
+      return
     }
-    // 表單檢查--- END ---
 
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/login', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
+    const res = await fetch('http://localhost:3005/api/users/login', {
+      credentials: 'include',
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -122,9 +130,8 @@ export default function LoginRegister() {
   }
 
   const handleLogout = async () => {
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/logout', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
+    const res = await fetch('http://localhost:3005/api/users/logout', {
+      credentials: 'include',
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -143,9 +150,8 @@ export default function LoginRegister() {
   }
 
   const handleCheck = async () => {
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/check', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
+    const res = await fetch('http://localhost:3005/api/users/check', {
+      credentials: 'include',
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -162,6 +168,66 @@ export default function LoginRegister() {
     }
   }
 
+  // 註冊表單送出事件處理函式
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault()
+
+    const newErrors = {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      agree: '',
+    }
+
+    if (!registerUser.name) {
+      newErrors.name = '姓名為必填'
+    }
+    if (!registerUser.email) {
+      newErrors.email = 'email為必填'
+    }
+
+    if (registerUser.password !== registerUser.confirmPassword) {
+      newErrors.password = '密碼與確認密碼需要一致'
+      newErrors.confirmPassword = '密碼與確認密碼需要一致'
+    }
+
+    if (!registerUser.password) {
+      newErrors.password = '密碼為必填'
+    }
+
+    if (!registerUser.confirmPassword) {
+      newErrors.confirmPassword = '確認密碼為必填'
+    }
+
+    if (!registerUser.agree) {
+      newErrors.agree = '請先同意會員註冊條款'
+    }
+
+    setRegisterErrors(newErrors)
+
+    const hasErrors = Object.values(newErrors).some((v) => v)
+
+    if (hasErrors) {
+      return
+    }
+
+    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registerUser),
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+
+    alert('送到伺服器')
+  }
+
   return (
     <>
       <section className={styles['section']}>
@@ -170,7 +236,7 @@ export default function LoginRegister() {
         <div className={styles['cont']}>
           <form
             className={`${styles['form']} ${styles['sign-in']}`}
-            onSubmit={handleSubmit}
+            onSubmit={handleLoginSubmit}
           >
             <h2 className={styles['h2']}>立即參觀！</h2>
             <label className={styles['label']}>
@@ -185,7 +251,7 @@ export default function LoginRegister() {
                 onChange={handleFieldChange}
               />
             </label>
-            <div className="error">{errors.username} </div>
+            <div className="error">{loginErrors.email} </div>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 密碼：{' '}
@@ -197,16 +263,16 @@ export default function LoginRegister() {
                 value={user.password}
                 onChange={handleFieldChange}
               />
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={(e) => {
+                  setShowPassword(e.target.checked)
+                }}
+              />
+              顯示密碼
             </label>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={(e) => {
-                setShowPassword(e.target.checked)
-              }}
-            />
-            顯示密碼
-            <div className="error">{errors.password}</div>
+            <div className="error">{loginErrors.password}</div>
             <p className={styles['forgot-pass']}>忘記密碼？</p>
             <button
               type="submit"
@@ -243,14 +309,14 @@ export default function LoginRegister() {
           </form>
           <div className={styles['sub-cont']}>
             <div className={styles['img']}>
-              <di className={`${styles['img__text']} ${styles['m--up']}`}>
+              <div className={`${styles['img__text']} ${styles['m--up']}`}>
                 <h2 className={`${styles['h2']} ${styles['h2text']}`}>
                   老朋友
                 </h2>
                 <h6 className={styles['h6']}>
                   趕快回來~我們有新朋友想介紹給你
                 </h6>
-              </di>
+              </div>
               <div className={`${styles['img__text']} ${styles['m--in']}`}>
                 <h2 className={`${styles['h2']} ${styles['h2text']}`}>
                   新成員？
@@ -274,42 +340,109 @@ export default function LoginRegister() {
                 </span>
               </div>
             </div>
-            <div className={`${styles['form']} ${styles['sign-up']}`}>
-              <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  姓名：
-                </span>
-                <input className={styles['input']} type="text" />
-              </label>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  Email：
-                </span>
-                <input className={styles['input']} type="email" />
-              </label>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  密碼：
-                </span>
-                <input className={styles['input']} type="password" />
-              </label>
-              <button
-                type="submit"
-                className={`${styles['button']} ${styles['submit']}`}
-              >
-                註冊
-              </button>
-              <button
-                type="button"
-                className={`${styles['button']} ${styles['fb-btn']}`}
-              >
-                Join with{' '}
-                <span className={`${styles['span']} ${styles['fb-btns']}`}>
-                  Google
-                </span>
-              </button>
-            </div>
+            <form onSubmit={handleRegisterSubmit}>
+              <div className={`${styles['form']} ${styles['sign-up']}`}>
+                <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
+                <label className={styles['label']}>
+                  <span className={`${styles['span']} ${styles['spanl']}`}>
+                    姓名：{' '}
+                  </span>
+                  <input
+                    className={styles['input']}
+                    type="text"
+                    name="name"
+                    value={registerUser.name}
+                    onChange={handleFieldChange}
+                  />
+                </label>
+                <span className="error">{registerErrors.name}</span>
+                <label className={styles['label']}>
+                  <span className={`${styles['span']} ${styles['spanl']}`}>
+                    Email：{' '}
+                  </span>
+                  <input
+                    className={styles['input']}
+                    type="text"
+                    name="email"
+                    value={registerUser.email}
+                    onChange={handleFieldChange}
+                  />
+                </label>
+                <span className="error">{registerErrors.email}</span>
+                <label className={styles['label']}>
+                  <span className={`${styles['span']} ${styles['spanl']}`}>
+                    密碼：{' '}
+                  </span>
+                  <input
+                    className={styles['input']}
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    value={registerUser.password}
+                    onChange={handleFieldChange}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={(e) => {
+                      setShowPassword(e.target.checked)
+                    }}
+                  />{' '}
+                  顯示密碼
+                </label>
+                <span className="error">{registerErrors.password}</span>
+                <label className={styles['label']}>
+                  <span className={`${styles['span']} ${styles['spanl']}`}>
+                    確認密碼：{' '}
+                  </span>
+                  <input
+                    className={styles['input']}
+                    type="password"
+                    name="password2"
+                    value={registerUser.password2}
+                    onChange={handleFieldChange}
+                  />
+                  <input
+                    type="checkbox"
+                    checked={showConfirmPassword}
+                    onChange={(e) => {
+                      setShowConfirmPassword(e.target.checked)
+                    }}
+                  />{' '}
+                  顯示密碼
+                  <span className="error">
+                    {registerErrors.confirmPassword}
+                  </span>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRegisterUser({
+                      name: 'Cookie',
+                      email: 'Cookie@gmail.com',
+                      password: '123456',
+                      password2: '123456',
+                    })
+                  }}
+                >
+                  一鍵填入
+                </button>
+                <button
+                  type="submit"
+                  className={`${styles['button']} ${styles['submit']}`}
+                >
+                  註冊
+                </button>
+                <button
+                  type="button"
+                  className={`${styles['button']} ${styles['fb-btn']}`}
+                >
+                  Join with{' '}
+                  <span className={`${styles['span']} ${styles['fb-btns']}`}>
+                    Google
+                  </span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         <Footer />
