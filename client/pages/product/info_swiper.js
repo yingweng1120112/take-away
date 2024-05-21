@@ -7,7 +7,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import styles from '@/pages/product/info_swiper.module.css'
+import styles from '@/styles/product/info_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 

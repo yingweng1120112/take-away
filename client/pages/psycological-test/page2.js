@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/psycological-test/psycological-test_p2.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +8,7 @@ import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
 export default function Page1() {
   return (
     <>
-      <header />
+      <Header />
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
@@ -67,7 +69,7 @@ export default function Page1() {
         </div>
       </section>
 
-      <footer />
+      <Footer className={styles['footerstyle']} />
     </>
   )
 }

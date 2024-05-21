@@ -229,28 +229,28 @@
 /* 背景狗掌區 */
 .dog-palm {
   position: absolute;
-  top: -8rem;
+  top: 4rem;
   right: 14.5rem;
   z-index: 3;
   transform: rotate(75deg) scale(0.3);
 }
 .dog-palm2 {
   position: absolute;
-  top: 78rem;
+  top: 88rem;
   right: -6.5rem;
   z-index: 1;
   transform: rotate(357deg) scale(0.3);
 }
 .dog-palm3 {
   position: absolute;
-  top: 33.5rem;
+  top: 60rem;
   right: 14rem;
   z-index: 1;
   transform: rotate(2deg) scale(0.3);
 }
 .dog-palm4 {
   position: absolute;
-  top: 28rem;
+  top: 40rem;
   right: -4rem;
   z-index: 3;
   transform: rotate(262deg) scale(0.3);
@@ -258,7 +258,7 @@
 }
 .dog-palm5 {
   position: absolute;
-  top: 76rem;
+  top: 110rem;
   right: 14rem;
   z-index: 1;
   transform: rotate(180deg) scale(0.3);
@@ -422,7 +422,7 @@
   /* 背景狗掌區 */
   .dog-palm {
     position: absolute;
-    top: -1rem;
+    top: 20rem;
     left: -2rem;
     z-index: 1;
     transform: rotate(75deg) scale(1);
@@ -439,13 +439,13 @@
     z-index: 2;
   }
   .dog-palm4 {
-    top: 8rem;
+    top: 25rem;
     right: -0.5rem;
     transform: rotate(180deg) scale(0.5);
     z-index: 1;
   }
   .dog-palm5 {
-    top: 80rem;
+    top: 115rem;
     left: -2rem;
     transform: rotate(248deg) scale(0.8);
   }

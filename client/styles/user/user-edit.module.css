@@ -14,9 +14,6 @@
   top: 70%;
   z-index: 0;
 }
-.bookInfo {
-  margin-top: 30px;
-}
 
 .book {
   display: flex;
@@ -25,11 +22,6 @@
   padding: 0;
   border-radius: solid 3px var(--black);
   justify-content: center;
-}
-
-.bookInfo {
-  display: flex;
-  width: 65%;
 }
 
 .book h2 {
@@ -81,9 +73,6 @@
   padding-bottom: 10px;
 }
 
-.bookItem {
-  display: flex;
-}
 
 .bookItem img {
   margin-right: 1rem;
@@ -105,7 +94,7 @@
 }
 
 .bookContainer {
-  width: 80%;
+  width: 900px;
   height: auto;
   margin: 50px auto;
   background: white;
@@ -237,6 +226,12 @@
 .input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
 }
+/* 新增樣式 */
+.label.active {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
 
 @keyframes inputHighlighter {
   from {
@@ -250,10 +245,13 @@
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
+  .bookInfo{
+    margin-top: -65px;
+  }
   .rope {
     width: 9.5%;
-    height: 80%;
-    right: 98%;
+    height: 89%;
+    right: 99%;
   }
 
   .container {
@@ -324,7 +322,7 @@
 
   .bell {
     width: 35%;
-    left: 50%;
+    left: 70%;
     top: 7%;
   }
 
