@@ -104,6 +104,7 @@ export default function Menu() {
         <div className={styles.content}>
           <ol className={styles['products-menu']}>
             {products.map((product) => (
+              <Link href={`/product/${product.product_id}`}>
               <li key={product.product_id}>
                 <a
                   href={`/product/${product.product_id}.webp`}
@@ -135,6 +136,7 @@ export default function Menu() {
                   </div>
                 </a>
               </li>
+              </Link>
             ))}
             {/* <li>
               <a href="#" className={styles['products-card']}>
