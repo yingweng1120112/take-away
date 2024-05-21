@@ -21,10 +21,12 @@ const memberData = {
 
 export default function Step2() {
   const {
-    cartItems,
+    selectedItems,
     countSelectedTotalPrice,
-    countSelectedFinalTotalPrice,
     countSelectedExtraFee,
+    countSelectedFinalTotalPrice,
+    userInfo,
+    setUserInfo,
   } = useCart()
 
   //地址選單狀態
@@ -91,11 +93,12 @@ export default function Step2() {
         </div>
       </section>
 
-      {/* 會員資料 */}
+      {/* 購物資料 */}
       <div className={styles['writemessage']}>
         <div
           className={`${styles['writemessageleft']} ${styles['itemscroll']}`}
         >
+        {/* 會員資料 */}
           <div>
             <div
               className={`${styles['carttitle']} ${styles['carttopstyle1']}`}

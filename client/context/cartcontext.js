@@ -5,7 +5,17 @@ const CartContext = createContext()
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useLocalStorage('cartItems', [])
-  const [selectedItems, setSelectedItems] = useState([])
+  //選擇的商品
+  const [selectedItems, setSelectedItems] = useLocalStorage('selectedItems', [])
+  const [userInfo, setUserInfo] = useLocalStorage('userInfo', {
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    order_remark: '',
+    payment_method: '',
+    invoice_no: '',
+  })
 
   const synchronizeSelectedItems = (updatedCartItems) => {
     const nextSelectedItems = updatedCartItems.map((item) => ({
@@ -108,6 +118,15 @@ export function CartProvider({ children }) {
     window.localStorage.setItem('cartItems', JSON.stringify(cartItems))
   }, [cartItems])
 
+  useEffect(() => {
+    window.localStorage.setItem('selectedItems', JSON.stringify(selectedItems))
+  }, [selectedItems])
+
+  useEffect(() => {
+    window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  }, [userInfo])
+
+
   const totalPrice = cartItems.reduce((acc, v) => acc + v.qty * v.price, 0)
   const finalTotalPrice = totalPrice < 899 ? totalPrice + 80 : totalPrice
   const extraFee = totalPrice < 899 ? '80' : '0'
@@ -125,6 +144,11 @@ export function CartProvider({ children }) {
         countSelectedTotalPrice,
         countSelectedExtraFee,
         countSelectedFinalTotalPrice,
+        userInfo,
+        setUserInfo,
+        totalPrice,
+        finalTotalPrice,
+        extraFee,
       }}
     >
       {children}
