@@ -99,7 +99,7 @@ display:none;
 }
 .shop-select{
   padding-right: 25px;
-  background: url(/img/search.svg) no-repeat right;
+  background: url(/img/banner/search.svg) no-repeat right;
   background-size: 20px;
 }
 .accordion-button >span{
