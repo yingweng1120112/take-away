@@ -279,61 +279,61 @@ export default function PetInfo() {
           <ul>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.fixed} type="checkbox" />
+                <input checked={pet.fixed} type="checkbox" />
                 <span>結紮</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.microchip} type="checkbox" />
+                <input checked={pet.microchip} type="checkbox" />
                 <span>晶片</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.vaccine} type="checkbox" />
+                <input checked={pet.vaccine} type="checkbox" />
                 <span>疫苗</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.deworm} type="checkbox" />
+                <input checked={pet.deworm} type="checkbox" />
                 <span>定期驅蟲</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.disability} type="checkbox" />
+                <input checked={pet.disability} type="checkbox" />
                 <span>殘疾</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.skin} type="checkbox" />
+                <input checked={pet.skin} type="checkbox" />
                 <span>癌症</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.pee} type="checkbox" />
+                <input checked={pet.pee} type="checkbox" />
                 <span>尿失禁</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.blue} type="checkbox" />
+                <input checked={pet.blue} type="checkbox" />
                 <span>憂鬱</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.skin} type="checkbox" />
+                <input checked={pet.skin} type="checkbox" />
                 <span>皮膚病</span>
               </label>
             </li>
             <li>
               <label className={styles['cl-checkbox']}>
-                <input defaultChecked={pet.blind} type="checkbox" />
+                <input checked={pet.blind} type="checkbox" />
                 <span>失明</span>
               </label>
             </li>
@@ -370,13 +370,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.respond} type="checkbox" />
+                    <input checked={action.respond} type="checkbox" />
                     <span>呼叫</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.down} type="checkbox" />
+                    <input checked={action.down} type="checkbox" />
                     <span>趴下</span>
                   </label>
                 </td>
@@ -384,13 +384,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.stay} type="checkbox" />
+                    <input checked={action.stay} type="checkbox" />
                     <span>等等</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.follow} type="checkbox" />
+                    <input checked={action.follow} type="checkbox" />
                     <span>隨行</span>
                   </label>
                 </td>
@@ -398,13 +398,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.sit} type="checkbox" />
+                    <input checked={action.sit} type="checkbox" />
                     <span>坐下</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.hand} type="checkbox" />
+                    <input checked={action.hand} type="checkbox" />
                     <span>握手</span>
                   </label>
                 </td>
@@ -412,13 +412,13 @@ export default function PetInfo() {
               <tr>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.toilet} type="checkbox" />
+                    <input checked={action.toilet} type="checkbox" />
                     <span>定點尿尿</span>
                   </label>
                 </td>
                 <td>
                   <label className={styles['cl-checkbox']}>
-                    <input defaultChecked={action.bark} type="checkbox" />
+                    <input checked={action.bark} type="checkbox" />
                     <span>不亂吠叫</span>
                   </label>
                 </td>
