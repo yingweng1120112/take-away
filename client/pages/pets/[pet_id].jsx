@@ -8,14 +8,13 @@ import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 
-
-
 export default function PetInfo() {
   // 第1步. 宣告能得到動態路由pet_id的路由器
   // router.query(物件)，其中包含了pet_id屬性值
   // router.isReady(布林)，如果是true代表頁面已完成水合作用，可以得到pet_id
   const router = useRouter()
 
+  // 預設資料欄位
   const [pet, setPet] = useState({
     pet_id: 10000,
     name: '',
@@ -52,7 +51,6 @@ export default function PetInfo() {
     story: '',
     habbit: '',
   })
-
   const [action, setAction] = useState({
     action_id: 10000,
     pet_id: 10000,
@@ -69,6 +67,15 @@ export default function PetInfo() {
     lively: 0,
     affectionate: 0,
   })
+
+  // 點擊圖片
+  let [imgSrc, setImgSrc] = useState(`/img/pet-info/${pet.adopt1}.jpg`)
+  const [selectedImg, setSelectedImg] = useState('img1');
+  const handleImageClick = (src, id) => {
+    setImgSrc(src);
+    setSelectedImg(id);
+  };
+  console.log("imgSrc", imgSrc);
 
   // 宣告一個指示是不是正在載入資料的狀態
   // 因為一開始一定是要載入資料，所以預設值為true
@@ -131,16 +138,22 @@ export default function PetInfo() {
     // eslint-disable-next-line
   }, [router.isReady])
 
+  useEffect(() => {
+    if (pet.adopt1) {
+      setImgSrc(`/img/pet-info/${pet.adopt1}.jpg`)
+    }
+  }, [pet])
+
   return (
     <>
-    <Header />
-      {/* TODO: 寵物圖片 */}
+      <Header />
+      {/* TODO: 點擊寵物圖片 */}
       <div className={styles['commendbody']}>
         <section className={styles['pet-desc']}>
           <div className={styles['pet-img']}>
             <div className={styles['img-big']}>
               <img
-                src={`/img/pet-info/${pet.adopt1}.jpg`}
+                src={imgSrc}
                 id="img-view"
                 alt=""
                 draggable="false"
@@ -152,29 +165,33 @@ export default function PetInfo() {
                 id="img1"
                 alt=""
                 draggable="false"
+                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt1}.jpg`, 'img1')} className={selectedImg === 'img1' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt2}.jpg`}
                 id="img2"
                 alt=""
                 draggable="false"
+                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt2}.jpg`, 'img2')} className={selectedImg === 'img2' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt3}.jpg`}
                 id="img3"
                 alt=""
                 draggable="false"
+                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt3}.jpg`, 'img3')} className={selectedImg === 'img3' ? styles['img-click'] : ''}
               />
               <img
                 src={`/img/pet-info/${pet.adopt4}.jpg`}
                 id="img4"
                 alt=""
                 draggable="false"
+                onClick={() => handleImageClick(`/img/pet-info/${pet.adopt4}.jpg`, 'img4')} className={selectedImg === 'img4' ? styles['img-click'] : ''}
               />
             </div>
           </div>
           <div className={styles['pet-info']}>
-            <p className={styles['pet-hashtag']}>#{pet.tag}</p>
+            <p className={styles['pet-hashtag']}># {pet.tag}</p>
             <div className={styles['pet-name']}>
               <p>{pet.name}</p>
               {pet.gender === '男生' ? (
@@ -192,8 +209,8 @@ export default function PetInfo() {
               <li>{pet.breeds}</li>
             </ul>
             <div className={styles['pet-btn']}>
-            {/* TODO: link 連結 */}
-            {/* <Link href={`/pets/${v.pet_id}`}> */}
+              {/* TODO: link 連結 */}
+              {/* <Link href={`/pets/${v.pet_id}`}> */}
               <Link href={`/pets/${pet.pet_id}&area=about`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
@@ -556,7 +573,7 @@ export default function PetInfo() {
           draggable="false"
         />
       </div>
-    <Footer />
+      <Footer />
     </>
   )
 }
