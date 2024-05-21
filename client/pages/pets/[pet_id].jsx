@@ -194,7 +194,7 @@ export default function PetInfo() {
             <div className={styles['pet-btn']}>
             {/* TODO: link 連結 */}
             {/* <Link href={`/pets/${v.pet_id}`}> */}
-              <Link href={`/pets/${pet.pet_id}&area=about`}>
+              <Link href={`/reserve/${pet.pet_id}`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
                     預約賞寵
@@ -215,7 +215,7 @@ export default function PetInfo() {
                   </svg>
                 </button>
               </Link>
-              <Link href={``}>
+              <Link href={`/adopt/${pet.pet_id}`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
                     線上認養

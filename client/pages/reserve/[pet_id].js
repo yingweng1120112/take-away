@@ -1,17 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '@/styles/reserve/reserve.module.css'
 import { IoRemoveOutline } from 'react-icons/io5'
 import Header from '@/components/layout/header'
 import banner from '@/styles/reserve/banner.module.css'
 import Footer from '@/components/layout/footer'
+import { useRouter } from 'next/router'
+import { loadPetInfo } from '@/services/pets'
 
 export default function Reserve() {
+  const router = useRouter()
   const [reserve, setReserve] = useState({
     pet: '',
     name: '',
     reserveTime: '',
   })
-  // 記錄欄位錯誤訊息的狀態
+
+  const [pet, setPet] = useState({
+    pet_id: 10000,
+    name: '',
+    tag: '',
+    age: 0,
+    type: '',
+    weight: 0,
+    gender: '',
+    breeds: '',
+    color: '',
+    adopted: 0,
+    state: '',
+    fixed: 0,
+    microchip: 0,
+    vaccine: 0,
+    deworm: 0,
+    personality_type: '',
+    sign: '',
+    blue: 0,
+    favorite: 0,
+    pee: 0,
+    skin: 0,
+    disability: 0,
+    blind: 0,
+    adopt1: '',
+    adopt2: '',
+    adopt3: '',
+    adopt4: '',
+    phone1: '',
+    phone2: '',
+    phone3: '',
+    phone4: '',
+    reserve1: '',
+    story: '',
+    habbit: '',
+  })
+
+  const [isLoading, setIsLoading] = useState(true)
+
+  const getPet = async (pet_id) => {
+    const data = await loadPetInfo(pet_id)
+    console.log('info', data)
+
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      setPet(data)
+      setReserve(prev => ({ ...prev, pet: data.name }))
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1500)
+    }
+  }
+
+  useEffect(() => {
+    if (router.isReady) {
+      const { pet_id } = router.query
+      getPet(pet_id)
+    }
+  }, [router.isReady])
+
   const [errors, setErrors] = useState({
     pet: '',
     name: '',
@@ -28,7 +90,6 @@ export default function Reserve() {
 
     const newErrors = { pet: '', name: '', reserveTime: '' }
 
-    // 基本的表單驗證
     if (!reserve.pet || reserve.pet.length < 2)
       newErrors.pet = '浪浪名稱必須大於2個字'
     if (!reserve.name || reserve.name.length < 2)
@@ -63,7 +124,6 @@ export default function Reserve() {
         `請確定預約細項為\n預約的寵物是${reserve.pet}\n預約人是${reserve.name}\n預約時間為${reserve.reserveTime}`
       )
 
-      // 清空表單輸入字段
       setReserve({ pet: '', name: '', reserveTime: '' })
     } catch (error) {
       console.error('Error:', error)
@@ -124,7 +184,7 @@ export default function Reserve() {
             所以也期待您撥空來現場看看他們!
           </h5>
           <div className={styles['reserve-img']}>
-            <img src={`/img/pet-info/10008-5.jpg`} alt="" />
+            <img  src={`/img/pet-info/${pet.reserve1}.jpg`} alt="" />
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
@@ -208,7 +268,7 @@ export default function Reserve() {
           </div>
         </div>
       </section>
-           <Footer />
+      <Footer />
     </>
   )
 }
