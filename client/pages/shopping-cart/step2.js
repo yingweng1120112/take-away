@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -9,8 +9,61 @@ import {
   faClipboardCheck,
 } from '@fortawesome/free-solid-svg-icons'
 import { useCart } from '@/context/cartcontext'
+import TWZipCode from '@/components/shopping-cart/tw-zipcode/index'
+
+//假資料 之後連會員資料庫
+const memberData = {
+  name: '王小明',
+  email: 'a123456789@gmail.com',
+  phone: '0912345678',
+  address: '台南市中西區健康路一段1號',
+}
 
 export default function Step2() {
+  const {
+    cartItems,
+    countSelectedTotalPrice,
+    countSelectedFinalTotalPrice,
+    countSelectedExtraFee,
+  } = useCart()
+
+  //地址選單狀態
+  const [data, setData] = useState({})
+
+  //資料同會員
+  const [recipientData, setRecipientData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+  })
+
+  const [sameAsMember, setSameAsMember] = useState(false)
+
+  const handleCheckboxChange = () => {
+    setSameAsMember(!sameAsMember)
+    if (!sameAsMember) {
+      setRecipientData(memberData)
+    } else {
+      setRecipientData({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+      })
+    }
+  }
+    //配送形式
+    const [deliveryType, setDeliveryType] = useState('')
+    const handleDeliveryTypeChange = (e) =>{
+      setDeliveryType(e.target.value)
+    }
+    //發票形式
+    const [invoiceType, setInvoiceType] = useState('')
+    const handleInvoiceTypeChange = (e) => {
+      setInvoiceType(e.target.value)
+    }
+
   return (
     <>
       <Header />
@@ -53,25 +106,25 @@ export default function Step2() {
               <div>
                 <div>會員姓名</div>
                 <div>
-                  <input readOnly value="王小明" />
+                  <input readOnly value={memberData.name} />
                 </div>
               </div>
               <div>
                 <div>電子郵件</div>
                 <div>
-                  <input readOnly value="a123456789@gmail.com" />
+                  <input readOnly value={memberData.email} />
                 </div>
               </div>
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input readOnly value="0912345678" />
+                  <input readOnly value={memberData.phone} />
                 </div>
               </div>
               <div>
                 <div>地址</div>
                 <div>
-                  <input readOnly value="台南市中西區健康路一段1號" />
+                  <input readOnly value={memberData.address} />
                 </div>
               </div>
             </div>
@@ -88,55 +141,113 @@ export default function Step2() {
               <div>
                 <div>送貨方式</div>
                 <div>
-                  <select name="" id="">
-                    <option selected="">請選擇配送方式</option>
-                    <option>宅配(滿499免運費)</option>
-                    <option>超商取貨(滿499免運費)</option>
+                  <select name="" id="" onChange={handleDeliveryTypeChange}>
+                    <option value="home">宅配</option>
+                    <option value="cvs">超商取貨</option>
                   </select>
                 </div>
               </div>
               {/*  */}
               <div className={styles['checklinestyle']}>
-                <input type="checkbox" className={styles['checkboxstyle']} />
+                <input
+                  type="checkbox"
+                  className={styles['checkboxstyle']}
+                  checked={sameAsMember}
+                  onChange={handleCheckboxChange}
+                />
                 <span className={styles['spanstyle']}>
                   收件人資料與會員資料相同
                 </span>
               </div>
               {/*  */}
               <div>
+                <div>收件人姓名</div>
+                <div>
+                  <input
+                    placeholder="請輸入名字（請填入真實姓名以利收件）"
+                    value={recipientData.name}
+                    onChange={(e) =>
+                      setRecipientData({
+                        ...recipientData,
+                        name: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              {/*  */}
+              <div>
                 <div>電子郵件</div>
                 <div>
-                  <input placeholder="請輸入名字（請填入真實姓名以利收件）" />
+                  <input
+                    placeholder="請輸入信箱"
+                    value={recipientData.email}
+                    onChange={(e) =>
+                      setRecipientData({
+                        ...recipientData,
+                        email: e.target.value,
+                      })
+                    }
+                  />
                 </div>
               </div>
               {/*  */}
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input placeholder="請輸入號碼（0912345678）" />
+                  <input
+                    placeholder="請輸入號碼（0912345678）"
+                    value={recipientData.phone}
+                    onChange={(e) =>
+                      setRecipientData({
+                        ...recipientData,
+                        phone: e.target.value,
+                      })
+                    }
+                  />
                 </div>
               </div>
               {/*  */}
-              <div className={styles['writeaddress']}>
+               {deliveryType === 'home'? (
+                <div className={styles['writeaddress']}>
                 <div>寄送地址</div>
                 <div>
                   <div className={styles['writeaddressright']}>
-                    <div>
-                      <select name="" id="">
-                        <option>縣市</option>
-                      </select>
-                    </div>
-                    <div>
-                      <select name="" id="">
-                        <option>鄉鎮市區</option>
-                      </select>
-                    </div>
+                    <TWZipCode
+                      initPostcode={data.postcode}
+                      onPostcodeChange={(country, township, postcode) => {
+                        setData({
+                          country,
+                          township,
+                          postcode,
+                        })
+                      }}
+                    />
                   </div>
                   <div>
-                    <input placeholder="請輸入詳細地址" />
+                    <input
+                      placeholder="請輸入詳細地址"
+                      value={recipientData.address}
+                      onChange={(e) =>
+                        setRecipientData({
+                          ...recipientData,
+                          address: e.target.value,
+                        })
+                      }
+                    />
                   </div>
                 </div>
+              </div>) : deliveryType=== 'cvs'? (
+                <div>
+                <div>配送門市</div>
+                <div>
+                  <select
+                    
+                  />
+                </div>
               </div>
+              ): null}
+              
               {/*  */}
               <div>
                 <div>訂單備註</div>
@@ -172,19 +283,22 @@ export default function Step2() {
                 <div>
                   <div>發票類型</div>
                   <div>
-                    <select name="" id="">
-                      <option selected="">請選擇發票形式</option>
-                      <option>紙本發票</option>
-                      <option>手機載具</option>
+                    <select name="" id="" onChange={handleInvoiceTypeChange}>
+                      <option value="" selected="">請選擇發票形式</option>
+                      <option value="paper">紙本發票</option>
+                      <option value="mobile">手機載具</option>
                     </select>
                   </div>
                 </div>
-                <div>
-                  <input
-                    defaultValue=""
-                    placeholder="請輸入手機條碼（/ABC1234）"
-                  />
-                </div>
+                {/* 邏輯運算子(&&)：當左側條件為true時，&&右側的 JSX 會被渲染，否則什麼都不渲染。(也可用三元運算子)*/}
+                {invoiceType === 'mobile' && (
+                  <div>
+                    <input
+                      defaultValue=""
+                      placeholder="請輸入手機條碼（/ABC1234）"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -197,11 +311,11 @@ export default function Step2() {
           <div className={styles['cartbottomstyle']}>
             <div>
               <div>小計：</div>
-              <div>$270</div>
+              <div>${countSelectedTotalPrice()}</div>
             </div>
             <div>
-              <div>運費：</div>
-              <div>$80</div>
+              <div>運費(滿899免運)：</div>
+              <div>${countSelectedExtraFee()}</div>
             </div>
             <div>
               <div>優惠：</div>
@@ -209,7 +323,7 @@ export default function Step2() {
             </div>
             <div>
               <div>合計：</div>
-              <div>$350</div>
+              <div>${countSelectedFinalTotalPrice()}</div>
             </div>
             <div className={styles['cartbutton']}>
               <Link href="/shopping-cart/step1" passHref>
