@@ -9,8 +9,8 @@
 }
 .banner-select {
   position: sticky;
-  top: 74px;
-  z-index: 100;
+  top: 60px;
+  z-index: 50;
 }
 .banner-life-1 {
   display: none;
@@ -353,7 +353,9 @@
     justify-content: flex-start;
     height: 20rem;
   }
-
+  .banner-select {
+    top: 78px;
+  }
   .banner > .left {
     width: 40%;
   }

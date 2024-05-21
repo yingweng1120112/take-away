@@ -19,11 +19,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.10.5",
     "firebase": "^10.1.0",
-<<<<<<< HEAD
-    "install": "^0.13.0",
-=======
     "fortawesome": "^0.0.1-security",
->>>>>>> bbb313c30253518fc525e3a7443d2b3f9c4504c0
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
     "next": "12.1.6",
