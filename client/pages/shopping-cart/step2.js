@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/shopping-cart/shoppingcar-step2.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -9,7 +11,7 @@ import {
 export default function Step1() {
   return (
     <>
-      <header />
+      <Header />
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/shopping-cart/roof.png" alt="" />
@@ -231,7 +233,7 @@ export default function Step1() {
       <section className={styles['wall']}>
         <img src="/shopping-cart/wall.png" alt="" />
       </section>
-      <footer></footer>
+      <Footer />
     </>
   )
 }

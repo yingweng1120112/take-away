@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/shopping-cart/shoppingcar-step3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +8,7 @@ import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
 export default function Step1() {
   return (
     <>
-      <header />
+      <Header />
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/shopping-cart/roof.png" alt="" />
@@ -178,7 +180,7 @@ export default function Step1() {
       <section className={styles['wall']}>
         <img src="/shopping-cart/wall.png" alt="" />
       </section>
-      <footer></footer>
+      <Footer />
     </>
   )
 }

@@ -82,7 +82,7 @@ const sample = [
   },
 ]
 
-export default function PetInfo(sample) {
+export default function PetInfo() {
   return (
     <>
       <div className={styles['commendbody']}>
@@ -124,7 +124,7 @@ export default function PetInfo(sample) {
             </div>
           </div>
           <div className={styles['pet-info']}>
-            <p className={styles['pet-hashtag']}>{sample.hashtag}</p>
+            <p className={styles['pet-hashtag']}>#陽光活潑</p>
             <div className={styles['pet-name']}>
               <p>歐告</p>
               <img src="/img/pets/icon_boy.png" alt="" draggable="false" />
@@ -197,7 +197,7 @@ export default function PetInfo(sample) {
 
         <section className={styles['pet-health']}>
           <h1>
-            <img src="/img/icon_pet-pill.png" alt="" draggable="false" />
+            <img src="/img/pets/icon_pet-pill.png" alt="" draggable="false" />
             健康狀態
           </h1>
           <ul>

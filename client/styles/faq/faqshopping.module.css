@@ -1,5 +1,9 @@
 /* 常見問題頁面css樣式 */
-
+.onlyforbgc {
+  background-color: var(--bg-color);
+  position: relative;
+  z-index: 1;
+}
 /* 手機版 */
 /* 搜尋欄 */
 .container_faq {
@@ -62,7 +66,9 @@
   font-weight: bold;
   color: #753422;
 }
-
+.faq_links {
+  text-decoration: none;
+}
 .faq_icons {
   color: #895e3c;
   font-size: 36px;
@@ -90,7 +96,19 @@
   border-radius: 10px;
   box-shadow: 0 15px 25px rgba(0, 0, 50, 0.2);
 }
-
+.item {
+  background: #d7b67a;
+  margin-bottom: 50px;
+  /* padding: 10px 20px; */
+}
+.title {
+  font-weight: bold;
+  color: #753422;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
 .toggle {
   width: 100%;
   background-color: transparent;
@@ -114,14 +132,20 @@
   text-align: justify;
   line-height: 30px;
   font-weight: bold;
-  height: 0;
+  /* height: 0; */
+  max-height: 0;
   border-radius: 0px 0px 10px 10px;
   overflow: hidden;
-  transition: all 1s;
+  /* transition: all 1s; */
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
   background-color: #fff;
   padding: 0px 10px;
 }
-
+.content_ans.show {
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+}
 .img_ans {
   width: 50px;
   height: 50px;
@@ -164,6 +188,7 @@
   justify-content: space-between;
   /* overflow: hidden; */
   padding: 20px 0px;
+  /* background-color: var(--bg-color); */
 }
 
 .img_res {
@@ -176,6 +201,7 @@
   animation-name: reportform;
   animation-duration: 10s;
   animation-iteration-count: infinite;
+  cursor: pointer;
 }
 @keyframes reportform {
   0% {
@@ -218,7 +244,7 @@
 
   50% {
     left: -100px;
-    top: 50px;
+    top: 100px;
   }
 
   75% {
@@ -365,12 +391,12 @@
   .faq_res {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   /* footer {
-        z-index: 0;
-    } */
+    z-index: 0;
+  } */
   .img_res {
     width: 100%;
     position: relative;
@@ -403,24 +429,23 @@
 
   .img_res2 {
     width: 100%;
-    z-index: -1;
     position: relative;
-    left: 150px;
     top: 300px;
     animation-name: catpaw;
     animation-duration: 4s;
     animation-iteration-count: infinite;
+    z-index: -1;
+    overflow: hidden;
   }
 
   @keyframes catpaw {
     0% {
-      left: 150px;
       top: 300px;
     }
 
     25% {
-      left: 150px;
-      top: 200px;
+      left: -500px;
+      top: 300px;
     }
 
     50% {
@@ -429,12 +454,10 @@
     }
 
     75% {
-      left: -600px;
       top: 300px;
     }
 
     100% {
-      left: 150px;
       top: 300px;
     }
   }

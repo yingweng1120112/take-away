@@ -3,7 +3,7 @@
 }
 .hearttest {
   margin: 0 10%;
-  height: 750px;
+  height: 800px;
 
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
 /* 題目 */
 .hearttest > .question {
   width: 100%;
-  height: 500px;
+  height: 71%;
   background-color: #bacdd1;
   background-image: url(/psycological-test/hearttestbg.png);
   background-size: contain;
@@ -84,6 +84,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
 }
 .testoption .everyimg {
   width: 140px;
@@ -92,7 +93,7 @@
   background-color: transparent;
   border: none;
   display: flex;
-  margin-top: -145px;
+  margin-top: -210px;
   align-items: center;
 }
 .iconstyle {
@@ -196,5 +197,9 @@
     left: 17px;
     width: 30px;
     z-index: 2;
+  }
+  .footerstyle {
+    position: relative;
+    bottom: 205px;
   }
 }

@@ -13,8 +13,8 @@ export default function Notice() {
           {/* 無法砍掉header footer高度 footer 跑到上面 */}
           <Slide>
             <section className={`${styles['title']} ${styles['section']}`}>
-              <h1>寵物認養流程</h1>
-              <h2>認養須知</h2>
+              <h1>寵物領養流程</h1>
+              <h2>領養須知</h2>
               <hr />
               <h1>
                 Adopt, <br className={styles['br-mobile']} /> Don't Shop!
@@ -43,11 +43,11 @@ export default function Notice() {
                 </h2>
                 <ul>
                   <li>
-                    認養人選定動物後，由所方人員與認養人進行訪談評估並解說認養流程，確認後再予以辦理認養手續
+                    領養人選定動物後，由所方人員與領養人進行訪談評估並解說領養流程，確認後再予以辦理領養手續
                   </li>
-                  <li>如欲認養動物已達公告日期或幼齡者可先行認養</li>
+                  <li>如欲領養動物已達公告日期或幼齡者可先行領養</li>
                   <li>
-                    如欲認養動物未達公告日期，則先行至動物之家現場登記預約認養，否則視同預約放棄
+                    如欲領養動物未達公告日期，則先行至動物之家現場登記預約領養，否則視同預約放棄
                   </li>
                 </ul>
               </div>
@@ -61,7 +61,7 @@ export default function Notice() {
               <h2>
                 填寫
                 <br className={styles['br-mobile']} />
-                認養申請書
+                領養申請書
                 <br className={styles['br-block']} />
                 繳交
                 <br className={styles['br-mobile']} />
@@ -76,10 +76,10 @@ export default function Notice() {
                 <h2>免費犬貓絕育</h2>
                 <ul>
                   <li>
-                    如認養時因年幼或其他因素，未能絕育者，先行認養，等犬七合一預防注射完成免疫後，健康飼養良好後，再帶至動物之家安排絕育手術
+                    如領養時因年幼或其他因素，未能絕育者，先行領養，等犬七合一預防注射完成免疫後，健康飼養良好後，再帶至動物之家安排絕育手術
                   </li>
                   <li>
-                    如認養時可絕育者，先行預約，由動物之家安排，時間絕育後再進行認養
+                    如領養時可絕育者，先行預約，由動物之家安排，時間絕育後再進行領養
                   </li>
                 </ul>
               </div>

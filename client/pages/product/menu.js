@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
+import Header from '@/components/layout/header'
+import Banner from './bannerShopSelect'
 import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
 import MenuSwiper from '@/pages/product/menu_swiper'
+import Footer from '@/components/layout/footer'
 
 export default function Menu() {
   return (
     <>
+    <Header />
+    <Banner />
       {/* 搜尋數 */}
       <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
@@ -434,7 +439,8 @@ export default function Menu() {
         </div>
       </section>
       {/* 推薦浪浪 */}
-      <MenuSwiper styles={{width:'1904px', height:'auto'}}/>
+      <MenuSwiper />
+      <Footer />
     </>
   )
 }

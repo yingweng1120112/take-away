@@ -64,6 +64,7 @@
   --bs-card-border-width: 0px;
   height: auto;
   width: auto;
+  cursor: pointer;
 }
 
 .state {
@@ -385,6 +386,7 @@
 
 .marquee_shop{
   height: auto;
+  width: 100%;
 }
 
 .marquee {

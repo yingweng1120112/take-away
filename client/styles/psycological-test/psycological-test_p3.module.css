@@ -8,7 +8,7 @@
   background-color: #d9d5ca;
 }
 .testresult {
-  margin: 40px 10%;
+  margin: 0px 10%;
   height: 750px;
   display: flex;
   justify-content: space-between;
@@ -34,6 +34,7 @@
   align-items: end;
   margin-right: 110px;
   margin-left: 0px;
+  margin-top: 40px;
   /* border: 2px rgb(68, 175, 35) solid; */
 }
 .testtitle > div {
@@ -197,7 +198,7 @@
     height: 597px;
     background-size: 100% 385px;
     align-items: center;
-    margin: 40px 0;
+    margin: 0px 0;
     width: 100%;
   }
   .testtitle {

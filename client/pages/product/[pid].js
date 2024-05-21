@@ -1,13 +1,18 @@
 import React from 'react'
-import Reviews from './reviews'
+import Header from '@/components/layout/header'
+import InformationBanner from './information_banner'
 import Info from './info'
+import Reviews from './reviews'
 import MyReviews from './my_reviews'
 import InfoSwiper from './info_swiper'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/product/information.module.css'
 
 export default function Information() {
   return (
     <>
+      <Header />
+      <InformationBanner />
       <Info />
       <Reviews />
       <MyReviews />
@@ -19,6 +24,7 @@ export default function Information() {
         </div>
       </section>
       <InfoSwiper />
+      <Footer />
     </>
   )
 }

@@ -283,7 +283,7 @@
   background-image: url(/shopping-cart/commendbg.png);
   background-size: contain;
   margin: 0;
-  height: 34rem;
+  height: 37rem;
 }
 .commend > h4 {
   font-size: var(--font-size-h3);
@@ -533,7 +533,7 @@
   }
   /* 推薦 */
   .commend {
-    height: 21rem;
+    height: 23rem;
   }
   .commend > h4 {
     font-size: var(--font-size-p);
