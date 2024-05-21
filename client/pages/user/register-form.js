@@ -121,158 +121,171 @@ export default function RegisterForm() {
       <section className={styles['section']}>
         <Header />
         <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
-        <h1>註冊表單</h1>
-        <form
-          className={`${styles['form']} ${styles['sign-up']}`}
-          onSubmit={handleSubmit}
-        >
-          <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
-          <label className={styles['label']}>
-            姓名:{' '}
-            <input
-              className={styles['input']}
-              type="text"
-              name="name"
-              value={user.name}
-              onChange={handleFieldChange}
-            />
-          </label>
-          <br />
-          <span className="error">{errors.name}</span>
-          <br />
-          <label className={styles['label']}>
-            <span className={`${styles['span']} ${styles['spanl']}`}>
-              Email：{' '}
-            </span>
-            <input
-              className={styles['input']}
-              type="text"
-              name="email"
-              value={user.email}
-              onChange={handleFieldChange}
-            />
-          </label>
-          <br />
-          <span className="error">{errors.email}</span>
-          <br />
-          <label className={styles['label']}>
-            帳號:{' '}
-            <input
-              className={styles['input']}
-              type="text"
-              name="username"
-              value={user.username}
-              onChange={handleFieldChange}
-              // required
-            />
-          </label>
-          <br />
-          <span className="error">{errors.username}</span>
-          <br />
-          <label className={styles['label']}>
-            密碼:{' '}
-            <div className="d-flex">
-              <input
-                className={styles['input']}
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={user.password}
-                onChange={handleFieldChange}
-              />
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                style={{ cursor: 'pointer' }}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+        <div className={styles['cont']}>
+          <form
+            className={`${styles['form']} ${styles['sign-up']}`}
+            onSubmit={handleSubmit}
+          >
+            <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                姓名：
               </span>
-            </div>
-          </label>
-          <br />
-          <span className="error">{errors.password}</span>
-          <br />
-          <label className={styles['label']}>
-            <span className={`${styles['span']} ${styles['spanl']}`}>
-              確認密碼:{' '}
-            </span>
-            <div className="d-flex">
-              <input
-                className={styles['input']}
-                type={showConfirmPassword ? 'text' : 'password'}
-                name="confirmPassword"
-                value={user.confirmPassword}
-                onChange={handleFieldChange}
-              />
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                style={{ cursor: 'pointer' }}
-              >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="name"
+                  value={user.name}
+                  onChange={handleFieldChange}
+                />
+                <span className="error">{errors.name}</span>
+              </div>
+            </label>
+            <br />
+            <br />
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                Email：{' '}
               </span>
-            </div>
-          </label>
-          <br />
-          <span className="error">{errors.confirmPassword}</span>
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              name="agree"
-              checked={user.agree}
-              onChange={handleFieldChange}
-            />{' '}
-            我同意網站會員註冊條款
-          </label>
-          <br />
-          <span className="error">{errors.agree}</span>
-          <br />
-          <button
-            type="submit"
-            className={`${styles['button']} ${styles['submit']}`}
-          >
-            註冊
-          </button>
-          <button
-            type="button"
-            className={`${styles['button']} ${styles['fb-btn']}`}
-          >
-            Join with{' '}
-            <span className={`${styles['span']} ${styles['fb-btns']}`}>
-              Google
-            </span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              // 重置需要自行設定回初始化值
-              setUser({
-                name: '',
-                email: '',
-                username: '',
-                password: '',
-                confirmPassword: '',
-                agree: false,
-              })
-            }}
-          >
-            重置
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              // 重置需要自行設定回初始化值
-              setUser({
-                name: '榮恩',
-                email: 'ron@test.com',
-                username: 'ron',
-                password: '123456',
-                confirmPassword: '123456',
-                agree: true,
-              })
-            }}
-          >
-            一鍵填入
-          </button>
-        </form>
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="email"
+                  value={user.email}
+                  onChange={handleFieldChange}
+                />
+                <span className="error">{errors.email}</span>
+              </div>
+            </label>
+            <br />
+            <br />
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                帳號:{' '}
+              </span>
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="username"
+                  value={user.username}
+                  onChange={handleFieldChange}
+                  // required
+                />
+                <span className="error">{errors.username}</span>
+              </div>
+            </label>
+            <br />
+            <br />
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                密碼:{' '}
+              </span>
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={user.password}
+                  onChange={handleFieldChange}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+                <span className="error">{errors.password}</span>
+              </div>
+            </label>
+            <br />
+            <br />
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                確認密碼:{' '}
+              </span>
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  value={user.confirmPassword}
+                  onChange={handleFieldChange}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+                <span className="error">{errors.confirmPassword}</span>
+              </div>
+            </label>
+            <br />
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                name="agree"
+                checked={user.agree}
+                onChange={handleFieldChange}
+              />{' '}
+              我同意網站會員註冊條款
+            </label>
+            <br />
+            <span className="error">{errors.agree}</span>
+            <br />
+            <button
+              type="submit"
+              className={`${styles['button']} ${styles['submit']}`}
+            >
+              註冊
+            </button>
+            <button
+              type="button"
+              className={`${styles['button']} ${styles['fb-btn']}`}
+            >
+              Join with{' '}
+              <span className={`${styles['span']} ${styles['fb-btns']}`}>
+                Google
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                // 重置需要自行設定回初始化值
+                setUser({
+                  name: '',
+                  email: '',
+                  username: '',
+                  password: '',
+                  confirmPassword: '',
+                  agree: false,
+                })
+              }}
+            >
+              重置
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                // 重置需要自行設定回初始化值
+                setUser({
+                  name: '榮恩',
+                  email: 'ron@test.com',
+                  username: 'ron',
+                  password: '123456',
+                  confirmPassword: '123456',
+                  agree: true,
+                })
+              }}
+            >
+              一鍵填入
+            </button>
+          </form>
+        </div>
         {/* <style jsx>
           {`
             .error {
