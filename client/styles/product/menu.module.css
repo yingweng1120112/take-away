@@ -10,6 +10,7 @@
   padding: 0rem;
 }
 
+
 .content {
   width: 80%;
   margin: auto;
@@ -178,7 +179,7 @@
   width: 5.5rem;
   font-size: 0.8rem;
 }
-.cart-btn:hover{
+.cart-btn:hover {
   transform: scale(1.05);
 }
 .cart-btn:hover svg path {

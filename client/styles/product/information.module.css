@@ -422,7 +422,7 @@
   /* 背景狗掌區 */
   .dog-palm {
     position: absolute;
-    top: 20rem;
+    top: 25rem;
     left: -2rem;
     z-index: 1;
     transform: rotate(75deg) scale(1);
