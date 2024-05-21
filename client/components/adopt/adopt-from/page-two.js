@@ -54,8 +54,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             name="phone"
             className="form-input"
             placeholder="行動電話"
-            // value={adopt.phone}
-            // onChange={handleChange}
+            value={adopt.phone}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>
@@ -67,8 +67,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             name="email"
             className="form-input"
             placeholder="電子信箱"
-            // value={adopt.email}
-            // onChange={handleChange}
+            value={adopt.email}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>

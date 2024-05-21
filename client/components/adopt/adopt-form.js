@@ -15,6 +15,8 @@ export default function AdoptForm(pet) {
 
   const [adopt, setAdopt] = useState({
     name: '',
+    email: '',
+    phone: '',
     donation: '不指定',
     address: '電子郵件地址',
   })

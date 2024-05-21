@@ -25,7 +25,7 @@ export default function PageThree({ donateInfo, adopt, phone1, name }) {
             name="name"
             className="form-input"
             placeholder="姓名"
-            value={adopt.name}
+            value={adopt.name|| ''}
             readOnly
           />
           <span className="input-border"></span>
