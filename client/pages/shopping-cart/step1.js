@@ -24,6 +24,7 @@ export default function Step1() {
     decreaseItem,
     selectedItems,
     setSelectedItems,
+    handleToggleChecked,
     countSelectedTotalPrice,
     countSelectedFinalTotalPrice,
     countSelectedExtraFee,
@@ -43,16 +44,6 @@ export default function Step1() {
     });
   }, [cartItems]);
   
-  const handleToggleChecked = (product_id) => {
-    setSelectedItems(prevState => {
-      const nextItems = prevState.map((item) =>
-        item.product_id === product_id
-          ? { ...item, checked: !item.checked }
-          : item
-      );
-      return nextItems;
-    });
-  }
   
 
   return (
@@ -114,13 +105,13 @@ export default function Step1() {
                         type="checkbox"
                         checked={selectedItem?.checked || false}
                         onChange={() =>
-                          handleToggleChecked(selectedItem.product_id)
+                          handleToggleChecked(v.product_id)
                         }
                       />
                     </div>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                        <img src="/shopping-cart/car-item1.png" alt="" />
+                      <img src={v.pic1} alt={v.name} />
                       </div>
                       <div>{v.name}</div>
                     </div>
