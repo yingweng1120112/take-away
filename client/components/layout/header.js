@@ -23,7 +23,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'absolute', width: '100%', 'z-index': '100' }}
+            style={{ position: 'fixed', width: '100%', 'z-index': '100' }}
           >
             <a href="" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
