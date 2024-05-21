@@ -17,8 +17,13 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.10.5",
+    "date-fns": "4.15.0",
     "firebase": "^10.1.0",
+<<<<<<< HEAD
     "install": "^0.13.0",
+=======
+    "fortawesome": "^0.0.1-security",
+>>>>>>> bbb313c30253518fc525e3a7443d2b3f9c4504c0
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
     "next": "12.1.6",
@@ -26,8 +31,9 @@
     "react": "17.0.2",
     "react-bootstrap": "^2.10.2",
     "react-bootstrap-sidebar-menu": "^2.0.3",
+    "react-datepicker": "^6.9.0",
     "react-dom": "17.0.2",
-    "react-full-page": "^0.1.12",
+    "react-full-page": "0.1.12",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.12.0",
     "react-infinite-scroll-hook": "^4.1.1",
@@ -51,5 +57,10 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.8",
     "sass": "^1.76.0"
-  }
+  },
+  "description": "next.js + bootstrap5 boilerplates",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

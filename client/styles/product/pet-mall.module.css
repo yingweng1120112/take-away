@@ -207,28 +207,28 @@
 /* 背景狗掌區 */
 .dog-palm {
   position: absolute;
-  top: 59.375rem;
-  right: 12.5rem;
+  top: 54rem;
+  right: -4.5rem;
   z-index: 1;
-  transform: rotate(75deg) scale(0.5);
+  transform: rotate(360deg) scale(0.5);
 }
 .dog-palm2 {
   position: absolute;
-  top: 95.625rem;
-  left: 10.625rem;
+  top: 93rem;
+  left: 13rem;
   z-index: 1;
-  transform: scale(0.5);
+  transform: scale(0.3);
 }
 .dog-palm3 {
   position: absolute;
-  top: 134rem;
+  top: 200em;
   right: 11.25rem;
   z-index: 1;
-  transform: rotate(260deg) scale(0.5);
+  transform: rotate(260deg) scale(0.4);
 }
 .dog-palm4 {
   position: absolute;
-  top: 176.875rem;
+  top: 160rem;
   left: 7.5rem;
   z-index: 1;
   transform: scale(0.4);
@@ -267,7 +267,7 @@
   z-index: 1;
   transform: scale(0.4);
 }
-.can-card{
+.can-card {
   height: auto;
   margin-bottom: 1rem;
 }
@@ -414,8 +414,8 @@
   }
   .dog-palm2 {
     top: 83rem;
-    left: 6.25rem;
-    transform: rotate(75deg) scale(2);
+    left: 3rem;
+    transform: rotate(75deg) scale(1.5);
   }
   .dog-palm3 {
     position: absolute;

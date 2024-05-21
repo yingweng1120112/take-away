@@ -3,20 +3,18 @@ const baseUrl = 'http://localhost:3005/api/testproduct'
 
 const sample = [
   {
-    id: 1,
-    picture: 'https://via.placeholder.com/150',
-    stock: 5,
+    product_id: 10001,
     name: '無資料預設範例-1',
-    price: 25000,
-    tags: '蘋果,大螢幕',
+    brand_name: 'none',
+    price: 0,
+    species: 'none',
   },
   {
-    id: 2,
-    picture: 'https://via.placeholder.com/150',
-    stock: 5,
+    product_id: 10002,
     name: '無資料預設範例-2',
-    price: 15000,
-    tags: '蘋果,小螢幕',
+    brand_name: 'none',
+    price: 0,
+    species: 'none',
   },
 ]
 
@@ -29,6 +27,7 @@ export const loadProducts = async (params = {}) => {
   try {
     const res = await fetch(url)
     const resData = await res.json()
+
     // 判斷是否成功
     if (resData.status === 'success') {
       // 因應要分頁和查詢，所以回應整個data

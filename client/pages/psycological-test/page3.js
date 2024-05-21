@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/psycological-test/psycological-test_p3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -11,7 +13,7 @@ export default function Page3() {
   return (
     <>
       <>
-        <header />
+        <Header />
         <div className={styles['bgcolor']}>
           <section
             className={`${styles['testresult']} ${styles['sectionstyle']}`}
@@ -94,7 +96,7 @@ export default function Page3() {
             </div>
           </section>
         </div>
-        <footer />
+        <Footer />
       </>
     </>
   )

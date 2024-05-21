@@ -1,10 +1,12 @@
 import React from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 import styles from '@/styles/psycological-test/psycological-test_p1.module.css'
 
 export default function Page1() {
   return (
     <>
-      <header />
+      <Header />
       <section className={`${styles['sectionstyle']} ${styles['hearttest']}`}>
         <div className={styles['testtitle']}>
           <div>心</div>
@@ -24,7 +26,7 @@ export default function Page1() {
           </div>
         </div>
       </section>
-      <footer />
+      <Footer />
     </>
   )
 }

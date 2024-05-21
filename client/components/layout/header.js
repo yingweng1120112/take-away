@@ -18,6 +18,7 @@ export default function Header() {
   }
   return (
     <>
+<<<<<<< HEAD
       <header className='header'>
         <div>
           <div style={{ position: 'relative' }}>
@@ -120,6 +121,103 @@ export default function Header() {
                     登入
                   </a>
                 </div>
+=======
+      {/* 更改容器高度 */}
+      <header style={{ height: 'auto' }}>
+        <div style={{ position: 'relative' }}>
+          <div
+            className="header1"
+            style={{ position: 'absolute', width: '100%', 'z-index': '100' }}
+          >
+            <a href="" className="logo">
+              <img src={`/img/index/logo-removebg-preview.png`} />
+            </a>
+            <nav className="navbar2">
+              <ul>
+                <li>
+                  <a>關於我們</a>
+                  <ul>
+                    <li>
+                      <a href="#">關於我們</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>領養資訊</a>
+                  <ul>
+                    <li className="bor0">
+                      <a href="#">心理測驗</a>
+                    </li>
+                    <li
+                      style={{ 'border-top': '2px solid var(--reddish-brown)' }}
+                    >
+                      <a href="#">領養流程</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>相關問題</a>
+                  <ul>
+                    <li className="bor0">
+                      <a href="#">常見問題</a>
+                    </li>
+                    <li
+                      style={{ 'border-top': '2px solid var(--reddish-brown)' }}
+                    >
+                      <a href="#">客服中心</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>領養專區</a>
+                  <ul>
+                    <li className="bor0">
+                      <a href="#">浪浪列表</a>
+                    </li>
+                    <li
+                      style={{ 'border-top': '2px solid var(--reddish-brown)' }}
+                    >
+                      <a href="#">追蹤日誌</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>寵物商城</a>
+                  <ul>
+                    <li>
+                      <a href="#">寵物商城</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a>會員中心</a>
+                  <ul>
+                    <li>
+                      <a href="#">會員中心</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            <div className="nav-shop-group">
+              <div className="shop-group">
+                <CiShoppingCart className="shop-icon" />
+                <a href="#" className="shop">
+                  購物車
+                </a>
+              </div>
+              <div className="shop-group">
+                <CiHeart className="shop-icon" />
+                <a href="#" className="shop">
+                  收藏
+                </a>
+              </div>
+              <div className="shop-group">
+                <GoPerson className="shop-icon" />
+                <a href="#" className="shop">
+                  登入
+                </a>
+>>>>>>> bbb313c30253518fc525e3a7443d2b3f9c4504c0
               </div>
             </div>
           </div>

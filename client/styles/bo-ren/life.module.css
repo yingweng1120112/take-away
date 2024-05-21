@@ -1,5 +1,5 @@
 .banner{
-  background-image: url(/img/banner-life.jpg);
+  background-image: url(/img/menu/menubanner.jpg);
 }
   .life-container {
     width: 100%;
@@ -155,7 +155,7 @@
   }
 
   .container-a {
-    width: 90%;
+    width: 80%;
     height: 100%;
     margin: auto;
     display: flex;
