@@ -8,8 +8,6 @@ import PriceSilder2 from '@/components/layout/banner/bannerPriceSlider2'
 // banner要滑動的範圍，請用一個div包住banner，並把範圍放進div內
 // 要滑動需放兩張切割過後的圖片，分別為banner-life-1 高度為233 banner-life-1 高度為150，若圖片無法對齊，請把兩張圖片寬度改為1440
 export default function Banner() {
-
-
   return (
     <>
       {/* banner start*/}
@@ -111,7 +109,7 @@ export default function Banner() {
                 </div>
                 <div className={banner['select-item-b']}>
                   <p className={banner['select-title']}>價格區間</p>
-                  <PriceSilder />
+                  <PriceSilder2 />
                   <p className={banner['select-title']}> 商品搜尋 </p>
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
                     <input

@@ -1,6 +1,7 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
+// npm install @material-ui/core
+import banner from '@/styles/banner/banner.module.css'
 
 export default function RangeSlider() {
   const [value, setValue] = React.useState([0, 5000])
@@ -14,26 +15,21 @@ export default function RangeSlider() {
       <div className={`price-input ${banner['price-input']}`}>
         <div className={banner['price-field']}>
           <span>從</span>
-          <input type="number" value={v.min} />
+          <input type="number" value={value[0]} />
           <span>~</span>
-          <input type="number" value={v.max} />
+          <input type="number" value={value[1]} />
           <span>元</span>
         </div>
       </div>
       {/* slider */}
-      <div className={banner['slider-container']}>
-        <div className={`price-slider ${banner['price-slider']}`}>
           <Slider
             value={value}
             onChange={handleChange}
             valueLabelDisplay="auto"
             aria-labelledby="range-slider"
-            getAriaValueText={valuetext}
             min={0}
             max={5000}
           />
-        </div>
-      </div>
     </div>
   )
 }
