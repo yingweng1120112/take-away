@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -45,7 +45,12 @@ export default function Step2() {
   const handleCheckboxChange = () => {
     setSameAsMember(!sameAsMember)
     if (!sameAsMember) {
-      setRecipientData(memberData)
+      setRecipientData({
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
+        address: userInfo.address,
+      })
     } else {
       setRecipientData({
         name: '',
@@ -55,16 +60,45 @@ export default function Step2() {
       })
     }
   }
-    //配送形式
-    const [deliveryType, setDeliveryType] = useState('')
-    const handleDeliveryTypeChange = (e) =>{
-      setDeliveryType(e.target.value)
+  //配送形式
+  const [deliveryType, setDeliveryType] = useState('')
+  const handleDeliveryTypeChange = (e) => {
+    setDeliveryType(e.target.value)
+    setUserInfo({ ...userInfo, delivery_type: value })
+  }
+  //發票形式
+  const [invoiceType, setInvoiceType] = useState(userInfo.invoice_type || '')
+  const handleInvoiceTypeChange = (e) => {
+    const value = e.target.value
+    setInvoiceType(value)
+    setUserInfo({ ...userInfo, invoice_type: value })
+  }
+  // 更新 userInfo 的其他字段
+  const handleInputChange = (field) => (e) => {
+    const value = e.target.value
+    setRecipientData({ ...recipientData, [field]: value })
+    setUserInfo({ ...userInfo, [field]: value })
+    const detailedAddress = e.target.value
+    const fullAddress = `${data.country}${data.township}${detailedAddress}`
+    setRecipientData((prevData) => ({
+      ...prevData,
+      address: fullAddress,
+    }))
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      address: fullAddress,
+    }))
+  }
+  useEffect(() => {
+    if (sameAsMember) {
+      setRecipientData({
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
+        address: userInfo.address,
+      })
     }
-    //發票形式
-    const [invoiceType, setInvoiceType] = useState('')
-    const handleInvoiceTypeChange = (e) => {
-      setInvoiceType(e.target.value)
-    }
+  }, [sameAsMember, userInfo])
 
   return (
     <>
@@ -98,7 +132,7 @@ export default function Step2() {
         <div
           className={`${styles['writemessageleft']} ${styles['itemscroll']}`}
         >
-        {/* 會員資料 */}
+          {/* 會員資料 */}
           <div>
             <div
               className={`${styles['carttitle']} ${styles['carttopstyle1']}`}
@@ -144,7 +178,12 @@ export default function Step2() {
               <div>
                 <div>送貨方式</div>
                 <div>
-                  <select name="" id="" onChange={handleDeliveryTypeChange}>
+                  <select
+                    name=""
+                    id=""
+                    value={deliveryType}
+                    onChange={handleDeliveryTypeChange}
+                  >
                     <option value="home">宅配</option>
                     <option value="cvs">超商取貨</option>
                   </select>
@@ -185,12 +224,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入信箱"
                     value={recipientData.email}
-                    onChange={(e) =>
-                      setRecipientData({
-                        ...recipientData,
-                        email: e.target.value,
-                      })
-                    }
+                    onChange={handleInputChange('email')}
                   />
                 </div>
               </div>
@@ -201,63 +235,72 @@ export default function Step2() {
                   <input
                     placeholder="請輸入號碼（0912345678）"
                     value={recipientData.phone}
-                    onChange={(e) =>
-                      setRecipientData({
-                        ...recipientData,
-                        phone: e.target.value,
-                      })
-                    }
+                    onChange={handleInputChange('phone')}
                   />
                 </div>
               </div>
               {/*  */}
-               {deliveryType === 'home'? (
+              {deliveryType === 'home' ? (
                 <div className={styles['writeaddress']}>
-                <div>寄送地址</div>
-                <div>
-                  <div className={styles['writeaddressright']}>
-                    <TWZipCode
-                      initPostcode={data.postcode}
-                      onPostcodeChange={(country, township, postcode) => {
-                        setData({
-                          country,
-                          township,
-                          postcode,
-                        })
-                      }}
-                    />
-                  </div>
+                  <div>寄送地址</div>
                   <div>
-                    <input
-                      placeholder="請輸入詳細地址"
-                      value={recipientData.address}
+                    <div className={styles['writeaddressright']}>
+                      <TWZipCode
+                        initPostcode={data.postcode}
+                        onPostcodeChange={(country, township, postcode) => {
+                          setData({
+                            country,
+                            township,
+                            postcode,
+                          })
+                          const fullAddress = `${country}${township}${recipientData.address}`
+                          setRecipientData((prevData) => ({
+                            ...prevData,
+                            address: fullAddress,
+                          }))
+                          setUserInfo((prevUserInfo) => ({
+                            ...prevUserInfo,
+                            address: fullAddress,
+                          }))
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <input
+                        placeholder="請輸入詳細地址"
+                        value={recipientData.address.replace(
+                          `${data.country}${data.township}`,
+                          ''
+                        )}
+                        onChange={handleAddressChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : deliveryType === 'cvs' ? (
+                <div>
+                  <div>配送門市</div>
+                  <div>
+                    <select
+                      value={userInfo.store || ''}
                       onChange={(e) =>
-                        setRecipientData({
-                          ...recipientData,
-                          address: e.target.value,
-                        })
+                        setUserInfo({ ...userInfo, store: e.target.value })
                       }
                     />
                   </div>
                 </div>
-              </div>) : deliveryType=== 'cvs'? (
-                <div>
-                <div>配送門市</div>
-                <div>
-                  <select
-                    
-                  />
-                </div>
-              </div>
-              ): null}
-              
+              ) : null}
+
               {/*  */}
               <div>
                 <div>訂單備註</div>
                 <div>
                   <textarea
                     placeholder="請備註您的特殊需求"
-                    defaultValue={''}
+                    value={userInfo.order_remark || ''}
+                    onChange={(e) =>
+                      setUserInfo({ ...userInfo, order_remark: e.target.value })
+                    }
                   />
                 </div>
               </div>
@@ -287,7 +330,9 @@ export default function Step2() {
                   <div>發票類型</div>
                   <div>
                     <select name="" id="" onChange={handleInvoiceTypeChange}>
-                      <option value="" selected="">請選擇發票形式</option>
+                      <option value="" selected="">
+                        請選擇發票形式
+                      </option>
                       <option value="paper">紙本發票</option>
                       <option value="mobile">手機載具</option>
                     </select>
