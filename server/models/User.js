@@ -13,11 +13,11 @@ export default async function (sequelize) {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
@@ -25,7 +25,7 @@ export default async function (sequelize) {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       pic: {
         type: DataTypes.STRING,
@@ -44,10 +44,6 @@ export default async function (sequelize) {
         allowNull: true,
       },
       line_uid: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      photo_url: {
         type: DataTypes.STRING,
         allowNull: true,
       },

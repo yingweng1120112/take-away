@@ -114,7 +114,7 @@ export default function PageThree({ donateInfo, adopt }) {
         <div className="thanks-group">
           <div className="thanks-img">
             <img
-              src={`/img/pet-info/10008/10008-4p.jpg`}
+              src={`/img/pet-info/10008-4p.jpg`}
               alt=""
               className="img"
             />

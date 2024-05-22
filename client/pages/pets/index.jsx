@@ -73,6 +73,7 @@ export default function PetList() {
             )
           })}
         </section>
+        {/* TODO: 分頁 */}
 
         {/* TODO: load商品 */}
         <section className={styles['wp-pagenavi']}>

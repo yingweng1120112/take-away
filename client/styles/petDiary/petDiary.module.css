@@ -77,7 +77,6 @@
 .post-time {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
 }
 .content-time{
   margin: 0;
@@ -295,13 +294,13 @@
   width: 32px;
   height: 32px;
   border: none;
-  background: url(/img/blog/chevronDoubleRight.svg);
+  background: url(/img/petDiary/chevronDoubleRight.svg);
 }
 .swiper-button-prev {
   width: 32px;
   height: 32px;
   border: none;
-  background: url(/img/blog/chevronDoubleLeft.svg);
+  background: url(/img/petDiary/chevronDoubleLeft.svg);
 }
 @media screen and (min-width: 1025px) {
 
@@ -339,7 +338,6 @@
   .post-upload-btn-container{
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
   }
   .post-swiper-container {
     width:500px;

@@ -1,9 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import styles from '@/styles/user/login.module.scss'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import Link from 'next/link'
+import { useState } from 'react'
 
 // 解析accessToken用的函式
 const parseJwt = (token) => {
@@ -12,35 +7,19 @@ const parseJwt = (token) => {
   return JSON.parse(payload.toString())
 }
 
-export default function LoginRegister() {
-  useEffect(() => {
-    // 添加事件監聽器
-    const handleClick = () => {
-      document
-        .querySelector(`.${styles['cont']}`)
-        .classList.toggle(styles['s--signup'])
-    }
-
-    const imgBtn = document.querySelector(`.${styles['img__btn']}`)
-    imgBtn.addEventListener('click', handleClick)
-
-    // 在組件卸載時移除事件監聽器
-    return () => {
-      imgBtn.removeEventListener('click', handleClick)
-    }
-  }, [styles])
-
-  // 登入開始
+export default function LoginForm() {
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
   const [user, setUser] = useState({
-    email: '',
+    username: '',
     password: '',
+    password2: '',
   })
 
   // 記錄欄位錯誤訊息的狀態
   const [errors, setErrors] = useState({
-    email: '',
+    username: '',
     password: '',
+    password2: '',
   })
 
   // 顯示密碼的核取方塊用
@@ -64,13 +43,13 @@ export default function LoginRegister() {
 
     // 表單檢查---START---
     // 建立一個新的錯誤訊息物件
-    const newErrors = { email: '', password: '' }
+    const newErrors = { username: '', password: '', password2: '' }
 
     // if (user.username === '') {
     // 上面寫法常見改為下面這樣，`if(user.username)` 代表有填寫，
     // 所以反相判斷 `if(!user.username)` 代表沒填寫
-    if (!user.email) {
-      newErrors.email = '帳號為必填'
+    if (!user.username) {
+      newErrors.username = '帳號為必填'
     }
 
     if (user.password && user.password.length < 6) {
@@ -81,14 +60,14 @@ export default function LoginRegister() {
       newErrors.password = '密碼為必填'
     }
 
-    // if (user.password2 === '') {
-    //   newErrors.password2 = '確認密碼為必填'
-    // }
+    if (user.password2 === '') {
+      newErrors.password2 = '確認密碼為必填'
+    }
 
-    // if (user.password !== user.password2) {
-    //   newErrors.password = '密碼與確認密碼需要相同'
-    //   newErrors.password2 = '密碼與確認密碼需要相同'
-    // }
+    if (user.password !== user.password2) {
+      newErrors.password = '密碼與確認密碼需要相同'
+      newErrors.password2 = '密碼與確認密碼需要相同'
+    }
 
     // 檢查完設定到狀態中
     setErrors(newErrors)
@@ -103,7 +82,7 @@ export default function LoginRegister() {
     // 表單檢查--- END ---
 
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/login', {
+    const res = await fetch('http://localhost:3005/api/user/login-form', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -126,7 +105,7 @@ export default function LoginRegister() {
 
   const handleLogout = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/logout', {
+    const res = await fetch('http://localhost:3005/api/user/logout', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -147,7 +126,7 @@ export default function LoginRegister() {
 
   const handleCheck = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/members/check', {
+    const res = await fetch('http://localhost:3005/api/user/check', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'GET',
       headers: {
@@ -164,160 +143,89 @@ export default function LoginRegister() {
       alert(data.message)
     }
   }
-  // 登入結束
 
   return (
     <>
-      <section className={styles['section']}>
-        <Header />
-        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
-        <div className={styles['cont']}>
-          <form
-            className={`${styles['form']} ${styles['sign-in']}`}
-            onSubmit={handleSubmit}
-          >
-            <h2 className={styles['h2']}>立即參觀！</h2>
-            <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>
-                Email：{' '}
-              </span>
-              <input
-                className={styles['input']}
-                type="text"
-                name="email"
-                value={user.email}
-                onChange={handleFieldChange}
-              />
-            </label>
-            <div className="error">{errors.username} </div>
-            <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>
-                密碼：{' '}
-              </span>
-              <div className='d-flex'>
-                <input
-                  className={styles['input']}
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  value={user.password}
-                  onChange={handleFieldChange}
-                />
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </span>
-              </div>
-            </label>
-            <div className="error">{errors.password}</div>
-            <p className={styles['forgot-pass']}>忘記密碼？</p>
-            <button
-              type="submit"
-              className={`${styles['button']} ${styles['submit']}`}
-            >
-              登入
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setUser({
-                  email: 'Hyunwoo01@gmail.com',
-                  password: 'Pa55w.rd01',
-                })
-              }}
-            >
-              一鍵填入
-            </button>
-            <button type="button" onClick={handleCheck}>
-              檢查登入狀況
-            </button>
-            <button type="button" onClick={handleLogout}>
-              登出
-            </button>
-            <button
-              type="button"
-              className={`${styles['button']} ${styles['fb-btn']}`}
-            >
-              Connect with{' '}
-              <span className={`${styles['span']} ${styles['fb-btns']}`}>
-                Google
-              </span>
-            </button>
-          </form>
-          <div className={styles['sub-cont']}>
-            <div className={styles['img']}>
-              <di className={`${styles['img__text']} ${styles['m--up']}`}>
-                <h2 className={`${styles['h2']} ${styles['h2text']}`}>
-                  老朋友
-                </h2>
-                <h6 className={styles['h6']}>
-                  趕快回來~我們有新朋友想介紹給你
-                </h6>
-              </di>
-              <div className={`${styles['img__text']} ${styles['m--in']}`}>
-                <h2 className={`${styles['h2']} ${styles['h2text']}`}>
-                  新成員？
-                </h2>
-                <h6 className={styles['h6']}>
-                  快來了解各種毛孩
-                  <br />
-                  以及豐富的寵物用品吧！
-                </h6>
-              </div>
-              <div className={styles['img__btn']}>
-                <span
-                  className={`${styles['span']} ${styles['spanbtn']} ${styles['m--up']}`}
-                >
-                  註冊
-                </span>
-                <span
-                  className={`${styles['span']} ${styles['spanbtn']} ${styles['m--in']}`}
-                >
-                  登入
-                </span>
-              </div>
-            </div>
-            <div className={`${styles['form']} ${styles['sign-up']}`}>
-              <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  姓名：
-                </span>
-                <input className={styles['input']} type="text" />
-              </label>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  Email：
-                </span>
-                <input className={styles['input']} type="email" />
-              </label>
-              <label className={styles['label']}>
-                <span className={`${styles['span']} ${styles['spanl']}`}>
-                  密碼：
-                </span>
-                <input className={styles['input']} type="password" />
-              </label>
-              <button
-                type="submit"
-                className={`${styles['button']} ${styles['submit']}`}
-              >
-                註冊
-              </button>
-              <button
-                type="button"
-                className={`${styles['button']} ${styles['fb-btn']}`}
-              >
-                Join with{' '}
-                <span className={`${styles['span']} ${styles['fb-btns']}`}>
-                  Google
-                </span>
-              </button>
-            </div>
-          </div>
+      <h1>會員登入表單</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            {/* 使用表單元素都應給name屬性 */}
+            帳號:{' '}
+            <input
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleFieldChange}
+            />
+          </label>
         </div>
-        <Footer />
-      </section>
+        <div className="error">{errors.username} </div>
+        <div>
+          <label>
+            密碼:{' '}
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={user.password}
+              onChange={handleFieldChange}
+            />
+          </label>
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={(e) => {
+              setShowPassword(e.target.checked)
+            }}
+          />
+          顯示密碼
+        </div>
+        <div className="error">{errors.password}</div>
+        <div>
+          <label>
+            確認密碼:{' '}
+            <input
+              type="password"
+              name="password2"
+              value={user.password2}
+              onChange={handleFieldChange}
+            />
+          </label>
+        </div>
+        <div className="error">{errors.password2}</div>
+
+        <div>
+          {/* form標記中的button最好加上類型，預設是submit，會觸發表單的submit事件 */}
+          <button type="submit">登入</button>
+          <button
+            type="button"
+            onClick={() => {
+              setUser({
+                username: 'ron',
+                password: '123456',
+                password2: '123456',
+              })
+            }}
+          >
+            一鍵填入
+          </button>
+          <button type="button" onClick={handleCheck}>
+            檢查登入狀況
+          </button>
+          <button type="button" onClick={handleLogout}>
+            登出
+          </button>
+        </div>
+      </form>
+      <style jsx>
+        {`
+          .error {
+            color: red;
+            font-size: 13px;
+            height: 16px;
+          }
+        `}
+      </style>
     </>
   )
 }

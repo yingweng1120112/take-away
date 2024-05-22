@@ -76,7 +76,7 @@ export default function Reserve() {
       <Header />
       <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+        style={{ backgroundImage: 'url(/img/reserve/reserveBanner.jpg)' }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>Odds Us</p>
@@ -85,7 +85,6 @@ export default function Reserve() {
         <div className={banner['middle']}>
           <div className={`${banner['accordion']}`}>
             <div className={`accordion-button ${banner['accordion-button']}`}>
-              {/* span為pc版文字，p為phone版文字 */}
               <span className={banner['middle-page-title']}>預約賞寵</span>
               <span>Reserve visit</span>
             </div>
@@ -125,7 +124,7 @@ export default function Reserve() {
             所以也期待您撥空來現場看看他們!
           </h5>
           <div className={styles['reserve-img']}>
-            <img src={`/img/pet-info/10008/10008-5.jpg`} alt="" />
+            <img src={`/img/pet-info/10008-5.jpg`} alt="" />
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
