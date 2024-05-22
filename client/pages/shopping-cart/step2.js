@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -30,7 +30,11 @@ export default function Step2() {
   } = useCart()
 
   //地址選單狀態
-  const [data, setData] = useState({})
+  const [data, setData] = useState({
+    country: '',
+    township: '',
+    postcode: '',
+  })
 
   //資料同會員
   const [recipientData, setRecipientData] = useState({
@@ -42,15 +46,18 @@ export default function Step2() {
 
   const [sameAsMember, setSameAsMember] = useState(false)
 
-  const handleCheckboxChange = () => {
-    setSameAsMember(!sameAsMember)
-    if (!sameAsMember) {
-      setRecipientData({
-        name: userInfo.name,
-        email: userInfo.email,
-        phone: userInfo.phone,
-        address: userInfo.address,
-      })
+  // 更新 LocalStorage
+  useEffect(() => {
+    window.localStorage.setItem('recipientData', JSON.stringify(recipientData))
+  }, [recipientData])
+
+  useEffect(() => {
+    window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  }, [userInfo])
+
+  useEffect(() => {
+    if (sameAsMember) {
+      setRecipientData(memberData)
     } else {
       setRecipientData({
         name: '',
@@ -59,25 +66,49 @@ export default function Step2() {
         address: '',
       })
     }
+  }, [sameAsMember])
+
+  const handleCheckboxChange = () => {
+    setSameAsMember((prev) => !prev)
   }
+
   //配送形式
-  const [deliveryType, setDeliveryType] = useState('')
+  const [delivery_type, setDeliveryType] = useState(
+    userInfo.delivery_type || '宅配'
+  )
   const handleDeliveryTypeChange = (e) => {
-    setDeliveryType(e.target.value)
-    setUserInfo({ ...userInfo, delivery_type: value })
+    const value = e.target.value
+    setDeliveryType(value)
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      delivery_type: value,
+      delivery_method: value,
+    }))
   }
   //發票形式
   const [invoiceType, setInvoiceType] = useState(userInfo.invoice_type || '')
   const handleInvoiceTypeChange = (e) => {
     const value = e.target.value
     setInvoiceType(value)
-    setUserInfo({ ...userInfo, invoice_type: value })
+    setUserInfo((prevUserInfo) => ({ ...prevUserInfo, invoice_type: value }))
   }
   // 更新 userInfo 的其他字段
   const handleInputChange = (field) => (e) => {
     const value = e.target.value
-    setRecipientData({ ...recipientData, [field]: value })
-    setUserInfo({ ...userInfo, [field]: value })
+    if (sameAsMember) {
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
+        [field]: value,
+      }))
+    } else {
+      setRecipientData((prevData) => ({
+        ...prevData,
+        [field]: value,
+      }))
+    }
+  }
+
+  const handleAddressChange = (e) => {
     const detailedAddress = e.target.value
     const fullAddress = `${data.country}${data.township}${detailedAddress}`
     setRecipientData((prevData) => ({
@@ -89,16 +120,64 @@ export default function Step2() {
       address: fullAddress,
     }))
   }
-  useEffect(() => {
-    if (sameAsMember) {
-      setRecipientData({
-        name: userInfo.name,
-        email: userInfo.email,
-        phone: userInfo.phone,
-        address: userInfo.address,
-      })
+  //登入後改這個
+  // useEffect(() => {
+  //   if (sameAsMember) {
+  //     setRecipientData({
+  //       name: userInfo.name,
+  //       email: userInfo.email,
+  //       phone: userInfo.phone,
+  //       address: userInfo.address,
+  //     })
+  //   }
+  // }, [sameAsMember, userInfo])
+
+  //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
+  const handleOrderButtonClick = async () => {
+    const name = recipientData.name
+    const phone = recipientData.phone
+    const order_remark = userInfo.order_remark
+    const delivery_method = userInfo.delivery_type
+    const payment_method = userInfo.payment_method
+    const recipient_address_detail = recipientData.address
+    const Invoice_no = userInfo.Invoice_no
+    //訂單成立時間
+    const order_date = new Date().toISOString()
+    //資料儲存格式
+    const order = {
+      order_id: 10042, //假資料(之後訂單編號也要改)
+      user_id: 10001, //假資料
+      order_detail_id: 10042, //假資料
+      name: name,
+      phone: phone,
+      order_date: order_date,
+      order_remark: order_remark,
+      delivery_method: delivery_method,
+      payment_method: payment_method,
+      recipient_address_detail: recipient_address_detail,
+      status: '未出貨', //預設
+      Invoice_no: Invoice_no,
     }
-  }, [sameAsMember, userInfo])
+
+    // 將上面保存到 localStorage 中
+    //window.localStorage.setItem('order', JSON.stringify(order))
+
+    //送到伺服器(ajax/fetch)
+    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    })
+
+    const data = await res.json()
+
+    console.log(data)
+
+    alert('送到伺服器')
+  }
 
   return (
     <>
@@ -181,11 +260,11 @@ export default function Step2() {
                   <select
                     name=""
                     id=""
-                    value={deliveryType}
+                    value={delivery_type}
                     onChange={handleDeliveryTypeChange}
                   >
-                    <option value="home">宅配</option>
-                    <option value="cvs">超商取貨</option>
+                    <option value="宅配">宅配</option>
+                    <option value="超商取貨">超商取貨</option>
                   </select>
                 </div>
               </div>
@@ -207,12 +286,11 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
-                    value={recipientData.name}
-                    onChange={(e) =>
-                      setRecipientData({
-                        ...recipientData,
-                        name: e.target.value,
-                      })
+                    value={sameAsMember ? memberData.name : recipientData.name}
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('name')
+                        : handleInputChange('name')
                     }
                   />
                 </div>
@@ -223,8 +301,14 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入信箱"
-                    value={recipientData.email}
-                    onChange={handleInputChange('email')}
+                    value={
+                      sameAsMember ? memberData.email : recipientData.email
+                    }
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('email')
+                        : handleInputChange('email')
+                    }
                   />
                 </div>
               </div>
@@ -234,13 +318,19 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
-                    value={recipientData.phone}
-                    onChange={handleInputChange('phone')}
+                    value={
+                      sameAsMember ? memberData.phone : recipientData.phone
+                    }
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('phone')
+                        : handleInputChange('phone')
+                    }
                   />
                 </div>
               </div>
               {/*  */}
-              {deliveryType === 'home' ? (
+              {delivery_type === '宅配' ? (
                 <div className={styles['writeaddress']}>
                   <div>寄送地址</div>
                   <div>
@@ -253,7 +343,10 @@ export default function Step2() {
                             township,
                             postcode,
                           })
-                          const fullAddress = `${country}${township}${recipientData.address}`
+                          const fullAddress = `${country}${township}${recipientData.address.replace(
+                            `${data.country}${data.township}`,
+                            ''
+                          )}`
                           setRecipientData((prevData) => ({
                             ...prevData,
                             address: fullAddress,
@@ -277,16 +370,19 @@ export default function Step2() {
                     </div>
                   </div>
                 </div>
-              ) : deliveryType === 'cvs' ? (
+              ) : delivery_type === '超商取貨' ? (
                 <div>
                   <div>配送門市</div>
                   <div>
                     <select
-                      value={userInfo.store || ''}
+                      value={userInfo.address || ''}
                       onChange={(e) =>
-                        setUserInfo({ ...userInfo, store: e.target.value })
+                        setUserInfo({ ...userInfo, address: e.target.value })
                       }
-                    />
+                    >
+                      <option value="a">進階</option>
+                      <option value="b">進階</option>
+                    </select>
                   </div>
                 </div>
               ) : null}
@@ -319,10 +415,20 @@ export default function Step2() {
                 <div>
                   <div>付款方式</div>
                   <div>
-                    <select name="" id="">
-                      <option selected="">請選擇付款方式</option>
-                      <option>貨到付款</option>
-                      <option>Line Pay</option>
+                    <select
+                      value={userInfo.payment_method}
+                      onChange={(e) =>
+                        setUserInfo({
+                          ...userInfo,
+                          payment_method: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="" selected disabled>
+                        請選擇付款方式
+                      </option>
+                      <option value="貨到付款">貨到付款</option>
+                      <option value="Line Pay">Line Pay</option>
                     </select>
                   </div>
                 </div>
@@ -344,6 +450,10 @@ export default function Step2() {
                     <input
                       defaultValue=""
                       placeholder="請輸入手機條碼（/ABC1234）"
+                      value={userInfo.Invoice_no}
+                      onChange={(e) =>
+                        setUserInfo({ ...userInfo, Invoice_no: e.target.value })
+                      }
                     />
                   </div>
                 )}
@@ -384,7 +494,10 @@ export default function Step2() {
                 </a>
               </Link>
               <Link href="/shopping-cart/step3" passHref>
-                <a className={styles['buttonstyle']}>
+                <a
+                  className={styles['buttonstyle']}
+                  onClick={handleOrderButtonClick}
+                >
                   提交訂單
                   <FontAwesomeIcon
                     icon={faClipboardCheck}
