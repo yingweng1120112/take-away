@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import InformationBanner from './information_banner'
-
+import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import swiper1 from '@/styles/product/menu_swiper.module.css'
 import { Pagination, Navigation } from 'swiper/modules'
 import styles2 from '@/styles/product/info_swiper.module.css'
 import Footer from '@/components/layout/footer'
@@ -16,6 +17,7 @@ import pagination from '@/styles/product/pagination.module.css'
 // 測試
 
 import { loadProduct } from '@/services/product'
+import { loadProducts } from '@/services/product'
 import { useRouter } from 'next/router'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
 //測試
@@ -39,6 +41,7 @@ export default function Information() {
     information: '',
     reviews_id: 0,
   })
+  //單筆商品
   const getProduct = async (pid) => {
     const data = await loadProduct(pid)
     console.log(data)
@@ -61,6 +64,30 @@ export default function Information() {
     }
     // eslint-disable-next-line
   }, [router.isReady])
+
+  //多筆商品
+  const [products, setProducts] = useState([])
+  const getProducts = async () => {
+    const data = await loadProducts()
+    console.log(data)
+
+    if (Array.isArray(data)) {
+      console.log('設products 狀態: ', data)
+      setProducts(data)
+    } else {
+      console.log('數據結構不符合預期:', data)
+    }
+    console.log(data)
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
+  const truncate = (str, n) => {
+    return str.length > n ? str.substring(0, n - 1) + '...' : str
+  }
+
 
   //數量增減
   const [quantity, setQuantity] = useState(1)
@@ -575,17 +602,36 @@ export default function Information() {
         </div>
       </section>
       {/* 產品輪播 */}
-      <section className={styles2.recommend}>
-        <div className={styles2.frame}>
-          <Swiper
+      <section className={styles.recommend}>
+        <div className={styles.frame}>
+        <Swiper
+            loop={true}
             slidesPerView={3}
             centeredSlides={true}
             spaceBetween={30}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className={styles2['mySwiper']}
+            className={swiper1['mySwiper2']}
           >
-            <SwiperSlide className={styles2.info}>
+            {products.map((v, i) => (
+              <SwiperSlide key={v.product_id}>
+                <Link
+                  href={`/product/${v.product_id}`}
+                  className={styles['related-products-card']}
+                >
+                <div className={styles['swiper-div']}>
+
+                  <img
+                    src={`/img/product/${v.pic1}`}
+                    className={styles['swiper-img']}
+                    alt=""
+                  />
+                </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+
+            {/* <SwiperSlide className={styles2.info}>
               <div className={styles2['info_swiper']}>
                 <a href="#" className={styles2['products-card']}>
                   <img src="/img/menu/related-products.jpg" alt="" />
@@ -758,7 +804,7 @@ export default function Information() {
                   </div>
                 </a>
               </div>
-            </SwiperSlide>
+            </SwiperSlide> */}
           </Swiper>
         </div>
       </section>

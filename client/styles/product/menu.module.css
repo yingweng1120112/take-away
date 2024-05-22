@@ -308,6 +308,8 @@
   background: var(--yellow);
   height: auto;
   padding: 1rem 0rem;
+  z-index: 3;
+  position: relative;
 }
 .frame {
   background: var(--light-yellow);
