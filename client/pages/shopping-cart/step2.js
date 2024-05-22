@@ -163,7 +163,7 @@ export default function Step2() {
     //window.localStorage.setItem('order', JSON.stringify(order))
 
     //送到伺服器(ajax/fetch)
-    const res = await fetch('http://localhost:3005/api/members/raw-sql', {
+    const res = await fetch('http://localhost:3005/api/order_history', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
