@@ -54,7 +54,7 @@
   justify-items: center;
   align-items: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
   gap: 100px;
   height: auto;
 }
@@ -198,6 +198,8 @@
   transition: 0.03s;
   display: block;
   border-bottom: 4px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .wp-pagenavi span.current {

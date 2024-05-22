@@ -9,40 +9,77 @@ import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 export default function PetList() {
+  // 最後得到的資料
   const [pets, setPets] = useState([])
+  const [pageCount, setPageCount] = useState(1)
+  // 分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(9)
 
-  const getPet = async () => {
-    const data = await loadPetInfos()
-    console.log('從 loadPetInfos 獲取的數據:', data)
+  // FIXME: 翻頁按鈕可以按，scroll to top
+
+  // 加入參詢條件params物件
+  const getPet = async (params) => {
+    // //開載入動畫函式
+    // showLoader()
+
+    setPets([]) // 清空之前的寵物資料
+
+    const data = await loadPetInfos(params)
+    console.log('從 loadPetInfos 獲取的資料:', data)
     // 確認資料結構是否與原始專案相符，並設置到狀態中
-
-    if (Array.isArray(data)) {
-      console.log('設pets 狀態: ', data)
-      setPets(data)
-    } else {
-      console.log('數據結構不符合預期:', data)
+    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
+    if (data.pageCount && typeof data.pageCount === 'number') {
+      setPageCount(data.pageCount)
     }
-    console.log(data)
+
+    // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+    // 因應要分頁和查詢，所以回應改為整個data，pet_info是data.pet_info --- ?
+    if (Array.isArray(data.pet_info)) {
+      console.log('設pets 狀態: ', data.pet_info)
+      setPets(data.pet_info)
+    } else {
+      console.log('數據結構不符合預期:', data.pet_info)
+    }
+    console.log(data.pet_info)
   }
 
+  // 樣式3: didMount + didUpdate
   useEffect(() => {
-    getPet()
-  }, [])
+    const params = {
+      page,
+      perpage,
+    }
+
+    getPet(params)
+  }, [page, perpage])
 
   useEffect(() => {
     console.log('當前的 pets 狀態:', pets) // 確認 pets 狀態更新
+    console.log('現在的頁數: ', page)
   }, [pets])
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   return (
     <>
-    <Header />
+      <Header />
 
-    <div
-        className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`} style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)' }}
+      {/* banner */}
+      <div
+        className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
+        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)' }}
       ></div>
       <div className={banner['banner-select']}>
         <div
-          className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}  style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
+          className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
+          style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
         >
           <div className={banner['left']}>
             <p className={banner['menu-a']}>PETS</p>
@@ -210,69 +247,88 @@ export default function PetList() {
         <section className={styles['pet-card']}>
           {pets.map((v, i) => {
             return (
-            <Link href={`/pets/${v.pet_id}`}>
-              <div className={styles['card']}>
-                <div className={styles['card-img']}>
-                  <p className={styles['state']} key={v.pet_id}>
-                    {v.state}
-                  </p>
-                  <img
-                    key={v.pet_id}
-                    src={`/img/pet-info/${v.phone1}.jpg`}
-                    alt=""
-                  />
-                  <FaHeart className={styles['favorite']} />
-                </div>
-                <div className={styles['pet-name']}>
-                  <span key={v.pet_id}>{v.tag}</span>
-                  <p key={v.pet_id}>{v.name}</p>
-                  <div className={styles['pet-desc']}>
-                    <span key={v.pet_id}>今年約莫 {v.age}歲</span>
-                    <img src="/img/pets/icon_boy.png" alt="" />
+              <Link href={`/pets/${v.pet_id}`}>
+                <div className={styles['card']}>
+                  <div className={styles['card-img']}>
+                    <p className={styles['state']} key={v.pet_id}>
+                      {v.state}
+                    </p>
+                    <img
+                      key={v.pet_id}
+                      src={`/img/pet-info/${v.phone1}.jpg`}
+                      alt=""
+                    />
+                    <FaHeart className={styles['favorite']} />
+                  </div>
+                  <div className={styles['pet-name']}>
+                    <span key={v.pet_id}>{v.tag}</span>
+                    <p key={v.pet_id}>{v.name}</p>
+                    <div className={styles['pet-desc']}>
+                      <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                      <img src="/img/pets/icon_boy.png" alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
             )
           })}
         </section>
-        {/* TODO: 分頁 */}
 
-        {/* TODO: load商品 */}
+        {/* FIXME: 分頁 */}
         <section className={styles['wp-pagenavi']}>
           <span>
-            <a
-              className={`${styles['page']} ${styles['previouspostslink']}`}
-              href="#"
-            >
-              <IoIosArrowBack />
+            <a className={`${styles['page']} ${styles['previouspostslink']}`}>
+              <IoIosArrowBack
+                onClick={() => {
+                  // 最小頁面是1(不能小於1)
+                  const nextPage = page - 1 > 1 ? page - 1 : 1
+                  setPage(nextPage)
+                  scrollTo(0, 0)
+                }}
+              />
             </a>
           </span>
-          <span>
-            <a className={styles['page']} href="#">
-              1
-            </a>
+          {page - 1 >= 1 && (
+            <span>
+              <a
+                className={styles['page']}
+                onClick={() => {
+                  handlePageClick(page - 1)
+                }}
+              >
+                {page - 1}
+              </a>
+            </span>
+          )}
+          <span
+            className={styles['current']}
+            onClick={() => {
+              scrollTo(0, 0)
+            }}
+          >
+            {page}
           </span>
-          <span>
-            <a className={styles['page']} href="#">
-              2
-            </a>
-          </span>
-          <span className={styles['current']}>3</span>
-          <span>
-            <a className={styles['page']} href="#">
-              4
-            </a>
-          </span>
-          <span>
-            <a className={styles['page']} href="#">
-              5
-            </a>
-          </span>
+          {page + 1 <= pageCount && (
+            <span>
+              <a
+                className={styles['page']}
+                onClick={() => {
+                  handlePageClick(page + 1)
+                }}
+              >
+                {page + 1}
+              </a>
+            </span>
+          )}
           <span>
             <a
               className={`${styles['page']} ${styles['nextpostslink']}`}
-              href="#"
+              onClick={() => {
+                // 最大頁面不能大於總頁數pageCount
+                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                setPage(nextPage)
+                scrollTo(0, 0)
+              }}
             >
               <IoIosArrowForward />
             </a>
@@ -309,6 +365,7 @@ export default function PetList() {
           </button>
         </section>
 
+        {/* TODO: load商品 */}
         <section className={styles['marquee_shop']}>
           <div
             className={`${styles.marquee} ${styles['marquee--hover-pause']} ${styles['enable-animation']}`}
@@ -357,7 +414,7 @@ export default function PetList() {
           </div>
         </section>
       </div>
-    <Footer />
+      <Footer />
     </>
   )
 }
