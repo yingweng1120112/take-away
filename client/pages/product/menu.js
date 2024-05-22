@@ -18,7 +18,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 import swiper1 from '@/styles/product/menu_swiper.module.css'
-import swiper2 from '@/styles/product/menu.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
@@ -113,7 +112,7 @@ export default function Menu() {
     getPet()
   }, [])
 
-  console.log([pets]);
+  console.log([pets])
   //上下限
   const [value, setValue] = React.useState([0, 5000])
 
@@ -419,55 +418,11 @@ export default function Menu() {
             </svg>
           </button>
         </div>
-      {pets.map((v, i) => {
-      <p key={v.pet_id}>{v.pet_id}</p>
-      })}
       </section>
       {/* 推薦浪浪 */}
-      <section className={swiper2.recommend}>
-        <div className={swiper2.frame}>
+      <section className={styles.recommend}>
+        <div className={styles.frame}>
           <Swiper
-            slidesPerView={3}
-            centeredSlides={true}
-            spaceBetween={30}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className={swiper1['mySwiper']}
-          >
-          {pets.map((v, i) => {
-
-            <SwiperSlide key={v.pet_id}>
-            <Link href={`/pets/${v.pet_id}`}>
-
-              <a href="#" className={swiper2['related-products-card']} >
-              <p>1231546</p>
-                <img src={`/img/pet-info/${v.adopt1}.jpg`} alt="" />
-              </a>
-            </Link>
-            </SwiperSlide>
-          })}
-          </Swiper>
-        </div>
-        <Swiper
-            slidesPerView={3}
-            centeredSlides={true}
-            spaceBetween={30}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className={swiper1['mySwiper']}
-          >
-          {pets.map((v, i) => {
-            
-            <SwiperSlide key={v.pet_id}>
-
-              <a href={`/pets/${v.pet_id}`} className={swiper2['related-products-card']} >
-                <img src={`/img/pet-info/${v.adopt1}.jpg`} alt="" />
-              </a>
-
-            </SwiperSlide>
-          })}
-          </Swiper>
-        {/* <Swiper
             loop={true}
             slidesPerView={3}
             centeredSlides={true}
@@ -476,32 +431,22 @@ export default function Menu() {
             modules={[Pagination, Navigation]}
             className={swiper1['mySwiper2']}
           >
-            <SwiperSlide>
-              <a href="#" className={swiper2['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="#" className={swiper2['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="#" className={swiper2['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="#" className={swiper2['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </SwiperSlide>
-            <SwiperSlide>
-              <a href="#" className={swiper2['related-products-card']}>
-                <img src="/img/menu/recommended-dog1.jpg" alt="" />
-              </a>
-            </SwiperSlide>
-          </Swiper> */}
+            {pets.map((v, i) => (
+              <SwiperSlide key={v.pet_id}>
+                <Link
+                  href={`/pets/${v.pet_id}`}
+                  className={styles['related-products-card']}
+                >
+                  <img
+                    src={`/img/pet-info/${v.adopt1}.jpg`}
+                    className={styles['swiper-img']}
+                    alt=""
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </section>
       <Footer />
     </>
