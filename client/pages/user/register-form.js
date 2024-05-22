@@ -200,7 +200,7 @@ export default function RegisterForm() {
             onChange={handleFieldChange}
           />{' '}
           我同意網站會員註冊條款
-        </label>
+        </label> 
         <br />
         <span className="error">{errors.agree}</span>
         <br />

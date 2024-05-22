@@ -3,7 +3,7 @@ const router = express.Router()
 
 // 資料庫使用
 import sequelize from '#configs/db.js'
-const { Member } = sequelize.models
+const { user } = sequelize.models
 
 import db from '#configs/mysql.js'
 // 密碼加密使用
@@ -23,8 +23,8 @@ router.post('/login', async function (req, res, next) {
   const loginUser = req.body
 
   // 使用username查詢資料表，把資料表中加密過密碼字串提取出來
-  const [rows] = await db.query('SELECT * FROM user WHERE username = ?', [
-    loginUser.username,
+  const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [
+    loginUser.email,
   ])
 
   const dbUser = rows[0]
@@ -44,7 +44,7 @@ router.post('/login', async function (req, res, next) {
   // 存取令牌中的資訊，只需要id和username就足夠，需要其它資料再向資料庫查詢
   const returnUser = {
     id: dbUser.id,
-    username: dbUser.username,
+    email: dbUser.email,
   }
 
   // 產生存取令牌(access token)
@@ -89,20 +89,14 @@ router.post('/raw-sql', async function (req, res, next) {
   const newUser = req.body
 
   // 檢查從前端來的資料哪些為必要(name, username...)
-  if (
-    !newUser.username ||
-    !newUser.email ||
-    !newUser.name ||
-    !newUser.password
-  ) {
+  if (!newUser.email || !newUser.name || !newUser.password) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
   // 檢查資料表中有沒有此email或username
-  const [rows] = await db.query(
-    'SELECT * FROM user WHERE username=? OR email=?',
-    [newUser.username, newUser.email]
-  )
+  const [rows] = await db.query('SELECT * FROM user WHERE email=?', [
+    newUser.email,
+  ])
 
   console.log(rows)
 
@@ -113,10 +107,10 @@ router.post('/raw-sql', async function (req, res, next) {
   // 加密密碼文字
   const passwordHash = await generateHash(newUser.password)
 
-  // INSERT INTO `member`(`name`,`email`,`username`,`password`) VALUES('nnn','eee','uuu','ppp');
+  // INSERT INTO `user`(`name`,`email`,`username`,`password`) VALUES('nnn','eee','uuu','ppp');
   const [rows2] = await db.query(
-    'INSERT INTO `user`(`name`,`email`,`username`,`password`) VALUES(?,?,?,?)',
-    [newUser.name, newUser.email, newUser.username, passwordHash]
+    'INSERT INTO `user`(`name`,`email`,`password`) VALUES(?,?,?)',
+    [newUser.name, newUser.email, passwordHash]
   )
 
   console.log(rows2)
@@ -142,20 +136,15 @@ router.post('/', async function (req, res, next) {
   const newUser = req.body
 
   // 檢查從前端來的資料哪些為必要(name, username...)
-  if (
-    !newUser.username ||
-    !newUser.email ||
-    !newUser.name ||
-    !newUser.password
-  ) {
+  if (!newUser.email || !newUser.name || !newUser.password) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
   // 執行後user是建立的會員資料，created為布林值
   // where指的是不可以有相同的資料，如username與email不能有相同的
   // defaults用於建立新資料用
-  const [user, created] = await Member.findOrCreate({
-    where: { username: newUser.username, email: newUser.email },
+  const [user, created] = await user.findOrCreate({
+    where: { email: newUser.email },
     defaults: {
       name: newUser.name,
       password: newUser.password,
