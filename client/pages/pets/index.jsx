@@ -16,8 +16,6 @@ export default function PetList() {
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(9)
 
-  // FIXME: 翻頁按鈕可以按，scroll to top
-
   // 加入參詢條件params物件
   const getPet = async (params) => {
     // //開載入動畫函式
@@ -274,7 +272,6 @@ export default function PetList() {
           })}
         </section>
 
-        {/* FIXME: 分頁 */}
         <section className={styles['wp-pagenavi']}>
           <span>
             <a className={`${styles['page']} ${styles['previouspostslink']}`}>
