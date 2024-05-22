@@ -64,7 +64,7 @@
   display: flex;
   justify-content: end;
 }
-.testcontent button {
+.testcontent .buttonstyle {
   width: 200px;
   height: 50px;
   letter-spacing: 5px;
@@ -79,21 +79,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 }
 
-.testcontent button:active {
+.testcontent .buttonstyle:active {
   color: white;
   box-shadow: 0 0.2rem #dfd9d9;
   transform: translateY(0.2rem);
 }
 
-.testcontent button:hover:not(:disabled) {
+.testcontent .buttonstyle:hover:not(:disabled) {
   background: var(--deep-gray);
   color: white;
   text-shadow: 0 0.05rem #bcb4b4;
 }
 
-.testcontent button:disabled {
+.testcontent .buttonstyle:disabled {
   cursor: auto;
   color: grey;
 }
@@ -139,7 +140,7 @@
     justify-content: center;
     margin-top: 30px;
   }
-  .testcontent button {
+  .testcontent .buttonstyle {
     font-size: 14px;
     width: 100px;
     height: 35px;

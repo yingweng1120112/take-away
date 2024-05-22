@@ -176,7 +176,7 @@ export default function Step2() {
 
     console.log(data)
 
-    alert('送到伺服器')
+    alert('訂單建立成功')
   }
 
   return (
