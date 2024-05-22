@@ -152,7 +152,11 @@ export default function PetInfo() {
       {/* 要修改banner圖片，請直接更改下面連結 */}
       <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(../../img/pets/petinfo-navbar.png)' }}
+        style={{
+          backgroundImage: 'url(../../img/pets/petinfo-navbar.png)',
+          zIndex: 1,
+          position: 'relative',
+        }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>CUTE</p>
@@ -568,7 +572,6 @@ export default function PetInfo() {
           </div>
         </section>
 
-        {/* FIXME: 背景圖片 位置修改 */}
         <img
           src="/img/pets/paws.png"
           className={styles['paws1']}
