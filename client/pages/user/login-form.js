@@ -82,7 +82,7 @@ export default function LoginForm() {
     // 表單檢查--- END ---
 
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/users/login', {
+    const res = await fetch('http://localhost:3005/api/users/login-form', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {

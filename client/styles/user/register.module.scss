@@ -10,7 +10,8 @@
     overflow: hidden;
     position: relative;
     width: 900px;
-    height: 680px;
+    height: 980px; 
+    // 要改回來680
     margin: 0 auto 100px;
     background: #fff;
   }
@@ -238,7 +239,7 @@
   }
 
   .sign-up {
-    transform: translate3d(-900px, 0, 0);
+    // transform: translate3d(-900px, 0, 0);
   }
 
   .cont.s--signup .sign-up {
