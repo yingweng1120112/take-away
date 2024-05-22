@@ -65,13 +65,13 @@ export default function Menu() {
     const data = await loadProducts()
     console.log(data);
 
-    if (Array.isArray(data.products)) {
-      console.log('設products 狀態: ', data.products)
-      setProducts(data.products)
+    if (Array.isArray(data)) {
+      console.log('設products 狀態: ', data)
+      setProducts(data)
     } else {
-      console.log('數據結構不符合預期:', data.products)
+      console.log('數據結構不符合預期:', data)
     }
-    console.log(data.products)
+    console.log(data)
   }
   useEffect(() => {
     getProducts()

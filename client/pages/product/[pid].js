@@ -39,8 +39,8 @@ export default function Information() {
     information: '',
     reviews_id: 0,
   })
-  const getProduct = async (product_id) => {
-    const data = await loadProduct(product_id)
+  const getProduct = async (pid) => {
+    const data = await loadProduct(pid)
     console.log(data)
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setProduct(data)
@@ -52,8 +52,12 @@ export default function Information() {
     console.log(router.query)
 
     if (router.isReady) {
-      const { product_id } = router.query
-      getProduct(product_id)
+      const { pid } = router.query
+      console.log('product_id:', pid)
+      console.log('router.query:', router.query)
+      getProduct(pid)
+    } else {
+      console.log('未找到 product_id')
     }
     // eslint-disable-next-line
   }, [router.isReady])
@@ -77,6 +81,18 @@ export default function Information() {
       setQuantity(value)
     }
   }
+   // 从产品对象中提取图片属性
+   const images = []
+   for (let i = 1; i <= 6; i++) {
+     const pic = product[`pic${i}`]
+     if (pic) {
+       images.push(pic)
+     }
+   }
+ 
+   // 再次过滤掉非图片的属性（虽然此步不必要）
+   const filteredImages = images.filter(Boolean)
+   
   return (
     <>
       <Header />
@@ -131,48 +147,50 @@ export default function Information() {
               ></button>
             </div>
             <div className="carousel-inner">
-              <div className="carousel-item active">
+            {images.map((img, index) => (
+            <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+              <img
+                src={`/img/product/${img}`}
+                className="d-block w-100"
+                alt={`Product image ${index + 1}`}
+              />
+            </div>
+          ))}
+              {/* <div className="carousel-item">
                 <img
-                  src="\img\information\product-img1.webp"
+                  src={`/img/product/${product.pic2}`}
                   className="d-block w-100"
                   alt="..."
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src="\img\information\product-img2.webp"
+                  src={`/img/product/${product.pic3}`}
                   className="d-block w-100"
                   alt="..."
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src="\img\information\product-img3.webp"
+                  src={`/img/product/${product.pic4}`}
                   className="d-block w-100"
                   alt="..."
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src="\img\information\product-img4.webp"
+                  src={`/img/product/${product.pic5}`}
                   className="d-block w-100"
                   alt="..."
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src="\img\information\product-img5.webp"
+                  src={`/img/product/${product.pic}`}
                   className="d-block w-100"
                   alt="..."
                 />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src="\img\information\product-img6.webp"
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div>
+              </div> */}
             </div>
             <button
               className="carousel-control-prev"
@@ -201,21 +219,24 @@ export default function Information() {
           </div>
           {/* <!-- 輪播照片縮圖 --> */}
           <div className="preview">
+          {images.map((img, index) => (
             <button
+              key={index}
               data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
+              data-bs-slide-to={index}
+              className={index === 0 ? 'active' : ''}
+              aria-current={index === 0 ? 'true' : ''}
+              aria-label={`Slide ${index + 1}`}
             >
               <img
                 style={{ width: '100%' }}
-                src="\img\information\product-img1.webp"
-                alt=""
-                aria-label="Slide 1"
+                src={`/img/product/${img}`}
+                alt={`Slide ${index + 1}`}
+                aria-label={`Slide ${index + 1}`}
               />
             </button>
-            <button
+          ))}
+            {/* <button
               data-bs-target="#carouselExampleIndicators"
               data-bs-slide-to="1"
               className="active"
@@ -284,7 +305,7 @@ export default function Information() {
                 alt=""
                 aria-label="Slide 6"
               />
-            </button>
+            </button> */}
           </div>
           {/* 產品標題區 */}
           <div className={styles['product-info']}>

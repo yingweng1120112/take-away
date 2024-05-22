@@ -37,9 +37,12 @@ router.get('/:id', async function (req, res) {
   //   raw: true, // 只需要資料表中資料
   // })
 
-  const [rows] = await db.query('SELECT * FROW product WHERE id=?', [id])
+  const [rows] = await db.query('SELECT * FROM product WHERE product_id = ?', [
+    id,
+  ])
   const product = rows[0]
 
   return res.json({ status: 'success', data: { product } })
 })
+
 export default router
