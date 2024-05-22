@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/chatroom.module.css'
+import styles from '@/styles/faq/chatroom.module.css'
 import {
   FaBars,
   FaBookOpen,
