@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -10,7 +11,7 @@ export default function RegisterForm() {
   const [user, setUser] = useState({
     name: '',
     email: '',
-    username: '',
+    phone: '',
     password: '',
     confirmPassword: '',
     agree: false, // checkbox 同意會員註冊條款
@@ -20,7 +21,7 @@ export default function RegisterForm() {
   const [errors, setErrors] = useState({
     name: '',
     email: '',
-    username: '',
+    phone: '',
     password: '',
     confirmPassword: '',
     agree: '', // 呈現錯誤訊息用字串
@@ -55,7 +56,7 @@ export default function RegisterForm() {
     const newErrors = {
       name: '',
       email: '',
-      username: '',
+      phone: '',
       password: '',
       confirmPassword: '',
     }
@@ -66,8 +67,8 @@ export default function RegisterForm() {
     if (!user.email) {
       newErrors.email = 'email為必填'
     }
-    if (!user.username) {
-      newErrors.username = '帳號為必填'
+    if (!user.phone) {
+      newErrors.phone = '帳號為必填'
     }
 
     if (user.password !== user.confirmPassword) {
@@ -126,6 +127,14 @@ export default function RegisterForm() {
             className={`${styles['form']} ${styles['sign-up']}`}
             onSubmit={handleSubmit}
           >
+            <div className={styles['link']}>
+              <h3 className={styles['linkh3']}>
+                <Link href="/user/register-form">註冊</Link>
+              </h3>
+              <h3 className={styles['linkh3']}>
+                <Link href="/user/login-form">登入</Link>
+              </h3>
+            </div>
             <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
@@ -139,11 +148,33 @@ export default function RegisterForm() {
                   value={user.name}
                   onChange={handleFieldChange}
                 />
-                <span className="error">{errors.name}</span>
               </div>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.name}
+              </span>
             </label>
-            <br />
-            <br />
+            <label className={styles['label']}>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                電話:{' '}
+              </span>
+              <div className="d-flex">
+                <input
+                  className={styles['input']}
+                  type="text"
+                  name="phone"
+                  value={user.phone}
+                  onChange={handleFieldChange}
+                  // required
+                />
+              </div>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.phone}
+              </span>
+            </label>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 Email：{' '}
@@ -156,29 +187,13 @@ export default function RegisterForm() {
                   value={user.email}
                   onChange={handleFieldChange}
                 />
-                <span className="error">{errors.email}</span>
               </div>
-            </label>
-            <br />
-            <br />
-            <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>
-                帳號:{' '}
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.email}
               </span>
-              <div className="d-flex">
-                <input
-                  className={styles['input']}
-                  type="text"
-                  name="username"
-                  value={user.username}
-                  onChange={handleFieldChange}
-                  // required
-                />
-                <span className="error">{errors.username}</span>
-              </div>
             </label>
-            <br />
-            <br />
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 密碼:{' '}
@@ -197,11 +212,13 @@ export default function RegisterForm() {
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
-                <span className="error">{errors.password}</span>
               </div>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.password}
+              </span>
             </label>
-            <br />
-            <br />
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 確認密碼:{' '}
@@ -215,17 +232,20 @@ export default function RegisterForm() {
                   onChange={handleFieldChange}
                 />
                 <span
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   style={{ cursor: 'pointer' }}
                 >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
-                <span className="error">{errors.confirmPassword}</span>
               </div>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.confirmPassword}
+              </span>
             </label>
-            <br />
-            <br />
-            <label>
+
+            {/* <label className='agree'>
               <input
                 type="checkbox"
                 name="agree"
@@ -234,8 +254,7 @@ export default function RegisterForm() {
               />{' '}
               我同意網站會員註冊條款
             </label>
-            <br />
-            <span className="error">{errors.agree}</span>
+            <span className="error">{errors.agree}</span> */}
             <br />
             <button
               type="submit"
@@ -252,14 +271,14 @@ export default function RegisterForm() {
                 Google
               </span>
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={() => {
                 // 重置需要自行設定回初始化值
                 setUser({
                   name: '',
                   email: '',
-                  username: '',
+                  phone: '',
                   password: '',
                   confirmPassword: '',
                   agree: false,
@@ -275,7 +294,7 @@ export default function RegisterForm() {
                 setUser({
                   name: '榮恩',
                   email: 'ron@test.com',
-                  username: 'ron',
+                  phone: 'ron',
                   password: '123456',
                   confirmPassword: '123456',
                   agree: true,
@@ -283,7 +302,7 @@ export default function RegisterForm() {
               }}
             >
               一鍵填入
-            </button>
+            </button> */}
           </form>
         </div>
         {/* <style jsx>

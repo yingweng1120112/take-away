@@ -19,12 +19,12 @@ import 'dotenv/config.js'
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
 router.post('/login', async function (req, res, next) {
-  // 從前端來的資料: req.body = {username:'xxx', password:'yyy'}
+  // 從前端來的資料: req.body = {phone:'xxx', password:'yyy'}
   const loginUser = req.body
 
-  // 使用username查詢資料表，把資料表中加密過密碼字串提取出來
-  const [rows] = await db.query('SELECT * FROM user WHERE username = ?', [
-    loginUser.username,
+  // 使用phone查詢資料表，把資料表中加密過密碼字串提取出來
+  const [rows] = await db.query('SELECT * FROM user WHERE phone = ?', [
+    loginUser.phone,
   ])
 
   const dbUser = rows[0]
@@ -41,10 +41,10 @@ router.post('/login', async function (req, res, next) {
     return res.json({ status: 'error', message: '密碼錯誤' })
   }
 
-  // 存取令牌中的資訊，只需要id和username就足夠，需要其它資料再向資料庫查詢
+  // 存取令牌中的資訊，只需要id和phone就足夠，需要其它資料再向資料庫查詢
   const returnUser = {
     id: dbUser.id,
-    username: dbUser.username,
+    phone: dbUser.phone,
   }
 
   // 產生存取令牌(access token)
@@ -68,9 +68,9 @@ router.post('/logout', async function (req, res, next) {
 
 // 檢查登入狀態，回應會員資料
 router.get('/check', authenticate, async function (req, res, next) {
-  // 如果會員是在存取令牌合法的情況下，req.user中會有會員的id和username
-  // 使用username查詢資料表，把資料表中加密過密碼字串提取出來
-  const [rows] = await db.query('SELECT * FROM user WHERE id = ?', [
+  // 如果會員是在存取令牌合法的情況下，req.user中會有會員的id和phone
+  // 使用phone查詢資料表，把資料表中加密過密碼字串提取出來
+  const [rows] = await db.query('SELECT * FROM user WHERE user_id = ?', [
     req.user.id,
   ])
 
@@ -88,21 +88,16 @@ router.post('/raw-sql', async function (req, res, next) {
   // 要新增的會員資料
   const newUser = req.body
 
-  // 檢查從前端來的資料哪些為必要(name, username...)
-  if (
-    !newUser.username ||
-    !newUser.email ||
-    !newUser.name ||
-    !newUser.password
-  ) {
+  // 檢查從前端來的資料哪些為必要(name, phone...)
+  if (!newUser.phone || !newUser.email || !newUser.name || !newUser.password) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
-  // 檢查資料表中有沒有此email或username
-  const [rows] = await db.query(
-    'SELECT * FROM user WHERE username=? OR email=?',
-    [newUser.username, newUser.email]
-  )
+  // 檢查資料表中有沒有此email或phone
+  const [rows] = await db.query('SELECT * FROM user WHERE phone=? OR email=?', [
+    newUser.phone,
+    newUser.email,
+  ])
 
   console.log(rows)
 
@@ -113,10 +108,10 @@ router.post('/raw-sql', async function (req, res, next) {
   // 加密密碼文字
   const passwordHash = await generateHash(newUser.password)
 
-  // INSERT INTO `member`(`name`,`email`,`username`,`password`) VALUES('nnn','eee','uuu','ppp');
+  // INSERT INTO `member`(`name`,`email`,`phone`,`password`) VALUES('nnn','eee','uuu','ppp');
   const [rows2] = await db.query(
-    'INSERT INTO `user`(`name`,`email`,`username`,`password`) VALUES(?,?,?,?)',
-    [newUser.name, newUser.email, newUser.username, passwordHash]
+    'INSERT INTO `user`(`name`,`email`,`phone`,`password`) VALUES(?,?,?,?)',
+    [newUser.name, newUser.email, newUser.phone, passwordHash]
   )
 
   console.log(rows2)
@@ -141,21 +136,16 @@ router.post('/', async function (req, res, next) {
   // 要新增的會員資料
   const newUser = req.body
 
-  // 檢查從前端來的資料哪些為必要(name, username...)
-  if (
-    !newUser.username ||
-    !newUser.email ||
-    !newUser.name ||
-    !newUser.password
-  ) {
+  // 檢查從前端來的資料哪些為必要(name, phone...)
+  if (!newUser.phone || !newUser.email || !newUser.name || !newUser.password) {
     return res.json({ status: 'error', message: '缺少必要資料' })
   }
 
   // 執行後user是建立的會員資料，created為布林值
-  // where指的是不可以有相同的資料，如username與email不能有相同的
+  // where指的是不可以有相同的資料，如phone與email不能有相同的
   // defaults用於建立新資料用
   const [user, created] = await Member.findOrCreate({
-    where: { username: newUser.username, email: newUser.email },
+    where: { phone: newUser.phone, email: newUser.email },
     defaults: {
       name: newUser.name,
       password: newUser.password,
