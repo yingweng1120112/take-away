@@ -568,7 +568,7 @@ export default function PetInfo() {
           </div>
         </section>
 
-        {/* TODO: 背景圖片 位置修改 */}
+        {/* FIXME: 背景圖片 位置修改 */}
         <img
           src="/img/pets/paws.png"
           className={styles['paws1']}
