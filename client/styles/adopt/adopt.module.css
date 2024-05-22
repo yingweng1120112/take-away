@@ -19,7 +19,7 @@
   display: flex;
   justify-content: space-around;
   height:auto;
-  margin: 1rem auto;
+  margin: 2rem auto;
 }
 .adout .container {
   position: relative;
@@ -847,19 +847,10 @@ background: var(--reddish-brown);
 
 .adout .foot {
   position: absolute;
-  width: 9rem;
-  height: 9rem;
+  width: 10rem;
+  height: 10rem;
   z-index: 4;
-  left: 2%;
-  top: 82%;
-  /* transform: rotate(-10deg); */
-}
-.adout .foot:nth-child(2) {
-  position: absolute;
-  width: 9rem;
-  height: 9rem;
-  z-index: 4;
-  left: 40%;
+  left: 37%;
   top: -5%;
   transform: rotate(-180deg);
 }
@@ -919,7 +910,7 @@ background: var(--reddish-brown);
 
 .about-pet {
   width: 40%;
-  height: 45rem;
+  height: 60rem;
   padding: 0.5rem;
   margin-right: 2rem;
   display: flex;
@@ -935,17 +926,45 @@ background: var(--reddish-brown);
 
 .petswiper {
   display: block;
-  width: 350px;
-  height: 35%;
-  margin:0.5rem 0rem;
+  width: 21.8rem;
+  height: auto;
+  margin:2rem 0rem;
   border: 4px soild var(--border-color);
 }
 .about-pet .pet-photo {
 display:none;
 }
 
-
-
+.about-pet .foot{
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  z-index: 0;
+  left: 0%;
+  top: 80%;
+  transform: rotate(0deg);
+  border: 0;
+}
+.about-pet .foot:nth-child(2){
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  z-index: 0;
+  left: 55%;
+  top: 50%;
+  transform: rotate(-80deg);
+  border: 0;
+}
+.about-pet .foot:nth-child(3){
+  position: absolute;
+  width: 10rem;
+  height: 10rem;
+  z-index: 0;
+  left: 10%;
+  top: 35%;
+  transform: rotate(-30deg);
+  border: 0;
+}
 .about-pet .pet-title {
   position: relative;
   width: 100%;

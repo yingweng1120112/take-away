@@ -1,0 +1,423 @@
+/* banner */
+
+.banner {
+  background-size:cover;
+  height: 8rem;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom:3rem;
+}
+.banner-select{
+  position: sticky; 
+  top: 74px; 
+  z-index: 100
+}
+.banner-life-1{
+display:none;
+}
+.banner > .left {
+  display: flex;
+  align-items: flex-end;
+}
+.left > .menu-a {
+  margin: 0;
+  color: aliceblue;
+  font-size:48px;
+  margin: 0 10px;
+  line-height: 1.2;
+}
+.left > .menu-b {
+  margin: 0;
+  font-size:18px;
+  color: aliceblue;
+}
+
+.middle-title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  padding: 1rem 1.25rem;
+  background-color: white;
+} 
+.middle-page-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+  text-align: center;
+}
+.select {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.select-title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 1rem 0;
+  text-align: center;
+}
+.select-item{
+  display:flex;
+  flex-direction: column;
+}
+.select-item-a {
+  display: flex;
+  flex-direction: column;
+}
+.select-left{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+.select-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 55%;
+}
+.select-item-b {
+  display: flex;
+  flex-direction: column;
+  padding:1rem;
+  width:100%;
+  align-items: center;
+}
+.shop-select-out{
+  display: flex; justify-content: center
+}
+.shop-select{
+  padding-right: 25px;
+  background: url(/img/search.svg) no-repeat right;
+  background-size: 20px;
+}
+.accordion-button >span{
+  display:none;
+}
+
+.accordion-collapse{
+  width:100%;
+}
+.accordion-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+.accordion-body {
+  background-color: white;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  width:100%;
+  border: 1px solid  var( --reddish-brown);
+  /* 搜尋物件的邊線 方便查看 */
+}
+.accordion-button::after {
+  margin: 0;
+}
+.accordion-button:not(.collapsed) {
+  background-color: white;
+  color: var(--black);
+}
+.accordion {
+  --bs-accordion-btn-icon: url('data:image/svg+xml,<svg width="10" height="10" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.1836 0.442585L29.3367 28.5046C29.6051 29.0367 29.2183 29.6649 28.6224 29.6649L1.29842 29.6649C0.702497 29.6649 0.31577 29.0367 0.584123 28.5046L14.7372 0.442584C14.8296 0.259356 15.0912 0.259357 15.1836 0.442585Z" fill="%234D5053"/></svg>');
+  --bs-accordion-btn-active-icon: url('data:image/svg+xml,<svg width="10" height="10" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.1836 0.442585L29.3367 28.5046C29.6051 29.0367 29.2183 29.6649 28.6224 29.6649L1.29842 29.6649C0.702497 29.6649 0.31577 29.0367 0.584123 28.5046L14.7372 0.442584C14.8296 0.259356 15.0912 0.259357 15.1836 0.442585Z" fill="%234D5053"/></svg>');
+  --bs-accordion-btn-padding-x:0.75rem;
+  --bs-accordion-btn-padding-y:0.5rem;
+}
+/* Styles for the price input container */
+.price-input-container {
+  width: 100%;
+}
+
+.price-input .price-field {
+  display: flex;
+  margin-bottom: 22px;
+  align-items: center;
+}
+
+.price-field span {
+  margin: 0 6px;
+  font-size: 17px;
+}
+
+.price-field input {
+  flex: 1;
+  height: 35px;
+  font-size: 15px;
+  font-family: "DM Sans", sans-serif;
+  border-radius: 9px;
+  text-align: center;
+  border: 0px;
+  background: #e4e4e4;
+  width: 100%;
+}
+
+.price-input {
+  width: 100%;
+  font-size: 19px;
+  color: #555;
+}
+
+
+.slider-container {
+  width: 100%;
+}
+
+.slider-container {
+  height: 6px;
+  position: relative;
+  background: #e4e4e4;
+  border-radius: 5px;
+}
+
+.slider-container .price-slider {
+  height: 100%;
+  left: 0%;
+  right: 0%;
+  position: absolute;
+  border-radius: 5px;
+  background: #01940b;
+}
+
+.range-input {
+  position: relative;
+}
+
+.range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: none;
+  top: -5px;
+  pointer-events: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+/* Styles for the range thumb in WebKit browsers */
+
+.price{
+display: flex; align-items: baseline
+}
+.price > span{
+margin: 0 10px
+}
+
+.cl-checkbox {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+/* Input */
+.cl-checkbox > input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  z-index: -1;
+  position: absolute;
+  left: -10px;
+  top: -8px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: none;
+  outline: none;
+  opacity: 0;
+  transform: scale(1);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+/* Span */
+.cl-checkbox > span {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Box */
+.cl-checkbox > span::before {
+  content: "";
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 3px 11px 3px 1px;
+  border: solid 2px;
+  /* Safari */
+  border-color: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  vertical-align: top;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Checkmark */
+.cl-checkbox > span::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  width: 10px;
+  height: 5px;
+  border: solid 2px transparent;
+  border-right: none;
+  border-top: none;
+  transform: translate(3px, 4px) rotate(-45deg);
+}
+
+/* Checked, Indeterminate */
+.cl-checkbox > input:checked,
+.cl-checkbox > input:indeterminate {
+  background-color: #018786;
+}
+
+.cl-checkbox > input:checked + span::before,
+.cl-checkbox > input:indeterminate + span::before {
+  border-color: #018786;
+  background-color: #018786;
+}
+
+.cl-checkbox > input:checked + span::after,
+.cl-checkbox > input:indeterminate + span::after {
+  border-color: #fff;
+}
+
+.cl-checkbox > input:indeterminate + span::after {
+  border-left: none;
+  transform: translate(4px, 3px);
+}
+
+/* Hover, Focus */
+.cl-checkbox:hover > input {
+  opacity: 0.04;
+}
+
+.cl-checkbox > input:focus {
+  opacity: 0.12;
+}
+
+.cl-checkbox:hover > input:focus {
+  opacity: 0.16;
+}
+
+/* Active */
+.cl-checkbox > input:active {
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.cl-checkbox > input:active + span::before {
+  border-color: #85b8b7;
+}
+
+.cl-checkbox > input:checked:active + span::before {
+  border-color: transparent;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Disabled */
+.cl-checkbox > input:disabled {
+  opacity: 0;
+}
+
+.cl-checkbox > input:disabled + span {
+  color: rgba(0, 0, 0, 0.38);
+  cursor: initial;
+}
+
+.cl-checkbox > input:disabled + span::before {
+  border-color: currentColor;
+}
+
+.cl-checkbox > input:checked:disabled + span::before,
+.cl-checkbox > input:indeterminate:disabled + span::before {
+  border-color: transparent;
+  background-color: currentColor;
+}
+
+@media screen and (min-width: 1025px) {
+  .header{
+    height: 100px;
+  }
+  .banner {
+    justify-content: flex-start;;
+    height: 20rem;
+  }
+
+  .banner > .left {
+    width: 40%;
+    justify-content: center;
+  }
+  .banner > .middle {
+    width: 20%;
+  }
+  .left > .menu-a {
+    font-size: 5rem;
+    margin: 0 20px;
+  }
+  .left > .menu-b {
+    font-size: 2.5rem;
+    line-height: 1.8;
+  }
+  .middle-page-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .select {
+    padding: 1rem 3rem;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .select-left{
+    width: 50%;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .select-right{
+    flex-direction: row;
+    align-items: flex-start;
+    width: 50%;
+  }
+  .select-item-a {
+    width: 50%;
+    align-items: center;
+  }
+  .select-item-b {
+    padding: 0;
+    width:50%;
+    margin-right: 10%;
+    margin-left: 5%;
+  }
+  .accordion {
+    --bs-accordion-btn-padding-x:1.25rem;
+    }
+  .accordion-button >span{
+    display: block;
+  }
+  .accordion-button >p{
+    display: none;
+  }
+  .banner-life-1{
+    height: 308px;
+    display:flex;
+  }
+  .banner-life-2{
+    height: 150px;
+  }
+}

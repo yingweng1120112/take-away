@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styles from '@/styles/adopt/adopt.module.css'
 import Carousel from '@/components/swiper/swiper'
-import AdoptForm from './adopt-form'
-
+import AdoptForm from '../../components/adopt/adopt-form'
+import Header from '@/components/layout/header'
+import banner from '@/styles/adopt/banner.module.css'
+import Footer from '@/components/layout/footer'
 const parageStyles = {
   WebkitLineClamp: 1,
   WebkitBoxOrient: 'vertical',
@@ -20,6 +22,25 @@ export default function Adopt() {
   }, [])
   return (
     <>
+    <Header/>
+    <div
+        className={banner['banner']}
+        style={{ backgroundImage: 'url(/img/adopt.jpg)' }}
+      >
+        <div className={banner['left']}>
+          <p className={banner['menu-a']}>ADUS</p>
+          <p className={banner['menu-b']}>領養我們</p>
+        </div>
+        <div className={banner['middle']}>
+          <div className={`${banner['accordion']}`}>
+            <div className={`accordion-button ${banner['accordion-button']}`}>
+              {/* span為pc版文字，p為phone版文字 */}
+              <span className={banner['middle-page-title']}>線上認養</span>
+              <span>Online adoption</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <section className={styles['adout']}>
         <div className={styles['container']}>
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
@@ -38,13 +59,16 @@ export default function Adopt() {
             <img src={`/img/foot.png`} alt="" className={styles['feet']} />
           </div>
           <section className={styles['about-pet']}>
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
-                <Carousel style={{ 'margin': '1rem', width:"100%"}} />
+                <Carousel style={{ margin: '2rem', width: '100%' }} />
               </div>
 
               <div className={styles['pet-photo']}>
-                <img src={`/img/pet-info/10008/10008-1p.jpg`} alt="" />
+                <img src={`/img/pet-info/10008-1p.jpg`} alt="" />
               </div>
               <div className={styles['pet-name']}>
                 {/* TODO:姓名抓資料庫 */}
@@ -53,13 +77,13 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-2p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-2p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-3p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-3p.jpg`} alt="" />
                 </div>
                 <div className={styles['image']}>
-                  <img src={`/img/pet-info/10008/10008-4p.jpg`} alt="" />
+                  <img src={`/img/pet-info/10008-4p.jpg`} alt="" />
                 </div>
               </div>
               <div className={styles['pet-namet']}>
@@ -103,6 +127,7 @@ export default function Adopt() {
           </section>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

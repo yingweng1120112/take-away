@@ -6,48 +6,36 @@ export default async function (sequelize) {
   return sequelize.define(
     'User',
     {
-      id: {
+      user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      username: {
-        type: DataTypes.STRING,
         allowNull: true,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: true,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      avatar: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      birth_date: {
-        type: DataTypes.DATEONLY, //只需要日期
-        allowNull: true,
-      },
-      sex: {
-        type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      postcode: {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      pic: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      address: {
+      address_detail: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      status: {
         type: DataTypes.STRING,
         allowNull: true,
       },
@@ -56,10 +44,6 @@ export default async function (sequelize) {
         allowNull: true,
       },
       line_uid: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      photo_url: {
         type: DataTypes.STRING,
         allowNull: true,
       },

@@ -33,7 +33,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/images/pet-info/10020/10020-1.jpg"
+            src="/img/pet-info/10008-1.jpg"
           />
           {/* 720x480 */}
         </SwiperSlide>
@@ -43,7 +43,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/images/pet-info/10020/10020-2.jpg"
+            src="/img/pet-info/10008-2.jpg"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -52,7 +52,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/images/pet-info/10020/10020-5.jpg"
+            src="/img/pet-info/10008-3.jpg"
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -61,7 +61,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/images/pet-info/10020/10020-4.jpg"
+            src="/img/pet-info/10008-4.jpg"
           />
         </SwiperSlide>
       </Swiper>
