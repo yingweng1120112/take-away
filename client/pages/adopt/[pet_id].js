@@ -7,6 +7,7 @@ import banner from '@/styles/adopt/banner.module.css'
 import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
+import { adoptInfos } from '@/services/pets'
 
 export default function Adopt() {
   const [open, setOpen] = useState(false)
@@ -64,7 +65,6 @@ export default function Adopt() {
 
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setPet(data)
-      // setReserve(prev => ({ ...prev, pet: data.name }))
       setTimeout(() => {
         setIsLoading(false)
       }, 1500)
@@ -191,7 +191,7 @@ export default function Adopt() {
             </div>
           </section>
           <section className={styles['form']}>
-            <AdoptForm name={pet.name} phone1={pet.phone1}/>
+            <AdoptForm name={pet.name} phone1={pet.phone1} pet_id={pet.pet_id}/>
           </section>
         </div>
       </section>

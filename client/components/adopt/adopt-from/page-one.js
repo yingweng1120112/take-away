@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PageOne({ donateInfo, setDonateInfo, handleChange ,name}) {
+export default function PageOne({ donateInfo, setDonateInfo, handleChange , name }) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
   const payOptions = ['銀行轉帳', '信用卡', '超商付款']
@@ -25,10 +25,10 @@ export default function PageOne({ donateInfo, setDonateInfo, handleChange ,name}
           {''}
           <input
             type="text"
-            name="name"
+            name="pet_id"
             className="form-input"
             placeholder="寵物"
-            value={donateInfo.pet=name}
+            value={donateInfo.pet_id = name}
             onChange={handleChange}
           />
           <span className="input-border"></span>

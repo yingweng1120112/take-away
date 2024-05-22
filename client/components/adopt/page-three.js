@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PageThree({ donateInfo, adopt, phone1, name }) {
+export default function PageThree({ donateInfo, adopt, phone1, pet_id }) {
 
   return (
     <>
@@ -10,10 +10,10 @@ export default function PageThree({ donateInfo, adopt, phone1, name }) {
         <label className="form-label">
           <input
             type="text"
-            name="name"
+            name="pet_id"
             className="form-input"
             placeholder="寵物"
-            value={donateInfo.pet=name}
+            value={donateInfo.pet_id=pet_id}
             readOnly
           />
           <span className="input-border"></span>
@@ -22,10 +22,10 @@ export default function PageThree({ donateInfo, adopt, phone1, name }) {
         <label className="form-label">
           <input
             type="text"
-            name="name"
+            name="user_id"
             className="form-input"
             placeholder="姓名"
-            value={adopt.name|| ''}
+            value={adopt.user_id|| ''}
             readOnly
           />
           <span className="input-border"></span>
@@ -96,7 +96,7 @@ export default function PageThree({ donateInfo, adopt, phone1, name }) {
             name="address"
             className="form-input"
             placeholder="捐獻證明寄送"
-            value={adopt.address}
+            value={adopt.donate_address}
             readOnly
           />
           <span className="input-border"></span>

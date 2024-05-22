@@ -7,7 +7,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
   useEffect(() => {
     setAdopt({
       ...adopt,
-      pet: donateInfo.pet,
+      pet_id: donateInfo.pet_id,
       donation_method: donateInfo.donation_method,
       amount: donateInfo.amount,
       customAmount: donateInfo.customAmount,
@@ -26,7 +26,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             name="pet"
             className="form-input"
             placeholder="寵物"
-            value={donateInfo.pet=name}
+            value={donateInfo.pet_id = name}
             onChange={handleChange}
           />
           <span className="input-border"></span>
@@ -37,10 +37,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
           {''}
           <input
             type="text"
-            name="name"
+            name="user_id"
             className="form-input"
             placeholder="姓名"
-            value={adopt.name}
+            value={adopt.user_id}
             onChange={handleChange}
           />
           <span className="input-border"></span>
@@ -121,10 +121,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
           <label className="custom-checkbox" key={index}>
             <input
               type="checkbox"
-              name="address"
+              name="donate_address"
               value={option}
               className="radio-input"
-              checked={adopt.address === option}
+              checked={adopt.donate_address === option}
               onChange={handleChange}
             />
             <span className="checkmark"></span>

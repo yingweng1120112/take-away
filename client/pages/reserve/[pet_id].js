@@ -10,7 +10,7 @@ import { loadPetInfo } from '@/services/pets'
 export default function Reserve() {
   const router = useRouter()
   const [reserve, setReserve] = useState({
-    pet: '',
+    pet: 'reserve.pet',
     name: '',
     reserveTime: '',
   })
@@ -60,7 +60,7 @@ export default function Reserve() {
 
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setPet(data)
-      setReserve(prev => ({ ...prev, pet: data.name }))
+      setReserve((prev) => ({ ...prev, pet: data.name }))
       setTimeout(() => {
         setIsLoading(false)
       }, 1500)
@@ -90,8 +90,8 @@ export default function Reserve() {
 
     const newErrors = { pet: '', name: '', reserveTime: '' }
 
-    if (!reserve.pet || reserve.pet.length < 2)
-      newErrors.pet = '浪浪名稱必須大於2個字'
+    if (!reserve.pet || reserve.pet.length < 1)
+      newErrors.pet = '浪浪名稱必須大於1個字'
     if (!reserve.name || reserve.name.length < 2)
       newErrors.name = '預約人必須大於2個字'
     if (!reserve.reserveTime) newErrors.reserveTime = '預約時間必填'
@@ -111,7 +111,11 @@ export default function Reserve() {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(reserve),
+        body: JSON.stringify({
+          user_id: reserve.name,
+          pet_id: pet.pet_id,
+          time: reserve.reserveTime,
+        }),
       })
 
       if (!res.ok) {
@@ -124,11 +128,12 @@ export default function Reserve() {
         `請確定預約細項為\n預約的寵物是${reserve.pet}\n預約人是${reserve.name}\n預約時間為${reserve.reserveTime}`
       )
 
-      setReserve({ pet: '', name: '', reserveTime: '' })
+      setReserve({ name: '', reserveTime: '' })
     } catch (error) {
       console.error('Error:', error)
       alert('預約失敗，請稍後再試')
     }
+    
   }
 
   return (
@@ -184,7 +189,7 @@ export default function Reserve() {
             所以也期待您撥空來現場看看他們!
           </h5>
           <div className={styles['reserve-img']}>
-            <img  src={`/img/pet-info/${pet.reserve1}.jpg`} alt="" />
+            <img src={`/img/pet-info/${pet.reserve1}.jpg`} alt="" />
             <div className={styles['img-title']}>
               <h1 className={styles['img-h1']}>期待與您相見♡</h1>
               <p className={styles['img-p']}>
@@ -211,6 +216,7 @@ export default function Reserve() {
                       placeholder="浪浪名稱"
                       value={reserve.pet}
                       onChange={handleChange}
+                      disabled="disabled"
                       // required
                     />
                     <span className={styles['input-border']} />
@@ -230,7 +236,7 @@ export default function Reserve() {
                       name="name"
                       value={reserve.name}
                       onChange={handleChange}
-                      required
+                      // required
                     />
                     <span className={styles['input-border']} />
                   </label>
@@ -245,7 +251,7 @@ export default function Reserve() {
                     <input
                       className={styles['input']}
                       placeholder=""
-                      type="date"
+                      type="datetime-local"
                       name="reserveTime"
                       value={reserve.reserveTime}
                       onChange={handleChange}
