@@ -13,8 +13,8 @@ export default function Indexservice() {
             alt=""
           />
         </div>
-        <div className={styles['serv_img_box']}>
-          <img
+        {/* <div className={styles['serv_img_box']}> */}
+          {/* <img
             className={styles['serv_img1']}
             src="../img/faq/servicepaw1.png"
             alt=""
@@ -38,8 +38,8 @@ export default function Indexservice() {
             className={styles['serv_img5']}
             src="../img/faq/servicepaw3.png"
             alt=""
-          />
-        </div>
+          /> */}
+        {/* </div> */}
         <div className={styles['serv_boxa']}>
           <div className={styles['serv_boxb']}></div>
           <div className={styles['serv_card']}>

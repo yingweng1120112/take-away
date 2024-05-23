@@ -60,13 +60,13 @@
 
 @media screen and (min-width: 1025px) {
   .inswipper{
-    width: 118.9375rem;
+    weight:100%;
     height: 30rem;
     margin: 0px auto;
     margin-bottom: 2rem;
   }
   .indexSwipper{
-    width: 80%;
+    width: 100%;
     height: 100%;
     --swiper-navigation-color: yellow;
     --swiper-pagination-color: yellow;

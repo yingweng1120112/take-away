@@ -15,7 +15,10 @@ export default function Home() {
       <div className={styles['inswipper']}>
         <Swiper />
       </div>
-      <div className="container px-4 w-100 py-5" id="custom-cards">
+      <div
+        className="container m-0 d-flex justify-content-center"
+        id="custom-cards"
+      >
         <IndexService />
       </div>
       <div className="commend">
@@ -26,12 +29,14 @@ export default function Home() {
       <style global jsx>
         {`
           .container{
-            height:800px
+            height:50%;
+            width:100%;
           }
           .commend {
             background-image: url(/shopping-cart/commendbg.png);
             background-size: contain;
             margin: 0;
+            margin-top: 100px;
             height: 37rem;
           }
           .commendtitle {

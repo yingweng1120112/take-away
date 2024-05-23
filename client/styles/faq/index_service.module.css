@@ -1,9 +1,10 @@
 /* 服務項目 */
 /* 手機版 */
 .serv_container {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   height: 900px;
 }
 
@@ -95,8 +96,13 @@
 /* 電腦版 */
 @media screen and (min-width: 1025px) {
   .serv_container {
+    height: 100%;
     width: 100%;
+    margin-left: 55%;
+    margin-bottom: 100px;
     display: flex;
+    justify-content: center;
+    /* border: 1px solid black; */
     flex-direction: column;
     height: 900px;
   }
@@ -109,19 +115,25 @@
   }
 
   .serv_btn {
-    width: 20%;
+    width: 30%;
     overflow: hidden;
     padding-bottom: 50px;
+    margin-left: 10%;
+    margin-top: 100px;
   }
 
   /* 六大服務項目 */
   .serv_card {
     width: 100%;
+    height: 100%;
     display: grid;
-    gap: 8%;
-    grid-template-columns: 180px 180px 180px;
+    /* gap: 8%; */
+    /* grid-template-columns: 180px 180px 180px; */
     justify-content: center;
-    /* border-left: 10px solid black; */
+    border-left: 10px solid black;
+    padding: 0 0 0 7%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
   }
 
   .card {
@@ -170,9 +182,9 @@
     background-color: var(--bean-paste);
   }
 
-  .serv_boxa {
+  /* .serv_boxa {
     display: flex;
-  }
+  } */
 
   .serv_boxb {
     width: 20%;
@@ -180,7 +192,7 @@
   }
 
   .serv_img_box {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 1126px;
     overflow: hidden;
