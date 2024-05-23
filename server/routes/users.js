@@ -24,7 +24,7 @@ router.post('/login', async function (req, res, next) {
 
   // 使用phone查詢資料表，把資料表中加密過密碼字串提取出來
   const [rows] = await db.query('SELECT * FROM user WHERE phone = ?', [
-    loginUser.phone,
+    loginUser.username,
   ])
 
   const dbUser = rows[0]
@@ -44,7 +44,7 @@ router.post('/login', async function (req, res, next) {
   // 存取令牌中的資訊，只需要id和phone就足夠，需要其它資料再向資料庫查詢
   const returnUser = {
     id: dbUser.id,
-    phone: dbUser.phone,
+    username: dbUser.username,
   }
 
   // 產生存取令牌(access token)
