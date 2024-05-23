@@ -4,7 +4,6 @@ import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
 import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
-import MenuSwiper from '@/pages/product/menu_swiper'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
 import { loadProducts } from '@/services/product'
@@ -73,18 +72,34 @@ const sample = [
 ]
 
 export default function Menu() {
+  //最後得到的資料
+  const [total, setTotal] = useState(0)
+  const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
+
+  //分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(12)
+
   const getProducts = async () => {
     const data = await loadProducts()
     console.log(data)
 
-    if (Array.isArray(data)) {
-      console.log('設products 狀態: ', data)
-      setProducts(data)
-    } else {
-      console.log('數據結構不符合預期:', data)
+    //因應要分頁和查詢，所以回應改為整個data的products是data.products
+    if(data.pageCount && typeof data.pageCount === 'number') {
+      setPageCount(data.pageCount)
     }
-    console.log(data)
+    if(data.total && typeof data.total === 'number') {
+      setTotal(data.total)
+    }
+    
+    if (Array.isArray(data.products)) {
+      console.log('設products 狀態: ', data.products)
+      setProducts(data.products)
+    } else {
+      console.log('數據結構不符合預期:', data.products)
+    }
+    console.log(data.products)
   }
 
   const truncate = (str, n) => {
@@ -119,6 +134,13 @@ export default function Menu() {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  // 阻止事件冒泡以防止触发 Link 的跳转
+  const handleCartClick = (event) => {
+    event.stopPropagation();
+    // 在这里添加购物车的处理逻辑
+    console.log('Added to cart');
+  };
 
   return (
     <>
@@ -207,11 +229,15 @@ export default function Menu() {
                   <p className={banner['select-title']}>排列方法</p>
                   <div className={banner['select-item']}>
                     <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
+                      <input
+                        type="radio"
+                        name="options"
+                        defaultChecked={true}
+                      />
                       <span>價格由低至高</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
+                      <input type="radio" name="options" />
                       <span>價格由高至低</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
@@ -261,7 +287,7 @@ export default function Menu() {
       <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
           <div className={styles['search-results']}>
-            <h5>找到 10 筆商品</h5>
+            <h5>找到 {total} 筆商品</h5>
             <img src="/img/menu/footprint-banner.svg" alt="" />
           </div>
           <img
@@ -288,7 +314,7 @@ export default function Menu() {
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']}>
+                      <button className={styles['cart-btn']} onClick={handleCartClick}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -315,8 +341,12 @@ export default function Menu() {
             className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
             role="navigation"
           >
-            <a className={pagination.first} aria-label="First Page" href="#">
-              «{' '}
+            <a className={pagination.first} aria-label="First Page" href="#" onClick={()=>{
+              //最小頁面是1(不能小於1)
+              const nextPage = page - 1 > 1 ? page - 1 : 1
+              setPage(nextPage)
+            }}>
+              «
             </a>
             <a
               className={pagination.previouspostslink}
@@ -350,8 +380,11 @@ export default function Menu() {
             >
               &gt;
             </a>
-            <a className={pagination.last} aria-label="Last Page" href="#">
-              {' '}
+            <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
+              //最大頁面不能大於總頁數
+              const nextPage = page + 1 > 1 ? page - 1 : 1
+              setPage(nextPage)
+            }}>
               »
             </a>
           </div>

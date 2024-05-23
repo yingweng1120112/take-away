@@ -10,11 +10,11 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import swiper1 from '@/styles/product/menu_swiper.module.css'
 import { Pagination, Navigation } from 'swiper/modules'
-import styles2 from '@/styles/product/info_swiper.module.css'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/product/information.module.css'
 import pagination from '@/styles/product/pagination.module.css'
 // 測試
+
 
 import { loadProduct } from '@/services/product'
 import { loadProducts } from '@/services/product'
@@ -69,15 +69,15 @@ export default function Information() {
   const [products, setProducts] = useState([])
   const getProducts = async () => {
     const data = await loadProducts()
-    console.log(data)
+    console.log(data.products)
 
-    if (Array.isArray(data)) {
-      console.log('設products 狀態: ', data)
-      setProducts(data)
+    if (Array.isArray(data.products)) {
+      console.log('設products 狀態: ', data.products)
+      setProducts(data.products)
     } else {
-      console.log('數據結構不符合預期:', data)
+      console.log('數據結構不符合預期:', data.products)
     }
-    console.log(data)
+    console.log(data.products)
   }
 
   useEffect(() => {
@@ -608,7 +608,7 @@ export default function Information() {
             loop={true}
             slidesPerView={3}
             centeredSlides={true}
-            spaceBetween={30}
+            spaceBetween={100}
             navigation={true}
             modules={[Pagination, Navigation]}
             className={swiper1['mySwiper2']}
