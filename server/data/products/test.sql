@@ -51,3 +51,8 @@ LIMIT 5 OFFSET 5;
 SELECT COUNT(*) AS count
 FROM product
 WHERE species IN ('狗', '貓');
+
+SELECT *
+FROM product
+LIMIT 5 OFFSET 5;
+ORDER BY price ASC;

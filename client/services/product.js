@@ -18,6 +18,7 @@ const sample = [
   },
 ]
 
+
 // 因應要分頁和查詢，所以回應整個data
 export const loadProducts = async () => {
   // 使用URLSearchParams產生查詢字串
@@ -31,14 +32,14 @@ export const loadProducts = async () => {
     // 判斷是否成功
     if (data.status === 'success') {
       // 因應要分頁和查詢，所以回應整個data
-      return data.data.products
+      return data.data
     } else {
       console.warn('沒有得到資料')
-      return []
+      return {}
     }
   } catch (e) {
     console.error(e)
-    return sample
+    return {}
   }
 }
 

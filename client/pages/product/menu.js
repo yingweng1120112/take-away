@@ -4,7 +4,6 @@ import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
 import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
-import MenuSwiper from '@/pages/product/menu_swiper'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
 import { loadProducts } from '@/services/product'
@@ -73,18 +72,22 @@ const sample = [
 ]
 
 export default function Menu() {
+  //最後得到的資料
   const [products, setProducts] = useState([])
+
+  //
   const getProducts = async () => {
     const data = await loadProducts()
     console.log(data)
 
-    if (Array.isArray(data)) {
-      console.log('設products 狀態: ', data)
-      setProducts(data)
+    //因應要分頁和查詢，所以回應改為整個data的products是data.products
+    if (Array.isArray(data.products)) {
+      console.log('設products 狀態: ', data.products)
+      setProducts(data.products)
     } else {
-      console.log('數據結構不符合預期:', data)
+      console.log('數據結構不符合預期:', data.products)
     }
-    console.log(data)
+    console.log(data.products)
   }
 
   const truncate = (str, n) => {
@@ -207,11 +210,15 @@ export default function Menu() {
                   <p className={banner['select-title']}>排列方法</p>
                   <div className={banner['select-item']}>
                     <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
+                      <input
+                        type="radio"
+                        name="options"
+                        defaultChecked={true}
+                      />
                       <span>價格由低至高</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
+                      <input type="radio" name="options" />
                       <span>價格由高至低</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
