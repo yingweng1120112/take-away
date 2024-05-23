@@ -157,7 +157,7 @@ export default function RegisterForm() {
             </label>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
-                電話:{' '}
+                帳號:{' '}
               </span>
               <div className="d-flex">
                 <input
@@ -271,7 +271,7 @@ export default function RegisterForm() {
                 Google
               </span>
             </button>
-            {/* <button
+            <button
               type="button"
               onClick={() => {
                 // 重置需要自行設定回初始化值
@@ -302,7 +302,7 @@ export default function RegisterForm() {
               }}
             >
               一鍵填入
-            </button> */}
+            </button>
           </form>
         </div>
         {/* <style jsx>
