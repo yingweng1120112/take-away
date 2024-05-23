@@ -16,6 +16,13 @@ export default function PetList() {
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(9)
 
+  // 查詢條件用
+  const [nameLike, setNameLike] = useState('')
+  const [type, setType] = useState([])
+
+  // 物種選項陣列
+  const typeOptions = ['狗狗', '貓貓']
+
   // 加入參詢條件params物件
   const getPet = async (params) => {
     // //開載入動畫函式
@@ -32,7 +39,7 @@ export default function PetList() {
     }
 
     // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
-    // 因應要分頁和查詢，所以回應改為整個data，pet_info是data.pet_info --- ?
+    // 因應要分頁和查詢，所以回應改為整個data，pet_info是data.pet_infos
     if (Array.isArray(data.pet_info)) {
       console.log('設pets 狀態: ', data.pet_info)
       setPets(data.pet_info)
@@ -40,6 +47,35 @@ export default function PetList() {
       console.log('數據結構不符合預期:', data.pet_info)
     }
     console.log(data.pet_info)
+  }
+
+  // 物種複選時使用
+  const handleTypeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (type.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextType = type.filter((v) => v !== tv)
+      setType(nextType)
+    } else {
+      // 否則===>加入陣列
+      const nextType = [...type, tv]
+      setType(nextType)
+    }
+  }
+
+  // 按下搜尋按鈕
+  const handleSearch = () => {
+    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+    setPage(1)
+
+    const params = {
+      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+      perpage,
+      name_like: nameLike,
+    }
+    getPet(params)
   }
 
   // 樣式3: didMount + didUpdate
@@ -116,19 +152,19 @@ export default function PetList() {
                   <div className={banner['select-item']}>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>幼年 0 ~ 1歲</span>
+                      <span>幼年 0 ~ 1 歲</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>青年 2 ~ 3歲</span>
+                      <span>青年 2 ~ 3 歲</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>中年 4 ~ 7歲</span>
+                      <span>中年 4 ~ 7 歲</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>老年 8歲以上</span>
+                      <span>老年 8 歲以上</span>
                     </label>
                   </div>
                 </div>
@@ -137,29 +173,41 @@ export default function PetList() {
                   <div className={banner['select-item']}>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>大型 20kg以上</span>
+                      <span>大型 20 kg 以上</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>中型 8 ~ 20kg</span>
+                      <span>中型 8 ~ 20 kg</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
-                      <span>小型 8kg以下</span>
+                      <span>小型 8 kg 以下</span>
                     </label>
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>選擇物種</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>狗狗寶貝</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>貓貓寶貝</span>
-                    </label>
+                    {typeOptions.map((v, i) => {
+                      return (
+                        <label
+                          className={banner['cl-checkbox']}
+                          // 當初次render後不會再改動，即沒有新增、刪除、更動時，可以用索引當key
+                          key={i}
+                        >
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={type.includes(v)}
+                            onChange={(e) => {
+                              handleTypeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}寶貝</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
@@ -207,7 +255,7 @@ export default function PetList() {
                   </div>
                 </div>
                 <div className={banner['select-item-b']}>
-                  <p className={banner['select-title']}>姓別</p>
+                  <p className={banner['select-title']}>性別</p>
                   <div className={banner['select-item']}>
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
@@ -224,8 +272,13 @@ export default function PetList() {
                       type="text"
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
+                      value={nameLike}
+                      onChange={(e) => {
+                        setNameLike(e.target.value)
+                      }}
                     />
                   </div>
+                  <button onClick={handleSearch}>搜尋</button>
                 </div>
               </div>
             </div>
