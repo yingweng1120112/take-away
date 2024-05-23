@@ -341,8 +341,12 @@ export default function Menu() {
             className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
             role="navigation"
           >
-            <a className={pagination.first} aria-label="First Page" href="#">
-              «{' '}
+            <a className={pagination.first} aria-label="First Page" href="#" onClick={()=>{
+              //最小頁面是1(不能小於1)
+              const nextPage = page - 1 > 1 ? page - 1 : 1
+              setPage(nextPage)
+            }}>
+              «
             </a>
             <a
               className={pagination.previouspostslink}
@@ -376,8 +380,11 @@ export default function Menu() {
             >
               &gt;
             </a>
-            <a className={pagination.last} aria-label="Last Page" href="#">
-              {' '}
+            <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
+              //最大頁面不能大於總頁數
+              const nextPage = page + 1 > 1 ? page - 1 : 1
+              setPage(nextPage)
+            }}>
               »
             </a>
           </div>
