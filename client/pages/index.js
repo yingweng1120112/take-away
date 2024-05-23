@@ -15,7 +15,7 @@ export default function Home() {
       <div className={styles['inswipper']}>
         <Swiper />
       </div>
-      <div className="container px-4 py-5" id="custom-cards">
+      <div className="container px-4 w-100 py-5" id="custom-cards">
         <IndexService />
       </div>
       <div className="commend">

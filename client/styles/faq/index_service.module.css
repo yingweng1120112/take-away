@@ -116,7 +116,7 @@
 
   /* 六大服務項目 */
   .serv_card {
-    width: 60%;
+    width: 100%;
     display: grid;
     gap: 8%;
     grid-template-columns: 180px 180px 180px;
