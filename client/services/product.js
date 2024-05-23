@@ -18,15 +18,18 @@ const sample = [
   },
 ]
 
-
 // 因應要分頁和查詢，所以回應整個data
-export const loadProducts = async () => {
+export const loadProducts = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
   // const searchParams = new URLSearchParams(params)
   // const url = `${baseUrl}?${searchParams.toString()}`
+  const searchParams = new URLSearchParams(params)
+  const url = `${baseUrl}?${searchParams.toString()}`
 
   try {
-    const res = await fetch(baseUrl)
+    // 使用URLSearchParams產生查詢字串
+
+    const res = await fetch(url)
     const data = await res.json()
 
     // 判斷是否成功

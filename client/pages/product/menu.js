@@ -20,6 +20,9 @@ import swiper1 from '@/styles/product/menu_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
+//分頁用
+import BS5Pagination from '@/components/common/bs5-pagination'
+
 const sample = [
   {
     product_id: 10001,
@@ -81,8 +84,8 @@ export default function Menu() {
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
 
-  const getProducts = async () => {
-    const data = await loadProducts()
+  const getProducts = async (params) => {
+    const data = await loadProducts(params)
     console.log(data)
 
     //因應要分頁和查詢，所以回應改為整個data的products是data.products
@@ -122,10 +125,18 @@ export default function Menu() {
     console.log(data)
   }
 
+  // 分頁列表觸發事件使用
+
   useEffect(() => {
-    getProducts()
+    const params ={
+      page,
+      perpage,
+    }
+
+
+    getProducts(params)
     getPet()
-  }, [])
+  }, [page, perpage])
 
   console.log([pets])
   //上下限
@@ -381,8 +392,8 @@ export default function Menu() {
               &gt;
             </a>
             <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
-              //最大頁面不能大於總頁數
-              const nextPage = page + 1 > 1 ? page - 1 : 1
+              //最大頁面不能大於總頁數pageCount
+              const nextPage = page + 1 < pageCount ? page + 1 : pageCount
               setPage(nextPage)
             }}>
               »
