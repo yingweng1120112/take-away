@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/faqshopping.module.css'
+import styles from '@/styles/faq/faqshopping.module.css'
 import {
   FaMagnifyingGlass,
   FaCartShopping,
@@ -13,10 +13,12 @@ import {
   FaPaw,
 } from 'react-icons/fa6'
 import { IoPawOutline } from "react-icons/io5"
+import Indexservice from '@/components/index-service/indexservice'
 
 export default function Faqshopping() {
   return (
     <>
+    <Indexservice />
       <div className={styles['container_faq']}>
         <div className={styles['box_search']}>
           <input

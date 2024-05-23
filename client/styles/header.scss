@@ -130,6 +130,14 @@ flex-direction: column;
 .header2{
   display:none;
 }
+
+.indexswiper {
+  --swiper-navigation-color: #fff;
+  --swiper-pagination-color: #fff;
+  width: 118.9375rem;
+  height: 37rem;
+  border-radius: 1.25rem;
+}
 @media screen and (max-width: 768px) {
   .header{
     height:60px;
@@ -292,4 +300,5 @@ padding-right:2.4rem;
   background-color: var(--creamy-yellow);
   border-bottom: 2px solid var(--reddish-brown);
 }
+
 }

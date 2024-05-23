@@ -1,47 +1,130 @@
-import React from 'react'
-import styles from '@/styles/faqreport2.module.css'
-import { PiCatBold } from "react-icons/pi";
+import React, { useState } from 'react'
+import styles from '@/styles/faq/faqreport1.module.css'
+import { PiCatBold } from 'react-icons/pi'
+import { FaX } from 'react-icons/fa6'
 
-export default function Reportform() {
+export default function ReportForm({ open, onClose }) {
+  // 表單送出互動
+  const [formData, setFormData] = useState({
+    email: '',
+    fr_option: '',
+    question: '',
+  })
+
+  if (!open) {
+    return null
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+  }
+  // const saveform = (e) => {
+  //   e.preventDefault()
+  //   const data = {
+  //     email: formData.email,
+  //     issueType: formData.issueType,
+  //     problem: formData.problem,
+  //   }
+  // }
+
+  const handleSubmit = async (e) => {
+    // alert('submit')
+    e.preventDefault()
+    try {
+      const response = await fetch('http://localhost:3005/api/faq-report', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const result = await response.json()
+      console.log('Response from server:', result)
+      if (response.status === 201) {
+        console.log('表單已成功傳送', result)
+        alert('表單已成功傳送')
+        onClose()
+      } else {
+        console.log('Form submission failed', result.message)
+        alert(`Form submission failed: ${result.message}`)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert(`Error submitting form: ${error.message}`)
+    }
+  }
+
   return (
-    <div className={styles['container_report']}>
-      <div className={styles['report_form']}>
+    <div onClick={onClose} className={styles['container_report']}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation()
+        }}
+        className={styles['report_form']}
+      >
         <div className={styles['rf_imgbox']}>
           <img
             className={styles['rf_img']}
-            src="../img/tkbglogo-rb.png"
+            src="../img/faq/tkbglogo-rb.png"
             alt=""
           />
+          {/* <button onClick={onClose} className={styles['formCloseBtn']}>
+            X
+          </button> */}
+          <FaX onClick={onClose} className={styles['formCloseBtn']} />
         </div>
         <div className={styles['rf_form']}>
-          <form method="">
+          <form onSubmit={handleSubmit}>
             <h3 className={styles['rf_title']}>問題回報表單</h3>
             <label className={styles['rf_label']} htmlFor="email">
               您的信箱:
             </label>
             <br />
-            <input className={styles['rf_input']} type="email" id="email" />
+            <input
+              className={styles['rf_input']}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
             <br />
-            <label className={styles['rf_label']} htmlFor="issueType">
+            <label className={styles['rf_label']} htmlFor="fr_option">
               您的問題類型:
             </label>
             <br />
-            <select className={styles['rf_select']} id="issueType">
+            <select
+              className={styles['rf_select']}
+              id="fr_option"
+              name="fr_option"
+              value={formData.fr_option}
+              onChange={handleChange}
+              required
+            >
               <optgroup label="商城問題">
-                <option value="order">訂單相關</option>
-                <option value="return">退換貨相關</option>
-                <option value="invoice">發票相關</option>
-                <option value="product">商品相關</option>
+                <option value="訂單相關">訂單相關</option>
+                <option value="退換貨相關">退換貨相關</option>
+                <option value="發票相關">發票相關</option>
+                <option value="商品相關">商品相關</option>
               </optgroup>
               <optgroup label="毛孩問題">
-                <option value="adoption">領養相關</option>
-                <option value="dog">狗狗相關</option>
-                <option value="cat">貓貓相關</option>
-                <option value="other">其他相關</option>
+                <option value="領養相關">領養相關</option>
+                <option value="狗狗相關">狗狗相關</option>
+                <option value="貓貓相關">貓貓相關</option>
+                <option value="其他相關">其他相關</option>
               </optgroup>
             </select>
             <br />
-            <label className={styles['rf_label']} htmlFor="problem">
+            <label className={styles['rf_label']} htmlFor="question">
               您的問題:
             </label>
             <br />
@@ -50,27 +133,38 @@ export default function Reportform() {
               cols="30"
               rows="10"
               placeholder="從這裡開始輸入..."
+              id="question"
+              name="question"
+              value={formData.question}
+              onChange={handleChange}
+              required
             ></textarea>
             <br />
             {/* <button><i className="fa-solid fa-paw"></i>送出表單</button> */}
             <br />
             <div className={styles['rf_btn1']}>
-              <input
+              <button className={styles['rf_btn3']} type="submit">
+                送出表單
+              </button>
+              {/* <input
                 className={styles['rf_btn3']}
                 type="submit"
                 value="送出表單"
-              />
-              <PiCatBold className={styles['rf_icons']}/>
+              /> */}
+              <PiCatBold className={styles['rf_icons']} />
               {/* <i className="fa-solid fa-paw"></i> */}
             </div>
             <br />
             <div className={styles['rf_btn2']}>
-              <input
+              <button className={styles['rf_btn4']} type="reset">
+                清除表單
+              </button>
+              {/* <input
                 className={styles['rf_btn4']}
                 type="reset"
                 value="清除表單"
-              />
-              <PiCatBold className={styles['rf_icons']}/>
+              /> */}
+              <PiCatBold className={styles['rf_icons']} />
               {/* <i className="fa-solid fa-paw"></i> */}
             </div>
             <br />

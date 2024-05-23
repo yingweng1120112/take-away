@@ -4,8 +4,19 @@ import Footer from '@/components/layout/footer'
 import styles from '@/styles/shopping-cart/shoppingcar-step3.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
+import { useCart } from '@/context/cartcontext'
 
-export default function Step1() {
+export default function Step3() {
+  const {
+    cartItems,
+    selectedItems,
+    setSelectedItems,
+    handleToggleChecked,
+    countSelectedTotalPrice,
+    countSelectedFinalTotalPrice,
+    countSelectedExtraFee,
+  } = useCart()
   return (
     <>
       <Header />
@@ -56,98 +67,38 @@ export default function Step1() {
             </div>
           </div>
           <div>
-            <div className={styles['cartitem']}>
-              <div className={styles['cartitemleft']}>
-                <div className={styles['itemlist']}>
-                  <div className={styles['cartimg']}>
-                    <img src="/shopping-cart/car-item1.png" alt="" />
+            {/* 商品列表 */}
+            {selectedItems
+              .filter((item) => item.checked)
+              .map((item) => (
+                <div key={item.product_id} className={styles['cartitem']}>
+                  <div className={styles['cartitemleft']}>
+                    <div className={styles['itemlist']}>
+                      <div className={styles['cartimg']}>
+                        <img src={item.pic1} alt={item.name} />
+                      </div>
+                      <div>{item.name}</div>
+                    </div>
                   </div>
-                  <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
-                </div>
-              </div>
-              <div className={styles['cartitemright']}>
-                <div>0</div>
-                <div>$45</div>
-                <div className={styles['itemamount']}>2</div>
-                <div>$90</div>
-              </div>
-            </div>
-            <div className={styles['cartitem']}>
-              <div className={styles['cartitemleft']}>
-                <div className={styles['itemlist']}>
-                  <div className={styles['cartimg']}>
-                    <img src="/shopping-cart/car-item1.png" alt="" />
+                  <div className={styles['cartitemright']}>
+                    <div>0</div>
+                    <div>${item.price}</div>
+                    <div className={styles['itemamount']}>{item.qty}</div>
+                    <div>${item.subTotal}</div>
                   </div>
-                  <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
                 </div>
-              </div>
-              <div className={styles['cartitemright']}>
-                <div>0</div>
-                <div>$45</div>
-                <div className={styles['itemamount']}>2</div>
-                <div>$90</div>
-              </div>
-            </div>
-            <div className={styles['cartitem']}>
-              <div className={styles['cartitemleft']}>
-                <div className={styles['itemlist']}>
-                  <div className={styles['cartimg']}>
-                    <img src="/shopping-cart/car-item1.png" alt="" />
-                  </div>
-                  <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
-                </div>
-              </div>
-              <div className={styles['cartitemright']}>
-                <div>0</div>
-                <div>$45</div>
-                <div className={styles['itemamount']}>2</div>
-                <div>$90</div>
-              </div>
-            </div>
-            <div className={styles['cartitem']}>
-              <div className={styles['cartitemleft']}>
-                <div className={styles['itemlist']}>
-                  <div className={styles['cartimg']}>
-                    <img src="/shopping-cart/car-item1.png" alt="" />
-                  </div>
-                  <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
-                </div>
-              </div>
-              <div className={styles['cartitemright']}>
-                <div>0</div>
-                <div>$45</div>
-                <div className={styles['itemamount']}>2</div>
-                <div>$90</div>
-              </div>
-            </div>
-            <div className={styles['cartitem']}>
-              <div className={styles['cartitemleft']}>
-                <div className={styles['itemlist']}>
-                  <div className={styles['cartimg']}>
-                    <img src="/shopping-cart/car-item1.png" alt="" />
-                  </div>
-                  <div>牛肉風味棒 耐嚼型潔牙棒85克 [牛肉風味]</div>
-                </div>
-              </div>
-              <div className={styles['cartitemright']}>
-                <div>0</div>
-                <div>$45</div>
-                <div className={styles['itemamount']}>2</div>
-                <div>$90</div>
-              </div>
-            </div>
-            {/* 重複這個區塊 */}
+              ))}
           </div>
         </div>
         {/* 訂單金額 */}
         <div className={styles['cartbottomstyle']}>
           <div>
             <div>小計：</div>
-            <div>$270</div>
+            <div>${countSelectedTotalPrice()}</div>
           </div>
           <div>
             <div>運費：</div>
-            <div>$80</div>
+            <div>${countSelectedExtraFee()}</div>
           </div>
           <div>
             <div>優惠：</div>
@@ -155,23 +106,27 @@ export default function Step1() {
           </div>
           <div>
             <div>合計：</div>
-            <div>$350</div>
+            <div>${countSelectedFinalTotalPrice()}</div>
           </div>
           <div className={styles['cartbutton']}>
-            <button className={styles['buttonstyle']}>
-              <FontAwesomeIcon
-                icon={faStore}
-                className={styles['iconstyle1']}
-              />
-              回到商城首頁
-            </button>
-            <button className={styles['buttonstyle']}>
-              查看訂單紀錄
-              <FontAwesomeIcon
-                icon={faRectangleList}
-                className={styles['iconstyle2']}
-              />
-            </button>
+            <Link href="/product/menu" passHref>
+              <a className={styles['buttonstyle']}>
+                <FontAwesomeIcon
+                  icon={faStore}
+                  className={styles['iconstyle1']}
+                />
+                回到商城首頁
+              </a>
+            </Link>
+            <Link href="#" passHref>
+              <a className={styles['buttonstyle']}>
+                查看訂單紀錄
+                <FontAwesomeIcon
+                  icon={faRectangleList}
+                  className={styles['iconstyle2']}
+                />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
