@@ -263,7 +263,19 @@ export default function PetList() {
                     <p key={v.pet_id}>{v.name}</p>
                     <div className={styles['pet-desc']}>
                       <span key={v.pet_id}>今年約莫 {v.age}歲</span>
-                      <img src="/img/pets/icon_boy.png" alt="" />
+                      {v.gender === '男生' ? (
+                        <img
+                          src="/img/pets/icon_boy.png"
+                          alt=""
+                          draggable="false"
+                        />
+                      ) : (
+                        <img
+                          src="/img/pets/icon_girl.png"
+                          alt=""
+                          draggable="false"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

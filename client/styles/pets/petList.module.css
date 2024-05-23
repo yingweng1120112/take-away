@@ -164,7 +164,7 @@
 .pet-desc > img {
   height: 30px;
   width: 30px;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 50%;
 }
 
