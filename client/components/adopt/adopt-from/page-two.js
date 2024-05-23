@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 
-export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
+export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name}) {
   const projectOptions = ['不指定', '急難救助', '絕育計畫']
   const addressOptions = ['電子郵件地址', '通訊地址']
 
   useEffect(() => {
     setAdopt({
       ...adopt,
-      pet: donateInfo.pet,
+      pet_id: donateInfo.pet_id,
       donation_method: donateInfo.donation_method,
       amount: donateInfo.amount,
       customAmount: donateInfo.customAmount,
@@ -26,7 +26,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="pet"
             className="form-input"
             placeholder="寵物"
-            value={adopt.pet}
+            value={donateInfo.pet_id = name}
             onChange={handleChange}
           />
           <span className="input-border"></span>
@@ -37,10 +37,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
           {''}
           <input
             type="text"
-            name="name"
+            name="user_id"
             className="form-input"
             placeholder="姓名"
-            value={adopt.name}
+            value={adopt.user_id}
             onChange={handleChange}
           />
           <span className="input-border"></span>
@@ -54,8 +54,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="phone"
             className="form-input"
             placeholder="行動電話"
-            // value={adopt.phone}
-            // onChange={handleChange}
+            value={adopt.phone}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>
@@ -67,8 +67,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="email"
             className="form-input"
             placeholder="電子信箱"
-            // value={adopt.email}
-            // onChange={handleChange}
+            value={adopt.email}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>
@@ -121,10 +121,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
           <label className="custom-checkbox" key={index}>
             <input
               type="checkbox"
-              name="address"
+              name="donate_address"
               value={option}
               className="radio-input"
-              checked={adopt.address === option}
+              checked={adopt.donate_address === option}
               onChange={handleChange}
             />
             <span className="checkmark"></span>

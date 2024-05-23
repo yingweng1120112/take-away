@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+import React from 'react'
+export default function Test() {
+  return (
+    <>
+=======
 import { useState } from 'react'
 
 // 解析accessToken用的函式
@@ -421,6 +427,7 @@ export default function AuthForm() {
           }
         `}
       </style>
+>>>>>>> 3a688093e85610a719e424fb07bd6beb24f42c5e
     </>
   )
 }
