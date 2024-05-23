@@ -294,13 +294,13 @@
   width: 32px;
   height: 32px;
   border: none;
-  background: url(/img/chevron-double-right.svg);
+  background: url(/img/petDiary/chevronDoubleRight.svg);
 }
 .swiper-button-prev {
   width: 32px;
   height: 32px;
   border: none;
-  background: url(/img/chevron-double-left.svg);
+  background: url(/img/petDiary/chevronDoubleLeft.svg);
 }
 @media screen and (min-width: 1025px) {
 

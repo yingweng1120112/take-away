@@ -8,7 +8,7 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/pagination'
 import 'swiper/css/thumbs'
-import styles from '@/styles/bo-ren/blog.module.css'
+import styles from '@/styles/petDiary/petDiary.module.css'
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
@@ -26,19 +26,19 @@ export default function App() {
         className={`mySwiper2 ${styles['mySwiper2']} `}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/bg2.svg" />
+          <img className={styles['img']} src="/img/petDiary/cat1.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/banner.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat2.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/cat_cookie1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat3.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/cat_chocolate1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat4.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/貓貓6 1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat5.jpg" />
         </SwiperSlide>
         <SwiperNavigations />
       </Swiper>
@@ -53,19 +53,19 @@ export default function App() {
         className={`mySwiper ${styles['mySwiper']} `}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/bg2.svg" />
+          <img className={styles['img']} src="/img/petDiary/cat1.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/banner.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat2.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/cat_cookie1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat3.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/cat_chocolate1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat4.jpg" />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src="/img/貓貓6 1.jpg" />
+          <img className={styles['img']} src="/img/petDiary/cat5.jpg" />
         </SwiperSlide>
       </Swiper>
     </>

@@ -5,8 +5,8 @@ const router = express.Router()
 import { getIdParam } from '#db-helpers/db-tool.js'
 
 // 資料庫使用
-import sequelize from '#configs/db.js'
-const { Product } = sequelize.models
+// import sequelize from '#configs/db.js'
+// const { Product } = sequelize.models
 
 import db from '#configs/mysql.js'
 

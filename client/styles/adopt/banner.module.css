@@ -1,4 +1,5 @@
 /* banner */
+
 .banner {
   background-size:cover;
   height: 8rem;
@@ -350,6 +351,9 @@ margin: 0 10px
 }
 
 @media screen and (min-width: 1025px) {
+  .header{
+    height: 100px;
+  }
   .banner {
     justify-content: flex-start;;
     height: 20rem;
@@ -371,7 +375,7 @@ margin: 0 10px
     line-height: 1.8;
   }
   .middle-page-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
   }
 
