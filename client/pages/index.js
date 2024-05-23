@@ -1,4 +1,3 @@
-// pages/index.js
 import Link from 'next/link'
 import Image from 'next/image'
 import PlaceholderText from '@/components/common/placeholder-text'
@@ -17,7 +16,6 @@ export default function Home() {
         <Swiper />
       </div>
       <div className="container px-4 py-5" id="custom-cards">
-        <h2 className="pb-2 border-bottom">Custom cards</h2>
         <IndexService />
       </div>
       <div className="commend">
@@ -27,6 +25,9 @@ export default function Home() {
 
       <style global jsx>
         {`
+          .container{
+            height:800px
+          }
           .commend {
             background-image: url(/shopping-cart/commendbg.png);
             background-size: contain;
@@ -41,6 +42,7 @@ export default function Home() {
             color: var(--deep-gray);
             font-weight: 600;
           }
+
           @media screen and (max-width: 414px) {
             .commend {
             height: 25rem;
