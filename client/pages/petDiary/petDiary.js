@@ -1,7 +1,7 @@
 import React from 'react'
 import CarouselPetInfo from '@/components/swiper/blogPetImgSwiper'
 import CarouselPetLife from '@/components/swiper/blogPetLifeImgSwiper'
-import styles from '@/styles/bo-ren/blog.module.css'
+import styles from '@/styles/petDiary/petDiary.module.css'
 import banner from '@/styles/banner/banner.module.css'
 
 export default function life() {
@@ -9,7 +9,7 @@ export default function life() {
     <>
       <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+        style={{ backgroundImage: 'url(/img/petDiary/bannerBlog.jpg)' }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>LIFE</p>
@@ -48,7 +48,7 @@ export default function life() {
         <img className={styles['cat-icon']} src="/img/Frame 51.svg" alt="" />
         {/* 上傳 */}
         <div className={styles['post']}>
-          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
+          <img src="/img/petDiary/catTestImg.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']} style={{ width: '100%' }}>
             <textarea
               id="message"
@@ -95,19 +95,19 @@ export default function life() {
         </div>
         {/* 貼文 */}
         <div className={styles['post']}>
-          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
+          <img src="/img/petDiary/catTestImg.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']}>
             <p className={styles['content-word']}>
               今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。我看到它躲藏的小角落，發揮了我的靈敏和技巧，最終成功地捕獲了它。現在，我可以自豪地展示我的成就給我的主人，展現我作為家中捕鼠專家的地位！今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。我看到它躲藏的小角落，發揮了我的靈敏和技巧，最終成功地捕獲了它。現在，我可以自豪地展示我的成就給我的主人，展現我作為家中捕鼠專家的地位！
             </p>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
-              <img src="/img/Edit_1.svg" alt="" />
+              <img src="/img/petDiary/Edit_1.svg" alt="" />
             </div>
           </div>
         </div>
         <div className={styles['post']}>
-          <img src="/img/貓貓6 1.jpg" alt="" className={styles['head-img']} />
+          <img src="/img/petDiary/catTestImg.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']}>
             <p className={styles['content-word']}>
               今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。
@@ -117,7 +117,7 @@ export default function life() {
             </div>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
-              <img src="/img/Edit_1.svg" alt="" />
+              <img src="/img/petDiary/Edit_1.svg" alt="" />
             </div>
           </div>
         </div>

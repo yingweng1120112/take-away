@@ -2,17 +2,15 @@ import React, { useRef, useEffect, useState } from 'react'
 
 import CarouselPc from '@/components/swiper/shopSwiperPc'
 import CarouselPhone from '@/components/swiper/shopSwiperPhone'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
+
 import banner from '@/styles/banner/banner.module.css'
-import styles from '@/styles/bo-ren/life.module.css'
+import styles from '@/styles/petDiary/petDiarySearch.module.css'
 import { FaVenus, FaMars } from 'react-icons/fa6'
 
 export default function life() {
   return (
     <>
       <div>
-        <Header />
         <div className={styles['life-container']}>
           {/* banner start*/}
           <div
@@ -138,7 +136,10 @@ export default function life() {
           {/* banner end */}
           <div className={styles['hidden']}>
             <div className={styles['container-main-1']}>
-              <img src="/img/bg2.svg" className={styles['bg-1']} />
+              <img
+                src="/img/diarySearch/blueLine.svg"
+                className={styles['bg-1']}
+              />
               <h1 className={styles['content-word']}>
                 這裡是大家細心照料的
                 <br />
@@ -149,7 +150,7 @@ export default function life() {
               <div className={styles['project-list']}>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -163,7 +164,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -177,7 +178,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -191,7 +192,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -205,7 +206,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -219,7 +220,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -233,7 +234,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -247,7 +248,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -261,7 +262,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -275,7 +276,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -289,7 +290,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -303,7 +304,7 @@ export default function life() {
                 </div>
                 <div className={styles['item']}>
                   <img
-                    src="/img/貓貓6 1.jpg"
+                    src="/img/diarySearch/catTestImg.jpg"
                     alt=""
                     className={styles['project-pic']}
                   />
@@ -346,7 +347,10 @@ export default function life() {
             </a>
           </div>
           <div className={styles['container-main-2']}>
-            <img src="/img/bg2.svg" className={styles['bg-2']} />
+            <img
+              src="/img/diarySearch/blueLine.svg"
+              className={styles['bg-2']}
+            />
             <h1 className={styles['content-word']}>
               有了狗狗和貓貓
               <br />
@@ -382,7 +386,6 @@ export default function life() {
         <div className={styles['shop-Carousel-phone']}>
           <CarouselPhone />
         </div>
-        <Footer />
       </div>
     </>
   )

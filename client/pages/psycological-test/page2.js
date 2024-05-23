@@ -1,25 +1,134 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/psycological-test/psycological-test_p2.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { loadProducts } from '@/services/psycological_test'
 
 export default function Page1() {
+  const [questions, setQuestions] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const router = useRouter()
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      const data = await loadProducts()
+      if (data && Array.isArray(data.psycological_test)) {
+        setQuestions(data.psycological_test)
+      } else {
+        console.error('資料結構不符', data)
+      }
+    }
+    fetchQuestions()
+  }, [])
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem('totalValue') 
+      localStorage.removeItem('countOptions') 
+    } 
+
+    window.addEventListener('beforeunload', handleBeforeUnload) 
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload) 
+    } 
+  }, []) 
+
+  useEffect(() => {
+    const storedTotalValue = localStorage.getItem('totalValue') 
+    const storedCountOptions = localStorage.getItem('countOptions') 
+
+    if (storedTotalValue || storedCountOptions) {
+      router.push('/psycological-test/page1') 
+      localStorage.removeItem('totalValue') 
+      localStorage.removeItem('countOptions')
+      localStorage.removeItem('answers')  
+  
+    }
+  }, [router]) 
+
+  const updateLocalStorage = (option, isUndo = false) => {
+    const currentQuestion = questions[currentIndex]  
+    const optionValue = currentQuestion[`option_value_${option.toLowerCase()}`] 
+  
+    // 儲存分數總和
+    const totalKey = 'totalValue'  
+    const previousTotal = parseInt(localStorage.getItem(totalKey), 10) || 0  
+    const newTotal = isUndo ? previousTotal - optionValue : previousTotal + optionValue  
+    localStorage.setItem(totalKey, newTotal)
+  
+    // 儲存每個選項被選擇的次數
+    const countOptions = JSON.parse(localStorage.getItem('countOptions')) || { countA: 0, countB: 0, countC: 0, countD: 0 }
+    //更新次數
+    countOptions[`count${option.toUpperCase()}`] += isUndo ? -1 : 1
+    localStorage.setItem('countOptions', JSON.stringify(countOptions))
+  
+    //記住每個題目的選擇
+    const answers = JSON.parse(localStorage.getItem('answers')) || []  
+    if (isUndo) {
+      answers.pop()  
+    } else {
+      answers.push({ questionId: currentQuestion.question_id, option, optionValue })  
+    }
+    localStorage.setItem('answers', JSON.stringify(answers)) 
+
+
+}  
+
+  const handleAnswer = (option) => {
+
+    updateLocalStorage(option)
+    // 如果是最後一題，跳轉到結果頁面
+    if (currentIndex >= questions.length - 1) {
+      router.push('/psycological-test/page3')
+    } else {
+      // 更新問題索引
+      setCurrentIndex(currentIndex + 1)
+    }
+    
+  }
+
+  const handlePreviousQuestion = () => {
+    if (currentIndex > 0) {
+      // 獲取上一个問題的選擇值
+      const answers = JSON.parse(localStorage.getItem('answers')) || []  
+      const prevAnswer = answers.pop()  
+      if (prevAnswer) {
+        const { option, optionValue } = prevAnswer  
+        updateLocalStorage(option, true)  
+      }
+      localStorage.setItem('answers', JSON.stringify(answers))    
+
+      setCurrentIndex(currentIndex - 1)
+    }
+  }
+
+  const currentQuestion = questions[currentIndex]
+
+  if (!currentQuestion) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <Header />
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
-            <button>
+            <button
+              onClick={handlePreviousQuestion}
+              disabled={currentIndex === 0}
+            >
               <FontAwesomeIcon
                 icon={faCircleChevronLeft}
                 className={styles['iconstyle']}
               />
             </button>
             <div className={styles['questioncontent']}>
-              睜開眼，你發現處在一片迷霧森林中，進退兩難。這時候你會？
+              {currentQuestion.question_content}
             </div>
             <div>
               <a href="">
@@ -33,37 +142,65 @@ export default function Page1() {
         <div className={styles['testoption']}>
           <img src="/psycological-test/hearttestoption1.png" alt="" />
           <div className={styles['option']}>
-            <a href="" className={styles['link-container']}>
+            <a
+              href="#"
+              className={styles['link-container']}
+              onClick={(e) => {
+                e.preventDefault()
+                handleAnswer('a')
+              }}
+            >
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionA.png"
                 alt=""
               />
-              <span>小心謹慎地向前</span>
+              <span>{currentQuestion.option_a}</span>
             </a>
-            <a href="" className={styles['link-container']}>
+            <a
+              href="#"
+              className={styles['link-container']}
+              onClick={(e) => {
+                e.preventDefault()
+                handleAnswer('b')
+              }}
+            >
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionB.png"
                 alt=""
               />
-              <span>小心謹慎地向前</span>
+              <span>{currentQuestion.option_b}</span>
             </a>
-            <a href="" className={styles['link-container']}>
+            <a
+              href="#"
+              className={styles['link-container']}
+              onClick={(e) => {
+                e.preventDefault()
+                handleAnswer('c')
+              }}
+            >
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionC.png"
                 alt=""
               />
-              <span>小心謹慎地向前</span>
+              <span>{currentQuestion.option_c}</span>
             </a>
-            <a href="" className={styles['link-container']}>
+            <a
+              href="#"
+              className={styles['link-container']}
+              onClick={(e) => {
+                e.preventDefault()
+                handleAnswer('d')
+              }}
+            >
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionD.png"
                 alt=""
               />
-              <span>小心謹慎地向前</span>
+              <span>{currentQuestion.option_d}</span>
             </a>
           </div>
         </div>
