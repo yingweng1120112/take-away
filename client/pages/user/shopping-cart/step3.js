@@ -75,7 +75,7 @@ export default function Step3() {
                   <div className={styles['cartitemleft']}>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                        <img src={item.pic1} alt={item.name} />
+                        <img src={`/img/product/${item.pic1}`} alt={item.name} />
                       </div>
                       <div>{item.name}</div>
                     </div>
@@ -118,7 +118,7 @@ export default function Step3() {
                 回到商城首頁
               </a>
             </Link>
-            <Link href="#" passHref>
+            <Link href="/user/user-order-history" passHref>
               <a className={styles['buttonstyle']}>
                 查看訂單紀錄
                 <FontAwesomeIcon

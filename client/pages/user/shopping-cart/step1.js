@@ -79,7 +79,6 @@ export default function Step1() {
           <div className={`${styles['carttitle']} ${styles['carttopstyle']}`}>
             <div>
               購物車（{cartItems.length}件）
-              <Link href="/shopping-cart/testproduct">連至 商品頁</Link>
             </div>
           </div>
           <div className={styles['cartdetail']}>
@@ -111,7 +110,7 @@ export default function Step1() {
                     </div>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                      <img src={v.pic1} alt={v.name} />
+                      <img src={`/img/product/${v.pic1}`} alt={v.name} />
                       </div>
                       <div>{v.name}</div>
                     </div>
@@ -183,7 +182,7 @@ export default function Step1() {
               <div>尚未選擇商品</div>
             )}
             <div className={styles['cartbutton']}>
-              <Link href="#" passHref>
+            <Link href="/product/menu" passHref>
                 <a className={styles['buttonstyle']}>
                   <FontAwesomeIcon
                     icon={faStore}
@@ -192,7 +191,7 @@ export default function Step1() {
                   繼續購物
                 </a>
               </Link>
-              <Link href="/shopping-cart/step2" passHref>
+              <Link href="/user/shopping-cart/step2" passHref>
                 <a className={styles['buttonstyle']}>
                   填寫資料
                   <FontAwesomeIcon

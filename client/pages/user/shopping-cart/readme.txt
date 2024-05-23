@@ -1,4 +1,6 @@
-商品資料頁出來後   quantity.js加
+1.送貨資料 的送貨方式 要選擇才會記住"送貨方式"的資料 要設定預設為"宅配"
+   時間格式要設定 (目前不是當下的時間)
+2.商品資料頁出來後   quantity.js加
 
 import React, { useState, useEffect } from 'react'
 import styles from '@/styles/product/information.module.css'
@@ -84,7 +86,7 @@ export default function Quantity({ product }) {
   )
 }
 
-商品列表頁更新後   menu.js加
+3.商品列表頁更新後   menu.js加
 import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Banner from './bannerShopSelect'

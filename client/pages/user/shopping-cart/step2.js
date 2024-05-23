@@ -484,7 +484,7 @@ export default function Step2() {
               <div>${countSelectedFinalTotalPrice()}</div>
             </div>
             <div className={styles['cartbutton']}>
-              <Link href="/shopping-cart/step1" passHref>
+              <Link href="/user/shopping-cart/step1" passHref>
                 <a className={styles['buttonstyle']}>
                   <FontAwesomeIcon
                     icon={faAnglesLeft}
@@ -493,7 +493,7 @@ export default function Step2() {
                   回上一步
                 </a>
               </Link>
-              <Link href="/shopping-cart/step3" passHref>
+              <Link href="/user/shopping-cart/step3" passHref>
                 <a
                   className={styles['buttonstyle']}
                   onClick={handleOrderButtonClick}
