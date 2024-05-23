@@ -4,6 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 900px;
 }
 
 /* banner服務項目 */
@@ -97,6 +98,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: 900px;
   }
 
   /* banner服務項目 */
