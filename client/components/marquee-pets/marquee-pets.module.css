@@ -1,0 +1,289 @@
+.marquee {
+  --gap: 100px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+  animation: scroll;
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Pause animation when reduced-motion is set */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__content {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Enable animation */
+.enable-animation .marquee__content {
+  animation: scroll 10s linear infinite;
+}
+
+/* Pause on hover */
+.marquee--hover-pause:hover .marquee__content {
+  animation-play-state: paused;
+}
+
+/* Attempt to size parent based on content. Keep in mind that the parent width is equal to both content containers that stretch to fill the parent. */
+.marquee--fit-content {
+  max-width: fit-content;
+}
+
+/* A fit-content sizing fix: Absolute position the duplicate container. This will set the size of the parent wrapper to a single child container. Shout out to Olavi's article that had this solution 👏 @link: https://olavihaapala.fi/2021/02/23/modern-marquee.html  */
+.marquee--pos-absolute .marquee__content:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Enable position absolute animation on the duplicate content (last-child) */
+.enable-animation .marquee--pos-absolute .marquee__content:last-child {
+  animation-name: scroll-abs;
+}
+
+@keyframes scroll-abs {
+  from {
+    transform: translateX(calc(100% + var(--gap)));
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Other page demo styles */
+.marquee__content > * {
+  flex: 0 0 auto;
+  margin: 2px;
+  text-align: center;
+}
+
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+} */
+
+.enable-animation > h1 {
+  margin: 50px;
+  margin-top: 100px;
+  padding-top: 20px;
+  padding-right: 20px;
+  line-height: 80px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 40px;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-image: url('../../public/img/titlebg.png');
+  background-repeat: no-repeat;
+}
+
+/* section {
+  width: 100%;
+} */
+
+/* section>*+* {
+  margin-block-start: 0.5rem;
+} */
+
+.pet-card {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pet-card > img {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+}
+
+.card-desc {
+  width: 100%;
+  padding: 0 0 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-weight: 600;
+  color: rgba(24, 39, 71, 0.5);
+}
+
+.card-desc > p {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+  color: var(--brown);
+}
+
+.card-desc > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-desc > div > img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  opacity: 50%;
+}
+
+.cta {
+  border: none;
+  cursor: pointer;
+  background-color: var(--khaki);
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.cta:hover {
+  border: none;
+  cursor: pointer;
+  background-color: var(--khaki);
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  padding-right: 15px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* TODO: 手機版 */
+/* 手機版 */
+@media screen and (max-width: 414px) {
+  .marquee {
+    --gap: 50px;
+  }
+
+  .enable-animation > h1 {
+    width: 100%;
+    font-size: 28px;
+    line-height: 50px;
+    letter-spacing: 10px;
+    padding-bottom: 5px;
+    margin: 30px 0 50px 0;
+  }
+
+  .pet-card > img {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+  }
+
+  .card-desc {
+    width: 180px;
+    padding: 0 0 0 5%;
+  }
+
+  .card-desc > span {
+    font-size: 14px;
+  }
+
+  .card-desc > p {
+    padding: 0;
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: 20px;
+    line-height: 2rem;
+  }
+
+  .card-desc > div {
+    font-size: 14px;
+  }
+
+  .card-desc > div > img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .cta {
+    width: 100%;
+    height: 30px;
+    border-radius: 50px;
+  }
+
+  .cta span {
+    padding-bottom: 7px;
+    padding-right: 15px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  #arrow-horizontal {
+    width: 20px;
+  }
+}

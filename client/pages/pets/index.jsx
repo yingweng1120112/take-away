@@ -3,38 +3,289 @@ import { loadPetInfos } from '@/services/pets'
 import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import banner from '@/styles/banner/banner.module.css'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 export default function PetList() {
+  // 最後得到的資料
   const [pets, setPets] = useState([])
+  const [pageCount, setPageCount] = useState(1)
+  // 分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(9)
 
-  const getPet = async () => {
-    const data = await loadPetInfos()
-    console.log('從 loadPetInfos 獲取的數據:', data)
+  // 查詢條件用
+  const [nameLike, setNameLike] = useState('')
+  const [type, setType] = useState([])
+
+  // 物種選項陣列
+  const typeOptions = ['狗狗', '貓貓']
+
+  // 加入參詢條件params物件
+  const getPet = async (params) => {
+    // //開載入動畫函式
+    // showLoader()
+
+    setPets([]) // 清空之前的寵物資料
+
+    const data = await loadPetInfos(params)
+    console.log('從 loadPetInfos 獲取的資料:', data)
     // 確認資料結構是否與原始專案相符，並設置到狀態中
-
-    if (Array.isArray(data)) {
-      console.log('設pets 狀態: ', data)
-      setPets(data)
-    } else {
-      console.log('數據結構不符合預期:', data)
+    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
+    if (data.pageCount && typeof data.pageCount === 'number') {
+      setPageCount(data.pageCount)
     }
-    console.log(data)
+
+    // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+    // 因應要分頁和查詢，所以回應改為整個data，pet_info是data.pet_infos
+    if (Array.isArray(data.pet_info)) {
+      console.log('設pets 狀態: ', data.pet_info)
+      setPets(data.pet_info)
+    } else {
+      console.log('數據結構不符合預期:', data.pet_info)
+    }
+    console.log(data.pet_info)
   }
 
+  // 物種複選時使用
+  const handleTypeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (type.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextType = type.filter((v) => v !== tv)
+      setType(nextType)
+    } else {
+      // 否則===>加入陣列
+      const nextType = [...type, tv]
+      setType(nextType)
+    }
+  }
+
+  // 按下搜尋按鈕
+  const handleSearch = () => {
+    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+    setPage(1)
+
+    const params = {
+      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+      perpage,
+      name_like: nameLike,
+    }
+    getPet(params)
+  }
+
+  // 樣式3: didMount + didUpdate
   useEffect(() => {
-    getPet()
-  }, [])
+    const params = {
+      page,
+      perpage,
+    }
+
+    getPet(params)
+  }, [page, perpage])
 
   useEffect(() => {
     console.log('當前的 pets 狀態:', pets) // 確認 pets 狀態更新
+    console.log('現在的頁數: ', page)
   }, [pets])
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   return (
     <>
-    <Header />
+      <Header />
+
+      {/* banner */}
+      <div
+        className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
+        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)' }}
+      ></div>
+      <div className={banner['banner-select']}>
+        <div
+          className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
+          style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
+        >
+          <div className={banner['left']}>
+            <p className={banner['menu-a']}>PETS</p>
+            <p className={banner['menu-b']}>汪汪喵喵</p>
+          </div>
+          <div className={banner['middle']}>
+            <div
+              className={`accordion ${banner['accordion']}`}
+              id="accordionExample"
+            >
+              <button
+                className={`accordion-button ${banner['accordion-button']}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <span className={banner['middle-page-title']}>收容資訊</span>
+                <span>選擇寵物</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div className={`accordion-body ${banner['accordion-body']}`}>
+            <div className={banner['select']}>
+              <div className={banner['select-left']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇年齡</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>幼年 0 ~ 1 歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>青年 2 ~ 3 歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中年 4 ~ 7 歲</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>老年 8 歲以上</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>寵物體型</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>大型 20 kg 以上</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中型 8 ~ 20 kg</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>小型 8 kg 以下</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇物種</p>
+                  <div className={banner['select-item']}>
+                    {typeOptions.map((v, i) => {
+                      return (
+                        <label
+                          className={banner['cl-checkbox']}
+                          // 當初次render後不會再改動，即沒有新增、刪除、更動時，可以用索引當key
+                          key={i}
+                        >
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={type.includes(v)}
+                            onChange={(e) => {
+                              handleTypeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}寶貝</span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div className={banner['select-right']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>選擇地區</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>北部</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>中部</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>南部</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>測驗類別</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>敏感型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>樂天型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>獨立型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>自信型</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>適應型</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-b']}>
+                  <p className={banner['select-title']}>性別</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>男生</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input type="checkbox" />
+                      <span>女生</span>
+                    </label>
+                  </div>
+                  <p className={banner['select-title']}> 毛孩搜尋 </p>
+                  <div className={`mb-3 ${banner['shop-select-out']}`}>
+                    <input
+                      type="text"
+                      className={`form-control ${banner['shop-select']}`}
+                      id="exampleFormControlInput1"
+                      value={nameLike}
+                      onChange={(e) => {
+                        setNameLike(e.target.value)
+                      }}
+                    />
+                  </div>
+                  <button onClick={handleSearch}>搜尋</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className={styles['commendbody']}>
         <section className={styles['title']}>
           <h1>
@@ -47,69 +298,99 @@ export default function PetList() {
         <section className={styles['pet-card']}>
           {pets.map((v, i) => {
             return (
-            <Link href={`/pets/${v.pet_id}`}>
-              <div className={styles['card']}>
-                <div className={styles['card-img']}>
-                  <p className={styles['state']} key={v.pet_id}>
-                    {v.state}
-                  </p>
-                  <img
-                    key={v.pet_id}
-                    src={`/img/pet-info/${v.phone1}.jpg`}
-                    alt=""
-                  />
-                  <FaHeart className={styles['favorite']} />
-                </div>
-                <div className={styles['pet-name']}>
-                  <span key={v.pet_id}>{v.tag}</span>
-                  <p key={v.pet_id}>{v.name}</p>
-                  <div className={styles['pet-desc']}>
-                    <span key={v.pet_id}>今年約莫 {v.age}歲</span>
-                    <img src="/img/pets/icon_boy.png" alt="" />
+              <Link href={`/pets/${v.pet_id}`}>
+                <div className={styles['card']}>
+                  <div className={styles['card-img']}>
+                    <p className={styles['state']} key={v.pet_id}>
+                      {v.state}
+                    </p>
+                    <img
+                      key={v.pet_id}
+                      src={`/img/pet-info/${v.phone1}.jpg`}
+                      alt=""
+                    />
+                    <FaHeart className={styles['favorite']} />
+                  </div>
+                  <div className={styles['pet-name']}>
+                    <span key={v.pet_id}>{v.tag}</span>
+                    <p key={v.pet_id}>{v.name}</p>
+                    <div className={styles['pet-desc']}>
+                      <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                      {v.gender === '男生' ? (
+                        <img
+                          src="/img/pets/icon_boy.png"
+                          alt=""
+                          draggable="false"
+                        />
+                      ) : (
+                        <img
+                          src="/img/pets/icon_girl.png"
+                          alt=""
+                          draggable="false"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
             )
           })}
         </section>
-        {/* TODO: 分頁 */}
 
-        {/* TODO: load商品 */}
         <section className={styles['wp-pagenavi']}>
           <span>
-            <a
-              className={`${styles['page']} ${styles['previouspostslink']}`}
-              href="#"
-            >
-              <IoIosArrowBack />
+            <a className={`${styles['page']} ${styles['previouspostslink']}`}>
+              <IoIosArrowBack
+                onClick={() => {
+                  // 最小頁面是1(不能小於1)
+                  const nextPage = page - 1 > 1 ? page - 1 : 1
+                  setPage(nextPage)
+                  scrollTo(0, 0)
+                }}
+              />
             </a>
           </span>
-          <span>
-            <a className={styles['page']} href="#">
-              1
-            </a>
+          {page - 1 >= 1 && (
+            <span>
+              <a
+                className={styles['page']}
+                onClick={() => {
+                  handlePageClick(page - 1)
+                }}
+              >
+                {page - 1}
+              </a>
+            </span>
+          )}
+          <span
+            className={styles['current']}
+            onClick={() => {
+              scrollTo(0, 0)
+            }}
+          >
+            {page}
           </span>
-          <span>
-            <a className={styles['page']} href="#">
-              2
-            </a>
-          </span>
-          <span className={styles['current']}>3</span>
-          <span>
-            <a className={styles['page']} href="#">
-              4
-            </a>
-          </span>
-          <span>
-            <a className={styles['page']} href="#">
-              5
-            </a>
-          </span>
+          {page + 1 <= pageCount && (
+            <span>
+              <a
+                className={styles['page']}
+                onClick={() => {
+                  handlePageClick(page + 1)
+                }}
+              >
+                {page + 1}
+              </a>
+            </span>
+          )}
           <span>
             <a
               className={`${styles['page']} ${styles['nextpostslink']}`}
-              href="#"
+              onClick={() => {
+                // 最大頁面不能大於總頁數pageCount
+                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                setPage(nextPage)
+                scrollTo(0, 0)
+              }}
             >
               <IoIosArrowForward />
             </a>
@@ -146,6 +427,7 @@ export default function PetList() {
           </button>
         </section>
 
+        {/* TODO: load商品 */}
         <section className={styles['marquee_shop']}>
           <div
             className={`${styles.marquee} ${styles['marquee--hover-pause']} ${styles['enable-animation']}`}
@@ -194,7 +476,7 @@ export default function PetList() {
           </div>
         </section>
       </div>
-    <Footer />
+      <Footer />
     </>
   )
 }
