@@ -1,4 +1,10 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import styles from './member.module.css'
+import Link from 'next/link'
+import LineLogo from '@/components/icons/line-logo'
+import GoogleLogo from '@/components/icons/google-logo'
+import FacebookLogo from '@/components/icons/facebook-logo'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 // 解析accessToken用的函式
 const parseJwt = (token) => {
@@ -82,7 +88,7 @@ export default function LoginForm() {
     // 表單檢查--- END ---
 
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/login-form', {
+    const res = await fetch('http://localhost:3005/api/members/login', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -105,7 +111,7 @@ export default function LoginForm() {
 
   const handleLogout = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/logout', {
+    const res = await fetch('http://localhost:3005/api/members/logout', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -126,7 +132,7 @@ export default function LoginForm() {
 
   const handleCheck = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/check', {
+    const res = await fetch('http://localhost:3005/api/members/check', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'GET',
       headers: {
@@ -143,89 +149,101 @@ export default function LoginForm() {
       alert(data.message)
     }
   }
-
   return (
-    <>
-      <h1>會員登入表單</h1>
+    <main className={`form-member w-25 m-auto text-center`}>
+      <h2 className="text-center mb-5">會員登入</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            {/* 使用表單元素都應給name屬性 */}
-            帳號:{' '}
+        <div className="row mb-3">
+          <div className="col-sm-12">
             <input
-              type="text"
-              name="username"
+              className={`form-control w-100 ${styles['form-control']} `}
+              type="email"
+              placeholder="電子郵件地址"
               value={user.username}
               onChange={handleFieldChange}
             />
-          </label>
+          </div>
+          <div className={`${styles['error']} my-2 text-start`}>
+            {errors.email}
+          </div>
         </div>
-        <div className="error">{errors.username} </div>
-        <div>
-          <label>
-            密碼:{' '}
+        <div className="row mb-3">
+          <div className="col-sm-12 d-flex">
             <input
               type={showPassword ? 'text' : 'password'}
+              className={`form-control w-100 ${styles['form-control']} ${styles['invalid']} `}
+              placeholder="密碼"
               name="password"
               value={user.password}
               onChange={handleFieldChange}
             />
-          </label>
-          <input
-            type="checkbox"
-            checked={showPassword}
-            onChange={(e) => {
-              setShowPassword(e.target.checked)
-            }}
-          />
-          顯示密碼
+            <span
+              // className="ml-3"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{ cursor: 'pointer' }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+          <div className={`${styles['error']} my-2 text-start`}>
+            請輸入密碼。
+          </div>
         </div>
-        <div className="error">{errors.password}</div>
-        <div>
-          <label>
-            確認密碼:{' '}
-            <input
-              type="password"
-              name="password2"
-              value={user.password2}
-              onChange={handleFieldChange}
-            />
-          </label>
+        <div className="row mb-3">
+          <div className="col-sm-6 text-start">
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                id="gridCheck1"
+              />
+              <label
+                className={`form-check-label  ${styles['notice']}`}
+                htmlFor="gridCheck1"
+              >
+                保持登入狀態
+              </label>
+            </div>
+          </div>
+          <div className="col-sm-4 offset-sm-2 test-end">
+            <Link
+              href="/member/forget-password"
+              className={`${styles['notice']}`}
+            >
+              忘記密碼？
+            </Link>
+          </div>
         </div>
-        <div className="error">{errors.password2}</div>
+        <div className="row mb-2">
+          <p className={`${styles['notice']}`}>
+            如登入，即代表同意本站
+            <Link href="/about">隱私權政策</Link>和
+            <Link href="/about">使用條款</Link>。
+          </p>
+        </div>
 
-        <div>
-          {/* form標記中的button最好加上類型，預設是submit，會觸發表單的submit事件 */}
-          <button type="submit">登入</button>
-          <button
-            type="button"
-            onClick={() => {
-              setUser({
-                username: 'ron',
-                password: '123456',
-                password2: '123456',
-              })
-            }}
-          >
-            一鍵填入
-          </button>
-          <button type="button" onClick={handleCheck}>
-            檢查登入狀況
-          </button>
-          <button type="button" onClick={handleLogout}>
-            登出
-          </button>
+        <button type="submit" className="btn btn-primary w-100">
+          登入
+        </button>
+
+        <div className="row mt-2">
+          <p className={`${styles['notice']}`}>
+            還不是會員？
+            <Link href="/member/register">加入我們</Link>。
+          </p>
+        </div>
+
+        <div className={`mb-3 ${styles['hr-sect']}`}>快速登入</div>
+        <div className="row mb-2">
+          <div className="col-sm-12 text-start">
+            <div className="d-flex justify-content-center">
+              <LineLogo className="mx-3" />
+              <GoogleLogo className="mx-3" />
+              <FacebookLogo className="mx-3" />
+            </div>
+          </div>
         </div>
       </form>
-      <style jsx>
-        {`
-          .error {
-            color: red;
-            font-size: 13px;
-            height: 16px;
-          }
-        `}
-      </style>
-    </>
+    </main>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '@/styles/faq/faqshopping.module.css'
+import styles from '@/styles/faq/faqshopping1.module.css'
 import {
   FaMagnifyingGlass,
   FaCartShopping,
@@ -13,8 +13,10 @@ import {
   FaPaw,
 } from 'react-icons/fa6'
 import { IoPawOutline, IoPawSharp } from 'react-icons/io5'
-import Reportform from './faqreport1'
+import ReportForm from './faqreport2'
 import Faqlist from './faqlist'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 export default function Faqshopping() {
   const [openModal, setopenModal] = useState(false)
@@ -27,6 +29,9 @@ export default function Faqshopping() {
   }
   return (
     <>
+    <Header />
+    {/* 保留給banner */}
+    {/*  */}
       <div className={styles['onlyforbgc']}>
         <div className={styles['container_faq']}>
           <div className={styles['box_search']}>
@@ -127,7 +132,7 @@ export default function Faqshopping() {
                 alt=""
               />
             </a>
-            <Reportform open={openModal} onClose={() => setopenModal(false)} />
+            <ReportForm open={openModal} onClose={() => setopenModal(false)} />
             <div>
               <img
                 className={styles['img_res2']}
@@ -138,6 +143,7 @@ export default function Faqshopping() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

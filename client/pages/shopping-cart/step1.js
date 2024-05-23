@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import Link from 'next/link'
 import styles from '@/styles/shopping-cart/shoppingcar-step1.module.css'
 import Carousel from '@/components/shopping-cart/carousel'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
-import Link from 'next/link'
 
 export default function Step1() {
   const {
@@ -22,40 +22,29 @@ export default function Step1() {
     removeItem,
     increaseItem,
     decreaseItem,
-    totalPrice,
-    extraFee,
-    finalTotalPrice,
+    selectedItems,
+    setSelectedItems,
+    handleToggleChecked,
+    countSelectedTotalPrice,
+    countSelectedFinalTotalPrice,
+    countSelectedExtraFee,
   } = useCart()
 
-  const [selectedItems, setSelectedItems] = useState([])
+
 
   useEffect(() => {
-    const initState = cartItems.map((item) => ({
-      ...item,
-      checked:
-        selectedItems.find(
+    setSelectedItems(prevState => {
+      const nextState = cartItems.map((item) => ({
+        ...item,
+        checked: prevState.find(
           (selected) => selected.product_id === item.product_id
         )?.checked || false,
-    }))
-    setSelectedItems(initState)
-  }, [cartItems])
-
-  const handleToggleChecked = (product_id) => {
-    const nextItems = selectedItems.map((item) =>
-      item.product_id === product_id
-        ? { ...item, checked: !item.checked }
-        : item
-    )
-    setSelectedItems(nextItems)
-  }
-
-  const selectedTotalPrice = selectedItems
-    .filter((item) => item.checked)
-    .reduce((acc, item) => acc + item.subTotal, 0)
-
-  const selectedFinalTotalPrice =
-    selectedTotalPrice < 899 ? selectedTotalPrice + 80 : selectedTotalPrice
-  const selectedExtraFee = selectedTotalPrice < 899 ? '80' : '0'
+      }));
+      return nextState;
+    });
+  }, [cartItems]);
+  
+  
 
   return (
     <>
@@ -116,13 +105,13 @@ export default function Step1() {
                         type="checkbox"
                         checked={selectedItem?.checked || false}
                         onChange={() =>
-                          handleToggleChecked(selectedItem.product_id)
+                          handleToggleChecked(v.product_id)
                         }
                       />
                     </div>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                        <img src="/shopping-cart/car-item1.png" alt="" />
+                      <img src={v.pic1} alt={v.name} />
                       </div>
                       <div>{v.name}</div>
                     </div>
@@ -175,11 +164,11 @@ export default function Step1() {
               <>
                 <div>
                   <div>小計：</div>
-                  <div>${selectedTotalPrice}</div>
+                  <div>${countSelectedTotalPrice()}</div>
                 </div>
                 <div>
                   <div>運費(滿899免運)：</div>
-                  <div>${selectedExtraFee}</div>
+                  <div>${countSelectedExtraFee()}</div>
                 </div>
                 <div>
                   <div>優惠：</div>
@@ -187,27 +176,31 @@ export default function Step1() {
                 </div>
                 <div>
                   <div>合計：</div>
-                  <div>${selectedFinalTotalPrice}</div>
+                  <div>${countSelectedFinalTotalPrice()}</div>
                 </div>
               </>
             ) : (
               <div>尚未選擇商品</div>
             )}
             <div className={styles['cartbutton']}>
-              <button className={styles['buttonstyle']}>
-                <FontAwesomeIcon
-                  icon={faStore}
-                  className={styles['iconstyle1']}
-                />
-                繼續購物
-              </button>
-              <button className={styles['buttonstyle']}>
-                填寫資料
-                <FontAwesomeIcon
-                  icon={faAnglesRight}
-                  className={styles['iconstyle2']}
-                />
-              </button>
+              <Link href="#" passHref>
+                <a className={styles['buttonstyle']}>
+                  <FontAwesomeIcon
+                    icon={faStore}
+                    className={styles['iconstyle1']}
+                  />
+                  繼續購物
+                </a>
+              </Link>
+              <Link href="/shopping-cart/step2" passHref>
+                <a className={styles['buttonstyle']}>
+                  填寫資料
+                  <FontAwesomeIcon
+                    icon={faAnglesRight}
+                    className={styles['iconstyle2']}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         </div>
