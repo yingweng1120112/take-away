@@ -92,7 +92,9 @@ export default function Page1() {
   }
 
   const handlePreviousQuestion = () => {
-    if (currentIndex > 0) {
+    if (currentIndex === 0) {
+      router.push('/psycological-test/page1')
+    } else {
       // 獲取上一个問題的選擇值
       const answers = JSON.parse(localStorage.getItem('answers')) || []  
       const prevAnswer = answers.pop()  
@@ -101,7 +103,6 @@ export default function Page1() {
         updateLocalStorage(option, true)  
       }
       localStorage.setItem('answers', JSON.stringify(answers))    
-
       setCurrentIndex(currentIndex - 1)
     }
   }
@@ -118,13 +119,15 @@ export default function Page1() {
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
-            <button
-              onClick={handlePreviousQuestion}
-              disabled={currentIndex === 0}
+            <button 
+              style={{cursor: "default"}}
             >
               <FontAwesomeIcon
                 icon={faCircleChevronLeft}
                 className={styles['iconstyle']}
+                onClick={handlePreviousQuestion}
+              disabled={false}
+              style={{cursor: "pointer"}}
               />
             </button>
             <div className={styles['questioncontent']}>
