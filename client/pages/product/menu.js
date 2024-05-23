@@ -73,14 +73,26 @@ const sample = [
 
 export default function Menu() {
   //最後得到的資料
+  const [total, setTotal] = useState(0)
+  const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
 
-  //
+  //分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(12)
+
   const getProducts = async () => {
     const data = await loadProducts()
     console.log(data)
 
     //因應要分頁和查詢，所以回應改為整個data的products是data.products
+    if(data.pageCount && typeof data.pageCount === 'number') {
+      setPageCount(data.pageCount)
+    }
+    if(data.total && typeof data.total === 'number') {
+      setTotal(data.total)
+    }
+    
     if (Array.isArray(data.products)) {
       console.log('設products 狀態: ', data.products)
       setProducts(data.products)
@@ -122,6 +134,14 @@ export default function Menu() {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  //
+  const handleCartClick = (event) => {
+    // 阻止事件冒泡以防止触发 Link 的跳转
+    event.stopPropagation();
+    // 在这里添加购物车的处理逻辑
+    console.log('Added to cart');
+  };
 
   return (
     <>
@@ -268,7 +288,7 @@ export default function Menu() {
       <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
           <div className={styles['search-results']}>
-            <h5>找到 10 筆商品</h5>
+            <h5>找到 {total} 筆商品</h5>
             <img src="/img/menu/footprint-banner.svg" alt="" />
           </div>
           <img
@@ -295,7 +315,7 @@ export default function Menu() {
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']}>
+                      <button className={styles['cart-btn']} onClick={handleCartClick}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
