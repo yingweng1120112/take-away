@@ -4,19 +4,15 @@ import Image from 'next/image'
 import PlaceholderText from '@/components/common/placeholder-text'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
-<<<<<<< HEAD
 import Swiper from '@/components/swiper/indexSwiper'
 import styles from '@/styles/swiper/indexSwipper.module.css'
-=======
 import ProductCarousel from '@/components/shopping-cart/carousel'
 import IndexService from '@/components/index-service/indexservice'
 
->>>>>>> 3a688093e85610a719e424fb07bd6beb24f42c5e
 export default function Home() {
   return (
     <>
       <Header />
-<<<<<<< HEAD
       <div    className={styles['inswipper']}>
       <Swiper />
     </div>
@@ -62,7 +58,6 @@ export default function Home() {
       </div>
       <div className="container px-4 py-5" id="custom-cards">
         <h2 className="pb-2 border-bottom">Custom cards</h2>
-=======
     <IndexService />
 
 
@@ -70,7 +65,6 @@ export default function Home() {
         <h3 className="commendtitle">產品推薦</h3>
         <ProductCarousel />
       </div>
->>>>>>> 3a688093e85610a719e424fb07bd6beb24f42c5e
 
       <style global jsx>
         {`
