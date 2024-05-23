@@ -7,6 +7,7 @@ import MenuSwiper from '@/pages/product/menu_swiper'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
 import { loadProducts } from '@/services/product'
+import { useCart } from '@/context/cartcontext' //購物車加的
 
 const sample = [
   {
@@ -61,9 +62,10 @@ const sample = [
 
 export default function Menu() {
   const [products, setProducts] = useState([])
+  const { addToCart } = useCart() //購物車加的
   const getProducts = async () => {
     const data = await loadProducts()
-    console.log(data);
+    console.log(data)
 
     if (Array.isArray(data.products)) {
       console.log('設products 狀態: ', data.products)
@@ -78,8 +80,8 @@ export default function Menu() {
   }, [])
 
   const truncate = (str, n) => {
-    return str.length > n ? str.substring(0, n - 1) + '...' : str;
-  };
+    return str.length > n ? str.substring(0, n - 1) + '...' : str
+  }
 
   return (
     <>
@@ -115,7 +117,12 @@ export default function Menu() {
                   />
                   <p className="p">{truncate(product.name, 17)}</p>
                   <div>
-                    <button className={styles['cart-btn']}>
+                    <button
+                      className={styles['cart-btn']}
+                      onClick={() => {
+                        addToCart(product) //購物車加的
+                      }}
+                    >
                       <svg
                         id="arrow-horizontal"
                         xmlns="http://www.w3.org/2000/svg"
