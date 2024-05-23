@@ -135,9 +135,8 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  //
+  // 阻止事件冒泡以防止触发 Link 的跳转
   const handleCartClick = (event) => {
-    // 阻止事件冒泡以防止触发 Link 的跳转
     event.stopPropagation();
     // 在这里添加购物车的处理逻辑
     console.log('Added to cart');
