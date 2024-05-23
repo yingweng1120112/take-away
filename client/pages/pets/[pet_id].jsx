@@ -242,7 +242,7 @@ export default function PetInfo() {
               <li>{pet.breeds}</li>
             </ul>
             <div className={styles['pet-btn']}>
-              <Link href={`/pets/adopt/${pet.pet_id}`}>
+              <Link href={`/adopt/${pet.pet_id}`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
                     預約賞寵
@@ -263,7 +263,7 @@ export default function PetInfo() {
                   </svg>
                 </button>
               </Link>
-              <Link href={`/pets/reserve/${pet.pet_id}`}>
+              <Link href={`/reserve/${pet.pet_id}`}>
                 <button className={styles['cta']}>
                   <span className={styles['hover-underline-animation']}>
                     線上認養
@@ -503,7 +503,7 @@ export default function PetInfo() {
             </li>
           </ul>
           <div className={styles['score-btn']}>
-            <Link href={`/pets/reserve/${pet.pet_id}`}>
+            <Link href={`/reserve/${pet.pet_id}`}>
               <button className={styles['cta']}>
                 <span className={styles['hover-underline-animation']}>
                   預約賞寵
@@ -524,7 +524,7 @@ export default function PetInfo() {
                 </svg>
               </button>
             </Link>
-            <Link href={`/pets/adopt/${pet.pet_id}`}>
+            <Link href={`/adopt/${pet.pet_id}`}>
               <button className={styles['cta']}>
                 <span className={styles['hover-underline-animation']}>
                   線上認養
