@@ -10,14 +10,14 @@ const parseJwt = (token) => {
 export default function LoginForm() {
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
   const [user, setUser] = useState({
-    username: '',
+    phone: '',
     password: '',
     password2: '',
   })
 
   // 記錄欄位錯誤訊息的狀態
   const [errors, setErrors] = useState({
-    username: '',
+    phone: '',
     password: '',
     password2: '',
   })
@@ -43,13 +43,13 @@ export default function LoginForm() {
 
     // 表單檢查---START---
     // 建立一個新的錯誤訊息物件
-    const newErrors = { username: '', password: '', password2: '' }
+    const newErrors = { phone: '', password: '', password2: '' }
 
-    // if (user.username === '') {
-    // 上面寫法常見改為下面這樣，`if(user.username)` 代表有填寫，
-    // 所以反相判斷 `if(!user.username)` 代表沒填寫
-    if (!user.username) {
-      newErrors.username = '帳號為必填'
+    // if (user.phone === '') {
+    // 上面寫法常見改為下面這樣，`if(user.phone)` 代表有填寫，
+    // 所以反相判斷 `if(!user.phone)` 代表沒填寫
+    if (!user.phone) {
+      newErrors.phone = '帳號為必填'
     }
 
     if (user.password && user.password.length < 6) {
@@ -82,7 +82,7 @@ export default function LoginForm() {
     // 表單檢查--- END ---
 
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/login-form', {
+    const res = await fetch('http://localhost:3005/api/users/login', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -105,7 +105,7 @@ export default function LoginForm() {
 
   const handleLogout = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/logout', {
+    const res = await fetch('http://localhost:3005/api/users/logout', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'POST',
       headers: {
@@ -126,7 +126,7 @@ export default function LoginForm() {
 
   const handleCheck = async () => {
     // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/user/check', {
+    const res = await fetch('http://localhost:3005/api/users/check', {
       credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
       method: 'GET',
       headers: {
@@ -154,13 +154,13 @@ export default function LoginForm() {
             帳號:{' '}
             <input
               type="text"
-              name="username"
-              value={user.username}
+              name="phone"
+              value={user.phone}
               onChange={handleFieldChange}
             />
           </label>
         </div>
-        <div className="error">{errors.username} </div>
+        <div className="error">{errors.phone} </div>
         <div>
           <label>
             密碼:{' '}
@@ -201,7 +201,7 @@ export default function LoginForm() {
             type="button"
             onClick={() => {
               setUser({
-                username: 'ron',
+                phone: 'ron',
                 password: '123456',
                 password2: '123456',
               })
