@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
-import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -10,6 +9,8 @@ import { loadProducts } from '@/services/product'
 import { loadPetInfos } from '@/services/pets'
 import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import styles3 from '@/styles/pets/petList.module.css'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -20,8 +21,7 @@ import swiper1 from '@/styles/product/menu_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
-//分頁用
-import BS5Pagination from '@/components/common/bs5-pagination'
+
 
 const sample = [
   {
@@ -137,6 +137,14 @@ export default function Menu() {
     getProducts(params)
     getPet()
   }, [page, perpage])
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   console.log([pets])
   //上下限
@@ -348,57 +356,65 @@ export default function Menu() {
               </Link>
             ))}
           </ol>
-          <div
-            className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
-            role="navigation"
+          <section className={styles3['wp-pagenavi']}>
+          <span>
+            <a className={`${styles3['page']} ${styles3['previouspostslink']}`}>
+              <IoIosArrowBack
+                onClick={() => {
+                  // 最小頁面是1(不能小於1)
+                  const nextPage = page - 1 > 1 ? page - 1 : 1
+                  setPage(nextPage)
+                  scrollTo(0, 0)
+                }}
+              />
+            </a>
+          </span>
+          {page - 1 >= 1 && (
+            <span>
+              <a
+                className={styles3['page']}
+                onClick={() => {
+                  handlePageClick(page - 1)
+                }}
+              >
+                {page - 1}
+              </a>
+            </span>
+          )}
+          <span
+            className={styles3['current']}
+            onClick={() => {
+              scrollTo(0, 0)
+            }}
           >
-            <a className={pagination.first} aria-label="First Page" href="#" onClick={()=>{
-              //最小頁面是1(不能小於1)
-              const nextPage = page - 1 > 1 ? page - 1 : 1
-              setPage(nextPage)
-            }}>
-              «
-            </a>
+            {page}
+          </span>
+          {page + 1 <= pageCount && (
+            <span>
+              <a
+                className={styles3['page']}
+                onClick={() => {
+                  handlePageClick(page + 1)
+                }}
+              >
+                {page + 1}
+              </a>
+            </span>
+          )}
+          <span>
             <a
-              className={pagination.previouspostslink}
-              rel="prev"
-              aria-label="Following-page"
-              href="#"
+              className={`${styles3['page']} ${styles3['nextpostslink']}`}
+              onClick={() => {
+                // 最大頁面不能大於總頁數pageCount
+                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                setPage(nextPage)
+                scrollTo(0, 0)
+              }}
             >
-              &lt;
+              <IoIosArrowForward />
             </a>
-            <a className={pagination.page} href="#">
-              1
-            </a>
-            <a className={pagination.page} href="#">
-              2
-            </a>
-            <a className={pagination.page} href="#">
-              3
-            </a>
-            {/* <span aria-current="page" class="current">5</span> */}
-            <a className={pagination.page} href="#">
-              4
-            </a>
-            <a className={pagination.page} href="#">
-              5
-            </a>
-            <a
-              className={pagination.nextpostslink}
-              rel="next"
-              aria-label="次のページ"
-              href="#"
-            >
-              &gt;
-            </a>
-            <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
-              //最大頁面不能大於總頁數pageCount
-              const nextPage = page + 1 < pageCount ? page + 1 : pageCount
-              setPage(nextPage)
-            }}>
-              »
-            </a>
-          </div>
+          </span>
+        </section>
         </div>
         <img
           className={styles['dog-palm']}
