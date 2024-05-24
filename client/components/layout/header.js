@@ -77,7 +77,7 @@ export default function Header() {
                     <li
                       style={{ 'border-top': '2px solid var(--reddish-brown)' }}
                     >
-                      <Link href="/petDiary/petDiarySearch">追蹤日誌</Link>
+                      <Link href="/petDiary">追蹤日誌</Link>
                     </li>
                   </ul>
                 </li>
