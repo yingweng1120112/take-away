@@ -19,9 +19,11 @@ export default function PetList() {
   // 查詢條件用
   const [nameLike, setNameLike] = useState('')
   const [type, setType] = useState([])
+  const [personalityType, setPersonalityType] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
+  const personalityTypeOptions = ['敏感型', '樂天型', '獨立型', '自信型', '適應型']
 
   // 加入參詢條件params物件
   const getPet = async (params) => {
@@ -65,6 +67,22 @@ export default function PetList() {
     }
   }
 
+  // 物種複選時使用
+  const handlePersonalityTypeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (personalityType.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextPersonalityType = personalityType.filter((v) => v !== tv)
+      setPersonalityType(nextPersonalityType)
+    } else {
+      // 否則===>加入陣列
+      const nextPersonalityType = [...personalityType, tv]
+      setPersonalityType(nextPersonalityType)
+    }
+  }
+
   // 按下搜尋按鈕
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
@@ -73,6 +91,8 @@ export default function PetList() {
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
+      type,
+      personalityType,
       name_like: nameLike,
     }
     getPet(params)
@@ -113,7 +133,6 @@ export default function PetList() {
       <div className={banner['banner-select']}>
         <div
           className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
-          style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
         >
           <div className={banner['left']}>
             <p className={banner['menu-a']}>PETS</p>
@@ -232,6 +251,7 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>測驗類別</p>
                   <div className={banner['select-item']}>
+                  {handlePersonalityTypeChecked}
                     <label className={banner['cl-checkbox']}>
                       <input type="checkbox" />
                       <span>敏感型</span>
