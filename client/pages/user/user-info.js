@@ -3,7 +3,8 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export default function UserInfo() {
   return (
@@ -18,8 +19,8 @@ export default function UserInfo() {
           className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
         >
           <div className={banner['left']}>
-            <p className={banner['menu-a']}>LIFE</p>
-            <p className={banner['menu-b']}>生活紀錄</p>
+            <p className={banner['menu-a']}>PROP</p>
+            <p className={banner['menu-b']}>個人資料</p>
           </div>
           <div className={banner['middle']}>
             <div
@@ -34,8 +35,8 @@ export default function UserInfo() {
                 aria-expanded="true"
                 aria-controls="collapseOne"
               >
-                <span className={banner['middle-page-title']}>日誌列表</span>
-                <span>選擇日誌分類</span>
+                <span className={banner['middle-page-title']}>會員中心</span>
+                <span>功能選單</span>
               </button>
             </div>
           </div>
@@ -50,25 +51,41 @@ export default function UserInfo() {
             <div className={`banner['select']`}>
               <div className="w-100 d-flex flex-row align-items-start">
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>個人資料</p>
+                  <Link href="/user/user-info">
+                    <p className={`link ${banner['select-title']}`}>個人資料</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>購物車</p>
+                  <Link href="/user/shopping-cart/step1">
+                    <p className={`link ${banner['select-title']}`}>購物車</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>訂單紀錄</p>
+                  <Link href="/user/user-order-history">
+                    <p className={`link ${banner['select-title']}`}>訂單紀錄</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>浪浪收藏</p>
+                  <Link href="/user/">
+                    <p className={`link ${banner['select-title']}`}>浪浪收藏</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>我的寵物</p>
+                  <Link href="/user/user-mypet">
+                    <p className={`link ${banner['select-title']}`}>我的寵物</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>預約紀錄</p>
+                  <Link href="/user/user-reserve">
+                    <p className={`link ${banner['select-title']}`}>預約紀錄</p>
+                  </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <p className={banner['select-title']}>線上認養</p>
+                  <Link href="/user/user-adopt-history">
+                    <p className={`link ${banner['select-title']}`}>
+                      線上認養紀錄
+                    </p>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -96,11 +113,7 @@ export default function UserInfo() {
                 <hr />
               </div>
               <div className={styles['bookItem']}>
-                <img
-                  src={`/img/user/cat_cookie1.jpg`}
-                  src="../images/user-dog.jpg"
-                  alt=""
-                />
+                <img src="../images/user-dog.jpg" alt="" />
                 <h5>生日：1999/03/03</h5>
               </div>
               <div className={styles['bookItem']}>
@@ -108,11 +121,7 @@ export default function UserInfo() {
                 <h5>密碼：************</h5>
               </div>
               <div className={styles['bookItem']}>
-                <img
-                  src={`/img/user/cat_cookie1.jpg`}
-                  src="../images/user-dog.jpg"
-                  alt=""
-                />
+                <img src="../images/user-dog.jpg" alt="" />
                 <h5>確認密碼：************</h5>
               </div>
               <div className={styles['bookItem']}>
@@ -120,7 +129,9 @@ export default function UserInfo() {
                 <h5>地址：台南市白河區狸貓路人造人11號</h5>
               </div>
               <div className={styles['btnItem']}>
-                <button className={styles['btnConfirm']}>修改資料</button>
+                <Link href="/user/user-edit">
+                  <button className={styles['btnConfirm']}>修改資料</button>
+                </Link>
                 <button className={styles['btnConfirm']}>登出</button>
               </div>
             </div>
@@ -128,6 +139,13 @@ export default function UserInfo() {
         </div>
       </div>
       <Footer />
+      <style jsx>
+        {`
+          .link {
+            cursor: pointer;
+          }
+        `}
+      </style>
     </section>
   )
 }

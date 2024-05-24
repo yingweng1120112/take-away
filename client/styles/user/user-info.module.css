@@ -4,6 +4,7 @@
 .banner-life-2 {
   background-image: url(/img/user/Banner2.jpg);
 }
+
 /* user edit */
 .bgfeet1 {
   position: absolute;
@@ -36,13 +37,13 @@
 
 .rope {
   width: 3%;
-  height: 64.3%;
+  height: 49.5%;
   background-image: url('/img/user/user-rope.png');
   background-repeat: repeat-y;
   position: absolute;
   z-index: 1;
-  top: 52%;
-  left: 24.2%;
+  top: 55%;
+  left: 26%;
 }
 
 .bookContainer {
