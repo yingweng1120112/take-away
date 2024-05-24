@@ -116,13 +116,13 @@ export default function Menu() {
     console.log('從 loadPetInfos 獲取的數據:', data)
     // 確認資料結構是否與原始專案相符，並設置到狀態中
 
-    if (Array.isArray(data)) {
-      console.log('設pets 狀態: ', data)
-      setPets(data)
+    if (Array.isArray(data.pet_info)) {
+      console.log('設pets 狀態: ', data.pet_info)
+      setPets(data.pet_info)
     } else {
-      console.log('數據結構不符合預期:', data)
+      console.log('數據結構不符合預期:', data.pet_info)
     }
-    console.log(data)
+    console.log(data.pet_info)
   }
 
   // 分頁列表觸發事件使用
