@@ -138,9 +138,11 @@ export default function Menu() {
   }
 
   // 阻止事件冒泡以防止触发 Link 的跳转
-  const handleCartClick = (event) => {
-    event.stopPropagation();
+  const handleCartClick = (e,product) => {
+    e.preventDefault(); 
+    e.stopPropagation();
     // 在这里添加购物车的处理逻辑
+    addToCart(product);
     console.log('Added to cart');
   };
 
@@ -306,17 +308,14 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                  <a
-                    href={`/product/${product.product_id}.webp`}
-                    className={styles['products-card']}
-                  >
+                <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={handleCartClick}>
+                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
