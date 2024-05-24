@@ -26,9 +26,12 @@ export default function Header() {
             className="header1"
             style={{ position: 'fixed', width: '100%', 'z-index': '100' }}
           >
-            <a href="" className="logo">
-              <img src={`/img/index/logo-removebg-preview.png`} />
-            </a>
+            <Link href="/">
+              <img
+                className="logo"
+                src={`/img/index/logo-removebg-preview.png`}
+              />
+            </Link>
             <nav className="navbar2">
               <ul>
                 <li>
@@ -43,12 +46,12 @@ export default function Header() {
                   <a>領養資訊</a>
                   <ul>
                     <li className="bor0">
-                    <Link href="/psycological-test/page1">心理測驗</Link>
+                      <Link href="/pets/psycological-test/page1">心理測驗</Link>
                     </li>
                     <li
                       style={{ 'border-top': '2px solid var(--reddish-brown)' }}
                     >
-                      <a href="#">領養流程</a>
+                      <Link href="/pets/notice">領養流程</Link>
                     </li>
                   </ul>
                 </li>
@@ -56,12 +59,12 @@ export default function Header() {
                   <a>相關問題</a>
                   <ul>
                     <li className="bor0">
-                      <a href="#">常見問題</a>
+                      <Link href="/faq/faqshopping">常見問題</Link>
                     </li>
                     <li
                       style={{ 'border-top': '2px solid var(--reddish-brown)' }}
                     >
-                      <a href="#">客服中心</a>
+                      <Link href="/faq/chatroom">客服中心</Link>
                     </li>
                   </ul>
                 </li>
@@ -69,12 +72,12 @@ export default function Header() {
                   <a>領養專區</a>
                   <ul>
                     <li className="bor0">
-                      <a href="#">浪浪列表</a>
+                      <Link href="/pets">浪浪列表</Link>
                     </li>
                     <li
                       style={{ 'border-top': '2px solid var(--reddish-brown)' }}
                     >
-                      <a href="#">追蹤日誌</a>
+                      <Link href="/petDiary/petDiarySearch">追蹤日誌</Link>
                     </li>
                   </ul>
                 </li>
@@ -82,7 +85,7 @@ export default function Header() {
                   <a>寵物商城</a>
                   <ul>
                     <li>
-                      <a href="#">寵物商城</a>
+                      <Link href="/product">寵物商城</Link>
                     </li>
                   </ul>
                 </li>
@@ -90,31 +93,25 @@ export default function Header() {
                   <a>會員中心</a>
                   <ul>
                     <li>
-                      <a href="#">會員中心</a>
+                      <Link href="/user/user-info">會員中心</Link>
                     </li>
                   </ul>
                 </li>
               </ul>
             </nav>
             <div className="nav-shop-group">
-              <div className="shop-group">
-                <CiShoppingCart className="shop-icon" />
-                <a href="#" className="shop">
+              <Link href="/user/shopping-cart/step1" className="shop">
+                <div className="shop-group">
+                  <CiShoppingCart className="shop-icon" />
                   購物車
-                </a>
-              </div>
-              <div className="shop-group">
-                <CiHeart className="shop-icon" />
-                <a href="#" className="shop">
-                  收藏
-                </a>
-              </div>
-              <div className="shop-group">
-                <GoPerson className="shop-icon" />
-                <a href="#" className="shop">
+                </div>
+              </Link>
+              <Link href="/user">
+                <div className="shop-group">
+                  <GoPerson className="shop-icon" />
                   登入
-                </a>
-              </div>
+                </div>
+              </Link>
             </div>
           </div>
           <div style={{ position: 'relative' }}>
@@ -124,7 +121,11 @@ export default function Header() {
                   <img src={`/img/index/logo-removebg-preview.png`} />
                 </div>
                 <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
-                  {isVisible ? <RiMenuSearchFill className='shop'/> : <RiMenuSearchLine  className='shop'/>}
+                  {isVisible ? (
+                    <RiMenuSearchFill className="shop" />
+                  ) : (
+                    <RiMenuSearchLine className="shop" />
+                  )}
                 </div>
               </div>
               {isVisible && (
