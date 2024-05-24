@@ -4,6 +4,7 @@ import styles from '@/styles/faq/faqshopping.module.css'
 
 export default function Faqlist({ data, currentPage, itemsPerPage }) {
   const [selected, setSelected] = useState(null)
+  console.log(data);
 
   const toggle = (i) => {
     if (selected === i) {

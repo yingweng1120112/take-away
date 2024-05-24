@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import styles from '@/styles/faq/faqreport1.module.css'
+import styles from '@/styles/faq/faqreport.module.css'
 import { PiCatBold } from 'react-icons/pi'
 import { FaX } from 'react-icons/fa6'
 
-export default function ReportForm({ open, onClose }) {
+export default function Faqreport({ open, onClose }) {
   // 表單送出互動
   const [formData, setFormData] = useState({
     email: '',
@@ -26,14 +26,6 @@ export default function ReportForm({ open, onClose }) {
       [name]: value,
     })
   }
-  // const saveform = (e) => {
-  //   e.preventDefault()
-  //   const data = {
-  //     email: formData.email,
-  //     issueType: formData.issueType,
-  //     problem: formData.problem,
-  //   }
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -79,9 +71,6 @@ export default function ReportForm({ open, onClose }) {
             src="../img/faq/tkbglogo-rb.png"
             alt=""
           />
-          {/* <button onClick={onClose} className={styles['formCloseBtn']}>
-            X
-          </button> */}
           <FaX onClick={onClose} className={styles['formCloseBtn']} />
         </div>
         <div className={styles['rf_form']}>
