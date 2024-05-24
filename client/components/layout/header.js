@@ -1,4 +1,5 @@
 import { useState, React } from 'react'
+import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
@@ -34,7 +35,7 @@ export default function Header() {
                   <a>關於我們</a>
                   <ul>
                     <li>
-                      <a href="#">關於我們</a>
+                      <Link href="/location/location">關於我們</Link>
                     </li>
                   </ul>
                 </li>
@@ -42,7 +43,7 @@ export default function Header() {
                   <a>領養資訊</a>
                   <ul>
                     <li className="bor0">
-                      <a href="#">心理測驗</a>
+                    <Link href="/psycological-test/page1">心理測驗</Link>
                     </li>
                     <li
                       style={{ 'border-top': '2px solid var(--reddish-brown)' }}
