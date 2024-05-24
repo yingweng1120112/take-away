@@ -20,6 +20,7 @@ export default function PetList() {
   const [nameLike, setNameLike] = useState('')
   const [type, setType] = useState([])
   const [personality_type, setPersonality_type] = useState([])
+  const [gender, setGender] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
@@ -31,6 +32,8 @@ export default function PetList() {
     '自信型',
     '適應型',
   ]
+  // 性別選項陣列
+  const genderOptions = ['男生', '女生']
 
   // 加入參詢條件params物件
   const getPet = async (params) => {
@@ -90,6 +93,22 @@ export default function PetList() {
     }
   }
 
+  // 測驗類別複選時使用
+  const handleGenderChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (gender.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextGender = gender.filter((v) => v !== tv)
+      setGender(nextGender)
+    } else {
+      // 否則===>加入陣列
+      const nextGender = [...gender, tv]
+      setGender(nextGender)
+    }
+  }
+
   // 按下搜尋按鈕
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
@@ -100,6 +119,7 @@ export default function PetList() {
       perpage,
       type,
       personality_type,
+      gender,
       name_like: nameLike,
     }
     getPet(params)
@@ -283,14 +303,22 @@ export default function PetList() {
                 <div className={banner['select-item-b']}>
                   <p className={banner['select-title']}>性別</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>男生</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>女生</span>
-                    </label>
+                    {genderOptions.map((v, i) => {
+                      return (
+                        <label key={i} className={banner['cl-checkbox']}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={gender.includes(v)}
+                            onChange={(e) => {
+                              handleGenderChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                   <p className={banner['select-title']}> 毛孩搜尋 </p>
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
