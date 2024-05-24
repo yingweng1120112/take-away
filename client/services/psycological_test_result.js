@@ -1,25 +1,23 @@
 // const baseUrl = 'https://my-json-server.typicode.com/eyesofkids/json-fake-data/products'
-const baseUrl = 'http://localhost:3005/api/order_history'
+const baseUrl = 'http://localhost:3005/api/psycological_test_result'
 
 const sample = [
   {
-    product_id: 10001,
-    name: '無資料預設範例-1',
-    brand_name: 'none',
-    price: 0,
-    species: 'none',
+    result_id: 10001,
+    personality_type: 'none',
+    pic: 'none',
+    type__content: '無資料1',
   },
   {
-    product_id: 10002,
-    name: '無資料預設範例-2',
-    brand_name: 'none',
-    price: 0,
-    species: 'none',
+    result_id: 10002,
+    personality_type: 'none',
+    pic: 'none',
+    type__content: '無資料2',
   },
 ]
 
 // 因應要分頁和查詢，所以回應整個data
-export const loadOrderHistory = async (params = {}) => {
+export const loadProducts = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
   const searchParams = new URLSearchParams(params)
   const url = `${baseUrl}?${searchParams.toString()}`

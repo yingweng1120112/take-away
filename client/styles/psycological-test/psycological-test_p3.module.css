@@ -65,9 +65,10 @@
   /* border: 2px blue solid; */
 }
 .result-left img {
-  width: 90%;
+  width: auto;
+  height: 550px;
   clip-path: polygon(20% 0, 100% 0, 100% 90%, 80% 100%, 0 100%, 0 10%);
-  border: 5px white solid;
+  border: 10px #c3b594 double;
 }
 
 /* 右側 */
@@ -141,9 +142,6 @@
   border-bottom-color: #7c877d; /* half azure */
   border-right-color: #7c877d;
 }
-.text > span::after {
-  content: '%';
-}
 
 /* 按鈕 */
 .testresult .button {
@@ -156,7 +154,7 @@
   /* border: yellow 2px solid; */
   margin-top: 490px;
 }
-.testresult .button > button {
+.testresult .button > a {
   width: 120px;
   height: 50px;
   font-size: 16px;
@@ -172,21 +170,22 @@
   align-items: center;
   overflow-wrap: break-word;
   justify-content: space-evenly;
+  text-decoration: none;
 }
 
-.testresult button:active {
+.testresult a:active {
   color: white;
   box-shadow: 0 0.2rem white;
   transform: translateY(0.2rem);
 }
 
-.testresult button:hover:not(:disabled) {
+.testresult a:hover:not(:disabled) {
   background: var(--deep-gray);
   color: white;
   text-shadow: 0 0.02rem #bcb4b4;
 }
 
-.testresult button:disabled {
+.testresult a:disabled {
   cursor: auto;
   color: grey;
 }
@@ -302,7 +301,7 @@
   .result > div {
     overflow-x: hidden;
   }
-  .testresult .button > button {
+  .testresult .button > a {
     height: 30px;
     font-size: 12px;
     width: fit-content;

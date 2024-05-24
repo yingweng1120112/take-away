@@ -23,6 +23,7 @@
     "dotenv": "^16.4.5",
     "firebase": "^10.1.0",
     "fortawesome": "^0.0.1-security",
+    "html2canvas": "^1.4.1",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",

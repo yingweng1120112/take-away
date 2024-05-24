@@ -1,3 +1,92 @@
+1.送貨資料 的送貨方式 要選擇才會記住"送貨方式"的資料 要設定預設為"宅配"
+   時間格式要設定 (目前不是當下的時間)
+2.商品資料頁出來後   quantity.js加
+
+import React, { useState, useEffect } from 'react'
+import styles from '@/styles/product/information.module.css'
+import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
+// 商品增減
+import { useCart } from '@/context/cartcontext' //購物車加的
+
+export default function Quantity({ product }) {
+  const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart() //購物車加的
+
+  //購物車加的
+  useEffect(() => {
+    if (product) {
+      setProducts([{ ...product, quantity }])
+    }
+  }, [product, quantity])
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1)
+  }
+  return (
+    <>
+      <div className={styles['product-quantity']}>
+        <h2>數量:</h2>
+        <div className={`input-group ${styles['input-group']}`}>
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id="minusBtn"
+            onClick={decreaseQuantity}
+          >
+            <GrFormSubtract />
+          </button>
+          <input
+            type="text"
+            className="form-control text-center"
+            defaultValue={quantity}
+            id="quantityInput"
+          />
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id="plusBtn"
+            onClick={increaseQuantity}
+          >
+            <GrFormAdd />
+          </button>
+        </div>
+        <button
+          className={styles.cta}
+          onClick={() => {
+            addToCart({ ...product, quantity }) //購物車加的
+          }}
+        >
+          <span className={styles['hover-underline-animation']}>
+            {' '}
+            加入購物車{' '}
+          </span>
+          <svg
+            id="arrow-horizontal"
+            xmlns="http://www.w3.org/2000/svg"
+            width={50}
+            height={20}
+            viewBox="0 0 576 512"
+          >
+            <path
+              id="Path_10"
+              data-name="Path 10"
+              d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+              transform="translate(30)"
+            />
+          </svg>
+        </button>
+      </div>
+    </>
+  )
+}
+
+3.商品列表頁更新後   menu.js加
 import React, { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
@@ -137,12 +226,11 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止触发 Link 的跳转
-  const handleCartClick = (event) => {
-    event.stopPropagation();
-    // 在这里添加购物车的处理逻辑
-    console.log('Added to cart');
-  };
+  // 阻止事件冒泡以防止触发 Link 的跳转  //購物車加的
+  const handleButtonClick = (event, product) => {
+  handleCartClick(event); // 调用第一个处理函数
+  addToCart(product); // 调用第二个处理函数
+};
 
   return (
     <>
@@ -316,7 +404,7 @@ export default function Menu() {
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={handleCartClick}>
+                      <button className={styles['cart-btn']} onClick={(event) => handleButtonClick(event, product)}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"

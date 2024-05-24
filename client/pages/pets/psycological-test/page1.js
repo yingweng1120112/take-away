@@ -31,7 +31,7 @@ export default function Page1() {
               onChange={handleNameChange}  />
           </div>
           <div>
-            <Link href="/psycological-test/page2" passHref ><a className={styles['buttonstyle']}>開始測驗</a></Link>
+            <Link href="/pets/psycological-test/page2" passHref ><a className={styles['buttonstyle']}>開始測驗</a></Link>
           </div>
         </div>
       </section>
