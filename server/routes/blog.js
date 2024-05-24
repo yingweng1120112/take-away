@@ -21,7 +21,10 @@ router.get('/:id', async function (req, res) {
     'SELECT * FROM `blog` WHERE pet_id=? ORDER BY `time` desc',
     [id]
   )
-  const blog_info = rows
+  const blog_info = rows.map((v) => ({
+    ...v,
+    pic: [v.pic1, v.pic2, v.pic3, v.pic4, v.pic5].filter(Boolean),
+  }))
 
   return res.json({ status: 'success', data: { blog_info } })
 })

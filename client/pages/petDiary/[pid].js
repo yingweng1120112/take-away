@@ -53,13 +53,6 @@ export default function PetDiary() {
     console.log("getPetinfo2:data:")
     console.log(blogInfo)
   }
-const Test=()=>{
-  console.log("getPetinfo3:data:")
-  console.log(petInfo)
-  return(
-    <p>a</p>
-  )
-}
   // 樣式3: didMount+didUpdate
   // 第2步: 在useEffect中監聽router.isReady為true時，才能得到網址上的pid，之後向伺服器要資料
   useEffect(() => {
@@ -116,7 +109,6 @@ const Test=()=>{
         </div>
         <img className={styles['cat-icon']} src="/img/Frame 51.svg" alt="" />
         {/* 上傳 */}
-        <Test />
         <div className={styles['post']}>
           <img src="/img/petDiary/catTestImg.jpg" alt="" className={styles['head-img']} />
           <div className={styles['post-right']} style={{ width: '100%' }}>
@@ -170,7 +162,7 @@ const Test=()=>{
           <img src={`/img/diarySearch/${petInfo.adopt1}`} alt="" className={styles['head-img']} />
           <div className={styles['post-right']}>
             <p className={styles['content-word']}>{v.content}</p>
-            <CarouselPetLife {...v}/>
+            <CarouselPetLife pic={v.pic}/>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}> {v.time}</p>
               <img src="/img/petDiary/Edit_1.svg" alt="" />

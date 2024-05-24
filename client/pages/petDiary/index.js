@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-
 import { loadPetsInfo } from '@/services/petDiary'
 import CarouselPc from '@/components/swiper/shopSwiperPc'
 import CarouselPhone from '@/components/swiper/shopSwiperPhone'
@@ -14,27 +13,46 @@ import Footer from '@/components/layout/footer'
 export default function DiarySearch() {
   // 注意1: 初始值至少要空白陣列。首次render會使用初始值，對應由伺服器得到的物件陣列模型。
   // 注意2: 在應用程式執行過程中，狀態一定都要保持陣列資料類型
+  const [total, setTotal] = useState(0)
+  const [pageCount, setPageCount] = useState(0)
   const [petsInfo, setPetsInfo] = useState([])
 
-  const getPetInfo = async () => {
-    const data = await loadPetsInfo()
+  // 分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(12)
+
+  const getPetsInfo = async (params) => {
+    const data = await loadPetsInfo(params)
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
-    console.log("getinfo:data:")
+    if (data.pageCount && typeof data.pageCount === 'number') {
+      setPageCount(data.pageCount)
+    }
+
+    if (data.total && typeof data.total === 'number') {
+      setTotal(data.total)
+    }
+
+    console.log('getinfo:data:')
     console.log(data)
-    if (Array.isArray(data)) {
-      setPetsInfo(data)
+
+    if (Array.isArray(data.pets_info)) {
+      setPetsInfo(data.pets_info)
     }
   }
 
   // // 樣式2: 元件初次渲染之後(after)執行一次，之後不會再執行
   useEffect(() => {
-    getPetInfo()
-  }, [])
+    const params = {
+      page,
+      perpage,
+    }
+    getPetsInfo(params)
+  }, [page])
 
   return (
     <>
-    <Header/>
+      <Header />
       <div>
         <div className={styles['life-container']}>
           {/* banner start*/}
@@ -165,18 +183,40 @@ export default function DiarySearch() {
                 src="/img/diarySearch/blueLine.svg"
                 className={styles['bg-1']}
               />
+
               <h1 className={styles['content-word']}>
                 這裡是大家細心照料的
                 <br />
                 孩子們，要來看看嗎 ?
               </h1>
-            </div>
+            </div>{' '}
+            <button
+              onClick={() => {
+                // 最小頁面是1(不能小於1)
+                const nextPage = page - 1 > 1 ? page - 1 : 1
+                setPage(nextPage)
+              }}
+            >
+              上一頁
+            </button>
+            <button
+              onClick={() => {
+                // 最大頁面不能大於總頁數pageCount
+                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                setPage(nextPage)
+              }}
+            >
+              下一頁
+            </button>
+            <p>{page}</p>
+            <p>{perpage}</p>
+            <p>{total}</p>
             <div className={styles['container-a']}>
               <div className={styles['project-list']}>
-              {petsInfo.map((v, i) => {
-                return (
+                {petsInfo.map((v, i) => {
+                  return (
                     <Link href={`/petDiary/${v.pet_id}`} key={v.pet_id}>
-                      <div className={styles['item']} >
+                      <div className={styles['item']}>
                         <img
                           src={`/img/diarySearch/${v.adopt1}`}
                           alt=""
@@ -185,19 +225,16 @@ export default function DiarySearch() {
                         <div className={styles['project-info']}>
                           <h3>{v.name}</h3>
                           <div className={styles['cat-info']}>
-                            <p className={styles['desc']}>{`今年約 ${v.age} 歲`}</p>
-                            {v.gender === '男生' ? (
-                              <FaMars />
-                              ) : (
-                                <FaVenus />
-                              )
-                            }
+                            <p
+                              className={styles['desc']}
+                            >{`今年約 ${v.age} 歲`}</p>
+                            {v.gender === '男生' ? <FaMars /> : <FaVenus />}
                           </div>
                         </div>
                       </div>
                     </Link>
-                )
-              })}
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -269,7 +306,7 @@ export default function DiarySearch() {
           <CarouselPhone />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }
