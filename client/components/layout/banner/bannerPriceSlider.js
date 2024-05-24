@@ -2,7 +2,7 @@ import React from 'react'
 import banner from '@/styles/banner/banner.module.css'
 import { useRef, useEffect } from 'react'
 
-export default function bannerSelectPrice() {
+export default function BannerSelectPrice() {
   useEffect(() => {
     // 價格滑動
     const rangevalue = document.querySelector('.price-slider')

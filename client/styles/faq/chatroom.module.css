@@ -3,7 +3,7 @@
     font-family: "Jost", sans-serif;
     justify-content: center;
     /* margin: 100px 0px; */
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 30px;
 }
 
@@ -158,18 +158,6 @@
     background-color: lightgrey;
     border:30px solid #FFF;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 訊息發送 */
 .chat_message {

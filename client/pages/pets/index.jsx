@@ -108,7 +108,7 @@ export default function PetList() {
       {/* banner */}
       <div
         className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
-        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)' }}
+        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)', width:"100%" }}
       ></div>
       <div className={banner['banner-select']}>
         <div
