@@ -122,7 +122,7 @@
   height: 3.125rem;
   margin-top: 1.25rem;
 }
-.footprint-banner img{
+.footprint-banner img {
   width: 100%;
 }
 /* 產品內容區 */
@@ -322,6 +322,35 @@
   text-align: center;
 }
 /* 相關商品 */
+.recommend {
+  background: var(--yellow);
+  height: auto;
+  padding: 1rem 0rem;
+  z-index: 3;
+  position: relative;
+}
+.frame {
+  background: var(--light-yellow);
+}
+.related-products-card {
+  width: 100%;
+  border-radius: 3.125rem;
+}
+.related-products-card img {
+  width: 100%;
+  border-radius: 0.4rem;
+}
+.swiper-div {
+  width: 100%;
+  height: 120px; /* 您可以根据需要调整高度 */
+  display: flex;
+  justify-content: center;
+}
+.swiper-img {
+  width: 100%;
+  height: 120px; /* 您可以根据需要调整高度 */
+  object-fit: cover;
+}
 
 /* 電腦版 */
 @media screen and (min-width: 1025px) {
@@ -376,6 +405,7 @@
     margin-top: 2rem;
     line-height: 3.125rem;
   }
+
   /* 產品評論區 */
   .product-reviews-title {
     width: 100%;
@@ -505,15 +535,15 @@
     font-size: 3.125rem;
   }
   /* 相關商品 */
-  .swiper {
+  .swiper-div {
     width: 100%;
-    height: 100%;
+    height: 300px; /* 您可以根据需要调整高度 */
+    display: flex;
+    justify-content: center;
   }
-  .swiper-button-next {
-    transform: rotate(0deg);
-  }
-
-  .swiper-button-prev {
-    transform: rotate(0deg);
+  .swiper-img {
+    width: 50%;
+    height: 300px; /* 您可以根据需要调整高度 */
+    object-fit: cover;
   }
 }

@@ -7,6 +7,7 @@ import Swiper from '@/components/swiper/indexSwiper'
 import styles from '@/styles/swiper/indexSwipper.module.css'
 import ProductCarousel from '@/components/shopping-cart/carousel'
 import IndexService from '@/components/index-service/indexservice'
+import MarqueePets from '@/components/marquee-pets/marquee-pets'
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       >
         <IndexService />
       </div>
+      <MarqueePets />
       <div className="commend">
         <h3 className="commendtitle">產品推薦</h3>
         <ProductCarousel />
