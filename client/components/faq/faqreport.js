@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import styles from '@/styles/faq/faqreport1.module.css'
+import styles from '@/styles/faq/faqreport.module.css'
 import { PiCatBold } from 'react-icons/pi'
 import { FaX } from 'react-icons/fa6'
 
-export default function ReportForm({ open, onClose }) {
+export default function Faqreport({ open, onClose }) {
   // 表單送出互動
   const [formData, setFormData] = useState({
     email: '',
     fr_option: '',
     question: '',
   })
-
+  const [resetData,setResetData] = useState({
+    email: '',
+    fr_option: '',
+    question: '',
+  })
   if (!open) {
     return null
   }
@@ -22,17 +26,8 @@ export default function ReportForm({ open, onClose }) {
       [name]: value,
     })
   }
-  // const saveform = (e) => {
-  //   e.preventDefault()
-  //   const data = {
-  //     email: formData.email,
-  //     issueType: formData.issueType,
-  //     problem: formData.problem,
-  //   }
-  // }
 
   const handleSubmit = async (e) => {
-    // alert('submit')
     e.preventDefault()
     try {
       const response = await fetch('http://localhost:3005/api/faq-report', {
@@ -49,16 +44,16 @@ export default function ReportForm({ open, onClose }) {
       const result = await response.json()
       console.log('Response from server:', result)
       if (response.status === 201) {
-        console.log('表單已成功傳送', result)
-        alert('表單已成功傳送')
+        console.log('表單已成功送出', result)
+        alert('表單已成功送出')
         onClose()
       } else {
-        console.log('Form submission failed', result.message)
-        alert(`Form submission failed: ${result.message}`)
+        console.log('表單送出失敗', result.message)
+        alert(`表單送出失敗: ${result.message}`)
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
-      alert(`Error submitting form: ${error.message}`)
+      console.error('表單送出錯誤:', error)
+      alert(`表單送出錯誤: ${error.message}`)
     }
   }
 
@@ -76,9 +71,6 @@ export default function ReportForm({ open, onClose }) {
             src="../img/faq/tkbglogo-rb.png"
             alt=""
           />
-          {/* <button onClick={onClose} className={styles['formCloseBtn']}>
-            X
-          </button> */}
           <FaX onClick={onClose} className={styles['formCloseBtn']} />
         </div>
         <div className={styles['rf_form']}>
