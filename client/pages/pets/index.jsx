@@ -19,11 +19,18 @@ export default function PetList() {
   // 查詢條件用
   const [nameLike, setNameLike] = useState('')
   const [type, setType] = useState([])
-  const [personalityType, setPersonalityType] = useState([])
+  const [personality_type, setPersonality_type] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
-  const personalityTypeOptions = ['敏感型', '樂天型', '獨立型', '自信型', '適應型']
+  // 測驗類別選項陣列
+  const personality_typeOptions = [
+    '敏感型',
+    '樂天型',
+    '獨立型',
+    '自信型',
+    '適應型',
+  ]
 
   // 加入參詢條件params物件
   const getPet = async (params) => {
@@ -67,19 +74,19 @@ export default function PetList() {
     }
   }
 
-  // 物種複選時使用
-  const handlePersonalityTypeChecked = (e) => {
+  // 測驗類別複選時使用
+  const handlePersonality_typeChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
     const tv = e.target.value
     // 判斷是否有在陣列中
-    if (personalityType.includes(tv)) {
+    if (personality_type.includes(tv)) {
       // 如果有===>移出陣列
-      const nextPersonalityType = personalityType.filter((v) => v !== tv)
-      setPersonalityType(nextPersonalityType)
+      const nextPersonality_type = personality_type.filter((v) => v !== tv)
+      setPersonality_type(nextPersonality_type)
     } else {
       // 否則===>加入陣列
-      const nextPersonalityType = [...personalityType, tv]
-      setPersonalityType(nextPersonalityType)
+      const nextPersonality_type = [...personality_type, tv]
+      setPersonality_type(nextPersonality_type)
     }
   }
 
@@ -92,7 +99,7 @@ export default function PetList() {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
       type,
-      personalityType,
+      personality_type,
       name_like: nameLike,
     }
     getPet(params)
@@ -251,27 +258,26 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>測驗類別</p>
                   <div className={banner['select-item']}>
-                  {handlePersonalityTypeChecked}
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>敏感型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>樂天型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>獨立型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>自信型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>適應型</span>
-                    </label>
+                    {personality_typeOptions.map((v, i) => {
+                      return (
+                        <label
+                          className={banner['cl-checkbox']}
+                          // 當初次render後不會再改動，即沒有新增、刪除、更動時，可以用索引當key
+                          key={i}
+                        >
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={personality_type.includes(v)}
+                            onChange={(e) => {
+                              handlePersonality_typeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-b']}>
