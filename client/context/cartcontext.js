@@ -68,17 +68,21 @@ export function CartProvider({ children }) {
   }
 
 
-  const increaseItem = (product_id) => {
-    const nextItems = cartItems.map((v, i) => {
-      // 如果符合條件(id=傳入id)，回傳物件要屬性qty+1
-      if (v.product_id === product_id)
-        return { ...v, qty: v.qty + 1, subTotal: (v.qty + 1) * v.price }
+  const increaseItem = (product_id, increment = 1) => {
+    const nextItems = cartItems.map((v) => {
+      // 如果符合條件(id=傳入id)，回傳物件要屬性qty加上increment
+      if (v.product_id === product_id) {
+        const newQty = v.qty + increment;
+        return { ...v, qty: newQty, subTotal: newQty * v.price };
+      } 
       // 否則回傳原本物件
-      else return v
-    })
-    setCartItems(nextItems)
-    synchronizeSelectedItems(nextItems)
-  }
+      else {
+        return v;
+      }
+    });
+    setCartItems(nextItems);
+    synchronizeSelectedItems(nextItems);
+  };
 
   const decreaseItem = (product_id) => {
     let nextItems = cartItems.map((v, i) => {
@@ -98,18 +102,17 @@ export function CartProvider({ children }) {
     const foundIndex = cartItems.findIndex(
       (v) => v.product_id === product.product_id
     )
+    const quantity = product.quantity || 1 // 如果 quantity 屬性不存在，默認設置為 1
     if (foundIndex > -1) {
-      increaseItem(product.product_id)
+      increaseItem(product.product_id,quantity)
     } else {
-      const qty = product.qty || 1 // 如果 qty 屬性不存在，默認設置為 1
       const price = product.price || 0 // 如果 price 屬性不存在，默認設置為 0
-
-      const subTotal = qty * price // 計算小計金額
+      const subTotal = quantity * price // 計算小計金額
       setCartItems((prevCartItems) => [
         ...prevCartItems,
         {
           ...product,
-          qty: qty,
+          qty: quantity,
           subTotal: subTotal,
         },
       ])

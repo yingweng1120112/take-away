@@ -21,9 +21,12 @@ import { loadProducts } from '@/services/product'
 import { useRouter } from 'next/router'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
 //測試
+import { useCart } from '@/context/cartcontext' //購物車加的
+
 
 export default function Information() {
   const router = useRouter()
+  const { addToCart } = useCart() //購物車加的
 
   const [product, setProduct] = useState({
     product_id: 0,
@@ -119,6 +122,16 @@ export default function Information() {
  
    // 再次过滤掉非图片的属性（虽然此步不必要）
    const filteredImages = images.filter(Boolean)
+
+   //購物車加
+   const handleCartClick = (product, quantity) => {
+    if (product && quantity > 0) {
+      addToCart({ ...product, quantity })
+      console.log('Added to cart:', { ...product, quantity }) // 确认数据是否正确传递
+    } else {
+      console.log('Invalid product or quantity')
+    }
+  }
    
   return (
     <>
@@ -367,7 +380,11 @@ export default function Information() {
                   <GrFormAdd />
                 </button>
               </div>
-              <button className={styles.cta}>
+              <button 
+              className={styles.cta}
+              //購物車加的
+              onClick={() => handleCartClick(product, quantity)}
+              >
                 <span className={styles['hover-underline-animation']}>
                   {' '}
                   加入購物車{' '}
