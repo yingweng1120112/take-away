@@ -79,6 +79,11 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
+  const [priceGte, setPriceGte] = useState(0)
+  const [priceLte, setPriceLte] = useState(2000)
+
+  //品項選項陣列
+  const brandOptions = ['寵物飼料', '寵物罐頭', '寵物用品', '保健食品', '寵物零食']
 
   //查詢條件
   const [nameLike, setNameLike] = useState('')
