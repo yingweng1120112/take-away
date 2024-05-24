@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3005/api/faq-shopinfo'
+const baseUrl = 'http://localhost:3005/api/notice-adoptinfo'
 const sample = [
     {
         qusetion_id: 10001,
@@ -14,7 +14,7 @@ const sample = [
     },
 ]
 
-export const loadFaqshopinfos = async ()=>{
+export const loadnoticeadoptinfos = async ()=>{
     try {
         const res = await fetch(baseUrl)
         const resData = await res.json()
@@ -31,7 +31,7 @@ export const loadFaqshopinfos = async ()=>{
         return sample
       }
 }
-export const loadFaqshopinfo = async (qid = '') => {
+export const loadnoticeadoptinfo = async (qid = '') => {
     try {
       if (!qid) throw new Error('pid是必要參數')
   

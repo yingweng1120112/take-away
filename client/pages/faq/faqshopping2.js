@@ -14,7 +14,7 @@ import {
 } from 'react-icons/fa6'
 import { IoPawOutline, IoPawSharp } from 'react-icons/io5'
 import ReportForm from './faqreport2'
-import Faqlist from './faqlist'
+import Faqlist from '../../components/faq/faqlist'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 
@@ -44,9 +44,6 @@ export default function Faqshopping() {
             <a href="#" className={styles['faq_icons']}>
               <FaMagnifyingGlass className={styles['faq_icons']} />
             </a>
-            {/* <i
-            className={`${styles['faq_icons']} fa-solid fa-magnifying-glass`}
-          ></i> */}
           </div>
         </div>
         <div className={styles['box_options']}>

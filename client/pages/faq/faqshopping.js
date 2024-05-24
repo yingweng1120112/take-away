@@ -12,13 +12,11 @@ import {
   FaGear,
   FaPaw,
 } from 'react-icons/fa6'
-import { IoPawOutline } from "react-icons/io5"
-import Indexservice from '@/components/index-service/indexservice'
 
 export default function Faqshopping() {
   return (
     <>
-    <Indexservice />
+      {/* 搜尋關鍵字 */}
       <div className={styles['container_faq']}>
         <div className={styles['box_search']}>
           <input
@@ -35,6 +33,7 @@ export default function Faqshopping() {
           ></i> */}
         </div>
       </div>
+      {/* 問題分類欄 */}
       <div className={styles['box_options']}>
         <div className={styles['faq_options']}>
           <a href="#" className={styles[('faq_links', 'faq_icons')]}>
@@ -93,6 +92,7 @@ export default function Faqshopping() {
           </a>
         </div>
       </div>
+      {/* Q&A回答欄 */}
       <div>
         <div className={styles['box_ans']}>
           <div className={styles['container_ans']}>
@@ -185,6 +185,7 @@ export default function Faqshopping() {
           </div>
         </div>
       </div>
+      {/* 分頁功能 */}
       <div className={styles['faq_pagebox']}>
         <div className={styles['faq_pagination']}>
           <a href="#">&laquo;</a>
@@ -196,6 +197,7 @@ export default function Faqshopping() {
           <a href="#">&raquo;</a>
         </div>
       </div>
+      {/* 表單傳送 */}
       <div className={styles['faq_res']}>
           <a href="#">
             <img

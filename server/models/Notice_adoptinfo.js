@@ -2,38 +2,33 @@ import { DataTypes } from 'sequelize'
 
 export default async function (sequelize) {
   return sequelize.define(
-    'Faq_report',
+    'Notice_adoptinfo',
     {
-      fr_id: {
+      question_adopt_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      email: {
+      main_question: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      fr_option: {
+      small_question: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      question: {
+      faq_answer: {
         type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        allowNull: true,
+        allowNull: false,
       },
     },
     {
-      tableName: 'faq_report', //直接提供資料表名稱
+      tableName: 'notice_adoptinfo', //直接提供資料表名稱
+      timestamps: true, // 使用時間戳
       paranoid: false, // 軟性刪除
       underscored: true, // 所有自動建立欄位，使用snake_case命名
+      createdAt: 'created_at', // 建立的時間戳
+      updatedAt: 'updated_at', // 更新的時間戳
     }
   )
 }

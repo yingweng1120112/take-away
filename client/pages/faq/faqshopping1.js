@@ -186,6 +186,7 @@ export default function Faqshopping() {
             </div>
           </div>
         </div>
+        {/* 分頁功能 */}
         <div className={styles['faq_pagebox']}>
           <div className={styles['faq_pagination']}>
             <a href="#">&laquo;</a>
@@ -197,6 +198,7 @@ export default function Faqshopping() {
             <a href="#">&raquo;</a>
           </div>
         </div>
+        {/* 表單popup */}
         <div className={styles['faq_res']}>
           <a onClick={() => setopenModal(true)}>
             <img

@@ -10,7 +10,11 @@ export default function ReportForm({ open, onClose }) {
     fr_option: '',
     question: '',
   })
-
+  const [resetData,setResetData] = useState({
+    email: '',
+    fr_option: '',
+    question: '',
+  })
   if (!open) {
     return null
   }
@@ -32,7 +36,6 @@ export default function ReportForm({ open, onClose }) {
   // }
 
   const handleSubmit = async (e) => {
-    // alert('submit')
     e.preventDefault()
     try {
       const response = await fetch('http://localhost:3005/api/faq-report', {
@@ -49,16 +52,16 @@ export default function ReportForm({ open, onClose }) {
       const result = await response.json()
       console.log('Response from server:', result)
       if (response.status === 201) {
-        console.log('表單已成功傳送', result)
-        alert('表單已成功傳送')
+        console.log('表單已成功送出', result)
+        alert('表單已成功送出')
         onClose()
       } else {
-        console.log('Form submission failed', result.message)
-        alert(`Form submission failed: ${result.message}`)
+        console.log('表單送出失敗', result.message)
+        alert(`表單送出失敗: ${result.message}`)
       }
     } catch (error) {
-      console.error('Error submitting form:', error)
-      alert(`Error submitting form: ${error.message}`)
+      console.error('表單送出錯誤:', error)
+      alert(`表單送出錯誤: ${error.message}`)
     }
   }
 
