@@ -83,6 +83,7 @@ export default function Menu() {
 
   //查詢條件
   const [type, setType] = useState([])
+  const [species, setSpecies] = useState([])
   const [priceGte, setPriceGte] = useState(0)
   const [priceLte, setPriceLte] = useState(2000)
   const [nameLike, setNameLike] = useState('')
@@ -96,6 +97,11 @@ export default function Menu() {
     '寵物用品',
     '保健食品',
     '寵物零食',
+  ]
+  //物種選項陣列
+  const speciesOptions = [
+    '狗',
+    '貓',
   ]
 
   //分頁用
@@ -145,7 +151,7 @@ export default function Menu() {
     }
     console.log(data.pet_info)
   }
-  // 品牌複選時使用
+  // 品項複選時使用
   const handleTypeChecked = (e) => {
     const tv = e.target.value
     const nextType = type.includes(tv)
@@ -167,6 +173,28 @@ export default function Menu() {
 
     getProducts(params)
   }
+  // 物種複選時使用
+  const handleSpeciesChecked = (e) => {
+    const tv = e.target.value
+    const nextSpecies = species.includes(tv)
+      ? species.filter((v) => v !== tv)
+      : [...species, tv]
+
+    setSpecies(nextSpecies)
+
+    const params = {
+      page: 1, // 每次变更品牌时，重置页码为1
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      species: nextSpecies.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
+  }
 
   // 分頁列表觸發事件使用
 
@@ -178,13 +206,14 @@ export default function Menu() {
       order: orderby.order,
       name_like: nameLike,
       type: type.join(','),
+      species: species.join(','),
       price_gte: priceGte,
       price_lte: priceLte,
     }
 
     getProducts(params)
     getPet()
-  }, [page, perpage, orderby, type])
+  }, [page, perpage, orderby, type, species])
 
   // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
   const debouncedSearch = useCallback(
@@ -293,14 +322,17 @@ export default function Menu() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>適用物種</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>狗寶貝</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>貓寶貝</span>
-                    </label>
+                    {speciesOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={species.includes(v)}
+                          onChange={handleSpeciesChecked}
+                        />
+                        <span>{v}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
