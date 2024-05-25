@@ -97,6 +97,7 @@ export default function MarqueePets() {
                         />
                       )}
                     </div>
+                    <Link href={`/pets/${v.pet_id}`}>
                     <button className={styles['cta']}>
                       <span className={styles['hover-underline-animation']}>
                         {' '}
@@ -117,6 +118,7 @@ export default function MarqueePets() {
                         ></path>
                       </svg>
                     </button>
+                    </Link>
                   </div>
                 </li>
               )
@@ -147,6 +149,7 @@ export default function MarqueePets() {
                         />
                       )}
                     </div>
+                    <Link href={`/pets/${v.pet_id}`}>
                     <button className={styles['cta']}>
                       <span className={styles['hover-underline-animation']}>
                         {' '}
@@ -167,6 +170,7 @@ export default function MarqueePets() {
                         ></path>
                       </svg>
                     </button>
+                    </Link>
                   </div>
                 </li>
               )
