@@ -531,51 +531,75 @@ export default function PetList() {
           </button>
         </section>
 
-        {/* FIXME: load商品 */}
+        {/* FIXME: 稍微有點跳 */}
         <section className={styles['marquee_shop']}>
           <div
             className={`${styles.marquee} ${styles['marquee--hover-pause']} ${styles['enable-animation']}`}
           >
             <ul className={styles['marquee__content']}>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
+              <Link href={`/product/10001`}>
+                <li>
+                  <img src="/img/product/10001-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10091`}>
+                <li>
+                  <img src="/img/product/10091-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10081`}>
+                <li>
+                  <img src="/img/product/10081-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10044`}>
+                <li>
+                  <img src="/img/product/10044-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10023`}>
+                <li>
+                  <img src="/img/product/10023-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10068`}>
+                <li>
+                  <img src="/img/product/10068-1.webp" alt="" />
+                </li>
+              </Link>
             </ul>
 
             <ul aria-hidden="true" className={styles['marquee__content']}>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
+              <Link href={`/product/10094`}>
+                <li>
+                  <img src="/img/product/10094-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10083`}>
+                <li>
+                  <img src="/img/product/10083-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10077`}>
+                <li>
+                  <img src="/img/product/10077-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10003`}>
+                <li>
+                  <img src="/img/product/10003-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10054`}>
+                <li>
+                  <img src="/img/product/10054-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10011`}>
+                <li>
+                  <img src="/img/product/10011-1.webp" alt="" />
+                </li>
+              </Link>
             </ul>
           </div>
         </section>
