@@ -7,6 +7,7 @@ import styles from '@/styles/product/menu.module.css'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
 import { loadProducts } from '@/services/product'
+import { useCart } from '@/context/cartcontext' //購物車加的
 import { loadPetInfos } from '@/services/pets'
 import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -79,6 +80,7 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
+  const { addToCart } = useCart() //購物車加的
 
   //分頁用
   const [page, setPage] = useState(1)

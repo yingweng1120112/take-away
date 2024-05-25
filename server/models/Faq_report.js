@@ -21,6 +21,14 @@ export default async function (sequelize) {
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      updated_at: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
       tableName: 'faq_report', //直接提供資料表名稱

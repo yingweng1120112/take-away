@@ -363,7 +363,7 @@
 
 /* 我的故事 */
 .pet-story {
-  /* width: 80%; */
+  width: 100%;
   margin-top: 10%;
   margin-bottom: 150px;
   display: flex;
@@ -480,8 +480,8 @@
 
 /* 我的習慣 */
 .pet-habit {
-  /* width: 60%;
-  display: flex;
+  width: 100%;
+  /* display: flex;
   flex-direction: column;
   align-items: center; */
   /* width: 80%; */
@@ -597,7 +597,7 @@
 .pet-score {
   width: 80%;
   height: auto;
-  margin: 300px 0;
+  margin: 300px 0 200px 0;
   padding: 30px;
   align-items: center;
   justify-content: center;
@@ -607,6 +607,7 @@
   border-radius: 50px;
   display: flex;
   flex-wrap: wrap;
+  z-index: 1;
 }
 
 .pet-score > h1 {
@@ -768,13 +769,13 @@
   animation-direction: ease-in;
   animation-iteration-count: infinite;
   transform: rotate(200deg);
-  left: 70%;
+  left: 73%;
   top: 40%;
 }
 
 @keyframes paws1 {
   from {
-    left: 70%;
+    left: 73%;
     top: 40%;
   }
   50% {
@@ -788,7 +789,7 @@
     transform: rotate(100deg); */
   }
   to {
-    left: 70%;
+    left: 73%;
     top: 40%;
   }
 }
@@ -804,7 +805,7 @@
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 120%;
+  top: 569%;
 }
 
 @keyframes paws2 {
@@ -829,28 +830,28 @@
   height: 300px;
   object-fit: contain;
   left: -5%;
-  top: 180%;
+  top: 150%;
 }
 @keyframes paws3 {
   0% {
     transform: rotate(45deg);
     left: -5%;
-    top: 180%;
+    top: 150%;
   }
   20% {
     left: 10%;
-    top: 240%;
+    top: 210%;
     transform: rotate(90deg);
   }
   60% {
     left: -20%;
-    top: 240%;
+    top: 210%;
     transform: rotate(-70deg);
   }
   100% {
     transform: rotate(45deg);
     left: -5%;
-    top: 180%;
+    top: 150%;
   }
 }
 
@@ -861,7 +862,7 @@
   height: 500px;
   object-fit: contain;
   left: -5%;
-  top: 390%;
+  top: 370%;
 }
 
 .background-paws2 {
@@ -871,7 +872,7 @@
   height: 550px;
   object-fit: contain;
   right: 2%;
-  top: 475%;
+  top: 470%;
 }
 
 /* TODO: 手機版 */

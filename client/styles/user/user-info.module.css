@@ -1,211 +1,221 @@
+.banner-life-1 {
+  background-image: url(/img/user/Banner.jpg);
+}
+.banner-life-2 {
+  background-image: url(/img/user/Banner2.jpg);
+}
+
 /* user edit */
 .bgfeet1 {
-    position: absolute;
-    width: 20%;
-    right: 80%;
-    top: 50%;
-    z-index: -1;
+  position: absolute;
+  width: 20%;
+  right: 80%;
+  top: 50%;
+  z-index: -1;
 }
 
 .bgfeet2 {
-    position: absolute;
-    width: 20%;
-    left: 77%;
-    top: 90%;
-    z-index: -1;
+  position: absolute;
+  width: 20%;
+  left: 77%;
+  top: 90%;
+  z-index: -1;
 }
 
 .book {
-    display: flex;
-    width: 100%;
-    padding: 0;
-    border-radius: solid 3px var(--black);
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  border-radius: solid 3px var(--black);
+  justify-content: center;
 }
 
 .bookInfo {
-    width: 45%;
-    margin: 3rem 0;
+  width: 45%;
+  margin: 3rem 0;
 }
 
 .rope {
-    width: 3%;
-    height: 64.3%;
-    background-image: url('/img/user/user-rope.png');
-    background-repeat: repeat-y;
-    position: absolute;
-    z-index: 1;
-    top: 52%;
-    left: 24.2%;
+  width: 3%;
+  height: 49.5%;
+  background-image: url('/img/user/user-rope.png');
+  background-repeat: repeat-y;
+  position: absolute;
+  z-index: 1;
+  top: 55%;
+  left: 26%;
 }
 
 .bookContainer {
-    width: 100%;
-    height: auto;
-    background: white;
-    border-radius: 30px;
-    position: relative;
-    overflow: visible;
+  width: 100%;
+  height: auto;
+  background: white;
+  border-radius: 30px;
+  position: relative;
+  overflow: visible;
 }
 
 .bookContainer h2 {
-    border-radius: 30px 30px 0 0;
+  border-radius: 30px 30px 0 0;
 }
 
 .user {
-    width: 80%;
-    display: flex;
-    border-bottom: 1px solid black;
-    margin: 1rem 4rem;
-    padding-bottom: 10px;
-    align-items: center;
+  width: 80%;
+  display: flex;
+  border-bottom: 1px solid black;
+  margin: 1rem 4rem;
+  padding-bottom: 10px;
+  align-items: center;
 }
 
 .stickers {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .stickers img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .book h2 {
-    background-color: var(--bean-paste);
-    color: var(--white);
-    margin: 0;
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: var(--bean-paste);
+  color: var(--white);
+  margin: 0;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bookItem {
-    width: 70%;
-    margin-left: 4rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+  width: 70%;
+  margin-left: 4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
 }
 
 .bookContainer h5 {
-    margin: 2rem;
+  margin: 2rem;
 }
 
 .btnItem {
-    margin: 0.5rem;
-    display: flex;
-    justify-content: flex-end;
+  margin: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .btnConfirm {
-    margin: 0.5rem;
-    padding: 0.3rem 1.2rem;
-    font-size: var(--font-size-h3);
-    background-color: var(--khaki);
-    border-radius: 80px;
+  margin: 0.5rem;
+  padding: 0.3rem 1.2rem;
+  font-size: var(--font-size-h3);
+  background-color: var(--khaki);
+  border-radius: 80px;
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
-    .rope {
-        width: 9.5%;
-        height: 80%;
-        right: 98%;
-    }
+  .banner-life-2 {
+    background-image: url(/img/user/Banner.jpg);
+  }
+  .rope {
+    width: 9.5%;
+    height: 80%;
+    right: 98%;
+  }
 
-    .container {
-        width: 100%;
-    }
+  .container {
+    width: 100%;
+  }
 
-    .book {
-        width: 100%;
-    }
+  .book {
+    width: 100%;
+  }
 
-    .stickers {
-        width: 80px;
-        height: 80px;
-    }
+  .stickers {
+    width: 80px;
+    height: 80px;
+  }
 
-    .stickers img {
-        width: 100%;
-        height: auto;
-    }
+  .stickers img {
+    width: 100%;
+    height: auto;
+  }
 
-    .bookItems {
-        justify-content: center;
-    }
+  .bookItems {
+    justify-content: center;
+  }
 
-    .user {
-        margin: 10px;
-        width: 95%;
-        border-bottom: none;
-    }
+  .user {
+    margin: 10px;
+    width: 95%;
+    border-bottom: none;
+  }
 
-    .bookItem h6 {
-        display: none;
-    }
+  .bookItem h6 {
+    display: none;
+  }
 
-    .bookItem img {
-        width: 10%;
-        margin: 10px;
-    }
+  .bookItem img {
+    width: 10%;
+    margin: 10px;
+  }
 
-    .items h5 {
-        font-size: var(--font-size-h6);
-        margin: 0.8rem;
-    }
+  .items h5 {
+    font-size: var(--font-size-h6);
+    margin: 0.8rem;
+  }
 
-    .bookItem {
-        margin: 15px 0 5px 15px;
-        width: 100%;
-        text-align: left;
-        border-bottom: none;
-    }
+  .bookItem {
+    margin: 15px 0 5px 15px;
+    width: 100%;
+    text-align: left;
+    border-bottom: none;
+  }
 
-    .input {
-        width: 80%;
-    }
+  .input {
+    width: 80%;
+  }
 
-    .btnItem {
-        justify-content: center;
-        margin: 10px;
-    }
+  .btnItem {
+    justify-content: center;
+    margin: 10px;
+  }
 
-    .btnConfirm {
-        margin: 0.1rem;
-        padding: 0.3rem 0.4rem;
-        font-size: var(--font-size-h6);
-    }
+  .btnConfirm {
+    margin: 0.1rem;
+    padding: 0.3rem 0.4rem;
+    font-size: var(--font-size-h6);
+  }
 
-    .bell {
-        width: 35%;
-        left: 50%;
-        top: 7%;
-    }
+  .bell {
+    width: 35%;
+    left: 50%;
+    top: 7%;
+  }
 
-    .feet {
-        width: 30%;
-        right: 75%;
-        top: 88%;
-    }
+  .feet {
+    width: 30%;
+    right: 75%;
+    top: 88%;
+  }
 
-    .bar {
-        width: 164px;
-    }
+  .bar {
+    width: 164px;
+  }
 
-    .bgfeet1 {
-        width: 50%;
-        right: 65%;
-        top: 52%;
-    }
+  .bgfeet1 {
+    width: 50%;
+    right: 65%;
+    top: 52%;
+  }
 
-    .bgfeet2 {
-        width: 35%;
-        left: 64%;
-        top: 130%;
-    }
+  .bgfeet2 {
+    width: 35%;
+    left: 64%;
+    top: 130%;
+  }
 }
