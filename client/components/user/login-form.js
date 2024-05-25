@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link'
 import styles from '@/styles/user/login.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import { UserContext } from '@/context/UserContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 // 解析accessToken用的函式
@@ -14,6 +15,7 @@ const parseJwt = (token) => {
 
 export default function LoginForm() {
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
+  const { setUsers } = useContext(UserContext);
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -104,6 +106,7 @@ export default function LoginForm() {
       alert('登入成功')
       const returnUser = parseJwt(data.data.accessToken)
       console.log(returnUser)
+      setUser(returnUser);
     } else {
       alert(data.message)
     }
