@@ -21,6 +21,7 @@ export default function PetList() {
   const [type, setType] = useState([])
   const [personality_type, setPersonality_type] = useState([])
   const [gender, setGender] = useState([])
+  const [age, setAge] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
@@ -34,6 +35,20 @@ export default function PetList() {
   ]
   // 性別選項陣列
   const genderOptions = ['男生', '女生']
+  // 年齡選項陣列
+  const ageOptions = [
+    '幼年 0 ~ 1 歲',
+    '青年 2 ~ 3 歲',
+    '中年 4 ~ 7 歲',
+    '老年 8 歲以上',
+  ]
+  // 年齡範圍
+  const ageRangeMap = {
+    '幼年 0 ~ 1 歲': [0, 1],
+    '青年 2 ~ 3 歲': [2, 3],
+    '中年 4 ~ 7 歲': [4, 7],
+    '老年 8 歲以上': [8, 20], // 假設 100 歲是最大值
+  }
 
   // 加入參詢條件params物件
   const getPet = async (params) => {
@@ -109,6 +124,40 @@ export default function PetList() {
     }
   }
 
+  // FIXME: 年齡 體型 篩選
+  // 年齡複選時使用
+  const handleAgeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (age.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextAge = age.filter((v) => v !== tv)
+      setAge(nextAge)
+    } else {
+      // 否則===>加入陣列
+      const nextAge = [...age, tv]
+      setAge(nextAge)
+    }
+  }
+  // 函數根據選中的年齡選項篩選資料
+  const filterDataByAge = (data) => {
+    if (!data || data.length === 0) {
+      return [];
+    }
+    if (age.length === 0) {
+      return data;
+    }
+    return data.filter((item) => {
+      return age.some((ageOption) => {
+        const [min, max] = ageRangeMap[ageOption];
+        return item.age >= min && item.age <= max;
+      });
+    });
+  };
+
+  const filteredData = filterDataByAge();
+
   // 按下搜尋按鈕
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
@@ -117,6 +166,7 @@ export default function PetList() {
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
+      age,
       type,
       personality_type,
       gender,
@@ -196,22 +246,22 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>選擇年齡</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>幼年 0 ~ 1 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>青年 2 ~ 3 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>中年 4 ~ 7 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>老年 8 歲以上</span>
-                    </label>
+                    {ageOptions.map((v, i) => {
+                      return (
+                        <label key={i} className={banner['cl-checkbox']}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={age.includes(v)}
+                            onChange={(e) => {
+                              handleAgeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
@@ -481,7 +531,7 @@ export default function PetList() {
           </button>
         </section>
 
-        {/* TODO: load商品 */}
+        {/* FIXME: load商品 */}
         <section className={styles['marquee_shop']}>
           <div
             className={`${styles.marquee} ${styles['marquee--hover-pause']} ${styles['enable-animation']}`}
