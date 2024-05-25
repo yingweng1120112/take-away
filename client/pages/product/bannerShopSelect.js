@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
-import BannerPriceSlider from '@/pages/product/bannerPriceSlider'
 import RangeSlider from './bannerPriceSlider2'
 
 // 請複製貼上出去修改

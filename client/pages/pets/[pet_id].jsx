@@ -133,6 +133,7 @@ export default function PetInfo() {
 
     if (router.isReady) {
       const { pet_id } = router.query
+      console.log(pet_id);
       getPet(pet_id)
       getAction(pet_id)
     }

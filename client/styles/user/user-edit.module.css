@@ -1,3 +1,9 @@
+.banner-life-1 {
+  background-image: url(/img/user/Banner.jpg);
+}
+.banner-life-2 {
+  background-image: url(/img/user/Banner2.jpg);
+}
 /* user edit */
 .bgfeet1 {
   position: absolute;
@@ -72,7 +78,6 @@
   margin: 1rem 0 0 4rem;
   padding-bottom: 10px;
 }
-
 
 .bookItem img {
   margin-right: 1rem;
@@ -245,7 +250,10 @@
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
-  .bookInfo{
+  .banner-life-2 {
+    background-image: url(/img/user/Banner.jpg);
+  }
+  .bookInfo {
     margin-top: -65px;
   }
   .rope {
