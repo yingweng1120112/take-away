@@ -127,18 +127,10 @@ export default function RegisterForm() {
             className={`${styles['form']} ${styles['sign-up']}`}
             onSubmit={handleSubmit}
           >
-            <div className={styles['link']}>
-              <h3 className={styles['linkh3']}>
-                <Link href="/user/register">註冊</Link>
-              </h3>
-              <h3 className={styles['linkh3']}>
-                <Link href="/user/login">登入</Link>
-              </h3>
-            </div>
-            <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
+            <h2 className={styles['h2']}>歡迎加入毛孩樂園！</h2>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
-                姓名：
+                姓名：{' '}
               </span>
               <div className="d-flex">
                 <input
@@ -194,6 +186,8 @@ export default function RegisterForm() {
                 {errors.email}
               </span>
             </label>
+
+            
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 密碼:{' '}
@@ -219,6 +213,7 @@ export default function RegisterForm() {
                 {errors.password}
               </span>
             </label>
+
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 確認密碼:{' '}
@@ -245,24 +240,15 @@ export default function RegisterForm() {
               </span>
             </label>
 
-            {/* <label className='agree'>
-              <input
-                type="checkbox"
-                name="agree"
-                checked={user.agree}
-                onChange={handleFieldChange}
-              />{' '}
-              我同意網站會員註冊條款
-            </label>
-            <span className="error">{errors.agree}</span> */}
-            <br />
+            <p className={styles['forgot-pass']}>忘記密碼？</p>
             <button
               type="submit"
               className={`${styles['button']} ${styles['submit']}`}
             >
               註冊
             </button>
-            <button
+
+<button
               type="button"
               className={`${styles['button']} ${styles['fb-btn']}`}
             >
@@ -306,15 +292,26 @@ export default function RegisterForm() {
               一鍵填入
             </button>
           </form>
+          <div className={styles['sub-cont']}>
+            <div className={styles.img}>
+              <div className={`${styles['img__text']} ${styles['m--in']}`}>
+                <h2 className={`${styles.h2} ${styles.h2text}`}>新成員？</h2>
+                <h6 className={styles.h6}>
+                  快來了解各種毛孩
+                  <br />
+                  以及豐富的寵物用品吧！
+                </h6>
+              </div>
+              <div className={styles['img__btn']}>
+                <span
+                  className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
+                >
+                  <Link href="/user/login">登入</Link>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* <style jsx>
-          {`
-            .error {
-              color: red;
-              font-size: 12px;
-            }
-          `}
-        </style> */}
         <Footer />
       </section>
     </>
