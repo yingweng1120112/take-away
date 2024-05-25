@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback} from 'react'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
-import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -11,6 +10,8 @@ import { useCart } from '@/context/cartcontext' //購物車加的
 import { loadPetInfos } from '@/services/pets'
 import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import styles3 from '@/styles/pets/petList.module.css'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -21,8 +22,7 @@ import swiper1 from '@/styles/product/menu_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
-//分頁用
-import BS5Pagination from '@/components/common/bs5-pagination'
+import { debounce } from 'lodash'; // 正確導入 debounce 函數
 
 const sample = [
   {
@@ -80,24 +80,34 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-  const { addToCart } = useCart() //購物車加的
+  const [priceGte, setPriceGte] = useState(0)
+  const [priceLte, setPriceLte] = useState(2000)
+
+  //品項選項陣列
+  const brandOptions = ['寵物飼料', '寵物罐頭', '寵物用品', '保健食品', '寵物零食']
+
+  //查詢條件
+  const [nameLike, setNameLike] = useState('')
 
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
+
+  // 排序
+  const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
     console.log(data)
 
     //因應要分頁和查詢，所以回應改為整個data的products是data.products
-    if(data.pageCount && typeof data.pageCount === 'number') {
+    if (data.pageCount && typeof data.pageCount === 'number') {
       setPageCount(data.pageCount)
     }
-    if(data.total && typeof data.total === 'number') {
+    if (data.total && typeof data.total === 'number') {
       setTotal(data.total)
     }
-    
+
     if (Array.isArray(data.products)) {
       console.log('設products 狀態: ', data.products)
       setProducts(data.products)
@@ -118,27 +128,58 @@ export default function Menu() {
     console.log('從 loadPetInfos 獲取的數據:', data)
     // 確認資料結構是否與原始專案相符，並設置到狀態中
 
-    if (Array.isArray(data)) {
-      console.log('設pets 狀態: ', data)
-      setPets(data)
+    if (Array.isArray(data.pet_info)) {
+      console.log('設pets 狀態: ', data.pet_info)
+      setPets(data.pet_info)
     } else {
-      console.log('數據結構不符合預期:', data)
+      console.log('數據結構不符合預期:', data.pet_info)
     }
-    console.log(data)
+    console.log(data.pet_info)
   }
 
   // 分頁列表觸發事件使用
 
   useEffect(() => {
-    const params ={
+    const params = {
       page,
       perpage,
+      sort: orderby.sort,
+      order: orderby.order,
     }
-
 
     getProducts(params)
     getPet()
-  }, [page, perpage])
+  }, [page, perpage, orderby])
+
+   // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
+   const debouncedSearch = useCallback(
+    debounce((query) => {
+      const params = {
+        page: 1,
+        perpage,
+        sort: orderby.sort,
+        order: orderby.order,
+        name_like: query,
+      };
+      getProducts(params);
+    }, 500), // 500ms 的防抖時間，可以根据需要調整
+    [perpage, orderby]
+  );
+
+  // 使用 useEffect 在 nameLike 要運用 debouncedSearch 防抖機制
+  useEffect(() => {
+    if (nameLike) {
+      debouncedSearch(nameLike);
+    }
+  }, [nameLike, debouncedSearch]);
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   console.log([pets])
   //上下限
@@ -148,12 +189,12 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止触发 Link 的跳转
+  // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
   const handleCartClick = (event) => {
-    event.stopPropagation();
-    // 在这里添加购物车的处理逻辑
-    console.log('Added to cart');
-  };
+    event.stopPropagation()
+    // 在这里添加購物車處理邏輯
+    console.log('Added to cart')
+  }
 
   return (
     <>
@@ -244,18 +285,38 @@ export default function Menu() {
                     <label className={banner['cl-checkbox']}>
                       <input
                         type="radio"
-                        name="options"
-                        defaultChecked={true}
+                        name="sortOptions"
+                        value="price,asc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'asc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
                       />
-                      <span>價格由低至高</span>
+                      <span>價格排序(由低至高)</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
-                      <input type="radio" name="options" />
-                      <span>價格由高至低</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>評價最高</span>
+                      <input
+                        type="radio"
+                        name="sortOptions"
+                        value="price,desc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'desc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
+                      />
+                      <span>價格排序(由高至低)</span>
                     </label>
                   </div>
                 </div>
@@ -286,6 +347,11 @@ export default function Menu() {
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
                     <input
                       type="text"
+                      value={nameLike}
+                      onChange={(e)=>{
+                        setNameLike(e.target.value)
+                        setPage(1); // 输入时也将页码重置为1
+                      }}
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
                     />
@@ -327,7 +393,10 @@ export default function Menu() {
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={handleCartClick}>
+                      <button
+                        className={styles['cart-btn']}
+                        onClick={handleCartClick}
+                      >
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -350,57 +419,67 @@ export default function Menu() {
               </Link>
             ))}
           </ol>
-          <div
-            className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
-            role="navigation"
-          >
-            <a className={pagination.first} aria-label="First Page" href="#" onClick={()=>{
-              //最小頁面是1(不能小於1)
-              const nextPage = page - 1 > 1 ? page - 1 : 1
-              setPage(nextPage)
-            }}>
-              «
-            </a>
-            <a
-              className={pagination.previouspostslink}
-              rel="prev"
-              aria-label="Following-page"
-              href="#"
+          <section className={styles3['wp-pagenavi']}>
+            <span>
+              <a
+                className={`${styles3['page']} ${styles3['previouspostslink']}`}
+              >
+                <IoIosArrowBack
+                  onClick={() => {
+                    // 最小頁面是1(不能小於1)
+                    const nextPage = page - 1 > 1 ? page - 1 : 1
+                    setPage(nextPage)
+                    scrollTo(0, 0)
+                  }}
+                />
+              </a>
+            </span>
+            {page - 1 >= 1 && (
+              <span>
+                <a
+                  className={styles3['page']}
+                  onClick={() => {
+                    handlePageClick(page - 1)
+                  }}
+                >
+                  {page - 1}
+                </a>
+              </span>
+            )}
+            <span
+              className={styles3['current']}
+              onClick={() => {
+                scrollTo(0, 0)
+              }}
             >
-              &lt;
-            </a>
-            <a className={pagination.page} href="#">
-              1
-            </a>
-            <a className={pagination.page} href="#">
-              2
-            </a>
-            <a className={pagination.page} href="#">
-              3
-            </a>
-            {/* <span aria-current="page" class="current">5</span> */}
-            <a className={pagination.page} href="#">
-              4
-            </a>
-            <a className={pagination.page} href="#">
-              5
-            </a>
-            <a
-              className={pagination.nextpostslink}
-              rel="next"
-              aria-label="次のページ"
-              href="#"
-            >
-              &gt;
-            </a>
-            <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
-              //最大頁面不能大於總頁數pageCount
-              const nextPage = page + 1 < pageCount ? page + 1 : pageCount
-              setPage(nextPage)
-            }}>
-              »
-            </a>
-          </div>
+              {page}
+            </span>
+            {page + 1 <= pageCount && (
+              <span>
+                <a
+                  className={styles3['page']}
+                  onClick={() => {
+                    handlePageClick(page + 1)
+                  }}
+                >
+                  {page + 1}
+                </a>
+              </span>
+            )}
+            <span>
+              <a
+                className={`${styles3['page']} ${styles3['nextpostslink']}`}
+                onClick={() => {
+                  // 最大頁面不能大於總頁數pageCount
+                  const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                  setPage(nextPage)
+                  scrollTo(0, 0)
+                }}
+              >
+                <IoIosArrowForward />
+              </a>
+            </span>
+          </section>
         </div>
         <img
           className={styles['dog-palm']}
