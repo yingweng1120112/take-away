@@ -187,7 +187,6 @@ export default function RegisterForm() {
               </span>
             </label>
 
-            
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 密碼:{' '}
@@ -239,8 +238,6 @@ export default function RegisterForm() {
                 {errors.confirmPassword}
               </span>
             </label>
-
-            <p className={styles['forgot-pass']}>忘記密碼？</p>
             <button
               type="submit"
               className={`${styles['button']} ${styles['submit']}`}
@@ -248,7 +245,7 @@ export default function RegisterForm() {
               註冊
             </button>
 
-<button
+            <button
               type="button"
               className={`${styles['button']} ${styles['fb-btn']}`}
             >
@@ -302,13 +299,15 @@ export default function RegisterForm() {
                   以及豐富的寵物用品吧！
                 </h6>
               </div>
-              <div className={styles['img__btn']}>
-                <span
-                  className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
-                >
-                  <Link href="/user/login">登入</Link>
-                </span>
-              </div>
+              <Link href="/user/login">
+                <div className={styles['img__btn']}>
+                  <span
+                    className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
+                  >
+                    登入
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

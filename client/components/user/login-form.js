@@ -231,7 +231,7 @@ export default function LoginForm() {
                 {errors.password2}
               </span>
             </label>
-            <div className="forget">
+            <div className={`${styles['forgot-pass']}`}>
               <Link
                 href="/user/forget-password"
                 className={`${styles['notice']}`}
@@ -276,18 +276,20 @@ export default function LoginForm() {
             </button>
           </form>
           <div className={styles['sub-cont']}>
-            <div className={styles.img}>
+            <div className={styles['img']}>
               <div className={`${styles['img__text']} ${styles['m--up']}`}>
                 <h2 className={`${styles.h2} ${styles.h2text}`}>老朋友</h2>
                 <h6 className={styles.h6}>趕快回來~我們有新朋友想介紹給你</h6>
               </div>
-              <div className={styles['img__btn']}>
-                <div
-                  className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
-                >
-                  <Link href="/user/register">註冊</Link>
+              <Link href="/user/register">
+                <div className={styles['img__btn']}>
+                  <div
+                    className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
+                  >
+                    註冊
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
