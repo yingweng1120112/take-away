@@ -54,8 +54,8 @@ export const loadProduct = async (product_id = '') => {
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      console.log('success', resData.data.product)
-      return resData.data.product
+      console.log('success', resData.data)
+      return resData.data
     } else {
       console.warn('沒有得到資料')
       // 用範例資料當作例外資料
