@@ -1,5 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import useLocalStorage from '@/hooks/use-localstorage'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Modal, Button } from 'react-bootstrap';
 
 const CartContext = createContext()
 
@@ -117,6 +120,18 @@ export function CartProvider({ children }) {
         },
       ])
     }
+    //提示框
+    toast.success(`${product.name} 已加入購物車！`, {
+      position: "top-center",
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+    });
   }
 
   const removeItem = (product_id) => {
@@ -181,6 +196,7 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
+      <ToastContainer />
     </CartContext.Provider>
   )
 }
