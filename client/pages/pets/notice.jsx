@@ -11,7 +11,6 @@ export default function Notice() {
       <Header />
       <div className={styles['commendbody']}>
         <FullPage>
-          {/* TODO: 無法砍掉header footer高度 footer 跑到上面 */}
           <Slide>
             <section className={`${styles['title']} ${styles['section']}`}>
               <h1>寵物領養流程</h1>
@@ -145,13 +144,6 @@ export default function Notice() {
           </div>
         </div>
       </div>
-      <style jsx>
-        {`
-          .h {
-            height: 100%;
-          }
-        `}
-      </style>
     </main>
   )
 }
