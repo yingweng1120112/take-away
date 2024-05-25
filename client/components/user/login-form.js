@@ -263,9 +263,9 @@ export default function LoginForm() {
               type="button"
               onClick={() => {
                 setUser({
-                  username: 'ron',
-                  password: '123456',
-                  password2: '123456',
+                  username: '0912345678',
+                  password: 'Pa55w.rd01',
+                  password2: 'Pa55w.rd01',
                 })
               }}
             >
