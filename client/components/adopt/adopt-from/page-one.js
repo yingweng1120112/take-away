@@ -1,20 +1,10 @@
 import React from 'react'
+import Swal from 'sweetalert2';
 
-export default function PageOne({ donateInfo, setDonateInfo, handleChange , name}) {
+export default function PageOne({ donateInfo, setDonateInfo, handleChange ,handleAmount , name}) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
   const payOptions = ['銀行轉帳', '信用卡', '超商付款']
-
-  const handleAmountChange = (e) => {
-    const { value } = e.target;
-    // 只允許數字輸入並且不超過 10000
-    if (/^\d*$/.test(value) && (value === '' || parseInt(value) <= 10000)) {
-      // 只在輸入值為數字且不超過 10000 時更新狀態
-      setDonateInfo({ ...donateInfo, customAmount: value });
-    } else if (parseInt(value) > 10000) {
-      alert('金額不能超過 10000');
-    }
-  };
 
   return (
     <>
@@ -30,6 +20,7 @@ export default function PageOne({ donateInfo, setDonateInfo, handleChange , name
             placeholder="寵物"
             value={donateInfo.pet_id = name}
             onChange={handleChange}
+            disabled="disabled"
           />
           <span className="input-border"></span>
         </label>
@@ -57,7 +48,7 @@ export default function PageOne({ donateInfo, setDonateInfo, handleChange , name
                 name="amount"
                 value={v}
                 className="ntd-input"
-                checked={donateInfo.amount === v}
+                checked={donateInfo.amount === v.toString()}
                 onChange={handleChange}
               />
               <span className="check"></span>
@@ -79,7 +70,7 @@ export default function PageOne({ donateInfo, setDonateInfo, handleChange , name
             className="form-input"
             placeholder="NTD"
             value={donateInfo.customAmount}
-            onChange={handleAmountChange}
+            onChange={handleAmount}
           />
           <span className="input-border"></span>
         </label>

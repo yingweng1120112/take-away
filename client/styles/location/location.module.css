@@ -751,7 +751,7 @@ background-color: var(--creamy-yellow);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: start;
+    align-items: flex-start;
     line-height: 1.5625rem;
     letter-spacing: 0.1rem;
     margin: 1rem 1.5rem;

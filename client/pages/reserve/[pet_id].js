@@ -128,7 +128,7 @@ export default function Reserve() {
         title: '送出成功',
         icon: 'success',
       })
-      setReserve({ pet: '', name: '', reserveTime: '' })
+      setReserve({ pet: `${reserve.pet}`, name: '', reserveTime: '' })
     } catch (error) {
       console.error('Error:', error)
       Swal.fire({
