@@ -330,7 +330,7 @@ export default function Menu() {
                           checked={species.includes(v)}
                           onChange={handleSpeciesChecked}
                         />
-                        <span>{v}</span>
+                        <span>{v}寶貝</span>
                       </label>
                     ))}
                   </div>
