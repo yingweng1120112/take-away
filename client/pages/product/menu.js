@@ -89,6 +89,17 @@ export default function Menu() {
   const [nameLike, setNameLike] = useState('')
   // 排序
   const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
+  // 监听价格输入框的值变化，更新价格区间
+  const handlePriceChange = (e, newValue) => {
+    setPriceGte(newValue[0]);
+    setPriceLte(newValue[1]);
+  };
+  // 在价格输入框失去焦点时触发搜索操作
+  const handleSearch = () => {
+    // 这里触发搜索操作，你可以调用你的搜索函数并传递更新后的价格区间
+    console.log('Searching for products in price range:', priceGte, priceLte);
+  };
+
 
   //品項選項陣列
   const typeOptions = [
@@ -99,10 +110,7 @@ export default function Menu() {
     '寵物零食',
   ]
   //物種選項陣列
-  const speciesOptions = [
-    '狗',
-    '貓',
-  ]
+  const speciesOptions = ['狗', '貓']
 
   //分頁用
   const [page, setPage] = useState(1)
@@ -129,7 +137,7 @@ export default function Menu() {
     console.log(data.products)
     return {
       products: [], // 返回的产品数据
-    };
+    }
   }
 
   const truncate = (str, n) => {
@@ -213,7 +221,7 @@ export default function Menu() {
 
     getProducts(params)
     getPet()
-  }, [page, perpage, orderby, type, species])
+  }, [page, perpage, orderby, type, species, priceGte, priceLte])
 
   // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
   const debouncedSearch = useCallback(
@@ -385,20 +393,30 @@ export default function Menu() {
                     <div className={`price-input ${banner['price-input']}`}>
                       <div className={banner['price-field']}>
                         <span>從</span>
-                        <input type="number" value={value[0]} />
+                        <input
+                          type="number"
+                          value={priceGte}
+                          onChange={(e) => setPriceGte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>~</span>
-                        <input type="number" value={value[1]} />
+                        <input
+                          type="number"
+                          value={priceLte}
+                          onChange={(e) => setPriceLte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>元</span>
                       </div>
                     </div>
                     {/* slider */}
                     <Slider
-                      value={value}
-                      onChange={handleChange}
+                      value={[priceGte, priceLte]}
+                      onChange={handlePriceChange}
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
                       min={0}
-                      max={5000}
+                      max={2000}
                     />
                   </div>
                   <p className={banner['select-title']}> 商品搜尋 </p>
