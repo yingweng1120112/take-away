@@ -107,7 +107,7 @@ export default function LoginForm() {
       alert('登入成功')
       const returnUser = parseJwt(data.data.accessToken)
       console.log(returnUser)
-      router.push('/user/user-edit')
+      router.push('/user/user-info')
     } else {
       alert(data.message)
     }

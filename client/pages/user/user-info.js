@@ -1,12 +1,40 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
-// import { Link } from 'react-router-dom'
 import Link from 'next/link'
 
 export default function UserInfo() {
+  // const [userInfo, setUserInfo] = useState([])
+
+  // const getUserInfo = async () => {
+  //   const data = await loadUserInfo()
+  //   // 確認資料結構是否與原始專案相符，並設置到狀態中
+  //   if (Array.isArray(data.user_info)) {
+  //     setUserInfo(data.user_info)
+  //   } else {
+  //     console.error('資料結構不符', data)
+  //   }
+  //   console.log(data)
+  // }
+  // useEffect(() => {
+  //   getUserInfo()
+  // }, [])
+
+  // // 確認是否有會員資料
+  // if (userInfo.length === 0) {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <p>尚無會員資料</p>
+  //       <Footer />
+  //     </>
+  //   )
+  // }
+  // //獲取表頭
+  // const tableHeaders = Object.keys(userInfo[0])
+
   return (
     <section>
       <Header />
