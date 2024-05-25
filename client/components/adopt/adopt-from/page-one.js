@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PageOne({ donateInfo, setDonateInfo, handleChange , name }) {
+export default function PageOne({ donateInfo, setDonateInfo, handleChange , name}) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
   const payOptions = ['銀行轉帳', '信用卡', '超商付款']

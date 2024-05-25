@@ -6,6 +6,8 @@ import banner from '@/styles/reserve/banner.module.css'
 import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 export default function Reserve() {
   const router = useRouter()
@@ -90,8 +92,6 @@ export default function Reserve() {
 
     const newErrors = { pet: '', name: '', reserveTime: '' }
 
-    if (!reserve.pet || reserve.pet.length < 1)
-      newErrors.pet = '浪浪名稱必須大於1個字'
     if (!reserve.name || reserve.name.length < 2)
       newErrors.name = '預約人必須大於2個字'
     if (!reserve.reserveTime) newErrors.reserveTime = '預約時間必填'
@@ -124,18 +124,38 @@ export default function Reserve() {
 
       const data = await res.json()
       console.log(data)
-      alert(
-        `請確定預約細項為\n預約的寵物是${reserve.pet}\n預約人是${reserve.name}\n預約時間為${reserve.reserveTime}`
-      )
-
-      setReserve({ name: '', reserveTime: '' })
+      Swal.fire({
+        title: '送出成功',
+        icon: 'success',
+      })
+      setReserve({ pet: '', name: '', reserveTime: '' })
     } catch (error) {
       console.error('Error:', error)
-      alert('預約失敗，請稍後再試')
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>捐款失敗，請稍後再試</h5>`,
+      })
     }
-    
   }
 
+  const handleConfirm = () => {
+    Swal.fire({
+      title: '確定要送出?',
+      html: `
+      <h5>預約的寵物是: ${reserve.pet}<h5><br>
+      <h5>預約人是: ${reserve.name}<h5><br>
+      <h5>預約時間為: ${reserve.reserveTime}<h5>`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '送出',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSubmit(new Event('submit'))
+      }
+    })
+  }
   return (
     <>
       <Header />
