@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '@/styles/user/login.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -13,6 +14,8 @@ const parseJwt = (token) => {
 }
 
 export default function LoginForm() {
+  const router = useRouter()
+
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
   const [user, setUser] = useState({
     username: '',
@@ -104,6 +107,7 @@ export default function LoginForm() {
       alert('登入成功')
       const returnUser = parseJwt(data.data.accessToken)
       console.log(returnUser)
+      router.push('/user/user-edit')
     } else {
       alert(data.message)
     }
