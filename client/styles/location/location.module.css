@@ -18,20 +18,57 @@ background-color: var(--creamy-yellow);
   position: absolute;
   height: 7rem;
   width: 7rem;
-  top: 39%;
+  top: 79%;
   left: 63%;
   margin: 0rem;
+  animation: changeColor1 3s infinite alternate, scaleAnimation1 2s infinite alternate;
 }
-
+@keyframes changeColor1 {
+  0% {
+    filter: hue-rotate(0deg) ;
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes scaleAnimation1 {
+  0% {
+    transform: scale(1) rotate(-80deg);
+  }
+  50% {
+    transform: scale(1.2)rotate(-160deg);
+  }
+  100% {
+    transform: scale(1)rotate(-80deg);
+  }
+}
 .location .foot:nth-child(2) {
   position: absolute;
   height: 7rem;
   width: 7rem;
-  top: 54%;
-  left: 5%;
-  transform: rotate(-80deg);
+  top: 60%;
+  left: 10%;
+  animation: changeColor 3s infinite alternate, scaleAnimation 2s infinite alternate;
 }
-
+@keyframes changeColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .location .container {
   display: flex;
   flex-direction: column;
@@ -91,13 +128,33 @@ background-color: var(--creamy-yellow);
 
 .save .foot {
   position: absolute;
-  height: 9rem;
-  width: 9rem;
+  height: 8rem;
+  width: 8rem;
   top: 52%;
-  left: 55%;
+  left: 58%;
   transform: rotate(-180deg);
+  animation: changeColor 3s infinite alternate, scaleAndRotateAnimation 2s infinite alternate;
+}
+@keyframes changeColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
+@keyframes scaleAndRotateAnimation {
+  0% {
+    transform: scale(1) rotate(-80deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-160deg);
+  }
+  100% {
+    transform: scale(1) rotate(-80deg);
+  }
+}
 .save .space-right {
   order: 2;
   z-index: 3;
@@ -155,21 +212,51 @@ background-color: var(--creamy-yellow);
   position: absolute;
   height: 8rem;
   width: 8rem;
-  top: 63%;
+  top: 68%;
   left: 60%;
-  transform: rotate(-80deg);
+  animation: changeColor 3s infinite alternate, scaleAndRotateAnimation 2s infinite alternate;
+}
+@keyframes changeColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
+@keyframes scaleAndRotateAnimation {
+  0% {
+    transform: scale(1) rotate(-80deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-80deg);
+  }
+  100% {
+    transform: scale(1) rotate(-80deg);
+  }
+}
 .address .print {
   display: flex;
   position: absolute;
   height: 10rem;
   width: 10rem;
-  top: 30%;
-  left: -15%;
-  transform: rotate(80deg);
+  top: 35%;
+  left: -5%;
+  z-index:0;
+  animation: scaleAndRotateAnimation 2s infinite alternate;
 }
-
+@keyframes scaleAndRotateAnimation {
+  0% {
+    transform:  rotate(100deg);
+  }
+  50% {
+    transform: rotate(100deg);
+  }
+  100% {
+    transform: rotate(100deg);
+  }
+}
 .address .address-left {
   width: 100%;
   height: 50%;
@@ -445,6 +532,7 @@ background-color: var(--creamy-yellow);
 .carousel .swiper-slide .btn a {
   font-size: 0.9375rem;
   color: var(--orange);
+  text-decoration: none;
 }
 .carousel .swiper-slide .btn .icon{
   width: 10%;
@@ -543,7 +631,14 @@ background-color: var(--creamy-yellow);
     border-radius: 2.5rem;
     order: 2;
   }
-
+  .save .space-left-two .place-img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    justify-content: center;
+    border-radius: 2.5rem;
+    order: 2;
+  }
   .save .space-right {
     width: 40%;
     height: 80%;
@@ -557,10 +652,21 @@ background-color: var(--creamy-yellow);
     width: 12.5rem;
     height: 12.5rem;
     z-index: 0;
-    left: -4%;
+    left: 0;
     top: 50%;
+    animation: changeColor 3s infinite alternate, scaleAndRotateAnimation 2s infinite alternate;
   }
-
+  @keyframes scaleAndRotateAnimation {
+    0% {
+      transform: scale(1) rotate(-80deg);
+    }
+    50% {
+      transform: scale(1.2) rotate(-80deg);
+    }
+    100% {
+      transform: scale(1) rotate(-80deg);
+    }
+  }
   .save .foot:nth-child(2) {
     position: absolute;
     width: 12.5rem;
@@ -598,14 +704,25 @@ background-color: var(--creamy-yellow);
   }
 
   .address .print {
-    width: 18.75rem;
-    height: 18.75rem;
+    width: 13rem;
+    height: 13rem;
     z-index: 1;
-    top: -10%;
-    left: 44%;
-    transform: rotate(120deg);
-  }
+    top: 15%;
+    left: 50%;
 
+    animation:scaleAndRotateAnimation1 2s infinite alternate;
+  }
+  @keyframes scaleAndRotateAnimation1 {
+    0% {
+      transform: scale(1) rotate(-20deg);
+    }
+    50% {
+      transform: scale(1.1) rotate(-20deg);
+    }
+    100% {
+      transform: scale(1) rotate(-20deg);
+    }
+  }
   .address .foot {
     width: 9.375rem;
     height: 9.375rem;
@@ -694,21 +811,32 @@ background-color: var(--creamy-yellow);
   .fond-us .foot {
     width: 10rem;
     height: 10rem;
-    top: 67%;
+    top: 64%;
     left: 93%;
+    animation: scaleAndRotateAnimation2 2s infinite alternate;
   }
-
+  @keyframes scaleAndRotateAnimation2 {
+    0% {
+      transform: scale(1) rotate(-80deg);
+    }
+    50% {
+      transform: scale(0.8) rotate(-80deg);
+    }
+    100% {
+      transform: scale(1) rotate(-80deg);
+    }
+  }
   .fond-us .foot:nth-child(2) {
     width: 10rem;
     height: 10rem;
-    top: 67%;
+    top: 64%;
     left: 55%;
   }
 
   .fond-us .foot:nth-child(3) {
     width: 10rem;
     height: 10rem;
-    top: 67%;
+    top: 64%;
     left: 17%;
   }
 
@@ -770,9 +898,19 @@ background-color: var(--creamy-yellow);
     height: 10rem;
     top: 67%;
     left: 80%;
-    transform: rotate(-80deg);
+    animation: scaleAndRotateAnimation2 2s infinite alternate;
   }
-
+  @keyframes scaleAndRotateAnimation2 {
+    0% {
+      transform: scale(1) rotate(-80deg);
+    }
+    50% {
+      transform: scale(0.8) rotate(-80deg);
+    }
+    100% {
+      transform: scale(1) rotate(-80deg);
+    }
+  }
   .fond-two .foot:nth-child(2) {
     width: 10rem;
     height: 10rem;

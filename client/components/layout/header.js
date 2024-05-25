@@ -4,12 +4,6 @@ import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
 import { GoPerson } from 'react-icons/go'
 import { CiShoppingCart } from 'react-icons/ci'
-import {
-  faCartShopping,
-  faHeart,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons'
-
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -34,7 +28,7 @@ export default function Header() {
                   <a>關於我們</a>
                   <ul>
                     <li>
-                      <a href="#">關於我們</a>
+                      <a href="http://localhost:3000/location/location">關於我們</a>
                     </li>
                   </ul>
                 </li>
@@ -137,7 +131,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <a href="#">關於我們</a>
+                            <a href="http://localhost:3000/location/location">關於我們</a>
                           </li>
                         </ul>
                       </li>

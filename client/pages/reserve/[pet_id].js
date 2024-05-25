@@ -94,7 +94,8 @@ export default function Reserve() {
 
     if (!reserve.name || reserve.name.length < 2)
       newErrors.name = '預約人必須大於2個字'
-    if (!reserve.reserveTime) newErrors.reserveTime = '預約時間必填'
+    if (!reserve.reserveTime)
+      newErrors.reserveTime = '預約時間必填'
 
     if (newErrors.pet || newErrors.name || newErrors.reserveTime) {
       setErrors(newErrors)
@@ -292,6 +293,15 @@ export default function Reserve() {
               他們也一定很期待能和你一同交流、認識與玩耍
             </h5>
           </div>
+        </div>
+      </section>
+      <section >
+        <div className={styles['thanks']}>
+        <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+        <h1 className={styles['thanks-title']}>
+        Take Away</h1>
+        <h1 className={styles['thanks-title']}>
+        誠摯的歡迎您的蒞臨~</h1>
         </div>
       </section>
       <Footer />
