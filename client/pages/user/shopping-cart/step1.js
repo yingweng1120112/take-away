@@ -124,7 +124,7 @@ export default function Step1() {
                         icon={faSquareMinus}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          decreaseItem(v.product_id)
+                          decreaseItem(v.product_id,v.name)
                         }}
                       />
                       <div>{v.qty}</div>
@@ -143,7 +143,7 @@ export default function Step1() {
                         icon={faTrashCan}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          removeItem(v.product_id)
+                          removeItem(v.product_id,v.name)
                         }}
                       />
                     </div>
