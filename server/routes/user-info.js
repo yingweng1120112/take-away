@@ -6,30 +6,19 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 // 使用sql查詢的方式
 import db from '#configs/mysql.js'
 
-// router.get('/', function (req, res, next) {
-//   res.render('index', { title: 'Express' })
-// })
 // GET - 得到所有會員資料
 router.get('/', async function (req, res) {
   const [rows] = await db.query('SELECT * FROM user')
-  const user = rows
-  // 處理如果沒找到資料
-
-  // 標準回傳JSON
-  return res.json({ status: 'success', data: { user } })
+  const user_info = rows
+  return res.json({ status: 'success', data: { user_info } })
 })
 
-// GET - 得到單筆資料(注意，有動態參數時要寫在GET區段最後面)
+// GET - 得到單筆資料
 router.get('/:id', async function (req, res) {
-  // 轉為數字
   const id = getIdParam(req)
-
-  const [rows] = await db.query(
-    'SELECT * FROM user WHERE user_id=?',
-    [id]
-  )
-  const user = rows[0]
-  return res.json({ status: 'success', data: { user } })
+  const [rows] = await db.query('SELECT * FROM user WHERE user_id=?', [id])
+  const user_info = rows
+  return res.json({ status: 'success', data: { user_info } })
 })
 
 router.post('/', async function (req, res) {

@@ -1,6 +1,39 @@
 // const baseUrl = 'https://my-json-server.typicode.com/eyesofkids/json-fake-data/users'
 const baseUrl = 'http://localhost:3005/api/user-info'
 
+const sample = [
+  {
+    user_id: 10001,
+    name: '白賢祐',
+    password: 'Pa55w.rd01',
+    phone: '0912345678',
+    email: 'Hyunwoo01@gmail.com',
+    pic: '10001.jpg',
+    address_detail: '桃園市龜山區萬壽路１段14號',
+    status: 'none',
+    google_uid: 'none',
+    line_uid: 'none',
+    line_access_token: 'none',
+    created_at: 'none',
+    updated_at: 'none',
+  },
+  {
+    user_id: 10002,
+    name: '洪海仁',
+    password: 'Pa55w.rd02',
+    phone: '0987654321',
+    email: 'Hairen02@gmail.com',
+    pic: '10002.jpg',
+    address_detail: '屏東縣鹽埔鄉博愛街58號',
+    status: 'none',
+    google_uid: 'none',
+    line_uid: 'none',
+    line_access_token: 'none',
+    created_at: 'none',
+    updated_at: 'none',
+  },
+]
+
 // 因應要分頁和查詢，所以回應整個data
 export const loadUserInfo = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
