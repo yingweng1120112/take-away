@@ -143,20 +143,20 @@ export default function PetList() {
   // 函數根據選中的年齡選項篩選資料
   const filterDataByAge = (data) => {
     if (!data || data.length === 0) {
-      return [];
+      return []
     }
     if (age.length === 0) {
-      return data;
+      return data
     }
     return data.filter((item) => {
       return age.some((ageOption) => {
-        const [min, max] = ageRangeMap[ageOption];
-        return item.age >= min && item.age <= max;
-      });
-    });
-  };
+        const [min, max] = ageRangeMap[ageOption]
+        return item.age >= min && item.age <= max
+      })
+    })
+  }
 
-  const filteredData = filterDataByAge();
+  const filteredData = filterDataByAge()
 
   // 按下搜尋按鈕
   const handleSearch = () => {
@@ -174,6 +174,11 @@ export default function PetList() {
     }
     getPet(params)
   }
+
+  // 當篩選條件變化時，觸發搜尋
+  useEffect(() => {
+    handleSearch()
+  }, [gender, age, type, personality_type, nameLike])
 
   // 樣式3: didMount + didUpdate
   useEffect(() => {
@@ -205,7 +210,10 @@ export default function PetList() {
       {/* banner */}
       <div
         className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
-        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)', width:"100%" }}
+        style={{
+          backgroundImage: 'url(../../img/pets/petlist-navbar.png)',
+          width: '100%',
+        }}
       ></div>
       <div className={banner['banner-select']}>
         <div
@@ -377,12 +385,9 @@ export default function PetList() {
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
                       value={nameLike}
-                      onChange={(e) => {
-                        setNameLike(e.target.value)
-                      }}
+                      onChange={(e) => setNameLike(e.target.value)}
                     />
                   </div>
-                  <button onClick={handleSearch}>搜尋</button>
                 </div>
               </div>
             </div>
