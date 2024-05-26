@@ -30,7 +30,16 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const userId = localStorage.getItem('user_id');
+    if (userId) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     setSelectedItems(prevState => {
@@ -44,7 +53,7 @@ export default function Step1() {
     });
   }, [cartItems]);
   
-  
+
 
   return (
     <>
