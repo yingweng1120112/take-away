@@ -17,6 +17,11 @@ export default function DiarySearch() {
   const [pageCount, setPageCount] = useState(0)
   const [petsInfo, setPetsInfo] = useState([])
 
+  const [age, setage] = useState({ age_gte: '0', age_lte: '30' })
+  const [weight, setweight] = useState({ weight_gte: '0', weight_lte: '50' })
+  const [type, settype] = useState({ type: '' })
+  const [gender, setgender] = useState({ gender: '' })
+  const [nameLike, setNameLike] = useState('')
   // 分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
@@ -40,15 +45,39 @@ export default function DiarySearch() {
       setPetsInfo(data.pets_info)
     }
   }
+  const handleSearch = () => {
+    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+    setPage(1)
 
+    const params = {
+      page: 1,
+      perpage,
+      age_gte: age.age_gte,
+      age_lte: age.age_lte,
+      weight_gte: weight.weight_gte,
+      weight_lte: weight.weight_lte,
+      type: type.type,
+      gender: gender.gender,
+      name_like: nameLike,
+    }
+
+    getPetsInfo(params)
+  }
   // // 樣式2: 元件初次渲染之後(after)執行一次，之後不會再執行
   useEffect(() => {
     const params = {
       page,
       perpage,
+      age_gte: age.age_gte,
+      age_lte: age.age_lte,
+      weight_gte: weight.weight_gte,
+      weight_lte: weight.weight_lte,
+      type: type.type,
+      gender: gender.gender,
+      name_like: nameLike,
     }
     getPetsInfo(params)
-  }, [page])
+  }, [page, age, weight, type, gender])
 
   return (
     <>
@@ -99,39 +128,114 @@ export default function DiarySearch() {
                   <div className={banner['select-left']}>
                     <div className={banner['select-item-a']}>
                       <p className={banner['select-title']}>選擇年齡</p>
-                      <div className={banner['select-item']}>
+                      <div
+                        className={banner['select-item']}
+                        value={`${age.age_gte},${age.age_lte}`}
+                        onChange={(e) => {
+                          const selected = e.target.value
+                          if (age.age_gte == 0 && age.age_lte == 30) {
+                            setage({
+                              age_gte: selected.split(',')[0],
+                              age_lte: selected.split(',')[1],
+                            })
+                          } else if (age.age_lte <= selected.split(',')[0]) {
+                            setage({
+                              age_gte: age.age_gte,
+                              age_lte: selected.split(',')[1],
+                            })
+                          } else if (age.age_gte >= selected.split(',')[0]) {
+                            setage({
+                              age_lte: age.age_lte,
+                              age_gte: selected.split(',')[0],
+                            })
+                          }
+                        }}
+                      >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="0,1" />
                           <span>幼年 0~1</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="2,3" />
                           <span>青年 2~3</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="4,7" />
                           <span>中年 4~7</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="8,30" />
                           <span>老年 8以上</span>
                         </label>
                       </div>
                     </div>
                     <div className={banner['select-item-a']}>
                       <p className={banner['select-title']}>寵物體型</p>
-                      <div className={banner['select-item']}>
+                      <div
+                        className={banner['select-item']}
+                        value={`${age.age_gte},${age.age_lte}`}
+                        onChange={(e) => {
+                          // weight.weight_gte 小
+                          // weight.weight_lte 大
+                          const selected = e.target.value
+                          if (e.target.checked == true) {
+                            if (
+                              weight.weight_gte == 0 &&
+                              weight.weight_lte == 50
+                            ) {
+                              setweight({
+                                weight_gte: selected.split(',')[0],
+                                weight_lte: selected.split(',')[1],
+                              })
+                            } else if (
+                              weight.weight_lte <= selected.split(',')[0]
+                            ) {
+                              setweight({
+                                weight_gte: weight.weight_gte,
+                                weight_lte: selected.split(',')[1],
+                              })
+                            } else if (
+                              weight.weight_gte >= selected.split(',')[0]
+                            ) {
+                              setweight({
+                                weight_lte: weight.weight_lte,
+                                weight_gte: selected.split(',')[0],
+                              })
+                            }
+                          }
+                          if (e.target.checked == false) {
+                            // weight.weight_gte 小
+                            // weight.weight_lte 大
+
+                            if (weight.weight_gte <= selected.split(',')[1]) {
+                              console.log('1')
+                              setweight({
+                                weight_lte: selected.split(',')[1],
+                                weight_gte: weight.weight_gte,
+                              })
+                            } else if (
+                              weight.weight_lte >= selected.split(',')[0]
+                            ) {
+                              console.log('3')
+                              setweight({
+                                weight_gte: weight.weight_gte,
+                                weight_lte: selected.split(',')[1],
+                              })
+                            }
+                          }
+                        }}
+                      >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
-                          <span>大型 20kg以上</span>
+                          <input type="checkbox" value="0,8" />
+                          <span>小型 8kg以下</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="8,20" />
                           <span>中型 8-20kg</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
-                          <span>小型 8kg以下</span>
+                          <input type="checkbox" value="20,49" />
+                          <span>大型 20kg以上</span>
                         </label>
                       </div>
                     </div>
@@ -139,26 +243,68 @@ export default function DiarySearch() {
                   <div className={banner['select-right']}>
                     <div className={banner['select-item-a']}>
                       <p className={banner['select-title']}>適用物種</p>
-                      <div className={banner['select-item']}>
+                      <div
+                        className={banner['select-item']}
+                        onChange={(e) => {
+                          const selected = e.target.value
+                          if (type.type == '狗狗' && selected == '貓貓') {
+                            settype({
+                              type: ['狗狗', selected],
+                            })
+                          } else if (
+                            type.type == '貓貓' &&
+                            selected == '狗狗'
+                          ) {
+                            settype({
+                              type: ['貓貓', selected],
+                            })
+                          } else {
+                            settype({
+                              type: selected,
+                            })
+                          }
+                        }}
+                      >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="狗狗" />
                           <span>狗寶貝</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="貓貓" />
                           <span>貓寶貝</span>
                         </label>
                       </div>
                     </div>
                     <div className={banner['select-item-c']}>
-                      <p className={banner['select-title']}>姓別</p>
-                      <div className={banner['select-item']}>
+                      <p className={banner['select-title']}>性別</p>
+                      <div
+                        className={banner['select-item']}
+                        onChange={(e) => {
+                          const selected = e.target.value
+                          if (gender.gender == '男生' && selected == '女生') {
+                            setgender({
+                              type: ['男生', selected],
+                            })
+                          } else if (
+                            gender.gender == '女生' &&
+                            selected == '男生'
+                          ) {
+                            setgender({
+                              gender: ['男生', selected],
+                            })
+                          } else {
+                            setgender({
+                              gender: selected,
+                            })
+                          }
+                        }}
+                      >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="男生" />
                           <span>男生</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" />
+                          <input type="checkbox" value="女生" />
                           <span>女生</span>
                         </label>
                       </div>
@@ -167,9 +313,14 @@ export default function DiarySearch() {
                         <input
                           type="text"
                           className={`form-control ${banner['shop-select']}`}
-                          id="exampleFormControlInput1"
+                          value={nameLike}
+                          onChange={(e) => {
+                            setNameLike(e.target.value)
+                          }}
                         />
+                        <button onClick={handleSearch}>搜尋</button>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -189,28 +340,7 @@ export default function DiarySearch() {
                 <br />
                 孩子們，要來看看嗎 ?
               </h1>
-            </div>{' '}
-            <button
-              onClick={() => {
-                // 最小頁面是1(不能小於1)
-                const nextPage = page - 1 > 1 ? page - 1 : 1
-                setPage(nextPage)
-              }}
-            >
-              上一頁
-            </button>
-            <button
-              onClick={() => {
-                // 最大頁面不能大於總頁數pageCount
-                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
-                setPage(nextPage)
-              }}
-            >
-              下一頁
-            </button>
-            <p>{page}</p>
-            <p>{perpage}</p>
-            <p>{total}</p>
+            </div>
             <div className={styles['container-a']}>
               <div className={styles['project-list']}>
                 {petsInfo.map((v, i) => {
@@ -240,19 +370,72 @@ export default function DiarySearch() {
           </div>
         </div>
         {/* 頁數這邊有問題 role="navigation' aria-label="First Page" href="#' rel='prev' aria-label="Last Page" href="#'*/}
+        <p>{page}</p>
+        <p>{perpage}</p>
+        <p>{total}</p>
         <div className={styles['hidden']}>
-          <div className={styles['wp-pagenavi']}>
-            <a className={styles['first']} href="#" aria-label="First Page">
+          <div className={styles['wp-pagenavi']} role="navigation">
+            <a
+              className={styles['first']}
+              aria-label="First Page"
+              href="#"
+              onClick={() => {
+                // 最小頁面是1(不能小於1)
+                const nextPage = page - 1 > 1 ? page - 1 : 1
+                setPage(nextPage)
+              }}
+            >
               «
             </a>
             <a className={styles['previouspostslink']}>&lt;</a>
-            <a className={`${styles['page']} smaller`}> 1 </a>
-            <a className={`${styles['page']} smaller`}>2</a>
-            <span aria-current="page" className={styles['current']}>
+            <a
+              className={`${styles['page']} smaller`}
+              href="#"
+              onClick={() => {
+                setPage(1)
+              }}
+            >
+              1
+            </a>
+            <a
+              className={`${styles['page']} smaller`}
+              href="#"
+              onClick={() => {
+                setPage(2)
+              }}
+            >
+              2
+            </a>
+            <a
+              className={`${styles['page']} smaller`}
+              href="#"
+              onClick={() => {
+                setPage(3)
+              }}
+            >
               3
-            </span>
-            <a className={`${styles['page']} smaller`}>4</a>
-            <a className={`${styles['page']} smaller`}>5</a>
+            </a>
+            {/* <span aria-current="page" className={styles['current']} href='#' >
+              3
+            </span> */}
+            <a
+              className={`${styles['page']} smaller`}
+              href="#"
+              onClick={() => {
+                setPage(4)
+              }}
+            >
+              4
+            </a>
+            <a
+              className={`${styles['page']} smaller`}
+              href="#"
+              onClick={() => {
+                setPage(5)
+              }}
+            >
+              5
+            </a>
             <a
               className={styles['nextpostslink']}
               rel="next"
@@ -261,10 +444,20 @@ export default function DiarySearch() {
             >
               &gt;
             </a>
-            <a className={'last'} href="#" aria-label="Last Page">
+            <a
+              className={styles['last']}
+              aria-label="Last Page"
+              href="#"
+              onClick={() => {
+                // 最大頁面不能大於總頁數pageCount
+                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                setPage(nextPage)
+              }}
+            >
               »
             </a>
           </div>
+
           <div className={styles['container-main-2']}>
             <img
               src="/img/diarySearch/blueLine.svg"
