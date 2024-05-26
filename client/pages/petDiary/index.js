@@ -24,38 +24,62 @@ export default function DiarySearch() {
     c: false,
   })
   const a = (ageType1) => {
-    console.log("4",ageType1)
+    console.log('4', ageType1)
     if (ageType1.a == true && ageType1.b == false && ageType1.c == false) {
       setweight({
         weight_gte: 0,
         weight_lte: 8,
       })
-    } else if (ageType1.a == false && ageType1.b == true && ageType1.c == false) {
+    } else if (
+      ageType1.a == false &&
+      ageType1.b == true &&
+      ageType1.c == false
+    ) {
       setweight({
         weight_gte: 8,
         weight_lte: 20,
       })
-    } else if (ageType1.a == false && ageType1.b == false && ageType1.c == true) {
+    } else if (
+      ageType1.a == false &&
+      ageType1.b == false &&
+      ageType1.c == true
+    ) {
       setweight({
         weight_gte: 20,
         weight_lte: 50,
       })
-    } else if (ageType1.a == true && ageType1.b == true && ageType1.c == false) {
+    } else if (
+      ageType1.a == true &&
+      ageType1.b == true &&
+      ageType1.c == false
+    ) {
       setweight({
         weight_gte: 0,
         weight_lte: 20,
       })
-    } else if (ageType1.a == true && ageType1.b == false && ageType1.c == true) {
+    } else if (
+      ageType1.a == true &&
+      ageType1.b == false &&
+      ageType1.c == true
+    ) {
       setweight({
         weight_gte: 0,
         weight_lte: 50,
       })
-    } else if (ageType1.a == false && ageType1.b == true && ageType1.c == true) {
+    } else if (
+      ageType1.a == false &&
+      ageType1.b == true &&
+      ageType1.c == true
+    ) {
       setweight({
         weight_gte: 8,
         weight_lte: 50,
       })
-    } else if (ageType1.a == false && ageType1.b == false && ageType1.c == false) {
+    } else if (
+      ageType1.a == false &&
+      ageType1.b == false &&
+      ageType1.c == false
+    ) {
       setweight({
         weight_gte: 0,
         weight_lte: 50,
@@ -196,7 +220,7 @@ export default function DiarySearch() {
                         }}
                       >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="young" />
+                          <input type="checkbox" value="0,1" />
                           <span>幼年 0~1</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
@@ -223,30 +247,21 @@ export default function DiarySearch() {
                           const selected = e.target.value
                           const checked = e.target.checked
                           setAgeType({ ...ageType, [selected]: checked })
-                          const c={ ...ageType, [selected]: checked }
-                          console.log("0",c)
+                          const c = { ...ageType, [selected]: checked }
+                          console.log('0', c)
                           a(c)
                         }}
                       >
                         <label className={banner['cl-checkbox']}>
-                          <input
-                            type="checkbox"
-                            value="a"
-                          />
+                          <input type="checkbox" value="a" />
                           <span>小型 8kg以下</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input
-                            type="checkbox"
-                            value="b"
-                          />
+                          <input type="checkbox" value="b" />
                           <span>中型 8-20kg</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input
-                            type="checkbox"
-                            value="c"
-                          />
+                          <input type="checkbox" value="c" />
                           <span>大型 20kg以上</span>
                         </label>
                       </div>
@@ -259,21 +274,38 @@ export default function DiarySearch() {
                         className={banner['select-item']}
                         onChange={(e) => {
                           const selected = e.target.value
-                          if (type.type == '狗狗' && selected == '貓貓') {
-                            settype({
-                              type: ['狗狗', selected],
-                            })
-                          } else if (
-                            type.type == '貓貓' &&
-                            selected == '狗狗'
-                          ) {
-                            settype({
-                              type: ['貓貓', selected],
-                            })
+                          const checked = e.target.checked
+                          if (checked == false) {
+                            if(type.type == '狗狗,貓貓'&& selected == '貓貓'){
+                              settype({
+                                type: ['狗狗'],
+                              })
+                            }else if(type.type == '狗狗,貓貓'&& selected == '狗狗'){
+                              settype({
+                                type: ['貓貓'],
+                              })
+                            }else{
+                              settype({
+                                type: '',
+                              })
+                            }
                           } else {
-                            settype({
-                              type: selected,
-                            })
+                            if (type.type == '狗狗' && selected == '貓貓') {
+                              settype({
+                                type: ['狗狗', '貓貓'],
+                              })
+                            } else if (
+                              type.type == '貓貓' &&
+                              selected == '狗狗'
+                            ) {
+                              settype({
+                                type: ['狗狗','貓貓'],
+                              })
+                            } else {
+                              settype({
+                                type: selected,
+                              })
+                            }
                           }
                         }}
                       >
