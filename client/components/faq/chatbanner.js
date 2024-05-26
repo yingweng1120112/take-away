@@ -18,7 +18,7 @@ export default function Chatbanner() {
             {/* span為pc版文字，p為phone版文字 */}
             <span className={banner['middle-page-title']}>客服中心</span>
             <span>Chatroom</span>
-            {/* <p className={banner['middle-page-title']}>選項</p> */}
+            <p className={banner['middle-page-title']}>Chat</p>
           </div>
         </div>
       </div>

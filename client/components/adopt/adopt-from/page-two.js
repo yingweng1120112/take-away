@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name}) {
+export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name, errors}) {
   const projectOptions = ['不指定', '急難救助', '絕育計畫']
   const addressOptions = ['電子郵件地址', '通訊地址']
 
@@ -28,10 +28,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             placeholder="寵物"
             value={donateInfo.pet_id = name}
             onChange={handleChange}
+            disabled="disabled"
           />
           <span className="input-border"></span>
         </label>
-
         <h4 className="input-title">姓名</h4>
         <label className="form-label">
           {''}
@@ -45,7 +45,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
           />
           <span className="input-border"></span>
         </label>
-        <div />
+        <div className="error"> {errors.user_id && <p className="error">{errors.user_id}</p>}
+        </div>
         <h4 className="input-title">行動電話</h4>
         <label className="form-label">
           {' '}
@@ -58,13 +59,15 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             onChange={handleChange}
           />
           <span className="input-border"></span>
+         
         </label>
+        <div className="error"> {errors.phone && <p className="error">{errors.phone}</p>}</div>
         <h4 className="input-title">電子信箱</h4>
         <label className="form-label">
           {' '}
           <input
             type="text"
-            name="email"
+            name="email"center
             className="form-input"
             placeholder="電子信箱"
             value={adopt.email}
@@ -72,6 +75,8 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
           />
           <span className="input-border"></span>
         </label>
+        <div className="error">  {errors.email && <p className="error">{errors.email}</p>}
+        </div>
         <h4 className="input-title">捐贈方式及金額</h4>
         <label className="form-label">
           {''}

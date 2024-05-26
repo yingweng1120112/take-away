@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '@/styles/user/login.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
+import { UserContext } from '@/context/UserContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
 // 解析accessToken用的函式
@@ -17,15 +18,16 @@ export default function LoginForm() {
   const router = useRouter()
 
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
+  const { setUsers } = useContext(UserContext);
   const [user, setUser] = useState({
-    username: '',
+    phone: '',
     password: '',
     password2: '',
   })
 
   // 記錄欄位錯誤訊息的狀態
   const [errors, setErrors] = useState({
-    username: '',
+    phone: '',
     password: '',
     password2: '',
   })
@@ -52,13 +54,13 @@ export default function LoginForm() {
 
     // 表單檢查---START---
     // 建立一個新的錯誤訊息物件
-    const newErrors = { username: '', password: '', password2: '' }
+    const newErrors = { phone: '', password: '', password2: '' }
 
-    // if (user.username === '') {
-    // 上面寫法常見改為下面這樣，`if(user.username)` 代表有填寫，
-    // 所以反相判斷 `if(!user.username)` 代表沒填寫
-    if (!user.username) {
-      newErrors.username = '帳號為必填'
+    // if (user.phone === '') {
+    // 上面寫法常見改為下面這樣，`if(user.phone)` 代表有填寫，
+    // 所以反相判斷 `if(!user.phone)` 代表沒填寫
+    if (!user.phone) {
+      newErrors.phone = '帳號為必填'
     }
 
     if (user.password && user.password.length < 6) {
@@ -89,70 +91,64 @@ export default function LoginForm() {
       return // 函式中作流程控制，會跳出函式不執行之後的程式碼
     }
     // 表單檢查--- END ---
+    try {
+      // 檢查沒問題後再送到伺服器
+      const res = await fetch('http://localhost:3005/api/users/login', {
+        credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      })
 
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/users/login', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(user),
-    })
+      const data = await res.json()
 
-    const data = await res.json()
-
-    if (data.status === 'success') {
-      alert('登入成功')
-      const returnUser = parseJwt(data.data.accessToken)
-      console.log(returnUser)
-      router.push('/user/user-info')
-    } else {
-      alert(data.message)
+      if (data.status === 'success') {
+        alert('登入成功')
+        const returnUser = parseJwt(data.data.accessToken)
+        console.log(returnUser)
+        // 保存用户id到localStorage
+        localStorage.setItem('user_id', returnUser.user_id)
+        router.push('/user/user-info')
+      } else {
+        alert(data.message)
+      }
+    } catch (error) {
+      console.error('Fetch error:', error)
+      alert('發生錯誤，請稍後再試')
     }
   }
 
   const handleLogout = async () => {
-    // 檢查沒問題後再送到伺服器
-    const res = await fetch('http://localhost:3005/api/users/logout', {
-      credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({}),
-    })
+    try {
+      const res = await fetch('http://localhost:3005/api/users/logout', {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      })
 
-    const data = await res.json()
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`)
+      }
 
-    if (data.status === 'success') {
-      alert('登出成功')
-    } else {
-      alert(data.message)
+      const data = await res.json()
+
+      if (data.status === 'success') {
+        alert('登出成功')
+      } else {
+        alert(data.message)
+      }
+    } catch (error) {
+      console.error('Fetch error:', error)
+      alert('發生錯誤，請稍後再試')
     }
   }
-
-  // const handleCheck = async () => {
-  //   // 檢查沒問題後再送到伺服器
-  //   const res = await fetch('http://localhost:3005/api/users/check', {
-  //     credentials: 'include', // 設定cookie或是要存取隱私資料時帶cookie到伺服器一定要加
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-
-  //   const data = await res.json()
-
-  //   if (data.status === 'success') {
-  //     console.log(data.data)
-  //   } else {
-  //     alert(data.message)
-  //   }
-  // }
 
   return (
     <>
@@ -173,15 +169,15 @@ export default function LoginForm() {
                 <input
                   className={styles['input']}
                   type="text"
-                  name="username"
-                  value={user.username}
+                  name="phone"
+                  value={user.phone}
                   onChange={handleFieldChange}
                 />
               </div>
               <span
                 className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
               >
-                {errors.username}{' '}
+                {errors.phone}{' '}
               </span>
             </label>
             <label className={styles['label']}>
@@ -263,7 +259,7 @@ export default function LoginForm() {
               type="button"
               onClick={() => {
                 setUser({
-                  username: 'ron',
+                  phone: 'ron',
                   password: '123456',
                   password2: '123456',
                 })

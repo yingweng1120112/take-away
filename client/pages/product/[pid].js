@@ -28,6 +28,7 @@ export default function Information() {
   const router = useRouter()
   const { addToCart } = useCart() //購物車加的
 
+
   const [product, setProduct] = useState({
     product_id: 0,
     name: '',
@@ -44,12 +45,17 @@ export default function Information() {
     information: '',
     reviews_id: 0,
   })
+  const [reviews, setReviews] = useState([]);
+  const [numberOfReviews, setNumberOfReviews] = useState(0); // 新增一個 state 來儲存評論數量
+
   //單筆商品
   const getProduct = async (pid) => {
     const data = await loadProduct(pid)
     console.log(data)
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
-      setProduct(data)
+      setProduct(data.product)
+      setReviews(data.reviews)
+      setNumberOfReviews(data.reviews.length); // 設置評論數量
     } else {
       console.log('數據結構不符合預期:', data)
     }
@@ -196,41 +202,6 @@ export default function Information() {
               />
             </div>
           ))}
-              {/* <div className="carousel-item">
-                <img
-                  src={`/img/product/${product.pic2}`}
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={`/img/product/${product.pic3}`}
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={`/img/product/${product.pic4}`}
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={`/img/product/${product.pic5}`}
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  src={`/img/product/${product.pic}`}
-                  className="d-block w-100"
-                  alt="..."
-                />
-              </div> */}
             </div>
             <button
               className="carousel-control-prev"
@@ -276,76 +247,6 @@ export default function Information() {
               />
             </button>
           ))}
-            {/* <button
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 2"
-            >
-              <img
-                style={{ width: '100%' }}
-                src="\img\information\product-img2.webp"
-                alt=""
-                aria-label="Slide 2"
-              />
-            </button>
-            <button
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 3"
-            >
-              <img
-                style={{ width: '100%' }}
-                src="\img\information\product-img3.webp"
-                alt=""
-                aria-label="Slide 3"
-              />
-            </button>
-            <button
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="3"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 4"
-            >
-              <img
-                style={{ width: '100%' }}
-                src="\img\information\product-img4.webp"
-                alt=""
-                aria-label="Slide 4"
-              />
-            </button>
-            <button
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="4"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 5"
-            >
-              <img
-                style={{ width: '100%' }}
-                src="\img\information\product-img5.webp"
-                alt=""
-                aria-label="Slide 5"
-              />
-            </button>
-            <button
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="5"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 6"
-            >
-              <img
-                style={{ width: '100%' }}
-                src="\img\information\product-img6.webp"
-                alt=""
-                aria-label="Slide 6"
-              />
-            </button> */}
           </div>
           {/* 產品標題區 */}
           <div className={styles['product-info']}>
@@ -421,22 +322,17 @@ export default function Information() {
         <div className={styles.content}>
           <div className={styles['product-reviews-title']}>
             <img src="\img\information\product-reviews-title.svg" alt="" />
-            <p>目前有 2 筆評論</p>
+            <p>目前有 {numberOfReviews} 筆評論</p>
             <hr className={styles.hr} />
-            <div className={styles['product-reviews-info']}>
-              <p className={styles['reviews-user']}>小太陽說 :</p>
+            {reviews.map((review) => (
+            <div key={review.reviews_id} className={styles['product-reviews-info']}>
+              <p className={styles['reviews-user']}>{review.user_name}說 :</p>
               <p className={styles['reviews-info']}>
-                我們家很挑嘴的小土豆，原本只是抱著姑且一試的態度買看看，沒想到牠意外喜歡，會再回購。
+              {review.content}
               </p>
-              <p className={styles['reviews-date']}>2024-04-10</p>
+              <p className={styles['reviews-date']}>{review.time}</p>
             </div>
-            <div className={styles['product-reviews-info']}>
-              <p className={styles['reviews-user']}>小太陽說 :</p>
-              <p className={styles['reviews-info']}>
-                我們家很挑嘴的小土豆，原本只是抱著姑且一試的態度買看看，沒想到牠意外喜歡，會再回購。
-              </p>
-              <p className={styles['reviews-date']}>2024-04-10</p>
-            </div>
+            ))}
             {/* 分頁 */}
             <div
               className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
@@ -647,181 +543,6 @@ export default function Information() {
                 </Link>
               </SwiperSlide>
             ))}
-
-            {/* <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide className={styles2.info}>
-              <div className={styles2['info_swiper']}>
-                <a href="#" className={styles2['products-card']}>
-                  <img src="/img/menu/related-products.jpg" alt="" />
-                  <p className={styles2.p}>
-                    斑尼菲 無穀狗糧 鹿肉關節450克(狗飼料)
-                  </p>
-                  <div>
-                    <button className={styles2['cart-btn']}>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={47}
-                        height={27}
-                        viewBox="0 0 576 512"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                    <p className={styles2.p}>$207</p>
-                  </div>
-                </a>
-              </div>
-            </SwiperSlide> */}
           </Swiper>
         </div>
       </section>

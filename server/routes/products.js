@@ -104,12 +104,47 @@ router.get('/:id', async function (req, res) {
   //   raw: true, // 只需要資料表中資料
   // })
 
-  const [rows] = await db.query('SELECT * FROM product WHERE product_id = ?', [
-    id,
-  ])
-  const product = rows[0]
+  // 获取商品数据
+  const [productRows] = await db.query(
+    'SELECT * FROM product WHERE product_id = ?',
+    [id]
+  )
+  const product = productRows[0]
 
-  return res.json({ status: 'success', data: { product } })
+  // 获取评论数据
+  const [reviewRows] = await db.query(
+    'SELECT * FROM reviews WHERE product_id = ?',
+    [id]
+  )
+  const reviews = reviewRows
+
+  // 获取用户数据
+  const userIds = reviews.map((review) => review.user_id)
+  const [userRows] = await db.query('SELECT * FROM user WHERE user_id IN (?)', [
+    userIds,
+  ])
+  const users = userRows.reduce((acc, user) => {
+    acc[user.user_id] = user
+    return acc
+  }, {})
+
+  // 将用户名称、电话、电子邮件、图片和地址详情加入到评论中
+  const populatedReviews = reviews.map((review) => ({
+    ...review,
+    user_name: users[review.user_id].name,
+    user_phone: users[review.user_id].phone,
+    user_email: users[review.user_id].email,
+    user_pic: users[review.user_id].pic,
+    user_address_detail: users[review.user_id].address_detail,
+  }))
+
+  const numberOfReviews = populatedReviews.length
+
+  return res.json({
+    status: 'success',
+    data: { product, reviews: populatedReviews },
+    reviewTotal: numberOfReviews,
+  })
 })
 
 export default router

@@ -2,9 +2,8 @@
     display: flex;
     font-family: "Jost", sans-serif;
     justify-content: center;
-    /* margin: 100px 0px; */
-    /* border: 1px solid grey; */
     border-radius: 30px;
+    padding: 2rem 0;
 }
 
 /* 聊天室左側功能列 */
@@ -41,7 +40,7 @@
 /* 聊天室中間用戶列 */
 .chatB {
     width: 379px;
-    height: 1110px;
+    height: calc(100% + );
     background-color: #FFF;
 }
 
@@ -119,7 +118,7 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-image: url("/img/cr_avatar1.png");
+    background-image: url("/img/faq/cr_avatar1.png");
     background-size: contain;
     /* background-color: lightgrey; */
 }
@@ -154,7 +153,8 @@
 }
 
 .cmt_bottom{
-    height: calc(100% - 398px);
+    /* height: calc(100% - 398px); */
+    height: calc(100% - 600px);
     background-color: lightgrey;
     border:30px solid #FFF;
 }

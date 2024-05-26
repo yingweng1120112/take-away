@@ -18,15 +18,18 @@ const sample = [
   },
 ]
 
-
 // 因應要分頁和查詢，所以回應整個data
-export const loadProducts = async () => {
+export const loadProducts = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
   // const searchParams = new URLSearchParams(params)
   // const url = `${baseUrl}?${searchParams.toString()}`
+  const searchParams = new URLSearchParams(params)
+  const url = `${baseUrl}?${searchParams.toString()}`
 
   try {
-    const res = await fetch(baseUrl)
+    // 使用URLSearchParams產生查詢字串
+
+    const res = await fetch(url)
     const data = await res.json()
 
     // 判斷是否成功
@@ -51,8 +54,8 @@ export const loadProduct = async (product_id = '') => {
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      console.log('success', resData.data.product)
-      return resData.data.product
+      console.log('success', resData.data)
+      return resData.data
     } else {
       console.warn('沒有得到資料')
       // 用範例資料當作例外資料
