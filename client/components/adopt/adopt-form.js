@@ -112,8 +112,6 @@ export default function AdoptForm(pet) {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-
     let finalAmount = donateInfo.amount
     if (!finalAmount && donateInfo.customAmount) {
       finalAmount = donateInfo.customAmount
@@ -130,69 +128,75 @@ export default function AdoptForm(pet) {
     }
 
     try {
-      const res = await fetch(
-        'http://localhost:3005/api/online_virtual_adoption_form',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(finalDonateInfo),
-        }
-      )
-
+      const res = await fetch('http://localhost:3005/api/online_virtual_adoption_form', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(finalDonateInfo),
+      });
+  
       if (!res.ok) {
-        console.log(finalDonateInfo)
-        throw new Error('Network response was not ok')
+        console.log(finalDonateInfo);
+        throw new Error('Network response was not ok');
       }
-
-      const data = await res.json()
-      console.log(data)
-      console.log(finalDonateInfo)
+  
+      const data = await res.json();
+      console.log(data);
+      console.log(finalDonateInfo);
       Swal.fire({
-        title: '確定要送出?',
-        html: `
-        <h5>想認養: ${donateInfo.pet_id}<h5><br>
-        <h5>捐款方式: ${donateInfo.donation_method}<h5><br>
-        <h5>金額: ${finalAmount}<h5><br>
-        <h5>捐贈用途: ${adopt.donation}<h5><br>
-        <h5>捐獻證明寄送至: ${adopt.donate_address}<h5>
-      `,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '送出',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: '送出成功',
-            icon: 'success',
-          })
-        }
-      })
+        title: '送出成功',
+        icon: 'success',
+      });
       setDonateInfo({
         pet_id: '',
         donation_method: '定期定額',
         amount: '',
         customAmount: '',
         payment: '銀行轉帳',
-      })
+      });
       setAdopt({
         user_id: '',
         donation: '不指定',
         donate_address: '電子郵件地址',
-      })
+      });
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Error:', error);
       Swal.fire({
         icon: 'error',
         html: `<h5>確認表格有無確實填寫</h5>`,
-      })
+      });
     }
-  }
+  };
+  
+  const handleConfirm = (e) => {
+    e.preventDefault();
 
+    let finalAmount = donateInfo.amount;
+    if (!finalAmount && donateInfo.customAmount) {
+      finalAmount = donateInfo.customAmount;
+    }
+    
+    Swal.fire({
+      title: '確定要送出?',
+      html: `
+        <h5>想認養: ${donateInfo.pet_id}<h5><br>
+        <h5>捐款方式: ${donateInfo.donation_method}<h5><br>
+        <h5>金額: ${finalAmount}<h5><br>
+        <h5>捐贈用途: ${adopt.donation}<h5><br>
+        <h5>捐獻證明寄送至: ${adopt.donate_address}<h5>`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '送出',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSubmit();
+      }
+    });
+  };
   return (
     <div className="form1">
       {currentStep === 1 && (
@@ -386,7 +390,7 @@ export default function AdoptForm(pet) {
             <button
               type="submit"
               className="button donate-button next-page-button"
-              onClick={handleSubmit}
+              onClick={(e) => handleConfirm(e)}
             >
               完成
             </button>
