@@ -6,17 +6,23 @@ import styles from '@/styles/psycological-test/psycological-test_p2.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/psycological_test'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 export default function Page1() {
   const [questions, setQuestions] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [totalSteps, setTotalSteps] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1)
   const router = useRouter()
+
+  const now = (currentStep / totalSteps) * 100
 
   useEffect(() => {
     const fetchQuestions = async () => {
       const data = await loadProducts()
       if (data && Array.isArray(data.psycological_test)) {
         setQuestions(data.psycological_test)
+        setTotalSteps(data.psycological_test.length)
       } else {
         console.error('資料結構不符', data)
       }
@@ -26,84 +32,92 @@ export default function Page1() {
 
   useEffect(() => {
     const handleBeforeUnload = () => {
-      localStorage.removeItem('totalValue') 
-      localStorage.removeItem('countOptions') 
-    } 
+      localStorage.removeItem('totalValue')
+      localStorage.removeItem('countOptions')
+    }
 
-    window.addEventListener('beforeunload', handleBeforeUnload) 
+    window.addEventListener('beforeunload', handleBeforeUnload)
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload) 
-    } 
-  }, []) 
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [])
 
   useEffect(() => {
-    const storedTotalValue = localStorage.getItem('totalValue') 
-    const storedCountOptions = localStorage.getItem('countOptions') 
+    const storedTotalValue = localStorage.getItem('totalValue')
+    const storedCountOptions = localStorage.getItem('countOptions')
 
     if (storedTotalValue || storedCountOptions) {
-      router.push('/psycological-test/page1') 
-      localStorage.removeItem('totalValue') 
+      router.push('/pets/psycological-test/page1')
+      localStorage.removeItem('totalValue')
       localStorage.removeItem('countOptions')
-      localStorage.removeItem('answers')  
-  
+      localStorage.removeItem('answers')
     }
-  }, [router]) 
+  }, [router])
 
   const updateLocalStorage = (option, isUndo = false) => {
-    const currentQuestion = questions[currentIndex]  
-    const optionValue = currentQuestion[`option_value_${option.toLowerCase()}`] 
-  
+    const currentQuestion = questions[currentIndex]
+    const optionValue = currentQuestion[`option_value_${option.toLowerCase()}`]
+
     // 儲存分數總和
-    const totalKey = 'totalValue'  
-    const previousTotal = parseInt(localStorage.getItem(totalKey), 10) || 0  
-    const newTotal = isUndo ? previousTotal - optionValue : previousTotal + optionValue  
+    const totalKey = 'totalValue'
+    const previousTotal = parseInt(localStorage.getItem(totalKey), 10) || 0
+    const newTotal = isUndo
+      ? previousTotal - optionValue
+      : previousTotal + optionValue
     localStorage.setItem(totalKey, newTotal)
-  
+
     // 儲存每個選項被選擇的次數
-    const countOptions = JSON.parse(localStorage.getItem('countOptions')) || { countA: 0, countB: 0, countC: 0, countD: 0 }
+    const countOptions = JSON.parse(localStorage.getItem('countOptions')) || {
+      countA: 0,
+      countB: 0,
+      countC: 0,
+      countD: 0,
+    }
     //更新次數
     countOptions[`count${option.toUpperCase()}`] += isUndo ? -1 : 1
     localStorage.setItem('countOptions', JSON.stringify(countOptions))
-  
+
     //記住每個題目的選擇
-    const answers = JSON.parse(localStorage.getItem('answers')) || []  
+    const answers = JSON.parse(localStorage.getItem('answers')) || []
     if (isUndo) {
-      answers.pop()  
+      answers.pop()
     } else {
-      answers.push({ questionId: currentQuestion.question_id, option, optionValue })  
+      answers.push({
+        questionId: currentQuestion.question_id,
+        option,
+        optionValue,
+      })
     }
-    localStorage.setItem('answers', JSON.stringify(answers)) 
-
-
-}  
+    localStorage.setItem('answers', JSON.stringify(answers))
+  }
 
   const handleAnswer = (option) => {
-
     updateLocalStorage(option)
     // 如果是最後一題，跳轉到結果頁面
     if (currentIndex >= questions.length - 1) {
-      router.push('/psycological-test/page3')
+      router.push('/pets/psycological-test/page3')
     } else {
       // 更新問題索引
       setCurrentIndex(currentIndex + 1)
+      setCurrentStep(currentStep + 1)
     }
-    
   }
 
   const handlePreviousQuestion = () => {
     if (currentIndex === 0) {
-      router.push('/psycological-test/page1')
+      router.push('/pets/psycological-test/page1')
     } else {
       // 獲取上一个問題的選擇值
-      const answers = JSON.parse(localStorage.getItem('answers')) || []  
-      const prevAnswer = answers.pop()  
+      const answers = JSON.parse(localStorage.getItem('answers')) || []
+      const prevAnswer = answers.pop()
       if (prevAnswer) {
-        const { option, optionValue } = prevAnswer  
-        updateLocalStorage(option, true)  
+        const { option, optionValue } = prevAnswer
+        updateLocalStorage(option, true)
       }
-      localStorage.setItem('answers', JSON.stringify(answers))    
+      localStorage.setItem('answers', JSON.stringify(answers))
       setCurrentIndex(currentIndex - 1)
+      setCurrentStep(currentStep - 1)
     }
   }
 
@@ -119,15 +133,16 @@ export default function Page1() {
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
-            <button 
-              style={{cursor: "default"}}
-            >
+            <ProgressBar variant="warning" now={now} label={`${Math.round(now)}%`} className={styles['progress-bar']}  />
+          </div>
+          <div>
+            <button style={{ cursor: 'default' }}>
               <FontAwesomeIcon
                 icon={faCircleChevronLeft}
                 className={styles['iconstyle']}
                 onClick={handlePreviousQuestion}
-              disabled={false}
-              style={{cursor: "pointer"}}
+                disabled={false}
+                style={{ cursor: 'pointer' }}
               />
             </button>
             <div className={styles['questioncontent']}>
