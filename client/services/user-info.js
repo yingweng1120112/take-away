@@ -58,7 +58,9 @@ export const loadUserInfo = async (params = {}) => {
   }
 }
 
-export const loadUserInfoSpecific = async (user_id = '') => {
+// client/services/user-info.js
+
+export const loadUserInfoSpecific = async (user_id) => {
   try {
     if (!user_id) throw new Error('user_id是必要參數')
 
@@ -66,7 +68,7 @@ export const loadUserInfoSpecific = async (user_id = '') => {
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      return resData.data.user
+      return resData.data.user_info[0]  // 確保只返回單個用戶信息
     } else {
       console.warn('沒有得到資料')
       // 用範例資料當作例外資料
@@ -78,3 +80,4 @@ export const loadUserInfoSpecific = async (user_id = '') => {
     return sample[0]
   }
 }
+

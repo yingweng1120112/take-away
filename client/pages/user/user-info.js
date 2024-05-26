@@ -5,69 +5,33 @@ import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import { loadUserInfo } from '@/services/user-info'
+import { loadUserInfoSpecific } from '@/services/user-info'
 
 export default function UserInfo() {
-  // 最後得到的資料
-  const [UserInfo, setUserInfo] = useState([])
-  const [pageCount, setPageCount] = useState(1)
-  // 分頁用
-  const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(9)
+  // 最后得到的资料
+  const [userInfo, setUserInfo] = useState(null) // 使用 useState 钩子来保存用户信息
 
-
-  // 加入參詢條件params物件
-  const getUserInfo = async (params) => {
-
-    setUserInfo([]) // 清空之前的資料
-
-    const data = await loadUserInfo(params)
-    console.log('從 loadUserInfo 獲取的資料:', data)
-
-    // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
-    if (Array.isArray(data.user_info)) {
-      console.log('設UserInfo 狀態: ', data.user_info)
-      setUserInfo(data.user_info)
-    } else {
-      console.log('數據結構不符合預期:', data.user_info)
-    }
-    console.log(data.user_info)
-  }
-
-
-  // 按下搜尋按鈕
-  const handleSearch = () => {
-    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
-    setPage(1)
-
-    const params = {
-      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
-      perpage,
-      name_like: nameLike,
-    }
-    getUserInfo(params)
-  }
-
-  // 樣式3: didMount + didUpdate
+  // 使用 useEffect 钩子在组件加载时获取用户信息
   useEffect(() => {
-    const params = {
-      page,
-      perpage,
+    const fetchUserInfo = async () => {
+      // 从 localStorage 获取当前登录用户的 user_id
+      const userId = localStorage.getItem('user_id')
+      if (userId) {
+        // 调用 loadUserInfoSpecific 函数获取用户信息
+        const data = await loadUserInfoSpecific(userId)
+        console.log('从 loadUserInfoSpecific 获取的数据:', data)
+        // 更新组件状态
+        setUserInfo(data)
+      } else {
+        console.error('未找到用户ID')
+      }
     }
+    fetchUserInfo()
+  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
 
-    getUserInfo(params)
-  }, [page, perpage])
-
-  useEffect(() => {
-    console.log('當前的 UserInfo 狀態:', UserInfo) // 確認 UserInfo 狀態更新
-    console.log('現在的頁數: ', page)
-  }, [UserInfo])
-
-  const handlePageClick = (targetPage) => {
-    if (targetPage >= 1 && targetPage <= pageCount) {
-      setPage(targetPage)
-      scrollTo(0, 0)
-      console.log(`切換到第 ${targetPage} 頁`)
-    }
+  // 如果 userInfo 为空，显示加载状态
+  if (!userInfo) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -156,6 +120,7 @@ export default function UserInfo() {
         </div>
       </div>
       {/* banner end */}
+
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
       <div className={styles['container']}>
@@ -163,52 +128,44 @@ export default function UserInfo() {
           <div className={styles['bookInfo']}>
             <div className={styles['rope']} />
 
-            {UserInfo.map((v, i) => {
-              return (
-                <div className={styles['bookContainer']}>
-                  <h2>個人資料</h2>
-                  <div className={styles['user']}>
-                    <div className={styles['stickers']}>
-                      <img
-                        key={v.user_id}
-                        src={`/img/user/${v.pic}.jpg`}
-                        alt=""
-                      />
-                    </div>
-                    <h5>姓名：</h5>
-                    <span key={v.user_id}>{v.name}</span>
-                  </div>
-                  <div className={styles['bookItem']}>
-                    <img src={`/img/user/user-dog.jpg`} alt="" />
-                    <h5>id</h5>
-                    <span key={v.user_id}>{v.user_id}</span>
-                    <hr />
-                  </div>
-                  <div className={styles['bookItem']}>
-                    <img src={`/img/user/user-dog.jpg`} alt="" />
-                    <h5>Email：</h5>
-                    <span key={v.user_id}>{v.email}</span>
-                    <hr />
-                  </div>
-                  <div className={styles['bookItem']}>
-                    <img src={`/img/user/user-dog.jpg`} alt="" />
-                    <h5>帳號：</h5>
-                    <span key={v.user_id}>{v.phone}</span>
-                  </div>
-                  <div className={styles['bookItem']}>
-                    <img src={`/img/user/user-dog.jpg`} alt="" />
-                    <h5>地址：</h5>
-                    <span key={v.user_id}>{v.address_detail}</span>
-                  </div>
-                  <div className={styles['btnItem']}>
-                    <Link href="/user/user-edit">
-                      <button className={styles['btnConfirm']}>修改資料</button>
-                    </Link>
-                    <button className={styles['btnConfirm']}>登出</button>
-                  </div>
+            <div className={styles['bookContainer']}>
+              <h2>個人資料</h2>
+              <div className={styles['user']}>
+                <div className={styles['stickers']}>
+                  <img src={`/img/user/${userInfo.pic}.jpg`} alt="" />
                 </div>
-              )
-            })}
+                <h5>姓名：</h5>
+                <span>{userInfo.name}</span>
+              </div>
+              <div className={styles['bookItem']}>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>id</h5>
+                <span>{userInfo.user_id}</span>
+                <hr />
+              </div>
+              <div className={styles['bookItem']}>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>Email：</h5>
+                <span>{userInfo.email}</span>
+                <hr />
+              </div>
+              <div className={styles['bookItem']}>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>帳號：</h5>
+                <span>{userInfo.phone}</span>
+              </div>
+              <div className={styles['bookItem']}>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>地址：</h5>
+                <span>{userInfo.address_detail}</span>
+              </div>
+              <div className={styles['btnItem']}>
+                <Link href="/user/user-edit">
+                  <button className={styles['btnConfirm']}>修改資料</button>
+                </Link>
+                <button className={styles['btnConfirm']}>登出</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
