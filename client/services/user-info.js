@@ -4,11 +4,11 @@ const baseUrl = 'http://localhost:3005/api/user-info'
 const sample = [
   {
     user_id: 10001,
-    name: '白賢祐',
-    password: 'Pa55w.rd01',
+    name: '榮恩',
+    password: '1234567',
     phone: '0912345678',
-    email: 'Hyunwoo01@gmail.com',
-    pic: '10001.jpg',
+    email: 'ron@test.com',
+    pic: '',
     address_detail: '桃園市龜山區萬壽路１段14號',
     status: 'none',
     google_uid: 'none',

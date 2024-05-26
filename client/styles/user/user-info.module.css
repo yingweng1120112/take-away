@@ -37,12 +37,12 @@
 
 .rope {
   width: 3%;
-  height: 43%;
+  height: 38%;
   background-image: url('/img/user/user-rope.png');
   background-repeat: repeat-y;
   position: absolute;
   z-index: 1;
-  top: 48%;
+  top: 47%;
   left: 26%;
 }
 

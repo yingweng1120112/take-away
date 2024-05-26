@@ -6,6 +6,7 @@ import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import { loadUserInfo } from '@/services/user-info'
 import { loadUserInfoSpecific } from '@/services/user-info'
+import { useAuth } from '@/hooks/use-auth'
 
 export default function UserInfo() {
   // 最后得到的资料
