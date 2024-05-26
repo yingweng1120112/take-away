@@ -10,6 +10,7 @@ import {
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+import { useCart } from '@/context/cartcontext'
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
@@ -17,6 +18,7 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
+  const {cartItems} = useCart()
   return (
     <>
       {/* 更改容器高度 */}
@@ -103,6 +105,7 @@ export default function Header() {
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
                   <CiShoppingCart className="shop-icon" />
+                  <span className="cart-items">{cartItems.length}</span>
                   購物車
                 </div>
               </Link>
@@ -229,6 +232,7 @@ export default function Header() {
                         style={{ color: 'var( --reddish-brown)' }}
                       />
                       <a href="#">購物車</a>
+                      <span className="cart-items">{cartItems.length}</span>
                     </a>
                     <a href="#" className="phone-title">
                       <CiHeart
