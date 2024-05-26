@@ -1,39 +1,74 @@
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
-import Link from 'next/link'
+import { loadUserInfo } from '@/services/user-info'
 
 export default function UserInfo() {
-  // const [userInfo, setUserInfo] = useState([])
+  // 最後得到的資料
+  const [UserInfo, setUserInfo] = useState([])
+  const [pageCount, setPageCount] = useState(1)
+  // 分頁用
+  const [page, setPage] = useState(1)
+  const [perpage, setPerpage] = useState(9)
 
-  // const getUserInfo = async () => {
-  //   const data = await loadUserInfo()
-  //   // 確認資料結構是否與原始專案相符，並設置到狀態中
-  //   if (Array.isArray(data.user_info)) {
-  //     setUserInfo(data.user_info)
-  //   } else {
-  //     console.error('資料結構不符', data)
-  //   }
-  //   console.log(data)
-  // }
-  // useEffect(() => {
-  //   getUserInfo()
-  // }, [])
 
-  // // 確認是否有會員資料
-  // if (userInfo.length === 0) {
-  //   return (
-  //     <>
-  //       <Header />
-  //       <p>尚無會員資料</p>
-  //       <Footer />
-  //     </>
-  //   )
-  // }
-  // //獲取表頭
-  // const tableHeaders = Object.keys(userInfo[0])
+  // 加入參詢條件params物件
+  const getUserInfo = async (params) => {
+
+    setUserInfo([]) // 清空之前的資料
+
+    const data = await loadUserInfo(params)
+    console.log('從 loadUserInfo 獲取的資料:', data)
+
+    // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
+    if (Array.isArray(data.user_info)) {
+      console.log('設UserInfo 狀態: ', data.user_info)
+      setUserInfo(data.user_info)
+    } else {
+      console.log('數據結構不符合預期:', data.user_info)
+    }
+    console.log(data.user_info)
+  }
+
+
+  // 按下搜尋按鈕
+  const handleSearch = () => {
+    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+    setPage(1)
+
+    const params = {
+      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+      perpage,
+      name_like: nameLike,
+    }
+    getUserInfo(params)
+  }
+
+  // 樣式3: didMount + didUpdate
+  useEffect(() => {
+    const params = {
+      page,
+      perpage,
+    }
+
+    getUserInfo(params)
+  }, [page, perpage])
+
+  useEffect(() => {
+    console.log('當前的 UserInfo 狀態:', UserInfo) // 確認 UserInfo 狀態更新
+    console.log('現在的頁數: ', page)
+  }, [UserInfo])
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   return (
     <section>
@@ -72,7 +107,7 @@ export default function UserInfo() {
 
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          className="accordion-collapse collapse show"
           data-bs-parent="#accordionExample"
         >
           <div className={`accordion-body ${banner['accordion-body']}`}>
@@ -99,7 +134,7 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-mypet">
+                  <Link href="/user/user-myUserInfo">
                     <p className={`link ${banner['select-title']}`}>我的寵物</p>
                   </Link>
                 </div>
@@ -127,42 +162,53 @@ export default function UserInfo() {
         <div className={styles['book']}>
           <div className={styles['bookInfo']}>
             <div className={styles['rope']} />
-            <div className={styles['bookContainer']}>
-              <h2>個人資料</h2>
-              <div className={styles['user']}>
-                <div className={styles['stickers']}>
-                  <img src={`/img/user/cat_cookie1.jpg`} alt="" />
+
+            {UserInfo.map((v, i) => {
+              return (
+                <div className={styles['bookContainer']}>
+                  <h2>個人資料</h2>
+                  <div className={styles['user']}>
+                    <div className={styles['stickers']}>
+                      <img
+                        key={v.user_id}
+                        src={`/img/user/${v.pic}.jpg`}
+                        alt=""
+                      />
+                    </div>
+                    <h5>姓名：</h5>
+                    <span key={v.user_id}>{v.name}</span>
+                  </div>
+                  <div className={styles['bookItem']}>
+                    <img src={`/img/user/user-dog.jpg`} alt="" />
+                    <h5>id</h5>
+                    <span key={v.user_id}>{v.user_id}</span>
+                    <hr />
+                  </div>
+                  <div className={styles['bookItem']}>
+                    <img src={`/img/user/user-dog.jpg`} alt="" />
+                    <h5>Email：</h5>
+                    <span key={v.user_id}>{v.email}</span>
+                    <hr />
+                  </div>
+                  <div className={styles['bookItem']}>
+                    <img src={`/img/user/user-dog.jpg`} alt="" />
+                    <h5>帳號：</h5>
+                    <span key={v.user_id}>{v.phone}</span>
+                  </div>
+                  <div className={styles['bookItem']}>
+                    <img src={`/img/user/user-dog.jpg`} alt="" />
+                    <h5>地址：</h5>
+                    <span key={v.user_id}>{v.address_detail}</span>
+                  </div>
+                  <div className={styles['btnItem']}>
+                    <Link href="/user/user-edit">
+                      <button className={styles['btnConfirm']}>修改資料</button>
+                    </Link>
+                    <button className={styles['btnConfirm']}>登出</button>
+                  </div>
                 </div>
-                <h5 className={styles['']}>姓名：三明治</h5>
-              </div>
-              <div className={styles['bookItem']}>
-                <img src={`/img/user/user-dog.jpg`} alt="" />
-                <h5>電話：0931111222</h5>
-                <hr />
-              </div>
-              <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>生日：1999/03/03</h5>
-              </div>
-              <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>密碼：************</h5>
-              </div>
-              <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>確認密碼：************</h5>
-              </div>
-              <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>地址：台南市白河區狸貓路人造人11號</h5>
-              </div>
-              <div className={styles['btnItem']}>
-                <Link href="/user/user-edit">
-                  <button className={styles['btnConfirm']}>修改資料</button>
-                </Link>
-                <button className={styles['btnConfirm']}>登出</button>
-              </div>
-            </div>
+              )
+            })}
           </div>
         </div>
       </div>
