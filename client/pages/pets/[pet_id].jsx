@@ -459,7 +459,7 @@ export default function PetInfo() {
           </table>
         </section>
 
-        {/* TODO: 進度條 */}
+        {/* TODO: 進度條 動畫 */}
         <section className={styles['pet-score']}>
           <h1>綜合評分</h1>
           <ul>

@@ -108,7 +108,7 @@ export default function PetList() {
     }
   }
 
-  // 測驗類別複選時使用
+  // 性別複選時使用
   const handleGenderChecked = (e) => {
     // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
     const tv = e.target.value
