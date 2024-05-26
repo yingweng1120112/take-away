@@ -12,7 +12,7 @@ router.get('/', async function (req, res) {
   // 獲取query查詢字串參數值
   // const {
   //   name_like='', // 類型string, 用於 `name LIKE '%name_like%'`
-  //   breeds='', // 類型string, 用於`breeds IN (brands)` 注意breeds要轉換為'狗狗', '貓貓'
+  //   type='', // 類型string, 用於`type IN (brands)` 注意type要轉換為'狗狗', '貓貓'
   //   gender='', // 類型string, 用於`gender IN (sex)` 注意gender要轉換為'男生', '女生'
   //   age_gte=0, // 類型number, 用於 `age >= age_gte`
   //   age_lte=30, // 類型number, 用於 `age <= age_lte`
@@ -28,12 +28,10 @@ router.get('/', async function (req, res) {
   conditions[0] = name_like ? `name LIKE '%${name_like}%'` : ''
   // 物種
   // (查詢字串會是 '狗狗,貓貓' 逗點分隔字串)
-  // 要轉換為 `brand IN ('Apple','Google')`
-  const breeds = req.query.breeds ? req.query.breeds.split(',') : []
+  // 要轉換為 `type IN ('Apple','Google')`
+  const type = req.query.type ? req.query.type.split(',') : []
   conditions[1] =
-    breeds.length > 0
-      ? `brand IN (${breeds.map((v) => `'${v}'`).join(',')})`
-      : ''
+    type.length > 0 ? `type IN (${type.map((v) => `'${v}'`).join(',')})` : ''
   // 年齡
   // 大於等於，0的情況會是空字串
   const age_gte = Number(req.query.age_gte) || 0
@@ -51,7 +49,7 @@ router.get('/', async function (req, res) {
 
   // 重量
   // 小於等於，30指的是價格最大值
-  const weight_lte = Number(req.query.weight_lte) || 30
+  const weight_lte = Number(req.query.weight_lte) || 50
   conditions[5] = weight_lte ? `weight <= ${weight_lte}` : ''
 
   // 組合where從句
