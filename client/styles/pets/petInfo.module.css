@@ -653,7 +653,7 @@
 
 .score-bar {
   width: 60%;
-  height: 25px;
+  /* height: 25px; */
   display: inline-block;
   position: relative;
   text-align: center;
@@ -664,7 +664,7 @@
   /* border: 1px solid black; */
 }
 
-.score-level {
+/* .score-level {
   height: 90%;
   display: flex;
   justify-content: center;
@@ -676,7 +676,7 @@
   position: absolute;
   top: 5%;
   left: 0.5%;
-}
+} */
 
 .score-energy {
   animation: score80;

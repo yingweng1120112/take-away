@@ -6,6 +6,7 @@ import Footer from '@/components/layout/footer'
 import { loadPetInfo } from '@/services/pets'
 import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
+import ProgressBar from '@ramonak/react-progress-bar'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
 import banner from '@/styles/banner/banner.module.css'
 
@@ -133,7 +134,7 @@ export default function PetInfo() {
 
     if (router.isReady) {
       const { pet_id } = router.query
-      console.log(pet_id);
+      console.log(pet_id)
       getPet(pet_id)
       getAction(pet_id)
     }
@@ -465,41 +466,45 @@ export default function PetInfo() {
             <li>
               <span className={styles['score-name']}>活動力</span>
               <span className={styles['score-bar']}>
-                <span
-                  className={`${styles['score-level']} ${styles['score-energy']}`}
-                >
-                  {action.mobility}%
-                </span>
+                <ProgressBar
+                  completed={action.mobility}
+                  maxCompleted={100}
+                  bgColor="#d3ad9a"
+                  labelColor="#000000"
+                />
               </span>
             </li>
             <li>
               <span className={styles['score-name']}>適應力</span>
               <span className={styles['score-bar']}>
-                <span
-                  className={`${styles['score-level']} ${styles['score-adapt']}`}
-                >
-                  {action.adaptability}%
-                </span>
+                <ProgressBar
+                  completed={action.adaptability}
+                  maxCompleted={100}
+                  bgColor="#d3ad9a"
+                  labelColor="#000000"
+                />
               </span>
             </li>
             <li>
               <span className={styles['score-name']}>活潑度</span>
               <span className={styles['score-bar']}>
-                <span
-                  className={`${styles['score-level']} ${styles['score-lively']}`}
-                >
-                  {action.lively}%
-                </span>
+                <ProgressBar
+                  completed={action.lively}
+                  maxCompleted={100}
+                  bgColor="#d3ad9a"
+                  labelColor="#000000"
+                />
               </span>
             </li>
             <li>
               <span className={styles['score-name']}>親人度</span>
               <span className={styles['score-bar']}>
-                <span
-                  className={`${styles['score-level']} ${styles['score-affectionate']}`}
-                >
-                  {action.affectionate}%
-                </span>
+                <ProgressBar
+                  completed={action.affectionate}
+                  maxCompleted={100}
+                  bgColor="#d3ad9a"
+                  labelColor="#000000"
+                />
               </span>
             </li>
           </ul>
