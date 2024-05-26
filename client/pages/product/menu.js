@@ -80,7 +80,7 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-
+  
   //查詢條件
   const [type, setType] = useState([])
   const [species, setSpecies] = useState([])
@@ -115,6 +115,9 @@ export default function Menu() {
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
+
+  //購物車加的
+  const { addToCart } = useCart()
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
@@ -261,11 +264,10 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止触发 Link 的跳转
+  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
   const handleCartClick = (e,product) => {
     e.preventDefault(); 
     e.stopPropagation();
-    // 在这里添加购物车的处理逻辑
     addToCart(product);
     console.log('Added to cart');
   };
