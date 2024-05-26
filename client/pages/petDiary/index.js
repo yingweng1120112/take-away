@@ -18,6 +18,50 @@ export default function DiarySearch() {
   const [petsInfo, setPetsInfo] = useState([])
 
   const [age, setage] = useState({ age_gte: '0', age_lte: '30' })
+  const [ageType, setAgeType] = useState({
+    a: false,
+    b: false,
+    c: false,
+  })
+  const a = (ageType1) => {
+    console.log("4",ageType1)
+    if (ageType1.a == true && ageType1.b == false && ageType1.c == false) {
+      setweight({
+        weight_gte: 0,
+        weight_lte: 8,
+      })
+    } else if (ageType1.a == false && ageType1.b == true && ageType1.c == false) {
+      setweight({
+        weight_gte: 8,
+        weight_lte: 20,
+      })
+    } else if (ageType1.a == false && ageType1.b == false && ageType1.c == true) {
+      setweight({
+        weight_gte: 20,
+        weight_lte: 50,
+      })
+    } else if (ageType1.a == true && ageType1.b == true && ageType1.c == false) {
+      setweight({
+        weight_gte: 0,
+        weight_lte: 20,
+      })
+    } else if (ageType1.a == true && ageType1.b == false && ageType1.c == true) {
+      setweight({
+        weight_gte: 0,
+        weight_lte: 50,
+      })
+    } else if (ageType1.a == false && ageType1.b == true && ageType1.c == true) {
+      setweight({
+        weight_gte: 8,
+        weight_lte: 50,
+      })
+    } else if (ageType1.a == false && ageType1.b == false && ageType1.c == false) {
+      setweight({
+        weight_gte: 0,
+        weight_lte: 50,
+      })
+    }
+  }
   const [weight, setweight] = useState({ weight_gte: '0', weight_lte: '50' })
   const [type, settype] = useState({ type: '' })
   const [gender, setgender] = useState({ gender: '' })
@@ -152,7 +196,7 @@ export default function DiarySearch() {
                         }}
                       >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="0,1" />
+                          <input type="checkbox" value="young" />
                           <span>幼年 0~1</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
@@ -173,68 +217,36 @@ export default function DiarySearch() {
                       <p className={banner['select-title']}>寵物體型</p>
                       <div
                         className={banner['select-item']}
-                        value={`${age.age_gte},${age.age_lte}`}
                         onChange={(e) => {
                           // weight.weight_gte 小
                           // weight.weight_lte 大
                           const selected = e.target.value
-                          if (e.target.checked == true) {
-                            if (
-                              weight.weight_gte == 0 &&
-                              weight.weight_lte == 50
-                            ) {
-                              setweight({
-                                weight_gte: selected.split(',')[0],
-                                weight_lte: selected.split(',')[1],
-                              })
-                            } else if (
-                              weight.weight_lte <= selected.split(',')[0]
-                            ) {
-                              setweight({
-                                weight_gte: weight.weight_gte,
-                                weight_lte: selected.split(',')[1],
-                              })
-                            } else if (
-                              weight.weight_gte >= selected.split(',')[0]
-                            ) {
-                              setweight({
-                                weight_lte: weight.weight_lte,
-                                weight_gte: selected.split(',')[0],
-                              })
-                            }
-                          }
-                          if (e.target.checked == false) {
-                            // weight.weight_gte 小
-                            // weight.weight_lte 大
-
-                            if (weight.weight_gte <= selected.split(',')[1]) {
-                              console.log('1')
-                              setweight({
-                                weight_lte: selected.split(',')[1],
-                                weight_gte: weight.weight_gte,
-                              })
-                            } else if (
-                              weight.weight_lte >= selected.split(',')[0]
-                            ) {
-                              console.log('3')
-                              setweight({
-                                weight_gte: weight.weight_gte,
-                                weight_lte: selected.split(',')[1],
-                              })
-                            }
-                          }
+                          const checked = e.target.checked
+                          setAgeType({ ...ageType, [selected]: checked })
+                          const c={ ...ageType, [selected]: checked }
+                          console.log("0",c)
+                          a(c)
                         }}
                       >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="0,8" />
+                          <input
+                            type="checkbox"
+                            value="a"
+                          />
                           <span>小型 8kg以下</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="8,20" />
+                          <input
+                            type="checkbox"
+                            value="b"
+                          />
                           <span>中型 8-20kg</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="20,49" />
+                          <input
+                            type="checkbox"
+                            value="c"
+                          />
                           <span>大型 20kg以上</span>
                         </label>
                       </div>
@@ -320,7 +332,6 @@ export default function DiarySearch() {
                         />
                         <button onClick={handleSearch}>搜尋</button>
                       </div>
-                      
                     </div>
                   </div>
                 </div>
