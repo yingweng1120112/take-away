@@ -11,14 +11,14 @@ import db from '#configs/mysql.js'
 // })
 // GET - 得到所有reserve_system資料表資料
 router.get('/', async function (req, res) {
-  // 直接下sql篩選出有領養狀態state
-  const [rows] = await db.query('SELECT * FROM reserve_system')
+  const [rows] = await db.query('SELECT * FROM `reserve_system`')
   const reserve_system = rows
   // 處理如果沒找到資料
 
   // 標準回傳JSON
   return res.json({ status: 'success', data: { reserve_system } })
 })
+
 router.post('/', async function (req, res) {
   try {
     const { user_id, pet_id, time } = req.body
