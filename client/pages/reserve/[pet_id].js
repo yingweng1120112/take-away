@@ -295,7 +295,7 @@ export default function Reserve() {
           </div>
         </div>
       </section>
-      <section >
+      <section className={styles['thanks-group']} >
         <div className={styles['thanks']}>
         <img src={`/img/foot.png`} alt="" className={styles['foot']} />
         <h1 className={styles['thanks-title']}>

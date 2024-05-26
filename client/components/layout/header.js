@@ -19,7 +19,7 @@ export default function Header() {
             className="header1"
             style={{ position: 'fixed', width: '100%', 'z-index': '100' }}
           >
-            <a href="" className="logo">
+            <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
             </a>
             <nav className="navbar2">

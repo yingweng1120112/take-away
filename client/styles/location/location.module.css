@@ -584,7 +584,7 @@ background-color: var(--creamy-yellow);
 
   .location .space-left {
     width: 45%;
-    height: 70%;
+    height: 80%;
     margin: auto;
     justify-content: center;
     z-index: 1;
@@ -617,7 +617,9 @@ background-color: var(--creamy-yellow);
     font-size: 1.125rem;
     font-weight: bolder;
   }
-
+  .save{
+    height: 37rem;
+  }
   .save .container {
     background-color: white;
     flex-direction: row;
@@ -625,7 +627,7 @@ background-color: var(--creamy-yellow);
 
   .save .space-left-two {
     width: 45%;
-    height: 70%;
+    height: 80%;
     margin: auto;
     justify-content: center;
     border-radius: 2.5rem;
@@ -658,13 +660,13 @@ background-color: var(--creamy-yellow);
   }
   @keyframes scaleAndRotateAnimation {
     0% {
-      transform: scale(1) rotate(-80deg);
+      transform: scale(1) rotate(-0deg);
     }
     50% {
       transform: scale(1.2) rotate(-80deg);
     }
     100% {
-      transform: scale(1) rotate(-80deg);
+      transform: scale(1) rotate(-50deg);
     }
   }
   .save .foot:nth-child(2) {
