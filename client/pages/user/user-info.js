@@ -139,7 +139,7 @@ export default function UserInfo() {
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
-                <h5>id</h5>
+                <h5>id：</h5>
                 <span>{userInfo.user_id}</span>
                 <hr />
               </div>
