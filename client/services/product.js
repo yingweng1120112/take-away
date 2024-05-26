@@ -18,20 +18,21 @@ const sample = [
   },
 ]
 
+
 // 因應要分頁和查詢，所以回應整個data
-export const loadProducts = async (params = {}) => {
+export const loadProducts = async () => {
   // 使用URLSearchParams產生查詢字串
-  const searchParams = new URLSearchParams(params)
-  const url = `${baseUrl}?${searchParams.toString()}`
+  // const searchParams = new URLSearchParams(params)
+  // const url = `${baseUrl}?${searchParams.toString()}`
 
   try {
-    const res = await fetch(url)
-    const resData = await res.json()
+    const res = await fetch(baseUrl)
+    const data = await res.json()
 
     // 判斷是否成功
-    if (resData.status === 'success') {
+    if (data.status === 'success') {
       // 因應要分頁和查詢，所以回應整個data
-      return resData.data
+      return data.data
     } else {
       console.warn('沒有得到資料')
       return {}
@@ -42,14 +43,15 @@ export const loadProducts = async (params = {}) => {
   }
 }
 
-export const loadProduct = async (pid = '') => {
+export const loadProduct = async (product_id = '') => {
   try {
-    if (!pid) throw new Error('pid是必要參數')
+    if (!product_id) throw new Error('product_id是必要參數')
 
-    const res = await fetch(`${baseUrl}/${pid}`)
+    const res = await fetch(`${baseUrl}/${product_id}`)
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
+      console.log('success', resData.data.product)
       return resData.data.product
     } else {
       console.warn('沒有得到資料')

@@ -1,5 +1,8 @@
 import React from 'react'
 import styles from '@/styles/faq/chatroom.module.css'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
+import Chatbanner from '@/components/faq/chatbanner'
 import {
   FaBars,
   FaBookOpen,
@@ -20,6 +23,8 @@ import {
 export default function Chatroom() {
   return (
     <>
+      <Header />
+      <Chatbanner />
       <div className={styles['container_chatroom']}>
         {/* 聊天室左側功能列 */}
         <div className={styles['chatA']}>
@@ -76,11 +81,11 @@ export default function Chatroom() {
             </div>
           </div>
           <div className={styles['chat_user']}>
-            <img src="../img/chat_user1-removebg-preview.png" alt="" />
-            <img src="../img/chat_user2-removebg-preview.png" alt="" />
-            <img src="../img/chat_user3-removebg-preview.png" alt="" />
-            <img src="../img/chat_user4-removebg-preview.png" alt="" />
-            <img src="../img/chat_user4-removebg-preview.png" alt="" />
+            <img src="../img/faq/chat_user1-removebg-preview.png" alt="" />
+            <img src="../img/faq/chat_user2-removebg-preview.png" alt="" />
+            <img src="../img/faq/chat_user3-removebg-preview.png" alt="" />
+            <img src="../img/faq/chat_user4-removebg-preview.png" alt="" />
+            <img src="../img/faq/chat_user4-removebg-preview.png" alt="" />
           </div>
         </div>
 
@@ -133,6 +138,7 @@ export default function Chatroom() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

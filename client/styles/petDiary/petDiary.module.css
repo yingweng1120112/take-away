@@ -1,11 +1,10 @@
-
-.banner{
+.banner {
   background-image: url(/img/banner-blog.jpg);
-  margin-top:74px;
+  margin-top: 74px;
 }
 .container {
   align-items: flex-start;
-  width:70%;
+  width: 70%;
   margin: auto;
 }
 .pet-info {
@@ -14,13 +13,13 @@
   margin-top: 1rem;
   flex-direction: column;
 }
-.info-line{
+.info-line {
   margin-top: 1rem;
   padding-left: 1rem;
   border-left: 3px black solid;
   flex-direction: column;
 }
-.info-title{
+.info-title {
   border-bottom: 1px solid black;
   font-size: 2rem;
   letter-spacing: 1rem;
@@ -32,20 +31,21 @@
   width: 100%;
   flex-direction: column;
 }
-.head-img{
+.head-img {
   margin: 1rem 0 0 1rem;
   border-radius: 50%;
-  width: 10%;
-  height: 10%;
-  display:none
+  width: 100px;
+  height: 100px;
+  display: none;
 }
 .post-right {
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-.content-word{
+.content-word {
   padding: 1.5rem;
   background-color: white;
   border-radius: 1rem;
@@ -59,8 +59,7 @@
   flex-direction: column;
 }
 
-
-.input-pic{
+.input-pic {
   background-color: white;
   border: none;
   padding: 1rem;
@@ -69,22 +68,23 @@
   border-radius: 1rem;
   color: black;
   margin-top: 1rem;
-  width:43%;
+  width: 43%;
 }
-.show-img{
+.show-img {
   margin: 1rem 0 0 1rem;
 }
 .post-time {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
-.content-time{
+.content-time {
   margin: 0;
 }
 .post-upload > input {
   margin-top: 10px;
   height: 50%;
-  width:100%
+  width: 100%;
 }
 
 .input-pic[type='file']::file-selector-button {
@@ -182,17 +182,18 @@
   object-fit: contain;
   width: 20%;
 }
-.post textarea{
-  resize: none
+.post textarea {
+  resize: none;
 }
-.post-upload label{
-  margin-right: 1rem; width: 50%
+.post-upload label {
+  margin-right: 1rem;
+  width: 50%;
 }
-.post-upload-pic{
-  display: flex; 
-  flex-wrap: wrap
+.post-upload-pic {
+  display: flex;
+  flex-wrap: wrap;
 }
-.swiper-container{
+.swiper-container {
   width: 100%;
   margin-top: 1rem;
   box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 25%);
@@ -224,71 +225,72 @@
 .mySwiper {
   height: 20%;
   box-sizing: border-box;
-  padding: 10px 0;
-  width: 80%; 
+  padding: 3px 0;
+  width: 80%;
   margin: auto;
 }
 
 .mySwiper .swiper-slide {
   width: 25%;
   height: 100%;
-  margin: auto; 
+  margin: auto;
   opacity: 0.4;
-  padding: 10px
+  padding: 3px;
 }
 
 .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
 }
 
-.mySwiper3{
-  width: 100%;
+.mySwiper3 {
+  height: auto;
   margin-bottom: 10px;
   box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 25%);
+  margin-left: 0;
 }
 .mySwiper3 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 5% 5% 12% 5%;
+  object-fit: cover;
+  padding: 1% 1% 15% 1%;
 }
 .img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
-.swiper-btn{
+.swiper-btn {
   position: absolute;
   z-index: 100;
-  bottom:1%;
+  bottom: 1%;
   display: flex;
-  padding: 0 2%; 
+  padding: 0 2%;
   width: 100%;
   justify-content: space-between;
 }
-.cat-icon{
+.cat-icon {
   margin: 2rem 0;
-  width: 100%
+  width: 100%;
 }
-.post-swiper-container{
+.post-swiper-container {
   width: 100%;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
 }
-.swiper-button{
+.swiper-button {
   top: -20px;
   z-index: 11;
 }
 
-.upload-btn-phone{
-  margin-top:1rem;
-  display:block;
+.upload-btn-phone {
+  margin-top: 1rem;
+  display: block;
 }
-.upload-btn-pc{
-  display:none;
+.upload-btn-pc {
+  display: none;
 }
 .swiper-button-next {
   width: 32px;
@@ -303,43 +305,48 @@
   background: url(/img/petDiary/chevronDoubleLeft.svg);
 }
 @media screen and (min-width: 1025px) {
-
-  .banner{
-    height:20rem;
+  .banner {
+    height: 20rem;
   }
-  .cat-icon{
-    width:auto;
+  .cat-icon {
+    width: auto;
   }
-  .swiper-container{
-    width: 400px;
+  .swiper-container {
+    width: 500px;
     margin-right: 1rem;
   }
-  .pet-info{
+  .pet-info {
     flex-direction: row;
   }
   .info-title {
     font-size: 3rem;
   }
-  .head-img{
-    display:block;
-  }  
+  .head-img {
+    display: block;
+  }
   .post {
     flex-direction: row;
   }
-  .post-right{
-    margin-left:1rem;
+  .post-right {
+    margin-left: 1rem;
   }
-  .upload-btn-phone{
-    display:none;
+  .upload-btn-phone {
+    display: none;
   }
-  .upload-btn-pc{
-    display:block;
+  .upload-btn-pc {
+    display: block;
   }
-  .post-upload-btn-container{
+  .post-upload-btn-container {
     display: flex;
     justify-content: space-between;
   }
   .post-swiper-container {
-    width:500px;
+    width: 500px;
+  }
+  .mySwiper3 {
+    width: 50%;
+  }
+  .mySwiper3 .swiper-slide img {
+    padding: 1% 1% 7% 1%;
   }
 }

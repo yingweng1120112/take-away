@@ -35,7 +35,7 @@ export const loadFaqshopinfo = async (qid = '') => {
     try {
       if (!qid) throw new Error('pid是必要參數')
   
-      const res = await fetch(`${baseUrl}/${pid}`)
+      const res = await fetch(`${baseUrl}/${qid}`)
       const resData = await res.json()
       // 判斷是否成功
       if (resData.status === 'success') {

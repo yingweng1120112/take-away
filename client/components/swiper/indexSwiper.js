@@ -39,7 +39,7 @@ export default function App() {
           {' '}
           <img
             style={{
-              width: 'auto',
+              width: '100%',
               height: '100%',
             }}
             src={`/img/index1.jpg`}
@@ -49,7 +49,7 @@ export default function App() {
           {' '}
           <img
             style={{
-              width: 'auto',
+              width: '100%',
               height: '100%',
             }}
             src={`/img/index4.jpg`}
@@ -59,7 +59,7 @@ export default function App() {
           {' '}
           <img
             style={{
-              width: 'auto',
+              width: '100%',
               height: '100%',
             }}
             src={`/img/index2.jpg`}
@@ -69,7 +69,7 @@ export default function App() {
           {' '}
           <img
             style={{
-              width: 'auto',
+              width: '100%',
               height: '100%',
             }}
             src={`/img/index3.jpg`}

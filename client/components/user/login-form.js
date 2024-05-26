@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '@/styles/user/login.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -14,6 +15,8 @@ const parseJwt = (token) => {
 }
 
 export default function LoginForm() {
+  const router = useRouter()
+
   // 記錄欄位輸入資料，狀態為物件，物件的屬性名稱要對應到欄位的名稱
   const { setUsers } = useContext(UserContext);
   const [user, setUser] = useState({
@@ -163,15 +166,7 @@ export default function LoginForm() {
             className={`${styles['form']} ${styles['sign-up']}`}
             onSubmit={handleSubmit}
           >
-            <div className={styles['link']}>
-              <h3 className={styles['linkh3']}>
-                <Link href="/user/register">註冊</Link>
-              </h3>
-              <h3 className={styles['linkh3']}>
-                <Link href="/user/login">登入</Link>
-              </h3>
-            </div>
-            <h2 className={styles['h2']}>歡迎加入毛孩樂園</h2>
+            <h2 className={styles['h2']}>立即參觀！</h2>
             <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 帳號:{' '}
@@ -242,7 +237,7 @@ export default function LoginForm() {
                 {errors.password2}
               </span>
             </label>
-            <div className="forget">
+            <div className={`${styles['forgot-pass']}`}>
               <Link
                 href="/user/forget-password"
                 className={`${styles['notice']}`}
@@ -250,53 +245,61 @@ export default function LoginForm() {
                 忘記密碼？
               </Link>
             </div>
-            <div>
-              {/* form標記中的button最好加上類型，預設是submit，會觸發表單的submit事件 */}
-              <button
-                type="submit"
-                className={`${styles['button']} ${styles['submit']}`}
-              >
-                登入
-              </button>
-              <button
-                type="button"
-                className={`${styles['button']} ${styles['fb-btn']}`}
-              >
-                Connect with{' '}
-                <span className={`${styles['span']} ${styles['fb-btns']}`}>
-                  Google
-                </span>
-              </button>
-              <button
-                className={`${styles['button']} ${styles['fb-btn']}`}
-                type="button"
-                onClick={() => {
-                  setUser({
-                    username: 'ron',
-                    password: '123456',
-                    password2: '123456',
-                  })
-                }}
-              >
-                一鍵填入
-              </button>
-              {/* <button
-                type="button"
-                onClick={handleCheck}
-                className={`${styles['button']} ${styles['fb-btn']}`}
-              >
-                檢查登入狀況
-              </button> */}
-              <button
-                type="button"
-                onClick={handleLogout}
-                className={`${styles['button']} ${styles['fb-btn']}`}
-              >
-                登出
-              </button>
-            </div>
+            <button
+              type="submit"
+              className={`${styles['button']} ${styles['submit']}`}
+            >
+              登入
+            </button>
+            <button
+              type="button"
+              className={`${styles['button']} ${styles['fb-btn']}`}
+            >
+              Connect with{' '}
+              <span className={`${styles['span']} ${styles['fb-btns']}`}>
+                Google
+              </span>
+            </button>
+            <button
+              className={`${styles['button']} ${styles['fb-btn']}`}
+              type="button"
+              onClick={() => {
+                setUser({
+                  username: 'ron',
+                  password: '123456',
+                  password2: '123456',
+                })
+              }}
+            >
+              一鍵填入
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className={`${styles['button']} ${styles['fb-btn']}`}
+            >
+              登出
+            </button>
           </form>
+          <div className={styles['sub-cont']}>
+            <div className={styles['img']}>
+              <div className={`${styles['img__text']} ${styles['m--up']}`}>
+                <h2 className={`${styles.h2} ${styles.h2text}`}>老朋友</h2>
+                <h6 className={styles.h6}>趕快回來~我們有新朋友想介紹給你</h6>
+              </div>
+              <Link href="/user/register">
+                <div className={styles['img__btn']}>
+                  <div
+                    className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
+                  >
+                    註冊
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
         </div>
+
         <style jsx>
           {`
             .error {
