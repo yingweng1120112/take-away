@@ -19,12 +19,15 @@ export default function PetList() {
   // 查詢條件用
   const [nameLike, setNameLike] = useState('')
   const [type, setType] = useState([])
+  const [state, setState] = useState([])
   const [personality_type, setPersonality_type] = useState([])
   const [gender, setGender] = useState([])
   const [age, setAge] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
+  // 狀態選項陣列
+  const stateOptions = ['歡迎帶我回家', '先暫停認養哦']
   // 測驗類別選項陣列
   const personality_typeOptions = [
     '敏感型',
@@ -89,6 +92,22 @@ export default function PetList() {
       // 否則===>加入陣列
       const nextType = [...type, tv]
       setType(nextType)
+    }
+  }
+
+  // 狀態複選時使用
+  const handleStateChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (state.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextState = state.filter((v) => v !== tv)
+      setState(nextState)
+    } else {
+      // 否則===>加入陣列
+      const nextState = [...state, tv]
+      setState(nextState)
     }
   }
 
@@ -158,7 +177,7 @@ export default function PetList() {
 
   const filteredData = filterDataByAge()
 
-  // 按下搜尋按鈕
+  // 處理搜尋
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
     setPage(1)
@@ -168,6 +187,7 @@ export default function PetList() {
       perpage,
       age,
       type,
+      state,
       personality_type,
       gender,
       name_like: nameLike,
@@ -178,7 +198,7 @@ export default function PetList() {
   // 當篩選條件變化時，觸發搜尋
   useEffect(() => {
     handleSearch()
-  }, [gender, age, type, personality_type, nameLike])
+  }, [gender, age, type, state, personality_type, nameLike])
 
   // 樣式3: didMount + didUpdate
   useEffect(() => {
@@ -317,20 +337,24 @@ export default function PetList() {
               </div>
               <div className={banner['select-right']}>
                 <div className={banner['select-item-a']}>
-                  <p className={banner['select-title']}>選擇地區</p>
+                  <p className={banner['select-title']}>領養狀態</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>北部</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>中部</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>南部</span>
-                    </label>
+                    {stateOptions.map((v, i) => {
+                      return (
+                        <label className={banner['cl-checkbox']} key={i}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={state.includes(v)}
+                            onChange={(e) => {
+                              handleStateChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
