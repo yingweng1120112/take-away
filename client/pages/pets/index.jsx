@@ -19,9 +19,36 @@ export default function PetList() {
   // 查詢條件用
   const [nameLike, setNameLike] = useState('')
   const [type, setType] = useState([])
+  const [personality_type, setPersonality_type] = useState([])
+  const [gender, setGender] = useState([])
+  const [age, setAge] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
+  // 測驗類別選項陣列
+  const personality_typeOptions = [
+    '敏感型',
+    '樂天型',
+    '獨立型',
+    '自信型',
+    '適應型',
+  ]
+  // 性別選項陣列
+  const genderOptions = ['男生', '女生']
+  // 年齡選項陣列
+  const ageOptions = [
+    '幼年 0 ~ 1 歲',
+    '青年 2 ~ 3 歲',
+    '中年 4 ~ 7 歲',
+    '老年 8 歲以上',
+  ]
+  // 年齡範圍
+  const ageRangeMap = {
+    '幼年 0 ~ 1 歲': [0, 1],
+    '青年 2 ~ 3 歲': [2, 3],
+    '中年 4 ~ 7 歲': [4, 7],
+    '老年 8 歲以上': [8, 20], // 假設 100 歲是最大值
+  }
 
   // 加入參詢條件params物件
   const getPet = async (params) => {
@@ -65,6 +92,72 @@ export default function PetList() {
     }
   }
 
+  // 測驗類別複選時使用
+  const handlePersonality_typeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (personality_type.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextPersonality_type = personality_type.filter((v) => v !== tv)
+      setPersonality_type(nextPersonality_type)
+    } else {
+      // 否則===>加入陣列
+      const nextPersonality_type = [...personality_type, tv]
+      setPersonality_type(nextPersonality_type)
+    }
+  }
+
+  // 性別複選時使用
+  const handleGenderChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (gender.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextGender = gender.filter((v) => v !== tv)
+      setGender(nextGender)
+    } else {
+      // 否則===>加入陣列
+      const nextGender = [...gender, tv]
+      setGender(nextGender)
+    }
+  }
+
+  // FIXME: 年齡 體型 篩選
+  // 年齡複選時使用
+  const handleAgeChecked = (e) => {
+    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+    const tv = e.target.value
+    // 判斷是否有在陣列中
+    if (age.includes(tv)) {
+      // 如果有===>移出陣列
+      const nextAge = age.filter((v) => v !== tv)
+      setAge(nextAge)
+    } else {
+      // 否則===>加入陣列
+      const nextAge = [...age, tv]
+      setAge(nextAge)
+    }
+  }
+  // 函數根據選中的年齡選項篩選資料
+  const filterDataByAge = (data) => {
+    if (!data || data.length === 0) {
+      return []
+    }
+    if (age.length === 0) {
+      return data
+    }
+    return data.filter((item) => {
+      return age.some((ageOption) => {
+        const [min, max] = ageRangeMap[ageOption]
+        return item.age >= min && item.age <= max
+      })
+    })
+  }
+
+  const filteredData = filterDataByAge()
+
   // 按下搜尋按鈕
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
@@ -73,10 +166,19 @@ export default function PetList() {
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
+      age,
+      type,
+      personality_type,
+      gender,
       name_like: nameLike,
     }
     getPet(params)
   }
+
+  // 當篩選條件變化時，觸發搜尋
+  useEffect(() => {
+    handleSearch()
+  }, [gender, age, type, personality_type, nameLike])
 
   // 樣式3: didMount + didUpdate
   useEffect(() => {
@@ -108,12 +210,14 @@ export default function PetList() {
       {/* banner */}
       <div
         className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
-        style={{ backgroundImage: 'url(../../img/pets/petlist-navbar.png)', width:"100%" }}
+        style={{
+          backgroundImage: 'url(../../img/pets/petlist-navbar.png)',
+          width: '100%',
+        }}
       ></div>
       <div className={banner['banner-select']}>
         <div
           className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
-          style={{ backgroundImage: 'url(../../img/pets/petlist-navbar2.png)' }}
         >
           <div className={banner['left']}>
             <p className={banner['menu-a']}>PETS</p>
@@ -150,22 +254,22 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>選擇年齡</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>幼年 0 ~ 1 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>青年 2 ~ 3 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>中年 4 ~ 7 歲</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>老年 8 歲以上</span>
-                    </label>
+                    {ageOptions.map((v, i) => {
+                      return (
+                        <label key={i} className={banner['cl-checkbox']}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={age.includes(v)}
+                            onChange={(e) => {
+                              handleAgeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
@@ -232,39 +336,47 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>測驗類別</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>敏感型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>樂天型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>獨立型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>自信型</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>適應型</span>
-                    </label>
+                    {personality_typeOptions.map((v, i) => {
+                      return (
+                        <label
+                          className={banner['cl-checkbox']}
+                          // 當初次render後不會再改動，即沒有新增、刪除、更動時，可以用索引當key
+                          key={i}
+                        >
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={personality_type.includes(v)}
+                            onChange={(e) => {
+                              handlePersonality_typeChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-b']}>
                   <p className={banner['select-title']}>性別</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>男生</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>女生</span>
-                    </label>
+                    {genderOptions.map((v, i) => {
+                      return (
+                        <label key={i} className={banner['cl-checkbox']}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={gender.includes(v)}
+                            onChange={(e) => {
+                              handleGenderChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                   <p className={banner['select-title']}> 毛孩搜尋 </p>
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
@@ -273,12 +385,9 @@ export default function PetList() {
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
                       value={nameLike}
-                      onChange={(e) => {
-                        setNameLike(e.target.value)
-                      }}
+                      onChange={(e) => setNameLike(e.target.value)}
                     />
                   </div>
-                  <button onClick={handleSearch}>搜尋</button>
                 </div>
               </div>
             </div>
@@ -427,51 +536,75 @@ export default function PetList() {
           </button>
         </section>
 
-        {/* TODO: load商品 */}
+        {/* FIXME: 稍微有點跳 */}
         <section className={styles['marquee_shop']}>
           <div
             className={`${styles.marquee} ${styles['marquee--hover-pause']} ${styles['enable-animation']}`}
           >
             <ul className={styles['marquee__content']}>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
+              <Link href={`/product/10001`}>
+                <li>
+                  <img src="/img/product/10001-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10091`}>
+                <li>
+                  <img src="/img/product/10091-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10081`}>
+                <li>
+                  <img src="/img/product/10081-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10044`}>
+                <li>
+                  <img src="/img/product/10044-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10023`}>
+                <li>
+                  <img src="/img/product/10023-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10068`}>
+                <li>
+                  <img src="/img/product/10068-1.webp" alt="" />
+                </li>
+              </Link>
             </ul>
 
             <ul aria-hidden="true" className={styles['marquee__content']}>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
-              <li>
-                <img src="/img/user/10001.jpg" alt="" />
-              </li>
+              <Link href={`/product/10094`}>
+                <li>
+                  <img src="/img/product/10094-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10083`}>
+                <li>
+                  <img src="/img/product/10083-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10077`}>
+                <li>
+                  <img src="/img/product/10077-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10003`}>
+                <li>
+                  <img src="/img/product/10003-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10054`}>
+                <li>
+                  <img src="/img/product/10054-1.webp" alt="" />
+                </li>
+              </Link>
+              <Link href={`/product/10011`}>
+                <li>
+                  <img src="/img/product/10011-1.webp" alt="" />
+                </li>
+              </Link>
             </ul>
           </div>
         </section>
