@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Header from '@/components/layout/header'
+import banner from '@/styles/banner/banner.module.css'
 import Footer from '@/components/layout/footer'
 import { loadPetInfo } from '@/services/pets'
 import { loadPetAction } from '@/services/pet-action'
 import styles from '@/styles/pets/petInfo.module.css'
 import ProgressBar from '@ramonak/react-progress-bar'
 import { FaRegCircleQuestion } from 'react-icons/fa6'
-import banner from '@/styles/banner/banner.module.css'
+import { BsExclamationTriangle } from 'react-icons/bs'
 
 export default function PetInfo() {
   // 第1步. 宣告能得到動態路由pet_id的路由器
@@ -243,50 +244,61 @@ export default function PetInfo() {
               <li>{pet.color}</li>
               <li>{pet.breeds}</li>
             </ul>
-            <div className={styles['pet-btn']}>
-              <Link href={`/reserve/${pet.pet_id}`}>
-                <button className={styles['cta']}>
-                  <span className={styles['hover-underline-animation']}>
-                    預約賞寵
-                  </span>
-                  <svg
-                    id="arrow-horizontal"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={30}
-                    height={10}
-                    viewBox="0 0 46 16"
-                  >
-                    <path
-                      id="Path_10"
-                      data-name="Path 10"
-                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                      transform="translate(30)"
-                    />
-                  </svg>
-                </button>
-              </Link>
-              <Link href={`/adopt/${pet.pet_id}`}>
-                <button className={styles['cta']}>
-                  <span className={styles['hover-underline-animation']}>
-                    線上認養
-                  </span>
-                  <svg
-                    id="arrow-horizontal"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={30}
-                    height={10}
-                    viewBox="0 0 46 16"
-                  >
-                    <path
-                      id="Path_10"
-                      data-name="Path 10"
-                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                      transform="translate(30)"
-                    />
-                  </svg>
-                </button>
-              </Link>
-            </div>
+            {pet.state === '歡迎帶我回家' ? (
+              // 可以被領養的
+              <div className={styles['pet-btn']}>
+                <Link href={`/reserve/${pet.pet_id}`}>
+                  <button className={styles['cta']}>
+                    <span className={styles['hover-underline-animation']}>
+                      預約賞寵
+                    </span>
+                    <svg
+                      id="arrow-horizontal"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={30}
+                      height={10}
+                      viewBox="0 0 46 16"
+                    >
+                      <path
+                        id="Path_10"
+                        data-name="Path 10"
+                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                        transform="translate(30)"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+                <Link href={`/adopt/${pet.pet_id}`}>
+                  <button className={styles['cta']}>
+                    <span className={styles['hover-underline-animation']}>
+                      線上認養
+                    </span>
+                    <svg
+                      id="arrow-horizontal"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={30}
+                      height={10}
+                      viewBox="0 0 46 16"
+                    >
+                      <path
+                        id="Path_10"
+                        data-name="Path 10"
+                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                        transform="translate(30)"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              // 暫停認養
+              <div className={styles['pet-btn']}>
+                <p className={styles['pet-btn-stop']}>
+                  <BsExclamationTriangle className={styles['stop-icon']} />
+                  我先暫停領養哦
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
@@ -508,51 +520,84 @@ export default function PetInfo() {
               </span>
             </li>
           </ul>
-          <div className={styles['score-btn']}>
-            <Link href={`/reserve/${pet.pet_id}`}>
-              <button className={styles['cta']}>
-                <span className={styles['hover-underline-animation']}>
-                  預約賞寵
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-            </Link>
-            <Link href={`/adopt/${pet.pet_id}`}>
-              <button className={styles['cta']}>
-                <span className={styles['hover-underline-animation']}>
-                  線上認養
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-            </Link>
+
+          {pet.state === '歡迎帶我回家' ? (
+            // 可以被領養的
+            <div className={styles['score-btn']}>
+              <Link href={`/reserve/${pet.pet_id}`}>
+                <button className={styles['cta']}>
+                  <span className={styles['hover-underline-animation']}>
+                    預約賞寵
+                  </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={10}
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    />
+                  </svg>
+                </button>
+              </Link>
+              <Link href={`/adopt/${pet.pet_id}`}>
+                <button className={styles['cta']}>
+                  <span className={styles['hover-underline-animation']}>
+                    線上認養
+                  </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={10}
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    />
+                  </svg>
+                </button>
+              </Link>
+              <Link href={`/pets/notice`}>
+                <button className={styles['cta']}>
+                  <span className={styles['hover-underline-animation']}>
+                    <FaRegCircleQuestion className={styles['question-icon']} />
+                    {'  '}領養流程
+                  </span>
+                  <svg
+                    id="arrow-horizontal"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={30}
+                    height={10}
+                    viewBox="0 0 46 16"
+                  >
+                    <path
+                      id="Path_10"
+                      data-name="Path 10"
+                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                      transform="translate(30)"
+                    />
+                  </svg>
+                </button>
+              </Link>
+            </div>
+          ) : (
+            // 暫停認養
+            <div className={styles['score-btn']}>
+              <p className={styles['score-btn-stop']}>
+                <BsExclamationTriangle className={styles['stop-icon']} />
+                我先暫停領養哦
+              </p>
             <Link href={`/pets/notice`}>
-              <button className={styles['cta']}>
+              <button className={`${styles['cta']} ${styles['score-btn-adopt']}`}>
                 <span className={styles['hover-underline-animation']}>
                   <FaRegCircleQuestion className={styles['question-icon']} />
                   {'  '}領養流程
@@ -573,7 +618,8 @@ export default function PetInfo() {
                 </svg>
               </button>
             </Link>
-          </div>
+            </div>
+          )}
         </section>
 
         <img
