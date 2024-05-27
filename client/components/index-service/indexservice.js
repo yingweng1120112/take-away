@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '@/styles/faq/index_service.module.css'
+import styles from '@/components/index-service/index_service.module.css'
 import { FaPaw } from 'react-icons/fa'
 
 export default function Indexservice() {
