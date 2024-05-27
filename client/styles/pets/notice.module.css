@@ -6,8 +6,6 @@
   font-family: var(--font-family);
   background-color: var(--bg-color);
   transition: 0s;
-
-  /* TODO: npm fullpage 會吃到header高度 */
   margin-top: -30px;
 }
 
@@ -54,6 +52,7 @@
 .title {
   height: 100svh;
   position: relative;
+  z-index: 2;
   overflow-x: hidden;
   overflow-y: hidden;
   padding: 0 10% 0 10%;
@@ -233,9 +232,9 @@
   animation-duration: 10s;
   animation-direction: ease-in;
   animation-iteration-count: infinite;
-  transform: rotate(150deg);
+  transform: rotate(135deg);
   right: 90%;
-  top: -10%;
+  top: 5%;
 }
 
 @keyframes paws2 {
@@ -246,7 +245,7 @@
   50% {
     right: 90%;
     top: 20%;
-    transform: rotate(80deg);
+    transform: rotate(90deg);
   }
   75% {
     /* right: 70%;
@@ -339,7 +338,7 @@
 .pet-desc > img {
   height: 30px;
   width: 30px;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 50%;
 }
 

@@ -3,16 +3,14 @@ import styles from '@/styles/pets/notice.module.css'
 import { FullPage, Slide } from 'react-full-page'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
-
+import Link from 'next/link'
 
 export default function Notice() {
   return (
     <main>
-    <Header />
+      <Header />
       <div className={styles['commendbody']}>
         <FullPage>
-          {/* TODO: 可能和其他套件互相干擾 有點卡 */}
-          {/* 無法砍掉header footer高度 footer 跑到上面 */}
           <Slide>
             <section className={`${styles['title']} ${styles['section']}`}>
               <h1>寵物領養流程</h1>
@@ -99,6 +97,11 @@ export default function Notice() {
               </h2>
             </section>
           </Slide>
+          <Slide>
+          <section className={styles['section']} >
+            <Footer />
+          </section>
+          </Slide>
         </FullPage>
 
         <img src="../img/pets/paws.png" className={styles['paws1']} alt="" />
@@ -107,39 +110,40 @@ export default function Notice() {
         <div className={styles['card-border']}>
           <div className={styles['card']}>
             <div className={styles['card-img']}>
-              <img src="/img/pet-info/10008/10008-1.jpg" alt="" />
+              <img src="/img/pet-info/10002-1.jpg" alt="" />
             </div>
             <div className={styles['pet-name']}>
-              <span>卍煞氣A歐歐乂</span>
-              <p>歐告</p>
+              <span>愛跑跳小夥伴</span>
+              <p>馬克斯</p>
               <div className={styles['pet-desc']}>
                 <span>今年約莫3歲</span>
-                <img src="/img/pets/icon_boy.png" alt="" />
+                <img src="/img/pets/icon_girl.png" alt="" />
               </div>
             </div>
-            <button className={styles['cta']}>
-              <span className={styles['hover-underline-animation']}>
-                來看看我
-              </span>
-              <svg
-                id="arrow-horizontal"
-                xmlns="http://www.w3.org/2000/svg"
-                width={30}
-                height={10}
-                viewBox="0 0 46 16"
-              >
-                <path
-                  id="Path_10"
-                  data-name="Path 10"
-                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                  transform="translate(30)"
-                />
-              </svg>
-            </button>
+            <Link href={`/pets/10002`}>
+              <button className={styles['cta']}>
+                <span className={styles['hover-underline-animation']}>
+                  來看看我
+                </span>
+                <svg
+                  id="arrow-horizontal"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={30}
+                  height={10}
+                  viewBox="0 0 46 16"
+                >
+                  <path
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                    transform="translate(30)"
+                  />
+                </svg>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-    <Footer />
     </main>
   )
 }
