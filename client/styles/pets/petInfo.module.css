@@ -876,12 +876,12 @@
   }
   20% {
     left: 10%;
-    top: 210%;
+    top: 208%;
     transform: rotate(90deg);
   }
   60% {
     left: -20%;
-    top: 210%;
+    top: 208%;
     transform: rotate(-70deg);
   }
   100% {
