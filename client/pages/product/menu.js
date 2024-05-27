@@ -1,6 +1,8 @@
-import React from 'react'
-import styles from '@/styles/product/pet-mall.module.css'
+import React, { useState, useEffect, useCallback } from 'react'
 import Header from '@/components/layout/header'
+import styles2 from '@/styles/product/menu_banner2.module.css'
+import banner from '@/styles/product/menu_banner.module.css'
+import styles from '@/styles/product/menu.module.css'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
 import { loadProducts } from '@/services/product'
@@ -79,6 +81,7 @@ export default function Menu() {
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
   
+
   //查詢條件
   const [type, setType] = useState([])
   const [species, setSpecies] = useState([])
@@ -270,127 +273,182 @@ export default function Menu() {
     console.log('Added to cart');
   };
 
-export default function PetMall() {
   return (
     <>
       <Header />
-      {/* banner區域 */}
-      <div className={`${styles.banner} ${styles.someClassName}`}>
-        <div className={styles.content}>
-          <div className={styles['banner-item']}>
-            <div className={styles['banner-left']}>
-              <h1 className={styles['mall-title']}>
-                <span className={styles.yellow}>給</span>毛小
-                <span className={styles['light-blue']}>孩</span>們，
-              </h1>
-              <h1 className={styles['mall-title']}>
-                一些<span className={styles['light-blue']}>新</span>奇體
-                <span className={styles.yellow}>驗</span>
-              </h1>
-              <p className={styles['mall-info']}>Various rich products</p>
-              <div className={`dropdown ${styles.dropdown}`}>
-                <button
-                  className={`btn btn-secondary dropdown-toggle ${styles.btn} ${styles.active} ${styles['btn-secondary']} ${styles['dropdown-toggle']}`}
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  SHOP NOW
-                </button>
-                <ul className={`dropdown-menu ${styles['dropdown-menu']}`}>
-                  <li>
-                    <a
-                      className={`dropdown-item ${styles['dropdown-item']}`}
-                      href="#feed-card"
-                    >
-                      寵物飼料
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`dropdown-item ${styles['dropdown-item']}`}
-                      href="#can-card"
-                    >
-                      寵物罐頭
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`dropdown-item ${styles['dropdown-item']}`}
-                      href="#necessities-card"
-                    >
-                      寵物用品
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`dropdown-item ${styles['dropdown-item']}`}
-                      href="#section4"
-                    >
-                      寵物保健
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className={`dropdown-item ${styles['dropdown-item']}`}
-                      href="#section4"
-                    >
-                      寵物零食
-                    </a>
-                  </li>
-                </ul>
-              </div>
+      {/* Banner */}
+      <div
+        className={`${banner['banner']} ${banner['banner-life-1']} ${styles2['banner-life-1']}`}
+      ></div>
+      <div className={banner['banner-select']}>
+        <div
+          className={`${banner['banner']} ${banner['banner-life-2']} ${styles2['banner-life-2']}`}
+        >
+          <div className={banner['left']}>
+            <p className={banner['menu-a']}>MENU</p>
+            <p className={banner['menu-b']}>商品一覽</p>
+          </div>
+          <div className={banner['middle']}>
+            <div
+              className={`accordion ${banner['accordion']}`}
+              id="accordionExample"
+            >
+              <button
+                className={`accordion-button ${banner['accordion-button']}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <span className={banner['middle-page-title']}>寵物商品</span>
+                <span>選擇商品</span>
+              </button>
             </div>
-            <div className={styles['banner-right']}>
-              <p className={styles['company-name']}>袋走萌寵商城</p>
-              <p className={styles['company-name']}>Take away mall</p>
+          </div>
+        </div>
+
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div className={`accordion-body ${banner['accordion-body']}`}>
+            <div className={banner['select']}>
+              <div className={banner['select-left']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>商品總類</p>
+                  <div className={banner['select-item']}>
+                    {typeOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={type.includes(v)}
+                          onChange={handleTypeChecked}
+                        />
+                        <span>{v}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>適用物種</p>
+                  <div className={banner['select-item']}>
+                    {speciesOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={species.includes(v)}
+                          onChange={handleSpeciesChecked}
+                        />
+                        <span>{v}寶貝</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className={banner['select-right']}>
+                <div className={banner['select-item-a']}>
+                  <p className={banner['select-title']}>排列方法</p>
+                  <div className={banner['select-item']}>
+                    <label className={banner['cl-checkbox']}>
+                      <input
+                        type="radio"
+                        name="sortOptions"
+                        value="price,asc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'asc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
+                      />
+                      <span>價格排序(由低至高)</span>
+                    </label>
+                    <label className={banner['cl-checkbox']}>
+                      <input
+                        type="radio"
+                        name="sortOptions"
+                        value="price,desc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'desc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
+                      />
+                      <span>價格排序(由高至低)</span>
+                    </label>
+                  </div>
+                </div>
+                <div className={banner['select-item-b']}>
+                  <p className={banner['select-title']}>價格區間</p>
+                  {/* 滾輪區 */}
+                  <div className={banner['price-input-container']}>
+                    <div className={`price-input ${banner['price-input']}`}>
+                      <div className={banner['price-field']}>
+                        <span>從</span>
+                        <input
+                          type="number"
+                          value={priceGte}
+                          onChange={(e) => setPriceGte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
+                        <span>~</span>
+                        <input
+                          type="number"
+                          value={priceLte}
+                          onChange={(e) => setPriceLte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
+                        <span>元</span>
+                      </div>
+                    </div>
+                    {/* slider */}
+                    <Slider
+                      value={[priceGte, priceLte]}
+                      onChange={handlePriceChange}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="range-slider"
+                      min={0}
+                      max={2000}
+                    />
+                  </div>
+                  <p className={banner['select-title']}> 商品搜尋 </p>
+                  <div className={`mb-3 ${banner['shop-select-out']}`}>
+                    <input
+                      type="text"
+                      value={nameLike}
+                      onChange={(e) => {
+                        setNameLike(e.target.value)
+                        setPage(1) // 输入时也将页码重置为1
+                      }}
+                      className={`form-control ${banner['shop-select']}`}
+                      id="exampleFormControlInput1"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* 商品分類標題 */}
-      <div className={styles.classificationimg}>
-        <img
-          className={styles.classification}
-          src="/img/pet_mall/title-bg.png"
-          alt=""
-        />
-      </div>
-      {/* 寵物飼料卡片 */}
-      <section id="feed-card" className={styles['feed-card']}>
+      {/* 搜尋數 */}
+      <section className={`${styles.section} ${styles.search}`}>
         <div className={styles.content}>
-          <div className={styles['mall-card']}>
-            <div className={styles['mallcard-left']}>
-              <div className={styles['mallcard-text']}>
-                <h2 className={styles['mallcard-title']}>寵物飼料</h2>
-                <p className={styles['smallcard-info']}>
-                  選擇高品質的寵物飼料能夠確保寵物獲得充足的營養，提高其健康和生活品質。良好的飼料含有均衡的營養成分，有助於維持寵物的健康體態和活力，預防健康問題的發生，讓我們的毛孩能夠快樂地陪伴我們更長的時間。
-                </p>
-              </div>
-              <button className={styles.cta}>
-                <span className={styles['hover-underline-animation']}>
-                  {' '}
-                  Shop now{' '}
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className={styles['mallcard-right']}>
-              <img src="\img\pet_mall\beef-card.jpg" alt="" />
-            </div>
+          <div className={styles['search-results']}>
+            <h5>找到 {total} 筆商品</h5>
+            <img src="/img/menu/footprint-banner.svg" alt="" />
           </div>
           <img
             className={styles['dog-silhouette']}
@@ -500,210 +558,95 @@ export default function PetMall() {
         </div>
         <img
           className={styles['dog-palm']}
-          src="\img\pet_mall\dog-palm.svg"
+          src="/img/menu/dog-palm.svg"
           alt=""
         />
         <img
           className={styles['dog-palm2']}
-          src="\img\pet_mall\dog-palm.svg"
+          src="/img/menu/dog-palm.svg"
           alt=""
         />
         <img
           className={styles['dog-palm3']}
-          src="\img\pet_mall\dog-palm.svg"
-          alt=""
-        />
-        <img
-          className={styles['dog-palm5']}
-          src="\img\pet_mall\dog-palm2.svg"
-          alt=""
-        />
-        <img
-          className={styles['dog-palm6']}
-          src="\img\pet_mall\dog-palm2.svg"
-          alt=""
-        />
-      </section>
-      {/* 寵物罐頭卡片 */}
-      <section id="can-card" className={styles['can-card']}>
-        <div className={styles.content}>
-          <div className={styles['mall-card']}>
-            <div className={styles['mallcard-left']}>
-              <div className={styles['mallcard-text']}>
-                <h2 className={styles['mallcard-title']}>寵物罐頭</h2>
-                <p className={styles['mallcard-info']}>
-                  寵物罐頭提供方便的餵食方式，兼具均衡營養和口感豐富的特點，滿足寵物對美味的需求，同時確保其營養均衡。選擇高品質的罐頭可確保寵物獲得優質的食物，有助於維持其健康和活力，也能有效改善寵物挑食的毛病。
-                </p>
-              </div>
-              <button className={styles.cta}>
-                <span className={styles['hover-underline-animation']}>
-                  {' '}
-                  Shop now{' '}
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className={styles['mallcard-right']}>
-              <img src="\img\pet_mall\can-card.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* 寵物用品卡片 */}
-      <section id="necessities-card" className={styles['necessities-card']}>
-        <div className={styles.content}>
-          <div className={styles['mall-card']}>
-            <div className={styles['mallcard-left']}>
-              <div className={styles['mallcard-text']}>
-                <h2 className={styles['mallcard-title']}>寵物用品</h2>
-                <p className={styles['mallcard-info']}>
-                  購買寵物用品可提供寵物所需的舒適和安全環境，包括舒適的床、適當的玩具和清潔用品。這不僅提高了寵物的生活品質，還有助於建立與主人之間的親密關係，讓我們的毛孩感受到無限的愛和關懷。
-                </p>
-              </div>
-              <button className={styles.cta}>
-                <span className={styles['hover-underline-animation']}>
-                  {' '}
-                  Shop now{' '}
-                </span>
-                <svg
-                  id="arrow-horizontal"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={30}
-                  height={10}
-                  viewBox="0 0 46 16"
-                >
-                  <path
-                    id="Path_10"
-                    data-name="Path 10"
-                    d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                    transform="translate(30)"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className={styles['mallcard-right']}>
-              <img src="\img\pet_mall\necessities-card.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* section第4區 */}
-      <section id="section4" className={styles.section4}>
-        <img src="\img\pet_mall\section4-bg1.jpg" alt="" />
-        <div className={styles['section4-content']}>
-          <div className={styles['section4-img-text']}>
-            <div className={styles['section4-text-left']}>
-              <h1 className={styles['section4-text1']}>與寵物同行</h1>
-              <h1 className={styles['section4-text2']}>開啟快樂旅程</h1>
-            </div>
-            <div className={styles['section4-text-right']}>
-              <div className={styles['right-decorative-text']}>
-                <h1 className={styles['section4-text3']}>Life</h1>
-                <h1 className={styles['section4-text4']}>
-                  starts with raising pets
-                </h1>
-              </div>
-              <div className={styles['section4-card']}>
-                {/* 寵物保健 */}
-                <div className={styles['mall-card2']}>
-                  <div className={styles['mallcard-top']}>
-                    <img src="\img\pet_mall\health-care-card.jpg" alt="" />
-                  </div>
-                  <div className={styles['mallcard-button']}>
-                    <div className={styles['mallcard-text']}>
-                      <h2 className={styles['mallcard-title']}>寵物保健</h2>
-                      <p className={styles['mallcard-info']}>
-                        選購寵物保健品是照顧寵物健康的重要一環。產品提供豐富營養和維生素，有助於維持寵物的免疫、消化系統和皮膚健康。定期給予寵物保健品以預防疾病，讓您的毛孩享受健康照顧。
-                      </p>
-                    </div>
-                    <button className={styles.cta}>
-                      <span className={styles['hover-underline-animation']}>
-                        {' '}
-                        Shop now{' '}
-                      </span>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={30}
-                        height={10}
-                        viewBox="0 0 46 16"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                {/* 寵物零食 */}
-                <div className={styles['mall-card2']}>
-                  <div className={styles['mallcard-top']}>
-                    <img src="\img\pet_mall\snack-card.jpg" alt="" />
-                  </div>
-                  <div className={styles['mallcard-button']}>
-                    <div className={styles['mallcard-text']}>
-                      <h2 className={styles['mallcard-title']}>寵物零食</h2>
-                      <p className={styles['mallcard-info']}>
-                        購買寵物零食不僅是犒賞寵物的好方法，更是建立與寵物之間親密連結的途徑。定期給予零食可以訓練寵物的良好行為，增進其學習能力和服從度。選擇高品質的零食維持寵物健康。
-                      </p>
-                    </div>
-                    <button className={styles.cta}>
-                      <span className={styles['hover-underline-animation']}>
-                        {' '}
-                        Shop now{' '}
-                      </span>
-                      <svg
-                        id="arrow-horizontal"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={30}
-                        height={10}
-                        viewBox="0 0 46 16"
-                      >
-                        <path
-                          id="Path_10"
-                          data-name="Path 10"
-                          d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                          transform="translate(30)"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <img
-          className={styles['section4-bg2']}
-          src="\img\pet_mall\section4-bg2.svg"
+          src="/img/menu/dog-palm.svg"
           alt=""
         />
         <img
           className={styles['dog-palm4']}
-          src="\img\pet_mall\dog-palm.svg"
+          src="/img/menu/dog-palm2.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm5']}
+          src="/img/menu/dog-palm2.svg"
+          alt=""
+        />
+        <img
+          className={styles['dog-palm6']}
+          src="/img/menu/dog-palm2.svg"
           alt=""
         />
         <img
           className={styles['dog-footprints']}
-          src="\img\pet_mall\dog-footprints.svg"
+          src="/img/menu/dog-footprints.svg"
           alt=""
         />
+      </section>
+      {/* 裝飾字 */}
+      <section className={styles.section}>
+        {/* <img class="decorative-words-img2" src="../images/Productpage-decorative-words2.svg" alt=""> */}
+        <div className={styles['decorative-words-info']}>
+          <p className={styles.p}>
+            商品<span className={styles.emphasize}>Take Away</span>之前
+          </p>
+          <p className={styles.p}>也可以順路去看看我們令人喜愛的浪浪們</p>
+          <button className={styles.cta}>
+            <span className={styles['hover-underline-animation']}> Go to </span>
+            <svg
+              id="arrow-horizontal"
+              xmlns="http://www.w3.org/2000/svg"
+              width={30}
+              height={10}
+              viewBox="0 0 46 16"
+            >
+              <path
+                id="Path_10"
+                data-name="Path 10"
+                d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                transform="translate(30)"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+      {/* 推薦浪浪 */}
+      <section className={styles.recommend}>
+        <div className={styles.frame}>
+          <Swiper
+            loop={true}
+            slidesPerView={3}
+            centeredSlides={true}
+            spaceBetween={30}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className={swiper1['mySwiper2']}
+          >
+            {pets.map((v, i) => (
+              <SwiperSlide key={v.pet_id}>
+                <Link
+                  href={`/pets/${v.pet_id}`}
+                  className={styles['related-products-card']}
+                >
+                  <img
+                    src={`/img/pet-info/${v.adopt1}.jpg`}
+                    className={styles['swiper-img']}
+                    alt=""
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </section>
       <Footer />
     </>
