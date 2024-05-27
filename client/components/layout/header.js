@@ -84,7 +84,7 @@ export default function Header() {
                   <a>寵物商城</a>
                   <ul>
                     <li>
-                      <Link href="/product">寵物商城</Link>
+                      <Link href="/product/menu">寵物商城</Link>
                     </li>
                   </ul>
                 </li>
