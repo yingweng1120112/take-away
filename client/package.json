@@ -49,6 +49,7 @@
     "short-unique-id": "^5.2.0",
     "socket.io-client": "^4.7.5",
     "speakeasy": "^2.0.0",
+    "styled-jsx": "^5.1.6",
     "sweetalert2": "^11.7.12",
     "swiper": "^11.0.3",
     "swr": "^2.2.4",
