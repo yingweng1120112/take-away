@@ -256,9 +256,11 @@
   }
   .testoption {
     overflow-x: clip;
+    background-color: white;
   }
   .testoption > img {
     content: url(/psycological-test/hearttestoption2.png);
+    height: 110%;
     top: -172px;
     width: 140%;
     left: -83px;
@@ -276,12 +278,22 @@
   }
   .testoption .option {
     width: 90%;
-    margin-top: -120px;
+    margin-top: 23px;
+    margin-right: 29px;
   }
   .questioncontent {
     width: 65%;
     margin-left: -50px;
     z-index: 1;
+  }
+  .catbody {
+    display: none;
+  }
+  .cathand1,
+  .cathand2,
+  .cathand3,
+  .cathand4 {
+    display: none;
   }
   .iconstyle {
     left: 17px;
