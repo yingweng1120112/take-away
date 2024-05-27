@@ -11,6 +11,7 @@ import {
 import { useCart } from '@/context/cartcontext'
 import TWZipCode from '@/components/shopping-cart/tw-zipcode/index'
 import { loadUserInfoSpecific } from '@/services/user-info'
+import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 
 //假資料 之後連會員資料庫
 // const memberData = {
@@ -86,6 +87,11 @@ export default function Step2() {
       delivery_method: value,
     }))
   }
+  //711門市
+  const { store711, openWindow, closeWindow } = useShip711StoreOpener(
+    'http://localhost:3005/api/shipment/711',
+    { autoCloseMins: 3 } // x分鐘沒完成選擇會自動關閉，預設5分鐘。
+  )
   //發票形式
   const [invoiceType, setInvoiceType] = useState(userInfo.invoice_type || '')
   const handleInvoiceTypeChange = (e) => {
@@ -140,7 +146,6 @@ export default function Step2() {
     fetchUserInfo()
   }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
 
-
   //登入後改這個
   useEffect(() => {
     if (sameAsMember) {
@@ -152,7 +157,6 @@ export default function Step2() {
       })
     }
   }, [sameAsMember, userInfo])
-
 
   //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
   const handleOrderButtonClick = async () => {
@@ -323,9 +327,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入信箱"
-                    value={
-                      sameAsMember ? userInfo.email : recipientData.email
-                    }
+                    value={sameAsMember ? userInfo.email : recipientData.email}
                     onChange={
                       sameAsMember
                         ? handleInputChange('email')
@@ -340,9 +342,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
-                    value={
-                      sameAsMember ? userInfo.phone : recipientData.phone
-                    }
+                    value={sameAsMember ? userInfo.phone : recipientData.phone}
                     onChange={
                       sameAsMember
                         ? handleInputChange('phone')
@@ -396,15 +396,26 @@ export default function Step2() {
                 <div>
                   <div>配送門市</div>
                   <div>
-                    <select
-                      value={userInfo.address || ''}
+                    <button
+                    className={styles['cvsbtn']}
+                    value={userInfo.address || ''}
                       onChange={(e) =>
                         setUserInfo({ ...userInfo, address: e.target.value })
                       }
+                      onClick={() => {
+                        openWindow()
+                      }}
                     >
-                      <option value="a">進階</option>
-                      <option value="b">進階</option>
-                    </select>
+                      請選擇門市
+                    </button>
+                    <br />
+                    <input 
+                    className={styles['cvsinput']}
+                    type="text" value={store711.storename} disabled />
+                    <br />
+                    <input
+                    className={styles['cvsinput']}
+                    type="text" value={store711.storeaddress} disabled />
                   </div>
                 </div>
               ) : null}
