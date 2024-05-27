@@ -52,7 +52,7 @@
 .iconstyle {
   font-size: 30px;
   color: var(--deep-gray);
-  z-index: 1;
+  /* z-index: 1; */
   margin-top: 8px;
 }
 .button {
