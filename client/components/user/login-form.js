@@ -62,6 +62,7 @@ export default function LoginForm() {
       })
 
       if (response.ok) {
+        router.push('/user/user-info')
         const result = await response.json()
         const token = result.token
         const user = parseJwt(token)
