@@ -156,7 +156,7 @@ export default function PetList() {
     }
   }
 
-  // FIXME: 篩選範圍 體型 篩選
+  // FIXME: 篩選範圍
   // 年齡複選時使用
   const handleAgeChecked = (e) => {
     const { value, checked } = e.target
@@ -291,7 +291,6 @@ export default function PetList() {
               <div className={banner['select-left']}>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>選擇年齡</p>
-                  {/* TODO: 年齡篩選 */}
                   <div className={banner['select-item']}>
                     {ageOptions.map((v, i) => {
                       return (
@@ -313,7 +312,6 @@ export default function PetList() {
                 </div>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>寵物體型</p>
-                  {/* TODO: 體重篩選 */}
                   <div className={banner['select-item']}>
                   {weightOptions.map((v, i) => {
                       return (
