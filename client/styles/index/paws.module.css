@@ -1,0 +1,23 @@
+.paws1 {
+  position: absolute;
+  /* z-index: -1; */
+  /* animation-name: paws1;
+  animation-duration: 10s;
+  animation-direction: ease-in;
+  animation-iteration-count: infinite; */
+  transform: rotate(200deg);
+  left: 85%;
+  top: 60%;
+}
+
+.paws2 {
+  position: absolute;
+  /* z-index: -1; */
+  /* animation-name: paws1;
+  animation-duration: 10s;
+  animation-direction: ease-in;
+  animation-iteration-count: infinite; */
+  transform: rotate(330deg);
+  left: 0%;
+  top: 170%;
+}
