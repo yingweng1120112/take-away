@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 //npm install styled-jsx
 import styles from '@/styles/product/menu.module.css'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
-import { CgClose } from 'react-icons/cg'
+import { PiDog, PiCatBold } from 'react-icons/pi'
 import { useCart } from '@/context/cartcontext' //購物車加的
 
 export default function ProductModal({ show, onHide, product }) {
@@ -52,7 +52,9 @@ export default function ProductModal({ show, onHide, product }) {
     <>
       <Modal show={show} onHide={onHide} dialogClassName="custom-modal">
         <Modal.Header closeButton>
-          <Modal.Title>產品簡介</Modal.Title>
+          <Modal.Title>
+            <PiDog /> 產 品 簡 介 <PiCatBold />
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* 產品輪播 */}
@@ -192,14 +194,11 @@ export default function ProductModal({ show, onHide, product }) {
             </div>
             <div className="button-part">
               <button
-                className={styles.cta}
+                className="cta"
                 //購物車加的
                 onClick={() => handleCartClick(product, quantity)}
               >
-                <span className={styles['hover-underline-animation']} >
-                  {' '}
-                  加入購物車{' '}
-                </span>
+                <span className="hover-underline-animation"> 加入購物車 </span>
                 <svg
                   id="arrow-horizontal"
                   xmlns="http://www.w3.org/2000/svg"
@@ -216,17 +215,25 @@ export default function ProductModal({ show, onHide, product }) {
                 </svg>
               </button>
               <button
-                className={styles.cta}
+                className="cta"
                 //購物車加的
                 onClick={onHide}
               >
-                <span className={styles['hover-underline-animation']}>
-                  {' '}
-                  關閉
-                </span>
-                <span width={50} height={20}>
-                  <CgClose />
-                </span>
+                <span className="hover-underline-animation"> 關閉 </span>
+                <svg
+                  id="arrow-horizontal"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={50}
+                  height={20}
+                  viewBox="0 0 384 512"
+                >
+                  <path
+                    id="Path_10"
+                    data-name="Path 10"
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                    transform="translate(30)"
+                  />
+                </svg>
               </button>
             </div>
           </div>
@@ -248,7 +255,6 @@ export default function ProductModal({ show, onHide, product }) {
         }
         :global(.custom-modal .modal-header .modal-title) {
           font-size: 1.3rem;
-          letter-spacing: 10px;
         }
         :global(.custom-modal .modal-header .btn-close) {
           display: none;
@@ -280,7 +286,6 @@ export default function ProductModal({ show, onHide, product }) {
         .preview button {
           width: 15%;
           height: auto;
-          background: var(--white);
           border: none;
         }
         .product_name {
@@ -292,24 +297,71 @@ export default function ProductModal({ show, onHide, product }) {
           justify-content: space-between;
           margin-top: 1.25rem;
         }
-        .button-part button:nth-of-type(1) {
-          width: 48%;
-          background-color: var(--khaki);
-        }
-        .button-part button:nth-of-type(1):hover {
-          /* 這裡放置您的樣式 */
-          background-color: var(--white); /* 例如，改變背景顏色 */
-          color: black; /* 改變文字顏色 */
-          cursor: pointer; /* 顯示手型圖標 */
-        }
+
         .button-part button:nth-of-type(1) {
           width: 48%;
         }
         .button-part button:nth-of-type(2) {
           width: 48%;
         }
+        .cta {
+          border: none;
+          background: var(--khaki);
+          height: 3.125rem;
+          width: 50%;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 3.125rem;
+          padding-top: 0.1875rem;
+          box-shadow: 0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+        }
+        .cta:nth-of-type(2) {
+          background: var(--white);
+        }
+
+        .cta span {
+          letter-spacing: 0.25rem;
+          font-size: 0.875rem;
+          padding-right: 0.9375rem;
+          text-transform: uppercase;
+        }
+
+        .cta svg {
+          transform: translateX(-8px);
+          transition: all 0.3s ease;
+        }
+
+        .cta:hover svg {
+          transform: translateX(0);
+        }
+
+        .cta:active svg {
+          transform: scale(0.9);
+        }
+
         .hover-underline-animation {
-          margin-left: 1.4375rem;
+          position: relative;
+          color: black;
+        }
+
+        .hover-underline-animation:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          transform: scaleX(0);
+          height: 0.125rem;
+          bottom: 0;
+          left: 0;
+          background-color: #000000;
+          transform-origin: bottom right;
+          transition: transform 0.25s ease-out;
+        }
+
+        .cta:hover .hover-underline-animation:after {
+          transform: scaleX(1);
+          transform-origin: bottom left;
         }
       `}</style>
     </>
