@@ -14,6 +14,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
+import { Modal, Button } from 'react-bootstrap'
+
 
 export default function Step1() {
   const {
@@ -31,6 +33,20 @@ export default function Step1() {
   } = useCart()
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const chooseProduct = () => {
+    const selectedProducts = selectedItems.filter(item => item.checked);
+    if (selectedProducts.length === 0) {
+      console.log("Show modal");
+      setShowModal(true);
+      return;
+    } else {
+      // 如果已選擇商品，導向下一步
+      console.log("Redirect to next step");
+      window.location.href = "/user/shopping-cart/step2";
+    }
+  }
 
   useEffect(() => {
     const userId = localStorage.getItem('user_id');
@@ -58,6 +74,17 @@ export default function Step1() {
   return (
     <>
       <Header />
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>提示</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>尚未選擇任何商品</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            確定
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/shopping-cart/roof.png" alt="" />
@@ -200,15 +227,15 @@ export default function Step1() {
                   繼續購物
                 </a>
               </Link>
-              <Link href="/user/shopping-cart/step2" passHref>
-                <a className={styles['buttonstyle']}>
+              <button onClick={chooseProduct} 
+                 className={styles['buttonstyle']}>
                   填寫資料
                   <FontAwesomeIcon
                     icon={faAnglesRight}
                     className={styles['iconstyle2']}
                   />
-                </a>
-              </Link>
+                
+              </button>
             </div>
           </div>
         </div>

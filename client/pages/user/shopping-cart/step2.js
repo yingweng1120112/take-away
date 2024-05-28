@@ -12,6 +12,8 @@ import { useCart } from '@/context/cartcontext'
 import TWZipCode from '@/components/shopping-cart/tw-zipcode/index'
 import { loadUserInfoSpecific } from '@/services/user-info'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
+import { Modal, Button } from 'react-bootstrap'
+import router from 'next/router'
 
 //假資料 之後連會員資料庫
 // const memberData = {
@@ -47,6 +49,10 @@ export default function Step2() {
   })
 
   const [sameAsMember, setSameAsMember] = useState(false)
+
+  //驗證提示
+  const [showModal, setShowModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState('')
 
   // 更新 LocalStorage
   useEffect(() => {
@@ -127,8 +133,7 @@ export default function Step2() {
       address: fullAddress,
     }))
   }
-  //提示 
-
+  //提示
 
   //登入
   useEffect(() => {
@@ -161,7 +166,46 @@ export default function Step2() {
   }, [sameAsMember, userInfo])
 
   //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
-  const handleOrderButtonClick = async () => {
+  //表單驗證
+  const validateForm = () => {
+    let addressValue = '' // 儲存地址值
+    let addressFieldName = '' // 儲存地址欄位名稱
+    if (userInfo.delivery_type === '宅配') {
+      addressValue = recipientData.address
+      addressFieldName = '寄送地址'
+    } else if (userInfo.delivery_type === '超商取貨') {
+      addressValue = store711.storename
+      addressFieldName = '配送門市'
+    }
+    const requiredFields = [
+      { name: '收件人姓名', value: recipientData.name },
+      { name: '電子郵件', value: recipientData.email },
+      { name: '電話號碼', value: recipientData.phone },
+      { name: addressFieldName, value: addressValue },
+      { name: '付款方式', value: userInfo.payment_method },
+      { name: '發票類型', value: userInfo.invoice_type },
+    ]
+    // 手機條碼的驗證只在選擇手機載具時執行
+    if (userInfo.invoice_type === 'mobile') {
+      requiredFields.push({ name: '手機條碼', value: userInfo.Invoice_no })
+    }
+    if (!addressValue) {
+      setModalMessage(`請填寫${addressFieldName}`)
+      setShowModal(true)
+      return false
+    }
+    for (let field of requiredFields) {
+      if (!field.value) {
+        setModalMessage(`請填寫 ${field.name}`)
+        setShowModal(true)
+        return false
+      }
+    }
+    return true
+  }
+  const handleOrderButtonClick = async (event) => {
+    event.preventDefault()
+    if (!validateForm()) return
     const name = recipientData.name
     const phone = recipientData.phone
     const order_remark = userInfo.order_remark
@@ -205,11 +249,23 @@ export default function Step2() {
     console.log(data)
 
     alert('訂單建立成功')
+    router.push('/user/shopping-cart/step3')
   }
 
   return (
     <>
       <Header />
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>提示</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            確定
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/shopping-cart/roof.png" alt="" />
@@ -283,7 +339,9 @@ export default function Step2() {
             <div className={styles['cartbottomstyle']}>
               {/*  */}
               <div>
-                <div>送貨方式<span className={styles['need']}>*</span></div>
+                <div>
+                  送貨方式<span className={styles['need']}>*</span>
+                </div>
                 <div>
                   <select
                     name=""
@@ -310,7 +368,9 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>收件人姓名<span className={styles['need']}>*</span></div>
+                <div>
+                  收件人姓名<span className={styles['need']}>*</span>
+                </div>
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
@@ -325,7 +385,9 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>電子郵件<span className={styles['need']}>*</span></div>
+                <div>
+                  電子郵件<span className={styles['need']}>*</span>
+                </div>
                 <div>
                   <input
                     placeholder="請輸入信箱"
@@ -340,7 +402,9 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>電話號碼<span className={styles['need']}>*</span></div>
+                <div>
+                  電話號碼<span className={styles['need']}>*</span>
+                </div>
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
@@ -356,7 +420,9 @@ export default function Step2() {
               {/*  */}
               {delivery_type === '宅配' ? (
                 <div className={styles['writeaddress']}>
-                  <div>寄送地址<span className={styles['need']}>*</span></div>
+                  <div>
+                    寄送地址<span className={styles['need']}>*</span>
+                  </div>
                   <div>
                     <div className={styles['writeaddressright']}>
                       <TWZipCode
@@ -396,11 +462,13 @@ export default function Step2() {
                 </div>
               ) : delivery_type === '超商取貨' ? (
                 <div>
-                  <div>配送門市<span className={styles['need']}>*</span></div>
+                  <div>
+                    配送門市<span className={styles['need']}>*</span>
+                  </div>
                   <div>
                     <button
-                    className={styles['cvsbtn']}
-                    value={userInfo.address || ''}
+                      className={styles['cvsbtn']}
+                      value={userInfo.address || ''}
                       onChange={(e) =>
                         setUserInfo({ ...userInfo, address: e.target.value })
                       }
@@ -411,13 +479,19 @@ export default function Step2() {
                       請選擇門市
                     </button>
                     <br />
-                    <input 
-                    className={styles['cvsinput']}
-                    type="text" value={store711.storename} disabled />
+                    <input
+                      className={styles['cvsinput']}
+                      type="text"
+                      value={store711.storename}
+                      disabled
+                    />
                     <br />
                     <input
-                    className={styles['cvsinput']}
-                    type="text" value={store711.storeaddress} disabled />
+                      className={styles['cvsinput']}
+                      type="text"
+                      value={store711.storeaddress}
+                      disabled
+                    />
                   </div>
                 </div>
               ) : null}
@@ -448,7 +522,9 @@ export default function Step2() {
             <div className={styles['cartbottomstyle']}>
               <div className={styles['writebill']}>
                 <div>
-                  <div>付款方式<span className={styles['need']}>*</span></div>
+                  <div>
+                    付款方式<span className={styles['need']}>*</span>
+                  </div>
                   <div>
                     <select
                       value={userInfo.payment_method}
@@ -468,7 +544,9 @@ export default function Step2() {
                   </div>
                 </div>
                 <div>
-                  <div>發票類型<span className={styles['need']}>*</span></div>
+                  <div>
+                    發票類型<span className={styles['need']}>*</span>
+                  </div>
                   <div>
                     <select name="" id="" onChange={handleInvoiceTypeChange}>
                       <option value="" selected="">
@@ -528,7 +606,7 @@ export default function Step2() {
                   回上一步
                 </a>
               </Link>
-              <Link href="/user/shopping-cart/step3" passHref>
+              <Link href="#" passHref>
                 <a
                   className={styles['buttonstyle']}
                   onClick={handleOrderButtonClick}
