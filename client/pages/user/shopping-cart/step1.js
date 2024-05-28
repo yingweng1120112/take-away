@@ -15,6 +15,7 @@ import {
 import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
 import { Modal, Button } from 'react-bootstrap'
+import { jwtDecode } from 'jwt-decode'
 
 export default function Step1() {
   const {
@@ -31,7 +32,15 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+    const user = jwtDecode(userId) //解析token
+    const userID = user.user_id //取得裡面的user_id
+    console.log(userID)
+  }, []);
+
+
   const [showModal, setShowModal] = useState(false)
 
   const chooseProduct = () => {
@@ -48,14 +57,7 @@ export default function Step1() {
     }
   }
 
-  useEffect(() => {
-    const userId = localStorage.getItem('user_id')
-    if (userId) {
-      setIsLoggedIn(true)
-    } else {
-      setIsLoggedIn(false)
-    }
-  }, [])
+
 
   useEffect(() => {
     setSelectedItems((prevState) => {

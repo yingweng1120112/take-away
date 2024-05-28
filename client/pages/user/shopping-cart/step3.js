@@ -17,6 +17,14 @@ export default function Step3() {
     countSelectedFinalTotalPrice,
     countSelectedExtraFee,
   } = useCart()
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+    const user = jwtDecode(userId) //解析token
+    const userID = user.user_id //取得裡面的user_id
+    console.log(userID)
+  }, []);
+
   return (
     <>
       <Header />

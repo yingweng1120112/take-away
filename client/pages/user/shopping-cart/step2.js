@@ -14,6 +14,7 @@ import { loadUserInfoSpecific } from '@/services/user-info'
 import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 import { Modal, Button } from 'react-bootstrap'
 import router from 'next/router'
+import { jwtDecode } from 'jwt-decode'
 
 //假資料 之後連會員資料庫
 // const memberData = {
@@ -35,6 +36,42 @@ export default function Step2() {
     userInfo,
     setUserInfo,
   } = useCart()
+  const [userID, setUserID] = useState(null)
+  const [userData, setUserData] = useState('')
+
+  // 获取 userID
+  useEffect(() => {
+    const userId = localStorage.getItem('userKey') // 抓取 localStorage 里面的 userKey（值是 token）
+    if (userId) {
+      const user = jwtDecode(userId) // 解析 token
+      const userID = user.user_id // 取得里面的 user_id
+      console.log(userID)
+      setUserID(userID) // 存储 userID 到状态
+    }
+  }, [])
+
+  // 使用 useEffect 钩子在组件加载时获取用户信息
+  useEffect(() => {
+    // 定义一个异步函数
+    const fetchData = async () => {
+      if (userID) {
+        // 确保 userID 已经被设置
+        try {
+          const response = await fetch(
+            `http://localhost:3005/api/users/user-info/${userID}`
+          )
+          const result = await response.json()
+
+          // 假设后端返回的结果格式为 { userData: {...} }
+          setUserData(result.userData)
+          console.log(result.userData)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        }
+      }
+    }
+    fetchData()
+  }, [userID]) // 依赖 userID 状态
 
   //地址選單狀態
   const [data, setData] = useState({
@@ -93,7 +130,6 @@ export default function Step2() {
       delivery_type: value,
       delivery_method: value,
     }))
-    
   }
   useEffect(() => {
     // 初始化 delivery_type
@@ -102,9 +138,9 @@ export default function Step2() {
         ...prevUserInfo,
         delivery_type: '宅配',
         delivery_method: '宅配',
-      }));
+      }))
     }
-  }, [setUserInfo, userInfo.delivery_type]);
+  }, [setUserInfo, userInfo.delivery_type])
   //711門市
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
     'http://localhost:3005/api/shipment/711',
@@ -215,6 +251,23 @@ export default function Step2() {
     }
     return true
   }
+
+  //0529 資料格式
+  // 存储产品信息到localStorage
+  function saveToLocalStorage(products) {
+    localStorage.setItem('selectedItems', JSON.stringify(products))
+  }
+
+  // 从localStorage中获取产品信息
+  function getFromLocalStorage() {
+    const productsString = localStorage.getItem('selectedItems')
+    if (productsString) {
+      return JSON.parse(productsString)
+    }
+    return []
+  }
+
+
   const handleOrderButtonClick = async (event) => {
     event.preventDefault()
     if (!validateForm()) return
@@ -225,19 +278,20 @@ export default function Step2() {
     const payment_method = userInfo.payment_method
     const recipient_address_detail = recipientData.address
     const Invoice_no = userInfo.Invoice_no
-    
+
     //訂單成立時間
-    const now = new Date();
+    const now = new Date()
     // 獲取台北時間
-    const taipeiTimeString = now.toLocaleString('sv-SE', { timeZone: 'Asia/Taipei' });    
+    const taipeiTimeString = now.toLocaleString('sv-SE', {
+      timeZone: 'Asia/Taipei',
+    })
     // 將台北時間字符串轉換為 ISO 格式
-    const [datePart, timePart] = taipeiTimeString.split(' ');
-    const order_date = `${datePart}T${timePart}.000Z`;
-    
+    const [datePart, timePart] = taipeiTimeString.split(' ')
+    const order_date = `${datePart}T${timePart}.000Z`
+
     //資料儲存格式order_history
     const order_history = {
-      order_id: 10042, //假資料(之後訂單編號也要改)
-      user_id: userInfo.user_id, //假資料
+      user_id: userData.user_id,
       order_detail_id: 10042, //假資料
       name: name,
       phone: phone,
@@ -250,21 +304,21 @@ export default function Step2() {
       Invoice_no: Invoice_no,
     }
 
-    //order_detail
-    const order_detail = {
-      order_detail_id:1,
-      order_detail_id:1,
-      amount:1,
-      unit_price:1,
-      totail_price:1,
-    }
+    // 从localStorage中获取产品信息
+    const order_detail = getFromLocalStorage().map((product) => ({
+      product_id: product.product_id,
+      amount: 1, // 假设默认数量为1
+      unit_price: product.price, // 假设单价为产品价格
+      total_price: product.price, // 假设总价为产品价格
+    }))
 
+    console.log(order_detail)
 
     // 將上面保存到 localStorage 中
     //window.localStorage.setItem('order_history', JSON.stringify(order_history))
 
     //送到伺服器(ajax/fetch)
-    const res = await fetch('http://localhost:3005/api/order_history', {
+    const resHistory = await fetch('http://localhost:3005/api/order_history', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -273,13 +327,24 @@ export default function Step2() {
       body: JSON.stringify(order_history),
     })
 
-        const data = await res.json()
-        console.log(data)
+    const dataHistory = await resHistory.json()
+    console.log(dataHistory)
 
-        alert('訂單建立成功')
-        router.push('/user/shopping-cart/step3')
+    // 发送 order_detail 请求
+    const resDetail = await fetch('http://localhost:3005/api/order_detail', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order_detail),
+    })
 
+    const dataDetail = await resDetail.json()
+    console.log(dataDetail)
 
+    alert('订单创建成功')
+    router.push('/user/shopping-cart/step3')
   }
 
   return (
@@ -336,25 +401,25 @@ export default function Step2() {
               <div>
                 <div>會員姓名</div>
                 <div>
-                  <input readOnly value={userInfo.name} />
+                  <input readOnly value={userData.name} />
                 </div>
               </div>
               <div>
                 <div>電子郵件</div>
                 <div>
-                  <input readOnly value={userInfo.email} />
+                  <input readOnly value={userData.email} />
                 </div>
               </div>
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input readOnly value={userInfo.phone} />
+                  <input readOnly value={userData.phone} />
                 </div>
               </div>
               <div>
                 <div>地址</div>
                 <div>
-                  <input readOnly value={userInfo.address_detail} />
+                  <input readOnly value={userData.address_detail} />
                 </div>
               </div>
             </div>
@@ -404,7 +469,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
-                    value={sameAsMember ? userInfo.name : recipientData.name}
+                    value={sameAsMember ? userData.name : recipientData.name}
                     onChange={
                       sameAsMember
                         ? handleInputChange('name')
@@ -421,7 +486,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入信箱"
-                    value={sameAsMember ? userInfo.email : recipientData.email}
+                    value={sameAsMember ? userData.email : recipientData.email}
                     onChange={
                       sameAsMember
                         ? handleInputChange('email')
@@ -438,7 +503,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
-                    value={sameAsMember ? userInfo.phone : recipientData.phone}
+                    value={sameAsMember ? userData.phone : recipientData.phone}
                     onChange={
                       sameAsMember
                         ? handleInputChange('phone')
@@ -481,10 +546,14 @@ export default function Step2() {
                     <div>
                       <input
                         placeholder="請輸入詳細地址"
-                        value={recipientData.address.replace(
-                          `${data.country}${data.township}`,
-                          ''
-                        )}
+                        value={
+                          sameAsMember
+                            ? userData.address_detail
+                            : recipientData.address.replace(
+                                `${data.country}${data.township}`,
+                                ''
+                              )
+                        }
                         onChange={handleAddressChange}
                       />
                     </div>
