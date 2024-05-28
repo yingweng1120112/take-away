@@ -50,7 +50,7 @@ export default function PetList() {
     '幼年 0 ~ 1 歲': [0, 1],
     '青年 2 ~ 3 歲': [2, 3],
     '中年 4 ~ 7 歲': [4, 7],
-    '老年 8 歲以上': [8, 20], // 假設 100 歲是最大值
+    '老年 8 歲以上': [8, 20], // 假設 20 歲是最大值
   }
 
   // 加入參詢條件params物件
@@ -144,48 +144,63 @@ export default function PetList() {
   }
 
   // FIXME: 年齡 體型 篩選
-  // 年齡複選時使用
-  const handleAgeChecked = (e) => {
-    // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-    const tv = e.target.value
-    // 判斷是否有在陣列中
-    if (age.includes(tv)) {
-      // 如果有===>移出陣列
-      const nextAge = age.filter((v) => v !== tv)
-      setAge(nextAge)
-    } else {
-      // 否則===>加入陣列
-      const nextAge = [...age, tv]
-      setAge(nextAge)
-    }
-  }
-  // 函數根據選中的年齡選項篩選資料
-  const filterDataByAge = (data) => {
-    if (!data || data.length === 0) {
-      return []
-    }
-    if (age.length === 0) {
-      return data
-    }
-    return data.filter((item) => {
-      return age.some((ageOption) => {
-        const [min, max] = ageRangeMap[ageOption]
-        return item.age >= min && item.age <= max
-      })
-    })
-  }
+  // // 年齡複選時使用
+  // const handleAgeChecked = (e) => {
+  //   // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
+  //   const tv = e.target.value
+  //   // 判斷是否有在陣列中
+  //   if (age.includes(tv)) {
+  //     // 如果有===>移出陣列
+  //     const nextAge = age.filter((v) => v !== tv)
+  //     setAge(nextAge)
+  //   } else {
+  //     // 否則===>加入陣列
+  //     const nextAge = [...age, tv]
+  //     setAge(nextAge)
+  //   }
+  // }
+  // // 函數根據選中的年齡選項篩選資料
+  // const filterDataByAge = (data) => {
+  //   if (!data || data.length === 0) {
+  //     return []
+  //   }
+  //   if (age.length === 0) {
+  //     return data
+  //   }
+  //   return data.filter((item) => {
+  //     return age.some((ageOption) => {
+  //       const [min, max] = ageRangeMap[ageOption]
+  //       return item.age >= min && item.age <= max
+  //     })
+  //   })
+  // }
+  // const filteredData = filterDataByAge()
 
-  const filteredData = filterDataByAge()
+  const handleAgeChecked = (e) => {
+    const { value, checked } = e.target
+    if (checked) {
+      setAge([...age, value])
+    } else {
+      setAge(age.filter((v) => v !== value))
+    }
+  }
 
   // 處理搜尋
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
     setPage(1)
+    const ageRanges = age.flatMap((v) => ageRangeMap[v])
+    const age_gte = ageRanges.length ? Math.min(...ageRanges) : 0
+    const age_lte = ageRanges.length ? Math.max(...ageRanges) : 20
+    console.log('最小年齡 ', age_gte)
+    console.log('最大年齡 ', age_lte)
 
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
-      age,
+      age_gte,
+      age_lte,
+      // age,
       type,
       state,
       personality_type,
@@ -273,6 +288,7 @@ export default function PetList() {
               <div className={banner['select-left']}>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>選擇年齡</p>
+                  {/* TODO: 年齡篩選 */}
                   <div className={banner['select-item']}>
                     {ageOptions.map((v, i) => {
                       return (

@@ -40,7 +40,7 @@ router.get('/', async function (req, res) {
   const age_gte = Number(req.query.age_gte) || 0
   conditions[1] = age_gte ? `age >= ${age_gte}` : ''
   // 小於等於，10指的是年齡最大值
-  const age_lte = Number(req.query.age_lte) || 10
+  const age_lte = Number(req.query.age_lte) || 20
   conditions[2] = age_lte ? `age <= ${age_lte}` : ''
 
   // 體型
