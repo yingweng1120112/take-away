@@ -122,6 +122,18 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  position: relative;
+}
+
+.products-card .card-img{
+  z-index: 2;
+}
+.card-img-hover{
+  position: absolute;
+  z-index: 1;
+}
+.products-card:hover .card-img-hover{
+  z-index: 3;
 }
 .products-card img {
   width: 100%;
@@ -134,7 +146,6 @@
   margin-bottom: 0rem;
 }
 .products-card p:nth-child(3) {
-  text-align: right;
   padding-left: 0.625rem;
   padding-right: 0.9375rem;
   margin-bottom: 0.625rem;
