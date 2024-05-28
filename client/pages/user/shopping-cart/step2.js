@@ -81,9 +81,7 @@ export default function Step2() {
   }
 
   //配送形式
-  const [delivery_type, setDeliveryType] = useState(
-    userInfo.delivery_type || '宅配'
-  )
+  const [delivery_type, setDeliveryType] = useState('宅配')
   const handleDeliveryTypeChange = (e) => {
     const value = e.target.value
     setDeliveryType(value)
@@ -92,7 +90,18 @@ export default function Step2() {
       delivery_type: value,
       delivery_method: value,
     }))
+    
   }
+  useEffect(() => {
+    // 初始化 delivery_type
+    if (!userInfo.delivery_type) {
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
+        delivery_type: '宅配',
+        delivery_method: '宅配',
+      }));
+    }
+  }, [setUserInfo, userInfo.delivery_type]);
   //711門市
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
     'http://localhost:3005/api/shipment/711',
@@ -213,8 +222,15 @@ export default function Step2() {
     const payment_method = userInfo.payment_method
     const recipient_address_detail = recipientData.address
     const Invoice_no = userInfo.Invoice_no
+    
     //訂單成立時間
-    const order_date = new Date().toISOString()
+    const now = new Date();
+    // 獲取台北時間
+    const taipeiTimeString = now.toLocaleString('sv-SE', { timeZone: 'Asia/Taipei' });    
+    // 將台北時間字符串轉換為 ISO 格式
+    const [datePart, timePart] = taipeiTimeString.split(' ');
+    const order_date = `${datePart}T${timePart}.000Z`;
+    
     //資料儲存格式
     const order = {
       order_id: 10042, //假資料(之後訂單編號也要改)
@@ -226,7 +242,7 @@ export default function Step2() {
       order_remark: order_remark,
       delivery_method: delivery_method,
       payment_method: payment_method,
-      recipient_address_detail: recipient_address_detail,
+      recipient_address_detail: recipient_address_detail || store711.storename,
       status: '未出貨', //預設
       Invoice_no: Invoice_no,
     }
@@ -250,6 +266,9 @@ export default function Step2() {
 
     alert('訂單建立成功')
     router.push('/user/shopping-cart/step3')
+
+    //清空購物車
+    clearCart();
   }
 
   return (

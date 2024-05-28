@@ -16,7 +16,6 @@ import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
 import { Modal, Button } from 'react-bootstrap'
 
-
 export default function Step1() {
   const {
     cartItems,
@@ -32,44 +31,43 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const chooseProduct = () => {
-    const selectedProducts = selectedItems.filter(item => item.checked);
+    const selectedProducts = selectedItems.filter((item) => item.checked)
     if (selectedProducts.length === 0) {
-      console.log("Show modal");
-      setShowModal(true);
-      return;
+      console.log('Show modal')
+      setShowModal(true)
+      return
     } else {
       // 如果已選擇商品，導向下一步
-      console.log("Redirect to next step");
-      window.location.href = "/user/shopping-cart/step2";
+      console.log('Redirect to next step')
+      window.localStorage.setItem('selectedItems', JSON.stringify(selectedProducts))
+      window.location.href = '/user/shopping-cart/step2'
     }
   }
 
   useEffect(() => {
-    const userId = localStorage.getItem('user_id');
+    const userId = localStorage.getItem('user_id')
     if (userId) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(true)
     } else {
-      setIsLoggedIn(false);
+      setIsLoggedIn(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    setSelectedItems(prevState => {
+    setSelectedItems((prevState) => {
       const nextState = cartItems.map((item) => ({
         ...item,
-        checked: prevState.find(
-          (selected) => selected.product_id === item.product_id
-        )?.checked || false,
-      }));
-      return nextState;
-    });
-  }, [cartItems]);
-  
-
+        checked:
+          prevState.find((selected) => selected.product_id === item.product_id)
+            ?.checked || false,
+      }))
+      return nextState
+    })
+  }, [cartItems])
 
   return (
     <>
@@ -113,9 +111,7 @@ export default function Step1() {
       <div className={styles['shoppingcar']}>
         <div className={styles['shoppingcarleft']}>
           <div className={`${styles['carttitle']} ${styles['carttopstyle']}`}>
-            <div>
-              購物車（{cartItems.length}件）
-            </div>
+            <div>購物車（{cartItems.length}件）</div>
           </div>
           <div className={styles['cartdetail']}>
             <div className={styles['cartdetailleft']}>商品資料</div>
@@ -139,14 +135,12 @@ export default function Step1() {
                       <input
                         type="checkbox"
                         checked={selectedItem?.checked || false}
-                        onChange={() =>
-                          handleToggleChecked(v.product_id)
-                        }
+                        onChange={() => handleToggleChecked(v.product_id)}
                       />
                     </div>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                      <img src={`/img/product/${v.pic1}`} alt={v.name} />
+                        <img src={`/img/product/${v.pic1}`} alt={v.name} />
                       </div>
                       <div>{v.name}</div>
                     </div>
@@ -160,7 +154,7 @@ export default function Step1() {
                         icon={faSquareMinus}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          decreaseItem(v.product_id,v.name)
+                          decreaseItem(v.product_id, v.name)
                         }}
                       />
                       <div>{v.qty}</div>
@@ -174,13 +168,15 @@ export default function Step1() {
                       />
                     </div>
                     <div>{v.subTotal}</div>
-                    <div style={{ cursor: 'pointer' }}>
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        removeItem(v.product_id, v.name)
+                      }}
+                    >
                       <FontAwesomeIcon
                         icon={faTrashCan}
                         className={styles['iconstyle']}
-                        onClick={() => {
-                          removeItem(v.product_id,v.name)
-                        }}
                       />
                     </div>
                   </div>
@@ -218,7 +214,7 @@ export default function Step1() {
               <div>尚未選擇商品</div>
             )}
             <div className={styles['cartbutton']}>
-            <Link href="/product/menu" passHref>
+              <Link href="/product/menu" passHref>
                 <a className={styles['buttonstyle']}>
                   <FontAwesomeIcon
                     icon={faStore}
@@ -227,14 +223,12 @@ export default function Step1() {
                   繼續購物
                 </a>
               </Link>
-              <button onClick={chooseProduct} 
-                 className={styles['buttonstyle']}>
-                  填寫資料
-                  <FontAwesomeIcon
-                    icon={faAnglesRight}
-                    className={styles['iconstyle2']}
-                  />
-                
+              <button onClick={chooseProduct} className={styles['buttonstyle']}>
+                填寫資料
+                <FontAwesomeIcon
+                  icon={faAnglesRight}
+                  className={styles['iconstyle2']}
+                />
               </button>
             </div>
           </div>
