@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback} from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
@@ -22,7 +22,7 @@ import swiper1 from '@/styles/product/menu_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
 
-import { debounce } from 'lodash'; // 正確導入 debounce 函數
+import { debounce } from 'lodash' // 正確導入 debounce 函數
 
 const sample = [
   {
@@ -80,21 +80,45 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-  const [priceGte, setPriceGte] = useState(0)
-  const [priceLte, setPriceLte] = useState(2000)
-
-  //品項選項陣列
-  const brandOptions = ['寵物飼料', '寵物罐頭', '寵物用品', '保健食品', '寵物零食']
+  
 
   //查詢條件
+  const [type, setType] = useState([])
+  const [species, setSpecies] = useState([])
+  const [priceGte, setPriceGte] = useState(0)
+  const [priceLte, setPriceLte] = useState(2000)
   const [nameLike, setNameLike] = useState('')
+  // 排序
+  const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
+  // 监听价格输入框的值变化，更新价格区间
+  const handlePriceChange = (e, newValue) => {
+    setPriceGte(newValue[0]);
+    setPriceLte(newValue[1]);
+  };
+  // 在价格输入框失去焦点时触发搜索操作
+  const handleSearch = () => {
+    // 这里触发搜索操作，你可以调用你的搜索函数并传递更新后的价格区间
+    console.log('Searching for products in price range:', priceGte, priceLte);
+  };
+
+
+  //品項選項陣列
+  const typeOptions = [
+    '寵物飼料',
+    '寵物罐頭',
+    '寵物用品',
+    '保健食品',
+    '寵物零食',
+  ]
+  //物種選項陣列
+  const speciesOptions = ['狗', '貓']
 
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
 
-  // 排序
-  const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
+  //購物車加的
+  const { addToCart } = useCart()
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
@@ -115,6 +139,9 @@ export default function Menu() {
       console.log('數據結構不符合預期:', data.products)
     }
     console.log(data.products)
+    return {
+      products: [], // 返回的产品数据
+    }
   }
 
   const truncate = (str, n) => {
@@ -136,6 +163,50 @@ export default function Menu() {
     }
     console.log(data.pet_info)
   }
+  // 品項複選時使用
+  const handleTypeChecked = (e) => {
+    const tv = e.target.value
+    const nextType = type.includes(tv)
+      ? type.filter((v) => v !== tv)
+      : [...type, tv]
+
+    setType(nextType)
+
+    const params = {
+      page: 1, // 每次变更品牌时，重置页码为1
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      type: nextType.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
+  }
+  // 物種複選時使用
+  const handleSpeciesChecked = (e) => {
+    const tv = e.target.value
+    const nextSpecies = species.includes(tv)
+      ? species.filter((v) => v !== tv)
+      : [...species, tv]
+
+    setSpecies(nextSpecies)
+
+    const params = {
+      page: 1, // 每次变更品牌时，重置页码为1
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      species: nextSpecies.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
+  }
 
   // 分頁列表觸發事件使用
 
@@ -145,14 +216,19 @@ export default function Menu() {
       perpage,
       sort: orderby.sort,
       order: orderby.order,
+      name_like: nameLike,
+      type: type.join(','),
+      species: species.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
     }
 
     getProducts(params)
     getPet()
-  }, [page, perpage, orderby])
+  }, [page, perpage, orderby, type, species, priceGte, priceLte])
 
-   // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
-   const debouncedSearch = useCallback(
+  // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
+  const debouncedSearch = useCallback(
     debounce((query) => {
       const params = {
         page: 1,
@@ -160,18 +236,18 @@ export default function Menu() {
         sort: orderby.sort,
         order: orderby.order,
         name_like: query,
-      };
-      getProducts(params);
+      }
+      getProducts(params)
     }, 500), // 500ms 的防抖時間，可以根据需要調整
     [perpage, orderby]
-  );
+  )
 
   // 使用 useEffect 在 nameLike 要運用 debouncedSearch 防抖機制
   useEffect(() => {
     if (nameLike) {
-      debouncedSearch(nameLike);
+      debouncedSearch(nameLike)
     }
-  }, [nameLike, debouncedSearch]);
+  }, [nameLike, debouncedSearch])
 
   const handlePageClick = (targetPage) => {
     if (targetPage >= 1 && targetPage <= pageCount) {
@@ -189,12 +265,13 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
-  const handleCartClick = (event) => {
-    event.stopPropagation()
-    // 在这里添加購物車處理邏輯
-    console.log('Added to cart')
-  }
+  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
+  const handleCartClick = (e,product) => {
+    e.preventDefault(); 
+    e.stopPropagation();
+    addToCart(product);
+    console.log('Added to cart');
+  };
 
   return (
     <>
@@ -242,39 +319,33 @@ export default function Menu() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>商品總類</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物飼料</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物罐頭</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物用品</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物保健</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物零食</span>
-                    </label>
+                    {typeOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={type.includes(v)}
+                          onChange={handleTypeChecked}
+                        />
+                        <span>{v}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>適用物種</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>狗寶貝</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>貓寶貝</span>
-                    </label>
+                    {speciesOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={species.includes(v)}
+                          onChange={handleSpeciesChecked}
+                        />
+                        <span>{v}寶貝</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -327,20 +398,30 @@ export default function Menu() {
                     <div className={`price-input ${banner['price-input']}`}>
                       <div className={banner['price-field']}>
                         <span>從</span>
-                        <input type="number" value={value[0]} />
+                        <input
+                          type="number"
+                          value={priceGte}
+                          onChange={(e) => setPriceGte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>~</span>
-                        <input type="number" value={value[1]} />
+                        <input
+                          type="number"
+                          value={priceLte}
+                          onChange={(e) => setPriceLte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>元</span>
                       </div>
                     </div>
                     {/* slider */}
                     <Slider
-                      value={value}
-                      onChange={handleChange}
+                      value={[priceGte, priceLte]}
+                      onChange={handlePriceChange}
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
                       min={0}
-                      max={5000}
+                      max={2000}
                     />
                   </div>
                   <p className={banner['select-title']}> 商品搜尋 </p>
@@ -348,9 +429,9 @@ export default function Menu() {
                     <input
                       type="text"
                       value={nameLike}
-                      onChange={(e)=>{
+                      onChange={(e) => {
                         setNameLike(e.target.value)
-                        setPage(1); // 输入时也将页码重置为1
+                        setPage(1) // 输入时也将页码重置为1
                       }}
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
@@ -383,20 +464,14 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                  <a
-                    href={`/product/${product.product_id}.webp`}
-                    className={styles['products-card']}
-                  >
+                <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button
-                        className={styles['cart-btn']}
-                        onClick={handleCartClick}
-                      >
+                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -412,7 +487,7 @@ export default function Menu() {
                           />
                         </svg>
                       </button>
-                      <p className={styles.p}>{product.price}</p>
+                      <p className={styles.p}>${product.price}</p>
                     </div>
                   </a>
                 </li>

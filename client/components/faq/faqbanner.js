@@ -18,7 +18,7 @@ export default function Faqbanner() {
             {/* span為pc版文字，p為phone版文字 */}
             <span className={banner['middle-page-title']}>常見問題</span>
             <span>FAQ information</span>
-            {/* <p className={banner['middle-page-title']}>選項</p> */}
+            <p className={banner['middle-page-title']}>FAQs</p>
           </div>
         </div>
       </div>

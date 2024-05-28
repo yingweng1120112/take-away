@@ -15,8 +15,8 @@ export default function Home() {
     <>
       <Header />
       <div className={styles['inswipper']}>
-        <Swiper />
-      </div>
+      <Swiper />
+    </div>
       <div
         className="container m-0 d-flex justify-content-center"
         id="custom-cards"

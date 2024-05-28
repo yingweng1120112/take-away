@@ -17,6 +17,14 @@ import authenticate from '##/middlewares/authenticate.js'
 import 'dotenv/config.js'
 // 定義安全私鑰字串
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
+router.get('/', async function (req, res) {
+  const [rows] = await db.query('SELECT * FROM `user`')
+  const user = rows
+  // 處理如果沒找到資料
+
+  // 標準回傳JSON
+  return res.json({ status: 'success', data: { user } })
+})
 
 router.post('/login', async function (req, res, next) {
   // 從前端來的資料: req.body = {username:'xxx', password:'yyy'}

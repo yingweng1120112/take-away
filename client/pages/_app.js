@@ -7,7 +7,7 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { AuthProvider } from '@/hooks/use-auth'
 import { CartProvider } from '@/context/cartcontext'
-
+import { UserProvider } from '@/context/UserContext'
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -32,7 +32,14 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-  return <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider>
+  return  (
+    <UserProvider>
+      <CartProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </CartProvider>
+    </UserProvider>
+  );
+  // <UserProvider><Component {...pageProps} /></UserProvider>;
 }
 // require('dotenv').config({ path: './.config.env' });
 

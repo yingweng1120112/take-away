@@ -10,6 +10,7 @@ import {
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+import { useCart } from '@/context/cartcontext'
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
@@ -17,6 +18,7 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
+  const {cartItems} = useCart()
   return (
     <>
       {/* 更改容器高度 */}
@@ -26,19 +28,16 @@ export default function Header() {
             className="header1"
             style={{ position: 'fixed', width: '100%', 'z-index': '100' }}
           >
-            <Link href="/">
-              <img
-                className="logo"
-                src={`/img/index/logo-removebg-preview.png`}
-              />
-            </Link>
+            <a href="http://localhost:3000/" className="logo">
+              <img src={`/img/index/logo-removebg-preview.png`} />
+            </a>
             <nav className="navbar2">
               <ul>
                 <li>
                   <a>關於我們</a>
                   <ul>
                     <li>
-                      <Link href="/location/location">關於我們</Link>
+                      <a href="http://localhost:3000/location/location">關於我們</a>
                     </li>
                   </ul>
                 </li>
@@ -85,7 +84,7 @@ export default function Header() {
                   <a>寵物商城</a>
                   <ul>
                     <li>
-                      <Link href="/product">寵物商城</Link>
+                      <Link href="/product/menu">寵物商城</Link>
                     </li>
                   </ul>
                 </li>
@@ -103,6 +102,7 @@ export default function Header() {
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
                   <CiShoppingCart className="shop-icon" />
+                  <span className="cart-items">{cartItems.length}</span>
                   購物車
                 </div>
               </Link>
@@ -139,7 +139,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <a href="#">關於我們</a>
+                            <a href="http://localhost:3000/location/location">關於我們</a>
                           </li>
                         </ul>
                       </li>
@@ -229,6 +229,7 @@ export default function Header() {
                         style={{ color: 'var( --reddish-brown)' }}
                       />
                       <a href="#">購物車</a>
+                      <span className="cart-items">{cartItems.length}</span>
                     </a>
                     <a href="#" className="phone-title">
                       <CiHeart

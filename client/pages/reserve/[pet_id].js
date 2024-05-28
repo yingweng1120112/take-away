@@ -6,6 +6,8 @@ import banner from '@/styles/reserve/banner.module.css'
 import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
+import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
 
 export default function Reserve() {
   const router = useRouter()
@@ -55,22 +57,29 @@ export default function Reserve() {
   const [isLoading, setIsLoading] = useState(true)
 
   const getPet = async (pet_id) => {
-    const data = await loadPetInfo(pet_id)
-    console.log('info', data)
+    try {
+      const data = await loadPetInfo(pet_id)
+      console.log('info', data)
 
-    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
-      setPet(data)
-      setReserve((prev) => ({ ...prev, pet: data.name }))
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 1500)
+      if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+        setPet(data)
+        setReserve((prev) => ({ ...prev, pet: data.name }))
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 1500)
+      }
+    } catch (error) {
+      console.error('Failed to fetch pet data:', error)
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
     if (router.isReady) {
       const { pet_id } = router.query
-      getPet(pet_id)
+      if (pet_id) {
+        getPet(pet_id)
+      }
     }
   }, [router.isReady])
 
@@ -85,16 +94,26 @@ export default function Reserve() {
     setReserve({ ...reserve, [name]: value })
   }
 
+  const formatDateTime = (datetime) => {
+    const date = new Date(datetime)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+    
+    return `${year}-${month}-${day} ${hours}:${minutes}`
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const newErrors = { pet: '', name: '', reserveTime: '' }
 
-    if (!reserve.pet || reserve.pet.length < 1)
-      newErrors.pet = '浪浪名稱必須大於1個字'
     if (!reserve.name || reserve.name.length < 2)
       newErrors.name = '預約人必須大於2個字'
-    if (!reserve.reserveTime) newErrors.reserveTime = '預約時間必填'
+    if (!reserve.reserveTime)
+      newErrors.reserveTime = '預約時間必填'
 
     if (newErrors.pet || newErrors.name || newErrors.reserveTime) {
       setErrors(newErrors)
@@ -102,7 +121,8 @@ export default function Reserve() {
     }
 
     setErrors(newErrors)
-    console.log('Form submitted:', reserve)
+    const formattedReserveTime = formatDateTime(reserve.reserveTime)
+    console.log('Form submitted:', { ...reserve, reserveTime: formattedReserveTime })
 
     try {
       const res = await fetch('http://localhost:3005/api/reserve_system', {
@@ -114,7 +134,7 @@ export default function Reserve() {
         body: JSON.stringify({
           user_id: reserve.name,
           pet_id: pet.pet_id,
-          time: reserve.reserveTime,
+          time: formattedReserveTime,
         }),
       })
 
@@ -124,16 +144,38 @@ export default function Reserve() {
 
       const data = await res.json()
       console.log(data)
-      alert(
-        `請確定預約細項為\n預約的寵物是${reserve.pet}\n預約人是${reserve.name}\n預約時間為${reserve.reserveTime}`
-      )
-
-      setReserve({ name: '', reserveTime: '' })
+      Swal.fire({
+        title: '送出成功',
+        icon: 'success',
+      })
+      setReserve({ pet: `${reserve.pet}`, name: '', reserveTime: '' })
     } catch (error) {
       console.error('Error:', error)
-      alert('預約失敗，請稍後再試')
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>送出失敗，請稍後再試</h5>`,
+      })
     }
-    
+  }
+
+  const handleConfirm = () => {
+    const formattedReserveTime = formatDateTime(reserve.reserveTime)
+    Swal.fire({
+      title: '確定要送出?',
+      html: `
+      <h5>預約的寵物是: ${reserve.pet}<h5><br>
+      <h5>預約人是: ${reserve.name}<h5><br>
+      <h5>預約時間為: ${formattedReserveTime}<h5>`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '送出',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSubmit(new Event('submit'))
+      }
+    })
   }
 
   return (
@@ -216,7 +258,7 @@ export default function Reserve() {
                       placeholder="浪浪名稱"
                       value={reserve.pet}
                       onChange={handleChange}
-                      disabled="disabled"
+                      disabled
                       // required
                     />
                     <span className={styles['input-border']} />
@@ -262,7 +304,7 @@ export default function Reserve() {
                 </div>
                 <div className="error">{errors.reserveTime}</div>
               </div>
-              <button className={styles['button']} type="submit">
+              <button className={styles['button']} type="button" onClick={handleConfirm}>
                 送出
               </button>
             </form>
@@ -272,6 +314,17 @@ export default function Reserve() {
               他們也一定很期待能和你一同交流、認識與玩耍
             </h5>
           </div>
+        </div>
+      </section>
+      <section className={styles['thanks-group']}>
+        <div className={styles['thanks']}>
+          <img src={`/img/foot.png`} alt="" className={styles['foot']} />
+          <h1 className={styles['thanks-title']}>
+            Take Away
+          </h1>
+          <h1 className={styles['thanks-title']}>
+            誠摯的歡迎您的蒞臨~
+          </h1>
         </div>
       </section>
       <Footer />

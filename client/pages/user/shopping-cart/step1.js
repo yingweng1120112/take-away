@@ -30,7 +30,16 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const userId = localStorage.getItem('user_id');
+    if (userId) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     setSelectedItems(prevState => {
@@ -44,7 +53,7 @@ export default function Step1() {
     });
   }, [cartItems]);
   
-  
+
 
   return (
     <>
@@ -124,7 +133,7 @@ export default function Step1() {
                         icon={faSquareMinus}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          decreaseItem(v.product_id)
+                          decreaseItem(v.product_id,v.name)
                         }}
                       />
                       <div>{v.qty}</div>
@@ -143,7 +152,7 @@ export default function Step1() {
                         icon={faTrashCan}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          removeItem(v.product_id)
+                          removeItem(v.product_id,v.name)
                         }}
                       />
                     </div>

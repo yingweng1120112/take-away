@@ -1,12 +1,40 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
-// import { Link } from 'react-router-dom'
-import Link from 'next/link'
+import { loadUserInfo } from '@/services/user-info'
+import { loadUserInfoSpecific } from '@/services/user-info'
+import { useAuth } from '@/hooks/use-auth'
 
 export default function UserInfo() {
+  // 最后得到的资料
+  const [userInfo, setUserInfo] = useState(null) // 使用 useState 钩子来保存用户信息
+
+  // 使用 useEffect 钩子在组件加载时获取用户信息
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      // 从 localStorage 获取当前登录用户的 user_id
+      const userId = localStorage.getItem('user_id')
+      if (userId) {
+        // 调用 loadUserInfoSpecific 函数获取用户信息
+        const data = await loadUserInfoSpecific(userId)
+        console.log('从 loadUserInfoSpecific 获取的数据:', data)
+        // 更新组件状态
+        setUserInfo(data)
+      } else {
+        console.error('未找到用户ID')
+      }
+    }
+    fetchUserInfo()
+  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
+
+  // 如果 userInfo 为空，显示加载状态
+  if (!userInfo) {
+    return <div>Loading...</div>
+  }
+
   return (
     <section>
       <Header />
@@ -44,7 +72,7 @@ export default function UserInfo() {
 
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          className="accordion-collapse collapse show"
           data-bs-parent="#accordionExample"
         >
           <div className={`accordion-body ${banner['accordion-body']}`}>
@@ -71,7 +99,7 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-mypet">
+                  <Link href="/user/user-myUserInfo">
                     <p className={`link ${banner['select-title']}`}>我的寵物</p>
                   </Link>
                 </div>
@@ -93,40 +121,44 @@ export default function UserInfo() {
         </div>
       </div>
       {/* banner end */}
+
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
       <div className={styles['container']}>
         <div className={styles['book']}>
           <div className={styles['bookInfo']}>
             <div className={styles['rope']} />
+
             <div className={styles['bookContainer']}>
               <h2>個人資料</h2>
               <div className={styles['user']}>
                 <div className={styles['stickers']}>
-                  <img src={`/img/user/cat_cookie1.jpg`} alt="" />
+                  <img src={`/img/user/${userInfo.pic}.jpg`} alt="" />
                 </div>
-                <h5 className={styles['']}>姓名：三明治</h5>
+                <h5>姓名：</h5>
+                <span>{userInfo.name}</span>
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
-                <h5>電話：0931111222</h5>
+                <h5>id：</h5>
+                <span>{userInfo.user_id}</span>
                 <hr />
               </div>
               <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>生日：1999/03/03</h5>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>Email：</h5>
+                <span>{userInfo.email}</span>
+                <hr />
               </div>
               <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>密碼：************</h5>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>帳號：</h5>
+                <span>{userInfo.phone}</span>
               </div>
               <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>確認密碼：************</h5>
-              </div>
-              <div className={styles['bookItem']}>
-                <img src="../images/user-dog.jpg" alt="" />
-                <h5>地址：台南市白河區狸貓路人造人11號</h5>
+                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <h5>地址：</h5>
+                <span>{userInfo.address_detail}</span>
               </div>
               <div className={styles['btnItem']}>
                 <Link href="/user/user-edit">
