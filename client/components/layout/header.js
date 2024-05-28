@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
-import { GoPerson } from 'react-icons/go'
-import { CiShoppingCart } from 'react-icons/ci'
+import { BsPersonVcard } from "react-icons/bs";
+import { TiShoppingCart } from "react-icons/ti";
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
 
@@ -18,7 +18,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'fixed', width: '100%', 'z-index': '100' }}
+            style={{ position: 'fixed', width: '100%', 'z-index': '101' }}
           >
             <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
@@ -93,13 +93,13 @@ export default function Header() {
             <div className="nav-shop-group">
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
-                  <CiShoppingCart className="shop-icon" />
+                  <TiShoppingCart  className="shop-icon" />
                   購物車
                 </div>
               </Link>
               <Link href="/user">
                 <div className="shop-group">
-                  <GoPerson className="shop-icon" />
+                  <BsPersonVcard className="shop-icon" />
                   登入
                 </div>
               </Link>
@@ -215,7 +215,7 @@ export default function Header() {
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
-                      <CiShoppingCart
+                      <TiShoppingCart 
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
@@ -233,7 +233,7 @@ export default function Header() {
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
                     >
-                      <GoPerson
+                      <BsPersonVcard
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
