@@ -6,6 +6,7 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { UserContext } from '@/context/UserContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { jwtDecode } from 'jwt-decode'
 
 // 解析accessToken用的函式
 const parseJwt = (token) => {
@@ -62,14 +63,15 @@ export default function LoginForm() {
       })
 
       if (response.ok) {
-        router.push('/user/user-info')
         const result = await response.json()
         const token = result.token
-        const user = parseJwt(token)
+        // const user = parseJwt(token)
         localStorage.setItem('userKey', token)
+        // const user = jwtDecode(token)
+        // console.log(user.user_id)
         console.log("回傳成功")
-        setUsers(user)
-        router.push('/user/user-info')
+        // setUsers(user)
+        router.push('./user-info')
       } else {
         const data = await response.json()
         setMessage(data.message)
