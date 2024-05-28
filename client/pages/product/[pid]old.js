@@ -15,17 +15,19 @@ import styles from '@/styles/product/information.module.css'
 import pagination from '@/styles/product/pagination.module.css'
 // 測試
 
+
 import { loadProduct } from '@/services/product'
 import { loadProducts } from '@/services/product'
 import { useRouter } from 'next/router'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
-import { GoStarFill } from 'react-icons/go'
 //測試
 import { useCart } from '@/context/cartcontext' //購物車加的
+
 
 export default function Information() {
   const router = useRouter()
   const { addToCart } = useCart() //購物車加的
+
 
   const [product, setProduct] = useState({
     product_id: 0,
@@ -43,8 +45,8 @@ export default function Information() {
     information: '',
     reviews_id: 0,
   })
-  const [reviews, setReviews] = useState([])
-  const [numberOfReviews, setNumberOfReviews] = useState(0) // 新增一個 state 來儲存評論數量
+  const [reviews, setReviews] = useState([]);
+  const [numberOfReviews, setNumberOfReviews] = useState(0); // 新增一個 state 來儲存評論數量
 
   //單筆商品
   const getProduct = async (pid) => {
@@ -53,7 +55,7 @@ export default function Information() {
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setProduct(data.product)
       setReviews(data.reviews)
-      setNumberOfReviews(data.reviews.length) // 設置評論數量
+      setNumberOfReviews(data.reviews.length); // 設置評論數量
     } else {
       console.log('數據結構不符合預期:', data)
     }
@@ -95,6 +97,7 @@ export default function Information() {
     return str.length > n ? str.substring(0, n - 1) + '...' : str
   }
 
+
   //數量增減
   const [quantity, setQuantity] = useState(1)
 
@@ -114,20 +117,20 @@ export default function Information() {
       setQuantity(value)
     }
   }
-  // 從產品對象提取屬性
-  const images = []
-  for (let i = 1; i <= 6; i++) {
-    const pic = product[`pic${i}`]
-    if (pic) {
-      images.push(pic)
-    }
-  }
+   // 從產品對象提取屬性
+   const images = []
+   for (let i = 1; i <= 6; i++) {
+     const pic = product[`pic${i}`]
+     if (pic) {
+       images.push(pic)
+     }
+   }
+ 
+   // 再次过滤掉非图片的属性（虽然此步不必要）
+   const filteredImages = images.filter(Boolean)
 
-  // 再次过滤掉非图片的属性（虽然此步不必要）
-  const filteredImages = images.filter(Boolean)
-
-  //購物車加
-  const handleCartClick = (product, quantity) => {
+   //購物車加
+   const handleCartClick = (product, quantity) => {
     if (product && quantity > 0) {
       addToCart({ ...product, quantity })
       console.log('Added to cart:', { ...product, quantity }) // 确认数据是否正确传递
@@ -135,7 +138,7 @@ export default function Information() {
       console.log('Invalid product or quantity')
     }
   }
-
+   
   return (
     <>
       <Header />
@@ -190,18 +193,15 @@ export default function Information() {
               ></button>
             </div>
             <div className="carousel-inner">
-              {images.map((img, index) => (
-                <div
-                  key={index}
-                  className={`carousel-item ${index === 0 ? 'active' : ''}`}
-                >
-                  <img
-                    src={`/img/product/${img}`}
-                    className="d-block w-100"
-                    alt={`Product image ${index + 1}`}
-                  />
-                </div>
-              ))}
+            {images.map((img, index) => (
+            <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+              <img
+                src={`/img/product/${img}`}
+                className="d-block w-100"
+                alt={`Product image ${index + 1}`}
+              />
+            </div>
+          ))}
             </div>
             <button
               className="carousel-control-prev"
@@ -230,23 +230,23 @@ export default function Information() {
           </div>
           {/* <!-- 輪播照片縮圖 --> */}
           <div className="preview">
-            {images.map((img, index) => (
-              <button
-                key={index}
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to={index}
-                className={index === 0 ? 'active' : ''}
-                aria-current={index === 0 ? 'true' : ''}
+          {images.map((img, index) => (
+            <button
+              key={index}
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to={index}
+              className={index === 0 ? 'active' : ''}
+              aria-current={index === 0 ? 'true' : ''}
+              aria-label={`Slide ${index + 1}`}
+            >
+              <img
+                style={{ width: '100%' }}
+                src={`/img/product/${img}`}
+                alt={`Slide ${index + 1}`}
                 aria-label={`Slide ${index + 1}`}
-              >
-                <img
-                  style={{ width: '100%' }}
-                  src={`/img/product/${img}`}
-                  alt={`Slide ${index + 1}`}
-                  aria-label={`Slide ${index + 1}`}
-                />
-              </button>
-            ))}
+              />
+            </button>
+          ))}
           </div>
           {/* 產品標題區 */}
           <div className={styles['product-info']}>
@@ -281,10 +281,10 @@ export default function Information() {
                   <GrFormAdd />
                 </button>
               </div>
-              <button
-                className={styles.cta}
-                //購物車加的
-                onClick={() => handleCartClick(product, quantity)}
+              <button 
+              className={styles.cta}
+              //購物車加的
+              onClick={() => handleCartClick(product, quantity)}
               >
                 <span className={styles['hover-underline-animation']}>
                   {' '}
@@ -325,17 +325,13 @@ export default function Information() {
             <p>目前有 {numberOfReviews} 筆評論</p>
             <hr className={styles.hr} />
             {reviews.map((review) => (
-              <div
-                key={review.reviews_id}
-                className={styles['product-reviews-info']}
-              >
-                <p className={styles['reviews-user']}>{review.user_name}說 :</p>
-                <p className={styles['reviews-info']}>{review.content}</p>
-                <p>
-                  評分: {review.score} <GoStarFill />
-                </p>
-                <p className={styles['reviews-date']}>{review.time}</p>
-              </div>
+            <div key={review.reviews_id} className={styles['product-reviews-info']}>
+              <p className={styles['reviews-user']}>{review.user_name}說 :</p>
+              <p className={styles['reviews-info']}>
+              {review.content}
+              </p>
+              <p className={styles['reviews-date']}>{review.time}</p>
+            </div>
             ))}
             {/* 分頁 */}
             <div
@@ -447,42 +443,10 @@ export default function Information() {
             >
               <div className={`accordion-body ${styles['accordion-body']}`}>
                 <div className={styles['my-comment-form']}>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
+                  <div className="mb-3 w-100">
                     <label
                       htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      使用者編號:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-name"
-                      Value={'小金黃'}
-                      readOnly={true}
-                    />
-                  </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      評論商品編號:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-name"
-                      Value={product.product_id}
-                      readOnly={true}
-                    />
-                  </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
+                      className="form-label fs-6"
                     >
                       使用者:
                     </label>
@@ -495,29 +459,10 @@ export default function Information() {
                       readOnly={true}
                     />
                   </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      評分:
-                    </label>
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
-                      <option selected>選擇分數</option>
-                      <option value="1">1分</option>
-                      <option value="2">2分</option>
-                      <option value="3">3分</option>
-                      <option value="4">4分</option>
-                      <option value="5">5分</option>
-                    </select>
-                  </div>
                   <div className="mb-3 w-100">
                     <label
                       htmlFor="exampleFormControlTextarea1"
-                      className={`fs-6 ${styles['label']}`}
+                      className="form-label fs-6"
                     >
                       我的評論:
                     </label>
@@ -572,7 +517,7 @@ export default function Information() {
       {/* 產品輪播 */}
       <section className={styles.recommend}>
         <div className={styles.frame}>
-          <Swiper
+        <Swiper
             loop={true}
             slidesPerView={3}
             centeredSlides={true}
@@ -587,13 +532,14 @@ export default function Information() {
                   href={`/product/${v.product_id}`}
                   className={styles['related-products-card']}
                 >
-                  <div className={styles['swiper-div']}>
-                    <img
-                      src={`/img/product/${v.pic1}`}
-                      className={styles['swiper-img']}
-                      alt=""
-                    />
-                  </div>
+                <div className={styles['swiper-div']}>
+
+                  <img
+                    src={`/img/product/${v.pic1}`}
+                    className={styles['swiper-img']}
+                    alt=""
+                  />
+                </div>
                 </Link>
               </SwiperSlide>
             ))}
