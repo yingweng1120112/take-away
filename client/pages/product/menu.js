@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
@@ -92,17 +93,17 @@ export default function Menu() {
   const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
   // 监听价格输入框的值变化，更新价格区间
   const handlePriceChange = (e, newValue) => {
-    setPriceGte(newValue[0]);
-    setPriceLte(newValue[1]);
-  };
+    setPriceGte(newValue[0])
+    setPriceLte(newValue[1])
+  }
   // 在价格输入框失去焦点时触发搜索操作
   const handleSearch = () => {
     // 这里触发搜索操作，你可以调用你的搜索函数并传递更新后的价格区间
-    console.log('Searching for products in price range:', priceGte, priceLte);
-  };
+    console.log('Searching for products in price range:', priceGte, priceLte)
+  }
 
-  const [showModal, setShowModal] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showModal, setShowModal] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(null)
   //品項選項陣列
   const typeOptions = [
     '寵物飼料',
@@ -219,6 +220,14 @@ export default function Menu() {
       price_gte: priceGte,
       price_lte: priceLte,
     }
+    axios
+      .get('/api/products/pic2')
+      .then((response) => {
+        setProduct(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error)
+      })
 
     getProducts(params)
     getPet()
@@ -264,15 +273,15 @@ export default function Menu() {
 
   // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
   const handleOpenModal = (product, e) => {
-    e.preventDefault();  // 阻止默认的链接跳转行为
-    setSelectedProduct(product);
-    setShowModal(true);
-  };
+    e.preventDefault() // 阻止默认的链接跳转行为
+    setSelectedProduct(product)
+    setShowModal(true)
+  }
 
   const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedProduct(null);
-  };
+    setShowModal(false)
+    setSelectedProduct(null)
+  }
 
   return (
     <>
@@ -465,13 +474,18 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                  <a
-                    className={styles['products-card']}
-                  >
+                  <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
+                      className={styles['card-img']}
                     />
+                    <img
+                      src={`/img/product/${product.pic2}`}
+                      alt="Product Hover"
+                      className={styles['card-img-hover']}
+                    />
+
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
                       <button
@@ -654,7 +668,11 @@ export default function Menu() {
           </Swiper>
         </div>
       </section>
-      <ProductModal show={showModal} onHide={handleCloseModal} product={selectedProduct} />
+      <ProductModal
+        show={showModal}
+        onHide={handleCloseModal}
+        product={selectedProduct}
+      />
       <Footer />
     </>
   )
