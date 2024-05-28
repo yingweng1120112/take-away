@@ -7,7 +7,7 @@ import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+// import withReactContent from 'sweetalert2-react-content'
 
 export default function Reserve() {
   const router = useRouter()
