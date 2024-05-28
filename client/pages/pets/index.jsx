@@ -61,8 +61,8 @@ export default function PetList() {
   ]
   // 體重範圍
   const weightRangeMap = {
-    '小型 8 kg 以下': [0, 8],
-    '中型 8 ~ 20 kg': [9, 20],
+    '小型 8 kg 以下': [0, 7],
+    '中型 8 ~ 20 kg': [8, 20],
     '大型 20 kg 以上': [21, 30], // 假設 30 歲是最大值
   }
 
