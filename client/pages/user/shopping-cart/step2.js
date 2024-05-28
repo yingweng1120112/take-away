@@ -114,7 +114,7 @@ export default function Step2() {
       }))
     }
   }
-
+  //地址合併為完整地址
   const handleAddressChange = (e) => {
     const detailedAddress = e.target.value
     const fullAddress = `${data.country}${data.township}${detailedAddress}`
@@ -127,6 +127,8 @@ export default function Step2() {
       address: fullAddress,
     }))
   }
+  //提示 
+
 
   //登入
   useEffect(() => {
@@ -281,7 +283,7 @@ export default function Step2() {
             <div className={styles['cartbottomstyle']}>
               {/*  */}
               <div>
-                <div>送貨方式</div>
+                <div>送貨方式<span className={styles['need']}>*</span></div>
                 <div>
                   <select
                     name=""
@@ -308,7 +310,7 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>收件人姓名</div>
+                <div>收件人姓名<span className={styles['need']}>*</span></div>
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
@@ -323,7 +325,7 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>電子郵件</div>
+                <div>電子郵件<span className={styles['need']}>*</span></div>
                 <div>
                   <input
                     placeholder="請輸入信箱"
@@ -338,7 +340,7 @@ export default function Step2() {
               </div>
               {/*  */}
               <div>
-                <div>電話號碼</div>
+                <div>電話號碼<span className={styles['need']}>*</span></div>
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
@@ -354,7 +356,7 @@ export default function Step2() {
               {/*  */}
               {delivery_type === '宅配' ? (
                 <div className={styles['writeaddress']}>
-                  <div>寄送地址</div>
+                  <div>寄送地址<span className={styles['need']}>*</span></div>
                   <div>
                     <div className={styles['writeaddressright']}>
                       <TWZipCode
@@ -394,7 +396,7 @@ export default function Step2() {
                 </div>
               ) : delivery_type === '超商取貨' ? (
                 <div>
-                  <div>配送門市</div>
+                  <div>配送門市<span className={styles['need']}>*</span></div>
                   <div>
                     <button
                     className={styles['cvsbtn']}
@@ -446,7 +448,7 @@ export default function Step2() {
             <div className={styles['cartbottomstyle']}>
               <div className={styles['writebill']}>
                 <div>
-                  <div>付款方式</div>
+                  <div>付款方式<span className={styles['need']}>*</span></div>
                   <div>
                     <select
                       value={userInfo.payment_method}
@@ -466,7 +468,7 @@ export default function Step2() {
                   </div>
                 </div>
                 <div>
-                  <div>發票類型</div>
+                  <div>發票類型<span className={styles['need']}>*</span></div>
                   <div>
                     <select name="" id="" onChange={handleInvoiceTypeChange}>
                       <option value="" selected="">
