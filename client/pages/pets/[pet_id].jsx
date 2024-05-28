@@ -239,7 +239,7 @@ export default function PetInfo() {
             <ul>
               <li>{pet.gender}</li>
               <li>{pet.weight} 公斤</li>
-              <li>約 {pet.age}歲</li>
+              <li>約 {pet.age} 歲</li>
               <li>{pet.sign}</li>
               <li>{pet.color}</li>
               <li>{pet.breeds}</li>
