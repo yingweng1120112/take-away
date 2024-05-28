@@ -117,7 +117,7 @@ export default function Information() {
       setQuantity(value)
     }
   }
-   // 从产品对象中提取图片属性
+   // 從產品對象提取屬性
    const images = []
    for (let i = 1; i <= 6; i++) {
      const pic = product[`pic${i}`]
