@@ -18,11 +18,12 @@ export default function PetList() {
 
   // 查詢條件用
   const [nameLike, setNameLike] = useState('')
+  const [age, setAge] = useState([])
+  const [weight, setWeight] = useState([])
   const [type, setType] = useState([])
   const [state, setState] = useState([])
   const [personality_type, setPersonality_type] = useState([])
   const [gender, setGender] = useState([])
-  const [age, setAge] = useState([])
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
@@ -51,6 +52,18 @@ export default function PetList() {
     '青年 2 ~ 3 歲': [2, 3],
     '中年 4 ~ 7 歲': [4, 7],
     '老年 8 歲以上': [8, 20], // 假設 20 歲是最大值
+  }
+  // 體重選項陣列
+  const weightOptions = [
+    '小型 8 kg 以下',
+    '中型 8 ~ 20 kg',
+    '大型 20 kg 以上',
+  ]
+  // 體重範圍
+  const weightRangeMap = {
+    '小型 8 kg 以下': [0, 8],
+    '中型 8 ~ 20 kg': [9, 20],
+    '大型 20 kg 以上': [21, 30], // 假設 30 歲是最大值
   }
 
   // 加入參詢條件params物件
@@ -143,39 +156,8 @@ export default function PetList() {
     }
   }
 
-  // FIXME: 年齡 體型 篩選
-  // // 年齡複選時使用
-  // const handleAgeChecked = (e) => {
-  //   // 宣告方便使用的tv名稱，取得觸發事件物件的目標值
-  //   const tv = e.target.value
-  //   // 判斷是否有在陣列中
-  //   if (age.includes(tv)) {
-  //     // 如果有===>移出陣列
-  //     const nextAge = age.filter((v) => v !== tv)
-  //     setAge(nextAge)
-  //   } else {
-  //     // 否則===>加入陣列
-  //     const nextAge = [...age, tv]
-  //     setAge(nextAge)
-  //   }
-  // }
-  // // 函數根據選中的年齡選項篩選資料
-  // const filterDataByAge = (data) => {
-  //   if (!data || data.length === 0) {
-  //     return []
-  //   }
-  //   if (age.length === 0) {
-  //     return data
-  //   }
-  //   return data.filter((item) => {
-  //     return age.some((ageOption) => {
-  //       const [min, max] = ageRangeMap[ageOption]
-  //       return item.age >= min && item.age <= max
-  //     })
-  //   })
-  // }
-  // const filteredData = filterDataByAge()
-
+  // FIXME: 篩選範圍 體型 篩選
+  // 年齡複選時使用
   const handleAgeChecked = (e) => {
     const { value, checked } = e.target
     if (checked) {
@@ -185,22 +167,43 @@ export default function PetList() {
     }
   }
 
+    // 體重複選時使用
+    const handleWeightChecked = (e) => {
+      const { value, checked } = e.target
+      if (checked) {
+        setWeight([...weight, value])
+      } else {
+        setWeight(weight.filter((v) => v !== value))
+      }
+    }
+
   // 處理搜尋
   const handleSearch = () => {
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
     setPage(1)
+
+    // 年齡篩選
     const ageRanges = age.flatMap((v) => ageRangeMap[v])
     const age_gte = ageRanges.length ? Math.min(...ageRanges) : 0
     const age_lte = ageRanges.length ? Math.max(...ageRanges) : 20
     console.log('最小年齡 ', age_gte)
     console.log('最大年齡 ', age_lte)
 
+    // 體重篩選
+    const weightRanges = weight.flatMap((v) => weightRangeMap[v])
+    const weight_gte = weightRanges.length ? Math.min(...weightRanges) : 0
+    const weight_lte = weightRanges.length ? Math.max(...weightRanges) : 30
+    console.log('最小體重 ', weight_gte)
+    console.log('最大體重 ', weight_lte)
+
+
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
       perpage,
       age_gte,
       age_lte,
-      // age,
+      weight_gte,
+      weight_lte,
       type,
       state,
       personality_type,
@@ -213,7 +216,7 @@ export default function PetList() {
   // 當篩選條件變化時，觸發搜尋
   useEffect(() => {
     handleSearch()
-  }, [gender, age, type, state, personality_type, nameLike])
+  }, [gender, age, weight, type, state, personality_type, nameLike])
 
   // 樣式3: didMount + didUpdate
   useEffect(() => {
@@ -310,19 +313,24 @@ export default function PetList() {
                 </div>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>寵物體型</p>
+                  {/* TODO: 體重篩選 */}
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>大型 20 kg 以上</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>中型 8 ~ 20 kg</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>小型 8 kg 以下</span>
-                    </label>
+                  {weightOptions.map((v, i) => {
+                      return (
+                        <label key={i} className={banner['cl-checkbox']}>
+                          <input
+                            type="checkbox"
+                            value={v}
+                            checked={weight.includes(v)}
+                            onChange={(e) => {
+                              handleWeightChecked(e)
+                              console.log('按一下')
+                            }}
+                          />
+                          <span>{v}</span>
+                        </label>
+                      )
+                    })}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
