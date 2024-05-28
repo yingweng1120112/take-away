@@ -21,6 +21,7 @@ export default function App() {
       <Swiper
         loop={true}
         spaceBetween={4}
+        navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Navigation, Thumbs]}
         className={`mySwiper2 ${styles['mySwiper2']} `}
@@ -40,7 +41,6 @@ export default function App() {
         <SwiperSlide className={styles['swiper-slide']}>
           <img className={styles['img']} src="/img/petDiary/cat5.jpg" />
         </SwiperSlide>
-        <SwiperNavigations />
       </Swiper>
 
       <Swiper
@@ -69,22 +69,5 @@ export default function App() {
         </SwiperSlide>
       </Swiper>
     </>
-  )
-}
-const SwiperNavigations = () => {
-  const swiper = useSwiper()
-
-  return (
-    <div className={styles['swiper-btn']}>
-      <button
-        className={styles['swiper-button-prev']}
-        onClick={() => swiper.slidePrev()}
-      />
-
-      <button
-        className={styles['swiper-button-next']}
-        onClick={() => swiper.slideNext()}
-      />
-    </div>
   )
 }

@@ -19,28 +19,47 @@ export default function App(petInfo) {
   return (
     <>
       <Swiper
+        style={{
+          '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        }}
         loop={true}
         spaceBetween={4}
+        navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[Navigation, Thumbs]}
         className={`mySwiper2 ${styles['mySwiper2']} `}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-        <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt1}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt1}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-        <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt2}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt2}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt3}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt3}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-        <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt4}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt4}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-        <img className={styles['img']} src={`/img/diarySearch/${petInfo.phone1}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.phone1}`}
+          />
         </SwiperSlide>
-        <SwiperNavigations />
       </Swiper>
 
       <Swiper
@@ -53,38 +72,36 @@ export default function App(petInfo) {
         className={`mySwiper ${styles['mySwiper']} `}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt1}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt1}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt2}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt2}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt3}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt3}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']} src={`/img/diarySearch/${petInfo.adopt4}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.adopt4}`}
+          />
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <img className={styles['img']}src={`/img/diarySearch/${petInfo.phone1}`} />
+          <img
+            className={styles['img']}
+            src={`/img/diarySearch/${petInfo.phone1}`}
+          />
         </SwiperSlide>
       </Swiper>
     </>
-  )
-}
-const SwiperNavigations = () => {
-  const swiper = useSwiper()
-
-  return (
-    <div className={styles['swiper-btn']}>
-      <button
-        className={styles['swiper-button-prev']}
-        onClick={() => swiper.slidePrev()}
-      />
-
-      <button
-        className={styles['swiper-button-next']}
-        onClick={() => swiper.slideNext()}
-      />
-    </div>
   )
 }

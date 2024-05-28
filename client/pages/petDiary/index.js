@@ -24,7 +24,6 @@ export default function DiarySearch() {
     c: false,
   })
   const a = (ageType1) => {
-    console.log('4', ageType1)
     if (ageType1.a == true && ageType1.b == false && ageType1.c == false) {
       setweight({
         weight_gte: 0,
@@ -106,8 +105,8 @@ export default function DiarySearch() {
       setTotal(data.total)
     }
 
-    console.log('getinfo:data:')
-    console.log(data)
+    // console.log('getinfo:data:')
+    // console.log(data)
 
     if (Array.isArray(data.pets_info)) {
       setPetsInfo(data.pets_info)
@@ -145,7 +144,7 @@ export default function DiarySearch() {
       name_like: nameLike,
     }
     getPetsInfo(params)
-  }, [page, age, weight, type, gender])
+  }, [page, age, weight, type, gender, nameLike])
 
   return (
     <>
@@ -248,7 +247,6 @@ export default function DiarySearch() {
                           const checked = e.target.checked
                           setAgeType({ ...ageType, [selected]: checked })
                           const c = { ...ageType, [selected]: checked }
-                          console.log('0', c)
                           a(c)
                         }}
                       >
@@ -286,7 +284,7 @@ export default function DiarySearch() {
                               })
                             }else{
                               settype({
-                                type: '',
+                                type: [''],
                               })
                             }
                           } else {

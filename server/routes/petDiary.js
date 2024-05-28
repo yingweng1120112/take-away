@@ -35,7 +35,7 @@ router.get('/', async function (req, res) {
   // 年齡
   // 大於等於，0的情況會是空字串
   const age_gte = Number(req.query.age_gte) || 0
-  console.log(Number(req.query.age_gte))
+  // console.log(Number(req.query.age_gte))
   conditions[2] = age_gte ? `age >= ${age_gte}` : ''
 
   // 年齡
@@ -54,15 +54,15 @@ router.get('/', async function (req, res) {
 
   // 組合where從句
   // 1. 過濾空白的查詢從句
-  console.log(conditions)
+  // console.log(conditions)
   const cvs = conditions.filter((v) => v)
-  console.log(cvs)
+  // console.log(cvs)
   // 2. 使用AND組合有的從句
   const where =
     cvs.length > 0 ? 'WHERE ' + cvs.map((v) => `( ${v} )`).join(` AND `) : ''
 
   // 觀察where
-  console.log(where)
+  // console.log(where)
   // 分頁用
   const page = Number(req.query.page) || 1
   const perpage = Number(req.query.perpage) || 12 // 預設每頁12筆資料

@@ -12,21 +12,31 @@ import styles from '@/styles/petDiary/petDiary.module.css'
 // import required modules
 import { Pagination } from 'swiper/modules'
 
-export default function App(pic) {
-
+export default function App({ pic }) {
+  console.log('pic1', pic)
 
   return (
     <>
-    
-      <Swiper
-        loop={true}
-        pagination={true}
-        modules={[Pagination]}
-        className={`${styles['swiper']} ${styles['mySwiper3']} `}
-      >
-        <Test {...pic}/>
-        <SwiperNavigations />
-      </Swiper>
+      <div className={styles['post-swiper-container']}>
+        <Swiper
+          loop={true}
+          pagination={true}
+          modules={[Pagination]}
+          className={`${styles['swiper']} ${styles['mySwiper3']} `}
+        >
+          {pic.map((v,i) => {
+            console.log('PIC2', v)
+            return (
+              <SwiperSlide key={i}
+                className={`swiper-slide ${styles['swiper-slide']} `}
+              >
+                <img className={styles['img']} src={`/img/petDiary/${v}`} />
+              </SwiperSlide>
+            )
+          })}
+          <SwiperNavigations />
+        </Swiper>
+      </div>
     </>
   )
 }
@@ -47,21 +57,13 @@ const SwiperNavigations = () => {
     </div>
   )
 }
-const Test =(pic)=>{
-  for(let i=1;i<=5;i++){
-    console.log("i");
-    console.log(i);
-    console.log("pic.pic{i}");
-    console.log(`pic.pic${i}`);
-    
-    if(`pic.pic${i}`==''){
-      return ''
-    }else{
-      return(
-        <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-          <img className={styles['img']} src={`/img/petDiary/${`pic.pic${i}`}`} />
-        </SwiperSlide>
-      )
-    }
-  }
+const Testttt = ({ pic }) => {
+  return pic.map((v) => {
+    console.log('PIC2', v)
+    return (
+      <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
+        <img className={styles['img']} src={`/img/petDiary/${v}`} />
+      </SwiperSlide>
+    )
+  })
 }

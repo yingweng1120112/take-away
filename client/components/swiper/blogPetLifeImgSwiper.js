@@ -24,9 +24,11 @@ export default function App() {
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
           <img className={styles['img']} src="/img/petDiary/cat1.jpg" />
         </SwiperSlide>
+
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
           <img className={styles['img']} src="/img/petDiary/cat2.jpg" />
         </SwiperSlide>
+        
         <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
           <img className={styles['img']} src="/img/petDiary/cat3.jpg" />
         </SwiperSlide>

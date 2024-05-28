@@ -1,4 +1,5 @@
 import express from 'express'
+
 const router = express.Router()
 
 // 檢查空物件, 轉換req.params為數字
@@ -18,7 +19,7 @@ router.get('/:id', async function (req, res) {
   const id = getIdParam(req)
 
   const [rows] = await db.query(
-    'SELECT * FROM `blog` WHERE pet_id=? ORDER BY `time` desc',
+    'SELECT * FROM `blog` WHERE pet_id=? ORDER BY `time` DESC',
     [id]
   )
   const blog_info = rows.map((v) => ({
@@ -27,6 +28,31 @@ router.get('/:id', async function (req, res) {
   }))
 
   return res.json({ status: 'success', data: { blog_info } })
+})
+
+router.post('/:id', async function (req, res) {
+  try {
+    const id = getIdParam(req)
+    let insertedId
+    const { content, pic1, pic2, pic3, pic4, pic5 } = req.body
+
+    if (!id) {
+      return res.status(500).json({ status: 'error', message: `找不到資料` })
+    }
+    if (content) {
+      const [result] = await db.query(
+        'INSERT INTO `blog` ( `pet_id`,`content`,`pic1`, `pic2`, `pic3`, `pic4`, `pic5`,`time`) VALUES ( ?, ?, ?, ?, ?, ?, ?,NOW())',
+        [id, content, pic1, pic2, pic3, pic4, pic5]
+      )
+      insertedId = result.insertId
+    }
+    return res.json({
+      status: 'success',
+      data: { id: insertedId },
+    })
+  } catch (error) {
+    return res.status(500).json({ status: 'error', message: error.message })
+  }
 })
 
 export default router

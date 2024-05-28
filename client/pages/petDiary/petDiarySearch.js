@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CarouselPc from '@/components/swiper/shopSwiperPc'
 import CarouselPhone from '@/components/swiper/shopSwiperPhone'
@@ -6,10 +6,13 @@ import CarouselPhone from '@/components/swiper/shopSwiperPhone'
 import banner from '@/styles/banner/banner.module.css'
 import styles from '@/styles/petDiary/petDiarySearch.module.css'
 import { FaVenus, FaMars } from 'react-icons/fa6'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 export default function life() {
   return (
     <>
+        <Header />
       <div>
         <div className={styles['life-container']}>
           {/* banner start*/}
@@ -387,6 +390,7 @@ export default function life() {
           <CarouselPhone />
         </div>
       </div>
+      <Footer />
     </>
   )
 }

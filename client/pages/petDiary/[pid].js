@@ -6,6 +6,7 @@ import { loadBlogInfo } from '@/services/blog'
 import React from 'react'
 import CarouselPetInfo from '@/components/swiper/test'
 import CarouselPetLife from '@/components/swiper/test2'
+import UpLoad from '@/components/petDiary/upload3'
 import styles from '@/styles/petDiary/petDiary.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import Header from '@/components/layout/header'
@@ -19,7 +20,6 @@ export default function PetDiary() {
   // router.query(物件)，其中包含了pid屬性值
   // router.isReady(布林)，如果是true代表頁面已完成水合作用，可以得到pid
   const router = useRouter()
-
   const [petInfo, setPetInfo] = useState({})
   const [blogInfo, setBlogInfo] = useState([])
 
@@ -28,21 +28,22 @@ export default function PetDiary() {
 
   const getPetInfo = async (pid) => {
     const data = await loadPetInfo(pid)
-    console.log("getPetinfo1:data:")
+    console.log('getPetinfo1:data:')
     console.log(data)
 
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
-    
+
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setPetInfo(data)
     }
-    console.log("getPetinfo2:data:")
+    console.log('getPetinfo2:data:')
     console.log(petInfo)
   }
+
   const getBlogInfo = async (pid) => {
     const data = await loadBlogInfo(pid)
-    console.log("getBloginfo1:data:")
+    console.log('getBloginfo1:data:')
     console.log(data)
 
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
@@ -50,13 +51,13 @@ export default function PetDiary() {
     if (Array.isArray(data)) {
       setBlogInfo(data)
     }
-    console.log("getPetinfo2:data:")
+    console.log('getPetinfo2:data:')
     console.log(blogInfo)
   }
   // 樣式3: didMount+didUpdate
   // 第2步: 在useEffect中監聽router.isReady為true時，才能得到網址上的pid，之後向伺服器要資料
   useEffect(() => {
-    console.log("useeffect router.query:")
+    console.log('useeffect router.query:')
     console.log(router.query)
     if (router.isReady) {
       const { pid } = router.query
@@ -68,7 +69,7 @@ export default function PetDiary() {
 
   return (
     <>
-    <Header/>
+      <Header />
       <div
         className={banner['banner']}
         style={{ backgroundImage: 'url(/img/petDiary/bannerBlog.jpg)' }}
@@ -107,71 +108,38 @@ export default function PetDiary() {
             </h5>
           </div>
         </div>
-        <img className={styles['cat-icon']} src="/img/Frame 51.svg" alt="" />
+        <img className={styles['cat-icon']} src="/img/petDiary/catIcon.svg" alt="" />
         {/* 上傳 */}
         <div className={styles['post']}>
-          <img src="/img/petDiary/catTestImg.jpg" alt="" className={styles['head-img']} />
+          <img
+            src={`/img/diarySearch/${petInfo.adopt1}`}
+            alt=""
+            className={styles['head-img']}
+          />
           <div className={styles['post-right']} style={{ width: '100%' }}>
-            <textarea
-              id="message"
-              name="message"
-              className={styles['content-word']}
-              placeholder="輸入你想分享的趣事"
-              defaultValue={''}
-            />
-            <div className={styles['post-upload']}>
-              <form name="form1">
-                <div className={styles['post-upload-btn-container']}>
-                  <div>
-                    <label className={styles['button']} for="file-upload">
-                      <i className={styles['fa-solid fa-image']}>圖片上傳</i>
-                    </label>
-                    <input
-                      id="file-upload"
-                      type="file"
-                      className={styles['input-pic']}
-                      multiple
-                    />
-                  </div>
-                  <input
-                    type="submit"
-                    acceptf="image/*"
-                    className={`${styles['button']} ${styles['upload-btn-pc']}`}
-                  />
-                </div>
-                <div className={styles['post-upload-pic']}>
-                  <img id="show_image1" src="" className={styles['show-img']} />
-                  <img id="show_image2" src="" className={styles['show-img']} />
-                  <img id="show_image3" src="" className={styles['show-img']} />
-                  <img id="show_image4" src="" className={styles['show-img']} />
-                  <img id="show_image5" src="" className={styles['show-img']} />
-                </div>
-                <input
-                  type="submit"
-                  acceptf="image/*"
-                  className={`${styles['button']} ${styles['upload-btn-phone']}`}
-                />
-              </form>
-            </div>
+            <UpLoad />
           </div>
         </div>
         {/* 貼文 */}
         {blogInfo.map((v, i) => {
-          return(
-          <div className={styles['post']} key={v.blog_id}>
-          <img src={`/img/diarySearch/${petInfo.adopt1}`} alt="" className={styles['head-img']} />
-          <div className={styles['post-right']}>
-            <p className={styles['content-word']}>{v.content}</p>
-            <CarouselPetLife pic={v.pic}/>
-            <div className={styles['post-time']}>
-              <p className={styles['content-time']}> {v.time}</p>
-              <img src="/img/petDiary/Edit_1.svg" alt="" />
+          return (
+            <div className={styles['post']} key={v.blog_id}>
+              <img
+                src={`/img/diarySearch/${petInfo.adopt1}`}
+                alt=""
+                className={styles['head-img']}
+              />
+              <div className={styles['post-right']}>
+                <p className={styles['content-word']}>{v.content}</p>
+                <CarouselPetLife pic={v.pic} />
+                <div className={styles['post-time']}>
+                  <p className={styles['content-time']}> {v.time}</p>
+                  <img src="/img/petDiary/Edit_1.svg" alt="" />
+                </div>
+              </div>
             </div>
-          </div>
-          </div>
-        )
+          )
         })}
-
 
         <div className={styles['wp-pagenavi']}>
           <a className={styles['first']} href="#" aria-label="First Page">
@@ -198,7 +166,7 @@ export default function PetDiary() {
           </a>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }

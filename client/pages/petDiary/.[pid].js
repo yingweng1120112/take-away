@@ -1,15 +1,56 @@
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { loadPetInfo } from '@/services/petDiary'
 import React from 'react'
-import CarouselPetInfo from '@/components/swiper/blogPetImgSwiper'
+import CarouselPetInfo from '@/components/swiper/test'
 import CarouselPetLife from '@/components/swiper/blogPetLifeImgSwiper'
 import styles from '@/styles/petDiary/petDiary.module.css'
 import banner from '@/styles/banner/banner.module.css'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+// 資料夾的中的`[pid].js`檔案代表這路由中，除了根路由與靜態路由之外的所有路由，例如 `/product/123` 就是這個檔案
+// 資料來源:
+// https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${pid}
 
-export default function life() {
+export default function PetDiary() {
+  // 第1步. 宣告能得到動態路由pid的路由器
+  // router.query(物件)，其中包含了pid屬性值
+  // router.isReady(布林)，如果是true代表頁面已完成水合作用，可以得到pid
+  const router = useRouter()
+
+  const [petInfo, setPetInfo] = useState({
+  })
+
+  // 宣告一個指示是不是正在載入資料的狀態
+  // 因為一開始一定是要載入資料，所以預設值為true
+
+  const getPetInfo = async (pid) => {
+    const data = await loadPetInfo(pid)
+    console.log("getinfo:data:")
+    console.log(data)
+
+    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
+    // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      setPetInfo(data)
+    }
+  }
+
+  // 樣式3: didMount+didUpdate
+  // 第2步: 在useEffect中監聽router.isReady為true時，才能得到網址上的pid，之後向伺服器要資料
+  useEffect(() => {
+    console.log("useeffect router.query:")
+    console.log(router.query)
+    if (router.isReady) {
+      const { pid } = router.query
+      getPetInfo(pid)
+    }
+    // eslint-disable-next-line
+  }, [router.isReady])
+
   return (
     <>
-    <Header />
       <div
         className={banner['banner']}
         style={{ backgroundImage: 'url(/img/petDiary/bannerBlog.jpg)' }}
@@ -33,18 +74,17 @@ export default function life() {
       <div className={styles['container']}>
         <div className={styles['pet-info']}>
           <div className={styles['swiper-container']}>
-            <CarouselPetInfo />
+            <CarouselPetInfo petInfo={petInfo}/>
           </div>
           <div className={styles['info-line']}>
             <span className={styles['info-title']}>寵物資訊 </span>
-            <h4>寵物名稱 : 斑斑</h4>
-            <h4>品種 : 米克斯</h4>
-            <h4>年紀 : 5歲</h4>
-            <h4>性別 : 女生</h4>
+            <h4>寵物名稱 : {petInfo.name}</h4>
+            <h4>品種 : {petInfo.breeds}</h4>
+            <h4>年紀 : {petInfo.age}</h4>
+            <h4>性別 : {petInfo.gender}</h4>
             <h5 style={{ width: '90%' }}>
               我的故事 :<br />
-              嗨！我是一隻五歲的虎斑貓，
-              我是一個活潑親人的貓咪，喜歡和人互動，享受陽光浴和撒嬌時間。我的毛柔軟，身體溫暖，喜歡追逐玩具、午睡和抱抱。我對新朋友友善親近，願意與他們分享我的愛和快樂。
+              {petInfo.story}
             </h5>
           </div>
         </div>
@@ -116,7 +156,7 @@ export default function life() {
               今天抓到一隻老鼠，我感到充滿成就和驕傲！追逐過程中，充滿了興奮和挑戰，最終的成功讓我感到無比的興奮。這不僅是一次獲得美食的冒險，更是對我的獵食本能的展示。
             </p>
             <div className={styles['post-swiper-container']}>
-              <CarouselPetLife />
+              <CarouselPetLife/>
             </div>
             <div className={styles['post-time']}>
               <p className={styles['content-time']}>2024/02/14 9:53pm</p>
@@ -149,7 +189,6 @@ export default function life() {
           </a>
         </div>
       </div>
-    <Footer />
     </>
   )
 }
