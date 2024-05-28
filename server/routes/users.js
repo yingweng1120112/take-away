@@ -4,6 +4,7 @@ const router = express.Router()
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import db from '#configs/mysql.js'
+import { getIdParam } from '##/db-helpers/db-tool.js'
 dotenv.config()
 
 const secretKey = process.env.SECRET_KEY
@@ -31,11 +32,31 @@ router.post('/', async (req, res) => {
         secretKey,
         { expiresIn: '3h' }
       )
-      
 
       res.status(200).json({ status: 'success', message: '驗證成功', token })
     } else {
       res.status(401).json({ status: 'error', message: '帳號或密碼錯誤' })
+    }
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ status: 'error', message: '伺服器錯誤' })
+  }
+})
+
+router.get('/user-info/:id', async (req, res) => {
+  const userID = getIdParam(req)
+  try {
+    const [rows] = await db.query('SELECT * FROM user WHERE user_id = ?', [
+      userID,
+    ])
+    if (rows.length > 0) {
+      const userData = rows[0]
+      console.log(userData)
+      res
+        .status(200)
+        .json({ status: 'success', message: '取得資料成功', userData })
+    } else {
+      res.status(401).json({ status: 'error', message: '取得資料失敗' })
     }
   } catch (err) {
     console.error(err)

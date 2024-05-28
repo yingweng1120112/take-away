@@ -12,15 +12,85 @@ import { useAuth } from '@/hooks/use-auth'
 export default function UserInfo() {
   // 最后得到的资料
   const [userInfo, setUserInfo] = useState(null) // 使用 useState 钩子来保存用户信息
+  const [userData,setuserData] = useState('')
   const [name, setName] = useState('')
+  const [userid, setUserId] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [addressDetail, setAddressDetail] = useState('')
 
-  // 使用 useEffect 钩子在组件加载时获取用户信息
 
   const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
   const user = jwtDecode(userId) //解析token
   const userID = user.user_id //取得裡面的user_id
   console.log(userID)
-  // console.log(user.user_id);
+
+
+
+  // 使用 useEffect 钩子在组件加载时获取用户信息
+  useEffect(() => {
+    // 定义一个异步函数
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3005/api/users/user-info/${userID}`);
+        const result = await response.json();
+
+        // console.log(result.userData);
+        const userData = result.userData
+        // console.log(123)
+        // console.log(userData.name)
+        setuserData({...userData})
+        console.log(userData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    // 调用异步函数
+    fetchData();
+  }, []);
+
+  // 抓取user name的初始值
+  useEffect(() => {
+    if(userData.name){
+      setName(userData.name)
+    }
+    
+  }, [userData.name]);
+
+  // 抓取user id的初始值
+  useEffect(() => {
+    if(userData.user_id){
+      setUserId(userData.user_id)
+    }
+    
+  }, [userData.user_id
+  ]);
+
+  // 抓取user email的初始值
+  useEffect(() => {
+    if(userData.email){
+      setEmail(userData.email)
+    }
+    
+  }, [userData.email]);
+
+  // 抓取user phone的初始值
+  useEffect(() => {
+    if(userData.phone){
+      setPhone(userData.phone)
+    }
+    
+  }, [userData.phone]);
+
+  // 抓取user addressDetail的初始值
+  useEffect(() => {
+    if(userData.address_detail){
+      setAddressDetail(userData.address_detail)
+    }
+    
+  }, [userData.address_detail]);
+
 
   return (
     <section>
@@ -123,31 +193,29 @@ export default function UserInfo() {
                   {/* <img src={`/img/user/${userInfo.pic}.jpg`} alt="" /> */}
                 </div>
                 <h5>姓名：</h5>
-                <span></span>
-                {/* <span>{userInfo.name}</span> */}
                 <input type="text" value={name} />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>id：</h5>
-                {/* <span>{userInfo.user_id}</span> */}
+                <input type="text" value={userid} />
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>Email：</h5>
-                {/* <span>{userInfo.email}</span> */}
+                <input type="text" value={email} />
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>帳號：</h5>
-                {/* <span>{userInfo.phone}</span> */}
+                <input type="text" value={phone} />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>地址：</h5>
-                {/* <span>{userInfo.address_detail}</span> */}
+                <input type="text" value={addressDetail} />
               </div>
               <div className={styles['btnItem']}>
                 <Link href="/user/user-edit">
