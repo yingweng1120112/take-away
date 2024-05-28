@@ -39,9 +39,10 @@ export const loadUserInfo = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
   const searchParams = new URLSearchParams(params)
   const url = `${baseUrl}?${searchParams.toString()}`
-  
+
   try {
     const res = await fetch(url)
+    
     const resData = await res.json()
 
     // 判斷是否成功

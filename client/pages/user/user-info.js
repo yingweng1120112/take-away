@@ -4,6 +4,7 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
+import { jwtDecode } from 'jwt-decode'
 import { loadUserInfo } from '@/services/user-info'
 import { loadUserInfoSpecific } from '@/services/user-info'
 import { useAuth } from '@/hooks/use-auth'
@@ -11,31 +12,15 @@ import { useAuth } from '@/hooks/use-auth'
 export default function UserInfo() {
   // 最后得到的资料
   const [userInfo, setUserInfo] = useState(null) // 使用 useState 钩子来保存用户信息
+  const [name, setName] = useState('')
 
   // 使用 useEffect 钩子在组件加载时获取用户信息
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      // 从 localStorage 获取当前登录用户的 user_id
-      const userId = JSON.parse(localStorage.getItem('userKey'))
-      console.log(userId)
 
-      // if (userId) {
-      //   // 调用 loadUserInfoSpecific 函数获取用户信息
-      //   const data = await loadUserInfoSpecific(userId)
-      //   console.log('从 loadUserInfoSpecific 获取的数据:', data)
-      //   // 更新组件状态
-      //   setUserInfo(data)
-      // } else {
-      //   console.error('未找到用户ID')
-      // }
-    }
-    // fetchUserInfo()
-  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
-
-  // 如果 userInfo 为空，显示加载状态
-  // if (!userInfo) {
-  //   return <div>Loading...</div>
-  // }
+  const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+  const user = jwtDecode(userId) //解析token
+  const userID = user.user_id //取得裡面的user_id
+  console.log(userID)
+  // console.log(user.user_id);
 
   return (
     <section>
@@ -135,32 +120,34 @@ export default function UserInfo() {
               <h2>個人資料</h2>
               <div className={styles['user']}>
                 <div className={styles['stickers']}>
-                  <img src={`/img/user/${userInfo.pic}.jpg`} alt="" />
+                  {/* <img src={`/img/user/${userInfo.pic}.jpg`} alt="" /> */}
                 </div>
                 <h5>姓名：</h5>
-                <span>{userInfo.name}</span>
+                <span></span>
+                {/* <span>{userInfo.name}</span> */}
+                <input type="text" value={name} />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>id：</h5>
-                <span>{userInfo.user_id}</span>
+                {/* <span>{userInfo.user_id}</span> */}
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>Email：</h5>
-                <span>{userInfo.email}</span>
+                {/* <span>{userInfo.email}</span> */}
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>帳號：</h5>
-                <span>{userInfo.phone}</span>
+                {/* <span>{userInfo.phone}</span> */}
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>地址：</h5>
-                <span>{userInfo.address_detail}</span>
+                {/* <span>{userInfo.address_detail}</span> */}
               </div>
               <div className={styles['btnItem']}>
                 <Link href="/user/user-edit">

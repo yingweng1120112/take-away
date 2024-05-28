@@ -67,11 +67,11 @@ export default function LoginForm() {
         const token = result.token
         // const user = parseJwt(token)
         localStorage.setItem('userKey', token)
-        const user = jwtDecode(token)
-        console.log(user.user_id)
+        // const user = jwtDecode(token)
+        // console.log(user.user_id)
         console.log("回傳成功")
-        setUsers(user)
-        router.push('./user/user-info')
+        // setUsers(user)
+        router.push('./user-info')
       } else {
         const data = await response.json()
         setMessage(data.message)
