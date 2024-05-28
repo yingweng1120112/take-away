@@ -16,24 +16,26 @@ export default function UserInfo() {
   useEffect(() => {
     const fetchUserInfo = async () => {
       // 从 localStorage 获取当前登录用户的 user_id
-      const userId = localStorage.getItem('user_id')
-      if (userId) {
-        // 调用 loadUserInfoSpecific 函数获取用户信息
-        const data = await loadUserInfoSpecific(userId)
-        console.log('从 loadUserInfoSpecific 获取的数据:', data)
-        // 更新组件状态
-        setUserInfo(data)
-      } else {
-        console.error('未找到用户ID')
-      }
+      const userId = JSON.parse(localStorage.getItem('userKey'))
+      console.log(userId)
+
+      // if (userId) {
+      //   // 调用 loadUserInfoSpecific 函数获取用户信息
+      //   const data = await loadUserInfoSpecific(userId)
+      //   console.log('从 loadUserInfoSpecific 获取的数据:', data)
+      //   // 更新组件状态
+      //   setUserInfo(data)
+      // } else {
+      //   console.error('未找到用户ID')
+      // }
     }
-    fetchUserInfo()
+    // fetchUserInfo()
   }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
 
   // 如果 userInfo 为空，显示加载状态
-  if (!userInfo) {
-    return <div>Loading...</div>
-  }
+  // if (!userInfo) {
+  //   return <div>Loading...</div>
+  // }
 
   return (
     <section>

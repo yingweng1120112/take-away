@@ -21,15 +21,17 @@ router.post('/', async (req, res) => {
 
     if (rows.length > 0) {
       const userData = rows[0]
+      console.log(rows)
       const token = jwt.sign(
         {
           phone: userData.phone, // 修正此處為 'userData.phone'
-          userPassword: userData.password,
-          id: userData.id,
+          userpassword: userData.password,
+          user_id: userData.user_id,
         },
         secretKey,
         { expiresIn: '3h' }
       )
+      
 
       res.status(200).json({ status: 'success', message: '驗證成功', token })
     } else {
