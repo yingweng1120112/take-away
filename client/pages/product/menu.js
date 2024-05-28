@@ -12,6 +12,7 @@ import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles3 from '@/styles/pets/petList.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import ProductModal from '@/components/product/product_modal'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -80,7 +81,6 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-  
 
   //查詢條件
   const [type, setType] = useState([])
@@ -101,7 +101,8 @@ export default function Menu() {
     console.log('Searching for products in price range:', priceGte, priceLte);
   };
 
-
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   //品項選項陣列
   const typeOptions = [
     '寵物飼料',
@@ -116,9 +117,6 @@ export default function Menu() {
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
-
-  //購物車加的
-  const { addToCart } = useCart()
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
@@ -143,7 +141,6 @@ export default function Menu() {
       products: [], // 返回的产品数据
     }
   }
-
   const truncate = (str, n) => {
     return str.length > n ? str.substring(0, n - 1) + '...' : str
   }
@@ -265,12 +262,16 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
-  const handleCartClick = (e,product) => {
-    e.preventDefault(); 
-    e.stopPropagation();
-    addToCart(product);
-    console.log('Added to cart');
+  // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
+  const handleOpenModal = (product, e) => {
+    e.preventDefault();  // 阻止默认的链接跳转行为
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProduct(null);
   };
 
   return (
@@ -464,14 +465,19 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                <a className={styles['products-card']}>
+                  <a
+                    className={styles['products-card']}
+                  >
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
+                      <button
+                        className={styles['cart-btn']}
+                        onClick={(e) => handleOpenModal(product, e)}
+                      >
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -648,6 +654,7 @@ export default function Menu() {
           </Swiper>
         </div>
       </section>
+      <ProductModal show={showModal} onHide={handleCloseModal} product={selectedProduct} />
       <Footer />
     </>
   )
