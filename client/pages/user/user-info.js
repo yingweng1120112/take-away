@@ -4,6 +4,7 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/user/user-info.module.css'
 import banner from '@/styles/banner/banner.module.css'
+import { jwtDecode } from 'jwt-decode'
 import { loadUserInfo } from '@/services/user-info'
 import { loadUserInfoSpecific } from '@/services/user-info'
 import { useAuth } from '@/hooks/use-auth'
@@ -11,29 +12,85 @@ import { useAuth } from '@/hooks/use-auth'
 export default function UserInfo() {
   // 最后得到的资料
   const [userInfo, setUserInfo] = useState(null) // 使用 useState 钩子来保存用户信息
+  const [userData,setuserData] = useState('')
+  const [name, setName] = useState('')
+  const [userid, setUserId] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [addressDetail, setAddressDetail] = useState('')
+
+
+  const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+  const user = jwtDecode(userId) //解析token
+  const userID = user.user_id //取得裡面的user_id
+  console.log(userID)
+
+
 
   // 使用 useEffect 钩子在组件加载时获取用户信息
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      // 从 localStorage 获取当前登录用户的 user_id
-      const userId = localStorage.getItem('user_id')
-      if (userId) {
-        // 调用 loadUserInfoSpecific 函数获取用户信息
-        const data = await loadUserInfoSpecific(userId)
-        console.log('从 loadUserInfoSpecific 获取的数据:', data)
-        // 更新组件状态
-        setUserInfo(data)
-      } else {
-        console.error('未找到用户ID')
-      }
-    }
-    fetchUserInfo()
-  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
+    // 定义一个异步函数
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3005/api/users/user-info/${userID}`);
+        const result = await response.json();
 
-  // 如果 userInfo 为空，显示加载状态
-  if (!userInfo) {
-    return <div>Loading...</div>
-  }
+        // console.log(result.userData);
+        const userData = result.userData
+        // console.log(123)
+        // console.log(userData.name)
+        setuserData({...userData})
+        console.log(userData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    // 调用异步函数
+    fetchData();
+  }, []);
+
+  // 抓取user name的初始值
+  useEffect(() => {
+    if(userData.name){
+      setName(userData.name)
+    }
+    
+  }, [userData.name]);
+
+  // 抓取user id的初始值
+  useEffect(() => {
+    if(userData.user_id){
+      setUserId(userData.user_id)
+    }
+    
+  }, [userData.user_id
+  ]);
+
+  // 抓取user email的初始值
+  useEffect(() => {
+    if(userData.email){
+      setEmail(userData.email)
+    }
+    
+  }, [userData.email]);
+
+  // 抓取user phone的初始值
+  useEffect(() => {
+    if(userData.phone){
+      setPhone(userData.phone)
+    }
+    
+  }, [userData.phone]);
+
+  // 抓取user addressDetail的初始值
+  useEffect(() => {
+    if(userData.address_detail){
+      setAddressDetail(userData.address_detail)
+    }
+    
+  }, [userData.address_detail]);
+
 
   return (
     <section>
@@ -133,32 +190,32 @@ export default function UserInfo() {
               <h2>個人資料</h2>
               <div className={styles['user']}>
                 <div className={styles['stickers']}>
-                  <img src={`/img/user/${userInfo.pic}.jpg`} alt="" />
+                  {/* <img src={`/img/user/${userInfo.pic}.jpg`} alt="" /> */}
                 </div>
                 <h5>姓名：</h5>
-                <span>{userInfo.name}</span>
+                <input type="text" value={name} />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>id：</h5>
-                <span>{userInfo.user_id}</span>
+                <input type="text" value={userid} />
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>Email：</h5>
-                <span>{userInfo.email}</span>
+                <input type="text" value={email} />
                 <hr />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>帳號：</h5>
-                <span>{userInfo.phone}</span>
+                <input type="text" value={phone} />
               </div>
               <div className={styles['bookItem']}>
                 <img src={`/img/user/user-dog.jpg`} alt="" />
                 <h5>地址：</h5>
-                <span>{userInfo.address_detail}</span>
+                <input type="text" value={addressDetail} />
               </div>
               <div className={styles['btnItem']}>
                 <Link href="/user/user-edit">

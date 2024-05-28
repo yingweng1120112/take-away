@@ -42,6 +42,7 @@ export const loadUserInfo = async (params = {}) => {
 
   try {
     const res = await fetch(url)
+    
     const resData = await res.json()
 
     // 判斷是否成功
