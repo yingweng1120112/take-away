@@ -25,7 +25,10 @@ import router from 'next/router'
 
 export default function Step2() {
   const {
+    cartItems,
+    setCartItems,
     selectedItems,
+    setSelectedItems,
     countSelectedTotalPrice,
     countSelectedExtraFee,
     countSelectedFinalTotalPrice,
@@ -231,8 +234,8 @@ export default function Step2() {
     const [datePart, timePart] = taipeiTimeString.split(' ');
     const order_date = `${datePart}T${timePart}.000Z`;
     
-    //資料儲存格式
-    const order = {
+    //資料儲存格式order_history
+    const order_history = {
       order_id: 10042, //假資料(之後訂單編號也要改)
       user_id: userInfo.user_id, //假資料
       order_detail_id: 10042, //假資料
@@ -247,8 +250,18 @@ export default function Step2() {
       Invoice_no: Invoice_no,
     }
 
+    //order_detail
+    const order_detail = {
+      order_detail_id:1,
+      order_detail_id:1,
+      amount:1,
+      unit_price:1,
+      totail_price:1,
+    }
+
+
     // 將上面保存到 localStorage 中
-    //window.localStorage.setItem('order', JSON.stringify(order))
+    //window.localStorage.setItem('order_history', JSON.stringify(order_history))
 
     //送到伺服器(ajax/fetch)
     const res = await fetch('http://localhost:3005/api/order_history', {
@@ -257,18 +270,16 @@ export default function Step2() {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(order),
+      body: JSON.stringify(order_history),
     })
 
-    const data = await res.json()
+        const data = await res.json()
+        console.log(data)
 
-    console.log(data)
+        alert('訂單建立成功')
+        router.push('/user/shopping-cart/step3')
 
-    alert('訂單建立成功')
-    router.push('/user/shopping-cart/step3')
 
-    //清空購物車
-    clearCart();
   }
 
   return (
