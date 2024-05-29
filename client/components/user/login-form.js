@@ -79,8 +79,9 @@ export default function LoginForm() {
         localStorage.setItem('userKey', token)
         // const user = jwtDecode(token)
         // console.log(user.user_id)
-        console.log("回傳成功")
+        // console.log("回傳成功")
         // setUsers(user)
+        toast.success('已成功登入')
         router.push('./user-info')
       } else {
         const data = await response.json()
@@ -174,13 +175,13 @@ export default function LoginForm() {
             <button type="button" className={`${styles['button']} ${styles['fb-btn']}`}>
               Connect with <span className={`${styles['span']} ${styles['fb-btns']}`}>Google</span>
             </button>
-            <button
+            {/* <button
               className={`${styles['button']} ${styles['fb-btn']}`}
               type="button"
               onClick={() => setUser({ phone: 'ron', password: '123456', password2: '123456' })}
             >
               一鍵填入
-            </button>
+            </button> */}
             <button type="button" onClick={handleLogout} className={`${styles['button']} ${styles['fb-btn']}`}>登出</button>
           </form>
           <div className={styles['sub-cont']}>
