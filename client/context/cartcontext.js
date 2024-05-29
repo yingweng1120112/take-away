@@ -129,18 +129,18 @@ export function CartProvider({ children }) {
     }
 
     // 當購物車內商品發生改變時更新已選擇的商品
-    useEffect(() => {
-      setSelectedItems((prevState) => {
-        const nextState = cartItems.map((item) => ({
-          ...item,
-          checked:
-            prevState.find(
-              (selected) => selected.product_id === item.product_id
-            )?.checked || false,
-        }))
-        return nextState
-      })
-    }, [cartItems])
+    // useEffect(() => {
+    //   setSelectedItems((prevState) => {
+    //     const nextState = cartItems.map((item) => ({
+    //       ...item,
+    //       checked:
+    //         prevState.find(
+    //           (selected) => selected.product_id === item.product_id
+    //         )?.checked || false,
+    //     }))
+    //     return nextState
+    //   })
+    // }, [cartItems])
 
     //提示框
     toast.success(`${product.name} 已加入購物車！`, {

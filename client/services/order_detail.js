@@ -19,7 +19,7 @@ const sample = [
 ]
 
 // 因應要分頁和查詢，所以回應整個data
-export const loadOrderHistory = async (params = {}) => {
+export const loadOrderDetail = async (params = {}) => {
   // 使用URLSearchParams產生查詢字串
   const searchParams = new URLSearchParams(params)
   const url = `${baseUrl}?${searchParams.toString()}`

@@ -39,7 +39,7 @@ li a {
   height: 100%;
   margin: auto;
   cursor: default;
-  font-weight:bolder;
+  font-weight: bolder;
 }
 .navbar2 ul li:hover {
   background: var(--creamy-yellow);
@@ -131,7 +131,7 @@ li a {
 .cart-items {
   position: absolute;
   top: 6px;
-  right: -10px;
+  right: 225px;
   background-color: #f78585;
   color: white;
   border-radius: 50%;
@@ -158,20 +158,20 @@ li a {
     height: 60px;
   }
 
-  .header1{
-  display: none;
-}
-.header2{
-  display: block;
-  position:fixed;
-  width:100%;
-  z-index:101;
-}
-.logo{
-height: 80%;
-}
-.logo img{
-  height: 100%;
+  .header1 {
+    display: none;
+  }
+  .header2 {
+    display: block;
+    position: fixed;
+    width: 100%;
+    z-index: 101;
+  }
+  .logo {
+    height: 80%;
+  }
+  .logo img {
+    height: 100%;
   }
   .header2 {
     display: block;
@@ -215,14 +215,13 @@ height: 80%;
     border-top: 2px solid var(--border-color);
     cursor: default;
   }
-.navbar3 ul li{
-  width: 100%;
-  background: var(--bean-paste);
-  border-top:2px solid var(--border-color) ;
-  cursor: default;
-  font-weight:bolder;
-
-}
+  .navbar3 ul li {
+    width: 100%;
+    background: var(--bean-paste);
+    border-top: 2px solid var(--border-color);
+    cursor: default;
+    font-weight: bolder;
+  }
 
   .navbar3 ul li a {
     color: black;
@@ -336,31 +335,32 @@ height: 80%;
     border-bottom: 2px solid var(--reddish-brown);
   }
   .cart-items {
-    top: 440px;
-    right: 310px;
+    position: relative;
+    top: -67px;
+    right: -18px;
   }
 }
-.navbar3 ul li ul li a{
-text-align: center;
-padding-right:2.4rem;
+.navbar3 ul li ul li a {
+  text-align: center;
+  padding-right: 2.4rem;
 }
-.navbar3 ul li  ul li a:hover {
+.navbar3 ul li ul li a:hover {
   // background: var(--bean-paste);
   color: black;
 }
-.navbar3 .phone-li{
- border:2px solid var(--bean-paste) ;
- border-top:2px solid var(--bean-paste) ;
- background:white;
+.navbar3 .phone-li {
+  border: 2px solid var(--bean-paste);
+  border-top: 2px solid var(--bean-paste);
+  background: white;
   display: block;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height:100px;
-  border-radius: 0px 0px  20px 20px;
-  cursor:pointer;
+  height: 100px;
+  border-radius: 0px 0px 20px 20px;
+  cursor: pointer;
 }
-.navbar3 .phone-title{
+.navbar3 .phone-title {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -373,31 +373,31 @@ padding-right:2.4rem;
 }
 .navbar3 ul li:focus-within > ul,
 .navbar3 ul li:hover > ul {
-  display:inline;
+  display: inline;
 }
-.navbar3 .phone-title a{
+.navbar3 .phone-title a {
   text-align: center;
-  font-size: .9375rem;
-  font-weight:bolder;
-  margin:auto;
+  font-size: 0.9375rem;
+  font-weight: bolder;
+  margin: auto;
   padding: 0;
-  width:50%;
+  width: 50%;
   height: 30%;
   font-size: 0.9rem;
-  color:var( --reddish-brown);
+  color: var(--reddish-brown);
   text-decoration: none;
 }
-.navbar3 .phone-title .title-img{
+.navbar3 .phone-title .title-img {
   text-align: center;
-  font-size: .9375rem;
+  font-size: 0.9375rem;
   margin-top: 1rem;
   padding: 0;
-  width:30px;
+  width: 30px;
   height: 30px;
   font-size: 0.8rem;
 }
 .navbar3 .phone-title {
-  margin:auto;
+  margin: auto;
   border-left: 2px solid var(--bean-paste);
 }
 // .nav-shop-group{
@@ -407,20 +407,19 @@ padding-right:2.4rem;
   width: 2rem;
   height: 0.15rem;
   margin: 0.4rem auto;
-  background:black;
+  background: black;
   transition: 0.3s ease-in;
 }
 .nav__toggler {
   display: block;
   cursor: pointer;
 }
-.phone-header{
+.phone-header {
   display: flex;
   justify-content: space-between;
-  padding:0rem 1.2rem;
+  padding: 0rem 1.2rem;
   align-items: center;
   height: 3.75rem;
   background-color: var(--creamy-yellow);
   border-bottom: 2px solid var(--reddish-brown);
 }
-

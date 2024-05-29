@@ -302,7 +302,7 @@ export default function Step2() {
           delivery_method: delivery_method,
           payment_method: payment_method,
           recipient_address_detail: recipient_address_detail || store711.storename,
-          status: '未出货', // 默认状态
+          status: '未出貨', // 預設
           Invoice_no: Invoice_no,
         }),
       });
