@@ -40,7 +40,7 @@ router.get('/', async function (req, res) {
   const age_gte = Number(req.query.age_gte) || 0
   conditions[1] = age_gte ? `age >= ${age_gte}` : ''
   // 小於等於，10指的是年齡最大值
-  const age_lte = Number(req.query.age_lte) || 10
+  const age_lte = Number(req.query.age_lte) || 20
   conditions[2] = age_lte ? `age <= ${age_lte}` : ''
 
   // 體型
@@ -58,6 +58,13 @@ router.get('/', async function (req, res) {
   conditions[5] =
     type.length > 0 ? `type IN (${type.map((v) => `'${v}'`).join(',')})` : ''
 
+  // 領養狀態
+  // (查詢字串會是 '歡迎帶我回家, 先暫停認養哦' 逗點分隔字串)
+  // 要轉換為 `state IN ('Apple','Google')`
+  const state = req.query.state ? req.query.state.split(',') : []
+  conditions[6] =
+    state.length > 0 ? `state IN (${state.map((v) => `'${v}'`).join(',')})` : ''
+
   // 測驗類別
   // (查詢字串會是 '敏感型,樂天型' 逗點分隔字串)
   // 要轉換為 `personality_type IN ('敏感型','樂天型')`
@@ -67,7 +74,7 @@ router.get('/', async function (req, res) {
   const personality_type = req.query.personality_type
     ? req.query.personality_type.split(',')
     : []
-  conditions[6] =
+  conditions[7] =
     personality_type.length > 0
       ? `personality_type IN (${personality_type.map((v) => `'${v}'`).join(',')})`
       : ''
@@ -79,7 +86,7 @@ router.get('/', async function (req, res) {
   // conditions[1] =
   //   gender.length > 0 ? `gender IN (${gender.map((v) => `'${v}'`).join(',')})` : ''
   const gender = req.query.gender ? req.query.gender.split(',') : []
-  conditions[7] =
+  conditions[8] =
     gender.length > 0
       ? `gender IN (${gender.map((v) => `'${v}'`).join(',')})`
       : ''
