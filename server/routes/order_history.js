@@ -37,7 +37,7 @@ router.post('/', async function (req, res) {
       Invoice_no,
     } = req.body
 
-    const resultHistory = await db.query(
+    const [resultHistory] = await db.query(
       'INSERT INTO order_history (user_id, name, phone, order_date, order_remark, delivery_method, payment_method, recipient_address_detail, status, Invoice_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
         user_id,
