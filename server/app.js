@@ -6,8 +6,9 @@ import express from 'express'
 import logger from 'morgan'
 import path from 'path'
 import session from 'express-session'
-import http from 'http'
-import registerSocket from './routes/socketRoutes.js'
+
+
+// import registerSocket from './routes/socketRoutes.js/index.js'
 
 // 使用檔案的session store，存在sessions資料夾
 import sessionFileStore from 'session-file-store'
@@ -34,9 +35,8 @@ app.use(
     credentials: true,
   })
 )
-//Socket.IO 通信
-const server = http.createServer(app)
-registerSocket(server)
+// 
+
 // 視圖引擎設定
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
