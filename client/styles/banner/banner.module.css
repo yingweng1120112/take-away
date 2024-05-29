@@ -9,7 +9,7 @@
 }
 .banner-select{
   position: sticky; 
-  top: 74px; 
+  /* top: 74px;  */
   z-index: 100
 }
 .banner-life-1{

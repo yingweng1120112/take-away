@@ -70,9 +70,7 @@ export default function PetList() {
     if (Array.isArray(data.pet_info)) {
       console.log('設pets 狀態: ', data.pet_info)
       setPets(data.pet_info)
-    } else {
-      console.log('數據結構不符合預期:', data.pet_info)
-    }
+    } 
     console.log(data.pet_info)
   }
 
@@ -186,7 +184,7 @@ export default function PetList() {
       page,
       perpage,
     }
-
+    
     getPet(params)
   }, [page, perpage])
 
@@ -479,6 +477,7 @@ export default function PetList() {
           >
             {page}
           </span>
+
           {page + 1 <= pageCount && (
             <span>
               <a
@@ -492,6 +491,7 @@ export default function PetList() {
             </span>
           )}
           <span>
+
             <a
               className={`${styles['page']} ${styles['nextpostslink']}`}
               onClick={() => {
