@@ -250,9 +250,18 @@
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
+  /* banner */
   .banner-life-2 {
     background-image: url(/img/user/Banner.jpg);
   }
+
+  .select-phone {
+    flex-wrap: wrap;
+  }
+  .select-title {
+    font-size: 18px;
+  }
+  /* user-edit */
   .bookInfo {
     margin-top: -65px;
   }
