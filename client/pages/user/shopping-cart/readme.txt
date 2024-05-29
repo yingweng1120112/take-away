@@ -4,5 +4,41 @@
 訂單紀錄要改 根據id 顯示個人的紀錄 (目前是全部列出)
 送出訂單後 購物車資料要刪除
    
-購物車悾悾的 快去逛逛吧 首頁連結
+購物車悾悾的 快去逛逛吧 首頁連
 
+資料庫的 order_detail 新增order_id  
+order_history刪到只要15行
+
+ALTER TABLE order_detail
+ADD COLUMN order_id INT;
+order_id給值 10001 到 10015
+
+建立關連
+ALTER TABLE order_detail
+ADD CONSTRAINT fk_order_history
+FOREIGN KEY (order_id) REFERENCES order_history(order_id);
+
+
+CREATE TABLE order_history (
+  order_id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  name VARCHAR(255),
+  phone VARCHAR(20),
+  order_date DATETIME,
+  order_remark TEXT,
+  delivery_method VARCHAR(50),
+  payment_method VARCHAR(50),
+  recipient_address_detail TEXT,
+  status VARCHAR(50),
+  Invoice_no VARCHAR(50)
+);
+
+CREATE TABLE order_detail (
+  order_detail_id INT AUTO_INCREMENT PRIMARY KEY,
+  order_id INT,
+  product_id INT,
+  amount INT,
+  unit_price DECIMAL(10, 2),
+  total_price DECIMAL(10, 2),
+  FOREIGN KEY (order_id) REFERENCES order_history(order_id)
+);

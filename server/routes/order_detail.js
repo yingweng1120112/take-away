@@ -8,12 +8,12 @@ import db from '#configs/mysql.js'
 
 // GET - 得到所有订单历史数据
 router.get('/', async function (req, res) {
-  const [rows] = await db.query('SELECT * FROM order_detail')
-  const order_detail = rows
+  const [rows] = await db.query('SELECT * FROM order_history')
+  const order_history = rows
   // 处理如果没有找到数据
 
   // 返回 JSON 数据
-  return res.json({ status: 'success', data: { order_detail } })
+  return res.json({ status: 'success', data: { order_history } })
 })
 
 // GET - 得到单笔订单历史数据
@@ -22,11 +22,11 @@ router.get('/:id', async function (req, res) {
   const id = getIdParam(req)
 
   const [rows] = await db.query(
-    'SELECT * FROM order_detail WHERE order_detail_id=?',
+    'SELECT * FROM order_history WHERE order_history_id=?',
     [id]
   )
-  const order_detail = rows[0]
-  return res.json({ status: 'success', data: { order_detail } })
+  const order_history = rows[0]
+  return res.json({ status: 'success', data: { order_history } })
 })
 
 // POST - 新增订单
@@ -44,10 +44,9 @@ router.post('/', async function (req, res) {
       recipient_address_detail,
       status,
       Invoice_no,
-      order_details,
     } = req.body
 
-    // 在数据库中插入新的订单数据
+    // 在数据库中插入新的订单历史数据
     const resultHistory = await db.query(
       'INSERT INTO order_history (user_id, name, phone, order_date, order_remark, delivery_method, payment_method, recipient_address_detail, status, Invoice_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
@@ -65,16 +64,7 @@ router.post('/', async function (req, res) {
     )
     const order_id = resultHistory.insertId // 获取插入的 order_id
 
-    // 遍历订单详情数组，为每个订单详情插入记录，并将 order_id 作为外键关联
-    for (const orderDetail of order_details) {
-      const { product_id, amount, unit_price, total_price } = orderDetail
-      await db.query(
-        'INSERT INTO order_detail (order_id, product_id, amount, unit_price, total_price) VALUES (?, ?, ?, ?, ?)',
-        [order_id, product_id, amount, unit_price, total_price]
-      )
-    }
-
-    // 响应成功消息
+    // 返回成功消息和生成的 order_id
     res.json({ status: 'success', message: '订单新增成功', order_id })
   } catch (error) {
     // 如果发生错误，响应错误消息

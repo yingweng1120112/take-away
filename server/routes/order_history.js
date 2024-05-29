@@ -44,10 +44,9 @@ router.post('/', async function (req, res) {
       recipient_address_detail,
       status,
       Invoice_no,
-      order_details,
     } = req.body
 
-    // 在数据库中插入新的订单数据
+    // 在数据库中插入新的订单历史数据
     const resultHistory = await db.query(
       'INSERT INTO order_history (user_id, name, phone, order_date, order_remark, delivery_method, payment_method, recipient_address_detail, status, Invoice_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
@@ -65,16 +64,7 @@ router.post('/', async function (req, res) {
     )
     const order_id = resultHistory.insertId // 获取插入的 order_id
 
-    // 遍历订单详情数组，为每个订单详情插入记录，并将 order_id 作为外键关联
-    for (const orderDetail of order_details) {
-      const { product_id, amount, unit_price, total_price } = orderDetail
-      await db.query(
-        'INSERT INTO order_detail (order_id, product_id, amount, unit_price, total_price) VALUES (?, ?, ?, ?, ?)',
-        [order_id, product_id, amount, unit_price, total_price]
-      )
-    }
-
-    // 响应成功消息
+    // 返回成功消息和生成的 order_id
     res.json({ status: 'success', message: '订单新增成功', order_id })
   } catch (error) {
     // 如果发生错误，响应错误消息

@@ -286,57 +286,52 @@ export default function Step2() {
     let order_history // 提升 order_history 變量的聲明
 
     try {
-      // 先創建 order_detail 並獲取 order_detail_id
-      const resDetail = await fetch('http://localhost:3005/api/order_detail', {
+      // 发送订单历史数据到后端创建订单历史
+      const order_history = await fetch('http://localhost:3005/api/order_history', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(order_detail),
-      })
-
-      const dataDetail = await resDetail.json()
-      const order_detail_id = dataDetail.order_detail_id // 確保後端返回 order_detail_id
-
-      // 創建 order_history 時包含 order_detail_id
-      order_history = {
-        user_id: userData.user_id,
-        order_detail_id: order_detail_id,
-        name: userData.name || recipientData.name,
-        phone: userData.phone || recipientData.phone,
-        order_date: order_date,
-        order_remark: order_remark,
-        delivery_method: delivery_method,
-        payment_method: payment_method,
-        recipient_address_detail:
-          recipient_address_detail || store711.storename,
-        status: '未出貨', // 預設
-        Invoice_no: Invoice_no,
-      }
-
-      // 送到伺服器創建 order_history
-      const resHistory = await fetch(
-        'http://localhost:3005/api/order_history',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(order_history),
-        }
-      )
-
-      const dataHistory = await resHistory.json()
-      console.log(dataHistory)
-
-      alert('訂單創建成功')
-      router.push('/user/shopping-cart/step3')
+        body: JSON.stringify({
+          user_id: userData.user_id,
+          name: userData.name || recipientData.name,
+          phone: userData.phone || recipientData.phone,
+          order_date: order_date,
+          order_remark: order_remark,
+          delivery_method: delivery_method,
+          payment_method: payment_method,
+          recipient_address_detail: recipient_address_detail || store711.storename,
+          status: '未出貨', // 默认状态
+          Invoice_no: Invoice_no,
+        }),
+      });
+    
+      const dataHistory = await resHistory.json();
+      const order_id = dataHistory.order_id; // 获取生成的 order_id
+    
+      // 使用 order_id 创建订单详情数据
+      const order_detail = await fetch('http://localhost:3005/api/order_detail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          order_id: order_id,
+          order_detail: order_detail, // 这里传递订单详情数据
+        }),
+      });
+    
+      // 处理订单详情创建成功的逻辑
+    
+      alert('订单创建成功');
+      router.push('/user/shopping-cart/step3');
     } catch (error) {
-      console.error('Error creating order:', error)
-      alert('訂單創建失敗，請稍後再試')
+      console.error('Error creating order:', error);
+      alert('订单创建失败，请稍后再试');
     }
+    
 
     // 在這裡存儲資料到 Local Storage 和 Session Storage 中
     localStorage.setItem('order_history', JSON.stringify(order_history))
