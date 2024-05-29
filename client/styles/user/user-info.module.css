@@ -35,14 +35,17 @@
   margin: 3rem 0;
 }
 
+.input {
+  border: none;
+}
 .rope {
   width: 3%;
-  height: 38%;
+  height: 37%;
   background-image: url('/img/user/user-rope.png');
   background-repeat: repeat-y;
   position: absolute;
   z-index: 1;
-  top: 47%;
+  top: 50%;
   left: 26%;
 }
 
@@ -57,6 +60,7 @@
 
 .bookContainer h2 {
   border-radius: 30px 30px 0 0;
+  width: 100%;
 }
 
 .user {
@@ -101,6 +105,7 @@
 
 .bookContainer h5 {
   margin: 2rem;
+  width: 60px;
 }
 
 .btnItem {
@@ -118,13 +123,23 @@
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
+  /* banner */
   .banner-life-2 {
     background-image: url(/img/user/Banner.jpg);
   }
+
+  .select-phone {
+    flex-wrap: wrap;
+  }
+  .select-title {
+    font-size: 18px;
+  }
+  /* user-info */
   .rope {
     width: 9.5%;
     height: 80%;
     right: 98%;
+    display: none;
   }
 
   .container {
@@ -134,7 +149,16 @@
   .book {
     width: 100%;
   }
-
+  .bookInfo {
+    width: 90%;
+  }
+  .bookContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .stickers {
     width: 80px;
     height: 80px;
@@ -145,18 +169,10 @@
     height: auto;
   }
 
-  .bookItems {
-    justify-content: center;
-  }
-
   .user {
     margin: 10px;
     width: 95%;
     border-bottom: none;
-  }
-
-  .bookItem h6 {
-    display: none;
   }
 
   .bookItem img {
@@ -164,30 +180,36 @@
     margin: 10px;
   }
 
-  .items h5 {
-    font-size: var(--font-size-h6);
-    margin: 0.8rem;
-  }
-
   .bookItem {
-    margin: 15px 0 5px 15px;
-    width: 100%;
+    margin: 15px 0 0 0px;
+    width: 80%;
     text-align: left;
-    border-bottom: none;
+
+    /* border-bottom: none; */
+  }
+  .bookContainer h2 {
+    width: 100%;
+    font-size: 24px;
+  }
+  .bookContainer h5 {
+    font-size: 14px;
+    margin: 0 5px;
+    width: 25%;
   }
 
   .input {
     width: 80%;
+    font-size: 14px;
   }
 
   .btnItem {
     justify-content: center;
-    margin: 10px;
+    margin: 10px 20px;
   }
 
   .btnConfirm {
-    margin: 0.1rem;
-    padding: 0.3rem 0.4rem;
+    margin: 0.1rem 0.2rem;
+    padding: 0.3rem 0.5rem;
     font-size: var(--font-size-h6);
   }
 

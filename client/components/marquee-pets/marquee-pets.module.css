@@ -245,6 +245,18 @@
     text-transform: uppercase;
   }
 
+  .cta span {
+    padding-bottom: 3px;
+    padding-right: 15px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .cta:hover {
+    height: 30px;
+  }
+
   #arrow-horizontal {
     width: 20px;
   }
