@@ -8,11 +8,11 @@ import Chatright from '../../components/faq/chatright'
 import Chat from './chat'
 
 
-const socket = io.connect('http://localhost:3001')
+const socket = io.connect('http://localhost:3005')
 
 export default function App() {
   const [username, setUsername] = useState('')
-  // const [room, setRoom] = useState('')
+  const [room, setRoom] = useState('')
   const [showChat, setShowChat] = useState(false)
 
   const joinRoom = () => {
@@ -37,17 +37,17 @@ export default function App() {
                 setUsername(event.target.value)
               }}
             />
-            {/* <input
+            <input
               type="text"
               placeholder="Room ID..."
               onChange={(event) => {
                 setRoom(event.target.value)
               }}
-            /> */}
+            />
             <button onClick={joinRoom}>開始聊聊</button>
           </div>
         ) : (
-          <Chat socket={socket} username={username} />
+          <Chatright socket={socket} username={username} />
         )}
       </div>
       <Footer />
