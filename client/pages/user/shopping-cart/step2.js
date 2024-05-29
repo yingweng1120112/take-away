@@ -16,14 +16,6 @@ import { Modal, Button } from 'react-bootstrap'
 import router from 'next/router'
 import { jwtDecode } from 'jwt-decode'
 
-//假資料 之後連會員資料庫
-// const memberData = {
-//   name: '王小明',
-//   email: 'a123456789@gmail.com',
-//   phone: '0912345678',
-//   address: '台南市中西區健康路一段1號',
-// }
-
 export default function Step2() {
   const {
     cartItems,
@@ -114,7 +106,7 @@ export default function Step2() {
         address: '',
       })
     }
-  }, [sameAsMember])
+  }, [sameAsMember, userInfo])
 
   const handleCheckboxChange = () => {
     setSameAsMember((prev) => !prev)
@@ -186,20 +178,17 @@ export default function Step2() {
   //登入
   useEffect(() => {
     const fetchUserInfo = async () => {
-      // 从 localStorage 获取当前登录用户的 user_id
       const userId = localStorage.getItem('user_id')
       if (userId) {
-        // 调用 loadUserInfoSpecific 函数获取用户信息
         const data = await loadUserInfoSpecific(userId)
         console.log('从 loadUserInfoSpecific 获取的数据:', data)
-        // 更新组件状态
         setUserInfo(data)
       } else {
         console.error('未找到用户ID')
       }
     }
     fetchUserInfo()
-  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
+  }, [])
 
   //登入後改這個
   useEffect(() => {
@@ -219,16 +208,16 @@ export default function Step2() {
     let addressValue = '' // 儲存地址值
     let addressFieldName = '' // 儲存地址欄位名稱
     if (userInfo.delivery_type === '宅配') {
-      addressValue = recipientData.address
+      addressValue = userInfo.address
       addressFieldName = '寄送地址'
     } else if (userInfo.delivery_type === '超商取貨') {
       addressValue = store711.storename
       addressFieldName = '配送門市'
     }
     const requiredFields = [
-      { name: '收件人姓名', value: recipientData.name },
-      { name: '電子郵件', value: recipientData.email },
-      { name: '電話號碼', value: recipientData.phone },
+      { name: '收件人姓名', value: userData.name || recipientData.name },
+      { name: '電子郵件', value: userData.email || recipientData.email },
+      { name: '電話號碼', value: userData.phone || recipientData.phone },
       { name: addressFieldName, value: addressValue },
       { name: '付款方式', value: userInfo.payment_method },
       { name: '發票類型', value: userInfo.invoice_type },
@@ -267,7 +256,6 @@ export default function Step2() {
     return []
   }
 
-
   const handleOrderButtonClick = async (event) => {
     event.preventDefault()
     if (!validateForm()) return
@@ -279,72 +267,80 @@ export default function Step2() {
     const recipient_address_detail = recipientData.address
     const Invoice_no = userInfo.Invoice_no
 
-    //訂單成立時間
+    // 訂單成立時間
     const now = new Date()
-    // 獲取台北時間
     const taipeiTimeString = now.toLocaleString('sv-SE', {
       timeZone: 'Asia/Taipei',
     })
-    // 將台北時間字符串轉換為 ISO 格式
     const [datePart, timePart] = taipeiTimeString.split(' ')
     const order_date = `${datePart}T${timePart}.000Z`
 
-    //資料儲存格式order_history
-    const order_history = {
-      user_id: userData.user_id,
-      order_detail_id: 10042, //假資料
-      name: name,
-      phone: phone,
-      order_date: order_date,
-      order_remark: order_remark,
-      delivery_method: delivery_method,
-      payment_method: payment_method,
-      recipient_address_detail: recipient_address_detail || store711.storename,
-      status: '未出貨', //預設
-      Invoice_no: Invoice_no,
-    }
-
-    // 从localStorage中获取产品信息
-    const order_detail = getFromLocalStorage().map((product) => ({
-      product_id: product.product_id,
-      amount: 1, // 假设默认数量为1
-      unit_price: product.price, // 假设单价为产品价格
-      total_price: product.price, // 假设总价为产品价格
+    // 從 localStorage 中獲取產品信息
+    const order_detail = getFromLocalStorage().map((selectedItems) => ({
+      product_id: selectedItems.product_id,
+      amount: selectedItems.qty,
+      unit_price: selectedItems.price,
+      totail_price: selectedItems.price,
     }))
 
-    console.log(order_detail)
+    let order_history // 提升 order_history 變量的聲明
 
-    // 將上面保存到 localStorage 中
-    //window.localStorage.setItem('order_history', JSON.stringify(order_history))
+    try {
+      // 先創建 order_detail 並獲取 order_detail_id
+      const resDetail = await fetch('http://localhost:3005/api/order_detail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order_detail),
+      })
 
-    //送到伺服器(ajax/fetch)
-    const resHistory = await fetch('http://localhost:3005/api/order_history', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(order_history),
-    })
+      const dataDetail = await resDetail.json()
+      const order_detail_id = dataDetail.order_detail_id // 確保後端返回 order_detail_id
 
-    const dataHistory = await resHistory.json()
-    console.log(dataHistory)
+      // 創建 order_history 時包含 order_detail_id
+      order_history = {
+        user_id: userData.user_id,
+        order_detail_id: order_detail_id,
+        name: userData.name || recipientData.name,
+        phone: userData.phone || recipientData.phone,
+        order_date: order_date,
+        order_remark: order_remark,
+        delivery_method: delivery_method,
+        payment_method: payment_method,
+        recipient_address_detail:
+          recipient_address_detail || store711.storename,
+        status: '未出貨', // 預設
+        Invoice_no: Invoice_no,
+      }
 
-    // 发送 order_detail 请求
-    const resDetail = await fetch('http://localhost:3005/api/order_detail', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(order_detail),
-    })
+      // 送到伺服器創建 order_history
+      const resHistory = await fetch(
+        'http://localhost:3005/api/order_history',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(order_history),
+        }
+      )
 
-    const dataDetail = await resDetail.json()
-    console.log(dataDetail)
+      const dataHistory = await resHistory.json()
+      console.log(dataHistory)
 
-    alert('订单创建成功')
-    router.push('/user/shopping-cart/step3')
+      alert('訂單創建成功')
+      router.push('/user/shopping-cart/step3')
+    } catch (error) {
+      console.error('Error creating order:', error)
+      alert('訂單創建失敗，請稍後再試')
+    }
+
+    // 在這裡存儲資料到 Local Storage 和 Session Storage 中
+    localStorage.setItem('order_history', JSON.stringify(order_history))
+    sessionStorage.setItem('order_detail', JSON.stringify(order_detail))
   }
 
   return (
@@ -528,10 +524,16 @@ export default function Step2() {
                             township,
                             postcode,
                           })
-                          const fullAddress = `${country}${township}${recipientData.address.replace(
-                            `${data.country}${data.township}`,
-                            ''
-                          )}`
+                          const fullAddress = `${
+                            country || '' // 添加條件確保 country 存在
+                          }${township || ''}${
+                            recipientData && recipientData.address // 添加條件確保 recipientData 和 recipientData.address 存在
+                              ? recipientData.address.replace(
+                                  `${data.country || ''}${data.township || ''}`, // 添加條件確保 data.country 和 data.township 存在
+                                  ''
+                                )
+                              : ''
+                          }`
                           setRecipientData((prevData) => ({
                             ...prevData,
                             address: fullAddress,
@@ -548,11 +550,15 @@ export default function Step2() {
                         placeholder="請輸入詳細地址"
                         value={
                           sameAsMember
-                            ? userData.address_detail
-                            : recipientData.address.replace(
-                                `${data.country}${data.township}`,
-                                ''
-                              )
+                            ? userData.address_detail || ''
+                            : recipientData && recipientData.address
+                            ? recipientData.address
+                              ? recipientData.address.replace(
+                                  `${data.country || ''}${data.township || ''}`, // 确保 data.country 和 data.township 存在
+                                  ''
+                                )
+                              : '' // 确保 recipientData.address 存在并非空字符串
+                            : ''
                         }
                         onChange={handleAddressChange}
                       />
