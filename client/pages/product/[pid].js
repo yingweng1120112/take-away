@@ -23,6 +23,8 @@ import { GoStarFill } from 'react-icons/go'
 //測試
 import { useCart } from '@/context/cartcontext' //購物車加的
 
+import { jwtDecode } from 'jwt-decode'
+
 export default function Information() {
   const router = useRouter()
   const { addToCart } = useCart() //購物車加的
@@ -45,6 +47,55 @@ export default function Information() {
   })
   const [reviews, setReviews] = useState([])
   const [numberOfReviews, setNumberOfReviews] = useState(0) // 新增一個 state 來儲存評論數量
+
+  //useState 钩子来保存用户信息
+  const [userData, setuserData] = useState('')
+  const [name, setName] = useState('')
+  const [userid, setUserId] = useState('')
+
+  const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+  const user = jwtDecode(userId) //解析token
+  const userID = user.user_id //取得裡面的user_id
+  console.log(userID)
+
+  // 使用 useEffect 钩子在组件加载时获取用户信息
+  useEffect(() => {
+    // 定义一个异步函数
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3005/api/users/user-info/${userID}`
+        )
+        const result = await response.json()
+
+        // console.log(result.userData);
+        const userData = result.userData
+        // console.log(123)
+        // console.log(userData.name)
+        setuserData({ ...userData })
+        console.log(userData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    // 调用异步函数
+    fetchData()
+  }, [])
+
+  // 抓取user name的初始值
+  useEffect(() => {
+    if (userData.name) {
+      setName(userData.name)
+    }
+  }, [userData.name])
+
+  // 抓取user id的初始值
+  useEffect(() => {
+    if (userData.user_id) {
+      setUserId(userData.user_id)
+    }
+  }, [userData.user_id])
 
   //單筆商品
   const getProduct = async (pid) => {
@@ -459,7 +510,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={'小金黃'}
+                      Value={userid}
                       readOnly={true}
                     />
                   </div>
@@ -491,7 +542,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={'小金黃'}
+                      Value={name}
                       readOnly={true}
                     />
                   </div>
@@ -503,7 +554,7 @@ export default function Information() {
                       評分:
                     </label>
                     <select
-                      class="form-select"
+                      className="form-select"
                       aria-label="Default select example"
                     >
                       <option selected>選擇分數</option>
