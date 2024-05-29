@@ -8,12 +8,12 @@ import db from '#configs/mysql.js'
 
 // GET - 得到所有订单历史数据
 router.get('/', async function (req, res) {
-  const [rows] = await db.query('SELECT * FROM order_history')
-  const order_history = rows
+  const [rows] = await db.query('SELECT * FROM order_detail')
+  const order_detail = rows
   // 处理如果没有找到数据
 
   // 返回 JSON 数据
-  return res.json({ status: 'success', data: { order_history } })
+  return res.json({ status: 'success', data: { order_detail } })
 })
 
 // GET - 得到单笔订单历史数据
@@ -22,11 +22,11 @@ router.get('/:id', async function (req, res) {
   const id = getIdParam(req)
 
   const [rows] = await db.query(
-    'SELECT * FROM order_history WHERE order_history_id=?',
+    'SELECT * FROM order_detail WHERE order_detail_id=?',
     [id]
   )
-  const order_history = rows[0]
-  return res.json({ status: 'success', data: { order_history } })
+  const order_detail = rows[0]
+  return res.json({ status: 'success', data: { order_detail } })
 })
 
 // POST - 新增订单
