@@ -306,25 +306,38 @@ export default function Step2() {
           Invoice_no: Invoice_no,
         }),
       });
-    
+  
+      if (!resHistory.ok) {
+        throw new Error('Failed to create order history');
+      }
+  
       const dataHistory = await resHistory.json();
       const order_id = dataHistory.order_id; // 获取生成的 order_id
-    
-      // 使用 order_id 创建订单详情数据
-      const resDetail = await fetch('http://localhost:3005/api/order_history/order_detail', {
+  
+      // 构建订单详情数据
+      const orderDetails = getFromLocalStorage().map((selectedItem) => ({
+        order_id, // 将生成的 order_id 包含在订单详情数据中
+        product_id: selectedItem.product_id,
+        amount: selectedItem.qty,
+        unit_price: selectedItem.price,
+        totail_price: selectedItem.price * selectedItem.qty,
+      }));
+  
+      // 发送订单详情数据到后端创建订单详情
+      const resDetail = await fetch('http://localhost:3005/api/order_detail', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          order_id: order_id,
-          order_detail: order_detail, // 这里传递订单详情数据
-        }),
+        body: JSON.stringify(orderDetails), // 这里传递订单详情数据
       });
-    
+  
+      if (!resDetail.ok) {
+        throw new Error('Failed to create order detail');
+      }
+  
       // 处理订单详情创建成功的逻辑
-    
       alert('订单创建成功');
       router.push('/user/shopping-cart/step3');
     } catch (error) {
