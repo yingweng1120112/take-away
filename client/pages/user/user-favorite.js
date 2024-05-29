@@ -103,6 +103,7 @@ export default function UserEdit() {
       {/* banner end */}
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
+
       <div className={styles['container']}>
         <div className={styles['book']}>
           <div className={styles['bookInfo']}>
@@ -110,7 +111,7 @@ export default function UserEdit() {
               <h2>浪浪收藏</h2>
               <div className={styles['rope']} />
               <div className={styles['bookItems']}>
-              <div className={styles['pet-card']}>
+                <div className={styles['pet-card']}>
                   <img src={`/img/pet-info/10001-1.jpg`} alt="" />
                   <div className={styles['card-desc']}>
                     <p>小飛機</p>
