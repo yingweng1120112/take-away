@@ -11,7 +11,7 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { adoptInfos } from '@/services/online_virtual_adoption_form'
 import Select from 'react-select'
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+// import withReactContent from 'sweetalert2-react-content'
 import { GiCancel } from "react-icons/gi";
 
 export default function userReserve() {
@@ -118,7 +118,7 @@ export default function userReserve() {
   }
 
   // 要改用sweetalert2-react-content來取代Swal
-  const MySwal = withReactContent(Swal);
+  // const MySwal = withReactContent(Swal);
 
   const removeItem = async (adopt_id) => {
     try {
@@ -130,14 +130,14 @@ export default function userReserve() {
         const nextItems = adopt.filter((item) => item.adopt_id !== adopt_id);
         setAdopt(nextItems);
       } else {
-        MySwal.fire({
+        Swal.fire({
           title: '錯誤',
           text: result.message,
           icon: 'error',
         });
       }
     } catch (error) {
-      MySwal.fire({
+      Swal.fire({
         title: '錯誤',
         text: '刪除失敗，請稍後再試',
         icon: 'error',
@@ -146,7 +146,7 @@ export default function userReserve() {
   };
 
   const notifyAndRemove = (petName = '', adopt_id = 0) => {
-    MySwal.fire({
+    Swal.fire({
       title: '確定要取消認養嗎?',
       text: '你將無法回復這個操作!',
       icon: 'warning',
@@ -157,7 +157,7 @@ export default function userReserve() {
       confirmButtonText: '確定刪除',
     }).then((result) => {
       if (result.isConfirmed) {
-        MySwal.fire({
+        Swal.fire({
           title: '已刪除!',
           text: `${petName} 已從預約紀錄中刪除`,
           icon: 'success',

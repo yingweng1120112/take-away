@@ -3,10 +3,8 @@ import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
-<<<<<<< HEAD
 import { BsPersonVcard } from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
-=======
 import { GoPerson } from 'react-icons/go'
 import { CiShoppingCart } from 'react-icons/ci'
 import {
@@ -16,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useCart } from '@/context/cartcontext'
 
->>>>>>> a1d7c5b20c61380779cad58801bdb62558e43942
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
 
