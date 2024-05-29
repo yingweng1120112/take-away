@@ -18,6 +18,7 @@ ALTER TABLE order_detail
 ADD CONSTRAINT fk_order_history
 FOREIGN KEY (order_id) REFERENCES order_history(order_id);
 
+order_history的order_detail_id  刪除
 
 CREATE TABLE order_history (
   order_id INT AUTO_INCREMENT PRIMARY KEY,

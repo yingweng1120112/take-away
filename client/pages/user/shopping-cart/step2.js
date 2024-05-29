@@ -287,7 +287,7 @@ export default function Step2() {
 
     try {
       // 发送订单历史数据到后端创建订单历史
-      const order_history = await fetch('http://localhost:3005/api/order_history', {
+      const resHistory = await fetch('http://localhost:3005/api/order_history', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -302,7 +302,7 @@ export default function Step2() {
           delivery_method: delivery_method,
           payment_method: payment_method,
           recipient_address_detail: recipient_address_detail || store711.storename,
-          status: '未出貨', // 默认状态
+          status: '未出货', // 默认状态
           Invoice_no: Invoice_no,
         }),
       });
@@ -311,7 +311,7 @@ export default function Step2() {
       const order_id = dataHistory.order_id; // 获取生成的 order_id
     
       // 使用 order_id 创建订单详情数据
-      const order_detail = await fetch('http://localhost:3005/api/order_detail', {
+      const resDetail = await fetch('http://localhost:3005/api/order_history/order_detail', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -332,10 +332,11 @@ export default function Step2() {
       alert('订单创建失败，请稍后再试');
     }
     
+    
 
     // 在這裡存儲資料到 Local Storage 和 Session Storage 中
-    localStorage.setItem('order_history', JSON.stringify(order_history))
-    sessionStorage.setItem('order_detail', JSON.stringify(order_detail))
+    // localStorage.setItem('order_history', JSON.stringify(order_history))
+    // sessionStorage.setItem('order_detail', JSON.stringify(order_detail))
   }
 
   return (

@@ -34,21 +34,21 @@ export default function Step3() {
 
 
 
-  useEffect(() => {
-    // 從 Local Storage 中讀取資料
-    const storedOrderData = localStorage.getItem('order_history');
-    if (storedOrderData) {
-      const orderData = JSON.parse(storedOrderData);
-      console.log('Order Data:', orderData);
-    }
+  // useEffect(() => {
+  //   // 從 Local Storage 中讀取資料
+  //   const storedOrderData = localStorage.getItem('order_history');
+  //   if (storedOrderData) {
+  //     const orderData = JSON.parse(storedOrderData);
+  //     console.log('Order Data:', orderData);
+  //   }
 
-    // 從 Session Storage 中讀取資料
-    const storedOrderDetailData = sessionStorage.getItem('order_detail');
-    if (storedOrderDetailData) {
-      const orderDetailData = JSON.parse(storedOrderDetailData);
-      console.log('Order Detail Data:', orderDetailData);
-    }
-  }, []);
+  //   // 從 Session Storage 中讀取資料
+  //   const storedOrderDetailData = sessionStorage.getItem('order_detail');
+  //   if (storedOrderDetailData) {
+  //     const orderDetailData = JSON.parse(storedOrderDetailData);
+  //     console.log('Order Detail Data:', orderDetailData);
+  //   }
+  // }, []);
 
 
 

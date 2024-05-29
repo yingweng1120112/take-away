@@ -77,19 +77,6 @@ router.post('/', async function (req, res) {
 // POST - 新增订单详情
 router.post('/order_detail', async function (req, res) {
   try {
-    const orderDetails = req.body
-
-    // 遍历订单详情数组，为每个订单详情插入记录
-    for (const orderDetail of orderDetails) {
-      const { order_id, product_id, amount, unit_price, total_price } =
-        orderDetail
-      // 在数据库中插入新的 order_detail 记录
-      await db.query(
-        'INSERT INTO order_detail (order_id, product_id, amount, unit_price, total_price) VALUES (?, ?, ?, ?, ?)',
-        [order_id, product_id, amount, unit_price, total_price]
-      )
-    }
-
     res.json({ status: 'success', message: '订单详情创建成功' })
   } catch (error) {
     res.status(500).json({
