@@ -197,6 +197,7 @@ export default function UserInfo() {
               <h2>個人資料</h2>
               
               <div className={styles['bookItem']}>
+              <img src="\img\user\user-dog.png" alt="" />
                 <h5>姓名：</h5>
                 <input type="text" value={name} className={styles['input']}/>
                 <div className={styles['stickers']}>
@@ -230,7 +231,7 @@ export default function UserInfo() {
                 <Link href="/user/user-edit">
                   <button className={styles['btnConfirm']}>修改資料</button>
                 </Link>
-                <button className={styles['btnConfirm']}>登出</button>
+                {/* <button className={styles['btnConfirm']}>登出</button> */}
               </div>
             </div>
           </div>
