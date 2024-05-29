@@ -4,11 +4,11 @@ const baseUrl = 'http://localhost:3005/api/user-info'
 const sample = [
   {
     user_id: 10001,
-    name: '白賢祐',
-    password: 'Pa55w.rd01',
+    name: '榮恩',
+    password: '1234567',
     phone: '0912345678',
-    email: 'Hyunwoo01@gmail.com',
-    pic: '10001.jpg',
+    email: 'ron@test.com',
+    pic: '',
     address_detail: '桃園市龜山區萬壽路１段14號',
     status: 'none',
     google_uid: 'none',
@@ -42,6 +42,7 @@ export const loadUserInfo = async (params = {}) => {
 
   try {
     const res = await fetch(url)
+    
     const resData = await res.json()
 
     // 判斷是否成功
@@ -58,7 +59,9 @@ export const loadUserInfo = async (params = {}) => {
   }
 }
 
-export const loadUserInfoSpecific = async (user_id = '') => {
+// client/services/user-info.js
+
+export const loadUserInfoSpecific = async (user_id) => {
   try {
     if (!user_id) throw new Error('user_id是必要參數')
 
@@ -66,7 +69,7 @@ export const loadUserInfoSpecific = async (user_id = '') => {
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      return resData.data.user
+      return resData.data.user_info[0]  // 確保只返回單個用戶信息
     } else {
       console.warn('沒有得到資料')
       // 用範例資料當作例外資料
@@ -78,3 +81,4 @@ export const loadUserInfoSpecific = async (user_id = '') => {
     return sample[0]
   }
 }
+

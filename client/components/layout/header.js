@@ -3,14 +3,27 @@ import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
+<<<<<<< HEAD
 import { BsPersonVcard } from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
+=======
+import { GoPerson } from 'react-icons/go'
+import { CiShoppingCart } from 'react-icons/ci'
+import {
+  faCartShopping,
+  faHeart,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons'
+import { useCart } from '@/context/cartcontext'
+
+>>>>>>> a1d7c5b20c61380779cad58801bdb62558e43942
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
+  const {cartItems} = useCart()
   return (
     <>
       {/* 更改容器高度 */}
@@ -76,7 +89,7 @@ export default function Header() {
                   <a>寵物商城</a>
                   <ul>
                     <li>
-                      <Link href="/product">寵物商城</Link>
+                      <Link href="/product/menu">寵物商城</Link>
                     </li>
                   </ul>
                 </li>
@@ -93,7 +106,8 @@ export default function Header() {
             <div className="nav-shop-group">
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
-                  <TiShoppingCart  className="shop-icon" />
+                  <CiShoppingCart className="shop-icon" />
+                  <span className="cart-items">{cartItems.length}</span>
                   購物車
                 </div>
               </Link>
@@ -220,6 +234,7 @@ export default function Header() {
                         style={{ color: 'var( --reddish-brown)' }}
                       />
                       <a href="#">購物車</a>
+                      <span className="cart-items">{cartItems.length}</span>
                     </a>
                     <a href="#" className="phone-title">
                       <CiHeart

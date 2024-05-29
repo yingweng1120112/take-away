@@ -1,3 +1,25 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: white;
+  border-radius: 50px;
+}
+.table-content {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.order-detail {
+  cursor: pointer;
+  width: 20px;
+  height: 30px;
+}
 .banner-life-1 {
   background-image: url(/img/user/Banner.jpg);
 }

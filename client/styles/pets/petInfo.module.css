@@ -653,7 +653,7 @@
 
 .score-bar {
   width: 60%;
-  height: 25px;
+  /* height: 25px; */
   display: inline-block;
   position: relative;
   text-align: center;
@@ -664,7 +664,7 @@
   /* border: 1px solid black; */
 }
 
-.score-level {
+/* .score-level {
   height: 90%;
   display: flex;
   justify-content: center;
@@ -676,7 +676,7 @@
   position: absolute;
   top: 5%;
   left: 0.5%;
-}
+} */
 
 .score-energy {
   animation: score80;
@@ -760,7 +760,6 @@
 }
 
 /* 背景圖案 */
-/* TODO: 圖案位置 加了header位置會跑掉 */
 .paws1 {
   position: absolute;
   /* z-index: -1; */
@@ -805,7 +804,7 @@
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 569%;
+  top: 567%;
 }
 
 @keyframes paws2 {

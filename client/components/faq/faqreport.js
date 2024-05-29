@@ -10,11 +10,18 @@ export default function Faqreport({ open, onClose }) {
     fr_option: '',
     question: '',
   })
-  const [resetData,setResetData] = useState({
-    email: '',
-    fr_option: '',
-    question: '',
-  })
+  // const [resetData,setResetData] = useState({
+  //   email: '',
+  //   fr_option: '',
+  //   question: '',
+  // })
+  const handleReset = () => {
+    setFormData({
+      email: '',
+      fr_option: '',
+      question: '',
+    });
+  };
   if (!open) {
     return null
   }
@@ -148,7 +155,7 @@ export default function Faqreport({ open, onClose }) {
             </div>
             <br />
             <div className={styles['rf_btn2']}>
-              <button className={styles['rf_btn4']} type="reset">
+              <button className={styles['rf_btn4']} type="reset" onClick={handleReset}>
                 清除表單
               </button>
               {/* <input

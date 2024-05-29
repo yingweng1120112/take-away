@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
-import pagination from '@/styles/product/pagination.module.css'
 import styles from '@/styles/product/menu.module.css'
 import Footer from '@/components/layout/footer'
 import Link from 'next/link'
@@ -11,6 +10,8 @@ import { useCart } from '@/context/cartcontext' //購物車加的
 import { loadPetInfos } from '@/services/pets'
 import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import styles3 from '@/styles/pets/petList.module.css'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -20,6 +21,8 @@ import 'swiper/css/navigation'
 import swiper1 from '@/styles/product/menu_swiper.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
+
+import { debounce } from 'lodash' // 正確導入 debounce 函數
 
 const sample = [
   {
@@ -77,24 +80,58 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-  const { addToCart } = useCart() //購物車加的
+  
+
+  //查詢條件
+  const [type, setType] = useState([])
+  const [species, setSpecies] = useState([])
+  const [priceGte, setPriceGte] = useState(0)
+  const [priceLte, setPriceLte] = useState(2000)
+  const [nameLike, setNameLike] = useState('')
+  // 排序
+  const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
+  // 监听价格输入框的值变化，更新价格区间
+  const handlePriceChange = (e, newValue) => {
+    setPriceGte(newValue[0]);
+    setPriceLte(newValue[1]);
+  };
+  // 在价格输入框失去焦点时触发搜索操作
+  const handleSearch = () => {
+    // 这里触发搜索操作，你可以调用你的搜索函数并传递更新后的价格区间
+    console.log('Searching for products in price range:', priceGte, priceLte);
+  };
+
+
+  //品項選項陣列
+  const typeOptions = [
+    '寵物飼料',
+    '寵物罐頭',
+    '寵物用品',
+    '保健食品',
+    '寵物零食',
+  ]
+  //物種選項陣列
+  const speciesOptions = ['狗', '貓']
 
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
 
-  const getProducts = async () => {
-    const data = await loadProducts()
+  //購物車加的
+  const { addToCart } = useCart()
+
+  const getProducts = async (params) => {
+    const data = await loadProducts(params)
     console.log(data)
 
     //因應要分頁和查詢，所以回應改為整個data的products是data.products
-    if(data.pageCount && typeof data.pageCount === 'number') {
+    if (data.pageCount && typeof data.pageCount === 'number') {
       setPageCount(data.pageCount)
     }
-    if(data.total && typeof data.total === 'number') {
+    if (data.total && typeof data.total === 'number') {
       setTotal(data.total)
     }
-    
+
     if (Array.isArray(data.products)) {
       console.log('設products 狀態: ', data.products)
       setProducts(data.products)
@@ -102,6 +139,9 @@ export default function Menu() {
       console.log('數據結構不符合預期:', data.products)
     }
     console.log(data.products)
+    return {
+      products: [], // 返回的产品数据
+    }
   }
 
   const truncate = (str, n) => {
@@ -115,19 +155,107 @@ export default function Menu() {
     console.log('從 loadPetInfos 獲取的數據:', data)
     // 確認資料結構是否與原始專案相符，並設置到狀態中
 
-    if (Array.isArray(data)) {
-      console.log('設pets 狀態: ', data)
-      setPets(data)
+    if (Array.isArray(data.pet_info)) {
+      console.log('設pets 狀態: ', data.pet_info)
+      setPets(data.pet_info)
     } else {
-      console.log('數據結構不符合預期:', data)
+      console.log('數據結構不符合預期:', data.pet_info)
     }
-    console.log(data)
+    console.log(data.pet_info)
+  }
+  // 品項複選時使用
+  const handleTypeChecked = (e) => {
+    const tv = e.target.value
+    const nextType = type.includes(tv)
+      ? type.filter((v) => v !== tv)
+      : [...type, tv]
+
+    setType(nextType)
+
+    const params = {
+      page: 1, // 每次变更品牌时，重置页码为1
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      type: nextType.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
+  }
+  // 物種複選時使用
+  const handleSpeciesChecked = (e) => {
+    const tv = e.target.value
+    const nextSpecies = species.includes(tv)
+      ? species.filter((v) => v !== tv)
+      : [...species, tv]
+
+    setSpecies(nextSpecies)
+
+    const params = {
+      page: 1, // 每次变更品牌时，重置页码为1
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      species: nextSpecies.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
   }
 
+  // 分頁列表觸發事件使用
+
   useEffect(() => {
-    getProducts()
+    const params = {
+      page,
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      name_like: nameLike,
+      type: type.join(','),
+      species: species.join(','),
+      price_gte: priceGte,
+      price_lte: priceLte,
+    }
+
+    getProducts(params)
     getPet()
-  }, [])
+  }, [page, perpage, orderby, type, species, priceGte, priceLte])
+
+  // 使用 useCallback 保證 debounce 函數的引用不会在每次渲染時變化
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      const params = {
+        page: 1,
+        perpage,
+        sort: orderby.sort,
+        order: orderby.order,
+        name_like: query,
+      }
+      getProducts(params)
+    }, 500), // 500ms 的防抖時間，可以根据需要調整
+    [perpage, orderby]
+  )
+
+  // 使用 useEffect 在 nameLike 要運用 debouncedSearch 防抖機制
+  useEffect(() => {
+    if (nameLike) {
+      debouncedSearch(nameLike)
+    }
+  }, [nameLike, debouncedSearch])
+
+  const handlePageClick = (targetPage) => {
+    if (targetPage >= 1 && targetPage <= pageCount) {
+      setPage(targetPage)
+      scrollTo(0, 0)
+      console.log(`切換到第 ${targetPage} 頁`)
+    }
+  }
 
   console.log([pets])
   //上下限
@@ -137,10 +265,11 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止触发 Link 的跳转
-  const handleCartClick = (event) => {
-    event.stopPropagation();
-    // 在这里添加购物车的处理逻辑
+  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
+  const handleCartClick = (e,product) => {
+    e.preventDefault(); 
+    e.stopPropagation();
+    addToCart(product);
     console.log('Added to cart');
   };
 
@@ -190,39 +319,33 @@ export default function Menu() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>商品總類</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物飼料</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物罐頭</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物用品</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物保健</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>寵物零食</span>
-                    </label>
+                    {typeOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={type.includes(v)}
+                          onChange={handleTypeChecked}
+                        />
+                        <span>{v}</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>適用物種</p>
                   <div className={banner['select-item']}>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>狗寶貝</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>貓寶貝</span>
-                    </label>
+                    {speciesOptions.map((v, i) => (
+                      <label className={banner['cl-checkbox']} key={i}>
+                        <input
+                          type="checkbox"
+                          value={v}
+                          checked={species.includes(v)}
+                          onChange={handleSpeciesChecked}
+                        />
+                        <span>{v}寶貝</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -233,18 +356,38 @@ export default function Menu() {
                     <label className={banner['cl-checkbox']}>
                       <input
                         type="radio"
-                        name="options"
-                        defaultChecked={true}
+                        name="sortOptions"
+                        value="price,asc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'asc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
                       />
-                      <span>價格由低至高</span>
+                      <span>價格排序(由低至高)</span>
                     </label>
                     <label className={banner['cl-checkbox']}>
-                      <input type="radio" name="options" />
-                      <span>價格由高至低</span>
-                    </label>
-                    <label className={banner['cl-checkbox']}>
-                      <input type="checkbox" />
-                      <span>評價最高</span>
+                      <input
+                        type="radio"
+                        name="sortOptions"
+                        value="price,desc"
+                        checked={
+                          orderby.sort === 'price' && orderby.order === 'desc'
+                        }
+                        onChange={(e) => {
+                          const selected = e.target.value.split(',')
+                          setOrderby({
+                            sort: selected[0],
+                            order: selected[1],
+                          })
+                        }}
+                      />
+                      <span>價格排序(由高至低)</span>
                     </label>
                   </div>
                 </div>
@@ -255,26 +398,41 @@ export default function Menu() {
                     <div className={`price-input ${banner['price-input']}`}>
                       <div className={banner['price-field']}>
                         <span>從</span>
-                        <input type="number" value={value[0]} />
+                        <input
+                          type="number"
+                          value={priceGte}
+                          onChange={(e) => setPriceGte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>~</span>
-                        <input type="number" value={value[1]} />
+                        <input
+                          type="number"
+                          value={priceLte}
+                          onChange={(e) => setPriceLte(Number(e.target.value))}
+                          onBlur={handleSearch}
+                        />
                         <span>元</span>
                       </div>
                     </div>
                     {/* slider */}
                     <Slider
-                      value={value}
-                      onChange={handleChange}
+                      value={[priceGte, priceLte]}
+                      onChange={handlePriceChange}
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
                       min={0}
-                      max={5000}
+                      max={2000}
                     />
                   </div>
                   <p className={banner['select-title']}> 商品搜尋 </p>
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
                     <input
                       type="text"
+                      value={nameLike}
+                      onChange={(e) => {
+                        setNameLike(e.target.value)
+                        setPage(1) // 输入时也将页码重置为1
+                      }}
                       className={`form-control ${banner['shop-select']}`}
                       id="exampleFormControlInput1"
                     />
@@ -306,17 +464,14 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                  <a
-                    href={`/product/${product.product_id}.webp`}
-                    className={styles['products-card']}
-                  >
+                <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={handleCartClick}>
+                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -332,64 +487,74 @@ export default function Menu() {
                           />
                         </svg>
                       </button>
-                      <p className={styles.p}>{product.price}</p>
+                      <p className={styles.p}>${product.price}</p>
                     </div>
                   </a>
                 </li>
               </Link>
             ))}
           </ol>
-          <div
-            className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
-            role="navigation"
-          >
-            <a className={pagination.first} aria-label="First Page" href="#" onClick={()=>{
-              //最小頁面是1(不能小於1)
-              const nextPage = page - 1 > 1 ? page - 1 : 1
-              setPage(nextPage)
-            }}>
-              «
-            </a>
-            <a
-              className={pagination.previouspostslink}
-              rel="prev"
-              aria-label="Following-page"
-              href="#"
+          <section className={styles3['wp-pagenavi']}>
+            <span>
+              <a
+                className={`${styles3['page']} ${styles3['previouspostslink']}`}
+              >
+                <IoIosArrowBack
+                  onClick={() => {
+                    // 最小頁面是1(不能小於1)
+                    const nextPage = page - 1 > 1 ? page - 1 : 1
+                    setPage(nextPage)
+                    scrollTo(0, 0)
+                  }}
+                />
+              </a>
+            </span>
+            {page - 1 >= 1 && (
+              <span>
+                <a
+                  className={styles3['page']}
+                  onClick={() => {
+                    handlePageClick(page - 1)
+                  }}
+                >
+                  {page - 1}
+                </a>
+              </span>
+            )}
+            <span
+              className={styles3['current']}
+              onClick={() => {
+                scrollTo(0, 0)
+              }}
             >
-              &lt;
-            </a>
-            <a className={pagination.page} href="#">
-              1
-            </a>
-            <a className={pagination.page} href="#">
-              2
-            </a>
-            <a className={pagination.page} href="#">
-              3
-            </a>
-            {/* <span aria-current="page" class="current">5</span> */}
-            <a className={pagination.page} href="#">
-              4
-            </a>
-            <a className={pagination.page} href="#">
-              5
-            </a>
-            <a
-              className={pagination.nextpostslink}
-              rel="next"
-              aria-label="次のページ"
-              href="#"
-            >
-              &gt;
-            </a>
-            <a className={pagination.last} aria-label="Last Page" href="#" onClick={()=>{
-              //最大頁面不能大於總頁數
-              const nextPage = page + 1 > 1 ? page - 1 : 1
-              setPage(nextPage)
-            }}>
-              »
-            </a>
-          </div>
+              {page}
+            </span>
+            {page + 1 <= pageCount && (
+              <span>
+                <a
+                  className={styles3['page']}
+                  onClick={() => {
+                    handlePageClick(page + 1)
+                  }}
+                >
+                  {page + 1}
+                </a>
+              </span>
+            )}
+            <span>
+              <a
+                className={`${styles3['page']} ${styles3['nextpostslink']}`}
+                onClick={() => {
+                  // 最大頁面不能大於總頁數pageCount
+                  const nextPage = page + 1 < pageCount ? page + 1 : pageCount
+                  setPage(nextPage)
+                  scrollTo(0, 0)
+                }}
+              >
+                <IoIosArrowForward />
+              </a>
+            </span>
+          </section>
         </div>
         <img
           className={styles['dog-palm']}
