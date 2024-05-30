@@ -198,9 +198,9 @@
 }
 
 .table {
-  width: 95%;
+  width: 100%;
   margin: 0rem auto;
-  margin-top: 3.5rem;
+  /* margin-top: 3.5rem; */
   text-align: center;
 }
 .table .td {
@@ -256,8 +256,8 @@
     height: 46.5rem;
     margin: auto;
   }
-  .celluser {
-    height: 65.5rem;
+  .celluser{
+    height:62rem;
   }
   .container {
     height: 100%;
