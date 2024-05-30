@@ -8,7 +8,7 @@ dotenv.config()
 const router = express.Router()
 // const secretKey = process.env.SECRET_KEY
 
-// 发送驗證碼
+// 發送驗證碼
 router.post('/send-code', async (req, res) => {
   const { email } = req.body
   const verification_code = Math.floor(100000 + Math.random() * 900000) // 生成六位數驗證碼
@@ -35,8 +35,8 @@ router.post('/send-code', async (req, res) => {
         user: process.env.SMTP_TO_EMAIL,
         pass: process.env.SMTP_TO_PASSWORD,
       },
-      debug: true, // 启用调试输出
-      logger: true, // 启用日志记录
+      debug: true,
+      logger: true,
     })
 
     const mailOptions = {
@@ -57,30 +57,30 @@ router.post('/send-code', async (req, res) => {
   }
 })
 
-// 重设密码
+// 重設密碼
 router.post('/reset', async (req, res) => {
   const { email, verification_code, password } = req.body
 
   try {
-    // 验证驗證碼
+    // 驗證驗證碼
     const [rows] = await db.query(
       'SELECT * FROM user WHERE email = ? AND verification_code = ?',
       [email, verification_code]
     )
 
     if (rows.length > 0) {
-      // 更新密码
+      // 更新密碼
       await db.query('UPDATE user SET password = ? WHERE email = ?', [
         password,
         email,
       ])
-      res.status(200).json({ status: 'success', message: '密码已重设' })
+      res.status(200).json({ status: 'success', message: '密碼已重设' })
     } else {
       res.status(400).json({ status: 'error', message: '驗證碼错误' })
     }
   } catch (err) {
     console.error(err)
-    res.status(500).json({ status: 'error', message: '重设密码失败' })
+    res.status(500).json({ status: 'error', message: '重設密碼失敗' })
   }
 })
 

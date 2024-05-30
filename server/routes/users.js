@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
       console.log(rows)
       const token = jwt.sign(
         {
-          phone: userData.phone, // 修正此處為 'userData.phone'
+          phone: userData.phone, 
           userpassword: userData.password,
           user_id: userData.user_id,
         },

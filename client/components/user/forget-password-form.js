@@ -12,7 +12,7 @@ export default function ForgetPasswordForm() {
   const [message, setMessage] = useState('')
 
   const handleGetverification_code = async () => {
-    // 请求后端发送验证码
+    // 請求後端發送驗證碼
     try {
       const response = await fetch('http://localhost:3005/api/forgot-password/send-code', {
         method: 'POST',
@@ -24,18 +24,18 @@ export default function ForgetPasswordForm() {
       const result = await response.json()
       setMessage(result.message)
     } catch (error) {
-      setMessage('发送验证码失败')
+      setMessage('發送驗證碼失敗')
     }
   }
 
   const handleResetPassword = async (event) => {
     event.preventDefault()
     if (password !== confirmPassword) {
-      setMessage('密码和确认密码不一致')
+      setMessage('密碼和確認密碼不一致')
       return
     }
 
-    // 请求后端重设密码
+    // 請求後端重設密碼
     try {
       const response = await fetch('http://localhost:3005/api/forgot-password/reset', {
         method: 'POST',
@@ -47,7 +47,7 @@ export default function ForgetPasswordForm() {
       const result = await response.json()
       setMessage(result.message)
     } catch (error) {
-      setMessage('重设密码失败')
+      setMessage('重設密碼失敗')
     }
   }
 
@@ -55,7 +55,7 @@ export default function ForgetPasswordForm() {
     <section className={styles['section']}>
       <Header />
       <p className={`text-center mt-5 mb-3 ${styles['text-note']}`}>
-        輸入你的會員電子郵件，按下"取得驗證碼"按鈕后，我们会將密碼重設指示寄送给你。
+        輸入你的會員電子郵件，按下"取得驗證碼"按鈕后，我们會將密碼重設指示寄送给你。
       </p>
       <div className={styles['cont']}>
         <form className={`${styles['form']}`} onSubmit={handleResetPassword}>
@@ -64,7 +64,7 @@ export default function ForgetPasswordForm() {
               <input
                 type="email"
                 className={`form-control w-100 ${styles['form-control']}`}
-                placeholder="电子邮件地址"
+                placeholder="電子郵件地址"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -75,14 +75,14 @@ export default function ForgetPasswordForm() {
             className="btn btn-outline-secondary mb-3"
             onClick={handleGetverification_code}
           >
-            取得验证码
+            取得驗證碼
           </button>
           <div className="row mb-3">
             <div className="col-sm-12">
               <input
                 type="text"
                 className={`form-control ${styles['form-control']}`}
-                placeholder="电子邮件验证码"
+                placeholder="電子郵件驗證碼"
                 value={verification_code}
                 onChange={(e) => setverification_code(e.target.value)}
               />
@@ -93,7 +93,7 @@ export default function ForgetPasswordForm() {
               <input
                 type="password"
                 className={`form-control w-100 ${styles['form-control']}`}
-                placeholder="密码"
+                placeholder="密碼"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -104,20 +104,20 @@ export default function ForgetPasswordForm() {
               <input
                 type="password"
                 className={`form-control w-100 ${styles['form-control']}`}
-                placeholder="确认密码"
+                placeholder="確認密碼"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
           </div>
           <button type="submit" className="btn btn-primary w-100">
-            确定
+            確定
           </button>
           {message && <p className="text-center mt-3">{message}</p>}
           <div className="row mt-2">
             <p className={`${styles['notice']}`}>
-              还不是会员？
-              <Link href="/member/register">加入我们</Link>。
+              還不是會員？
+              <Link href="/user/login">加入我们</Link>。
             </p>
           </div>
         </form>
