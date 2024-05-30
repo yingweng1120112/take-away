@@ -1,13 +1,14 @@
-.App {
-  width: 100vw;
-  height: 100vh;
-  background: #fff;
+.chat_index {
+  width: 100%;
+  height: 1080px;
   color: #212121;
-  font-family: "Open Sans", sans-serif;
-  display: grid;
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
   place-items: center;
   margin: 0%;
   padding: 0%;
+  /* background: #fff; */
 }
 /* body {
   margin: 0%;
@@ -19,6 +20,11 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d7b67a;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .joinChatContainer h3 {
@@ -26,7 +32,7 @@
   margin-bottom: 1rem;
 }
 .joinChatContainer input {
-  width: 210px;
+  width: 225px;
   height: 40px;
   margin: 7px;
   border: 2px solid #d7b67a;
@@ -39,17 +45,20 @@
   width: 225px;
   height: 50px;
   margin: 7px;
-  border: none;
-  border-radius: 5px;
+  border: 2px solid #d7b67a;
+  border-radius: 50px;
   padding: 5px;
   font-size: 16px;
-  background: #d7b67a;
+  /* background: #d7b67a; */
   color: #fff;
   cursor: pointer;
 }
-
-.joinChatContainer button:hover {
-  background: #2e7d32;
+.joinChatContainer button:hover,
+.joinChatContainer span:hover,
+.joinChatContainer path:hover
+{
+  background: #d7b67a;
+  /* color: #fff; */
 }
 
 .chat-window {
@@ -168,7 +177,7 @@
   border-right: 1px dotted #607d8b;
 
   outline: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .chat-window .chat-footer button {
@@ -189,4 +198,56 @@
 }
 .hide {
   opacity: 0 !important;
+}
+/* 按鈕特殊樣式 */
+.cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  color: black;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

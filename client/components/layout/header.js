@@ -29,7 +29,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'fixed', width: '100%', 'z-index': '101' }}
+            style={{ position: 'fixed', width: '100%', 'zIndex': '101' }}
           >
             <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
@@ -142,7 +142,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <a href="http://localhost:3000/location/location">關於我們</a>
+                            <Link href="http://localhost:3000/location/location">關於我們</Link>
                           </li>
                         </ul>
                       </li>
@@ -153,11 +153,11 @@ export default function Header() {
                         </a>
                         <ul>
                           <li style={{ 'border-bottom': '2px solid #fdf7e4' }}>
-                            <a href="#">心理測驗</a>
+                          <Link href="/pets/psycological-test/page1">心理測驗</Link>
                           </li>
 
                           <li>
-                            <a href="#">領養流程</a>
+                          <Link href="/pets/notice">領養流程</Link>
                           </li>
                         </ul>
                       </li>
@@ -173,10 +173,12 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                            <a href="#">常見問題</a>
+                                                 <Link href="/faq/faqshopping">常見問題</Link>
+
                           </li>
                           <li>
-                            <a href="#">客服中心</a>
+                          <Link href="/faq/chatroom">客服中心</Link>
+
                           </li>
                         </ul>
                       </li>
@@ -192,10 +194,11 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                            <a href="#">浪浪列表</a>
+                                                  <Link href="/pets">浪浪列表</Link>
+
                           </li>
                           <li>
-                            <a href="#">追蹤日誌</a>
+                          <Link href="/petDiary">追蹤日誌</Link>
                           </li>
                         </ul>
                       </li>
@@ -205,7 +208,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <a href="#">寵物商城</a>
+                          <Link href="/product/menu">寵物商城</Link>
                           </li>
                         </ul>
                       </li>
@@ -215,34 +218,32 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <a href="#">會員中心</a>
+                          <Link href="/user/user-info">會員中心</Link>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </ul>
                   <div className="phone-li">
-                    <a
-                      href="#"
+                  <Link href="/user/shopping-cart/step1" 
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
+                      <a className="cart-items">{cartItems.length}</a>
                       <TiShoppingCart 
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
-                      <a href="#">購物車</a>
-                      <span className="cart-items">{cartItems.length}</span>
-                    </a>
-                    <a href="#" className="phone-title">
+                      <a>購物車</a>
+                    </Link>
+                    {/* <a href="#" className="phone-title">
                       <CiHeart
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
                       <a href="#">收藏</a>
-                    </a>
-                    <a
-                      href="https://www.google.com.tw/"
+                    </a> */}
+                    <Link href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
                     >
@@ -250,8 +251,7 @@ export default function Header() {
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
-                      <a href="#">登入</a>
-                    </a>
+                    </Link>
                   </div>
                 </nav>
               )}

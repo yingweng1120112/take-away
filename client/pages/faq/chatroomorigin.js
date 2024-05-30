@@ -6,17 +6,15 @@ import Chatbanner from '@/components/faq/chatbanner'
 import Chatleft from '../../components/faq/chatleft'
 import Chatmiddle from '../../components/faq/chatmiddle'
 import Chatright from '../../components/faq/chatright'
-
+import App from '@/pages/faq/app'
 export default function Chatroom() {
   return (
     <>
       <Header />
       <Chatbanner />
       <div className={styles['container_chatroom']}>
-        <Chatleft />
-        <Chatmiddle />
-        <Chatright />
       </div>
+        <App />
       <Footer />
     </>
   )

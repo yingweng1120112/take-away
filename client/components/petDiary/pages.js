@@ -1,13 +1,13 @@
 import React from 'react'
-import styles from '@/styles/faq/faqpages.module.css'
+import styles from '@/styles/petDiary/petDiarySearch.module.css'
 
-export default function Faqpages({ currentPage, totalPages, onPageChange }) {
+export default function Pages({ currentPage, totalPages, onPageChange }) {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1)
   return (
     <>
-      <div className={`${styles['wp-pagenavi']} ${styles['a_link_text']}`} role="navigation">
+      <div className={styles['wp-pagenavi']} role="navigation">
         <a
-          className={`${styles['first']} ${styles['a_link_text']}`}
+          className={styles['first']}
           aria-label="First Page"
           href="#"
           onClick={() => onPageChange(1)}
@@ -15,7 +15,7 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
           «
         </a>
         <a
-          className={`${styles['previouspostslink']} ${styles['a_link_text']}`}
+          className={styles['previouspostslink']}
           rel="prev"
           aria-label="前一頁"
           href="#"
@@ -28,7 +28,7 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
             key={page}
             className={`${styles.page} ${
               page === currentPage ? styles.current : ''
-            } ${styles['a_link_text']}`}
+            }`}
             href="#"
             onClick={() => onPageChange(page)}
           >
@@ -36,7 +36,7 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
           </a>
         ))}
         <a
-          className={`${styles['nextpostslink']} ${styles['a_link_text']}`}
+          className={styles['nextpostslink']}
           rel="next"
           aria-label="後一頁"
           href="#"
@@ -45,7 +45,7 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
           &gt;
         </a>
         <a
-          className={`${styles['last']} ${styles['a_link_text']}`}
+          className={styles['last']}
           aria-label="Last Page"
           href="#"
           onClick={() => onPageChange(totalPages)}
@@ -53,19 +53,6 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
           »
         </a>
       </div>
-      {/* <div className={styles.pagination}>
-        {pages.map((page) => (
-          <button
-            key={page}
-            className={`${styles.pageButton} ${
-              page === currentPage ? styles.active : ''
-            }`}
-            onClick={() => onPageChange(page)}
-          >
-            {page}
-          </button>
-        ))}
-      </div> */}
     </>
   )
 }
