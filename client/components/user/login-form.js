@@ -7,6 +7,8 @@ import Footer from '@/components/layout/footer'
 import { UserContext } from '@/context/UserContext';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { jwtDecode } from 'jwt-decode'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // 解析accessToken用的函式
 const parseJwt = (token) => {
@@ -17,6 +19,14 @@ const parseJwt = (token) => {
 
 // 登入
 export default function LoginForm() {
+  const [userInfo, setUserInfo] = useState(null)
+  const [userData, setUserData] = useState('') // 改成 setUserData
+  const [name, setName] = useState('')
+  const [userid, setUserId] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [addressDetail, setAddressDetail] = useState('')
+
   const router = useRouter()
   const { setUsers } = useContext(UserContext)
   const [user, setUser] = useState({
@@ -81,27 +91,28 @@ export default function LoginForm() {
     }
   }
 
-  const handleLogout = async () => {
-    try {
-      const res = await fetch('http://localhost:3005/api/users/logout', {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({}),
-      })
 
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`)
-      const data = await res.json()
-      if (data.status === 'success') alert('登出成功')
-      else alert(data.message)
-    } catch (error) {
-      console.error('Fetch error:', error)
-      alert('發生錯誤，請稍後再試')
-    }
+  // 處理登出
+  const handleLogout = async () => {
+    // 清除 localStorage 的 userKey
+    localStorage.removeItem('userKey')
+
+    // 成功登出並回復初始會員狀態
+    toast.success('已成功登出')
+
+    // 其他狀態更新邏輯
+    setUserData('')
+    setName('')
+    setUserId('')
+    setEmail('')
+    setPhone('')
+    setAddressDetail('')
+
+    // 跳轉到登陸頁面或首頁
+    // window.location.href = '/'
+    router.push('./login')
   }
+
 
   return (
     <>

@@ -206,6 +206,12 @@
   margin-right: 20px;
   color: var(--reddish-brown);
 }
+
+
+
+
+
+
 /* 訊息滾動 */
 .chat-window .chat-body {
   height: calc(450px - (45px + 70px));
@@ -213,30 +219,31 @@
   background: #fff;
   position: relative;
 }
-.chat-window .chat-body .message-container {
+ .message-container {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.chat-window .chat-body .message-container::-webkit-scrollbar {
+ .message-container::-webkit-scrollbar {
   display: none;
 }
-.chat-window .chat-body .cmt_view {
+ .cmt_view {
   height: auto;
   padding: 10px;
   display: flex;
 }
 
-.chat-window .chat-body .cmt_view .message-content {
+.cmt_view .message-content {
   width: auto;
   height: auto;
   min-height: 40px;
-  max-width: 120px;
-  background-color: #43a047;
+  max-width: 300px;
+  background-color: #FFF;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  color: white;
+  /* color: white; */
   display: flex;
   align-items: center;
   margin-right: 5px;
@@ -259,16 +266,16 @@
   margin-left: 5px;
 }
 
-.other {
+#other {
   justify-content: flex-end;
 }
 
-.other .message-content {
+#other .message-content {
   justify-content: flex-end;
   background-color: cornflowerblue;
 }
 
-.other .message-meta {
+#other .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
 }
