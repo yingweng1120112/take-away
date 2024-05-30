@@ -48,15 +48,23 @@ export default function Information() {
   const [reviews, setReviews] = useState([])
   const [numberOfReviews, setNumberOfReviews] = useState(0) // 新增一個 state 來儲存評論數量
 
-  //useState 钩子来保存用户信息
-  const [userData, setuserData] = useState('')
-  const [name, setName] = useState('')
-  const [userid, setUserId] = useState('')
+  // 表單送出互動
 
-  const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+  //useState 钩子来保存用户信息
+  const [userData, setUserData] = useState('')
+  const [name, setName] = useState('')
+
+
+  const userId = localStorage.getItem('userKey') //抓取localStorage裡面的userKey(值是token)
   const user = jwtDecode(userId) //解析token
   const userID = user.user_id //取得裡面的user_id
   console.log(userID)
+  const [formData, setFormData] = useState({
+    product_id: '',
+    user_id: userID,
+    content: '',
+    score: '',
+  })
 
   // 使用 useEffect 钩子在组件加载时获取用户信息
   useEffect(() => {
@@ -72,7 +80,7 @@ export default function Information() {
         const userData = result.userData
         // console.log(123)
         // console.log(userData.name)
-        setuserData({ ...userData })
+        setUserData({ ...userData })
         console.log(userData)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -90,12 +98,6 @@ export default function Information() {
     }
   }, [userData.name])
 
-  // 抓取user id的初始值
-  useEffect(() => {
-    if (userData.user_id) {
-      setUserId(userData.user_id)
-    }
-  }, [userData.user_id])
 
   //單筆商品
   const getProduct = async (pid) => {
@@ -103,12 +105,14 @@ export default function Information() {
     console.log(data)
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setProduct(data.product)
+      setFormData({ ...formData, ['product_id']: data.product.product_id })
       setReviews(data.reviews)
       setNumberOfReviews(data.reviews.length) // 設置評論數量
     } else {
       console.log('數據結構不符合預期:', data)
     }
   }
+
   useEffect(() => {
     console.log(router.query)
 
@@ -184,6 +188,48 @@ export default function Information() {
       console.log('Added to cart:', { ...product, quantity }) // 确认数据是否正确传递
     } else {
       console.log('Invalid product or quantity')
+    }
+  }
+  //號向不需要
+  if (products.length === 0) {
+    return <div>Loading...</div> // 或者你可以放置一個 spinner
+  }
+  // 表單送出互動
+
+  const tabalChange = (e) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await fetch('http://localhost:3005/api/reviews', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) {
+        throw new Error('Network response was not ok')
+      }
+      const data = await res.json()
+      console.log(data)
+      if (res.status === 201) {
+        console.log('表單已成功送出', data)
+        alert('表單已成功送出')
+      } else {
+        console.log('表單送出失敗', data.message)
+        alert(`表單送出失敗: ${data.message}`)
+      }
+    } catch (error) {
+      console.error('表單送出錯誤:', error)
+      alert(`表單送出錯誤: ${error.message}`)
     }
   }
 
@@ -496,6 +542,7 @@ export default function Information() {
               className="accordion-collapse collapse w-100"
               data-bs-parent="#accordionExample"
             >
+            <form onSubmit={handleSubmit}>
               <div className={`accordion-body ${styles['accordion-body']}`}>
                 <div className={styles['my-comment-form']}>
                   <div className={`mb-3 w-100 ${styles['project']}`}>
@@ -510,7 +557,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={userid}
+                      Value={formData.user_id}
                       readOnly={true}
                     />
                   </div>
@@ -526,7 +573,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={product.product_id}
+                      Value={formData.product_id}
                       readOnly={true}
                     />
                   </div>
@@ -556,13 +603,16 @@ export default function Information() {
                     <select
                       className="form-select"
                       aria-label="Default select example"
+                      id="score"
+                      name="score"
+                      value={formData.score}
+                      onChange={tabalChange}
                     >
-                      <option selected>選擇分數</option>
-                      <option value="1">1分</option>
-                      <option value="2">2分</option>
-                      <option value="3">3分</option>
-                      <option value="4">4分</option>
-                      <option value="5">5分</option>
+                      <option value="1">1分 超級差評</option>
+                      <option value="2">2分 勉勉強強</option>
+                      <option value="3">3分 普普通通</option>
+                      <option value="4">4分 覺得不錯</option>
+                      <option value="5">5分 真的超讚</option>
                     </select>
                   </div>
                   <div className="mb-3 w-100">
@@ -577,14 +627,14 @@ export default function Information() {
                       style={{ resize: 'none' }}
                       id="exampleFormControlTextarea1"
                       rows={3}
-                      defaultValue={
-                        '我們家很挑嘴的小土豆，原本只是抱著姑且一試的態度買看看，沒想到牠意外喜歡，會再回購。'
-                      }
+                      defaultValue={formData.content}
+                      name="content"
                       readOnly={false}
+                      onChange={tabalChange}
                     />
                   </div>
                 </div>
-                <button className={styles.cta}>
+                <button className={styles.cta} type='submit'>
                   <span className={styles['hover-underline-animation']}>
                     Release
                   </span>
@@ -604,6 +654,7 @@ export default function Information() {
                   </svg>
                 </button>
               </div>
+              </form>
             </div>
           </div>
         </div>
