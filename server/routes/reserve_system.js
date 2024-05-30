@@ -23,14 +23,13 @@ router.get('/', async function (req, res) {
   // 觀察where
   console.log(where)
 
-
   // 排序
   const sort = req.query.sort || 'reservation_id'
   const order = req.query.order || 'asc'
   const orderby = `ORDER BY ${sort} ${order}`
 
   const page = Number(req.query.page) || 1
-  const perpage = Number(req.query.perpage) || 5 // 預設每頁5筆資料
+  const perpage = Number(req.query.perpage) || 10 // 預設每頁5筆資料
   const offset = (page - 1) * perpage
   const limit = perpage
 
@@ -60,7 +59,10 @@ router.get('/', async function (req, res) {
 router.post('/', async function (req, res) {
   try {
     const { user_id, pet_id, time } = req.body
-    const [result] = await db.query('INSERT INTO reserve_system (pet_id, user_id, time) VALUES (?, ?, ?)', [pet_id, user_id, time])
+    const [result] = await db.query(
+      'INSERT INTO reserve_system (pet_id, user_id, time) VALUES (?, ?, ?)',
+      [pet_id, user_id, time]
+    )
     const insertedId = result.insertId
 
     return res.json({ status: 'success', data: { id: insertedId } })
@@ -79,17 +81,21 @@ router.post('/', async function (req, res) {
 //   return res.json({ status: 'success', data: { reserve_system } })
 // })
 
-
 // 刪除預約紀錄
 router.delete('/:reservation_id', async function (req, res) {
   try {
     const { reservation_id } = req.params
-    const [result] = await db.query(`DELETE FROM reserve_system WHERE reservation_id = ?`, [reservation_id])
+    const [result] = await db.query(
+      `DELETE FROM reserve_system WHERE reservation_id = ?`,
+      [reservation_id]
+    )
 
     if (result.affectedRows > 0) {
       return res.json({ status: 'success', message: '預約紀錄已刪除' })
     } else {
-      return res.status(404).json({ status: 'error', message: '預約紀錄未找到' })
+      return res
+        .status(404)
+        .json({ status: 'error', message: '預約紀錄未找到' })
     }
   } catch (error) {
     console.error(error) // 輸出錯誤信息到控制台，便於調試
@@ -97,4 +103,3 @@ router.delete('/:reservation_id', async function (req, res) {
   }
 })
 export default router
-

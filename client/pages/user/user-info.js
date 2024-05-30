@@ -166,7 +166,7 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt-history">
+                  <Link href="/user/user-adopt">
                     <p className={`link ${banner['select-title']}`}>
                       線上認養紀錄
                     </p>

@@ -8,8 +8,8 @@ import Swal from 'sweetalert2'
 
 export default function AdoptForm(pet) {
   const userName = {
-    10001: '盧先生',
-    10002: '洪海仁',
+    10001: '洪海仁',
+    10002: '盧先生',
     10003: '洪秀哲',
     10004: '千多慧',
     10005: '洪凡資',
@@ -216,7 +216,7 @@ export default function AdoptForm(pet) {
     Swal.fire({
       title: '確定要送出?',
       html: `
-        <h5>${adopt.user_id}想認養 ${donateInfo.pet_id}<h5><br>
+        <h5>${adopt.user_id} 想認養 ${donateInfo.pet_id}<h5><br>
         <h5>捐款方式: ${donateInfo.donation_method}<h5><br>
         <h5>金額: ${finalAmount}<h5><br>
         <h5>捐贈用途: ${adopt.donation}<h5><br>

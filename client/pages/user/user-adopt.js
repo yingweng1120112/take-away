@@ -13,6 +13,8 @@ import Select from 'react-select'
 import Swal from 'sweetalert2'
 // import withReactContent from 'sweetalert2-react-content'
 import { GiCancel } from "react-icons/gi";
+import {jwtDecode} from 'jwt-decode';
+
 
 export default function userReserve() {
   const [startDate, setStartDate] = useState(null)
@@ -21,7 +23,7 @@ export default function userReserve() {
   // 分頁用
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(5)
+  const [perpage, setPerpage] = useState(10)
   // 排序
   const [orderby, setOrderby] = useState({ sort: 'adopt_id', order: 'desc' })
 
@@ -62,8 +64,8 @@ export default function userReserve() {
     10060: '嘟嘟',
   }
   const userName = {
-    10001: '盧先生',
-    10002: '洪海仁',
+    10001: '洪海仁',
+    10002: '盧先生',
     10003: '洪秀哲',
     10004: '千多慧',
     10005: '洪凡資',
@@ -77,48 +79,38 @@ export default function userReserve() {
   
   // 加入參詢條件params物件
   const getAdopt = async (params) => {
-    setAdopt([]) // 清空之前的資料
-    const data = await adoptInfos(params)
-    console.log('從 adoptInfos 獲取的資料:', data)
-
-    // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
-    if (data.pageCount && typeof data.pageCount === 'number') {
+    setIsLoading(true)
+    try {
+      const data = await adoptInfos(params)
+      console.log('從 adoptInfos 獲取的資料:', data)
+      setIsLoading(false)
+      if (!data || !data.online_virtual_adoption_form) {
+        console.error('Data or online_virtual_adoption_form is undefined.')
+        return
+      }
+  
+      const userId = localStorage.getItem('userKey')
+      const user = jwtDecode(userId)
+      const userID = user.user_id
+  
+      let adoptData = data.online_virtual_adoption_form.filter(item => item.user_id === userID)
+      setAdopt(adoptData)
       setPageCount(data.pageCount)
-    }
-    if (Array.isArray(data.online_virtual_adoption_form)) {
-      console.log('Adopt 狀態: ', data.online_virtual_adoption_form)
-      setAdopt(data.online_virtual_adoption_form)
-    } else {
-      console.log('數據結構不符合預期:', data.online_virtual_adoption_form)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      setIsLoading(false)
     }
   }
-  // 按下搜尋按鈕
-  const handleSearch = () => {
-    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
-    setPage(1)
-    const petId = Object.keys(petNameMapping).find(
-      (key) => petNameMapping[key] === nameLike
-    )
-
-    const params = {
-      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
-      perpage,
-      sort: orderby.sort,
-      order: orderby.order,
-      pet_id: petId || '', // 如果找不到對應的寵物ID，則為空字符串
-    }
-    getAdopt(params)
-  }
-
+ 
+  
   const handlePageClick = (targetPage) => {
     if (targetPage >= 1 && targetPage <= pageCount) {
       setPage(targetPage)
       console.log(`切換到第 ${targetPage} 頁`)
     }
   }
+  
 
-  // 要改用sweetalert2-react-content來取代Swal
-  // const MySwal = withReactContent(Swal);
 
   const removeItem = async (adopt_id) => {
     try {
@@ -166,7 +158,22 @@ export default function userReserve() {
       }
     });
   };
+  const handleSearch = () => {
+    // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+    setPage(1)
+    const petId = Object.keys(petNameMapping).find(
+      (key) => petNameMapping[key] === nameLike
+    )
 
+    const params = {
+      page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
+      perpage,
+      sort: orderby.sort,
+      order: orderby.order,
+      pet_id: petId || '', // 如果找不到對應的寵物ID，則為空字符串
+    }
+    getAdopt(params)
+  }
   // 樣式3: didMount + didUpdate
   useEffect(() => {
     const params = {
@@ -335,29 +342,29 @@ export default function userReserve() {
                   </tr>
                 </thead>
                 <tbody>
-                  {adopt.map((v, i) => {
+                  {adopt.map((item) => {
                     return (
-                      <tr key={v.adopt_id}>
+                      <tr key={item.adopt_id}>
                         <td scope="row" className={`${styles['td']}`}>
-                          {v.adopt_id}
+                          {item.adopt_id}
                         </td>
                         <td className={`${styles['td']}`}>
-                          {petNameMapping[v.pet_id] || v.pet_id}
+                          {petNameMapping[item.pet_id] || item.pet_id}
                         </td>
                         <td className={`${styles['td']}`}>
-                          {userName[v.user_id] || v.user_id}
+                          {userName[item.user_id] || item.user_id}
                         </td>
                         <td className={`${styles['td']}`}>
-                          {v.donation_method}
+                          {item.donation_method}
                         </td>
-                        <td className={`${styles['td']}`}>{v.amount}</td>
-                        <td className={`${styles['td']}`}>{v.payment}</td>
-                        <td className={`${styles['td']}`}>{v.donation}</td>
+                        <td className={`${styles['td']}`}>{item.amount}</td>
+                        <td className={`${styles['td']}`}>{item.payment}</td>
+                        <td className={`${styles['td']}`}>{item.donation}</td>
                         <td className={`${styles['td']}`}>
-                          {v.donate_address}
+                          {item.donate_address}
                         </td>
                         <td className={styles['phone-btn']}>
-                          <a className={styles['td-btn']} onClick={() => notifyAndRemove(petNameMapping[v.pet_id] || v.pet_id, v.adopt_id)}><GiCancel style={{color:"red"}}/></a>
+                          <a className={styles['td-btn']} onClick={() => notifyAndRemove(petNameMapping[item.pet_id] || item.pet_id, item.adopt_id)}><GiCancel style={{color:"red"}}/></a>
                         </td>
                       </tr>
                     )
@@ -365,7 +372,7 @@ export default function userReserve() {
                 </tbody>
               </Table>
               {/* 換頁 */}
-              <section className={stylespet['wp-pagenavi']}>
+              <section className={`${stylespet['wp-pagenavi']} ${stylespet['wp']}`}>
               {page > 1 && (
                 <span>
                   <a

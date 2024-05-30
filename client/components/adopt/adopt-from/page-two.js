@@ -99,6 +99,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             placeholder="捐贈金額"
             value={adopt.amount || adopt.customAmount || ''}
             onChange={handleChange}
+            disabled
           />
           <span className="input-border"></span>
         </label>

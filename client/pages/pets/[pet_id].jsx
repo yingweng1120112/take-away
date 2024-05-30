@@ -512,7 +512,7 @@ export default function PetInfo() {
             <Link href={`/reserve/${pet.pet_id}`}>
               <button className={styles['cta']}>
                 <span className={styles['hover-underline-animation']}>
-                  線上認養
+                  預約賞寵
                 </span>
                 <svg
                   id="arrow-horizontal"
@@ -533,7 +533,7 @@ export default function PetInfo() {
             <Link href={`/adopt/${pet.pet_id}`}>
               <button className={styles['cta']}>
                 <span className={styles['hover-underline-animation']}>
-                  預約賞寵
+                線上認養
                 </span>
                 <svg
                   id="arrow-horizontal"
