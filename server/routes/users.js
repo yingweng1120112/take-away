@@ -1,13 +1,17 @@
 import express from 'express'
-const router = express.Router()
-
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import db from '#configs/mysql.js'
 import { getIdParam } from '##/db-helpers/db-tool.js'
-dotenv.config()
+// import nodemailer from 'nodemailer'
+import forgotPassword from './forgot-password.js'
 
+dotenv.config()
+const router = express.Router()
 const secretKey = process.env.SECRET_KEY
+
+// 使用 forgot-password 路由
+router.use('/forgot-password', forgotPassword)
 
 // 登入
 router.post('/', async (req, res) => {
