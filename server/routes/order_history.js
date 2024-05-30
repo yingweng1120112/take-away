@@ -1,56 +1,65 @@
 import express from 'express'
 const router = express.Router()
-// 檢查空物件, 轉換req.params為數字
+import db from '#configs/mysql.js'
 import { getIdParam } from '#db-helpers/db-tool.js'
 
-// 使用sql查詢的方式
-import db from '#configs/mysql.js'
-
-// router.get('/', function (req, res, next) {
-//   res.render('index', { title: 'Express' })
-// })
-// GET - 得到所有會員資料
+// GET - 得到所有订单历史数据
 router.get('/', async function (req, res) {
   const [rows] = await db.query('SELECT * FROM order_history')
   const order_history = rows
-  // 處理如果沒找到資料
-
-  // 標準回傳JSON
   return res.json({ status: 'success', data: { order_history } })
 })
 
-// GET - 得到單筆資料(注意，有動態參數時要寫在GET區段最後面)
+// GET - 得到单笔订单历史数据
 router.get('/:id', async function (req, res) {
-  // 轉為數字
   const id = getIdParam(req)
-
   const [rows] = await db.query(
     'SELECT * FROM order_history WHERE order_history_id=?',
     [id]
   )
-  const order_history = rows[0]
-  return res.json({ status: 'success', data: { order_history } })
+  const product = rows[0]
+  return res.json({ status: 'success', data: { product } })
 })
 
+// POST - 新增订单历史
 router.post('/', async function (req, res) {
   try {
-    // 從請求中取得 POST 資料
-    const postData = req.body
+    const {
+      user_id,
+      name,
+      phone,
+      order_date,
+      order_remark,
+      delivery_method,
+      payment_method,
+      recipient_address_detail,
+      status,
+      Invoice_no,
+    } = req.body
 
-    // 在資料庫中插入新的訂單資料
-    const result = await db.query('INSERT INTO order_history SET ?', postData)
+    const [resultHistory] = await db.query(
+      'INSERT INTO order_history (user_id, name, phone, order_date, order_remark, delivery_method, payment_method, recipient_address_detail, status, Invoice_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [
+        user_id,
+        name,
+        phone,
+        order_date,
+        order_remark,
+        delivery_method,
+        payment_method,
+        recipient_address_detail,
+        status,
+        Invoice_no,
+      ]
+    )
 
-    // 回應成功訊息
-    res.json({
-      status: 'success',
-      message: '訂單新增成功',
-      insertedId: result.insertId,
-    })
+    const order_id = resultHistory.insertId // 获取插入的 order_id
+
+    res.json({ status: 'success', message: '订单新增成功', order_id })
   } catch (error) {
-    // 如果發生錯誤，回應錯誤訊息
     res
       .status(500)
-      .json({ status: 'error', message: '訂單新增失敗', error: error.message })
+      .json({ status: 'error', message: '订单新增失败', error: error.message })
   }
 })
 

@@ -54,7 +54,7 @@
 }
 .book .title {
   background-color: var(--bean-paste);
-  width:100%;
+  width: 100%;
   color: var(--white);
   margin: 0;
   height: 5rem;
@@ -63,42 +63,42 @@
   justify-content: space-around;
 }
 .book .name {
-  text-align:center;
+  text-align: center;
 }
 .bookContainer {
   background-color: var(--white);
   position: relative;
   overflow: visible;
 }
-.select{
+.select {
   color: #333333;
   font-size: 1rem;
 }
-.name-input{
-  display:flex;
+.name-input {
+  display: flex;
 }
 .group {
   position: relative;
-  height:100%;
-  margin-right:1rem;
   height: 100%;
- }
-.input{
+  margin-right: 1rem;
+  height: 100%;
+}
+.input {
   height: 40%;
-  margin-top:0.5rem;
-font-size: 16px;
- padding: 10px 10px 10px 15px;
- display: block;
- width: 150px;
- border: none;
- border-bottom: 1px solid white;
- background: transparent;
- color:white;
+  margin-top: 0.5rem;
+  font-size: 16px;
+  padding: 10px 10px 10px 15px;
+  display: block;
+  width: 150px;
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  color: white;
 }
 .input:focus {
   outline: none;
- }
- .label {
+}
+.label {
   color: #999;
   font-size: 18px;
   font-weight: normal;
@@ -109,19 +109,21 @@ font-size: 16px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
- }
- .input:focus ~ .label, .input:valid ~ .label {
+}
+.input:focus ~ .label,
+.input:valid ~ .label {
   top: -7px;
   font-size: 14px;
-  color:white;
- }
- 
- .bar {
+  color: white;
+}
+
+.bar {
   position: relative;
   display: block;
-  width:150px;
- }
- .bar:before, .bar:after {
+  width: 150px;
+}
+.bar:before,
+.bar:after {
   content: '';
   height: 2px;
   width: 0;
@@ -131,36 +133,37 @@ font-size: 16px;
   transition: 0.5s ease all;
   -moz-transition: 0.5s ease all;
   -webkit-transition: 0.5s ease all;
- }
- 
- .bar:before {
+}
+
+.bar:before {
   left: 50%;
- }
- 
- .bar:after {
+}
+
+.bar:after {
   right: 50%;
- }
- 
- .input:focus ~ .bar:before, .input:focus ~ .bar:after {
+}
+
+.input:focus ~ .bar:before,
+.input:focus ~ .bar:after {
   width: 50%;
- }
- 
- @keyframes inputHighlighter {
+}
+
+@keyframes inputHighlighter {
   from {
-   background: white;
+    background: white;
   }
- 
+
   to {
-   width: 0;
-   background: transparent;
+    width: 0;
+    background: transparent;
   }
- }
- .namebutton{
-  border-radius:50%;
-  width:3rem;
-  height:3rem;
+}
+.namebutton {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
   background-color: var(--light-yellow);
- }
+}
 .rope {
   width: 3%;
   height: 88%;
@@ -200,7 +203,7 @@ font-size: 16px;
   margin-top: 3.5rem;
   text-align: center;
 }
-.table .td{
+.table .td {
   vertical-align: middle;
 }
 
@@ -218,55 +221,84 @@ font-size: 16px;
 .td-btn > a {
   color: var(--reddish-brown);
 }
+
+.th-order_id {
+  width: 100px;
+}
+.th-name {
+  width: 150px;
+}
+.th-phone {
+  width: 120px;
+}
+.th-order_date {
+  width: 150px;
+}
+.th-order_remark {
+  width: 200px;
+}
+.th-delivery_method {
+  width: 150px;
+}
+.th-payment_method {
+  width: 150px;
+}
+.th-recipient_address_detail {
+  width: 200px;
+}
+.th-status {
+  width: 100px;
+}
+
 @media screen and (max-width: 768px) {
-  .user{
-    width:95%;
-    height:46.5rem;
-    margin:auto;
+  .user {
+    width: 95%;
+    height: 46.5rem;
+    margin: auto;
   }
-  .celluser{
-    height:65.5rem;
+  .celluser {
+    height: 65.5rem;
   }
-  .container{
-    height:100%;
-    width:100%;
+  .container {
+    height: 100%;
+    width: 100%;
   }
   .table {
-    height:80%;
+    height: 80%;
     margin-top: 0rem;
   }
-  .phone-time{
-    width:6.75rem;
+  .phone-time {
+    width: 6.75rem;
   }
-  .th{
+  .th {
     vertical-align: middle;
   }
-.td-btn {
-  padding: 0px;
-  border-radius: 0px;
-  background-color:transparent;
-  /* opacity:0; */
-}
-.phone-censole{
-  width:1.5rem;
-}
-.phone-btn{
-  display:flex;
-  align-items:center;
- height:100%;
- /* opacity:1; */
-}
-.name-input{
-  display:none;
-}
-.adopt-label{
-  width: 30%;
-}
-.select{
-  width:100%;
-}
-.book .name {
-  font-weight:bolder;
-  font-size:1.7rem;
-}
+  .td-btn {
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    /* opacity:0; */
+  }
+  .phone-censole {
+    width: 1.5rem;
+  }
+  .phone-btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* opacity:1; */
+  }
+  .name-input {
+    display: none;
+  }
+  .adopt-label {
+    width: 30%;
+  }
+  .select {
+    width: 100%;
+  }
+  .book .name {
+    font-weight: bolder;
+    font-size: 1.7rem;
+  }
 }
