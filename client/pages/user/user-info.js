@@ -154,13 +154,13 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}>浪浪收藏</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-myUserInfo">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}>我的寵物</p>
                   </Link>
@@ -172,7 +172,7 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt-history">
+                  <Link href="/user/user-adopt">
                     <p className={`link ${banner['select-title']}
                     ${styles['select-title']}`}>
                       線上認養紀錄

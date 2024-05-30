@@ -64,16 +64,17 @@ export default function UserReserve() {
   }
 
   const userName = {
-    10001: '洪海仁',
-    10002: '盧先生',
-    10003: '洪秀哲',
-    10004: '千多慧',
-    10005: '洪凡資',
-    10006: '全峰藹',
-    10007: '白斗關',
-    10008: '尹殷盛',
-    10009: '羅彩妍',
-    10010: '金陽基',
+    10001: '盧先生',
+    10002: '白賢祐',
+    10003: '洪海仁',
+    10004: '洪秀哲',
+    10005: '千多慧',
+    10006: '洪凡資',
+    10007: '全峰藹',
+    10008: '白斗關',
+    10009: '尹殷盛',
+    10010: '羅彩妍',
+    10011: '金陽基',
   }
 
   const getReserve = async (params) => {
@@ -264,12 +265,12 @@ export default function UserReserve() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']}`}>浪浪收藏</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-mypet">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']}`}>我的寵物</p>
                   </Link>
                 </div>

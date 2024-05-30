@@ -64,16 +64,17 @@ export default function userReserve() {
     10060: '嘟嘟',
   }
   const userName = {
-    10001: '洪海仁',
-    10002: '盧先生',
-    10003: '洪秀哲',
-    10004: '千多慧',
-    10005: '洪凡資',
-    10006: '全峰藹',
-    10007: '白斗關',
-    10008: '尹殷盛',
-    10009: '羅彩妍',
-    10010: '金陽基',
+    10001: '盧先生',
+    10002: '白賢祐',
+    10003: '洪海仁',
+    10004: '洪秀哲',
+    10005: '千多慧',
+    10006: '洪凡資',
+    10007: '全峰藹',
+    10008: '白斗關',
+    10009: '尹殷盛',
+    10010: '羅彩妍',
+    10011: '金陽基',
   }
   // 查詢條件用
   
@@ -244,12 +245,12 @@ export default function userReserve() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']}`}>浪浪收藏</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-mypet">
+                  <Link href="#">
                     <p className={`link ${banner['select-title']}`}>我的寵物</p>
                   </Link>
                 </div>
@@ -342,8 +343,9 @@ export default function userReserve() {
                   </tr>
                 </thead>
                 <tbody>
-                  {adopt.map((item) => {
-                    return (
+                {adopt.length > 0 ? (
+                  adopt.map((item) =>
+                     (
                       <tr key={item.adopt_id}>
                         <td scope="row" className={`${styles['td']}`}>
                           {item.adopt_id}
@@ -367,8 +369,14 @@ export default function userReserve() {
                           <a className={styles['td-btn']} onClick={() => notifyAndRemove(petNameMapping[item.pet_id] || item.pet_id, item.adopt_id)}><GiCancel style={{color:"red"}}/></a>
                         </td>
                       </tr>
-                    )
-                  })}
+                    ))
+                    ): (
+                      <tr>
+                        <td colSpan="9" className="text-center">
+                          查無資料
+                        </td>
+                      </tr>
+                    )}
                 </tbody>
               </Table>
               {/* 換頁 */}
