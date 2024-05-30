@@ -32,10 +32,10 @@ export default function userReserve() {
     setStartDate(date)
   }
   const options = [
-    { value: 'adopt_id,asc', label: '編號排序(由小至大)' },
     { value: 'adopt_id,desc', label: '編號排序(由大至小)' },
-    { value: 'amount,asc', label: '金額排序(由小至大)' },
+    { value: 'adopt_id,asc', label: '編號排序(由小至大)' },
     { value: 'amount,desc', label: '金額排序(由大至小)' },
+    { value: 'amount,asc', label: '金額排序(由小至大)' },
   ]
   const petNameMapping = {
     10001: '露露',

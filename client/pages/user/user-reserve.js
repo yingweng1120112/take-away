@@ -32,8 +32,10 @@ export default function UserReserve() {
   const [nameLike, setNameLike] = useState('')
 
   const options = [
-    { value: 'reservation_id,asc', label: '編號排序(由小至大)' },
     { value: 'reservation_id,desc', label: '編號排序(由大至小)' },
+    { value: 'reservation_id,asc', label: '編號排序(由小至大)' },
+    { value: 'time,desc', label: '時間排序(最新預約)' },
+    { value: 'time,asc', label: '時間排序(較舊預約)' },
   ]
 
   const petNameMapping = {
@@ -93,18 +95,6 @@ export default function UserReserve() {
       const userID = user.user_id
   
       let reserveData = data.reserve_system.filter(item => item.user_id === userID)
-  
-      // 如果是第一页且数据不足  条，从下一页获取数据补充
-      // if (params.page === 1 && reserveData.length < perpage) {
-      //   const nextPageData = await loadPetInfos({ ...params, page: params.page + 1 })
-      //   if (nextPageData && nextPageData.reserve_system) {
-      //     const additionalData = nextPageData.reserve_system.filter(item => item.user_id === userID)
-      //     reserveData = reserveData.concat(additionalData.slice(0, perpage - reserveData.length))
-      //   } else {
-      //     console.error('Next page data or reserve_system is undefined.')
-      //   }
-      // }
-  
       setReserve(reserveData)
       setPageCount(data.pageCount)
     } catch (error) {
@@ -120,9 +110,6 @@ export default function UserReserve() {
       console.log(`切換到第 ${targetPage} 頁`)
     }
   }
-
-  // 要改用sweetalert2-react-content來取代Swal
-  // const MySwal = withReactContent(Swal)
 
   const removeItem = async (reservation_id) => {
     try {
@@ -328,6 +315,9 @@ export default function UserReserve() {
           <>
             <div className={`${styles.container}`}>
               <div className={`${styles.book}`}>
+            <div className={`${styles.bookContainer}`}>
+              <div className={`${styles['rope']}`}></div>
+
                 <div className={`${styles['title']}`}>
                   <div className={`${styles['name-input']}`}>
                     <div className={`${styles['group']}`}>
@@ -351,7 +341,7 @@ export default function UserReserve() {
                       搜尋
                     </button>
                   </div>
-                  <h2 className={`${styles['name']}`}>線上預約紀錄</h2>
+                  <h2 className={`${styles['name']}`}>預約紀錄</h2>
 
                   <div className={`${styles['adopt-label']}`}>
                     <Select
@@ -475,6 +465,7 @@ export default function UserReserve() {
                 </span>
                 )}
               </section>
+            </div>
                 </div>
               </div>
             </div>
