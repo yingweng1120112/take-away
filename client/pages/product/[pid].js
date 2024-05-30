@@ -517,7 +517,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-id"
-                      Value={formData.user_id}
+                      value={formData.user_id}
                       readOnly={true}
                     />
                   </div>
@@ -533,7 +533,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={formData.product_id}
+                      value={formData.product_id}
                       readOnly={true}
                     />
                   </div>
@@ -549,7 +549,7 @@ export default function Information() {
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
                       placeholder="user-name"
-                      Value={name}
+                      value={name}
                       readOnly={true}
                     />
                   </div>
