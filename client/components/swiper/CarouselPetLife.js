@@ -13,7 +13,7 @@ import styles from '@/styles/petDiary/petDiary.module.css'
 import { Pagination } from 'swiper/modules'
 
 export default function App({ pic }) {
-  console.log('pic1', pic)
+  // console.log('pic1', pic)
 
   return (
     <>
@@ -25,7 +25,7 @@ export default function App({ pic }) {
           className={`${styles['swiper']} ${styles['mySwiper3']} `}
         >
           {pic.map((v,i) => {
-            console.log('PIC2', v)
+            {/* console.log('PIC2', v) */}
             return (
               <SwiperSlide key={i}
                 className={`swiper-slide ${styles['swiper-slide']} `}
@@ -57,13 +57,13 @@ const SwiperNavigations = () => {
     </div>
   )
 }
-const Testttt = ({ pic }) => {
-  return pic.map((v) => {
-    console.log('PIC2', v)
-    return (
-      <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-        <img className={styles['img']} src={`/img/petDiary/${v}`} />
-      </SwiperSlide>
-    )
-  })
-}
+// const Testttt = ({ pic }) => {
+//   return pic.map((v) => {
+//     // console.log('PIC2', v)
+//     return (
+//       <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
+//         <img className={styles['img']} src={`/img/petDiary/${v}`} />
+//       </SwiperSlide>
+//     )
+//   })
+// }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '@/styles/petDiary/petDiary.module.css'
 
-export default function Test(value) {
+export default function PrevieImage(value) {
   return (
     <>
       {value.value.map((v, i) => {

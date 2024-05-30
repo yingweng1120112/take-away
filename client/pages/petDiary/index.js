@@ -1,83 +1,90 @@
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { loadPetsInfo } from '@/services/petDiary'
-import CarouselPc from '@/components/swiper/shopSwiperPc'
-import CarouselPhone from '@/components/swiper/shopSwiperPhone'
+import banner from '@/styles/banner/banner.module.css' //banner style
+import styles from '@/styles/petDiary/petDiarySearch.module.css' //petdiary style
+import Link from 'next/link' //Link
+import { loadPetsInfo } from '@/services/petDiary' //讀取全部寵物資訊
+import CarouselPc from '@/components/swiper/shopSwiperPc' //電腦版輪播
+import CarouselPhone from '@/components/swiper/shopSwiperPhone' //手機版輪播
+import Header from '@/components/layout/header' //header
+import Footer from '@/components/layout/footer' //footer
+import Pages from '@/components/petDiary/pages' //分頁
+import { FaVenus, FaMars } from 'react-icons/fa6' //男,女icon
 
-import banner from '@/styles/banner/banner.module.css'
-import styles from '@/styles/petDiary/petDiarySearch.module.css'
-import { FaVenus, FaMars } from 'react-icons/fa6'
-import Header from '@/components/layout/header'
-import Footer from '@/components/layout/footer'
-// 資料夾的中的`list.js`檔案代表靜態or固定的路由，例如 `/product/list` 就是這個檔案
 export default function DiarySearch() {
   // 注意1: 初始值至少要空白陣列。首次render會使用初始值，對應由伺服器得到的物件陣列模型。
   // 注意2: 在應用程式執行過程中，狀態一定都要保持陣列資料類型
-  const [total, setTotal] = useState(0)
-  const [pageCount, setPageCount] = useState(0)
-  const [petsInfo, setPetsInfo] = useState([])
 
-  const [age, setage] = useState({ age_gte: '0', age_lte: '30' })
-  const [ageType, setAgeType] = useState({
-    a: false,
-    b: false,
-    c: false,
+  const [petsInfo, setPetsInfo] = useState([]) //寵物資訊
+
+  const [age, setage] = useState({ age_gte: '0', age_lte: '30' }) //年齡
+
+  const [weightType, setWeightType] = useState({
+    //年齡類別
+    small: false,
+    medium: false,
+    large: false,
   })
-  const a = (ageType1) => {
-    if (ageType1.a == true && ageType1.b == false && ageType1.c == false) {
+
+  const weightSelect = (weightType) => {
+    //年齡類別複選判斷(不優秀的寫法)
+    if (
+      weightType.small == true &&
+      weightType.medium == false &&
+      weightType.large == false
+    ) {
       setweight({
         weight_gte: 0,
         weight_lte: 8,
       })
     } else if (
-      ageType1.a == false &&
-      ageType1.b == true &&
-      ageType1.c == false
+      weightType.small == false &&
+      weightType.medium == true &&
+      weightType.large == false
     ) {
       setweight({
         weight_gte: 8,
         weight_lte: 20,
       })
     } else if (
-      ageType1.a == false &&
-      ageType1.b == false &&
-      ageType1.c == true
+      weightType.small == false &&
+      weightType.medium == false &&
+      weightType.large == true
     ) {
       setweight({
         weight_gte: 20,
         weight_lte: 50,
       })
     } else if (
-      ageType1.a == true &&
-      ageType1.b == true &&
-      ageType1.c == false
+      weightType.small == true &&
+      weightType.medium == true &&
+      weightType.large == false
     ) {
       setweight({
         weight_gte: 0,
         weight_lte: 20,
       })
     } else if (
-      ageType1.a == true &&
-      ageType1.b == false &&
-      ageType1.c == true
+      weightType.small == true &&
+      weightType.medium == false &&
+      weightType.large == true
     ) {
       setweight({
         weight_gte: 0,
         weight_lte: 50,
       })
     } else if (
-      ageType1.a == false &&
-      ageType1.b == true &&
-      ageType1.c == true
+      weightType.small == false &&
+      weightType.medium == true &&
+      weightType.large == true
     ) {
       setweight({
         weight_gte: 8,
         weight_lte: 50,
       })
     } else if (
-      ageType1.a == false &&
-      ageType1.b == false &&
-      ageType1.c == false
+      weightType.small == false &&
+      weightType.medium == false &&
+      weightType.large == false
     ) {
       setweight({
         weight_gte: 0,
@@ -85,34 +92,46 @@ export default function DiarySearch() {
       })
     }
   }
-  const [weight, setweight] = useState({ weight_gte: '0', weight_lte: '50' })
-  const [type, settype] = useState({ type: '' })
-  const [gender, setgender] = useState({ gender: '' })
-  const [nameLike, setNameLike] = useState('')
+
+  const [weight, setweight] = useState({ weight_gte: '0', weight_lte: '50' }) //體重
+  const [type, settype] = useState({ type: '' }) //寵物類別(ex.貓,狗)
+  const [gender, setgender] = useState({ gender: '' }) //寵物性別
+  const [nameLike, setNameLike] = useState('') //打字搜尋
   // 分頁用
-  const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(12)
+
+  const [total, setTotal] = useState(0) // 總共幾筆資料
+  const [page, setPage] = useState(1) // 目前分頁
+  const [perpage, setPerpage] = useState(12) // 每頁幾筆
+  const [pageCount, setPageCount] = useState(0) // 目前總分頁數
+
+  const handlePageChange = (page) => {
+    //跨頁
+    setPage(page)
+  }
 
   const getPetsInfo = async (params) => {
+    //獲取寵物資訊
     const data = await loadPetsInfo(params)
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是陣列資料類型才設定到狀態中(最基本的保護)
     if (data.pageCount && typeof data.pageCount === 'number') {
-      setPageCount(data.pageCount)
+      setPageCount(data.pageCount) //設定目前總分頁數
     }
 
     if (data.total && typeof data.total === 'number') {
-      setTotal(data.total)
+      setTotal(data.total) //設定共有幾筆資料
     }
 
-    // console.log('getinfo:data:')
+    // console.log('getPetInfo:data:')
     // console.log(data)
 
     if (Array.isArray(data.pets_info)) {
-      setPetsInfo(data.pets_info)
+      setPetsInfo(data.pets_info) //設定寵物全部資訊
     }
   }
+
   const handleSearch = () => {
+    //打字搜尋
     // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
     setPage(1)
 
@@ -130,8 +149,9 @@ export default function DiarySearch() {
 
     getPetsInfo(params)
   }
-  // // 樣式2: 元件初次渲染之後(after)執行一次，之後不會再執行
+
   useEffect(() => {
+    // 元件初次渲染之後(after)執行一次，之後不會再執行
     const params = {
       page,
       perpage,
@@ -241,25 +261,23 @@ export default function DiarySearch() {
                       <div
                         className={banner['select-item']}
                         onChange={(e) => {
-                          // weight.weight_gte 小
-                          // weight.weight_lte 大
                           const selected = e.target.value
                           const checked = e.target.checked
-                          setAgeType({ ...ageType, [selected]: checked })
-                          const c = { ...ageType, [selected]: checked }
-                          a(c)
+                          setWeightType({ ...weightType, [selected]: checked })
+                          const wT = { ...weightType, [selected]: checked }
+                          weightSelect(wT)
                         }}
                       >
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="a" />
+                          <input type="checkbox" value="small" />
                           <span>小型 8kg以下</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="b" />
+                          <input type="checkbox" value="medium" />
                           <span>中型 8-20kg</span>
                         </label>
                         <label className={banner['cl-checkbox']}>
-                          <input type="checkbox" value="c" />
+                          <input type="checkbox" value="large" />
                           <span>大型 20kg以上</span>
                         </label>
                       </div>
@@ -274,15 +292,21 @@ export default function DiarySearch() {
                           const selected = e.target.value
                           const checked = e.target.checked
                           if (checked == false) {
-                            if(type.type == '狗狗,貓貓'&& selected == '貓貓'){
+                            if (
+                              type.type == '狗狗,貓貓' &&
+                              selected == '貓貓'
+                            ) {
                               settype({
                                 type: ['狗狗'],
                               })
-                            }else if(type.type == '狗狗,貓貓'&& selected == '狗狗'){
+                            } else if (
+                              type.type == '狗狗,貓貓' &&
+                              selected == '狗狗'
+                            ) {
                               settype({
                                 type: ['貓貓'],
                               })
-                            }else{
+                            } else {
                               settype({
                                 type: [''],
                               })
@@ -297,7 +321,7 @@ export default function DiarySearch() {
                               selected == '狗狗'
                             ) {
                               settype({
-                                type: ['狗狗','貓貓'],
+                                type: ['狗狗', '貓貓'],
                               })
                             } else {
                               settype({
@@ -375,11 +399,13 @@ export default function DiarySearch() {
                 src="/img/diarySearch/blueLine.svg"
                 className={styles['bg-1']}
               />
-
               <h1 className={styles['content-word']}>
                 這裡是大家細心照料的
                 <br />
                 孩子們，要來看看嗎 ?
+              </h1>
+              <h1 className={styles['content-word']}>
+                搜尋到{total}本日誌
               </h1>
             </div>
             <div className={styles['container-a']}>
@@ -410,94 +436,12 @@ export default function DiarySearch() {
             </div>
           </div>
         </div>
-        {/* 頁數這邊有問題 role="navigation' aria-label="First Page" href="#' rel='prev' aria-label="Last Page" href="#'*/}
-        <p>{page}</p>
-        <p>{perpage}</p>
-        <p>{total}</p>
         <div className={styles['hidden']}>
-          <div className={styles['wp-pagenavi']} role="navigation">
-            <a
-              className={styles['first']}
-              aria-label="First Page"
-              href="#"
-              onClick={() => {
-                // 最小頁面是1(不能小於1)
-                const nextPage = page - 1 > 1 ? page - 1 : 1
-                setPage(nextPage)
-              }}
-            >
-              «
-            </a>
-            <a className={styles['previouspostslink']}>&lt;</a>
-            <a
-              className={`${styles['page']} smaller`}
-              href="#"
-              onClick={() => {
-                setPage(1)
-              }}
-            >
-              1
-            </a>
-            <a
-              className={`${styles['page']} smaller`}
-              href="#"
-              onClick={() => {
-                setPage(2)
-              }}
-            >
-              2
-            </a>
-            <a
-              className={`${styles['page']} smaller`}
-              href="#"
-              onClick={() => {
-                setPage(3)
-              }}
-            >
-              3
-            </a>
-            {/* <span aria-current="page" className={styles['current']} href='#' >
-              3
-            </span> */}
-            <a
-              className={`${styles['page']} smaller`}
-              href="#"
-              onClick={() => {
-                setPage(4)
-              }}
-            >
-              4
-            </a>
-            <a
-              className={`${styles['page']} smaller`}
-              href="#"
-              onClick={() => {
-                setPage(5)
-              }}
-            >
-              5
-            </a>
-            <a
-              className={styles['nextpostslink']}
-              rel="next"
-              aria-label="次のページ"
-              href="#"
-            >
-              &gt;
-            </a>
-            <a
-              className={styles['last']}
-              aria-label="Last Page"
-              href="#"
-              onClick={() => {
-                // 最大頁面不能大於總頁數pageCount
-                const nextPage = page + 1 < pageCount ? page + 1 : pageCount
-                setPage(nextPage)
-              }}
-            >
-              »
-            </a>
-          </div>
+          <Pages
+            currentPage={page}
+            totalPages={pageCount}
+            onPageChange={handlePageChange}
+          />
 
           <div className={styles['container-main-2']}>
             <img
