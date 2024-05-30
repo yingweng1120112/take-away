@@ -253,11 +253,11 @@
 }
 .dog-palm4 {
   position: absolute;
-  top: 40rem;
+  top: 35rem;
   right: -4rem;
   z-index: 3;
   transform: rotate(262deg) scale(0.3);
-  animation: fade-out 1s ease infinite;
+  animation: information_fade-out__ycJke 1s ease infinite;
 }
 .dog-palm5 {
   position: absolute;
@@ -277,7 +277,7 @@
 }
 .dog-footprints {
   position: absolute;
-  top: 117rem;
+  top: 103rem;
   right: 9rem;
   z-index: 1;
   transform: scale(0.5);
@@ -350,7 +350,7 @@
   justify-content: center;
 }
 .swiper-img {
-  width: 100%;
+  width: 200%;
   height: 120px; /* 您可以根据需要调整高度 */
   object-fit: cover;
 }
