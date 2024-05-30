@@ -164,17 +164,18 @@ export default function Page3() {
             <div className={styles['result-right']}>
               <div>{userName}的最佳旅伴是…</div>
               <div>「{result.personality_type}」浪浪</div>
-              <div>{result.type__content}</div>
+              <div className={styles['result-right-describe']}>{result.type__content}</div>
               <div className={styles['graph']}>
                 <ProgressBar value={dependence} label="依賴性" />
                 <ProgressBar value={anxiety} label="焦慮性" />
                 <ProgressBar value={proactivity} label="主動性" />
                 <ProgressBar value={stability} label="穩定性" />
               </div>
+              <div>要不要給浪浪們一點機會，帶牠們走呢？</div>
             </div>
           </div>
           <div className={styles['button']}>
-            <Link href="/psycological-test/page1">
+            <Link href="/pets/psycological-test/page1">
               <a>
                 再測一次
                 <FontAwesomeIcon icon={faPen} className={styles['iconstyle']} />

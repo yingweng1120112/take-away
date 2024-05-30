@@ -17,7 +17,9 @@
   background-size: contain;
   opacity: 0.9;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 .hearttest > .question > div {
   width: 70%;
@@ -30,7 +32,6 @@
   text-shadow: rgb(168, 167, 167) 1px 0 15px;
   font-size: 60px;
 }
-
 .questioncontent {
   display: flex;
   justify-content: center;
@@ -38,12 +39,21 @@
   width: 75%;
   height: 150px;
   background-color: white;
-  margin-top: 100px;
+  margin-top: 50px;
   border-radius: 20px;
   opacity: 0.6;
   font-size: var(--font-size-h4);
   font-weight: 600;
 }
+/* 進度條 */
+.progress-bar {
+  border-radius: 20px;
+  width: 90%;
+  height: 18px;
+  margin: 60px auto 0 auto;
+  background-color: white;
+}
+
 /* 選項 */
 .testoption {
   width: 100%;
@@ -93,15 +103,16 @@
   background-color: transparent;
   border: none;
   display: flex;
-  margin-top: -210px;
+  margin-top: 110px;
   align-items: center;
 }
 .iconstyle {
-  color: white;
+  color: #697273;
   width: 40px;
   height: 40px;
   position: relative;
-  left: 80px;
+  left: 90px;
+  top: -25px;
 }
 
 /* 按鈕 */

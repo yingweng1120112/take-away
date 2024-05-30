@@ -1,5 +1,8 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import useLocalStorage from '@/hooks/use-localstorage'
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Modal, Button } from 'react-bootstrap';
 
 const CartContext = createContext()
 
@@ -16,6 +19,9 @@ export function CartProvider({ children }) {
     payment_method: '',
     Invoice_no: ''
   })
+  const [deleteProduct, setDeleteProduct] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteProductId, setDeleteProductId] = useState(null);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedSelectedItems = window.localStorage.getItem('selectedItems')
@@ -68,29 +74,42 @@ export function CartProvider({ children }) {
   }
 
 
-  const increaseItem = (product_id) => {
-    const nextItems = cartItems.map((v, i) => {
-      // 如果符合條件(id=傳入id)，回傳物件要屬性qty+1
-      if (v.product_id === product_id)
-        return { ...v, qty: v.qty + 1, subTotal: (v.qty + 1) * v.price }
+  const increaseItem = (product_id, increment = 1) => {
+    const nextItems = cartItems.map((v) => {
+      // 如果符合條件(id=傳入id)，回傳物件要屬性qty加上increment
+      if (v.product_id === product_id) {
+        const newQty = v.qty + increment;
+        return { ...v, qty: newQty, subTotal: newQty * v.price };
+      } 
       // 否則回傳原本物件
-      else return v
-    })
-    setCartItems(nextItems)
-    synchronizeSelectedItems(nextItems)
-  }
+      else {
+        return v;
+      }
+    });
+    setCartItems(nextItems);
+    synchronizeSelectedItems(nextItems);
+  };
 
-  const decreaseItem = (product_id) => {
-    let nextItems = cartItems.map((v, i) => {
-      // 如果符合條件(id=傳入id)，回傳物件要屬性qty+1
-      if (v.product_id === product_id)
-        return { ...v, qty: v.qty - 1, subTotal: (v.qty - 1) * v.price }
-      // 否則回傳原本物件
-      else return v
-    })
-    nextItems = nextItems.filter((v) => v.qty > 0)
-    setCartItems(nextItems)
-    synchronizeSelectedItems(nextItems)
+  const decreaseItem = (product_id, name) => {
+    // 商品數量為1就刪除
+    if (cartItems.find(item => item.product_id === product_id)?.qty === 1) {
+      // 設置刪除商品的id
+      setDeleteProductId(product_id);
+      // 顯示modal
+      setShowDeleteModal(true);
+      // 設置要刪除產品的訊息
+      setDeleteProduct({ id: product_id, name: name });
+    } else {
+      //减少商品數量
+      let nextItems = cartItems.map((v, i) => {
+        if (v.product_id === product_id)
+          return { ...v, qty: v.qty - 1, subTotal: (v.qty - 1) * v.price }
+        else return v
+      });
+      nextItems = nextItems.filter((v) => v.qty > 0);
+      setCartItems(nextItems);
+      synchronizeSelectedItems(nextItems);
+    }
   }
 
   //加入購物車
@@ -98,26 +117,72 @@ export function CartProvider({ children }) {
     const foundIndex = cartItems.findIndex(
       (v) => v.product_id === product.product_id
     )
+    const quantity = product.quantity || 1 // 如果 quantity 屬性不存在，默認設置為 1
     if (foundIndex > -1) {
-      increaseItem(product.product_id)
+      increaseItem(product.product_id,quantity)
     } else {
-      const qty = product.qty || 1 // 如果 qty 屬性不存在，默認設置為 1
       const price = product.price || 0 // 如果 price 屬性不存在，默認設置為 0
-
-      const subTotal = qty * price // 計算小計金額
+      const subTotal = quantity * price // 計算小計金額
       setCartItems((prevCartItems) => [
         ...prevCartItems,
         {
           ...product,
-          qty: qty,
+          qty: quantity,
           subTotal: subTotal,
         },
       ])
     }
+    //提示框
+    toast.success(`${product.name} 已加入購物車！`, {
+      position: "top-center",
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+    });
   }
 
-  const removeItem = (product_id) => {
-    setCartItems(cartItems.filter((item) => item.product_id !== product_id))
+  const removeItem = (product_id, name) => {
+    // 設置刪除商品的id
+    setDeleteProductId(product_id);
+    // 顯示modal
+    setShowDeleteModal(true);
+
+    setDeleteProduct({ id: product_id, name: name })
+  }
+
+  // 確認刪除
+  const confirmDelete = () => {
+    // 刪除後更新購物車項目
+    const updatedCartItems = cartItems.filter((item) => item.product_id !== deleteProductId);
+    // 更新
+    setCartItems(updatedCartItems);
+      // 關閉modal
+    setShowDeleteModal(false);
+    
+    toast.success(`${deleteProduct.name} 已成功刪除！`, {
+      position: "top-center",
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+    });
+  }
+
+  // 取消删除
+  const cancelDelete = () => {
+    // 清除要刪除的產品ID
+    setDeleteProductId(null);
+    // 關閉modal
+    setShowDeleteModal(false);
   }
 
   //監聽localStorage變化
@@ -178,6 +243,19 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
+      <ToastContainer />
+       <Modal show={showDeleteModal} onHide={cancelDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>確認刪除</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        {deleteProduct && `確定要刪除 ${deleteProduct.name} 嗎？`}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={cancelDelete}>取消</Button>
+          <Button variant="danger" onClick={confirmDelete}>删除</Button>
+        </Modal.Footer>
+      </Modal>
     </CartContext.Provider>
   )
 }

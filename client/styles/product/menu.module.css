@@ -121,6 +121,7 @@
 .products-card {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 .products-card img {
   width: 100%;

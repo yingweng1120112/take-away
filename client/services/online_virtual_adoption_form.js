@@ -20,14 +20,18 @@ const sample = [
   },
 ]
 
-export const adoptInfos = async () => {
+export const adoptInfos = async (params = {}) => {
   // 要使用try...catch陳述式，讓與伺服器連線作REST更穩健
+   // 使用URLSearchParams產生查詢字串
+  const searchParams = new URLSearchParams(params)
+  const url = `${baseUrl}?${searchParams.toString()}`
+
   try {
-    const res = await fetch(baseUrl)
+    const res = await fetch(url)
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      return resData.data.online_virtual_adoption_form
+      return resData.data
     } else {
       console.warn('沒有得到資料')
       return {}
@@ -35,7 +39,7 @@ export const adoptInfos = async () => {
   } catch (e) {
     console.error(e)
     // 用範例資料當作例外資料
-    return sample
+    return {}
   }
 }
 

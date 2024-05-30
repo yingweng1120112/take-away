@@ -80,6 +80,7 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
+  
 
   //查詢條件
   const [type, setType] = useState([])
@@ -115,6 +116,9 @@ export default function Menu() {
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
+
+  //購物車加的
+  const { addToCart } = useCart()
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
@@ -261,12 +265,13 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
-  const handleCartClick = (event) => {
-    event.stopPropagation()
-    // 在这里添加購物車處理邏輯
-    console.log('Added to cart')
-  }
+  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
+  const handleCartClick = (e,product) => {
+    e.preventDefault(); 
+    e.stopPropagation();
+    addToCart(product);
+    console.log('Added to cart');
+  };
 
   return (
     <>
@@ -459,20 +464,14 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                  <a
-                    href={`/product/${product.product_id}.webp`}
-                    className={styles['products-card']}
-                  >
+                <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
                     />
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button
-                        className={styles['cart-btn']}
-                        onClick={handleCartClick}
-                      >
+                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"

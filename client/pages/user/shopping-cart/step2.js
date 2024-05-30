@@ -10,14 +10,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useCart } from '@/context/cartcontext'
 import TWZipCode from '@/components/shopping-cart/tw-zipcode/index'
+import { loadUserInfoSpecific } from '@/services/user-info'
 
 //假資料 之後連會員資料庫
-const memberData = {
-  name: '王小明',
-  email: 'a123456789@gmail.com',
-  phone: '0912345678',
-  address: '台南市中西區健康路一段1號',
-}
+// const memberData = {
+//   name: '王小明',
+//   email: 'a123456789@gmail.com',
+//   phone: '0912345678',
+//   address: '台南市中西區健康路一段1號',
+// }
 
 export default function Step2() {
   const {
@@ -57,7 +58,7 @@ export default function Step2() {
 
   useEffect(() => {
     if (sameAsMember) {
-      setRecipientData(memberData)
+      setRecipientData(userInfo)
     } else {
       setRecipientData({
         name: '',
@@ -120,17 +121,38 @@ export default function Step2() {
       address: fullAddress,
     }))
   }
+
+  //登入
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      // 从 localStorage 获取当前登录用户的 user_id
+      const userId = localStorage.getItem('user_id')
+      if (userId) {
+        // 调用 loadUserInfoSpecific 函数获取用户信息
+        const data = await loadUserInfoSpecific(userId)
+        console.log('从 loadUserInfoSpecific 获取的数据:', data)
+        // 更新组件状态
+        setUserInfo(data)
+      } else {
+        console.error('未找到用户ID')
+      }
+    }
+    fetchUserInfo()
+  }, []) // 空数组作为依赖项，确保只在组件首次渲染时执行
+
+
   //登入後改這個
-  // useEffect(() => {
-  //   if (sameAsMember) {
-  //     setRecipientData({
-  //       name: userInfo.name,
-  //       email: userInfo.email,
-  //       phone: userInfo.phone,
-  //       address: userInfo.address,
-  //     })
-  //   }
-  // }, [sameAsMember, userInfo])
+  useEffect(() => {
+    if (sameAsMember) {
+      setRecipientData({
+        name: userInfo.name,
+        email: userInfo.email,
+        phone: userInfo.phone,
+        address: userInfo.address_detail,
+      })
+    }
+  }, [sameAsMember, userInfo])
+
 
   //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
   const handleOrderButtonClick = async () => {
@@ -146,7 +168,7 @@ export default function Step2() {
     //資料儲存格式
     const order = {
       order_id: 10042, //假資料(之後訂單編號也要改)
-      user_id: 10001, //假資料
+      user_id: userInfo.user_id, //假資料
       order_detail_id: 10042, //假資料
       name: name,
       phone: phone,
@@ -222,25 +244,25 @@ export default function Step2() {
               <div>
                 <div>會員姓名</div>
                 <div>
-                  <input readOnly value={memberData.name} />
+                  <input readOnly value={userInfo.name} />
                 </div>
               </div>
               <div>
                 <div>電子郵件</div>
                 <div>
-                  <input readOnly value={memberData.email} />
+                  <input readOnly value={userInfo.email} />
                 </div>
               </div>
               <div>
                 <div>電話號碼</div>
                 <div>
-                  <input readOnly value={memberData.phone} />
+                  <input readOnly value={userInfo.phone} />
                 </div>
               </div>
               <div>
                 <div>地址</div>
                 <div>
-                  <input readOnly value={memberData.address} />
+                  <input readOnly value={userInfo.address_detail} />
                 </div>
               </div>
             </div>
@@ -286,7 +308,7 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
-                    value={sameAsMember ? memberData.name : recipientData.name}
+                    value={sameAsMember ? userInfo.name : recipientData.name}
                     onChange={
                       sameAsMember
                         ? handleInputChange('name')
@@ -302,7 +324,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入信箱"
                     value={
-                      sameAsMember ? memberData.email : recipientData.email
+                      sameAsMember ? userInfo.email : recipientData.email
                     }
                     onChange={
                       sameAsMember
@@ -319,7 +341,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入號碼（0912345678）"
                     value={
-                      sameAsMember ? memberData.phone : recipientData.phone
+                      sameAsMember ? userInfo.phone : recipientData.phone
                     }
                     onChange={
                       sameAsMember

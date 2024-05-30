@@ -100,7 +100,7 @@
   .serv_container {
     height: 100%;
     width: 100%;
-    margin-left: 55%;
+    margin-left: 50%;
     margin-bottom: 100px;
     display: flex;
     justify-content: center;
@@ -120,7 +120,7 @@
     width: 30%;
     overflow: hidden;
     padding-bottom: 50px;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     margin-top: 100px;
   }
 
@@ -132,8 +132,8 @@
     /* gap: 8%; */
     /* grid-template-columns: 180px 180px 180px; */
     justify-content: center;
-    border-left: 10px solid black;
-    padding: 0 0 0 7%;
+    /* border-left: 10px solid black; */
+    /* padding: 0 0 0 7%; */
     grid-template-columns: repeat(3, 1fr);
     gap: 100px;
   }
