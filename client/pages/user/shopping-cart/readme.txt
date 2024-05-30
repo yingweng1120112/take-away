@@ -41,7 +41,7 @@ CREATE TABLE order_detail (
   order_id INT,
   product_id INT,
   amount INT,
-  unit_price DECIMAL(10, 2),
-  total_price DECIMAL(10, 2),
+  unit_price INT,
+  totail_price INT,
   FOREIGN KEY (order_id) REFERENCES order_history(order_id)
 );

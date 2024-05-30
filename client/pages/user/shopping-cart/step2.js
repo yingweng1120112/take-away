@@ -15,6 +15,8 @@ import { useShip711StoreOpener } from '@/hooks/use-ship-711-store'
 import { Modal, Button } from 'react-bootstrap'
 import router from 'next/router'
 import { jwtDecode } from 'jwt-decode'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Step2() {
   const {
@@ -338,11 +340,31 @@ export default function Step2() {
       }
   
       // 处理订单详情创建成功的逻辑
-      alert('订单创建成功');
+      toast.success("訂單建立成功", {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Slide,
+      })
       router.push('/user/shopping-cart/step3');
     } catch (error) {
       console.error('Error creating order:', error);
-      alert('订单创建失败，请稍后再试');
+      toast.error("訂單建立失敗", {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Slide,
+      })
     }
     
     

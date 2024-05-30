@@ -3,7 +3,7 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import Table from 'react-bootstrap/Table'
 import { loadOrderHistory } from '@/services/order_history'
-import { loadOrderDetail } from '@/services/order_detail'
+import { loadOrderDetails } from '@/services/order_detail'
 import { loadProducts } from '@/services/testproduct'
 import styles from '@/styles/user/user-order-history.module.css'
 import { HiOutlineClipboardList } from 'react-icons/hi'
@@ -36,7 +36,7 @@ export default function UserOrderHistory() {
             )
             setOrderHistory(filteredOrders)
           } else {
-            console.error('資料結構不符', data)
+            console.warn('資料結構不符', data)
           }
         }
       } catch (error) {
@@ -44,33 +44,45 @@ export default function UserOrderHistory() {
       }
     }
 
+    const getProducts = async () => {
+      try {
+        const data = await loadProducts()
+        if (Array.isArray(data.product)) {
+          setProducts(data.product)
+        } else {
+          console.error('資料結構不符', data)
+        }
+        console.log(data)
+      } catch (error) {
+        console.error('获取产品数据失败', error)
+      }
+    }
+
     getOrderHistory() // 在userID变化时重新获取订单记录
+    getProducts() // 获取产品数据
   }, [])
 
-  const loadOrderDetail = async (orderId) => {
-    try {
-      const data = await fetchOrderDetail(orderId) // 使用orderId加载订单详情
-      return data // 返回订单详情数据
-    } catch (error) {
-      console.error('获取订单详情失败', error)
-      throw error // 抛出错误以便上层调用处理
-    }
-  }
-  const getOrderDetail = async (orderId) => {
-    try {
-      const orderDetailData = await loadOrderDetail(orderId) // 加载订单详情数据
-      setOrderDetails({ ...orderDetails, [orderId]: orderDetailData }) // 存储订单详情数据
-    } catch (error) {
-      console.error('加载订单详情失败', error)
-    }
-  }
-  const handleIconClick = async (orderId) => {
-    const isRowExpanded = expandedRows.includes(orderId)
-    if (isRowExpanded) {
-      setExpandedRows(expandedRows.filter((id) => id !== orderId))
+  const getOrderDetail = async (order_id) => {
+    const data = await loadOrderDetails(order_id)
+    // 確認資料結構是否與原始專案相符，並設置到狀態中
+    if (Array.isArray(data.order_detail)) {
+      setOrderDetails((prevDetails) => ({
+        ...prevDetails,
+        [order_id]: data.order_detail,
+      }))
     } else {
-      setExpandedRows([...expandedRows, orderId])
-      await getOrderDetail(orderId) // 加载订单详情数据
+      console.warn('資料結構不符', data)
+    }
+    console.log(data)
+  }  
+
+  const handleIconClick = async (order_id) => {
+    const isRowExpanded = expandedRows.includes(order_id)
+    if (isRowExpanded) {
+      setExpandedRows(expandedRows.filter((id) => id !== order_id))
+    } else {
+      setExpandedRows([...expandedRows, order_id])
+      await getOrderDetail(order_id) // 加载订单详情数据
     }
   }
 
@@ -235,23 +247,79 @@ export default function UserOrderHistory() {
             <tr>
               <th>#</th>
               {filteredTableHeaders.map((header, index) => (
-                <th key={index}>{columnNames[header]}</th>
+                <th key={index} className={styles[`th-${header}`]} >{columnNames[header]}</th>
               ))}
+              <th>訂單詳情</th>
             </tr>
           </thead>
           <tbody>
             {orderHistory.map((order, rowIndex) => (
-              <tr key={order.order_id}>
-                <td>{rowIndex + 1}</td>
-                {filteredTableHeaders.map((header, colIndex) => {
-                  // 如果当前列是'order_detail_id'，则跳过
-                  if (header === 'order_detail_id') {
-                    return null
-                  }
-                  // 根据列名渲染相应的数据
-                  return <td key={colIndex}>{order[header]}</td>
-                })}
-              </tr>
+              <React.Fragment key={order.order_id}>
+                <tr key={order.order_id}>
+                  <td>{rowIndex + 1}</td>
+                  {filteredTableHeaders.map((header, colIndex) => {
+                    //跳過order_detail_id
+                    if (header === 'order_detail_id') {
+                      return null
+                    }
+                    return <td key={colIndex}>{order[header]}</td>
+                  })}
+                  <td>
+                    {' '}
+                    {/* 新增訂單詳情欄 */}
+                    <HiOutlineClipboardList
+                      className={styles['order-detail']}
+                      onClick={() => handleIconClick(order.order_id)}
+                    />
+                  </td>
+                </tr>
+                {expandedRows.includes(order.order_id) && (
+                  <tr>
+                    <td colSpan={filteredTableHeaders.length + 2}>
+                      {orderDetails[order.order_id] &&
+                        orderDetails[order.order_id].map(
+                          (order_detail, index) => {
+                            const product = products.find(
+                              (p) => p.product_id === order_detail.product_id
+                            )
+                            const productName = product
+                              ? product.name
+                              : '未知產品'
+                            return (
+                              <div key={`order_detail_${index}`}>
+                                <p>
+                                  <strong>商品：</strong>
+                                  {productName} ({order_detail.product_id})
+                                </p>
+                                <p>
+                                  <strong>單價：</strong>
+                                  {order_detail.unit_price}
+                                </p>
+                                <p>
+                                  <strong>購買數量：</strong>
+                                  {order_detail.amount}
+                                </p>
+                                <p>
+                                  <strong>小計：</strong>
+                                  {order_detail.totail_price}
+                                </p>
+                                <hr />
+                              </div>
+                            )
+                          }
+                        )}
+                      <p>
+                        <strong>總金額：</strong>
+                        {orderDetails[order.order_id] &&
+                          orderDetails[order.order_id].reduce(
+                            (acc, curr) => acc + curr.totail_price,
+                            0
+                          )}
+                      </p>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))}
           </tbody>
         </Table>
@@ -260,35 +328,3 @@ export default function UserOrderHistory() {
     </>
   )
 }
-
-// {expandedRows.includes(order.order_id) && (
-//   <tr key={`expanded_${order.order_id}`}>
-//     <td colSpan={tableHeaders.length}>
-//       {orderDetails[order.order_id] &&
-//         orderDetails[order.order_id].map(
-//           (orderDetail, index) => (
-//             <div key={`orderDetail_${index}`}>
-//               <p>
-//                 <strong>商品：</strong>
-//                 {orderDetail.product_id}
-//               </p>
-//               <p>
-//                 <strong>購買數量：</strong>
-//                 {orderDetail.amount}
-//               </p>
-//               <p>
-//                 <strong>單價：</strong>
-//                 {orderDetail.unit_price}
-//               </p>
-//               <p>
-//                 <strong>小計：</strong>
-//                 {orderDetail.total_price}
-//               </p>
-//               {/* 其他订单详情信息 */}
-//               <br />
-//             </div>
-//           )
-//         )}
-//     </td>
-//   </tr>
-// )}

@@ -9,7 +9,24 @@ router.get('/', async function (req, res) {
   const order_detail = rows
   return res.json({ status: 'success', data: { order_detail } })
 })
+// GET - 根據 order_id 得到相應的订单详情数据
+router.get('/:order_id', async function (req, res) {
+  const orderId = req.params.order_id
+  const [rows] = await db.query(
+    'SELECT * FROM order_detail WHERE order_id = ?',
+    [orderId]
+  )
 
+  if (rows.length > 0) {
+    // 如果找到相應的 order_detail 資料，返回成功的狀態和資料
+    return res.json({ status: 'success', data: { order_detail: rows } })
+  } else {
+    // 如果未找到相應的 order_detail 資料，返回錯誤狀態和相應的錯誤消息
+    return res
+      .status(404)
+      .json({ status: 'error', message: '未找到相應的订单详情数据' })
+  }
+})
 // GET - 得到单笔订单详情数据
 router.get('/:id', async function (req, res) {
   const id = getIdParam(req)

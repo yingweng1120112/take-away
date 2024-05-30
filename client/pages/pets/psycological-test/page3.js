@@ -188,7 +188,7 @@ export default function Page3() {
                   className={styles['iconstyle']}
                 />
               </a>
-            <Link href="#">
+            <Link href="/pets">
               <a>
                 前往專區
                 <FontAwesomeIcon

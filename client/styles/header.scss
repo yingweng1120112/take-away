@@ -100,6 +100,16 @@ li a {
 .nav-shop-group {
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+.nav-shop-group .shop-group:nth-child(1) {
+  position: relative;
+  top: -11px;
+}
+.nav-shop-group .shop-group:nth-child(1) .shop-icon {
+  position: relative;
+  top: 21px;
+  left: -2px;
 }
 .shop-group {
   display: flex;
@@ -129,9 +139,9 @@ li a {
   color: black;
 }
 .cart-items {
-  position: absolute;
-  top: 6px;
-  right: 225px;
+  position: relative;
+  top: -15px;
+  right: -12px;
   background-color: #f78585;
   color: white;
   border-radius: 50%;
