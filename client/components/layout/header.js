@@ -12,6 +12,7 @@ import {
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+
 import { useCart } from '@/context/cartcontext'
 
 export default function Header() {
