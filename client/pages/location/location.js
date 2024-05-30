@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from '@/styles/location/location.module.css'
 import banner from '@/styles/location/banner.module.css'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GoChevronRight } from "react-icons/go";
+
 import { faHandPointer } from '@fortawesome/free-solid-svg-icons'
 import Header from '../../components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -11,7 +12,7 @@ export default function Location() {
       <Header />
       <div
         className={banner['banner']}
-        style={{ backgroundImage: 'url(/img/banner-blog.jpg)' }}
+        style={{ backgroundImage: 'url(/img/location/location.jpg)' }}
       >
         <div className={banner['left']}>
           <p className={banner['menu-a']}>About Us</p>
@@ -198,9 +199,9 @@ export default function Location() {
               <h1 className={styles['ml3']}>快來袋走我們吧~</h1>
             </div>
             <button className={styles['btn']}>
-              <a href="">領養專區</a>
+              <a href="http://localhost:3000/pets">領養專區</a>
               <a className={styles['icon']}>
-                {/* <FontAwesomeIcon icon={faHandPointer} /> */}
+              <GoChevronRight />
               </a>
             </button>
           </div>

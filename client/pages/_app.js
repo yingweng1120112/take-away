@@ -7,7 +7,7 @@ import DefaultLayout from '@/components/layout/default-layout'
 import { ThemeProvider } from '@/hooks/use-theme'
 import { AuthProvider } from '@/hooks/use-auth'
 import { CartProvider } from '@/context/cartcontext'
-
+import { UserProvider } from '@/context/UserContext'
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -32,5 +32,39 @@ export default function MyApp({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
-  return <CartProvider>{getLayout(<Component {...pageProps} />)}</CartProvider>
+  return  (
+    <UserProvider>
+      <CartProvider>
+        {getLayout(<Component {...pageProps} />)}
+      </CartProvider>
+    </UserProvider>
+  );
+  // <UserProvider><Component {...pageProps} /></UserProvider>;
 }
+// require('dotenv').config({ path: './.config.env' });
+
+// const cors = require('cors');
+// const express = require('express');
+// const path = require('path');
+// const cookieParser = require('cookie-parser');
+// const logger = require('morgan');
+
+// const indexRouter = require('./routes/index');
+// const usersRouter = require('./routes/users');
+
+// const app = express();
+
+// app.use(cors());
+// app.use(logger('dev'));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+
+// // Add database connection
+// require('./connections');
+
+// module.exports = app;

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
-import BannerPriceSlider from '@/pages/product/bannerPriceSlider'
+import RangeSlider from './bannerPriceSlider2'
 
 // 請複製貼上出去修改
 // banner要滑動的範圍，請用一個div包住banner，並把範圍放進div內
@@ -108,7 +108,7 @@ export default function Banner() {
                 </div>
                 <div className={banner['select-item-b']}>
                   <p className={banner['select-title']}>價格區間</p>
-                  <BannerPriceSlider />
+                  <RangeSlider />
                   <p className={banner['select-title']}> 商品搜尋 </p>
                   <div className={`mb-3 ${banner['shop-select-out']}`}>
                     <input

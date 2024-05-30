@@ -121,6 +121,19 @@
 .products-card {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.products-card .card-img{
+  z-index: 2;
+}
+.card-img-hover{
+  position: absolute;
+  z-index: 1;
+}
+.products-card:hover .card-img-hover{
+  z-index: 3;
 }
 .products-card img {
   width: 100%;
@@ -133,7 +146,6 @@
   margin-bottom: 0rem;
 }
 .products-card p:nth-child(3) {
-  text-align: right;
   padding-left: 0.625rem;
   padding-right: 0.9375rem;
   margin-bottom: 0.625rem;
@@ -178,7 +190,7 @@
   width: 5.5rem;
   font-size: 0.8rem;
 }
-.cart-btn:hover{
+.cart-btn:hover {
   transform: scale(1.05);
 }
 .cart-btn:hover svg path {
@@ -308,6 +320,8 @@
   background: var(--yellow);
   height: auto;
   padding: 1rem 0rem;
+  z-index: 3;
+  position: relative;
 }
 .frame {
   background: var(--light-yellow);
@@ -319,6 +333,11 @@
 .related-products-card img {
   width: 100%;
   border-radius: 0.4rem;
+}
+.swiper-img {
+  width: 100%;
+  height: 100px; /* 您可以根据需要调整高度 */
+  object-fit: cover;
 }
 
 /* 電腦版 */
@@ -427,5 +446,9 @@
   .related-products-card img {
     padding: 1.875rem;
     border-radius: 4rem;
+  }
+
+  .swiper-img {
+    height: 300px; /* 您可以根据需要调整高度 */
   }
 }

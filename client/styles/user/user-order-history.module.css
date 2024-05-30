@@ -1,0 +1,304 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: white;
+  border-radius: 50px;
+}
+.table-content {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.order-detail {
+  cursor: pointer;
+  width: 20px;
+  height: 30px;
+}
+.banner-life-1 {
+  background-image: url(/img/user/Banner.jpg);
+}
+.banner-life-2 {
+  background-image: url(/img/user/Banner2.jpg);
+}
+
+/* user order history */
+.bgfeet1 {
+  position: absolute;
+  width: 20%;
+  right: 80%;
+  top: 50%;
+  z-index: -1;
+}
+.bgfeet2 {
+  position: absolute;
+  width: 20%;
+  left: 77%;
+  top: 140%;
+  z-index: -1;
+}
+
+.container {
+  width: 80%;
+}
+.book {
+  width: 100%;
+  margin: 3rem auto;
+  padding: 0;
+  border-radius: solid 3px var(--black);
+}
+.book .title {
+  background-color: var(--bean-paste);
+  width: 100%;
+  color: var(--white);
+  margin: 0;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.book .name {
+  text-align: center;
+}
+.bookContainer {
+  background-color: var(--white);
+  position: relative;
+  overflow: visible;
+}
+.select {
+  color: #333333;
+  font-size: 1rem;
+}
+.name-input {
+  display: flex;
+}
+.group {
+  position: relative;
+  height: 100%;
+  margin-right: 1rem;
+  height: 100%;
+}
+.input {
+  height: 40%;
+  margin-top: 0.5rem;
+  font-size: 16px;
+  padding: 10px 10px 10px 15px;
+  display: block;
+  width: 150px;
+  border: none;
+  border-bottom: 1px solid white;
+  background: transparent;
+  color: white;
+}
+.input:focus {
+  outline: none;
+}
+.label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.input:focus ~ .label,
+.input:valid ~ .label {
+  top: -7px;
+  font-size: 14px;
+  color: white;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 150px;
+}
+.bar:before,
+.bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: white;
+  transition: 0.5s ease all;
+  -moz-transition: 0.5s ease all;
+  -webkit-transition: 0.5s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+.input:focus ~ .bar:before,
+.input:focus ~ .bar:after {
+  width: 50%;
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: white;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+.namebutton {
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--light-yellow);
+}
+.rope {
+  width: 3%;
+  height: 88%;
+  background-image: url('/img/user/user-rope.png');
+  background-repeat: repeat-y;
+  position: absolute;
+  right: 99%;
+  z-index: 2;
+}
+.feet {
+  position: absolute;
+  width: 20%;
+  right: 84%;
+  top: 80%;
+  z-index: 1;
+}
+.bookItem {
+  height: auto;
+  margin-left: 10rem;
+  display: flex;
+  align-items: center;
+}
+.bookContainer h5 {
+  margin: 100px;
+}
+
+.bookContainer {
+  border-radius: 30px;
+}
+.bookContainer h2 {
+  border-radius: 30px 30px 0 0;
+}
+
+.table {
+  width: 100%;
+  margin: 0rem auto;
+  /* margin-top: 3.5rem; */
+  text-align: center;
+}
+.table .td {
+  vertical-align: middle;
+}
+
+.table-group > tr > th,
+.table-group-divider > tr > th,
+.table-group-divider > tr > td {
+  color: var(--deep-gray);
+}
+
+.td-btn {
+  justify-content: center;
+  align-items: center;
+}
+
+.td-btn > a {
+  color: var(--reddish-brown);
+}
+
+.th-order_id {
+  width: 100px;
+}
+.th-name {
+  width: 150px;
+}
+.th-phone {
+  width: 120px;
+}
+.th-order_date {
+  width: 150px;
+}
+.th-order_remark {
+  width: 200px;
+}
+.th-delivery_method {
+  width: 150px;
+}
+.th-payment_method {
+  width: 150px;
+}
+.th-recipient_address_detail {
+  width: 200px;
+}
+.th-status {
+  width: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .user {
+    width: 95%;
+    height: 46.5rem;
+    margin: auto;
+  }
+  .celluser{
+    height:62rem;
+  }
+  .container {
+    height: 100%;
+    width: 100%;
+  }
+  .table {
+    height: 80%;
+    margin-top: 0rem;
+  }
+  .phone-time {
+    width: 6.75rem;
+  }
+  .th {
+    vertical-align: middle;
+  }
+  .td-btn {
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    /* opacity:0; */
+  }
+  .phone-censole {
+    width: 1.5rem;
+  }
+  .phone-btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* opacity:1; */
+  }
+  .name-input {
+    display: none;
+  }
+  .adopt-label {
+    width: 30%;
+  }
+  .select {
+    width: 100%;
+  }
+  .book .name {
+    font-weight: bolder;
+    font-size: 1.7rem;
+  }
+}

@@ -19,6 +19,7 @@ import { compareHash } from '#db-helpers/password-hash.js'
 // 定義安全的私鑰字串
 const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
 
+// 當需要存取敏感性(隱私)資料時，使用下面的程式碼作為驗証:
 // 檢查登入狀態用
 router.get('/check', authenticate, async (req, res) => {
   // 查詢資料庫目前的資料
@@ -31,6 +32,7 @@ router.get('/check', authenticate, async (req, res) => {
   return res.json({ status: 'success', data: { user } })
 })
 
+// 在會員進行登入認証時，如果認証通過(資料庫帳號密碼符合後)，就核發簽名與回傳存取令牌到客戶端
 router.post('/login', async (req, res) => {
   // 從前端來的資料 req.body = { username:'xxxx', password :'xxxx'}
   const loginUser = req.body
@@ -99,7 +101,7 @@ router.post('/login', async (req, res) => {
     data: { accessToken },
   })
 })
-
+// 登出時，作清除cookie的動作:
 router.post('/logout', authenticate, (req, res) => {
   // 清除cookie
   res.clearCookie('accessToken', { httpOnly: true })

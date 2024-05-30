@@ -590,7 +590,10 @@ ol {
 .learn-more:hover .button-text {
   color: #fff;
 }
-
+.form-Input-group .error{
+  color: var(--reddish-brown);
+  margin-left:0.5rem;
+}
 //TODO: page-two
 
 
@@ -674,6 +677,7 @@ ol {
   .form1 {
     margin: 0rem auto;
     width: 100%;
+    height:auto;
   }
 
   .page-one {
@@ -838,6 +842,7 @@ ol {
   }
   .page-one .next-button{
     height: 35px;
+    margin: 1rem auto;
   }
   .thanks-title {
     font-size: 1.1rem;

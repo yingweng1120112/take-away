@@ -122,7 +122,7 @@
   height: 3.125rem;
   margin-top: 1.25rem;
 }
-.footprint-banner img{
+.footprint-banner img {
   width: 100%;
 }
 /* 產品內容區 */
@@ -196,6 +196,9 @@
 }
 .fs-6 {
   font-size: 1.2rem !important;
+}
+.label {
+  margin-bottom: 1rem;
 }
 .my-comment-form .form-control {
   border-width: 0 0 0.125rem 0;
@@ -322,12 +325,42 @@
   text-align: center;
 }
 /* 相關商品 */
+.recommend {
+  background: var(--yellow);
+  height: auto;
+  padding: 1rem 0rem;
+  z-index: 3;
+  position: relative;
+}
+.frame {
+  background: var(--light-yellow);
+}
+.related-products-card {
+  width: 100%;
+  border-radius: 3.125rem;
+}
+.related-products-card img {
+  width: 100%;
+  border-radius: 0.4rem;
+}
+.swiper-div {
+  width: 100%;
+  height: 120px; /* 您可以根据需要调整高度 */
+  display: flex;
+  justify-content: center;
+}
+.swiper-img {
+  width: 100%;
+  height: 120px; /* 您可以根据需要调整高度 */
+  object-fit: cover;
+}
 
 /* 電腦版 */
 @media screen and (min-width: 1025px) {
   .content {
     justify-content: space-between;
     border-radius: 3.125rem;
+    width: 65%;
   }
 
   /* 產品資料 */
@@ -376,6 +409,7 @@
     margin-top: 2rem;
     line-height: 3.125rem;
   }
+
   /* 產品評論區 */
   .product-reviews-title {
     width: 100%;
@@ -397,7 +431,7 @@
     justify-content: space-between;
   }
   .product-reviews-title p {
-    width: 10%;
+    width: 11%;
     margin-top: 4.5rem;
   }
   .hr {
@@ -422,7 +456,7 @@
   /* 背景狗掌區 */
   .dog-palm {
     position: absolute;
-    top: 20rem;
+    top: 25rem;
     left: -2rem;
     z-index: 1;
     transform: rotate(75deg) scale(1);
@@ -439,9 +473,9 @@
     z-index: 2;
   }
   .dog-palm4 {
-    top: 25rem;
-    right: -0.5rem;
-    transform: rotate(180deg) scale(0.5);
+    top: 40rem;
+    right: 1rem;
+    transform: rotate(180deg) scale(1);
     z-index: 1;
   }
   .dog-palm5 {
@@ -456,8 +490,8 @@
     z-index: 2;
   }
   .dog-footprints {
-    top: 86rem;
-    right: 18rem;
+    top: 70rem;
+    right: 98rem;
     transform: scale(1);
   }
   /* 我的評論 */
@@ -478,6 +512,14 @@
     width: 25%;
     margin-top: 2rem;
   }
+  .project {
+    width: 48% !important;
+  }
+  .my-comment-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   /* 裝飾字 */
   .decorative-area {
     background: none;
@@ -489,14 +531,15 @@
   }
   .comment .decorative-words-img {
     width: 100%;
-    height: 65.625rem;
+    height: 71.5rem;
     position: absolute;
-    z-index: 1;
+    z-index: -1;
     top: 0rem;
     display: inline;
   }
   .decorative-words-info {
     margin-bottom: 1.25rem;
+    padding: 2% !important;
   }
   .decorative-words-info p:nth-child(1) {
     font-size: 6.25rem;
@@ -505,15 +548,15 @@
     font-size: 3.125rem;
   }
   /* 相關商品 */
-  .swiper {
+  .swiper-div {
     width: 100%;
-    height: 100%;
+    height: 300px; /* 您可以根据需要调整高度 */
+    display: flex;
+    justify-content: center;
   }
-  .swiper-button-next {
-    transform: rotate(0deg);
-  }
-
-  .swiper-button-prev {
-    transform: rotate(0deg);
+  .swiper-img {
+    width: 50%;
+    height: 300px; /* 您可以根据需要调整高度 */
+    object-fit: cover;
   }
 }

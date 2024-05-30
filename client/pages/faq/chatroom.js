@@ -1,138 +1,87 @@
-import React from 'react'
-import styles from '@/styles/chatroom.module.css'
-import {
-  FaBars,
-  FaBookOpen,
-  FaMusic,
-  FaSquarePollVertical,
-  FaPencil,
-  FaTicket,
-  FaGear,
-  FaFilter,
-  FaMagnifyingGlass,
-  FaUserPlus,
-  FaStar,
-  FaCircleInfo,
-  FaEllipsisVertical,
-  FaPaperPlane,
-} from 'react-icons/fa6'
+import styles from '@/styles/faq/app.module.css'
+import io from 'socket.io-client'
+import { useState } from 'react'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
+import Chatbanner from '@/components/faq/chatbanner'
+import Chatright from '../../components/faq/chatright'
+import Chat from './chat'
 
-export default function Chatroom() {
+const socket = io.connect('http://localhost:3005')
+
+export default function App() {
+  const [username, setUsername] = useState('')
+  const [room, setRoom] = useState('')
+  const [showChat, setShowChat] = useState(false)
+  const joinRoom = () => {
+    if (username !== '' && room !== '') {
+      socket.emit('join_room')
+      setShowChat(true)
+    }
+  }
+
   return (
     <>
-      <div className={styles['container_chatroom']}>
-        {/* 聊天室左側功能列 */}
-        <div className={styles['chatA']}>
-          <a href="#">
-            <FaBars className={styles['cr_icons']} />
-            {/* <i className={`cr_icons fa-solid fa-bars`}></i> */}
-          </a>
-          <a href="#">
-            <FaBookOpen className={styles['cr_icons']} />
-            {/* <i className={`cr_icons fa-solid fa-book-open`}></i> */}
-          </a>
-          <a href="#">
-            <FaMusic className={styles['cr_icons']} />
-
-            {/* <i className={`cr_icons fa-solid fa-music`}></i> */}
-          </a>
-          <a href="#">
-            <FaSquarePollVertical className={styles['cr_icons']} />
-
-            {/* <i className={`cr_icons fa-solid fa-square-poll-vertical`}></i> */}
-          </a>
-          <a href="#">
-            <FaPencil className={styles['cr_icons']} />
-
-            {/* <i className={`cr_icons fa-solid fa-pencil`}></i> */}
-          </a>
-          <a href="#">
-            <FaTicket className={styles['cr_icons']} />
-
-            {/* <i className={`cr_icons fa-solid fa-ticket`}></i> */}
-          </a>
-          <a href="#">
-            <FaGear className={styles['cr_icons']} />
-
-            {/* <i className={`cr_icons fa-solid fa-gear`}></i> */}
-          </a>
-        </div>
-
-        {/* 聊天室中間用戶列 */}
-        <div className={styles['chatB']}>
-          <div className={styles['chat_title']}>
-            <h2>Chat</h2>
-            <div>
-              <FaFilter className={styles['cr_icons']} />
-              {/* <i className={`cr_icons fa-solid fa-filter`}></i> */}
-              <span>Newest</span>
+    <Header />
+    <Chatbanner />
+      <div className={styles['chat_index']}>
+        {!showChat ? (
+          <div className={styles['joinChatContainer']}>
+            <h3>客服中心</h3>
+            <input
+              type="text"
+              placeholder="請輸入您的名字..."
+              onChange={(event) => {
+                setUsername(event.target.value)
+              }}
+            />
+                        <div>
+              <select onChange={(event) => {
+                setRoom(event.target.value)
+              }}>
+                <option value=""></option>
+                <option value="room1">房間1</option>
+                <option value="room2">房間2</option>
+              </select>
             </div>
+            {/* <input
+              type="button"
+              value="客服值日生"
+              onChange={(event) => {
+                setUsername(event.target.value=1)
+              }}
+            /> */}
+            {/* <input
+              type="text"
+              placeholder="Room ID..."
+              onChange={(event) => {
+                setRoom(event.target.value)
+              }}
+            /> */}
+            {/* <button onClick={joinRoom}>開始聊聊</button> */}
+            <button className={styles['cta']}>
+              <span class={styles['hover-underline-animation']} onClick={joinRoom}>開 始 聊 聊</span>
+              <svg
+                id="arrow-horizontal"
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="10"
+                viewBox="0 0 46 16"
+              >
+                <path
+                  id="Path_10"
+                  data-name="Path 10"
+                  d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                  transform="translate(30)"
+                ></path>
+              </svg>
+            </button>
           </div>
-          <div className={styles['chat_search']}>
-            <div>
-              <FaMagnifyingGlass className={styles['cr_icons']} />
-              {/* <i className={`cr_icons fa-solid fa-magnifying-glass`}></i> */}
-              <input type="text" placeholder="Search..." />
-            </div>
-          </div>
-          <div className={styles['chat_user']}>
-            <img src="../img/chat_user1-removebg-preview.png" alt="" />
-            <img src="../img/chat_user2-removebg-preview.png" alt="" />
-            <img src="../img/chat_user3-removebg-preview.png" alt="" />
-            <img src="../img/chat_user4-removebg-preview.png" alt="" />
-            <img src="../img/chat_user4-removebg-preview.png" alt="" />
-          </div>
-        </div>
-
-        {/* 聊天室右側訊息列 */}
-        <div className={styles['chatC']}>
-          <div className={styles['chat_message_title']}>
-            <div className={styles['cmt_top']}>
-              <div className={styles['cmt_avatar']}></div>
-              <h5>訪客0001</h5>
-            </div>
-            <div className={styles['cmt_mid']}>
-              <div className={styles['cmt_mid2']}>
-                <div className={styles['cmt_avatar2']}></div>
-                <div>
-                  <h5>線上客服</h5>
-                  <span>Online</span>
-                </div>
-              </div>
-              <div className={styles['cmt_tools']}>
-                <a href="#">
-                  <FaUserPlus className={styles['cr_icons']} />
-                  {/* <i className={`cr_icons fa-solid fa-user-plus`}></i> */}
-                </a>
-                <a href="#">
-                  <FaStar className={styles['cr_icons']} />
-                  {/* <i className={`cr_icons fa-regular fa-star`}></i> */}
-                </a>
-                <a href="#">
-                  <FaCircleInfo className={styles['cr_icons']} />
-                  {/* <i className={`cr_icons fa-solid fa-circle-info`}></i> */}
-                </a>
-                <a href="#">
-                  <FaEllipsisVertical className={styles['cr_icons']} />
-                  {/* <i className={`cr_icons fa-solid fa-sliders`}></i> */}
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className={styles['cmt_bottom']}>
-            <div className={styles['cmt_view']}></div>
-          </div>
-          <div className={styles['chat_message']}>
-            <div className={styles['message_box']}>
-              <input className={styles['message_input']} type="text" />
-              <button>
-                <FaPaperPlane className={styles['cr_icons']} />
-                {/* <i className={`cr_icons fa-regular fa-paper-plane`}></i> */}
-              </button>
-            </div>
-          </div>
-        </div>
+        ) : (
+          <Chatright socket={socket} username={username} />
+        )}
       </div>
+      <Footer />
     </>
   )
 }

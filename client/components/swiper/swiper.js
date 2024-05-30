@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/free-mode'
@@ -11,9 +10,8 @@ import 'swiper/css/thumbs'
 // import required modules
 import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
 
-export default function Carousel() {
+export default function Carousel({ adopt1, adopt2, adopt3, adopt4 }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-
   return (
     <>
       <Swiper
@@ -33,17 +31,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/img/pet-info/10008/10008-1.jpg"
-          />
-          {/* 720x480 */}
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            src="/img/pet-info/10008/10008-2.jpg"
+            src={`/img/pet-info/${adopt1}.jpg`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -52,7 +40,7 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/img/pet-info/10008/10008-3.jpg"
+            src={`/img/pet-info/${adopt2}.jpg`}
           />
         </SwiperSlide>
         <SwiperSlide>
@@ -61,7 +49,16 @@ export default function Carousel() {
               width: '100%',
               height: '100%',
             }}
-            src="/img/pet-info/10008/10008-4.jpg"
+            src={`/img/pet-info/${adopt3}.jpg`}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            style={{
+              width: '100%',
+              height: '100%',
+            }}
+            src={`/img/pet-info/${adopt4}.jpg`}
           />
         </SwiperSlide>
       </Swiper>

@@ -4,11 +4,13 @@
 /* 上花邊 */
 .roof {
   margin: 0;
+  width: 100%;
+  overflow: hidden;
 }
 .roof img {
   max-width: 120%;
   max-height: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 /* 步驟 */
@@ -44,11 +46,13 @@
   color: var(--yellow);
   font-weight: 900;
   font-size: 60px;
+  font-family: sans-serif;
 }
 .step .nextto h1 {
   color: var(--light-gray);
   font-weight: 900;
   font-size: 60px;
+  font-family: sans-serif;
 }
 .step .nextto:nth-last-child(1) h2 {
   margin-top: 28px;
@@ -211,6 +215,7 @@
   color: var(--deep-gray);
   box-shadow: 0 0.2rem #dfd9d9;
   cursor: pointer;
+  text-decoration: none;
 }
 .cartbutton button:nth-child(1) {
   display: flex;
@@ -236,7 +241,7 @@
 .buttonstyle:hover:not(:disabled) {
   background: var(--yellow);
   opacity: 0.8;
-  color: grey;
+  color: white;
   /* text-shadow: 0 0.05rem #bcb4b4; */
 }
 
@@ -350,7 +355,7 @@
     margin-right: 10px;
   }
   .cartitemleft .itemlist .cartimg > img {
-    width: 100%;
+    width: 60px;
     height: auto;
   }
   .cartitemleft .itemlist .cartimg {

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 
-export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
+export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name, errors}) {
   const projectOptions = ['不指定', '急難救助', '絕育計畫']
   const addressOptions = ['電子郵件地址', '通訊地址']
 
   useEffect(() => {
     setAdopt({
       ...adopt,
-      pet: donateInfo.pet,
+      pet_id: donateInfo.pet_id,
       donation_method: donateInfo.donation_method,
       amount: donateInfo.amount,
       customAmount: donateInfo.customAmount,
@@ -26,26 +26,27 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="pet"
             className="form-input"
             placeholder="寵物"
-            value={adopt.pet}
+            value={donateInfo.pet_id = name}
             onChange={handleChange}
+            disabled="disabled"
           />
           <span className="input-border"></span>
         </label>
-
         <h4 className="input-title">姓名</h4>
         <label className="form-label">
           {''}
           <input
             type="text"
-            name="name"
+            name="user_id"
             className="form-input"
             placeholder="姓名"
-            value={adopt.name}
+            value={adopt.user_id}
             onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>
-        <div />
+        <div className="error"> {errors.user_id && <p className="error">{errors.user_id}</p>}
+        </div>
         <h4 className="input-title">行動電話</h4>
         <label className="form-label">
           {' '}
@@ -54,24 +55,28 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             name="phone"
             className="form-input"
             placeholder="行動電話"
-            // value={adopt.phone}
-            // onChange={handleChange}
+            value={adopt.phone}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
+         
         </label>
+        <div className="error"> {errors.phone && <p className="error">{errors.phone}</p>}</div>
         <h4 className="input-title">電子信箱</h4>
         <label className="form-label">
           {' '}
           <input
             type="text"
-            name="email"
+            name="email"center
             className="form-input"
             placeholder="電子信箱"
-            // value={adopt.email}
-            // onChange={handleChange}
+            value={adopt.email}
+            onChange={handleChange}
           />
           <span className="input-border"></span>
         </label>
+        <div className="error">  {errors.email && <p className="error">{errors.email}</p>}
+        </div>
         <h4 className="input-title">捐贈方式及金額</h4>
         <label className="form-label">
           {''}
@@ -94,6 +99,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
             placeholder="捐贈金額"
             value={adopt.amount || adopt.customAmount || ''}
             onChange={handleChange}
+            disabled
           />
           <span className="input-border"></span>
         </label>
@@ -121,10 +127,10 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo }) {
           <label className="custom-checkbox" key={index}>
             <input
               type="checkbox"
-              name="address"
+              name="donate_address"
               value={option}
               className="radio-input"
-              checked={adopt.address === option}
+              checked={adopt.donate_address === option}
               onChange={handleChange}
             />
             <span className="checkmark"></span>

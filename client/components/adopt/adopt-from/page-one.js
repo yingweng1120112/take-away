@@ -1,13 +1,10 @@
 import React from 'react'
+import Swal from 'sweetalert2';
 
-export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
+export default function PageOne({ donateInfo, setDonateInfo, handleChange ,handleAmount , name}) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
-  const payOptions = ['銀行轉帳', '信用卡', '超商付款']
-
-  const handleAmountChange = (e) => {
-    setDonateInfo({ ...donateInfo, amount: '', customAmount: e.target.value })
-  }
+  const payOptions = ['銀行轉帳', '超商付款']
 
   return (
     <>
@@ -15,14 +12,15 @@ export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
       <h4>我想認養</h4>
       <div className="form-Input-group">
         <label className="form-label">
-          {' '}
+          {''}
           <input
             type="text"
-            name="pet"
+            name="pet_id"
             className="form-input"
             placeholder="寵物"
-            value={donateInfo.pet}
+            value={donateInfo.pet_id = name}
             onChange={handleChange}
+            disabled="disabled"
           />
           <span className="input-border"></span>
         </label>
@@ -50,7 +48,7 @@ export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
                 name="amount"
                 value={v}
                 className="ntd-input"
-                checked={donateInfo.amount === v}
+                checked={donateInfo.amount === v.toString()}
                 onChange={handleChange}
               />
               <span className="check"></span>
@@ -72,7 +70,7 @@ export default function PageOne4({ donateInfo, setDonateInfo, handleChange }) {
             className="form-input"
             placeholder="NTD"
             value={donateInfo.customAmount}
-            onChange={handleAmountChange}
+            onChange={handleAmount}
           />
           <span className="input-border"></span>
         </label>

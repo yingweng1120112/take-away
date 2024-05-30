@@ -1,0 +1,239 @@
+/* 服務項目 */
+/* 手機版 */
+.serv_container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  height: 900px;
+}
+
+/* banner服務項目 */
+.serv_banner {
+  padding-bottom: 5px;
+}
+
+.serv_btn {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 六大服務項目 */
+.serv_card {
+  width: 100%;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 180px 180px;
+  justify-content: center;
+}
+
+.card {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: #fff;
+  /* border: 2px solid black; */
+}
+
+.card_top {
+  border-radius: 20px 20px 0px 0px;
+  cursor: pointer;
+}
+
+.card_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0px;
+  text-decoration: none;
+}
+
+.card_title,
+.card_icons {
+  color: var(--reddish-brown);
+}
+
+.card_title:hover,
+.card_icons:hover {
+  color: #fff;
+}
+
+.card_title {
+  display: inline;
+  font-weight: bolder;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.card_icons {
+  font-size: 30px;
+  transform: rotate(45deg);
+}
+
+.card:hover {
+  background-color: var(--bean-paste);
+}
+
+.serv_img_box {
+  position: absolute;
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.serv_img1,
+.serv_img2,
+.serv_img3,
+.serv_img4,
+.serv_img5 {
+  position: relative;
+  overflow: hidden;
+  z-index: -1;
+}
+.serv_atag{
+  text-decoration: none;
+}
+/* 電腦版 */
+@media screen and (min-width: 1025px) {
+  .serv_container {
+    height: 100%;
+    width: 100%;
+    margin-left: 50%;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid black; */
+    flex-direction: column;
+    height: 900px;
+  }
+
+  /* banner服務項目 */
+  .serv_banner {
+    display: flex;
+    justify-content: center;
+    /* padding: 50px 0px; */
+  }
+
+  .serv_btn {
+    width: 30%;
+    overflow: hidden;
+    padding-bottom: 50px;
+    /* margin-left: 10%; */
+    margin-top: 100px;
+  }
+
+  /* 六大服務項目 */
+  .serv_card {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    /* gap: 8%; */
+    /* grid-template-columns: 180px 180px 180px; */
+    justify-content: center;
+    /* border-left: 10px solid black; */
+    /* padding: 0 0 0 7%; */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: #fff;
+  }
+
+  .card_top {
+    border-radius: 20px 20px 0px 0px;
+    cursor: pointer;
+  }
+
+  .card_bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    text-decoration: none;
+  }
+
+  .card_title,
+  .card_icons {
+    color: var(--reddish-brown);
+  }
+
+  .card_title:hover,
+  .card_icons:hover {
+    color: #fff;
+  }
+
+  .card_title {
+    display: inline;
+    font-weight: bolder;
+    padding-right: 10px;
+    font-size: 20px;
+  }
+
+  .card_icons {
+    font-size: 30px;
+    transform: rotate(45deg);
+  }
+
+  .card:hover {
+    background-color: var(--bean-paste);
+  }
+
+  /* .serv_boxa {
+    display: flex;
+  } */
+
+  .serv_boxb {
+    width: 20%;
+    border-right: 2px solid black;
+  }
+
+  .serv_img_box {
+    position: fixed;
+    width: 100%;
+    height: 1126px;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .serv_img1,
+  .serv_img2,
+  .serv_img3,
+  .serv_img4,
+  .serv_img5 {
+    position: relative;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .serv_img1 {
+    left: 10%;
+  }
+
+  .serv_img2 {
+    top: 50%;
+    right: 10%;
+  }
+
+  .serv_img3 {
+    top: 40%;
+  }
+
+  .serv_img4 {
+    bottom: 10%;
+    left: 20%;
+  }
+
+  .serv_img5 {
+    top: 20%;
+    left: 10%;
+  }
+  .serv_atag{
+    text-decoration: none;
+  }
+}

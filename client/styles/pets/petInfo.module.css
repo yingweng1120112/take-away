@@ -361,9 +361,27 @@
   font-size: 20px;
 }
 
+.stop-icon {
+  margin-right: 10px;
+}
+
+.pet-btn-stop {
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 70px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  background-color: rgb(80, 89, 99);
+  color: rgb(255, 255, 255);
+}
+
 /* 我的故事 */
 .pet-story {
-  /* width: 80%; */
+  width: 100%;
   margin-top: 10%;
   margin-bottom: 150px;
   display: flex;
@@ -480,8 +498,8 @@
 
 /* 我的習慣 */
 .pet-habit {
-  /* width: 60%;
-  display: flex;
+  width: 100%;
+  /* display: flex;
   flex-direction: column;
   align-items: center; */
   /* width: 80%; */
@@ -597,7 +615,7 @@
 .pet-score {
   width: 80%;
   height: auto;
-  margin: 300px 0;
+  margin: 300px 0 200px 0;
   padding: 30px;
   align-items: center;
   justify-content: center;
@@ -607,6 +625,7 @@
   border-radius: 50px;
   display: flex;
   flex-wrap: wrap;
+  z-index: 1;
 }
 
 .pet-score > h1 {
@@ -652,7 +671,7 @@
 
 .score-bar {
   width: 60%;
-  height: 25px;
+  /* height: 25px; */
   display: inline-block;
   position: relative;
   text-align: center;
@@ -663,7 +682,7 @@
   /* border: 1px solid black; */
 }
 
-.score-level {
+/* .score-level {
   height: 90%;
   display: flex;
   justify-content: center;
@@ -675,7 +694,7 @@
   position: absolute;
   top: 5%;
   left: 0.5%;
-}
+} */
 
 .score-energy {
   animation: score80;
@@ -725,6 +744,25 @@
   justify-content: space-between;
 }
 
+.score-btn-stop {
+  font-size: 20px;
+  height: 100%;
+  width: 45%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 70px;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  background-color: rgb(80, 89, 99);
+  color: rgb(255, 255, 255);
+}
+
+.score-btn-adopt {
+  width: 45% !important;
+}
+
 .score-btn > button {
   /* border: 1px solid black; */
   width: 25%;
@@ -759,7 +797,6 @@
 }
 
 /* 背景圖案 */
-/* TODO: 圖案位置 加了header位置會跑掉 */
 .paws1 {
   position: absolute;
   /* z-index: -1; */
@@ -768,13 +805,13 @@
   animation-direction: ease-in;
   animation-iteration-count: infinite;
   transform: rotate(200deg);
-  left: 70%;
+  left: 73%;
   top: 40%;
 }
 
 @keyframes paws1 {
   from {
-    left: 70%;
+    left: 73%;
     top: 40%;
   }
   50% {
@@ -788,7 +825,7 @@
     transform: rotate(100deg); */
   }
   to {
-    left: 70%;
+    left: 73%;
     top: 40%;
   }
 }
@@ -804,7 +841,7 @@
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 120%;
+  top: 567%;
 }
 
 @keyframes paws2 {
@@ -829,28 +866,28 @@
   height: 300px;
   object-fit: contain;
   left: -5%;
-  top: 180%;
+  top: 150%;
 }
 @keyframes paws3 {
   0% {
     transform: rotate(45deg);
     left: -5%;
-    top: 180%;
+    top: 150%;
   }
   20% {
     left: 10%;
-    top: 240%;
+    top: 208%;
     transform: rotate(90deg);
   }
   60% {
     left: -20%;
-    top: 240%;
+    top: 208%;
     transform: rotate(-70deg);
   }
   100% {
     transform: rotate(45deg);
     left: -5%;
-    top: 180%;
+    top: 150%;
   }
 }
 
@@ -861,7 +898,7 @@
   height: 500px;
   object-fit: contain;
   left: -5%;
-  top: 390%;
+  top: 370%;
 }
 
 .background-paws2 {
@@ -871,7 +908,7 @@
   height: 550px;
   object-fit: contain;
   right: 2%;
-  top: 475%;
+  top: 470%;
 }
 
 /* TODO: 手機版 */
@@ -977,6 +1014,13 @@
     font-size: 16px;
     padding-right: 5px;
   }
+
+  .pet-btn-stop {
+    font-size: 16px;
+    line-height: 50px;
+    padding-right: 5px;
+  }
+
 
   .cta svg {
     width: 20px;
@@ -1210,5 +1254,19 @@
   .score-btn > button > span {
     font-size: 16px;
     line-height: 20px;
+  }
+
+  .score-btn-stop {
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    order: 2;
+  }
+
+  .score-btn-adopt {
+    width: 100% !important;
+    order: 1;
   }
 }

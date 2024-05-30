@@ -1,20 +1,59 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import styles from '@/styles/product/information.module.css'
 import ProductCarousel from './product_carousel'
 import Quantity from './quantity'
+import { loadProduct } from '@/services/product'
+import { useRouter } from 'next/router'
 // 產品資訊
 export default function Info() {
+  const router = useRouter()
+
+  const [product, setProduct] = useState({
+    product_id: 10000,
+    name: '',
+    brand_name: '',
+    price: 0,
+    pic1: '',
+    pic2: '',
+    pic3: '',
+    pic4: '',
+    pic5: '',
+    pic6: '',
+    type: '',
+    species: '',
+    information: '',
+    reviews_id: 0,
+  })
+  const getProduct = async (product_id) => {
+    const data = await loadProduct(product_id)
+    console.log(data)
+
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      setProduct(data)
+    }
+  }
+  useEffect(() => {
+    console.log(router.query)
+
+    if (router.isReady) {
+      const { product_id } = router.query
+      // getPet(product_id)
+      getProduct(product_id)
+    }
+    // eslint-disable-next-line
+  }, [router.isReady])
+
   return (
     <>
-      <section className={styles.section}>
+      <section key={product.product_id} className={styles.section}>
         <div className={styles.content}>
           {/* 產品輪播 */}
           <ProductCarousel />
           {/* 產品標題區 */}
           <div className={styles['product-info']}>
             <div className={styles['product-title']}>
-              <h1>Maolex 毛力士 - 狗狗常溫主食餐包地中海燉羊肉佐鮮魚</h1>
-              <h2>售價 : $109</h2>
+              <h1>{product.name}</h1>
+              <h2>售價 : ${product.price}</h2>
             </div>
             <Quantity />
           </div>
@@ -24,15 +63,7 @@ export default function Info() {
           {/* 產品內容區 */}
           <div className={styles['product-description-title']}>
             <img src="\img\information\product-description-title.svg" alt="" />
-            <p className={styles.p}>
-              動物醫院合作營養顧問監製，符合並超越NRC&amp;AAFCO標準，
-              不再煩惱鮮食營養不均的問題！黃金營養比例人用等級高品質新鮮食材，滿滿肉塊+鮮美湯汁+剛剛好的蔬食
-              獨家奢華添加來自日本北海道稀少珍貴的“野生鮭魚鼻軟骨萃取”，為寶貝補充人用同款的頂級保健品『蛋白聚醣』，從日常保養牠的關節與皮毛！
-              動物醫院合作營養顧問監製，符合並超越NRC&amp;AAFCO標準，不再煩惱鮮食營養不均的問題！
-              ✓ 黃金營養比例 ✓ 人用等級高品質新鮮食材 ✓
-              滿滿肉塊+鮮美湯汁+剛剛好的蔬食
-              獨家奢華添加來自日本北海道稀少珍貴的“野生鮭魚鼻軟骨萃取”，為寶貝補充人用同款的頂級保健品『蛋白聚醣』，從日常保養牠的關節與皮毛！
-            </p>
+            <p className={styles.p}>{product.information}</p>
           </div>
         </div>
       </section>
