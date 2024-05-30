@@ -358,6 +358,7 @@
   /* 商品選單 */
   .products-menu {
     padding-left: 3.4375rem;
+    width: 90%;
   }
   .products-menu li {
     margin-right: 4rem;
