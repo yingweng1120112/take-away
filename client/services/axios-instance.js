@@ -7,21 +7,16 @@ const axiosInstance = axios.create({
   withCredentials: true,
 })
 
-// fetcher for swr
-export const fetcher = (url) => axiosInstance.get(url).then((res) => res.data)
-export const fetchWithToken = (url, token) => {
-  axiosInstance.get(`${url}&${token}`).then((res) => res.data)
-}
 
-export const fetcherWithObject = ({ url, args }) => {
-  const extraParams = new URLSearchParams(args)
-  const andSymbol = extraParams.toString() ? '&' : ''
+// 配置请求拦截器，添加 JWT 令牌到请求头
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('userKey');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
 
-  const combinedUrl = url + andSymbol + extraParams.toString()
-
-  console.log(combinedUrl)
-
-  axiosInstance.get(combinedUrl).then((res) => res.data)
-}
-
-export default axiosInstance
+export default axiosInstance;
