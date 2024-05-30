@@ -54,7 +54,7 @@ export default function Reserve() {
     habbit: '',
   })
   const userName = {
-    10001: '盧先生',
+    10001: 'dana',
     10002: '白賢祐',
     10003: '洪海仁',
     10004: '洪秀哲',
