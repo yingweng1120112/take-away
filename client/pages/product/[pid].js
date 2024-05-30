@@ -510,7 +510,7 @@ export default function Information() {
                       htmlFor="exampleFormControlInput1"
                       className={`fs-6 ${styles['label']}`}
                     >
-                      使用者編號:
+                      使用者編號 :
                     </label>
                     <input
                       type="text"
@@ -526,7 +526,7 @@ export default function Information() {
                       htmlFor="exampleFormControlInput1"
                       className={`fs-6 ${styles['label']}`}
                     >
-                      評論商品編號:
+                      評論商品編號 :
                     </label>
                     <input
                       type="text"
@@ -542,7 +542,7 @@ export default function Information() {
                       htmlFor="exampleFormControlInput1"
                       className={`fs-6 ${styles['label']}`}
                     >
-                      使用者:
+                      使用者 :
                     </label>
                     <input
                       type="text"
@@ -558,7 +558,7 @@ export default function Information() {
                       htmlFor="exampleFormControlInput1"
                       className={`fs-6 ${styles['label']}`}
                     >
-                      評分:
+                      評分 :
                     </label>
                     <select
                       className="form-select"
@@ -580,7 +580,7 @@ export default function Information() {
                       htmlFor="exampleFormControlTextarea1"
                       className={`fs-6 ${styles['label']}`}
                     >
-                      我的評論:
+                      我的評論 :
                     </label>
                     <textarea
                       className="form-control border-bottom-1"
