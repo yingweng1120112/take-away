@@ -60,7 +60,7 @@ export default function Chatright({ socket, username, room }) {
               <div className={styles['cmt_avatar2']}></div>
               <div>
                 <h5>西薩狗班長</h5>
-                <span>線上客服</span>
+                <span>線上客服{room}</span>
               </div>
               {/* <div className={styles['cmt_avatar']}></div>
               <h5>{username}</h5> */}

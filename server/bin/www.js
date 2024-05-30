@@ -46,6 +46,12 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User Disconnected', socket.id)
   })
+  // 頻道分流
+  socket.on('addroom',room =>{
+    socket.join(room)
+    socket.to(room).emit('addroom','已有新人加入聊天室!')
+    io.sockets.in(room).emit('addroom','已加入聊天室')
+  })
 })
 
 /**

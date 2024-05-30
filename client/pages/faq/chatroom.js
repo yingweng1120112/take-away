@@ -14,7 +14,7 @@ export default function App() {
   const [room, setRoom] = useState('')
   const [showChat, setShowChat] = useState(false)
   const joinRoom = () => {
-    if (username !== '') {
+    if (username !== '' && room !== '') {
       socket.emit('join_room')
       setShowChat(true)
     }
@@ -35,6 +35,15 @@ export default function App() {
                 setUsername(event.target.value)
               }}
             />
+                        <div>
+              <select onChange={(event) => {
+                setRoom(event.target.value)
+              }}>
+                <option value=""></option>
+                <option value="room1">房間1</option>
+                <option value="room2">房間2</option>
+              </select>
+            </div>
             {/* <input
               type="button"
               value="客服值日生"
