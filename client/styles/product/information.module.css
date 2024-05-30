@@ -360,6 +360,7 @@
   .content {
     justify-content: space-between;
     border-radius: 3.125rem;
+    width: 65%;
   }
 
   /* 產品資料 */
@@ -489,8 +490,8 @@
     z-index: 2;
   }
   .dog-footprints {
-    top: 86rem;
-    right: 18rem;
+    top: 70rem;
+    right: 98rem;
     transform: scale(1);
   }
   /* 我的評論 */

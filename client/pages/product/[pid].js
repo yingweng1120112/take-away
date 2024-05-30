@@ -25,6 +25,9 @@ import { useCart } from '@/context/cartcontext' //購物車加的
 
 import { jwtDecode } from 'jwt-decode'
 
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Information() {
   const router = useRouter()
   const { addToCart } = useCart() //購物車加的
@@ -51,54 +54,55 @@ export default function Information() {
   // 表單送出互動
 
   //useState 钩子来保存用户信息
-  const [userData, setUserData] = useState('')
-  const [name, setName] = useState('')
+  const [userData, setUserData] = useState('');
+  const [name, setName] = useState('');
+  const [user_id, setUser_id] = useState(null); // 初始化为 null
 
-
-  const userId = localStorage.getItem('userKey') //抓取localStorage裡面的userKey(值是token)
-  const user = jwtDecode(userId) //解析token
-  const userID = user.user_id //取得裡面的user_id
-  console.log(userID)
   const [formData, setFormData] = useState({
     product_id: '',
-    user_id: userID,
+    user_id: '',
     content: '',
     score: '',
-  })
+  });
 
-  // 使用 useEffect 钩子在组件加载时获取用户信息
+  // 页面加载时检查用户是否登录
   useEffect(() => {
-    // 定义一个异步函数
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3005/api/users/user-info/${userID}`
-        )
-        const result = await response.json()
-
-        // console.log(result.userData);
-        const userData = result.userData
-        // console.log(123)
-        // console.log(userData.name)
-        setUserData({ ...userData })
-        console.log(userData)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+    const userId = localStorage.getItem('userKey');
+    if (userId) {
+      const user = jwtDecode(userId);
+      setUser_id(user.user_id); // 设置 user_id
     }
+  }, []);
 
-    // 调用异步函数
-    fetchData()
-  }, [])
+  // 当 user_id 更新时，获取用户信息并更新 formData
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user_id) { // 只有在 user_id 存在时才获取用户信息
+        try {
+          const response = await fetch(`http://localhost:3005/api/users/user-info/${user_id}`);
+          const result = await response.json();
+          const userData = result.userData;
+          setUserData({ ...userData });
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            user_id: user_id,
+          }));
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+    };
+    
+    fetchData();
+  }, [user_id]);
 
-  // 抓取user name的初始值
+  // 当 userData.name 更新时，更新 name
   useEffect(() => {
     if (userData.name) {
-      setName(userData.name)
+      setName(userData.name);
     }
-  }, [userData.name])
-
-
+  }, [userData.name]);
+  
   //單筆商品
   const getProduct = async (pid) => {
     const data = await loadProduct(pid)
@@ -216,20 +220,20 @@ export default function Information() {
         body: JSON.stringify(formData),
       })
       if (!res.ok) {
-        throw new Error('Network response was not ok')
+        throw new Error('沒有登入或沒有進行評價')
       }
       const data = await res.json()
       console.log(data)
       if (res.status === 201) {
         console.log('表單已成功送出', data)
-        alert('表單已成功送出')
+        toast('表單已成功送出')
       } else {
         console.log('表單送出失敗', data.message)
-        alert(`表單送出失敗: ${data.message}`)
+        toast(`表單送出失敗: ${data.message}`)
       }
     } catch (error) {
       console.error('表單送出錯誤:', error)
-      alert(`表單送出錯誤: ${error.message}`)
+      toast(`表單送出錯誤: ${error.message}`)
     }
   }
 
@@ -426,59 +430,15 @@ export default function Information() {
                 key={review.reviews_id}
                 className={styles['product-reviews-info']}
               >
-                <p className={styles['reviews-user']}>{review.user_name}說 :</p>
+                <p className={styles['reviews-user']}>{review.user_name} 說 :</p>
                 <p className={styles['reviews-info']}>{review.content}</p>
                 <p>
-                  評分: {review.score} <GoStarFill />
+                  評論分數: {review.score} ⭐ 
                 </p>
-                <p className={styles['reviews-date']}>{review.time}</p>
+                <p className={styles['reviews-date']}>評分時間 : {review.time}</p>
               </div>
             ))}
             {/* 分頁 */}
-            <div
-              className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
-              role="navigation"
-            >
-              <a className={pagination.first} aria-label="First Page" href="#">
-                «{' '}
-              </a>
-              <a
-                className={pagination.previouspostslink}
-                rel="prev"
-                aria-label="Following-page"
-                href="#"
-              >
-                &lt;
-              </a>
-              <a className={pagination.page} href="#">
-                1
-              </a>
-              <a className={pagination.page} href="#">
-                2
-              </a>
-              <a className={pagination.page} href="#">
-                3
-              </a>
-              {/* <span aria-current="page" class="current">5</span> */}
-              <a className={pagination.page} href="#">
-                4
-              </a>
-              <a className={pagination.page} href="#">
-                5
-              </a>
-              <a
-                className={pagination.nextpostslink}
-                rel="next"
-                aria-label="次のページ"
-                href="#"
-              >
-                &gt;
-              </a>
-              <a className={pagination.last} aria-label="Last Page" href="#">
-                {' '}
-                »
-              </a>
-            </div>
             <hr className={styles.hr} />
           </div>
         </div>
@@ -556,7 +516,7 @@ export default function Information() {
                       type="text"
                       className="form-control border-bottom-1"
                       id="exampleFormControlInput1"
-                      placeholder="user-name"
+                      placeholder="user-id"
                       Value={formData.user_id}
                       readOnly={true}
                     />
@@ -608,11 +568,11 @@ export default function Information() {
                       value={formData.score}
                       onChange={tabalChange}
                     >
-                      <option value="1">1分 超級差評</option>
-                      <option value="2">2分 勉勉強強</option>
-                      <option value="3">3分 普普通通</option>
-                      <option value="4">4分 覺得不錯</option>
-                      <option value="5">5分 真的超讚</option>
+                      <option value="1">1⭐ 超級差評</option>
+                      <option value="2">2⭐ 勉勉強強</option>
+                      <option value="3">3⭐ 普普通通</option>
+                      <option value="4">4⭐ 覺得不錯</option>
+                      <option value="5">5⭐ 真的超讚</option>
                     </select>
                   </div>
                   <div className="mb-3 w-100">
