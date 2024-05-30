@@ -52,13 +52,15 @@ export default function Chatright({ socket, username, room }) {
       {/* 聊天室右側訊息列 */}
       <div className={styles['chatC']}>
         <div className={styles['chat_message_title']}>
-          <div className={styles['cmt_top']}><h1>客服中心</h1></div>
+          <div className={styles['cmt_top']}>
+            <h1>客服中心</h1>
+          </div>
           <div className={styles['cmt_mid']}>
             <div className={styles['cmt_mid2']}>
               <div className={styles['cmt_avatar2']}></div>
               <div>
-                <h5>線上客服:西薩狗班長</h5>
-                <span>Online</span>
+                <h5>西薩狗班長</h5>
+                <span>線上客服</span>
               </div>
               {/* <div className={styles['cmt_avatar']}></div>
               <h5>{username}</h5> */}
@@ -78,12 +80,12 @@ export default function Chatright({ socket, username, room }) {
                 }
               >
                 <div>
+                  <div className={styles['message-meta']}>
+                    <p className={styles['author']}>{messageContent.author}</p>
+                    <p className={styles['time']}>{messageContent.time}</p>
+                  </div>
                   <div className={styles['message-content']}>
                     <p>{messageContent.message}</p>
-                  </div>
-                  <div className={styles['message-meta']}>
-                    <p className={styles['time']}>{messageContent.time}</p>
-                    <p className={styles['author']}>{messageContent.author}</p>
                   </div>
                 </div>
               </div>

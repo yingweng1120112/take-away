@@ -92,7 +92,9 @@
   overflow: hidden;
   z-index: -1;
 }
-
+.serv_atag{
+  text-decoration: none;
+}
 /* 電腦版 */
 @media screen and (min-width: 1025px) {
   .serv_container {
@@ -230,5 +232,8 @@
   .serv_img5 {
     top: 20%;
     left: 10%;
+  }
+  .serv_atag{
+    text-decoration: none;
   }
 }
