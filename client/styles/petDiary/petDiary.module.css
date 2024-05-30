@@ -72,11 +72,13 @@
 }
 .show-img {
   margin: 1rem 0 0 1rem;
+  box-shadow: 4px 4px 10px 0px rgb(0 0 0 / 25%);
+  height: 100px;
 }
 .post-time {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 .content-time {
   margin: 0;
@@ -184,6 +186,7 @@
 }
 .post textarea {
   resize: none;
+  width: 100%;
 }
 .post-upload label {
   margin-right: 1rem;
@@ -192,6 +195,7 @@
 .post-upload-pic {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 .swiper-container {
   width: 100%;
@@ -226,20 +230,18 @@
   height: 20%;
   box-sizing: border-box;
   padding: 3px 0;
-  width: 80%;
-  margin: auto;
 }
 
 .mySwiper .swiper-slide {
   width: 25%;
   height: 100%;
   margin: auto;
-  opacity: 0.4;
+  opacity: 0.7;
   padding: 3px;
 }
 
 .mySwiper .swiper-slide-thumb-active {
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 .mySwiper3 {
@@ -304,6 +306,9 @@
   border: none;
   background: url(/img/petDiary/chevronDoubleLeft.svg);
 }
+.inputFile {
+  margin-left: 15%;
+}
 @media screen and (min-width: 1025px) {
   .banner {
     height: 20rem;
@@ -343,10 +348,19 @@
   .post-swiper-container {
     width: 500px;
   }
-  .mySwiper3 {
-    width: 50%;
-  }
   .mySwiper3 .swiper-slide img {
-    padding: 1% 1% 7% 1%;
+    padding: 1% 1% 9% 1%;
+  }
+  .inputFile {
+    margin-left: 30%;
+  }
+  .info-line h4 {
+    padding-top: 1rem;
+  }
+  .info-line h5 {
+    line-height: 2.5rem;
+  }
+  .post-upload-pic {
+    justify-content: flex-start;
   }
 }
