@@ -8,6 +8,7 @@ import styles from '@/styles/swiper/indexSwipper.module.css'
 import ProductCarousel from '@/components/shopping-cart/carousel'
 import IndexService from '@/components/index-service/indexservice'
 import MarqueePets from '@/components/marquee-pets/marquee-pets'
+import pawsStyles from '@/styles/index/paws.module.css'
 
 export default function Home() {
   return (
@@ -27,6 +28,20 @@ export default function Home() {
         <h3 className="commendtitle">產品推薦</h3>
         <ProductCarousel />
       </div>
+
+      
+      <img
+          src="/img/pets/paws.png"
+          className={pawsStyles['paws1']}
+          alt=""
+          draggable="false"
+        />
+        <img
+          src="/img/pets/paws.png"
+          className={pawsStyles['paws2']}
+          alt=""
+          draggable="false"
+        />
 
       <style global jsx>
         {`

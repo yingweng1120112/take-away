@@ -40,53 +40,33 @@
   justify-content: center;
 }
 
-.user {
-  width: 80%;
-  display: flex;
-  border-bottom: 1px solid black;
-  margin: 1rem 4rem;
-  padding-bottom: 10px;
-  align-items: center;
-}
-
-.stickers {
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.stickers img {
-  width: 100%;
-  height: auto;
-}
-
 .bookItems {
-  display: block;
-  justify-content: center;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   z-index: 0;
   overflow: hidden;
 }
 
-.bookItem {
+/* .bookItem {
   width: 75%;
   display: flex;
   align-items: center;
   border-bottom: 1px solid black;
   margin: 1rem 0 0 4rem;
   padding-bottom: 10px;
-}
+} */
 
-.bookItem img {
+/* .bookItem img {
   margin-right: 1rem;
-}
+} */
 
-.items h5 {
+/* .items h5 {
   margin: 1.5rem;
   position: relative;
-}
+} */
 
 .rope {
   width: 3%;
@@ -112,65 +92,65 @@
   border-radius: 30px 30px 0 0;
 }
 
-.btnItem {
+/* .btnItem {
   display: flex;
   justify-content: flex-end;
   margin: 1rem 2rem;
   z-index: 2;
-}
+} */
 
-.btnConfirm {
+/* .btnConfirm {
   margin: 0.5rem;
   padding: 0.2rem 0.8rem;
   font-size: var(--font-size-h4);
   background-color: var(--khaki);
   border-radius: 80px;
-}
+} */
 
-.text-danger {
+/* .text-danger {
   font-size: 10px;
   padding: 1rem;
   align-items: end;
-}
+} */
 
-.input {
+/* .input {
   width: 280px;
-}
-
+} */
+/* 
 .bell {
   position: absolute;
   width: 18%;
   left: 83%;
-}
-
+} */
+/* 
 .feet {
   position: absolute;
   width: 20%;
   right: 84%;
   top: 84%;
   z-index: 1;
-}
+} */
 
 /* input */
-.group {
+/* .group {
   position: relative;
   margin: 10px;
-}
+} */
 
-.input {
+/* .input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 400px;
   border: none;
   border-bottom: 1px solid #757575;
-}
-
+} */
+/* 
 .input:focus {
   outline: none;
-}
+} */
 
-.label {
+/* .label {
   color: #999;
   font-size: 18px;
   font-weight: normal;
@@ -179,22 +159,22 @@
   left: 5px;
   top: 10px;
   transition: 0.2s ease all;
-}
+} */
 
-.input:focus ~ .label,
+/* .input:focus ~ .label,
 .input:valid ~ .label {
   top: -20px;
   font-size: 14px;
   color: #5264ae;
-}
-
+} */
+/* 
 .bar {
   position: relative;
   display: block;
   width: 400px;
-}
+} */
 
-.bar::before,
+/* .bar::before,
 .bar::after {
   content: '';
   height: 2px;
@@ -203,22 +183,22 @@
   position: absolute;
   background: #5264ae;
   transition: 0.2s ease all;
-}
+} */
 
-.bar::before {
+/* .bar::before {
   left: 50%;
-}
+} */
 
-.bar::after {
+/* .bar::after {
   right: 50%;
-}
+} */
 
-.input:focus ~ .bar::before,
+/* .input:focus ~ .bar::before,
 .input:focus ~ .bar::after {
   width: 50%;
-}
+} */
 
-.highlight {
+/* .highlight {
   position: absolute;
   height: 60%;
   width: 100px;
@@ -226,12 +206,12 @@
   left: 0;
   pointer-events: none;
   opacity: 0.5;
-}
+} */
 
-.input:focus ~ .highlight {
+/* .input:focus ~ .highlight {
   animation: inputHighlighter 0.3s ease;
-}
-/* 新增樣式 */
+} */
+/* 新增樣式
 .label.active {
   top: -20px;
   font-size: 14px;
@@ -247,21 +227,132 @@
     width: 0;
     background: transparent;
   }
+} */
+/* ----------------------- */
+
+.pet-card {
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
 }
 
+.pet-card > img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.35) 4px 4px 10px;
+}
+
+.card-desc {
+  width: 100%;
+  padding: 0 0 0 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  font-weight: 600;
+  color: rgba(24, 39, 71, 0.5);
+}
+
+.card-desc > p {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 3rem;
+  color: var(--brown);
+}
+
+.card-desc > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-desc > div > img {
+  height: 20px;
+  width: 20px;
+  object-fit: contain;
+  opacity: 50%;
+}
+
+.trash-icon{
+  width: 30px;
+  height: 30px;
+}
+
+.cta {
+  border: none;
+  cursor: pointer;
+  background-color: var(--khaki);
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.cta:hover {
+  border: none;
+  cursor: pointer;
+  background-color: var(--khaki);
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  padding-right: 15px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* 手機版 */
 @media screen and (min-width: 414px) and (max-width: 828px) {
-  /* banner */
   .banner-life-2 {
     background-image: url(/img/user/Banner.jpg);
   }
-
-  .select-phone {
-    flex-wrap: wrap;
-  }
-  .select-title {
-    font-size: 18px;
-  }
-  /* user-edit */
   .bookInfo {
     margin-top: -65px;
   }
@@ -277,6 +368,7 @@
 
   .book {
     width: 100%;
+    margin-top: 100px;
   }
   .bookContainer {
     width: 100%;
@@ -292,7 +384,10 @@
   }
 
   .bookItems {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    padding: 0;
   }
 
   .user {
@@ -308,6 +403,61 @@
   .bookItem img {
     width: 10%;
     margin: 10px;
+  }
+
+  .pet-card {
+    width: 80%;
+    margin: 20px;
+  }
+
+  .pet-card > img {
+    height: 150px;
+    width: 150px;
+    border-radius: 10px;
+  }
+
+  .card-desc {
+    width: 180px;
+    padding: 0 0 0 5%;
+  }
+
+  .card-desc > span {
+    font-size: 14px;
+  }
+
+  .card-desc > p {
+    padding: 0;
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: 20px;
+    line-height: 2rem;
+  }
+
+  .card-desc > div {
+    font-size: 14px;
+  }
+
+  .card-desc > div > img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .cta {
+    width: 100%;
+    height: 30px;
+    border-radius: 50px;
+  }
+
+  .cta span {
+    padding-bottom: 3px;
+    padding-right: 15px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .cta:hover {
+    height: 30px;
   }
 
   .items h5 {

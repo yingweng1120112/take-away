@@ -1,0 +1,39 @@
+.paws1 {
+  position: absolute;
+  /* z-index: -1; */
+  /* animation-name: paws1;
+  animation-duration: 10s;
+  animation-direction: ease-in;
+  animation-iteration-count: infinite; */
+  transform: rotate(200deg);
+  left: 85%;
+  top: 60%;
+}
+
+.paws2 {
+  position: absolute;
+  /* z-index: -1; */
+  /* animation-name: paws1;
+  animation-duration: 10s;
+  animation-direction: ease-in;
+  animation-iteration-count: infinite; */
+  transform: rotate(330deg);
+  left: 0%;
+  top: 170%;
+}
+
+/* 手機版 */
+@media screen and (max-width: 414px) {
+  .paws1 {
+    width: 100px;
+    top: 25%;
+    left: 70%;
+    z-index: -1;
+  }
+  .paws2 {
+    width: 100px;
+    left: 0%;
+    top: 120%;
+    z-index: -1;
+  }
+}

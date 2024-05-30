@@ -134,40 +134,47 @@ export default function UserInfo() {
         >
           <div className={`accordion-body ${banner['accordion-body']}`}>
             <div className={`banner['select']`}>
-              <div className="w-100 d-flex flex-row align-items-start">
+              <div className={`w-100 d-flex flex-row align-items-start ${styles['select-phone']}`}>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-info">
-                    <p className={`link ${banner['select-title']}`}>個人資料</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}>個人資料</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/shopping-cart/step1">
-                    <p className={`link ${banner['select-title']}`}>購物車</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']} `}>購物車</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-order-history">
-                    <p className={`link ${banner['select-title']}`}>訂單紀錄</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}>訂單紀錄</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/">
-                    <p className={`link ${banner['select-title']}`}>浪浪收藏</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}>浪浪收藏</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-myUserInfo">
-                    <p className={`link ${banner['select-title']}`}>我的寵物</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}>我的寵物</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-reserve">
-                    <p className={`link ${banner['select-title']}`}>預約紀錄</p>
+                    <p className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}>預約紀錄</p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt">
-                    <p className={`link ${banner['select-title']}`}>
+                  <Link href="/user/user-adopt-history">
+                    <p className={`link ${banner['select-title']}
+                    ${styles['select-title']}`}>
                       線上認養紀錄
                     </p>
                   </Link>
@@ -188,40 +195,43 @@ export default function UserInfo() {
 
             <div className={styles['bookContainer']}>
               <h2>個人資料</h2>
-              <div className={styles['user']}>
+              
+              <div className={styles['bookItem']}>
+              <img src="\img\user\user-dog.png" alt="" />
+                <h5>姓名：</h5>
+                <input type="text" value={name} className={styles['input']}/>
                 <div className={styles['stickers']}>
                   {/* <img src={`/img/user/${userInfo.pic}.jpg`} alt="" /> */}
                 </div>
-                <h5>姓名：</h5>
-                <input type="text" value={name} />
-              </div>
-              <div className={styles['bookItem']}>
-                <img src={`/img/user/user-dog.jpg`} alt="" />
-                <h5>id：</h5>
-                <input type="text" value={userid} />
                 <hr />
               </div>
               <div className={styles['bookItem']}>
-                <img src={`/img/user/user-dog.jpg`} alt="" />
+                <img src="\img\user\user-dog.png" alt="" />
+                <h5 className={styles['input']}>id：</h5>
+                <input type="text" value={userid} className={styles['input']}/>
+                <hr />
+              </div>
+              <div className={styles['bookItem']}>
+                <img src="\img\user\user-dog.png" alt="" />
                 <h5>Email：</h5>
-                <input type="text" value={email} />
+                <input type="text" value={email} className={styles['input']}/>
                 <hr />
               </div>
               <div className={styles['bookItem']}>
-                <img src={`/img/user/user-dog.jpg`} alt="" />
+              <img src="\img\user\user-dog.png" alt="" />
                 <h5>帳號：</h5>
-                <input type="text" value={phone} />
+                <input type="text" value={phone} className={styles['input']}/>
               </div>
               <div className={styles['bookItem']}>
-                <img src={`/img/user/user-dog.jpg`} alt="" />
+              <img src="\img\user\user-dog.png" alt="" />
                 <h5>地址：</h5>
-                <input type="text" value={addressDetail} />
+                <input type="text" value={addressDetail} className={styles['input']}/>
               </div>
               <div className={styles['btnItem']}>
                 <Link href="/user/user-edit">
                   <button className={styles['btnConfirm']}>修改資料</button>
                 </Link>
-                <button className={styles['btnConfirm']}>登出</button>
+                {/* <button className={styles['btnConfirm']}>登出</button> */}
               </div>
             </div>
           </div>

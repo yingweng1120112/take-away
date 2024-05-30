@@ -41,6 +41,7 @@ export default function Chatright({ socket, username, room }) {
   }
 
   useEffect(() => {
+    if (!socket) return
     socket.on('receive_message', (data) => {
       setMessageList((list) => [...list, data])
     })
