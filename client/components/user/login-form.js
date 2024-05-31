@@ -81,7 +81,17 @@ export default function LoginForm() {
         // console.log(user.user_id)
         // console.log("回傳成功")
         // setUsers(user)
-        toast.success('已成功登入')
+        toast.success(('已成功登入'), {
+          position: "top-center",
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+        });
         router.push('./user-info')
       } else {
         const data = await response.json()
@@ -99,7 +109,17 @@ export default function LoginForm() {
     localStorage.removeItem('userKey')
 
     // 成功登出並回復初始會員狀態
-    toast.success('已成功登出')
+    toast.success(('已成功登出'), {
+      position: "top-center",
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+      transition: Slide,
+    });
 
     // 其他狀態更新邏輯
     setUserData('')
