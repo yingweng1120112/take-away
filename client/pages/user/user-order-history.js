@@ -74,7 +74,7 @@ export default function UserOrderHistory() {
       console.warn('資料結構不符', data)
     }
     console.log(data)
-  }  
+  }
 
   const handleIconClick = async (order_id) => {
     const isRowExpanded = expandedRows.includes(order_id)
@@ -244,12 +244,14 @@ export default function UserOrderHistory() {
           className={styles['table-content']}
         >
           <thead>
-            <tr>
+            <tr className={styles['tr-header']}>
               <th>#</th>
               {filteredTableHeaders.map((header, index) => (
-                <th key={index} className={styles[`th-${header}`]} >{columnNames[header]}</th>
+                <th key={index} className={styles[`th-${header}`]}>
+                  {columnNames[header]}
+                </th>
               ))}
-              <th>訂單詳情</th>
+              <th className={styles['th-detail']}>訂單詳情</th>
             </tr>
           </thead>
           <tbody>
@@ -285,30 +287,42 @@ export default function UserOrderHistory() {
                             const productName = product
                               ? product.name
                               : '未知產品'
+                            const productPic = product
+                              ? product.pic1
+                              : '未知產品'
                             return (
-                              <div key={`order_detail_${index}`}>
-                                <p>
-                                  <strong>商品：</strong>
-                                  {productName} 
-                                </p>
-                                <p>
+                              <div
+                                key={`order_detail_${index}`}
+                                className={styles['click-style']}
+                              >
+                                <div className={styles['click-product-style']}>
+                                  <div>
+                                    <img src={`/img/product/${productPic}`} />{' '}
+                                  </div>
+                                  <div>
+                                    <div>{productName}</div>
+                                  </div>
+                                </div>
+                                <div className={styles['click-price-style']}>
+                                <div>
                                   <strong>單價：</strong>
                                   {order_detail.unit_price}
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                   <strong>購買數量：</strong>
                                   {order_detail.amount}
-                                </p>
-                                <p>
+                                </div>
+                                <div>
                                   <strong>小計：</strong>
                                   {order_detail.totail_price}
-                                </p>
+                                </div>
+                                </div>
                                 <hr />
                               </div>
                             )
                           }
                         )}
-                      <p>
+                      <p className={styles['total-price']}>
                         <strong>總金額：</strong>
                         {orderDetails[order.order_id] &&
                           orderDetails[order.order_id].reduce(
