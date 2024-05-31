@@ -102,7 +102,7 @@ export default function Header() {
             <div className="nav-shop-group">
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
-                  <CiShoppingCart className="shop-icon" />
+                  <TiShoppingCart className="shop-icon" />
                   <span className="cart-items">{cartItems.length}</span>
                   購物車
                 </div>
