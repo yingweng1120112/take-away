@@ -133,7 +133,12 @@ export default function Page1() {
       <section className={`${styles['hearttest']} ${styles['sectionstyle']}`}>
         <div className={styles['question']}>
           <div>
-            <ProgressBar variant="warning" now={now} label={`${Math.round(now)}%`} className={styles['progress-bar']}  />
+            <ProgressBar
+              variant="warning"
+              now={now}
+              label={`${Math.round(now)}%`}
+              className={styles['progress-bar']}
+            />
           </div>
           <div>
             <button style={{ cursor: 'default' }}>
@@ -158,7 +163,7 @@ export default function Page1() {
           </div>
         </div>
         <div className={styles['testoption']}>
-          <img src="/psycological-test/hearttestoption1.png" alt="" />
+          <img src="/psycological-test/catbg.png" alt="" />
           <div className={styles['option']}>
             <a
               href="#"
@@ -168,6 +173,17 @@ export default function Page1() {
                 handleAnswer('a')
               }}
             >
+              <div className={styles['catcontainer']}>
+                <div>
+                  <img
+                    src="/psycological-test/cat1.png"
+                    className={styles['catbody']}
+                  />
+                  <div className={styles['cathand1-wrapper']}>
+                    <img src="/psycological-test/cathand1.png" className={styles['cathand1']} />
+                  </div>
+                </div>
+              </div>
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionA.png"
@@ -183,6 +199,17 @@ export default function Page1() {
                 handleAnswer('b')
               }}
             >
+              <div className={styles['catcontainer']}>
+                <div>
+                  <img
+                    src="/psycological-test/cat2.png"
+                    className={styles['catbody']}
+                  />
+                  <div className={styles['cathand2-wrapper']}>
+                    <img src="/psycological-test/cathand2.png" className={styles['cathand2']} />
+                  </div>
+                </div>
+              </div>
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionB.png"
@@ -198,6 +225,17 @@ export default function Page1() {
                 handleAnswer('c')
               }}
             >
+              <div className={styles['catcontainer']}>
+                <div>
+                  <img
+                    src="/psycological-test/cat3.png"
+                    className={styles['catbody']}
+                  />
+                  <div className={styles['cathand3-wrapper']}>
+                    <img src="/psycological-test/cathand3.png" className={styles['cathand3']} />
+                  </div>
+                </div>
+              </div>
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionC.png"
@@ -213,6 +251,17 @@ export default function Page1() {
                 handleAnswer('d')
               }}
             >
+              <div className={styles['catcontainer']}>
+                <div>
+                  <img
+                    src="/psycological-test/cat4.png"
+                    className={styles['catbody']}
+                  />
+                  <div className={styles['cathand4-wrapper']}>
+                    <img src="/psycological-test/cathand4.png" className={styles['cathand4']} />
+                  </div>
+                </div>
+              </div>
               <img
                 className={styles['everyimg']}
                 src="/psycological-test/optionD.png"

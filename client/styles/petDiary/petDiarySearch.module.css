@@ -70,7 +70,9 @@
   color: #333;
 }
 .wp-pagenavi a {
+  text-decoration: none;
   color: #333;
+  font-size: 20px;
 }
 .wp-pagenavi a:hover {
   color: #77a0d1;
@@ -95,7 +97,6 @@
 }
 .wp-pagenavi .first,
 .wp-pagenavi .extend {
-  margin-right: 15px;
 }
 .wp-pagenavi .previouspostslink,
 .wp-pagenavi .nextpostslink {
@@ -247,7 +248,7 @@
   }
   .item {
     width: 300px;
-    margin: 0 1rem 2rem 1rem;
+    margin: 0 4rem 2rem 1rem;
   }
   .desc {
     font-size: 1.2rem;
@@ -261,5 +262,8 @@
   .project-pic {
     width: 300px;
     height: 300px;
+  }
+  .project-list {
+    justify-content: flex-start;
   }
 }

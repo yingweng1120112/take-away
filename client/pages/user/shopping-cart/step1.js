@@ -14,6 +14,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
+import { Modal, Button } from 'react-bootstrap'
+import { jwtDecode } from 'jwt-decode'
 
 export default function Step1() {
   const {
@@ -30,34 +32,59 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const userId = localStorage.getItem('user_id');
-    if (userId) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
+    const user = jwtDecode(userId) //解析token
+    const userID = user.user_id //取得裡面的user_id
+    console.log(userID)
   }, []);
 
+
+  const [showModal, setShowModal] = useState(false)
+
+  const chooseProduct = () => {
+    const selectedProducts = selectedItems.filter((item) => item.checked)
+    if (selectedProducts.length === 0) {
+      console.log('Show modal')
+      setShowModal(true)
+      return
+    } else {
+      // 如果已選擇商品，導向下一步
+      console.log('Redirect to next step')
+      window.localStorage.setItem('selectedItems', JSON.stringify(selectedProducts))
+      window.location.href = '/user/shopping-cart/step2'
+    }
+  }
+
+
+
   useEffect(() => {
-    setSelectedItems(prevState => {
+    setSelectedItems((prevState) => {
       const nextState = cartItems.map((item) => ({
         ...item,
-        checked: prevState.find(
-          (selected) => selected.product_id === item.product_id
-        )?.checked || false,
-      }));
-      return nextState;
-    });
-  }, [cartItems]);
-  
-
+        checked:
+          prevState.find((selected) => selected.product_id === item.product_id)
+            ?.checked || false,
+      }))
+      return nextState
+    })
+  }, [cartItems])
 
   return (
     <>
       <Header />
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>提示</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>尚未選擇任何商品</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            確定
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {/* 背景樣式上 */}
       <section className={`${styles['roof']} ${styles['sectionstyle']}`}>
         <img src="/shopping-cart/roof.png" alt="" />
@@ -86,9 +113,7 @@ export default function Step1() {
       <div className={styles['shoppingcar']}>
         <div className={styles['shoppingcarleft']}>
           <div className={`${styles['carttitle']} ${styles['carttopstyle']}`}>
-            <div>
-              購物車（{cartItems.length}件）
-            </div>
+            <div>購物車（{cartItems.length}件）</div>
           </div>
           <div className={styles['cartdetail']}>
             <div className={styles['cartdetailleft']}>商品資料</div>
@@ -112,14 +137,12 @@ export default function Step1() {
                       <input
                         type="checkbox"
                         checked={selectedItem?.checked || false}
-                        onChange={() =>
-                          handleToggleChecked(v.product_id)
-                        }
+                        onChange={() => handleToggleChecked(v.product_id)}
                       />
                     </div>
                     <div className={styles['itemlist']}>
                       <div className={styles['cartimg']}>
-                      <img src={`/img/product/${v.pic1}`} alt={v.name} />
+                        <img src={`/img/product/${v.pic1}`} alt={v.name} />
                       </div>
                       <div>{v.name}</div>
                     </div>
@@ -133,7 +156,7 @@ export default function Step1() {
                         icon={faSquareMinus}
                         className={styles['iconstyle']}
                         onClick={() => {
-                          decreaseItem(v.product_id,v.name)
+                          decreaseItem(v.product_id, v.name)
                         }}
                       />
                       <div>{v.qty}</div>
@@ -147,13 +170,15 @@ export default function Step1() {
                       />
                     </div>
                     <div>{v.subTotal}</div>
-                    <div style={{ cursor: 'pointer' }}>
+                    <div
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        removeItem(v.product_id, v.name)
+                      }}
+                    >
                       <FontAwesomeIcon
                         icon={faTrashCan}
                         className={styles['iconstyle']}
-                        onClick={() => {
-                          removeItem(v.product_id,v.name)
-                        }}
                       />
                     </div>
                   </div>
@@ -191,7 +216,7 @@ export default function Step1() {
               <div>尚未選擇商品</div>
             )}
             <div className={styles['cartbutton']}>
-            <Link href="/product/menu" passHref>
+              <Link href="/product/menu" passHref>
                 <a className={styles['buttonstyle']}>
                   <FontAwesomeIcon
                     icon={faStore}
@@ -200,15 +225,13 @@ export default function Step1() {
                   繼續購物
                 </a>
               </Link>
-              <Link href="/user/shopping-cart/step2" passHref>
-                <a className={styles['buttonstyle']}>
-                  填寫資料
-                  <FontAwesomeIcon
-                    icon={faAnglesRight}
-                    className={styles['iconstyle2']}
-                  />
-                </a>
-              </Link>
+              <button onClick={chooseProduct} className={styles['buttonstyle']}>
+                填寫資料
+                <FontAwesomeIcon
+                  icon={faAnglesRight}
+                  className={styles['iconstyle2']}
+                />
+              </button>
             </div>
           </div>
         </div>

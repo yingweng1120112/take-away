@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
+import axios from 'axios'
 import Header from '@/components/layout/header'
 import styles2 from '@/styles/product/menu_banner2.module.css'
 import banner from '@/styles/product/menu_banner.module.css'
@@ -12,6 +13,7 @@ import Slider from '@material-ui/core/Slider'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles3 from '@/styles/pets/petList.module.css'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import ProductModal from '@/components/product/product_modal'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -80,7 +82,6 @@ export default function Menu() {
   const [total, setTotal] = useState(0)
   const [pageCount, setPageCount] = useState(0)
   const [products, setProducts] = useState([])
-  
 
   //查詢條件
   const [type, setType] = useState([])
@@ -92,16 +93,17 @@ export default function Menu() {
   const [orderby, setOrderby] = useState({ sort: 'price', order: 'asc' })
   // 监听价格输入框的值变化，更新价格区间
   const handlePriceChange = (e, newValue) => {
-    setPriceGte(newValue[0]);
-    setPriceLte(newValue[1]);
-  };
+    setPriceGte(newValue[0])
+    setPriceLte(newValue[1])
+  }
   // 在价格输入框失去焦点时触发搜索操作
   const handleSearch = () => {
     // 这里触发搜索操作，你可以调用你的搜索函数并传递更新后的价格区间
-    console.log('Searching for products in price range:', priceGte, priceLte);
-  };
+    console.log('Searching for products in price range:', priceGte, priceLte)
+  }
 
-
+  const [showModal, setShowModal] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState(null)
   //品項選項陣列
   const typeOptions = [
     '寵物飼料',
@@ -116,9 +118,6 @@ export default function Menu() {
   //分頁用
   const [page, setPage] = useState(1)
   const [perpage, setPerpage] = useState(12)
-
-  //購物車加的
-  const { addToCart } = useCart()
 
   const getProducts = async (params) => {
     const data = await loadProducts(params)
@@ -143,7 +142,6 @@ export default function Menu() {
       products: [], // 返回的产品数据
     }
   }
-
   const truncate = (str, n) => {
     return str.length > n ? str.substring(0, n - 1) + '...' : str
   }
@@ -222,6 +220,14 @@ export default function Menu() {
       price_gte: priceGte,
       price_lte: priceLte,
     }
+    axios
+      .get('/api/products/pic2')
+      .then((response) => {
+        setProduct(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error)
+      })
 
     getProducts(params)
     getPet()
@@ -265,13 +271,17 @@ export default function Menu() {
     setValue(newValue)
   }
 
-  // 阻止事件冒泡以防止觸發 Link 跳轉 //購物車加的
-  const handleCartClick = (e,product) => {
-    e.preventDefault(); 
-    e.stopPropagation();
-    addToCart(product);
-    console.log('Added to cart');
-  };
+  // 阻止事件冒泡以防止觸發 Link 的頁面跳轉
+  const handleOpenModal = (product, e) => {
+    e.preventDefault() // 阻止默认的链接跳转行为
+    setSelectedProduct(product)
+    setShowModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+    setSelectedProduct(null)
+  }
 
   return (
     <>
@@ -464,14 +474,24 @@ export default function Menu() {
             {products.map((product) => (
               <Link href={`/product/${product.product_id}`}>
                 <li key={product.product_id}>
-                <a className={styles['products-card']}>
+                  <a className={styles['products-card']}>
                     <img
                       src={`/img/product/${product.pic1}`}
                       alt={product.name}
+                      className={styles['card-img']}
                     />
+                    <img
+                      src={`/img/product/${product.pic2}`}
+                      alt="Product Hover"
+                      className={styles['card-img-hover']}
+                    />
+
                     <p className="p">{truncate(product.name, 17)}</p>
                     <div>
-                      <button className={styles['cart-btn']} onClick={(e) => handleCartClick(e, product)}>
+                      <button
+                        className={styles['cart-btn']}
+                        onClick={(e) => handleOpenModal(product, e)}
+                      >
                         <svg
                           id="arrow-horizontal"
                           xmlns="http://www.w3.org/2000/svg"
@@ -648,6 +668,11 @@ export default function Menu() {
           </Swiper>
         </div>
       </section>
+      <ProductModal
+        show={showModal}
+        onHide={handleCloseModal}
+        product={selectedProduct}
+      />
       <Footer />
     </>
   )

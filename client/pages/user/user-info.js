@@ -17,6 +17,7 @@ export default function UserInfo() {
   const [userid, setUserId] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+
   const [addressDetail, setAddressDetail] = useState('')
 
 

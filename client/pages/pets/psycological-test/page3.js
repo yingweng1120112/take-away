@@ -171,7 +171,7 @@ export default function Page3() {
                 <ProgressBar value={proactivity} label="主動性" />
                 <ProgressBar value={stability} label="穩定性" />
               </div>
-              <div>要不要給浪浪們一點機會，帶牠們走呢？</div>
+              <div className={styles['endtext']}>要不要給浪浪們一點機會，帶牠們走呢？</div>
             </div>
           </div>
           <div className={styles['button']}>
@@ -188,7 +188,7 @@ export default function Page3() {
                   className={styles['iconstyle']}
                 />
               </a>
-            <Link href="#">
+            <Link href="/pets">
               <a>
                 前往專區
                 <FontAwesomeIcon

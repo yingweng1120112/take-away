@@ -6,7 +6,6 @@ import { CiHeart } from 'react-icons/ci'
 import { BsPersonVcard } from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
 import { GoPerson } from 'react-icons/go'
-import { CiShoppingCart } from 'react-icons/ci'
 import {
   faCartShopping,
   faHeart,
@@ -28,7 +27,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'fixed', width: '100%', 'z-index': '101' }}
+            style={{ position: 'fixed', width: '100%', 'zIndex': '101' }}
           >
             <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
@@ -103,8 +102,8 @@ export default function Header() {
             <div className="nav-shop-group">
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
-                  <CiShoppingCart className="shop-icon" />
-
+                  <TiShoppingCart className="shop-icon" />
+                  <span className="cart-items">{cartItems.length}</span>
                   購物車
                 </div>
               </Link>

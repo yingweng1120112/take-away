@@ -47,7 +47,9 @@
 .marquee--hover-pause:hover .marquee__content {
   animation-play-state: paused;
 }
-
+.enable-animation{
+  margin-top: 80px;
+}
 /* Other page demo styles */
 .marquee__content > * {
   flex: 0 0 auto;
@@ -67,7 +69,7 @@
   letter-spacing: 40px;
   background-position: 50% 50%;
   background-size: contain;
-  background-image: url('../../public/img/titlebg.png');
+  background-image: url(/img/titlebg.png);
   background-repeat: no-repeat;
 }
 

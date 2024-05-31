@@ -239,7 +239,7 @@
   }
   .result-left img {
     width: 120%;
-    height: 222px;
+    height: 200px;
     border: 5px #c3b594 double;
   }
   .result-right {
@@ -284,7 +284,8 @@
     margin-left: 2px;
   }
   .graph .text > div {
-    font-size: 8px;
+    font-size: 10px;
+    margin-bottom: 6px;
   }
   .graph .text > span {
     font-size: 8px;
@@ -321,5 +322,13 @@
   .iconstyle {
     font-size: 14px;
     padding: 4px;
+  }
+  .endtext {
+    position: relative;
+    bottom: 105px;
+    font-size: 10px;
+    color: brown;
+    font-weight: 600;
+    font-style: italic;
   }
 }
