@@ -288,7 +288,6 @@ export default function Information() {
       })
     }
   }
-
   return (
     <>
       <Header />
@@ -700,9 +699,10 @@ export default function Information() {
           >
             {products.map((v, i) => (
               <SwiperSlide key={v.product_id}>
-                <Link
+                <a
                   href={`/product/${v.product_id}`}
                   className={styles['related-products-card']}
+                  passHref
                 >
                   <div className={styles['swiper-div']}>
                     <img
@@ -711,7 +711,7 @@ export default function Information() {
                       alt=""
                     />
                   </div>
-                </Link>
+                </a>
               </SwiperSlide>
             ))}
           </Swiper>
