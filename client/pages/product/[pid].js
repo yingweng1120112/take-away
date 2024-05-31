@@ -255,6 +255,10 @@ export default function Information() {
           theme: 'dark',
           transition: Slide,
         })
+        setTimeout(() => {
+          window.scrollTo(0, 0); // 滾動到頂部
+          window.location.reload();
+        }, 1000); // 1秒後重整頁面
       } else {
         console.log('表單送出失敗', data.message)
         toast.success(`表單送出失敗: ${data.message}`, {
