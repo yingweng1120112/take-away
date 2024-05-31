@@ -356,7 +356,7 @@ export default function DiarySearch() {
                             selected == '男生'
                           ) {
                             setgender({
-                              gender: ['男生', selected],
+                              gender: [selected, '女生'],
                             })
                           } else {
                             setgender({
@@ -384,7 +384,6 @@ export default function DiarySearch() {
                             setNameLike(e.target.value)
                           }}
                         />
-                        <button onClick={handleSearch}>搜尋</button>
                       </div>
                     </div>
                   </div>
