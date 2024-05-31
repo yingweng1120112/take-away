@@ -8,6 +8,9 @@ import { ThemeProvider } from '@/hooks/use-theme'
 import { AuthProvider } from '@/hooks/use-auth'
 import { CartProvider } from '@/context/cartcontext'
 import { UserProvider } from '@/context/UserContext'
+// loading
+import { LoaderProvider } from '@/hooks/use-loader'
+import { CatLoader, NoLoader, NikeLoader } from '@/hooks/use-loader/components'
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -34,9 +37,11 @@ export default function MyApp({ Component, pageProps }) {
 
   return  (
     <UserProvider>
+    {/* <LoaderProvider close={3} CustomLoader={NikeLoader}> */}
       <CartProvider>
         {getLayout(<Component {...pageProps} />)}
       </CartProvider>
+      {/* </LoaderProvider> */}
     </UserProvider>
   );
   // <UserProvider><Component {...pageProps} /></UserProvider>;
