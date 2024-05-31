@@ -68,7 +68,6 @@ export default function MarqueePets() {
   return (
     <>
       <section className={styles['enable-animation']}>
-        <h1>浪浪領養</h1>
         <div
           className={`${styles['marquee']} ${styles['marquee--hover-pause']}`}
         >
