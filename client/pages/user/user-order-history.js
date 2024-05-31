@@ -289,7 +289,7 @@ export default function UserOrderHistory() {
                               <div key={`order_detail_${index}`}>
                                 <p>
                                   <strong>商品：</strong>
-                                  {productName} ({order_detail.product_id})
+                                  {productName} 
                                 </p>
                                 <p>
                                   <strong>單價：</strong>
