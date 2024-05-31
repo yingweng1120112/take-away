@@ -56,6 +56,10 @@ export default function AdoptForm(pet) {
       }, 1500)
     }
   }
+
+
+
+
   const validatePageTwo = () => {
     const newErrors = { user_id: '', email: '', phone: '' };
   
@@ -97,8 +101,18 @@ export default function AdoptForm(pet) {
   };
   const nextStep = (e) => {
     e.preventDefault();
-    if (currentStep === 2 && !validatePageTwo()) {
-      window.scrollTo({ top: 400, behavior: 'smooth' })
+  
+    if (currentStep === 1) {
+      if (!donateInfo.amount && !donateInfo.customAmount) {
+        Swal.fire({
+          icon: 'error',
+          text: '請輸入金額',
+        });
+        window.scrollTo({ top: 400, behavior: 'smooth' });
+        return; // Stop if validation fails
+      }
+    } else if (currentStep === 2 && !validatePageTwo()) {
+      window.scrollTo({ top: 400, behavior: 'smooth' });
       return; // Stop if validation fails
     }
   
@@ -139,7 +153,7 @@ export default function AdoptForm(pet) {
     if (!finalAmount && donateInfo.customAmount) {
       finalAmount = donateInfo.customAmount;
     }
-  
+
     const userId = Object.keys(userName).find(key => userName[key] === adopt.user_id);
   
     if (!userId) {

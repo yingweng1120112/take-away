@@ -9,7 +9,7 @@ import { AuthProvider } from '@/hooks/use-auth'
 import { CartProvider } from '@/context/cartcontext'
 import { UserProvider } from '@/context/UserContext'
 // loading
-import { LoaderProvider } from '@/hooks/use-loader'
+// import { LoaderProvider } from '@/hooks/use-loader'
 import { CatLoader, NoLoader, NikeLoader } from '@/hooks/use-loader/components'
 // fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core'

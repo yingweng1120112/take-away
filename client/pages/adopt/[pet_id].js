@@ -195,6 +195,7 @@ export default function Adopt() {
           </section>
           <section className={styles['form']}>
             <AdoptForm name={pet.name} phone1={pet.phone1} pet_id={pet.pet_id}/>
+      <img src={`/img/dogcat.webp`} alt="" className={styles['pet']} />
           </section>
         </div>
       </section>

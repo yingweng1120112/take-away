@@ -41,6 +41,9 @@
   justify-content: space-around;
   align-items: center;
 }
+.pet{
+  display:none;
+}
 .adout .container .print1{
   display:none;
 }
@@ -843,6 +846,7 @@ background: var(--reddish-brown);
   flex-direction: column;
   justify-content: space-around;
   height: auto;
+  margin-bottom:9rem;
 }
 
 .adout  .container {
@@ -966,6 +970,16 @@ background: var(--reddish-brown);
 .adout .container .feet1{
   display:block;
 }
+
+.pet {
+  display:block;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 1%;
+  transform: rotate(0deg);
+  margin:2rem 0rem;
+}
 .adout  .container .print1 {
   display:block;
   position: absolute;
@@ -973,18 +987,11 @@ background: var(--reddish-brown);
   height: 25rem;
   z-index: 100;
   left: -32%;
-  top: 50%;
+  top: 60%;
   transform: rotate(-190deg);
 }
 .adout  .container .print2 {
   display:none;
-  position: absolute;
-  width: 20rem;
-  height: 20rem;
-  z-index: 0;
-  left: 40%;
-  top: 13%;
-  transform: rotate(-200deg);
 }
 .adout .container .print3 {
   display:block;
@@ -993,7 +1000,7 @@ background: var(--reddish-brown);
   height: 25rem;
   z-index: 0;
   left: -3%;
-  top: 68%;
+  top: 78%;
   transform: rotate(-190deg);
 }
 .adout .container .print4 {
@@ -1004,7 +1011,7 @@ background: var(--reddish-brown);
   z-index: 0;
   left:25%;
   z-index: 0;
-  top: 85%;
+  top: 95%;
   transform: rotate(-190deg);
 }
 .adout .popup-image .print {
