@@ -47,7 +47,9 @@
 .marquee--hover-pause:hover .marquee__content {
   animation-play-state: paused;
 }
-
+.enable-animation{
+  margin-top: 80px;
+}
 /* Other page demo styles */
 .marquee__content > * {
   flex: 0 0 auto;

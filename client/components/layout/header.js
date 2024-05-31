@@ -6,7 +6,6 @@ import { CiHeart } from 'react-icons/ci'
 import { BsPersonVcard } from "react-icons/bs";
 import { TiShoppingCart } from "react-icons/ti";
 import { GoPerson } from 'react-icons/go'
-import { CiShoppingCart } from 'react-icons/ci'
 import {
   faCartShopping,
   faHeart,
