@@ -54,10 +54,8 @@ export default function ForgetPasswordForm() {
   return (
     <section className={styles['section']}>
       <Header />
-      <p className={`text-center mt-5 mb-3 ${styles['text-note']}`}>
-        輸入你的會員電子郵件，按下"取得驗證碼"按鈕后，我们會將密碼重設指示寄送给你。
-      </p>
       <div className={styles['cont']}>
+      <img className={styles['login']} src="\img\user\login.svg" alt="" />
         <form className={`${styles['form']}`} onSubmit={handleResetPassword}>
           <div className="row mb-3">
             <div className="col-sm-12">
@@ -121,6 +119,7 @@ export default function ForgetPasswordForm() {
             </p>
           </div>
         </form>
+        <img className={styles['login2']} src="\img\user\login2.svg" alt="" />
       </div>
       <Footer />
     </section>
