@@ -16,6 +16,9 @@ import { loadProducts } from '@/services/testproduct'
 import { useCart } from '@/context/cartcontext'
 import { Modal, Button } from 'react-bootstrap'
 import { jwtDecode } from 'jwt-decode'
+import { useRouter } from 'next/router'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+
 
 export default function Step1() {
   const {
@@ -32,13 +35,46 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
+  const router = useRouter();
 
   useEffect(() => {
-    const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
-    const user = jwtDecode(userId) //解析token
-    const userID = user.user_id //取得裡面的user_id
-    console.log(userID)
+    const userId = localStorage.getItem('userKey'); // 抓取localStorage裡面的userKey(值是token)
+    if (userId) {
+      try {
+        const user = jwtDecode(userId); // 解析token
+        const userID = user.user_id; // 取得裡面的user_id
+
+        if (!userID) {
+          throw new Error('Invalid user ID');
+        }
+
+        console.log(userID);
+      } catch (error) {
+        handleInvalidUser();
+      }
+    } else {
+      handleInvalidUser();
+    }
   }, []);
+
+  const handleInvalidUser = () => {
+    toast.warning('請先登入', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Slide,
+    });
+
+    router.push('/user');
+  }
+
+
+
 
 
   const [showModal, setShowModal] = useState(false)
