@@ -33,6 +33,7 @@ export default function Chatright({ socket, username, room }) {
           ':' +
           new Date(Date.now()).getMinutes(),
       }
+      console.log(messageData)
 
       await socket.emit('send_message', messageData)
       setMessageList((list) => [...list, messageData])
@@ -57,13 +58,13 @@ export default function Chatright({ socket, username, room }) {
           </div>
           <div className={styles['cmt_mid']}>
             <div className={styles['cmt_mid2']}>
-              <div className={styles['cmt_avatar2']}></div>
-              <div>
-                <h5>西薩狗班長</h5>
-                <span>線上客服{room}</span>
-              </div>
-              {/* <div className={styles['cmt_avatar']}></div>
-              <h5>{username}</h5> */}
+              {/* <div className={styles['cmt_avatar2']}></div> */}
+              <h5>{room}</h5>
+              {/* <span>Online</span> */}
+            </div>
+            <div className={styles['cmt_mid2']}>
+              <div className={styles['cmt_avatar']}></div>
+              <h5>{username}</h5>
             </div>
           </div>
         </div>
@@ -81,11 +82,14 @@ export default function Chatright({ socket, username, room }) {
               >
                 <div>
                   <div className={styles['message-meta']}>
+                    <img src="" alt="" />
                     <p className={styles['author']}>{messageContent.author}</p>
-                    <p className={styles['time']}>{messageContent.time}</p>
                   </div>
                   <div className={styles['message-content']}>
                     <p>{messageContent.message}</p>
+                  </div>
+                  <div className={styles['message-meta']}>
+                    <p className={styles['time']}>{messageContent.time}</p>
                   </div>
                 </div>
               </div>
