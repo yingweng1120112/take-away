@@ -109,14 +109,16 @@
 }
 
 .favorite {
-  z-index: 1;
+  z-index: 5;
   /* font-size: 52px; */
   margin-top: -10%;
   margin-left: 100%;
   color: var(--gray);
   height: 60px;
   width: 60px;
+  
   cursor: pointer;
+  /* pointer-events: none; */
   /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.35); */
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
   transition: all 0.1s linear;
@@ -124,6 +126,12 @@
 }
 
 .favorite:hover {
+  stroke: gray;
+  stroke-width: 15;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
+}
+
+.favorite.active {
   color: var(--red);
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
 }

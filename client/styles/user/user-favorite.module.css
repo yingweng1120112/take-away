@@ -70,7 +70,7 @@
 
 .rope {
   width: 3%;
-  height: 88%;
+  height: 75%;
   background-image: url('/img/user/user-rope.png');
   background-repeat: repeat-y;
   position: absolute;
@@ -228,7 +228,13 @@
     background: transparent;
   }
 } */
+
 /* ----------------------- */
+
+.remove{
+  display: none;
+  transition: all 0.2s ease-in-out;
+}
 
 .pet-card {
   width: 48%;
@@ -283,6 +289,7 @@
 .trash-icon{
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
 
 .cta {
@@ -358,8 +365,8 @@
   }
   .rope {
     width: 9.5%;
-    height: 89%;
-    right: 99%;
+    height: 80%;
+    right: 98%;
   }
 
   .container {
@@ -506,12 +513,12 @@
   .bgfeet1 {
     width: 50%;
     right: 65%;
-    top: 52%;
+    top: 20%;
   }
 
   .bgfeet2 {
     width: 35%;
     left: 64%;
-    top: 130%;
+    top: 73%;
   }
 }
