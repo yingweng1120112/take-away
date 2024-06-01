@@ -18,16 +18,10 @@ export default function UserEdit() {
   //   setStartDate(date)
   // }
 
-  // const [favs, setFavs] = useState([favs])
+  const [isRemoveMARX, setIsRemoveMARX] = useState(false)
+  const [isRemoveFU, setIsRemoveFU] = useState(false)
 
-  const removeFav = () => {
-    // // 1 2
-    // const nextFavs = favs.filter((v, i) => {
-    //   return v.pet_id !== pet_id
-    // })
-    // //3
-    // setFavs(nextFavs)
-
+  const removeMARX = () => {
     toast.success(`已成功移除收藏`, {
       position: 'top-center',
       autoClose: 600,
@@ -39,6 +33,24 @@ export default function UserEdit() {
       theme: 'light',
       transition: Slide,
     })
+
+    setIsRemoveMARX(!isRemoveMARX)
+  }
+
+  const removeFU = () => {
+    toast.success(`已成功移除收藏`, {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'light',
+      transition: Slide,
+    })
+
+    setIsRemoveFU(!isRemoveFU)
   }
 
   return (
@@ -137,31 +149,23 @@ export default function UserEdit() {
               <h2>浪浪收藏</h2>
               <div className={styles['rope']} />
               <div className={styles['bookItems']}>
-                <div className={styles['pet-card']}>
-                  <img src={`/img/pet-info/10001-1.jpg`} alt="" />
+                <div className={isRemoveMARX ? styles['remove'] : styles['pet-card']}>
+                  <img src={`/img/pet-info/10002-1.jpg`} alt="" />
                   <div className={styles['card-desc']}>
-                    <p>小飛機</p>
-                    <span>66 歲</span>
+                    <p>馬克斯</p>
+                    <span>3 歲</span>
                     <div>
-                      <span>12 KG</span>
-                      {/* {v.gender === '男生' ? ( */}
+                      <span>6 KG</span>
                       <img
                         src="/img/pets/icon_boy.png"
                         alt=""
                         draggable="false"
                       />
-                      {/* ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )} */}
                       <IoMdTrash className={styles['trash-icon']} onClick={() => {
-                        removeFav()
+                        removeMARX()
                       }} />
                     </div>
-                    {/* <Link href={`/pets/${v.pet_id}`}> */}
+                    <Link href={`/pets/10002`}>
                     <button className={styles['cta']}>
                       <span className={styles['hover-underline-animation']}>
                         {' '}
@@ -182,7 +186,47 @@ export default function UserEdit() {
                         ></path>
                       </svg>
                     </button>
-                    {/* </Link> */}
+                    </Link>
+                  </div>
+                </div>
+                <div className={isRemoveFU ? styles['remove'] : styles['pet-card']}>
+                  <img src={`/img/pet-info/10005-1.jpg`} alt="" />
+                  <div className={styles['card-desc']}>
+                    <p>大福</p>
+                    <span>4 歲</span>
+                    <div>
+                      <span>9 KG</span>
+                      <img
+                        src="/img/pets/icon_girl.png"
+                        alt=""
+                        draggable="false"
+                      />
+                      <IoMdTrash className={styles['trash-icon']} onClick={() => {
+                        removeFU()
+                      }} />
+                    </div>
+                    <Link href={`/pets/10006`}>
+                    <button className={styles['cta']}>
+                      <span className={styles['hover-underline-animation']}>
+                        {' '}
+                        前往頁面{' '}
+                      </span>
+                      <svg
+                        id="arrow-horizontal"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="10"
+                        viewBox="0 0 46 16"
+                      >
+                        <path
+                          id="Path_10"
+                          data-name="Path 10"
+                          d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                          transform="translate(30)"
+                        ></path>
+                      </svg>
+                    </button>
+                    </Link>
                   </div>
                 </div>
 

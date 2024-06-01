@@ -116,6 +116,7 @@
   color: var(--gray);
   height: 60px;
   width: 60px;
+  
   cursor: pointer;
   /* pointer-events: none; */
   /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.35); */
@@ -125,6 +126,11 @@
 }
 
 .favorite:hover {
+  color: var(--red);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
+}
+
+.favorite.active {
   color: var(--red);
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
 }

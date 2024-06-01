@@ -30,6 +30,7 @@ export default function PetList() {
 
   // 收藏用
   const [favs, setFavs] = useState([])
+  const [favStatus, setFavStatus] = useState({})
 
   const addFav = (pet) => {
     const nextFavs = [pet, ...favs]
@@ -46,6 +47,29 @@ export default function PetList() {
       theme: 'light',
       transition: Slide,
     })
+  }
+
+  const toggleFav = (pet) => {
+    setFavStatus((prevStatus) => ({
+      ...prevStatus,
+      [pet.pet_id]: !prevStatus[pet.pet_id],
+    }))
+    if (!favStatus[pet.pet_id]) {
+      addFav(pet)
+    } else {
+      setFavs((prevFavs) => prevFavs.filter((p) => p.pet_id !== pet.pet_id))
+      toast.success(`已成功移除收藏`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
+      })
+    }
   }
 
   // 物種選項陣列
@@ -468,48 +492,46 @@ export default function PetList() {
         <section className={styles['pet-card']}>
           {pets.map((v, i) => {
             return (
-              <Link href={`/pets/${v.pet_id}`} key={v.pet_id}>
-                <div className={styles['card']}>
-                  <div className={styles['card-img']}>
-                    <p className={styles['state']} key={v.pet_id}>
-                      {v.state}
-                    </p>
+              <div className={styles['card']}>
+                <div className={styles['card-img']}>
+                  <p className={styles['state']} key={v.pet_id}>
+                    {v.state}
+                  </p>
+                  <Link href={`/pets/${v.pet_id}`} key={v.pet_id}>
                     <img
                       key={v.pet_id}
                       src={`/img/pet-info/${v.phone1}.jpg`}
                       alt=""
                     />
-                    <Link href={'/pets'}>
-                      <FaHeart
-                        className={styles['favorite']}
-                        onClick={(e) => {
-                          addFav()
-                        }}
+                  </Link>
+                  <FaHeart
+                    className={`${styles['favorite']} ${
+                      favStatus[v.pet_id] ? styles['active'] : ''
+                    }`}
+                    onClick={() => toggleFav(v)}
+                  />
+                </div>
+                <div className={styles['pet-name']}>
+                  <span key={v.pet_id}>{v.tag}</span>
+                  <p key={v.pet_id}>{v.name}</p>
+                  <div className={styles['pet-desc']}>
+                    <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                    {v.gender === '男生' ? (
+                      <img
+                        src="/img/pets/icon_boy.png"
+                        alt=""
+                        draggable="false"
                       />
-                    </Link>
-                  </div>
-                  <div className={styles['pet-name']}>
-                    <span key={v.pet_id}>{v.tag}</span>
-                    <p key={v.pet_id}>{v.name}</p>
-                    <div className={styles['pet-desc']}>
-                      <span key={v.pet_id}>今年約莫 {v.age}歲</span>
-                      {v.gender === '男生' ? (
-                        <img
-                          src="/img/pets/icon_boy.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )}
-                    </div>
+                    ) : (
+                      <img
+                        src="/img/pets/icon_girl.png"
+                        alt=""
+                        draggable="false"
+                      />
+                    )}
                   </div>
                 </div>
-              </Link>
+              </div>
             )
           })}
         </section>
