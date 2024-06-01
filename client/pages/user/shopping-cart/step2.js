@@ -289,33 +289,37 @@ export default function Step2() {
 
     try {
       // 发送订单历史数据到后端创建订单历史
-      const resHistory = await fetch('http://localhost:3005/api/order_history', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user_id: userData.user_id,
-          name: userData.name || recipientData.name,
-          phone: userData.phone || recipientData.phone,
-          order_date: order_date,
-          order_remark: order_remark,
-          delivery_method: delivery_method,
-          payment_method: payment_method,
-          recipient_address_detail: recipient_address_detail || store711.storename,
-          status: '未出貨', // 預設
-          Invoice_no: Invoice_no,
-        }),
-      });
-  
+      const resHistory = await fetch(
+        'http://localhost:3005/api/order_history',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user_id: userData.user_id,
+            name: userData.name || recipientData.name,
+            phone: userData.phone || recipientData.phone,
+            order_date: order_date,
+            order_remark: order_remark,
+            delivery_method: delivery_method,
+            payment_method: payment_method,
+            recipient_address_detail:
+              recipient_address_detail || store711.storename,
+            status: '未出貨', // 預設
+            Invoice_no: Invoice_no,
+          }),
+        }
+      )
+
       if (!resHistory.ok) {
-        throw new Error('Failed to create order history');
+        throw new Error('Failed to create order history')
       }
-  
-      const dataHistory = await resHistory.json();
-      const order_id = dataHistory.order_id; // 获取生成的 order_id
-  
+
+      const dataHistory = await resHistory.json()
+      const order_id = dataHistory.order_id // 获取生成的 order_id
+
       // 构建订单详情数据
       const orderDetails = getFromLocalStorage().map((selectedItem) => ({
         order_id, // 将生成的 order_id 包含在订单详情数据中
@@ -323,8 +327,8 @@ export default function Step2() {
         amount: selectedItem.qty,
         unit_price: selectedItem.price,
         totail_price: selectedItem.price * selectedItem.qty,
-      }));
-  
+      }))
+
       // 发送订单详情数据到后端创建订单详情
       const resDetail = await fetch('http://localhost:3005/api/order_detail', {
         method: 'POST',
@@ -333,14 +337,16 @@ export default function Step2() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(orderDetails), // 这里传递订单详情数据
-      });
-  
+      })
+
       if (!resDetail.ok) {
-        throw new Error('Failed to create order detail');
+        throw new Error('Failed to create order detail')
       }
-  
-      // 处理订单详情创建成功的逻辑
-      toast.success("訂單建立成功", {
+
+      // 根據付款方式選擇不同的跳轉路徑
+    if (payment_method === '信用卡付款') {
+      const totalAmount = countSelectedFinalTotalPrice(); // 获取总金额
+      toast.warning('即將跳轉到付款頁面', {
         position: 'top-center',
         autoClose: 2000,
         hideProgressBar: false,
@@ -350,24 +356,40 @@ export default function Step2() {
         progress: undefined,
         theme: 'colored',
         transition: Slide,
-      })
+      });
+
+      setTimeout(() => {
+        const url = `http://localhost:3005/api/ec?amount=${totalAmount}`;
+        window.location.href = url;
+      }, 2000); // 2秒后跳转
+    } else {
+      toast.success('訂單建立成功', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Slide,
+      });
       router.push('/user/shopping-cart/step3');
-    } catch (error) {
-      console.error('Error creating order:', error);
-      toast.error("訂單建立失敗", {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-        transition: Slide,
-      })
     }
-    
-    
+  } catch (error) {
+    console.error('Error creating order:', error);
+    toast.error('訂單建立失敗', {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      transition: Slide,
+    });
+  }
 
     // 在這裡存儲資料到 Local Storage 和 Session Storage 中
     // localStorage.setItem('order_history', JSON.stringify(order_history))
@@ -675,7 +697,7 @@ export default function Step2() {
                         請選擇付款方式
                       </option>
                       <option value="貨到付款">貨到付款</option>
-                      <option value="Line Pay">Line Pay</option>
+                      <option value="信用卡付款">信用卡付款</option>
                     </select>
                   </div>
                 </div>
@@ -751,6 +773,9 @@ export default function Step2() {
                   <FontAwesomeIcon
                     icon={faClipboardCheck}
                     className={styles['iconstyle2']}
+                    onClick={() => {
+                      window.location.href = `http://localhost:3005/api/ec/?amount=500`
+                    }}
                   />
                 </a>
               </Link>

@@ -1,11 +1,56 @@
 import FavFcon from './fav-icon'
 import styles from '@/styles/user/user-favorite.module.css'
 import { IoMdTrash } from 'react-icons/io'
+import { favs } from '@/pages/pets/index'
 
-
-export default function petCard({ id, name, price }) {
+export default function petCard({ addFav = () => {} }) {
   return (
     <div>
+      {pets.map((v, i) => {
+        return (
+          <Link href={`/pets/${v.pet_id}`}>
+            <div className={styles['card']}>
+              <div className={styles['card-img']}>
+                <p className={styles['state']} key={v.pet_id}>
+                  {v.state}
+                </p>
+                <img
+                  key={v.pet_id}
+                  src={`/img/pet-info/${v.phone1}.jpg`}
+                  alt=""
+                />
+                <FaHeart
+                  className={styles['favorite']}
+                  onClick={() => {
+                    addFav(v)
+                  }}
+                />
+              </div>
+              <div className={styles['pet-name']}>
+                <span key={v.pet_id}>{v.tag}</span>
+                <p key={v.pet_id}>{v.name}</p>
+                <div className={styles['pet-desc']}>
+                  <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                  {v.gender === '男生' ? (
+                    <img
+                      src="/img/pets/icon_boy.png"
+                      alt=""
+                      draggable="false"
+                    />
+                  ) : (
+                    <img
+                      src="/img/pets/icon_girl.png"
+                      alt=""
+                      draggable="false"
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </Link>
+        )
+      })}
+
       <div className={styles['pet-card']}>
         <img src={`/img/pet-info/10001-1.jpg`} alt="" />
         <div className={styles['card-desc']}>
@@ -16,12 +61,8 @@ export default function petCard({ id, name, price }) {
             {/* {v.gender === '男生' ? ( */}
             <img src="/img/pets/icon_boy.png" alt="" draggable="false" />
             {/* ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )} */}
+            <img src="/img/pets/icon_girl.png" alt="" draggable="false" />
+            )} */}
             <IoMdTrash className={styles['trash-icon']} />
           </div>
           {/* <Link href={`/pets/${v.pet_id}`}> */}

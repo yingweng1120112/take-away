@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, name, errors}) {
   const projectOptions = ['不指定', '急難救助', '絕育計畫']
@@ -87,6 +88,7 @@ export default function PageTwo({ adopt, setAdopt, handleChange, donateInfo, nam
             placeholder="捐贈方式"
             value={adopt.donation_method || ''}
             onChange={handleChange}
+            disabled="disabled"
           />
           <span className="input-border"></span>
         </label>

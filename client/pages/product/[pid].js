@@ -25,8 +25,8 @@ import { useCart } from '@/context/cartcontext' //購物車加的
 
 import { jwtDecode } from 'jwt-decode'
 
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Information() {
   const router = useRouter()
@@ -54,55 +54,73 @@ export default function Information() {
   // 表單送出互動
 
   //useState 钩子来保存用户信息
-  const [userData, setUserData] = useState('');
-  const [name, setName] = useState('');
-  const [user_id, setUser_id] = useState(null); // 初始化为 null
+  const initialUserId = () => {
+    if (typeof window !== 'undefined') {
+      // 确保在客户端环境中
+      const userId = localStorage.getItem('userKey')
+      if (userId) {
+        const user = jwtDecode(userId)
+        return user.user_id
+      }
+    }
+    return null
+  }
 
+  const [userData, setUserData] = useState('')
+  const [name, setName] = useState('')
+  const [user_id, setUser_id] = useState(initialUserId) // 初始化为 localStorage 中的 user_id
   const [formData, setFormData] = useState({
     product_id: '',
-    user_id: '',
+    user_id: initialUserId(), // 初始化为 localStorage 中的 user_id
     content: '',
     score: '',
-  });
+  })
 
-  // 页面加载时检查用户是否登录
+  // 页面加载时检查用户是否登录并更新 user_id 和 formData
   useEffect(() => {
-    const userId = localStorage.getItem('userKey');
-    if (userId) {
-      const user = jwtDecode(userId);
-      setUser_id(user.user_id); // 设置 user_id
+    if (typeof window !== 'undefined') {
+      // 确保在客户端环境中
+      const userId = localStorage.getItem('userKey')
+      if (userId) {
+        const user = jwtDecode(userId)
+        const userID = user.user_id
+        setUser_id(userID) // 设置 user_id
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          user_id: userID,
+        }))
+      }
     }
-  }, []);
+  }, [])
 
-  // 当 user_id 更新时，获取用户信息并更新 formData
+  // 当 user_id 更新时，获取用户信息
   useEffect(() => {
     const fetchData = async () => {
-      if (user_id) { // 只有在 user_id 存在时才获取用户信息
+      if (user_id) {
+        // 只有在 user_id 存在时才获取用户信息
         try {
-          const response = await fetch(`http://localhost:3005/api/users/user-info/${user_id}`);
-          const result = await response.json();
-          const userData = result.userData;
-          setUserData({ ...userData });
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            user_id: user_id,
-          }));
+          const response = await fetch(
+            `http://localhost:3005/api/users/user-info/${user_id}`
+          )
+          const result = await response.json()
+          const userData = result.userData
+          setUserData({ ...userData })
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error('Error fetching data:', error)
         }
       }
-    };
-    
-    fetchData();
-  }, [user_id]);
+    }
+
+    fetchData()
+  }, [user_id])
 
   // 当 userData.name 更新时，更新 name
   useEffect(() => {
     if (userData.name) {
-      setName(userData.name);
+      setName(userData.name)
     }
-  }, [userData.name]);
-  
+  }, [userData.name])
+
   //單筆商品
   const getProduct = async (pid) => {
     const data = await loadProduct(pid)
@@ -226,14 +244,44 @@ export default function Information() {
       console.log(data)
       if (res.status === 201) {
         console.log('表單已成功送出', data)
-        toast('表單已成功送出')
+        toast.success('表單已成功送出', {
+          position: 'top-center',
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'dark',
+          transition: Slide,
+        })
       } else {
         console.log('表單送出失敗', data.message)
-        toast(`表單送出失敗: ${data.message}`)
+        toast.success(`表單送出失敗: ${data.message}`, {
+          position: 'top-center',
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'dark',
+          transition: Slide,
+        })
       }
     } catch (error) {
       console.error('表單送出錯誤:', error)
-      toast(`表單送出錯誤: ${error.message}`)
+      toast.success(`表單送出錯誤: ${error.message}`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
     }
   }
 
@@ -430,12 +478,14 @@ export default function Information() {
                 key={review.reviews_id}
                 className={styles['product-reviews-info']}
               >
-                <p className={styles['reviews-user']}>{review.user_name} 說 :</p>
-                <p className={styles['reviews-info']}>{review.content}</p>
-                <p>
-                  評論分數: {review.score} ⭐ 
+                <p className={styles['reviews-user']}>
+                  {review.user_name} 說 :
                 </p>
-                <p className={styles['reviews-date']}>評分時間 : {review.time}</p>
+                <p className={styles['reviews-info']}>{review.content}</p>
+                <p>評論分數: {review.score} ⭐</p>
+                <p className={styles['reviews-date']}>
+                  評分時間 : {review.time}
+                </p>
               </div>
             ))}
             {/* 分頁 */}
@@ -502,118 +552,119 @@ export default function Information() {
               className="accordion-collapse collapse w-100"
               data-bs-parent="#accordionExample"
             >
-            <form onSubmit={handleSubmit}>
-              <div className={`accordion-body ${styles['accordion-body']}`}>
-                <div className={styles['my-comment-form']}>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      使用者編號 :
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-id"
-                      Value={formData.user_id}
-                      readOnly={true}
-                    />
+              <form onSubmit={handleSubmit}>
+                <div className={`accordion-body ${styles['accordion-body']}`}>
+                  <div className={styles['my-comment-form']}>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        使用者編號 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-id"
+                        value={formData.user_id || ''} // 确保在第一次渲染时有值
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        評論商品編號 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-name"
+                        value={formData.product_id}
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        使用者 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-name"
+                        value={name}
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        評分 :
+                      </label>
+                      <select
+                        className="form-select"
+                        aria-label="Default select example"
+                        id="score"
+                        name="score"
+                        value={formData.score}
+                        onChange={tabalChange}
+                      >
+                        <option selected>選擇評分</option>
+                        <option value="1">1⭐ 超級差評</option>
+                        <option value="2">2⭐ 勉勉強強</option>
+                        <option value="3">3⭐ 普普通通</option>
+                        <option value="4">4⭐ 覺得不錯</option>
+                        <option value="5">5⭐ 真的超讚</option>
+                      </select>
+                    </div>
+                    <div className="mb-3 w-100">
+                      <label
+                        htmlFor="exampleFormControlTextarea1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        我的評論 :
+                      </label>
+                      <textarea
+                        className="form-control border-bottom-1"
+                        style={{ resize: 'none' }}
+                        id="exampleFormControlTextarea1"
+                        rows={3}
+                        defaultValue={formData.content}
+                        name="content"
+                        readOnly={false}
+                        onChange={tabalChange}
+                      />
+                    </div>
                   </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
+                  <button className={styles.cta} type="submit">
+                    <span className={styles['hover-underline-animation']}>
+                      Release
+                    </span>
+                    <svg
+                      id="arrow-horizontal"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={30}
+                      height={10}
+                      viewBox="0 0 46 16"
                     >
-                      評論商品編號 :
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-name"
-                      Value={formData.product_id}
-                      readOnly={true}
-                    />
-                  </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      使用者 :
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-name"
-                      Value={name}
-                      readOnly={true}
-                    />
-                  </div>
-                  <div className={`mb-3 w-100 ${styles['project']}`}>
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      評分 :
-                    </label>
-                    <select
-                      className="form-select"
-                      aria-label="Default select example"
-                      id="score"
-                      name="score"
-                      value={formData.score}
-                      onChange={tabalChange}
-                    >
-                      <option value="1">1⭐ 超級差評</option>
-                      <option value="2">2⭐ 勉勉強強</option>
-                      <option value="3">3⭐ 普普通通</option>
-                      <option value="4">4⭐ 覺得不錯</option>
-                      <option value="5">5⭐ 真的超讚</option>
-                    </select>
-                  </div>
-                  <div className="mb-3 w-100">
-                    <label
-                      htmlFor="exampleFormControlTextarea1"
-                      className={`fs-6 ${styles['label']}`}
-                    >
-                      我的評論 :
-                    </label>
-                    <textarea
-                      className="form-control border-bottom-1"
-                      style={{ resize: 'none' }}
-                      id="exampleFormControlTextarea1"
-                      rows={3}
-                      defaultValue={formData.content}
-                      name="content"
-                      readOnly={false}
-                      onChange={tabalChange}
-                    />
-                  </div>
+                      <path
+                        id="Path_10"
+                        data-name="Path 10"
+                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                        transform="translate(30)"
+                      />
+                    </svg>
+                  </button>
                 </div>
-                <button className={styles.cta} type='submit'>
-                  <span className={styles['hover-underline-animation']}>
-                    Release
-                  </span>
-                  <svg
-                    id="arrow-horizontal"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={30}
-                    height={10}
-                    viewBox="0 0 46 16"
-                  >
-                    <path
-                      id="Path_10"
-                      data-name="Path 10"
-                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                      transform="translate(30)"
-                    />
-                  </svg>
-                </button>
-              </div>
               </form>
             </div>
           </div>
