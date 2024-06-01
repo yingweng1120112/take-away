@@ -6,8 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore, faRectangleList } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useCart } from '@/context/cartcontext'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import { useRouter } from 'next/router'; 
 
 export default function Step3() {
+  const router = useRouter();
+  const { paymentStatus } = router.query; 
   const {
     cartItems,
     selectedItems,
@@ -17,6 +21,23 @@ export default function Step3() {
     countSelectedFinalTotalPrice,
     countSelectedExtraFee,
   } = useCart()
+
+
+  useEffect(() => {
+    if (paymentStatus === 'success') {
+      toast.success('訂單建立成功', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Slide,
+      });
+    }
+  }, [paymentStatus]);
 
   useEffect(() => {
     const fetchUserInfo = async () => {

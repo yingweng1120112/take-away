@@ -13,6 +13,7 @@ import {
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+
 import { useCart } from '@/context/cartcontext'
 import { ToastContainer, toast, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -272,7 +273,7 @@ export default function Header() {
                     </ul>
                   </ul>
                   <div className="phone-li">
-                    <Link
+                    <a
                       href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
@@ -280,27 +281,47 @@ export default function Header() {
                       <div className="cart-items">{cartItems.length}</div>
                       <TiShoppingCart
                         className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
+                        style={{
+                          color: 'var( --reddish-brown)',
+                          'margin-top': '20px',
+                          width: '60px',
+                          height: '60px',
+                          position: 'relative',
+                          bottom: '20px',
+                        }}
                       />
-                      <div>購物車</div>
-                    </Link>
+                      <div style={{
+                          color: 'var( --reddish-brown)',
+                          position: 'relative',
+                          bottom: '21px',
+                          fontWeight:600,
+                        }}>購物車</div>
+                    </a>
                     {/* <a href="#" className="phone-title">
-                      <CiHeart
-                        className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
-                      />
-                      <a href="#">收藏</a>
+                      <div className="phone-title-content">
+                        <CiHeart
+                          className="title-img"
+                          style={{ color: 'var(--reddish-brown)' }}
+                        />
+                        <span>收藏</span>
+                      </div>
                     </a> */}
-                    <Link
+                    <a
                       href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
                     >
                       <BsPersonVcard
                         className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
+                        style={{
+                          color: 'var( --reddish-brown)',
+                          'margin-top': '22px',
+                        }}
                       />
-                    </Link>
+                      <a href="/user" style={{ 'margin-bottom': '15px' }}>
+                        登入
+                      </a>
+                    </a>
                   </div>
                 </nav>
               )}
