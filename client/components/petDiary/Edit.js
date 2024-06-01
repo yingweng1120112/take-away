@@ -10,7 +10,7 @@ import { AiFillPicture } from 'react-icons/ai'
 
 export default function MyVerticallyCenteredModal(props) {
   const router = useRouter()
-  console.log(props)
+  // console.log(props)
   const [formData, setFormData] = useState({
     blog_id:'',
     content: '',

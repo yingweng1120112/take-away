@@ -2,9 +2,9 @@ import { useState } from 'react'
 import styles from '@/styles/petDiary/petDiary.module.css'
 import PrevieImage from '@/components/petDiary/previeImage'
 import { useRouter } from 'next/router'
-import { AiFillPicture } from "react-icons/ai";
+import { AiFillPicture } from 'react-icons/ai'
 
-export default function ImageUpload() {
+export default function ImageUpload(data) {
   const router = useRouter()
   const [formData, setFormData] = useState({
     content: '',
@@ -35,11 +35,11 @@ export default function ImageUpload() {
 
   const handleFileChange = (e) => {
     const fileList = e.target.files
-    console.log('1:fileList',fileList);
+    console.log('1:fileList', fileList)
     if (fileList.length > 5) {
-      alert('最多只能選擇5个文件！');
+      alert('最多只能選擇5个文件！')
       setSelectedFile('') // 清空文件輸入
-    }else if (fileList) {
+    } else if (fileList) {
       // console.log('fileList:', fileList)
       // console.log('fileList0:', fileList[0])
       setSelectedFile(fileList)
@@ -108,7 +108,6 @@ export default function ImageUpload() {
     if (!formData.content || formData.content.length < 1) {
       alert('必須要有內容')
     } else {
-      
       const { pid } = router.query
 
       const fd = new FormData()
@@ -148,7 +147,7 @@ export default function ImageUpload() {
           // console.log('貼文送出失敗', data.message)
           alert(`貼文送出失敗: ${data.message}`)
         }
-        window.location.reload();
+        window.location.reload()
       } catch (error) {
         // console.log()
         // console.error('貼文送出錯誤:', error)
@@ -156,60 +155,71 @@ export default function ImageUpload() {
       }
     }
   }
-
-  return (
-    <>
-      <form name="form1" onSubmit={handleSubmit}>
-        <textarea
-          id="content"
-          name="content"
-          className={styles['content-word']}
-          placeholder="輸入你想分享的趣事"
-          onChange={handleChange}
-        />
-        <div className={styles['post-upload']}>
-          <div className={styles['post-upload-btn-container']}>
-            <div>
-              <label className={styles['button']} htmlFor="previewImage">
-              <div className={styles['inputFile']}>
-              <AiFillPicture />
-                <i>圖片上傳</i>
-                </div>
-              </label>
-              <input
-                id="previewImage"
-                type="file"
-                name="avatar"
-                accept="image/jpeg,image/png"
-                className={styles['input-pic']}
-                onChange={handleFileChange}
-                multiple
-              />
-            </div>
-            <input
-              type="submit"
-              acceptf="image/*"
-              className={`${styles['button']} ${styles['upload-btn-pc']}`}
-            />
-          </div>
-          <div className={styles['post-upload-pic']}>
-            <PrevieImage
-              value={[
-                previewURL1,
-                previewURL2,
-                previewURL3,
-                previewURL4,
-                previewURL5,
-              ]}
-            />
-          </div>
-          <input
-            type="submit"
-            acceptf="image/*"
-            className={`${styles['button']} ${styles['upload-btn-phone']}`}
+  if (data.data[1] == true) {
+    return (
+      <>
+        <div className={styles['post']}>
+          <img
+            src={`/img/diarySearch/${data.data[0]}`}
+            alt=""
+            className={styles['head-img']}
           />
+          <div className={styles['post-right']} style={{ width: '100%' }}>
+            <form name="form1" onSubmit={handleSubmit}>
+              <textarea
+                id="content"
+                name="content"
+                className={styles['content-word']}
+                placeholder="輸入你想分享的趣事"
+                onChange={handleChange}
+              />
+              <div className={styles['post-upload']}>
+                <div className={styles['post-upload-btn-container']}>
+                  <div>
+                    <label className={styles['button']} htmlFor="previewImage">
+                      <div className={styles['inputFile']}>
+                        <AiFillPicture />
+                        <i>圖片上傳</i>
+                      </div>
+                    </label>
+                    <input
+                      id="previewImage"
+                      type="file"
+                      name="avatar"
+                      accept="image/jpeg,image/png"
+                      className={styles['input-pic']}
+                      onChange={handleFileChange}
+                      multiple
+                    />
+                  </div>
+                  <input
+                    type="submit"
+                    acceptf="image/*"
+                    className={`${styles['button']} ${styles['upload-btn-pc']}`}
+                  />
+                </div>
+                <div className={styles['post-upload-pic']}>
+                  <PrevieImage
+                    value={[
+                      previewURL1,
+                      previewURL2,
+                      previewURL3,
+                      previewURL4,
+                      previewURL5,
+                    ]}
+                  />
+                </div>
+                <input
+                  type="submit"
+                  acceptf="image/*"
+                  className={`${styles['button']} ${styles['upload-btn-phone']}`}
+                />
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </>
-  )
+      </>
+    )
+  }
+  return<></>
 }
