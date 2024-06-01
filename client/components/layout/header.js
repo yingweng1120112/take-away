@@ -253,7 +253,7 @@ export default function Header() {
                     </ul>
                   </ul>
                   <div className="phone-li">
-                    <Link
+                    <a
                       href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
@@ -266,10 +266,17 @@ export default function Header() {
                           'margin-top': '20px',
                           width: '60px',
                           height: '60px',
+                          position: 'relative',
+                          bottom: '20px',
                         }}
                       />
-                      <div>購物車</div>
-                    </Link>
+                      <div style={{
+                          color: 'var( --reddish-brown)',
+                          position: 'relative',
+                          bottom: '21px',
+                          fontWeight:600,
+                        }}>購物車</div>
+                    </a>
                     {/* <a href="#" className="phone-title">
                       <div className="phone-title-content">
                         <CiHeart
@@ -279,7 +286,7 @@ export default function Header() {
                         <span>收藏</span>
                       </div>
                     </a> */}
-                    <Link
+                    <a
                       href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
@@ -294,7 +301,7 @@ export default function Header() {
                       <a href="/user" style={{ 'margin-bottom': '15px' }}>
                         登入
                       </a>
-                    </Link>
+                    </a>
                   </div>
                 </nav>
               )}
