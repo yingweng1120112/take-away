@@ -8,6 +8,8 @@ import { jwtDecode } from 'jwt-decode'
 import { loadUserInfo } from '@/services/user-info'
 import { loadUserInfoSpecific } from '@/services/user-info'
 import { useAuth } from '@/hooks/use-auth'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function UserInfo() {
   // 最后得到的资料
@@ -20,13 +22,10 @@ export default function UserInfo() {
 
   const [addressDetail, setAddressDetail] = useState('')
 
-
   const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
   const user = jwtDecode(userId) //解析token
   const userID = user.user_id //取得裡面的user_id
   console.log(userID)
-
-
 
   // 使用 useEffect 钩子在组件加载时获取用户信息
   useEffect(() => {

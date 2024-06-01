@@ -209,8 +209,9 @@ export default function ForgetPasswordForm() {
       <style jsx>
         {`
           .eye {
+            overflow: visible;
             position: relative;
-            left: -10%;
+            left: -6%;
             bottom: 1%;
           }
         `}
