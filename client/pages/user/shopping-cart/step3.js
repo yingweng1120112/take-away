@@ -108,7 +108,7 @@ export default function Step3() {
               <i
                 className={`${styles['fa-solid']} ${styles['fa-file-circle-check']}`}
               />
-              訂單編號：01234567890123
+              訂單建立成功
             </div>
           </div>
           <div className={styles['cartdetail']}>

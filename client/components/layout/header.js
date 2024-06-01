@@ -21,9 +21,10 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
-  const { cartItems } = useCart()
+  const { cartItemCount } = useCart()
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
 
   useEffect(() => {
     // 检查localStorage中的userKey，设置初始状态
@@ -38,6 +39,7 @@ export default function Header() {
     localStorage.removeItem('userKey')
     setIsLoggedIn(false)
   }
+
   return (
     <>
       {/* 更改容器高度 */}
@@ -123,7 +125,7 @@ export default function Header() {
               <Link href="/user/shopping-cart/step1" className="shop">
                 <div className="shop-group">
                   <TiShoppingCart className="shop-icon" />
-                  <span className="cart-items">{cartItems.length}</span>
+                  <span className="cart-items">{isLoggedIn ? cartItemCount : 0}</span>
                   購物車
                 </div>
               </Link>
@@ -258,7 +260,7 @@ export default function Header() {
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
-                      <div className="cart-items">{cartItems.length}</div>
+                      <div className="cart-items">{isLoggedIn ? cartItemCount : 0}</div>
                       <TiShoppingCart
                         className="title-img"
                         style={{
@@ -289,16 +291,16 @@ export default function Header() {
                     <a
                       href="/user"
                       className="phone-title"
-                      style={{ 'border-radius': '0px 0px 19px 0px' }}
+                      style={{ borderRadius: '0px 0px 19px 0px' }}
                     >
                       <BsPersonVcard
                         className="title-img"
                         style={{
                           color: 'var( --reddish-brown)',
-                          'margin-top': '22px',
+                          marginTop: '22px',
                         }}
                       />
-                      <a href="/user" style={{ 'margin-bottom': '15px' }}>
+                      <a href="/user" style={{ marginBottom: '15px' }}>
                         登入
                       </a>
                     </a>

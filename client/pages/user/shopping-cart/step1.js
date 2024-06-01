@@ -19,7 +19,6 @@ import { jwtDecode } from 'jwt-decode'
 import { useRouter } from 'next/router'
 import { ToastContainer, toast, Slide } from 'react-toastify'
 
-
 export default function Step1() {
   const {
     cartItems,
@@ -35,21 +34,27 @@ export default function Step1() {
     countSelectedExtraFee,
   } = useCart()
 
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
-    const userId = localStorage.getItem('userKey'); // 抓取localStorage裡面的userKey(值是token)
+    const userId = localStorage.getItem('userKey');
     if (userId) {
       try {
-        const user = jwtDecode(userId); // 解析token
-        const userID = user.user_id; // 取得裡面的user_id
-
+        const user = jwtDecode(userId);
+        const userID = user.user_id;
         if (!userID) {
           throw new Error('Invalid user ID');
         }
-
-        console.log(userID);
+        const userCartItems = window.localStorage.getItem(`cartItems_${userID}`);
+        const userSelectedItems = window.localStorage.getItem(`selectedItems_${userID}`);
+        if (userCartItems) {
+          setCartItems(JSON.parse(userCartItems));
+        }
+        if (userSelectedItems) {
+          setSelectedItems(JSON.parse(userSelectedItems));
+        }
       } catch (error) {
+        console.error('Invalid user ID:', error);
         handleInvalidUser();
       }
     } else {
@@ -58,24 +63,23 @@ export default function Step1() {
   }, []);
 
   const handleInvalidUser = () => {
-    toast.warning('請先登入', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-      transition: Slide,
-    });
-
-    router.push('/user');
-  }
-
-
-
-
+    const isLoggedIn = !!localStorage.getItem('userKey'); // 檢查是否已登入
+    // 只有在未登入的情況下才導向登入頁面
+    if (!isLoggedIn) {
+      toast.warning('請先登入', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Slide,
+      });
+      router.push('/user');
+    }
+  };
 
   const [showModal, setShowModal] = useState(false)
 
@@ -88,12 +92,13 @@ export default function Step1() {
     } else {
       // 如果已選擇商品，導向下一步
       console.log('Redirect to next step')
-      window.localStorage.setItem('selectedItems', JSON.stringify(selectedProducts))
+      window.localStorage.setItem(
+        'selectedItems',
+        JSON.stringify(selectedProducts)
+      )
       window.location.href = '/user/shopping-cart/step2'
     }
   }
-
-
 
   useEffect(() => {
     setSelectedItems((prevState) => {
