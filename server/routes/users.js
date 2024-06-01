@@ -5,13 +5,62 @@ import db from '#configs/mysql.js'
 import { getIdParam } from '##/db-helpers/db-tool.js'
 // import nodemailer from 'nodemailer'
 import forgotPassword from './forgot-password.js'
-
+// 密碼加密使用
+// import { generateHash } from '##/db-helpers/password-hash.js'
 dotenv.config()
 const router = express.Router()
 const secretKey = process.env.SECRET_KEY
 
 // 使用 forgot-password 路由
 router.use('/forgot-password', forgotPassword)
+
+// 註冊
+router.post('/register-form', async function (req, res) {
+  console.log(req.body)
+
+  // 要新增的會員資料
+  const { name, email, phone, password } = req.body
+
+  // 檢查從前端來的資料哪些為必要
+  if (!name || !phone || !email || !password) {
+    return res.json({ status: 'error', message: '缺少必要資料' })
+  }
+
+  // 檢查資料表中有沒有此email或phone
+  const [rows] = await db.query('SELECT * FROM user WHERE phone=? OR email=?', [
+    phone,
+    email,
+  ])
+
+  if (rows.length > 0) {
+    return res.json({ status: 'error', message: '會員帳號或Email重覆' })
+  }
+
+  // 加密密碼文字
+  // const passwordHash = await generateHash(password)
+
+  // 插入新的會員資料
+  const [rows2] = await db.query(
+    'INSERT INTO `user`(`name`,`email`,`phone`,`password`) VALUES(?,?,?,?)',
+    [name, email, phone, password]
+  )
+
+  // 新增失敗 !rows2.insertId 代表沒新增
+  if (!rows2.insertId) {
+    return res.json({ status: 'error', message: '建立會員失敗' })
+  }
+
+  // 成功建立會員的回應，並返回新建立的用戶數據
+  return res.status(201).json({
+    status: 'success',
+    data: {
+      user_id: rows2.insertId,
+      name,
+      email,
+      phone,
+    },
+  })
+})
 
 // 登入
 router.post('/', async (req, res) => {
@@ -30,7 +79,7 @@ router.post('/', async (req, res) => {
       console.log(rows)
       const token = jwt.sign(
         {
-          phone: userData.phone, 
+          phone: userData.phone,
           userpassword: userData.password,
           user_id: userData.user_id,
         },

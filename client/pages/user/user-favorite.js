@@ -7,12 +7,50 @@ import styles from '@/styles/user/user-favorite.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import Link from 'next/link'
 import { IoMdTrash } from 'react-icons/io'
+import { favs } from '@/pages/pets/index.jsx'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function UserEdit() {
-  const [startDate, setStartDate] = useState(null)
+  // const [startDate, setStartDate] = useState(null)
 
-  const date = (date) => {
-    setStartDate(date)
+  // const date = (date) => {
+  //   setStartDate(date)
+  // }
+
+  const [isRemoveMARX, setIsRemoveMARX] = useState(false)
+  const [isRemoveFU, setIsRemoveFU] = useState(false)
+
+  const removeMARX = () => {
+    toast.success(`已成功移除收藏`, {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'light',
+      transition: Slide,
+    })
+
+    setIsRemoveMARX(!isRemoveMARX)
+  }
+
+  const removeFU = () => {
+    toast.success(`已成功移除收藏`, {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'light',
+      transition: Slide,
+    })
+
+    setIsRemoveFU(!isRemoveFU)
   }
 
   return (
@@ -111,29 +149,23 @@ export default function UserEdit() {
               <h2>浪浪收藏</h2>
               <div className={styles['rope']} />
               <div className={styles['bookItems']}>
-                <div className={styles['pet-card']}>
-                  <img src={`/img/pet-info/10001-1.jpg`} alt="" />
+                <div className={isRemoveMARX ? styles['remove'] : styles['pet-card']}>
+                  <img src={`/img/pet-info/10002-1.jpg`} alt="" />
                   <div className={styles['card-desc']}>
-                    <p>小飛機</p>
-                    <span>66 歲</span>
+                    <p>馬克斯</p>
+                    <span>3 歲</span>
                     <div>
-                      <span>12 KG</span>
-                      {/* {v.gender === '男生' ? ( */}
+                      <span>6 KG</span>
                       <img
                         src="/img/pets/icon_boy.png"
                         alt=""
                         draggable="false"
                       />
-                      {/* ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )} */}
-                      <IoMdTrash className={styles['trash-icon']} />
+                      <IoMdTrash className={styles['trash-icon']} onClick={() => {
+                        removeMARX()
+                      }} />
                     </div>
-                    {/* <Link href={`/pets/${v.pet_id}`}> */}
+                    <Link href={`/pets/10002`}>
                     <button className={styles['cta']}>
                       <span className={styles['hover-underline-animation']}>
                         {' '}
@@ -154,32 +186,26 @@ export default function UserEdit() {
                         ></path>
                       </svg>
                     </button>
-                    {/* </Link> */}
+                    </Link>
                   </div>
                 </div>
-                <div className={styles['pet-card']}>
-                  <img src={`/img/pet-info/10001-1.jpg`} alt="" />
+                <div className={isRemoveFU ? styles['remove'] : styles['pet-card']}>
+                  <img src={`/img/pet-info/10005-1.jpg`} alt="" />
                   <div className={styles['card-desc']}>
-                    <p>小飛機</p>
-                    <span>66 歲</span>
+                    <p>大福</p>
+                    <span>4 歲</span>
                     <div>
-                      <span>12 KG</span>
-                      {/* {v.gender === '男生' ? ( */}
+                      <span>9 KG</span>
                       <img
-                        src="/img/pets/icon_boy.png"
+                        src="/img/pets/icon_girl.png"
                         alt=""
                         draggable="false"
                       />
-                      {/* ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )} */}
-                      <IoMdTrash className={styles['trash-icon']} />
+                      <IoMdTrash className={styles['trash-icon']} onClick={() => {
+                        removeFU()
+                      }} />
                     </div>
-                    {/* <Link href={`/pets/${v.pet_id}`}> */}
+                    <Link href={`/pets/10006`}>
                     <button className={styles['cta']}>
                       <span className={styles['hover-underline-animation']}>
                         {' '}
@@ -200,9 +226,10 @@ export default function UserEdit() {
                         ></path>
                       </svg>
                     </button>
-                    {/* </Link> */}
+                    </Link>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

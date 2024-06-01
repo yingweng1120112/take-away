@@ -43,7 +43,7 @@
 .user {
   width: 80%;
   display: flex;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   margin: 1rem 4rem;
   padding-bottom: 10px;
   align-items: center;
@@ -74,7 +74,7 @@
   width: 75%;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   margin: 1rem 0 0 4rem;
   padding-bottom: 10px;
 }
@@ -158,6 +158,8 @@
 }
 
 .input {
+  position: relative;
+  right: -15%;
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
@@ -191,7 +193,7 @@
 .bar {
   position: relative;
   display: block;
-  width: 400px;
+  width: 450px;
 }
 
 .bar::before,
@@ -221,7 +223,7 @@
 .highlight {
   position: absolute;
   height: 60%;
-  width: 100px;
+  width: 150px;
   top: 25%;
   left: 0;
   pointer-events: none;

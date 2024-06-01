@@ -1,17 +1,22 @@
-import { useState, React } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
-import { BsPersonVcard } from "react-icons/bs";
-import { TiShoppingCart } from "react-icons/ti";
+import { BsPersonVcard } from 'react-icons/bs'
+import { MdLogout } from 'react-icons/md'
+import { TiShoppingCart } from 'react-icons/ti'
 import { GoPerson } from 'react-icons/go'
 import {
   faCartShopping,
   faHeart,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
+
 import { useCart } from '@/context/cartcontext'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
@@ -19,7 +24,40 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
-  const {cartItems} = useCart()
+  const { cartItems } = useCart()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const router = useRouter()
+  useEffect(() => {
+    // 检查localStorage中的userKey，设置初始状态
+    const userKey = localStorage.getItem('userKey')
+    if (userKey) {
+      setIsLoggedIn(true)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    // 清除 localStorage 的 userKey
+    localStorage.removeItem('userKey')
+    setIsLoggedIn(false)
+    // 成功登出並回復初始會員狀態
+    toast.success('已成功登出', {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'dark',
+      transition: Slide,
+    })
+
+    // 跳轉到登陸頁面或首頁
+    // window.location.href = '/'
+    router.push('./')
+  }
   return (
     <>
       {/* 更改容器高度 */}
@@ -27,7 +65,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'fixed', width: '100%', 'zIndex': '101' }}
+            style={{ position: 'fixed', width: '100%', zIndex: '101' }}
           >
             <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
@@ -38,7 +76,9 @@ export default function Header() {
                   <a>關於我們</a>
                   <ul>
                     <li>
-                      <a href="http://localhost:3000/location/location">關於我們</a>
+                      <a href="http://localhost:3000/location/location">
+                        關於我們
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -107,20 +147,29 @@ export default function Header() {
                   購物車
                 </div>
               </Link>
-              <Link href="/user">
-                <div className="shop-group">
-                  <BsPersonVcard className="shop-icon" />
-                  登入
-                </div>
-              </Link>
+              {isLoggedIn ? (
+                <Link href="/">
+                  <div className="shop-group" onClick={handleLogout}>
+                    <MdLogout className="shop-icon" />
+                    <span>登出</span>
+                  </div>
+                </Link>
+              ) : (
+                <Link href="/user/login">
+                  <div className="shop-group">
+                    <BsPersonVcard className="shop-icon" />
+                    <span>登入</span>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
           <div style={{ position: 'relative' }}>
             <div className="header2">
               <div className="phone-header">
-                <div className="logo">
+                <a className="logo" href="http://localhost:3000/">
                   <img src={`/img/index/logo-removebg-preview.png`} />
-                </div>
+                </a>
                 <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
                   {isVisible ? (
                     <RiMenuSearchFill className="shop" />
@@ -140,7 +189,9 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <Link href="http://localhost:3000/location/location">關於我們</Link>
+                            <Link href="http://localhost:3000/location/location">
+                              關於我們
+                            </Link>
                           </li>
                         </ul>
                       </li>
@@ -151,11 +202,13 @@ export default function Header() {
                         </a>
                         <ul>
                           <li style={{ 'border-bottom': '2px solid #fdf7e4' }}>
-                          <Link href="/pets/psycological-test/page1">心理測驗</Link>
+                            <Link href="/pets/psycological-test/page1">
+                              心理測驗
+                            </Link>
                           </li>
 
                           <li>
-                          <Link href="/pets/notice">領養流程</Link>
+                            <Link href="/pets/notice">領養流程</Link>
                           </li>
                         </ul>
                       </li>
@@ -171,12 +224,10 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                                                 <Link href="/faq/faqshopping">常見問題</Link>
-
+                            <Link href="/faq/faqshopping">常見問題</Link>
                           </li>
                           <li>
-                          <Link href="/faq/chatroom">客服中心</Link>
-
+                            <Link href="/faq/chatroom">客服中心</Link>
                           </li>
                         </ul>
                       </li>
@@ -192,11 +243,10 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                                                  <Link href="/pets">浪浪列表</Link>
-
+                            <Link href="/pets">浪浪列表</Link>
                           </li>
                           <li>
-                          <Link href="/petDiary">追蹤日誌</Link>
+                            <Link href="/petDiary">追蹤日誌</Link>
                           </li>
                         </ul>
                       </li>
@@ -206,7 +256,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                          <Link href="/product/menu">寵物商城</Link>
+                            <Link href="/product/menu">寵物商城</Link>
                           </li>
                         </ul>
                       </li>
@@ -216,40 +266,62 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                          <Link href="/user/user-info">會員中心</Link>
+                            <Link href="/user/user-info">會員中心</Link>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </ul>
                   <div className="phone-li">
-                  <Link href="/user/shopping-cart/step1" 
+                    <a
+                      href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
-                      <a className="cart-items">{cartItems.length}</a>
-                      <TiShoppingCart 
+                      <div className="cart-items">{cartItems.length}</div>
+                      <TiShoppingCart
                         className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
+                        style={{
+                          color: 'var( --reddish-brown)',
+                          'margin-top': '20px',
+                          width: '60px',
+                          height: '60px',
+                          position: 'relative',
+                          bottom: '20px',
+                        }}
                       />
-                      <a>購物車</a>
-                    </Link>
+                      <div style={{
+                          color: 'var( --reddish-brown)',
+                          position: 'relative',
+                          bottom: '21px',
+                          fontWeight:600,
+                        }}>購物車</div>
+                    </a>
                     {/* <a href="#" className="phone-title">
-                      <CiHeart
-                        className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
-                      />
-                      <a href="#">收藏</a>
+                      <div className="phone-title-content">
+                        <CiHeart
+                          className="title-img"
+                          style={{ color: 'var(--reddish-brown)' }}
+                        />
+                        <span>收藏</span>
+                      </div>
                     </a> */}
-                    <Link href="/user"
+                    <a
+                      href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
                     >
                       <BsPersonVcard
                         className="title-img"
-                        style={{ color: 'var( --reddish-brown)' }}
+                        style={{
+                          color: 'var( --reddish-brown)',
+                          'margin-top': '22px',
+                        }}
                       />
-                    </Link>
+                      <a href="/user" style={{ 'margin-bottom': '15px' }}>
+                        登入
+                      </a>
+                    </a>
                   </div>
                 </nav>
               )}

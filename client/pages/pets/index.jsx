@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadPetInfos } from '@/services/pets'
+// import { useFavs } from '@/context/FavContext'
 import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -7,6 +8,8 @@ import banner from '@/styles/banner/banner.module.css'
 import styles from '@/styles/pets/petList.module.css'
 import { FaHeart } from 'react-icons/fa6'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function PetList() {
   // 最後得到的資料
@@ -24,6 +27,50 @@ export default function PetList() {
   const [state, setState] = useState([])
   const [personality_type, setPersonality_type] = useState([])
   const [gender, setGender] = useState([])
+
+  // 收藏用
+  const [favs, setFavs] = useState([])
+  const [favStatus, setFavStatus] = useState({})
+
+  const addFav = (pet) => {
+    const nextFavs = [pet, ...favs]
+    setFavs(nextFavs)
+    console.log('收藏的寵物', nextFavs)
+    toast.success(`已成功加入收藏`, {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'light',
+      transition: Slide,
+    })
+  }
+
+  const toggleFav = (pet) => {
+    setFavStatus((prevStatus) => ({
+      ...prevStatus,
+      [pet.pet_id]: !prevStatus[pet.pet_id],
+    }))
+    if (!favStatus[pet.pet_id]) {
+      addFav(pet)
+    } else {
+      setFavs((prevFavs) => prevFavs.filter((p) => p.pet_id !== pet.pet_id))
+      toast.success(`已成功移除收藏`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
+      })
+    }
+  }
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
@@ -54,11 +101,7 @@ export default function PetList() {
     '老年 8 歲以上': [8, 20], // 假設 20 歲是最大值
   }
   // 體重選項陣列
-  const weightOptions = [
-    '小型 8 kg 以下',
-    '中型 8 ~ 20 kg',
-    '大型 20 kg 以上',
-  ]
+  const weightOptions = ['小型 8 kg 以下', '中型 8 ~ 20 kg', '大型 20 kg 以上']
   // 體重範圍
   const weightRangeMap = {
     '小型 8 kg 以下': [0, 7],
@@ -86,7 +129,7 @@ export default function PetList() {
     if (Array.isArray(data.pet_info)) {
       console.log('設pets 狀態: ', data.pet_info)
       setPets(data.pet_info)
-    } 
+    }
     console.log(data.pet_info)
   }
 
@@ -165,15 +208,15 @@ export default function PetList() {
     }
   }
 
-    // 體重複選時使用
-    const handleWeightChecked = (e) => {
-      const { value, checked } = e.target
-      if (checked) {
-        setWeight([...weight, value])
-      } else {
-        setWeight(weight.filter((v) => v !== value))
-      }
+  // 體重複選時使用
+  const handleWeightChecked = (e) => {
+    const { value, checked } = e.target
+    if (checked) {
+      setWeight([...weight, value])
+    } else {
+      setWeight(weight.filter((v) => v !== value))
     }
+  }
 
   // 處理搜尋
   const handleSearch = () => {
@@ -193,7 +236,6 @@ export default function PetList() {
     const weight_lte = weightRanges.length ? Math.max(...weightRanges) : 30
     console.log('最小體重 ', weight_gte)
     console.log('最大體重 ', weight_lte)
-
 
     const params = {
       page: 1, // 每次搜尋條件後，因為頁數和筆數可能不同，所以要導向第1頁
@@ -222,7 +264,7 @@ export default function PetList() {
       page,
       perpage,
     }
-    
+
     getPet(params)
   }, [page, perpage])
 
@@ -311,7 +353,7 @@ export default function PetList() {
                 <div className={banner['select-item-a']}>
                   <p className={banner['select-title']}>寵物體型</p>
                   <div className={banner['select-item']}>
-                  {weightOptions.map((v, i) => {
+                    {weightOptions.map((v, i) => {
                       return (
                         <label key={i} className={banner['cl-checkbox']}>
                           <input
@@ -438,7 +480,6 @@ export default function PetList() {
           </div>
         </div>
       </div>
-
       <div className={styles['commendbody']}>
         <section className={styles['title']}>
           <h1>
@@ -451,41 +492,46 @@ export default function PetList() {
         <section className={styles['pet-card']}>
           {pets.map((v, i) => {
             return (
-              <Link href={`/pets/${v.pet_id}`}>
-                <div className={styles['card']}>
-                  <div className={styles['card-img']}>
-                    <p className={styles['state']} key={v.pet_id}>
-                      {v.state}
-                    </p>
+              <div className={styles['card']}>
+                <div className={styles['card-img']}>
+                  <p className={styles['state']} key={v.pet_id}>
+                    {v.state}
+                  </p>
+                  <Link href={`/pets/${v.pet_id}`} key={v.pet_id}>
                     <img
                       key={v.pet_id}
                       src={`/img/pet-info/${v.phone1}.jpg`}
                       alt=""
                     />
-                    <FaHeart className={styles['favorite']} />
-                  </div>
-                  <div className={styles['pet-name']}>
-                    <span key={v.pet_id}>{v.tag}</span>
-                    <p key={v.pet_id}>{v.name}</p>
-                    <div className={styles['pet-desc']}>
-                      <span key={v.pet_id}>今年約莫 {v.age}歲</span>
-                      {v.gender === '男生' ? (
-                        <img
-                          src="/img/pets/icon_boy.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      ) : (
-                        <img
-                          src="/img/pets/icon_girl.png"
-                          alt=""
-                          draggable="false"
-                        />
-                      )}
-                    </div>
+                  </Link>
+                  <FaHeart
+                    className={`${styles['favorite']} ${
+                      favStatus[v.pet_id] ? styles['active'] : ''
+                    }`}
+                    onClick={() => toggleFav(v)}
+                  />
+                </div>
+                <div className={styles['pet-name']}>
+                  <span key={v.pet_id}>{v.tag}</span>
+                  <p key={v.pet_id}>{v.name}</p>
+                  <div className={styles['pet-desc']}>
+                    <span key={v.pet_id}>今年約莫 {v.age}歲</span>
+                    {v.gender === '男生' ? (
+                      <img
+                        src="/img/pets/icon_boy.png"
+                        alt=""
+                        draggable="false"
+                      />
+                    ) : (
+                      <img
+                        src="/img/pets/icon_girl.png"
+                        alt=""
+                        draggable="false"
+                      />
+                    )}
                   </div>
                 </div>
-              </Link>
+              </div>
             )
           })}
         </section>
@@ -537,7 +583,6 @@ export default function PetList() {
             </span>
           )}
           <span>
-
             <a
               className={`${styles['page']} ${styles['nextpostslink']}`}
               onClick={() => {

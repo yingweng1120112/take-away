@@ -11,6 +11,7 @@ const socket = io.connect('http://localhost:3005')
 
 export default function App() {
   const [username, setUsername] = useState('')
+  // const [adminname, setAdminname] = useState('')
   const [room, setRoom] = useState('')
   const [showChat, setShowChat] = useState(false)
   const joinRoom = () => {
@@ -18,16 +19,28 @@ export default function App() {
       socket.emit('join_room')
       setShowChat(true)
     }
+    // if ((username !== '' || adminname === '西薩狗班長') && room !== '') {
+    //   socket.emit('join_room', { room, username: adminname || username })
+    //   setShowChat(true)
+    // }
   }
 
   return (
     <>
-    <Header />
-    <Chatbanner />
+      <Header />
+      <Chatbanner />
       <div className={styles['chat_index']}>
         {!showChat ? (
           <div className={styles['joinChatContainer']}>
-            <h3>客服中心</h3>
+            <div className={styles['chat_indh4']}>
+              <h4>線上客服中心</h4>
+            </div>
+            {/* <div className={styles['chat_index_img']}>
+              <img src="/img/faq/chat_dogbg_re.png" alt="" />
+            </div> */}
+            {/* <div className={styles['chat_index_img1']}>
+              <img src="/img/faq/chat_dogbg_re.png" alt="" />
+            </div> */}
             <input
               type="text"
               placeholder="請輸入您的名字..."
@@ -35,13 +48,20 @@ export default function App() {
                 setUsername(event.target.value)
               }}
             />
-                        <div>
-              <select onChange={(event) => {
-                setRoom(event.target.value)
-              }}>
-                <option value=""></option>
-                <option value="room1">房間1</option>
-                <option value="room2">房間2</option>
+            {/* <input
+              type="radio"
+              onClick={() => setAdminname('西薩狗班長')}
+            />Admin */}
+            {/* 下拉方式 */}
+            <div>
+              <select className={styles['chat_index_sle']}
+                onChange={(event) => {
+                  setRoom(event.target.value)
+                }}
+              >
+                <option value="" ></option>
+                <option value="room1">線上客服1</option>
+                <option value="room2">線上客服2</option>
               </select>
             </div>
             {/* <input
@@ -60,7 +80,12 @@ export default function App() {
             /> */}
             {/* <button onClick={joinRoom}>開始聊聊</button> */}
             <button className={styles['cta']}>
-              <span class={styles['hover-underline-animation']} onClick={joinRoom}>開 始 聊 聊</span>
+              <span
+                class={styles['hover-underline-animation']}
+                onClick={joinRoom}
+              >
+                開 始 聊 聊
+              </span>
               <svg
                 id="arrow-horizontal"
                 xmlns="http://www.w3.org/2000/svg"

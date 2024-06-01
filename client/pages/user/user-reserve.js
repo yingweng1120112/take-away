@@ -22,7 +22,7 @@ export default function UserReserve() {
   // 分頁用
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
-  const [perpage, setPerpage] = useState(10)
+  const [perpage, setPerpage] = useState(20)
   // 排序
   const [orderby, setOrderby] = useState({
     sort: 'reservation_id',

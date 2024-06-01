@@ -9,16 +9,15 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 import db from '#configs/mysql.js'
 
 // GET - 得到id寵物的所有blog資料
-router.get('/:id', async function (req, res) {
+router.get('/:id/', async function (req, res) {
   // 轉為數字
   const id = getIdParam(req)
-
   const page = Number(req.query.page) || 1
   const perpage = Number(req.query.perpage) || 6 // 預設每頁6筆資料
   const offset = (page - 1) * perpage
   const limit = perpage
   const [rows] = await db.query(
-    `SELECT * FROM blog WHERE pet_id=? ORDER BY time DESC LIMIT ${limit}  `,
+    `SELECT * FROM blog WHERE pet_id=? ORDER BY time DESC LIMIT ${limit} OFFSET ${offset} `,
     [id]
   )
   const [rows2] = await db.query(

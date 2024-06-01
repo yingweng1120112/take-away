@@ -7,9 +7,10 @@ import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
 import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
+// import { useLoader } from '@/hooks/use-loader'
 
 export default function Reserve() {
+  // const{showLoader, hideLoader, loading, delay} = useLoader()
   const router = useRouter()
   const [reserve, setReserve] = useState({
     pet: 'reserve.pet',
@@ -202,7 +203,6 @@ export default function Reserve() {
       });
       return;
     }
-  
     const formattedReserveTime = formatDateTime(reserve.reserveTime);
     if (isNaN(new Date(formattedReserveTime).getTime())) {
       Swal.fire({
