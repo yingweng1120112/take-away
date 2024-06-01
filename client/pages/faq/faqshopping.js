@@ -17,7 +17,7 @@ export default function Faqshopping() {
     searchKeyword: '',
   })
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 5 // 每頁顯示的項目數量
+  const itemsPerPage = 6 // 每頁顯示的項目數量
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,26 +32,28 @@ export default function Faqshopping() {
     fetchData()
   }, [])
 
+  const applyFilters = (data, filters) => {
+    const { main_question, searchKeyword } = filters
+
+    return data.filter(
+      (item) =>
+        (main_question
+          ? item.main_question.toLowerCase().includes(main_question)
+          : true) &&
+        (searchKeyword
+          ? item.small_question.toLowerCase().includes(searchKeyword) ||
+            item.faq_answer.toLowerCase().includes(searchKeyword)
+          : true)
+    )
+  }
+
   const handleFilterChange = (name, value) => {
     const newFilters = { ...filters, [name]: value.toLowerCase() }
     setFilters(newFilters)
-
-    const { main_question, searchKeyword } = newFilters
-    setFilteredData(
-      data.filter(
-        (item) =>
-          (main_question
-            ? item.main_question.toLowerCase().includes(main_question)
-            : true) &&
-          (searchKeyword
-            ? item.small_question.toLowerCase().includes(searchKeyword) ||
-              item.faq_answer.toLowerCase().includes(searchKeyword)
-            : true)
-      )
-    )
+    const filtered = applyFilters(data, newFilters)
+    setFilteredData(filtered)
+    setCurrentPage(1) // 重置到第一頁
   }
-  // setFilteredData(filters)
-  // setCurrentPage(1) // 重置到第一頁
 
   const handleSearchChange = (value) => {
     handleFilterChange('searchKeyword', value)
@@ -59,7 +61,9 @@ export default function Faqshopping() {
   const handlePageChange = (page) => {
     setCurrentPage(page)
   }
-
+  // 計算當前頁面的項目
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentData = filteredData.slice(startIndex, startIndex + itemsPerPage)
   // 計算總頁數
   const totalPages = Math.ceil(filteredData.length / itemsPerPage)
 
@@ -71,11 +75,7 @@ export default function Faqshopping() {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
-      <FaqList
-        data={filteredData}
-        currentPage={currentPage}
-        itemsPerPage={itemsPerPage}
-      />
+      <FaqList data={currentData} />
       <Faqpages
         currentPage={currentPage}
         totalPages={totalPages}
