@@ -452,7 +452,7 @@ export default function DiarySearch() {
               <br />
               那是不是就可以買一些他們的東西呢
             </h1>
-            <div>
+            <Link href={'/product/menu'}>
               <button className={`${styles['cta']} ${styles['btn-more']}`}>
                 <span className={styles['hover-underline-animation']}>
                   來去看看
@@ -473,7 +473,7 @@ export default function DiarySearch() {
                   />
                 </svg>
               </button>
-            </div>
+            </Link>
           </div>
         </div>
         <div className={styles['shop-Carousel-pc']}>
