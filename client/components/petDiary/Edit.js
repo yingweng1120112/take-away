@@ -229,13 +229,13 @@ export default function MyVerticallyCenteredModal(props) {
                 className={`${styles['button']} ${styles['upload-btn-pc']}`}
               />
             </div>
-            <p>原圖片</p>
+            <p style={{marginTop:'16px',marginBottom:'0px'}}>原始貼文圖片</p>
             <div className={styles['post-upload-pic']}>
               <PrevieImageEdit
                 value={[blog.pic1, blog.pic2, blog.pic3, blog.pic4, blog.pic5]}
               />
             </div>
-            <p>新圖片</p>
+            <p style={{marginTop:'16px',marginBottom:'0px'}}>替換圖片</p>
             <div className={styles['post-upload-pic']}>
               <PrevieImage
                 value={[
