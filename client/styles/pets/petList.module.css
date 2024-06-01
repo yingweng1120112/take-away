@@ -126,7 +126,8 @@
 }
 
 .favorite:hover {
-  color: var(--red);
+  stroke: gray;
+  stroke-width: 15;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.35));
 }
 
