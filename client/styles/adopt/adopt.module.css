@@ -21,6 +21,15 @@
   height:auto;
   margin: 2rem auto;
 }
+.adout .print{
+  display: none;
+}
+.adout .foot{
+  display: none;
+}
+.adout .feet{
+  display: none;
+}
 .adout .container {
   position: relative;
   width: 100%;
@@ -31,6 +40,24 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+.pet{
+  display:none;
+}
+.adout .container .print1{
+  display:none;
+}
+.adout .container .print2{
+  display:none;
+}
+.adout .container .print3{
+  display:none
+}
+.adout .container .print4{
+  display:none;
+}
+.adout .container .feet1{
+  display:none;
 }
 .about-pet .pet-photo{
   width: 80%;
@@ -815,12 +842,77 @@ background: var(--reddish-brown);
 
 @media screen and (min-width: 1025px) {
 .adout {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: auto;
+  margin-bottom:9rem;
 }
-
+.back{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top: 14%;
+  transform: rotate(-90deg);
+}
+.back3{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top:63%;
+  transform: rotate(-90deg);
+}
+.back5{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top:111%;
+  transform: rotate(-90deg);
+}
+.back2{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:  11%;
+  transform: rotate(-90deg);
+}
+.back4{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:53%;
+  transform: rotate(-90deg);
+}
+.back6{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:95%;
+  transform: rotate(-90deg);
+}
+/* .login{
+  width:50%;
+  transform: rotate(-90deg);
+} */
 .adout  .container {
   position: relative;
   width: 60%;
@@ -846,6 +938,7 @@ background: var(--reddish-brown);
 }
 
 .adout .foot {
+  display:block;
   position: absolute;
   width: 10rem;
   height: 10rem;
@@ -853,6 +946,137 @@ background: var(--reddish-brown);
   left: 37%;
   top: -5%;
   transform: rotate(-180deg);
+}
+.adout .feet {
+  display: block;
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  z-index: 4;
+  left: -20%;
+  top: -5%;
+  animation: walk 10s infinite;
+  opacity: 1;
+}
+
+@keyframes walk {
+  0% {
+    transform: translateY(-100px) translateX(50px) rotate(40deg);
+    opacity: 1;
+  }
+  /* 5% {
+    transform: translateY(-90px) translateX(50px) rotate(40deg);
+    opacity: 1;
+  } */
+  10% {
+    transform: translateY(-100px) translateX(150px) rotate(40deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(-100px) translateX(450px) rotate(40deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) translateX(750px) rotate(40deg);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-100px) translateX(1050px) rotate(40deg);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(-100px) translateX(1350px) rotate(40deg);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.adout .feet1 {
+  display: block;
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  z-index: 4;
+  left: -20%;
+  top: -5%;
+  animation: walk1 10s infinite;
+  opacity: 1;
+}
+
+@keyframes walk1 {
+  0% {
+    transform: translateY(-30px) translateX(0px) rotate(70deg);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-30px) translateX(300px) rotate(70deg);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-30px) translateX(600px) rotate(70deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-30px) translateX(900px) rotate(70deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-30px) translateX(1200px) rotate(70deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-30px) translateX(1500px) rotate(70deg);
+    opacity: 1;
+  }
+}
+.adout .container .feet1{
+  display:block;
+}
+
+.pet {
+  display:block;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 1%;
+  transform: rotate(0deg);
+  margin:2rem 0rem;
+}
+.adout  .container .print1 {
+  display:block;
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  z-index: 100;
+  left: -32%;
+  top: 60%;
+  transform: rotate(-190deg);
+}
+.adout  .container .print2 {
+  display:none;
+}
+.adout .container .print3 {
+  display:block;
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  z-index: 0;
+  left: -3%;
+  top: 78%;
+  transform: rotate(-190deg);
+}
+.adout .container .print4 {
+  display:block;
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  z-index: 0;
+  left:25%;
+  z-index: 0;
+  top: 95%;
+  transform: rotate(-190deg);
 }
 .adout .popup-image .print {
   position: absolute;
@@ -898,15 +1122,7 @@ background: var(--reddish-brown);
 .container .popup-image .myfoot {
   display: block;
   }
-.adout .print2 {
-  position: absolute;
-  width: 25rem;
-  height: 25rem;
-  z-index: 0;
-  left: 26%;
-  top: 63%;
-  transform: rotate(-10deg);
-}
+
 
 .about-pet {
   width: 40%;

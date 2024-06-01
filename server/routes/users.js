@@ -13,6 +13,39 @@ const secretKey = process.env.SECRET_KEY
 // 使用 forgot-password 路由
 router.use('/forgot-password', forgotPassword)
 
+// 註冊
+router.post('/register-form', async (req, res) => {
+  const { name, email, phone, password } = req.body
+
+  try {
+    // 檢查是否已有相同的 email 或 phone
+    const [existingUsers] = await db.query(
+      'SELECT * FROM user WHERE email = ? OR phone = ?',
+      [email, phone]
+    )
+    if (existingUsers.length > 0) {
+      return res
+        .status(400)
+        .json({ status: 'error', message: '帳號或email已存在' })
+    }
+
+    // 插入新用戶資料
+    const [result] = await db.query(
+      'INSERT INTO user (name, email, phone, password) VALUES (?, ?, ?, ?)',
+      [name, email, phone, password]
+    )
+
+    if (result.affectedRows > 0) {
+      res.status(201).json({ status: 'success', message: '註冊成功' })
+    } else {
+      res.status(400).json({ status: 'error', message: '註冊失敗' })
+    }
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ status: 'error', message: '伺服器錯誤' })
+  }
+})
+
 // 登入
 router.post('/', async (req, res) => {
   console.log('錯誤')
@@ -30,7 +63,7 @@ router.post('/', async (req, res) => {
       console.log(rows)
       const token = jwt.sign(
         {
-          phone: userData.phone, 
+          phone: userData.phone,
           userpassword: userData.password,
           user_id: userData.user_id,
         },

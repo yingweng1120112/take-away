@@ -104,7 +104,19 @@ export default function Adopt() {
         </div>
       </div>
       <section className={styles['adout']}>
+      <img src={`/img/back1.png`} alt="" className={styles['back']} />
+      <img src={`/img/back1.png`} alt="" className={styles['back3']} />
+      <img src={`/img/back1.png`} alt="" className={styles['back5']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back2']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back4']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back6']} />
         <div className={styles['container']}>
+      {/* <img src={`/img/print.png`} alt="" className={styles['print1']} />
+      <img src={`/img/print.png`} alt="" className={styles['print2']} />
+      <img src={`/img/print.png`} alt="" className={styles['print3']} />
+      <img src={`/img/print.png`} alt="" className={styles['print4']} /> */}
+      <img src={`/img/foot.png`} alt="" className={styles['feet']} />
+      <img src={`/img/foot.png`} alt="" className={styles['feet1']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <div className={styles['popup-image']}>
@@ -121,9 +133,6 @@ export default function Adopt() {
             <img src={`/img/foot.png`} alt="" className={styles['feet']} />
           </div>
           <section className={styles['about-pet']}>
-            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
-            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
-            <img src={`/img/foot.png`} alt="" className={styles['foot']} />
             <div className={styles['pet-title']}>
               <div className={styles['petswiper']}>
                 <Carousel
@@ -140,8 +149,8 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-name']}>
                 {/* TODO:姓名抓資料庫 */}
-                <h3>認養滷蛋</h3>
-                <h3>妹妹 • 5歲 • 射手座 • 鬆獅犬</h3>
+                <h3>認養{pet.name}</h3>
+                <h3>{pet.gender} • {pet.age}歲 •{pet.sign} • {pet.breeds}</h3>
               </div>
               <div className={styles['pet-img']}>
                 <div className={styles['image']}>
@@ -156,8 +165,8 @@ export default function Adopt() {
               </div>
               <div className={styles['pet-namet']}>
                 {/* TODO:姓名抓資料庫 */}
-                <h3>認養滷蛋</h3>
-                <h3>妹妹• 5歲 • 射手座 • 鬆獅犬</h3>
+                <h3>認養{pet.name}</h3>
+                <h3>{pet.gender} • {pet.age}歲 •{pet.sign} • {pet.breeds}</h3>
               </div>
               <div className={styles['extra']}>
                 <div className={styles['pet-character']}>
@@ -168,16 +177,16 @@ export default function Adopt() {
                     2.面對陌生人會先觀察，但一旦認定你就會開始黏人，看到熟人時也會非常興奮。
                     <br />
                     {/* TODO:姓名抓資料庫 */}
-                    3.滷蛋願意跟隨人類、聽從指令。
+                    3.{pet.name}願意跟隨人類、聽從指令。
                     <br />
                     4.對環境適應力快、勇於探索，但警戒性也很高。
                     <br />
                     <p className={styles['date-p']}>捐款須知</p>
-                    ※本專案募資項目扣除Ludan（滷蛋）生活等相關費用，餘款將用於支付250隻等家狗狗每日的生活開銷※
+                    ※本專案募資項目扣除{pet.name}生活等相關費用，餘款將用於支付250隻等家狗狗每日的生活開銷※
                     <br />
                     ※您每一筆捐款將可以「列舉扣除額」方式申報扣抵所得稅※
                   </h4>
-                  <br />
+                    <br />
                   <button
                     onClick={() => {
                       setOpen(!open)
@@ -190,11 +199,14 @@ export default function Adopt() {
               </div>
             </div>
           </section>
+          
           <section className={styles['form']}>
             <AdoptForm name={pet.name} phone1={pet.phone1} pet_id={pet.pet_id}/>
+      <img src={`/img/dogcat.webp`} alt="" className={styles['pet']} />
           </section>
         </div>
       </section>
+
       <Footer />
     </>
   )

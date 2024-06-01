@@ -1,9 +1,10 @@
-import { useState, React } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
 import { BsPersonVcard } from 'react-icons/bs'
+import { MdLogout } from 'react-icons/md'
 import { TiShoppingCart } from 'react-icons/ti'
 import { GoPerson } from 'react-icons/go'
 import {
@@ -21,6 +22,22 @@ export default function Header() {
     setIsVisible(!isVisible)
   }
   const { cartItems } = useCart()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(() => {
+    // 检查localStorage中的userKey，设置初始状态
+    const userKey = localStorage.getItem('userKey')
+    if (userKey) {
+      setIsLoggedIn(true)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    // 清除 localStorage 的 userKey
+    localStorage.removeItem('userKey')
+    setIsLoggedIn(false)
+  }
   return (
     <>
       {/* 更改容器高度 */}
@@ -110,20 +127,29 @@ export default function Header() {
                   購物車
                 </div>
               </Link>
-              <Link href="/user">
-                <div className="shop-group">
-                  <BsPersonVcard className="shop-icon" />
-                  登入
-                </div>
-              </Link>
+              {isLoggedIn ? (
+                <Link href="/">
+                  <div className="shop-group" onClick={handleLogout}>
+                    <MdLogout className="shop-icon" />
+                    <span>登出</span>
+                  </div>
+                </Link>
+              ) : (
+                <Link href="/user/login">
+                  <div className="shop-group">
+                    <BsPersonVcard className="shop-icon" />
+                    <span>登入</span>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
           <div style={{ position: 'relative' }}>
             <div className="header2">
               <div className="phone-header">
-                <div className="logo">
+                <a className="logo" href="http://localhost:3000/">
                   <img src={`/img/index/logo-removebg-preview.png`} />
-                </div>
+                </a>
                 <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
                   {isVisible ? (
                     <RiMenuSearchFill className="shop" />
@@ -227,11 +253,12 @@ export default function Header() {
                     </ul>
                   </ul>
                   <div className="phone-li">
-                    <a
-                      href="#"
+                    <Link
+                      href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
+                      <div className="cart-items">{cartItems.length}</div>
                       <TiShoppingCart
                         className="title-img"
                         style={{
@@ -241,15 +268,8 @@ export default function Header() {
                           height: '60px',
                         }}
                       />
-                      <a
-                        href="/user/shopping-cart/step1"
-                        style={{ margin: '0px' }}
-                      >
-                        購物車
-                      </a>
-                      <span className="cart-items">{cartItems.length}</span>
-                    </a>
-
+                      <div>購物車</div>
+                    </Link>
                     {/* <a href="#" className="phone-title">
                       <div className="phone-title-content">
                         <CiHeart
@@ -259,7 +279,7 @@ export default function Header() {
                         <span>收藏</span>
                       </div>
                     </a> */}
-                    <a
+                    <Link
                       href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
@@ -274,7 +294,7 @@ export default function Header() {
                       <a href="/user" style={{ 'margin-bottom': '15px' }}>
                         登入
                       </a>
-                    </a>
+                    </Link>
                   </div>
                 </nav>
               )}

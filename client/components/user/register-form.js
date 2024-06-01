@@ -101,7 +101,7 @@ export default function RegisterForm() {
     // 表單檢查 --- END
 
     // 最後檢查完全沒問題才送到伺服器(ajax/fetch)
-    const res = await fetch('http://localhost:3005/api/users/raw-sql', {
+    const res = await fetch('http://localhost:3005/api/users/register-form', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

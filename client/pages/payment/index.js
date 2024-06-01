@@ -5,14 +5,14 @@ export default function Index() {
     <div>
       <button
         onClick={() => {
-          window.location.href = `http://localhost:3005/api/ec/?amount=500`
+          window.location.href = `http://localhost:3005/api/ec1/?amount=2000`
         }}
       >
-        付款500
+        付款2000
       </button>
       <button
         onClick={() => {
-          window.location.href = 'http://localhost:3005/api/ec/?amount=1000'
+          window.location.href = 'http://localhost:3005/api/ec1/?amount=1000'
         }}
       >
         付款1000
