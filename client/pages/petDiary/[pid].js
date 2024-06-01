@@ -5,8 +5,8 @@ import { loadBlogsInfo } from '@/services/blog'
 import React from 'react'
 import CarouselPetInfo from '@/components/swiper/CarouselPetInfo'
 import CarouselPetLife from '@/components/swiper/CarouselPetLife'
+import MyVerticallyCenteredModal from '@/components/petDiary/Edit'
 import UpLoad from '@/components/petDiary/upload'
-
 import styles from '@/styles/petDiary/petDiary.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import Header from '@/components/layout/header'
@@ -19,6 +19,10 @@ import { MdEdit } from 'react-icons/md'
 // https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${pid}
 
 export default function PetDiary() {
+
+  const [modalShow, setModalShow] = React.useState(false);
+  const [blog, setBlog] = useState();
+  // const [modalShow, setModalShow] = React.useState(false)
   // 第1步. 宣告能得到動態路由pid的路由器
   // router.query(物件)，其中包含了pid屬性值
   // router.isReady(布林)，如果是true代表頁面已完成水合作用，可以得到pid
@@ -39,10 +43,13 @@ export default function PetDiary() {
   const handlePageChange = (page) => {
     setPage(page)
   }
-  // const handleEdit=(blogID){
 
-  // }
-  const handleDelete= async(blogID)=>{
+  const handleEdit = (blogID) => {
+    setBlog(blogID)
+    setModalShow(true)
+  }
+
+  const handleDelete = async (blogID) => {
     try {
       const res = await fetch(`http://localhost:3005/api/blog/${blogID}`, {
         method: 'delete',
@@ -61,14 +68,14 @@ export default function PetDiary() {
         // console.log('表單送出失敗', data.message)
         alert(`貼文刪除失敗: ${data.message}`)
       }
-      window.location.reload();
+      window.location.reload()
     } catch (error) {
       // console.log()
       // console.error('貼文刪除錯誤:', error)
       alert(`貼文刪除錯誤:${error.message}`)
     }
   }
-  const getPetInfo = async (pid='') => {
+  const getPetInfo = async (pid = '') => {
     // console.log(`getPetinfo1:data:,${params}`)
     // console.log(`getPetinfo1:data:,${params.pid}`)
     const data1 = await loadPetInfo(pid.pid)
@@ -88,7 +95,7 @@ export default function PetDiary() {
     // console.log('params',params);
     const data = await loadBlogsInfo(params)
     // console.log('data',data);
-    // console.log('getBloginfo1:data:')
+    // console.log('getBloginfo:data:')
     // console.log(data)
     if (data.pageCount && typeof data.pageCount === 'number') {
       setPageCount(data.pageCount)
@@ -171,6 +178,7 @@ export default function PetDiary() {
           src="/img/petDiary/catIcon.svg"
           alt=""
         />
+
         {/* 上傳 */}
         <div className={styles['post']}>
           <img
@@ -207,7 +215,7 @@ export default function PetDiary() {
                       border: 'none',
                       backgroundColor: 'transparent',
                     }}
-                    // onClick={()=>{handleEdit(v.blog_id)}}
+                    onClick={()=>{handleEdit(v.blog_id)}}
                   >
                     <MdEdit style={{ width: '2rem', height: '2rem' }} />
                   </button>
@@ -215,9 +223,11 @@ export default function PetDiary() {
                     style={{
                       marginRight: '8px',
                       border: 'none',
-                      backgroundColor:'transparent'
+                      backgroundColor: 'transparent',
                     }}
-                    onClick={()=>{handleDelete(v.blog_id)}}
+                    onClick={() => {
+                      handleDelete(v.blog_id)
+                    }}
                   >
                     <FaTrashAlt style={{ width: '2rem', height: '2rem' }} />
                   </button>
@@ -226,13 +236,19 @@ export default function PetDiary() {
             </div>
           )
         })}
-
+       
       </div>
-      <Pages
-          currentPage={page}
-          totalPages={pageCount}
-          onPageChange={handlePageChange}
+      <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          blog={blog}
         />
+    
+      <Pages
+        currentPage={page}
+        totalPages={pageCount}
+        onPageChange={handlePageChange}
+      />
       <Footer />
     </>
   )

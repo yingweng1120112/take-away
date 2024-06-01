@@ -57,13 +57,4 @@ const SwiperNavigations = () => {
     </div>
   )
 }
-// const Testttt = ({ pic }) => {
-//   return pic.map((v) => {
-//     // console.log('PIC2', v)
-//     return (
-//       <SwiperSlide className={`swiper-slide ${styles['swiper-slide']} `}>
-//         <img className={styles['img']} src={`/img/petDiary/${v}`} />
-//       </SwiperSlide>
-//     )
-//   })
-// }
+
