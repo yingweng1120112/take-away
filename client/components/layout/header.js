@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
-import { BsPersonVcard } from "react-icons/bs"
-import { MdLogout } from "react-icons/md"
-import { TiShoppingCart } from "react-icons/ti"
+import { BsPersonVcard } from 'react-icons/bs'
+import { MdLogout } from 'react-icons/md'
+import { TiShoppingCart } from 'react-icons/ti'
 import { GoPerson } from 'react-icons/go'
 import {
   faCartShopping,
@@ -20,23 +20,23 @@ export default function Header() {
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
-  const {cartItems} = useCart()
-  
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { cartItems } = useCart()
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     // 检查localStorage中的userKey，设置初始状态
-    const userKey = localStorage.getItem('userKey');
+    const userKey = localStorage.getItem('userKey')
     if (userKey) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(true)
     }
-  }, []);
+  }, [])
 
   const handleLogout = () => {
     // 清除 localStorage 的 userKey
-    localStorage.removeItem('userKey');
-    setIsLoggedIn(false);
-  };
+    localStorage.removeItem('userKey')
+    setIsLoggedIn(false)
+  }
   return (
     <>
       {/* 更改容器高度 */}
@@ -44,7 +44,7 @@ export default function Header() {
         <div style={{ position: 'relative' }}>
           <div
             className="header1"
-            style={{ position: 'fixed', width: '100%', 'zIndex': '101' }}
+            style={{ position: 'fixed', width: '100%', zIndex: '101' }}
           >
             <a href="http://localhost:3000/" className="logo">
               <img src={`/img/index/logo-removebg-preview.png`} />
@@ -55,7 +55,9 @@ export default function Header() {
                   <a>關於我們</a>
                   <ul>
                     <li>
-                      <a href="http://localhost:3000/location/location">關於我們</a>
+                      <a href="http://localhost:3000/location/location">
+                        關於我們
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -126,10 +128,10 @@ export default function Header() {
               </Link>
               {isLoggedIn ? (
                 <Link href="/">
-                <div className="shop-group" onClick={handleLogout}>
-                  <MdLogout className="shop-icon" />
-                  <span>登出</span>
-                </div>
+                  <div className="shop-group" onClick={handleLogout}>
+                    <MdLogout className="shop-icon" />
+                    <span>登出</span>
+                  </div>
                 </Link>
               ) : (
                 <Link href="/user/login">
@@ -144,7 +146,7 @@ export default function Header() {
           <div style={{ position: 'relative' }}>
             <div className="header2">
               <div className="phone-header">
-                <a className="logo"  href="http://localhost:3000/">
+                <a className="logo" href="http://localhost:3000/">
                   <img src={`/img/index/logo-removebg-preview.png`} />
                 </a>
                 <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
@@ -166,7 +168,9 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                            <Link href="http://localhost:3000/location/location">關於我們</Link>
+                            <Link href="http://localhost:3000/location/location">
+                              關於我們
+                            </Link>
                           </li>
                         </ul>
                       </li>
@@ -177,11 +181,13 @@ export default function Header() {
                         </a>
                         <ul>
                           <li style={{ 'border-bottom': '2px solid #fdf7e4' }}>
-                          <Link href="/pets/psycological-test/page1">心理測驗</Link>
+                            <Link href="/pets/psycological-test/page1">
+                              心理測驗
+                            </Link>
                           </li>
 
                           <li>
-                          <Link href="/pets/notice">領養流程</Link>
+                            <Link href="/pets/notice">領養流程</Link>
                           </li>
                         </ul>
                       </li>
@@ -197,12 +203,10 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                                                 <Link href="/faq/faqshopping">常見問題</Link>
-
+                            <Link href="/faq/faqshopping">常見問題</Link>
                           </li>
                           <li>
-                          <Link href="/faq/chatroom">客服中心</Link>
-
+                            <Link href="/faq/chatroom">客服中心</Link>
                           </li>
                         </ul>
                       </li>
@@ -218,11 +222,10 @@ export default function Header() {
                               'border-bottom': '1px solid var(--creamy-yellow)',
                             }}
                           >
-                                                  <Link href="/pets">浪浪列表</Link>
-
+                            <Link href="/pets">浪浪列表</Link>
                           </li>
                           <li>
-                          <Link href="/petDiary">追蹤日誌</Link>
+                            <Link href="/petDiary">追蹤日誌</Link>
                           </li>
                         </ul>
                       </li>
@@ -232,7 +235,7 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                          <Link href="/product/menu">寵物商城</Link>
+                            <Link href="/product/menu">寵物商城</Link>
                           </li>
                         </ul>
                       </li>
@@ -242,19 +245,20 @@ export default function Header() {
                         </a>
                         <ul>
                           <li>
-                          <Link href="/user/user-info">會員中心</Link>
+                            <Link href="/user/user-info">會員中心</Link>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </ul>
                   <div className="phone-li">
-                  <Link href="/user/shopping-cart/step1"
+                    <Link
+                      href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
                       <div className="cart-items">{cartItems.length}</div>
-                      <TiShoppingCart 
+                      <TiShoppingCart
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
@@ -267,7 +271,8 @@ export default function Header() {
                       />
                       <a href="#">收藏</a>
                     </a> */}
-                    <Link href="/user"
+                    <Link
+                      href="/user"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 19px 0px' }}
                     >
