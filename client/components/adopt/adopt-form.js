@@ -56,10 +56,6 @@ export default function AdoptForm(pet) {
       }, 1500)
     }
   }
-
-
-
-
   const validatePageTwo = () => {
     const newErrors = { user_id: '', email: '', phone: '' };
   
@@ -98,12 +94,17 @@ export default function AdoptForm(pet) {
   
     // Check if there are any errors
     return !newErrors.user_id && !newErrors.email && !newErrors.phone;
-  };
+  }
+
+
   const nextStep = (e) => {
     e.preventDefault();
-  
+    let finalAmount = donateInfo.amount;
+    if (!finalAmount && donateInfo.customAmount) {
+      finalAmount = donateInfo.customAmount;
+    }
     if (currentStep === 1) {
-      if (!donateInfo.amount && !donateInfo.customAmount) {
+      if (!finalAmount) {
         Swal.fire({
           icon: 'error',
           text: '請輸入金額',
@@ -111,7 +112,20 @@ export default function AdoptForm(pet) {
         window.scrollTo({ top: 400, behavior: 'smooth' });
         return; // Stop if validation fails
       }
-    } else if (currentStep === 2 && !validatePageTwo()) {
+      const currentUrl = window.location.href;
+      const paymentUrl = `http://localhost:3005/api/ec1/?amount=${finalAmount}&returnUrl=${encodeURIComponent(currentUrl)}&success=true`;
+      localStorage.setItem('donateInfo', JSON.stringify(donateInfo));
+      localStorage.setItem('currentStep', currentStep + 1);
+  
+      if (donateInfo.payment === '銀行轉帳' || donateInfo.payment === '超商付款') {
+        window.location.href = paymentUrl;
+      } else {
+        localStorage.setItem('currentStep', currentStep + 1);
+        setCurrentStep(currentStep + 1); // Update currentStep to proceed to the next step
+      }
+    }
+  
+    if (currentStep === 2 && !validatePageTwo()) {
       window.scrollTo({ top: 400, behavior: 'smooth' });
       return; // Stop if validation fails
     }
@@ -119,6 +133,58 @@ export default function AdoptForm(pet) {
     setCurrentStep((prevStep) => prevStep + 1);
     window.scrollTo({ top: 400, behavior: 'smooth' });
   };
+  
+  // const getUrlParameter = (name) => {
+  //   name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  //   const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  //   const results = regex.exec(window.location.search);
+  //   return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  // };
+  
+  
+  const restoreState = () => {
+    const storedDonateInfo = localStorage.getItem('donateInfo');
+    const storedCurrentStep = localStorage.getItem('currentStep');
+  
+    if (storedDonateInfo) {
+      setDonateInfo(JSON.parse(storedDonateInfo));
+    }
+  
+    if (storedCurrentStep) {
+      setCurrentStep(parseInt(storedCurrentStep, 10));
+    }
+  
+    // Check if the user returned from the payment gateway with a success indicator
+    // const success = getUrlParameter('success');
+    // if (success === 'true') {
+    //   Swal.fire({
+    //     title: '交易成功',
+    //     icon: 'success',
+    //   });
+  
+    //   // Clear the localStorage after successful alert
+    //   localStorage.removeItem('donateInfo');
+    //   localStorage.removeItem('currentStep');
+  
+    //   // Remove success parameter from URL
+    //   window.history.replaceState({}, document.title, window.location.pathname);
+    // }
+  };
+  
+  // // Call restoreState on component mount
+  useEffect(() => {
+    restoreState();
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('false') === 'true') {
+      Swal.fire({
+        title: '支付成功',
+        icon: 'success',
+      });
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
+
   const prevStep = () => {
     setCurrentStep((prevStep) => prevStep - 1)
     window.scrollTo({ top: 400, behavior: 'smooth' })
@@ -153,7 +219,7 @@ export default function AdoptForm(pet) {
     if (!finalAmount && donateInfo.customAmount) {
       finalAmount = donateInfo.customAmount;
     }
-
+  
     const userId = Object.keys(userName).find(key => userName[key] === adopt.user_id);
   
     if (!userId) {
@@ -193,7 +259,9 @@ export default function AdoptForm(pet) {
       Swal.fire({
         title: '送出成功',
         icon: 'success',
-      });
+      })
+      localStorage.removeItem('donateInfo')
+      localStorage.removeItem('currentStep')
       setDonateInfo({
         pet_id: '',
         donation_method: '定期定額',
@@ -218,6 +286,8 @@ export default function AdoptForm(pet) {
       }).then(() => {
         window.scrollTo({ top: 400, behavior: 'smooth' });
       });
+      localStorage.removeItem('donateInfo')
+      localStorage.removeItem('currentStep')
     }
   };
 

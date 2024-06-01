@@ -842,13 +842,77 @@ background: var(--reddish-brown);
 
 @media screen and (min-width: 1025px) {
 .adout {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: auto;
   margin-bottom:9rem;
 }
-
+.back{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top: 14%;
+  transform: rotate(-90deg);
+}
+.back3{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top:63%;
+  transform: rotate(-90deg);
+}
+.back5{
+  display:block;
+  position: absolute;
+  width: 35rem;
+  height: auto;
+  z-index: 4;
+  left: -11.3%;
+  top:111%;
+  transform: rotate(-90deg);
+}
+.back2{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:  11%;
+  transform: rotate(-90deg);
+}
+.back4{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:53%;
+  transform: rotate(-90deg);
+}
+.back6{
+  display:block;
+  position: absolute;
+  width: 30rem;
+  height: auto;
+  z-index: 4;
+  right:  -9%;
+  top:95%;
+  transform: rotate(-90deg);
+}
+/* .login{
+  width:50%;
+  transform: rotate(-90deg);
+} */
 .adout  .container {
   position: relative;
   width: 60%;

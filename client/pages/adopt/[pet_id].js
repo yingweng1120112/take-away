@@ -104,11 +104,17 @@ export default function Adopt() {
         </div>
       </div>
       <section className={styles['adout']}>
+      <img src={`/img/back1.png`} alt="" className={styles['back']} />
+      <img src={`/img/back1.png`} alt="" className={styles['back3']} />
+      <img src={`/img/back1.png`} alt="" className={styles['back5']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back2']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back4']} />
+      <img src={`/img/back2.png`} alt="" className={styles['back6']} />
         <div className={styles['container']}>
-      <img src={`/img/print.png`} alt="" className={styles['print1']} />
+      {/* <img src={`/img/print.png`} alt="" className={styles['print1']} />
       <img src={`/img/print.png`} alt="" className={styles['print2']} />
       <img src={`/img/print.png`} alt="" className={styles['print3']} />
-      <img src={`/img/print.png`} alt="" className={styles['print4']} />
+      <img src={`/img/print.png`} alt="" className={styles['print4']} /> */}
       <img src={`/img/foot.png`} alt="" className={styles['feet']} />
       <img src={`/img/foot.png`} alt="" className={styles['feet1']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
@@ -180,7 +186,7 @@ export default function Adopt() {
                     <br />
                     ※您每一筆捐款將可以「列舉扣除額」方式申報扣抵所得稅※
                   </h4>
-                  <br />
+                    <br />
                   <button
                     onClick={() => {
                       setOpen(!open)
@@ -193,12 +199,14 @@ export default function Adopt() {
               </div>
             </div>
           </section>
+          
           <section className={styles['form']}>
             <AdoptForm name={pet.name} phone1={pet.phone1} pet_id={pet.pet_id}/>
       <img src={`/img/dogcat.webp`} alt="" className={styles['pet']} />
           </section>
         </div>
       </section>
+
       <Footer />
     </>
   )

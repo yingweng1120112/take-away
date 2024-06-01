@@ -118,9 +118,9 @@ export default function Header() {
           <div style={{ position: 'relative' }}>
             <div className="header2">
               <div className="phone-header">
-                <div className="logo">
+                <a className="logo"  href="http://localhost:3000/">
                   <img src={`/img/index/logo-removebg-preview.png`} />
-                </div>
+                </a>
                 <div onClick={toggleVisibility} style={{ cursor: 'pointer' }}>
                   {isVisible ? (
                     <RiMenuSearchFill className="shop" />
@@ -223,16 +223,16 @@ export default function Header() {
                     </ul>
                   </ul>
                   <div className="phone-li">
-                  <Link href="/user/shopping-cart/step1" 
+                  <Link href="/user/shopping-cart/step1"
                       className="phone-title"
                       style={{ 'border-radius': '0px 0px 0px 16px' }}
                     >
-                      <a className="cart-items">{cartItems.length}</a>
+                      <div className="cart-items">{cartItems.length}</div>
                       <TiShoppingCart 
                         className="title-img"
                         style={{ color: 'var( --reddish-brown)' }}
                       />
-                      <a>購物車</a>
+                      <div>購物車</div>
                     </Link>
                     {/* <a href="#" className="phone-title">
                       <CiHeart

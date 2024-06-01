@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Swal from 'sweetalert2';
 
 export default function PageOne({ donateInfo, setDonateInfo, handleChange ,handleAmount , name}) {
@@ -6,6 +6,14 @@ export default function PageOne({ donateInfo, setDonateInfo, handleChange ,handl
   const giveOptions = ['500', '1000', '2000']
   const payOptions = ['銀行轉帳', '超商付款']
 
+  useEffect(() => {
+    const storedData = localStorage.getItem('donateInfo');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      setDonateInfo(parsedData);
+    }
+  }, []);
+  
   return (
     <>
       <h5 className="page-title">填寫捐款金額及方式</h5>
