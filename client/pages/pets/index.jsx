@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { loadPetInfos } from '@/services/pets'
-import { useFavs } from '@/context/FavContext'
+// import { useFavs } from '@/context/FavContext'
 import Link from 'next/link'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -31,27 +31,10 @@ export default function PetList() {
   // 收藏用
   const [favs, setFavs] = useState([])
 
-  // const addFav = (pet) => {
-  //   const nextFavs = [pet, ...favs]
-  //   setFavs(nextFavs)
-  //   console.log('收藏的寵物', nextFavs)
-  //   toast.success(`已成功加入收藏`, {
-  //     position: 'top-center',
-  //     autoClose: 600,
-  //     hideProgressBar: true,
-  //     closeOnClick: true,
-  //     pauseOnHover: false,
-  //     draggable: false,
-  //     progress: undefined,
-  //     theme: 'light',
-  //     transition: Slide,
-  //   })
-  // }
-
-  const { addFav } = useFavs();
-
-  const handleAddFav = (pet) => {
-    addFav(pet);
+  const addFav = (pet) => {
+    const nextFavs = [pet, ...favs]
+    setFavs(nextFavs)
+    console.log('收藏的寵物', nextFavs)
     toast.success(`已成功加入收藏`, {
       position: 'top-center',
       autoClose: 600,
@@ -62,9 +45,8 @@ export default function PetList() {
       progress: undefined,
       theme: 'light',
       transition: Slide,
-    });
-  };
-
+    })
+  }
 
   // 物種選項陣列
   const typeOptions = ['狗狗', '貓貓']
@@ -501,8 +483,7 @@ export default function PetList() {
                       <FaHeart
                         className={styles['favorite']}
                         onClick={(e) => {
-                          e.preventDefault()
-                          handleAddFav(v)
+                          addFav()
                         }}
                       />
                     </Link>
