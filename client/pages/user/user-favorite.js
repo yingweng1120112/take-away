@@ -21,12 +21,12 @@ export default function UserEdit() {
   // const [favs, setFavs] = useState([favs])
 
   const removeFav = () => {
-    // 1 2
-    const nextFavs = favs.filter((v, i) => {
-      return v.pet_id !== pet_id
-    })
-    //3
-    setFavs(nextFavs)
+    // // 1 2
+    // const nextFavs = favs.filter((v, i) => {
+    //   return v.pet_id !== pet_id
+    // })
+    // //3
+    // setFavs(nextFavs)
 
     toast.success(`已成功移除收藏`, {
       position: 'top-center',
