@@ -100,7 +100,7 @@
 }
 .wp-pagenavi .previouspostslink,
 .wp-pagenavi .nextpostslink {
-  display: none;
+  margin: 8px;
 }
 .hidden {
   overflow: hidden;

@@ -85,19 +85,19 @@ export default function PetDiary() {
   }
 
   const getBlogsInfo = async (params) => {
-    console.log('params.pid',params.pid);
-    const data = await loadBlogsInfo(params.pid)
-    console.log('data',data);
+    // console.log('params',params);
+    const data = await loadBlogsInfo(params)
+    // console.log('data',data);
     // console.log('getBloginfo1:data:')
     // console.log(data)
     if (data.pageCount && typeof data.pageCount === 'number') {
       setPageCount(data.pageCount)
     }
-    console.log('data.pageCount',data.pageCount);
+    // console.log('data.pageCount',data.pageCount);
     if (data.total && typeof data.total === 'number') {
       setTotal(data.total)
     }
-    console.log('data.total',data.total);
+    // console.log('data.total',data.total);
     // 設定到狀態中 ===> 進入update階段，觸發重新渲染(re-render) ===> 顯示資料
     // 確定資料是物件資料類型才設定到狀態中(最基本的保護)
     if (Array.isArray(data.blog_info)) {

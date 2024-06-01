@@ -2,11 +2,13 @@
 const baseUrl = 'http://localhost:3005/api/blog'
 
 export const loadBlogsInfo = async (params = {}) => {
-  const pid=params.pid
+  const pid=params.pid.pid
+  const page=params.page
+  const perpage=params.perpage
   try {
     if (!params.pid) throw new Error(`pid是必要參數:`)
 
-    const res = await fetch(`${baseUrl}/${pid}`)
+    const res = await fetch(`${baseUrl}/${pid}?page=${page}&perpage=${perpage}`)
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {

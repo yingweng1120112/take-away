@@ -147,7 +147,7 @@ export default function ImageUpload(data) {
           // console.log('貼文送出失敗', data.message)
           alert(`貼文送出失敗: ${data.message}`)
         }
-        // window.location.reload();
+        window.location.reload();
       } catch (error) {
         // console.log()
         // console.error('貼文送出錯誤:', error)
