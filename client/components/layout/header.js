@@ -1,10 +1,11 @@
-import { useState, React } from 'react'
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
-import { BsPersonVcard } from "react-icons/bs";
-import { TiShoppingCart } from "react-icons/ti";
+import { BsPersonVcard } from "react-icons/bs"
+import { MdLogout } from "react-icons/md"
+import { TiShoppingCart } from "react-icons/ti"
 import { GoPerson } from 'react-icons/go'
 import {
   faCartShopping,
@@ -20,6 +21,22 @@ export default function Header() {
     setIsVisible(!isVisible)
   }
   const {cartItems} = useCart()
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // 检查localStorage中的userKey，设置初始状态
+    const userKey = localStorage.getItem('userKey');
+    if (userKey) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    // 清除 localStorage 的 userKey
+    localStorage.removeItem('userKey');
+    setIsLoggedIn(false);
+  };
   return (
     <>
       {/* 更改容器高度 */}
@@ -107,12 +124,21 @@ export default function Header() {
                   購物車
                 </div>
               </Link>
-              <Link href="/user">
-                <div className="shop-group">
-                  <BsPersonVcard className="shop-icon" />
-                  登入
+              {isLoggedIn ? (
+                <Link href="/">
+                <div className="shop-group" onClick={handleLogout}>
+                  <MdLogout className="shop-icon" />
+                  <span>登出</span>
                 </div>
-              </Link>
+                </Link>
+              ) : (
+                <Link href="/user/login">
+                  <div className="shop-group">
+                    <BsPersonVcard className="shop-icon" />
+                    <span>登入</span>
+                  </div>
+                </Link>
+              )}
             </div>
           </div>
           <div style={{ position: 'relative' }}>
