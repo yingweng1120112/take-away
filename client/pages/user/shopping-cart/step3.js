@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,useEffect,useState} from 'react'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import styles from '@/styles/shopping-cart/shoppingcar-step3.module.css'
@@ -17,6 +17,41 @@ export default function Step3() {
     countSelectedFinalTotalPrice,
     countSelectedExtraFee,
   } = useCart()
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const userId = localStorage.getItem('user_id')
+      if (userId) {
+        const data = await loadUserInfoSpecific(userId)
+        console.log('从 loadUserInfoSpecific 获取的数据:', data)
+        setUserInfo(data)
+      } else {
+        console.error('未找到用户ID')
+      }
+    }
+    fetchUserInfo()
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   // 從 Local Storage 中讀取資料
+  //   const storedOrderData = localStorage.getItem('order_history');
+  //   if (storedOrderData) {
+  //     const orderData = JSON.parse(storedOrderData);
+  //     console.log('Order Data:', orderData);
+  //   }
+
+  //   // 從 Session Storage 中讀取資料
+  //   const storedOrderDetailData = sessionStorage.getItem('order_detail');
+  //   if (storedOrderDetailData) {
+  //     const orderDetailData = JSON.parse(storedOrderDetailData);
+  //     console.log('Order Detail Data:', orderDetailData);
+  //   }
+  // }, []);
+
+
+
   return (
     <>
       <Header />

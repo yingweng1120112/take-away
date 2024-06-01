@@ -39,6 +39,9 @@
   .wp-pagenavi .nextpostslink {
     display: none;
   }
+  .a_link_text{
+    text-decoration: none;
+  }
 @media screen and (min-width: 1025px) {
   .wp-pagenavi {
     margin: 40px auto;
@@ -80,5 +83,8 @@
   .wp-pagenavi .previouspostslink,
   .wp-pagenavi .nextpostslink {
     display: none;
+  }
+  .a_link_text{
+    text-decoration: none;
   }
 }

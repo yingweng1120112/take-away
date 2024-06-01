@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import styles from '@/styles/faq/App.module.css'
+import styles from '@/styles/faq/app.module.css'
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState('')
@@ -16,7 +16,7 @@ function Chat({ socket, username, room }) {
           new Date(Date.now()).getHours() +
           ':' +
           new Date(Date.now()).getMinutes(),
-        imageUrl: 'https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg'
+        // imageUrl: 'https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg'
       }
 
       await socket.emit('send_message', messageData)

@@ -20,25 +20,27 @@ const sample = [
   },
 ]
 
-export const loadPetInfos = async () => {
-  // 要使用try...catch陳述式，讓與伺服器連線作REST更穩健
+export const loadPetInfos = async (params = {}) => {
+  // 使用URLSearchParams產生查詢字串
+  const searchParams = new URLSearchParams(params)
+  const url = `${baseUrl}?${searchParams.toString()}`
+
   try {
-    const res = await fetch(baseUrl)
+    const res = await fetch(url)
     const resData = await res.json()
     // 判斷是否成功
     if (resData.status === 'success') {
-      return resData.data.reserve_system
+      // 因應要分頁和查詢，所以回應整個data
+      return resData.data
     } else {
       console.warn('沒有得到資料')
       return {}
     }
   } catch (e) {
     console.error(e)
-    // 用範例資料當作例外資料
-    return sample
+    return {}
   }
 }
-
 // export const loadPetInfo = async (pet_id = '') => {
 //   try {
 //     if (!pet_id) throw new Error('pet_id是必要參數')

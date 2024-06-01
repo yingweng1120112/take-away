@@ -4,11 +4,11 @@ import { useRouter } from 'next/router'
 import styles from '@/styles/user/login.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
-import { UserContext } from '@/context/UserContext';
+import { UserContext } from '@/context/UserContext'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { jwtDecode } from 'jwt-decode'
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // 解析accessToken用的函式
 const parseJwt = (token) => {
@@ -79,19 +79,21 @@ export default function LoginForm() {
         localStorage.setItem('userKey', token)
         // const user = jwtDecode(token)
         // console.log(user.user_id)
-        // console.log("回傳成功")
+        console.log('回傳成功')
         // setUsers(user)
-        toast.success(('已成功登入'), {
-          position: "top-center",
+
+        // 成功登入並回復初始會員狀態
+        toast.success('已成功登入', {
+          position: 'top-center',
           autoClose: 600,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: false,
           draggable: false,
           progress: undefined,
-          theme: "dark",
+          theme: 'dark',
           transition: Slide,
-        });
+        })
         router.push('./user-info')
       } else {
         const data = await response.json()
@@ -102,24 +104,23 @@ export default function LoginForm() {
     }
   }
 
-
   // 處理登出
   const handleLogout = async () => {
     // 清除 localStorage 的 userKey
     localStorage.removeItem('userKey')
 
     // 成功登出並回復初始會員狀態
-    toast.success(('已成功登出'), {
-      position: "top-center",
+    toast.success('已成功登出', {
+      position: 'top-center',
       autoClose: 600,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
-      theme: "dark",
+      theme: 'dark',
       transition: Slide,
-    });
+    })
 
     // 其他狀態更新邏輯
     setUserData('')
@@ -134,17 +135,21 @@ export default function LoginForm() {
     router.push('./login')
   }
 
-
   return (
     <>
       <section className={styles['section']}>
         <Header />
         <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
         <div className={styles['cont']}>
-          <form className={`${styles['form']} ${styles['sign-up']}`} onSubmit={handleSubmit}>
+          <form
+            className={`${styles['form']} ${styles['sign-up']}`}
+            onSubmit={handleSubmit}
+          >
             <h2 className={styles['h2']}>立即參觀！</h2>
             <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>帳號: </span>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                帳號:{' '}
+              </span>
               <div className="d-flex">
                 <input
                   className={styles['input']}
@@ -154,10 +159,16 @@ export default function LoginForm() {
                   onChange={handleFieldChange}
                 />
               </div>
-              <span className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}>{errors.phone} </span>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.phone}{' '}
+              </span>
             </label>
             <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>密碼: </span>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                密碼:{' '}
+              </span>
               <div className="d-flex">
                 <input
                   className={styles['input']}
@@ -166,14 +177,23 @@ export default function LoginForm() {
                   value={user.password}
                   onChange={handleFieldChange}
                 />
-                <span onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: 'pointer' }}
+                >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
               </div>
-              <span className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}>{errors.password}</span>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.password}
+              </span>
             </label>
             <label className={styles['label']}>
-              <span className={`${styles['span']} ${styles['spanl']}`}>確認密碼: </span>
+              <span className={`${styles['span']} ${styles['spanl']}`}>
+                確認密碼:{' '}
+              </span>
               <div className="d-flex">
                 <input
                   className={styles['input']}
@@ -182,27 +202,49 @@ export default function LoginForm() {
                   value={user.password2}
                   onChange={handleFieldChange}
                 />
-                <span onClick={() => setShowPassword2(!showPassword2)} style={{ cursor: 'pointer' }}>
+                <span
+                  onClick={() => setShowPassword2(!showPassword2)}
+                  style={{ cursor: 'pointer' }}
+                >
                   {showPassword2 ? <FaEyeSlash /> : <FaEye />}
                 </span>
               </div>
-              <span className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}>{errors.password2}</span>
+              <span
+                className={`${styles['span']} ${styles['spanl']} ${styles['error']}`}
+              >
+                {errors.password2}
+              </span>
             </label>
             <div className={`${styles['forgot-pass']}`}>
-              <Link href="/user/forget-password" className={`${styles['notice']}`}>忘記密碼？</Link>
+              <Link
+                href="/user/forget-password"
+                className={`${styles['notice']}`}
+              >
+                忘記密碼？
+              </Link>
             </div>
-            <button type="submit" className={`${styles['button']} ${styles['submit']}`}>登入</button>
-            <button type="button" className={`${styles['button']} ${styles['fb-btn']}`}>
-              Connect with <span className={`${styles['span']} ${styles['fb-btns']}`}>Google</span>
-            </button>
-            {/* <button
-              className={`${styles['button']} ${styles['fb-btn']}`}
-              type="button"
-              onClick={() => setUser({ phone: 'ron', password: '123456', password2: '123456' })}
+            <button
+              type="submit"
+              className={`${styles['button']} ${styles['submit']}`}
             >
-              一鍵填入
-            </button> */}
-            <button type="button" onClick={handleLogout} className={`${styles['button']} ${styles['fb-btn']}`}>登出</button>
+              登入
+            </button>
+            <button
+              type="button"
+              className={`${styles['button']} ${styles['fb-btn']}`}
+            >
+              Connect with{' '}
+              <span className={`${styles['span']} ${styles['fb-btns']}`}>
+                Google
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className={`${styles['button']} ${styles['fb-btn']}`}
+            >
+              登出
+            </button>
           </form>
           <div className={styles['sub-cont']}>
             <div className={styles['img']}>
@@ -212,7 +254,11 @@ export default function LoginForm() {
               </div>
               <Link href="/user/register">
                 <div className={styles['img__btn']}>
-                  <div className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}>註冊</div>
+                  <div
+                    className={`${styles.span} ${styles['spanbtn']} ${styles['m--up']}`}
+                  >
+                    註冊
+                  </div>
                 </div>
               </Link>
             </div>

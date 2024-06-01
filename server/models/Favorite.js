@@ -4,16 +4,16 @@ export default async function (sequelize) {
   return sequelize.define(
     'Favorite',
     {
-      id: {
+      favorite_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      pid: {
+      user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      uid: {
+      pet_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

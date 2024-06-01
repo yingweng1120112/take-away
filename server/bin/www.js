@@ -7,7 +7,7 @@ import debugLib from 'debug'
 import http from 'http'
 const debug = debugLib('node-express-es6:server')
 import { exit } from 'node:process'
-
+import { Server } from 'socket.io'
 // 導入dotenv 使用 .env 檔案中的設定值 process.env
 import 'dotenv/config.js'
 
@@ -23,6 +23,36 @@ app.set('port', port)
  */
 
 var server = http.createServer(app)
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  },
+})
+// socket.io 通信
+
+io.on('connection', (socket) => {
+  console.log(`User Connected: ${socket.id}`)
+
+  socket.on('join_room', (data) => {
+    socket.join(data)
+    console.log(`User with ID: ${socket.id} joined room: ${data}`)
+  })
+
+  socket.on('send_message', (data) => {
+    socket.to(data.room).emit('receive_message', data)
+  })
+
+  socket.on('disconnect', () => {
+    console.log('User Disconnected', socket.id)
+  })
+  // 頻道分流
+  socket.on('addroom',room =>{
+    socket.join(room)
+    socket.to(room).emit('addroom','已有新人加入聊天室!')
+    io.sockets.in(room).emit('addroom','已加入聊天室')
+  })
+})
 
 /**
  * Listen on provided port, on all network interfaces.

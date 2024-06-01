@@ -53,7 +53,19 @@ export default function Reserve() {
     story: '',
     habbit: '',
   })
-
+  const userName = {
+    10001: 'dana',
+    10002: '白賢祐',
+    10003: '洪海仁',
+    10004: '洪秀哲',
+    10005: '千多慧',
+    10006: '洪凡資',
+    10007: '全峰藹',
+    10008: '白斗關',
+    10009: '尹殷盛',
+    10010: '羅彩妍',
+    10011: '金陽基',
+  }
   const [isLoading, setIsLoading] = useState(true)
 
   const getPet = async (pet_id) => {
@@ -112,9 +124,25 @@ export default function Reserve() {
 
     if (!reserve.name || reserve.name.length < 2)
       newErrors.name = '預約人必須大於2個字'
-    if (!reserve.reserveTime)
-      newErrors.reserveTime = '預約時間必填'
-
+    
+    const isNameValid = Object.values(userName).includes(reserve.name);
+    if (!isNameValid) {
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>送出失敗，尚未有預約人資料</h5>
+        <h5>請先註冊</h5>`,
+      });
+      return;
+    }
+    if (!reserve.reserveTime) {
+      newErrors.reserveTime = '預約時間必填';
+  } else {
+      const reserveTime = new Date(reserve.reserveTime);
+      const hour = reserveTime.getHours();
+      if (hour < 7 || hour > 19) {
+          newErrors.reserveTime = '預約時間請在7點到19點之間';
+      }
+  }
     if (newErrors.pet || newErrors.name || newErrors.reserveTime) {
       setErrors(newErrors)
       return
@@ -125,6 +153,14 @@ export default function Reserve() {
     console.log('Form submitted:', { ...reserve, reserveTime: formattedReserveTime })
 
     try {
+      const userId = Object.keys(userName).find(key => userName[key] === reserve.name)
+
+      if (!userId) {
+        Swal.fire({
+          icon: 'error',
+          html: `<h5>送出失敗,預約人尚未註冊過</h5>`,
+        })
+      }
       const res = await fetch('http://localhost:3005/api/reserve_system', {
         method: 'POST',
         headers: {
@@ -132,7 +168,7 @@ export default function Reserve() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_id: reserve.name,
+          user_id: userId,
           pet_id: pet.pet_id,
           time: formattedReserveTime,
         }),
@@ -159,13 +195,29 @@ export default function Reserve() {
   }
 
   const handleConfirm = () => {
-    const formattedReserveTime = formatDateTime(reserve.reserveTime)
+    if (!reserve.reserveTime) {
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>請先選擇預約時間</h5>`,
+      });
+      return;
+    }
+  
+    const formattedReserveTime = formatDateTime(reserve.reserveTime);
+    if (isNaN(new Date(formattedReserveTime).getTime())) {
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>預約時間格式錯誤</h5>`,
+      });
+      return;
+    }
+
     Swal.fire({
       title: '確定要送出?',
       html: `
-      <h5>預約的寵物是: ${reserve.pet}<h5><br>
-      <h5>預約人是: ${reserve.name}<h5><br>
-      <h5>預約時間為: ${formattedReserveTime}<h5>`,
+      <h5>預約的寵物是: ${reserve.pet}</h5><br>
+      <h5>預約人是: ${reserve.name}</h5><br>
+      <h5>預約時間為: ${formattedReserveTime}</h5>`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -173,10 +225,11 @@ export default function Reserve() {
       confirmButtonText: '送出',
     }).then((result) => {
       if (result.isConfirmed) {
-        handleSubmit(new Event('submit'))
+        handleSubmit(new Event('submit'));
       }
-    })
-  }
+    });
+  };
+
 
   return (
     <>

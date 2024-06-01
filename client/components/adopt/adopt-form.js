@@ -7,7 +7,19 @@ import { adoptInfos } from '@/services/pets'
 import Swal from 'sweetalert2'
 
 export default function AdoptForm(pet) {
-
+  const userName = {
+    10001: 'dana',
+    10002: '白賢祐',
+    10003: '洪海仁',
+    10004: '洪秀哲',
+    10005: '千多慧',
+    10006: '洪凡資',
+    10007: '全峰藹',
+    10008: '白斗關',
+    10009: '尹殷盛',
+    10010: '羅彩妍',
+    10011: '金陽基',
+  }
   const [currentStep, setCurrentStep] = useState(1)
 
   const [donateInfo, setDonateInfo] = useState({
@@ -48,8 +60,18 @@ export default function AdoptForm(pet) {
     const newErrors = { user_id: '', email: '', phone: '' };
   
     // User ID validation
-    if (!adopt.user_id || adopt.user_id.length < 5) {
+    if (!adopt.user_id || adopt.user_id.length < 2) {
       newErrors.user_id = '預約人必須大於2個字';
+    }
+    const userId = Object.keys(userName).find(key => userName[key] === adopt.user_id);
+    if (!userId) {
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>下一步失敗，尚未有預約人資料</h5>
+        <h5>請先註冊</h5>`,
+      });
+      window.scrollTo({ top: 400, behavior: 'smooth' })
+      return false;
     }
   
     // Email validation
@@ -76,16 +98,16 @@ export default function AdoptForm(pet) {
   const nextStep = (e) => {
     e.preventDefault();
     if (currentStep === 2 && !validatePageTwo()) {
-      window.scrollTo({ top: 450, behavior: 'smooth' })
+      window.scrollTo({ top: 400, behavior: 'smooth' })
       return; // Stop if validation fails
     }
   
     setCurrentStep((prevStep) => prevStep + 1);
-    window.scrollTo({ top: 450, behavior: 'smooth' });
+    window.scrollTo({ top: 400, behavior: 'smooth' });
   };
   const prevStep = () => {
     setCurrentStep((prevStep) => prevStep - 1)
-    window.scrollTo({ top: 450, behavior: 'smooth' })
+    window.scrollTo({ top: 400, behavior: 'smooth' })
   }
 
   const handleChangeDonateInfo = (e) => {
@@ -112,21 +134,33 @@ export default function AdoptForm(pet) {
   }
 
   const handleSubmit = async (e) => {
-    let finalAmount = donateInfo.amount
+  
+    let finalAmount = donateInfo.amount;
     if (!finalAmount && donateInfo.customAmount) {
-      finalAmount = donateInfo.customAmount
+      finalAmount = donateInfo.customAmount;
     }
-
+  
+    const userId = Object.keys(userName).find(key => userName[key] === adopt.user_id);
+  
+    if (!userId) {
+      Swal.fire({
+        icon: 'error',
+        html: `<h5>送出失敗,預約人尚未註冊過</h5>`,
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+  
     const finalDonateInfo = {
       pet_id: pet.pet_id,
-      user_id: (adopt.user_id = 10001),
+      user_id: userId,
       donation_method: donateInfo.donation_method,
-      amount:finalAmount,
+      amount: finalAmount,
       payment: donateInfo.payment,
       donation: adopt.donation,
       donate_address: adopt.donate_address,
-    }
-
+    };
+  
     try {
       const res = await fetch('http://localhost:3005/api/online_virtual_adoption_form', {
         method: 'POST',
@@ -138,13 +172,10 @@ export default function AdoptForm(pet) {
       });
   
       if (!res.ok) {
-        console.log(finalDonateInfo);
         throw new Error('Network response was not ok');
       }
   
       const data = await res.json();
-      console.log(data);
-      console.log(finalDonateInfo);
       Swal.fire({
         title: '送出成功',
         icon: 'success',
@@ -158,18 +189,24 @@ export default function AdoptForm(pet) {
       });
       setAdopt({
         user_id: '',
+        email: '',
+        phone: '',
         donation: '不指定',
         donate_address: '電子郵件地址',
       });
+      setCurrentStep(1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Error:', error);
       Swal.fire({
         icon: 'error',
         html: `<h5>確認表格有無確實填寫</h5>`,
+      }).then(() => {
+        window.scrollTo({ top: 400, behavior: 'smooth' });
       });
     }
   };
-  
+
   const handleConfirm = (e) => {
     e.preventDefault();
 
@@ -177,11 +214,10 @@ export default function AdoptForm(pet) {
     if (!finalAmount && donateInfo.customAmount) {
       finalAmount = donateInfo.customAmount;
     }
-    
     Swal.fire({
       title: '確定要送出?',
       html: `
-        <h5>想認養: ${donateInfo.pet_id}<h5><br>
+        <h5>${adopt.user_id} 想認養 ${donateInfo.pet_id}<h5><br>
         <h5>捐款方式: ${donateInfo.donation_method}<h5><br>
         <h5>金額: ${finalAmount}<h5><br>
         <h5>捐贈用途: ${adopt.donation}<h5><br>

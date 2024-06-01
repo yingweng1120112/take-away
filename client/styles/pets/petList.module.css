@@ -190,7 +190,9 @@
   justify-content: center;
   color: #333;
 }
-
+.wp {
+  margin: 0px auto;
+}
 .wp-pagenavi a {
   color: #333;
 }

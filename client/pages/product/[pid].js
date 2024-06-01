@@ -15,19 +15,22 @@ import styles from '@/styles/product/information.module.css'
 import pagination from '@/styles/product/pagination.module.css'
 // 測試
 
-
 import { loadProduct } from '@/services/product'
 import { loadProducts } from '@/services/product'
 import { useRouter } from 'next/router'
 import { GrFormSubtract, GrFormAdd } from 'react-icons/gr'
+import { GoStarFill } from 'react-icons/go'
 //測試
 import { useCart } from '@/context/cartcontext' //購物車加的
 
+import { jwtDecode } from 'jwt-decode'
+
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Information() {
   const router = useRouter()
   const { addToCart } = useCart() //購物車加的
-
 
   const [product, setProduct] = useState({
     product_id: 0,
@@ -45,8 +48,78 @@ export default function Information() {
     information: '',
     reviews_id: 0,
   })
-  const [reviews, setReviews] = useState([]);
-  const [numberOfReviews, setNumberOfReviews] = useState(0); // 新增一個 state 來儲存評論數量
+  const [reviews, setReviews] = useState([])
+  const [numberOfReviews, setNumberOfReviews] = useState(0) // 新增一個 state 來儲存評論數量
+
+  // 表單送出互動
+
+  //useState 钩子来保存用户信息
+  const initialUserId = () => {
+    if (typeof window !== 'undefined') {
+      // 确保在客户端环境中
+      const userId = localStorage.getItem('userKey')
+      if (userId) {
+        const user = jwtDecode(userId)
+        return user.user_id
+      }
+    }
+    return null
+  }
+
+  const [userData, setUserData] = useState('')
+  const [name, setName] = useState('')
+  const [user_id, setUser_id] = useState(initialUserId) // 初始化为 localStorage 中的 user_id
+  const [formData, setFormData] = useState({
+    product_id: '',
+    user_id: initialUserId(), // 初始化为 localStorage 中的 user_id
+    content: '',
+    score: '',
+  })
+
+  // 页面加载时检查用户是否登录并更新 user_id 和 formData
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // 确保在客户端环境中
+      const userId = localStorage.getItem('userKey')
+      if (userId) {
+        const user = jwtDecode(userId)
+        const userID = user.user_id
+        setUser_id(userID) // 设置 user_id
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          user_id: userID,
+        }))
+      }
+    }
+  }, [])
+
+  // 当 user_id 更新时，获取用户信息
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user_id) {
+        // 只有在 user_id 存在时才获取用户信息
+        try {
+          const response = await fetch(
+            `http://localhost:3005/api/users/user-info/${user_id}`
+          )
+          const result = await response.json()
+          const userData = result.userData
+          setUserData({ ...userData })
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        }
+      }
+    }
+
+    fetchData()
+  }, [user_id])
+
+  // 当 userData.name 更新时，更新 name
+  useEffect(() => {
+    if (userData.name) {
+      setName(userData.name)
+    }
+  }, [userData.name])
 
   //單筆商品
   const getProduct = async (pid) => {
@@ -54,12 +127,14 @@ export default function Information() {
     console.log(data)
     if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
       setProduct(data.product)
+      setFormData({ ...formData, ['product_id']: data.product.product_id })
       setReviews(data.reviews)
-      setNumberOfReviews(data.reviews.length); // 設置評論數量
+      setNumberOfReviews(data.reviews.length) // 設置評論數量
     } else {
       console.log('數據結構不符合預期:', data)
     }
   }
+
   useEffect(() => {
     console.log(router.query)
 
@@ -97,7 +172,6 @@ export default function Information() {
     return str.length > n ? str.substring(0, n - 1) + '...' : str
   }
 
-
   //數量增減
   const [quantity, setQuantity] = useState(1)
 
@@ -117,20 +191,20 @@ export default function Information() {
       setQuantity(value)
     }
   }
-   // 从产品对象中提取图片属性
-   const images = []
-   for (let i = 1; i <= 6; i++) {
-     const pic = product[`pic${i}`]
-     if (pic) {
-       images.push(pic)
-     }
-   }
- 
-   // 再次过滤掉非图片的属性（虽然此步不必要）
-   const filteredImages = images.filter(Boolean)
+  // 從產品對象提取屬性
+  const images = []
+  for (let i = 1; i <= 6; i++) {
+    const pic = product[`pic${i}`]
+    if (pic) {
+      images.push(pic)
+    }
+  }
 
-   //購物車加
-   const handleCartClick = (product, quantity) => {
+  // 再次过滤掉非图片的属性（虽然此步不必要）
+  const filteredImages = images.filter(Boolean)
+
+  //購物車加
+  const handleCartClick = (product, quantity) => {
     if (product && quantity > 0) {
       addToCart({ ...product, quantity })
       console.log('Added to cart:', { ...product, quantity }) // 确认数据是否正确传递
@@ -138,7 +212,79 @@ export default function Information() {
       console.log('Invalid product or quantity')
     }
   }
-   
+  //號向不需要
+  if (products.length === 0) {
+    return <div>Loading...</div> // 或者你可以放置一個 spinner
+  }
+  // 表單送出互動
+
+  const tabalChange = (e) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await fetch('http://localhost:3005/api/reviews', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) {
+        throw new Error('沒有登入或沒有進行評價')
+      }
+      const data = await res.json()
+      console.log(data)
+      if (res.status === 201) {
+        console.log('表單已成功送出', data)
+        toast.success('表單已成功送出', {
+          position: 'top-center',
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'dark',
+          transition: Slide,
+        })
+      } else {
+        console.log('表單送出失敗', data.message)
+        toast.success(`表單送出失敗: ${data.message}`, {
+          position: 'top-center',
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'dark',
+          transition: Slide,
+        })
+      }
+    } catch (error) {
+      console.error('表單送出錯誤:', error)
+      toast.success(`表單送出錯誤: ${error.message}`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
+    }
+  }
+
   return (
     <>
       <Header />
@@ -193,15 +339,18 @@ export default function Information() {
               ></button>
             </div>
             <div className="carousel-inner">
-            {images.map((img, index) => (
-            <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-              <img
-                src={`/img/product/${img}`}
-                className="d-block w-100"
-                alt={`Product image ${index + 1}`}
-              />
-            </div>
-          ))}
+              {images.map((img, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === 0 ? 'active' : ''}`}
+                >
+                  <img
+                    src={`/img/product/${img}`}
+                    className="d-block w-100"
+                    alt={`Product image ${index + 1}`}
+                  />
+                </div>
+              ))}
             </div>
             <button
               className="carousel-control-prev"
@@ -230,23 +379,23 @@ export default function Information() {
           </div>
           {/* <!-- 輪播照片縮圖 --> */}
           <div className="preview">
-          {images.map((img, index) => (
-            <button
-              key={index}
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to={index}
-              className={index === 0 ? 'active' : ''}
-              aria-current={index === 0 ? 'true' : ''}
-              aria-label={`Slide ${index + 1}`}
-            >
-              <img
-                style={{ width: '100%' }}
-                src={`/img/product/${img}`}
-                alt={`Slide ${index + 1}`}
+            {images.map((img, index) => (
+              <button
+                key={index}
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to={index}
+                className={index === 0 ? 'active' : ''}
+                aria-current={index === 0 ? 'true' : ''}
                 aria-label={`Slide ${index + 1}`}
-              />
-            </button>
-          ))}
+              >
+                <img
+                  style={{ width: '100%' }}
+                  src={`/img/product/${img}`}
+                  alt={`Slide ${index + 1}`}
+                  aria-label={`Slide ${index + 1}`}
+                />
+              </button>
+            ))}
           </div>
           {/* 產品標題區 */}
           <div className={styles['product-info']}>
@@ -281,10 +430,10 @@ export default function Information() {
                   <GrFormAdd />
                 </button>
               </div>
-              <button 
-              className={styles.cta}
-              //購物車加的
-              onClick={() => handleCartClick(product, quantity)}
+              <button
+                className={styles.cta}
+                //購物車加的
+                onClick={() => handleCartClick(product, quantity)}
               >
                 <span className={styles['hover-underline-animation']}>
                   {' '}
@@ -325,59 +474,21 @@ export default function Information() {
             <p>目前有 {numberOfReviews} 筆評論</p>
             <hr className={styles.hr} />
             {reviews.map((review) => (
-            <div key={review.reviews_id} className={styles['product-reviews-info']}>
-              <p className={styles['reviews-user']}>{review.user_name}說 :</p>
-              <p className={styles['reviews-info']}>
-              {review.content}
-              </p>
-              <p className={styles['reviews-date']}>{review.time}</p>
-            </div>
+              <div
+                key={review.reviews_id}
+                className={styles['product-reviews-info']}
+              >
+                <p className={styles['reviews-user']}>
+                  {review.user_name} 說 :
+                </p>
+                <p className={styles['reviews-info']}>{review.content}</p>
+                <p>評論分數: {review.score} ⭐</p>
+                <p className={styles['reviews-date']}>
+                  評分時間 : {review.time}
+                </p>
+              </div>
             ))}
             {/* 分頁 */}
-            <div
-              className={`${pagination['wp-pagenavi']} ${styles['wp-pagenavi']}`}
-              role="navigation"
-            >
-              <a className={pagination.first} aria-label="First Page" href="#">
-                «{' '}
-              </a>
-              <a
-                className={pagination.previouspostslink}
-                rel="prev"
-                aria-label="Following-page"
-                href="#"
-              >
-                &lt;
-              </a>
-              <a className={pagination.page} href="#">
-                1
-              </a>
-              <a className={pagination.page} href="#">
-                2
-              </a>
-              <a className={pagination.page} href="#">
-                3
-              </a>
-              {/* <span aria-current="page" class="current">5</span> */}
-              <a className={pagination.page} href="#">
-                4
-              </a>
-              <a className={pagination.page} href="#">
-                5
-              </a>
-              <a
-                className={pagination.nextpostslink}
-                rel="next"
-                aria-label="次のページ"
-                href="#"
-              >
-                &gt;
-              </a>
-              <a className={pagination.last} aria-label="Last Page" href="#">
-                {' '}
-                »
-              </a>
-            </div>
             <hr className={styles.hr} />
           </div>
         </div>
@@ -441,63 +552,120 @@ export default function Information() {
               className="accordion-collapse collapse w-100"
               data-bs-parent="#accordionExample"
             >
-              <div className={`accordion-body ${styles['accordion-body']}`}>
-                <div className={styles['my-comment-form']}>
-                  <div className="mb-3 w-100">
-                    <label
-                      htmlFor="exampleFormControlInput1"
-                      className="form-label fs-6"
-                    >
-                      使用者:
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control border-bottom-1"
-                      id="exampleFormControlInput1"
-                      placeholder="user-name"
-                      Value={'小金黃'}
-                      readOnly={true}
-                    />
+              <form onSubmit={handleSubmit}>
+                <div className={`accordion-body ${styles['accordion-body']}`}>
+                  <div className={styles['my-comment-form']}>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        使用者編號 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-id"
+                        value={formData.user_id || ''} // 确保在第一次渲染时有值
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        評論商品編號 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-name"
+                        value={formData.product_id}
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        使用者 :
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control border-bottom-1"
+                        id="exampleFormControlInput1"
+                        placeholder="user-name"
+                        value={name}
+                        readOnly={true}
+                      />
+                    </div>
+                    <div className={`mb-3 w-100 ${styles['project']}`}>
+                      <label
+                        htmlFor="exampleFormControlInput1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        評分 :
+                      </label>
+                      <select
+                        className="form-select"
+                        aria-label="Default select example"
+                        id="score"
+                        name="score"
+                        value={formData.score}
+                        onChange={tabalChange}
+                      >
+                        <option selected>選擇評分</option>
+                        <option value="1">1⭐ 超級差評</option>
+                        <option value="2">2⭐ 勉勉強強</option>
+                        <option value="3">3⭐ 普普通通</option>
+                        <option value="4">4⭐ 覺得不錯</option>
+                        <option value="5">5⭐ 真的超讚</option>
+                      </select>
+                    </div>
+                    <div className="mb-3 w-100">
+                      <label
+                        htmlFor="exampleFormControlTextarea1"
+                        className={`fs-6 ${styles['label']}`}
+                      >
+                        我的評論 :
+                      </label>
+                      <textarea
+                        className="form-control border-bottom-1"
+                        style={{ resize: 'none' }}
+                        id="exampleFormControlTextarea1"
+                        rows={3}
+                        defaultValue={formData.content}
+                        name="content"
+                        readOnly={false}
+                        onChange={tabalChange}
+                      />
+                    </div>
                   </div>
-                  <div className="mb-3 w-100">
-                    <label
-                      htmlFor="exampleFormControlTextarea1"
-                      className="form-label fs-6"
+                  <button className={styles.cta} type="submit">
+                    <span className={styles['hover-underline-animation']}>
+                      Release
+                    </span>
+                    <svg
+                      id="arrow-horizontal"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={30}
+                      height={10}
+                      viewBox="0 0 46 16"
                     >
-                      我的評論:
-                    </label>
-                    <textarea
-                      className="form-control border-bottom-1"
-                      style={{ resize: 'none' }}
-                      id="exampleFormControlTextarea1"
-                      rows={3}
-                      defaultValue={
-                        '我們家很挑嘴的小土豆，原本只是抱著姑且一試的態度買看看，沒想到牠意外喜歡，會再回購。'
-                      }
-                      readOnly={false}
-                    />
-                  </div>
+                      <path
+                        id="Path_10"
+                        data-name="Path 10"
+                        d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                        transform="translate(30)"
+                      />
+                    </svg>
+                  </button>
                 </div>
-                <button className={styles.cta}>
-                  <span className={styles['hover-underline-animation']}>
-                    Release
-                  </span>
-                  <svg
-                    id="arrow-horizontal"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width={30}
-                    height={10}
-                    viewBox="0 0 46 16"
-                  >
-                    <path
-                      id="Path_10"
-                      data-name="Path 10"
-                      d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                      transform="translate(30)"
-                    />
-                  </svg>
-                </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -517,7 +685,7 @@ export default function Information() {
       {/* 產品輪播 */}
       <section className={styles.recommend}>
         <div className={styles.frame}>
-        <Swiper
+          <Swiper
             loop={true}
             slidesPerView={3}
             centeredSlides={true}
@@ -532,14 +700,13 @@ export default function Information() {
                   href={`/product/${v.product_id}`}
                   className={styles['related-products-card']}
                 >
-                <div className={styles['swiper-div']}>
-
-                  <img
-                    src={`/img/product/${v.pic1}`}
-                    className={styles['swiper-img']}
-                    alt=""
-                  />
-                </div>
+                  <div className={styles['swiper-div']}>
+                    <img
+                      src={`/img/product/${v.pic1}`}
+                      className={styles['swiper-img']}
+                      alt=""
+                    />
+                  </div>
                 </Link>
               </SwiperSlide>
             ))}
