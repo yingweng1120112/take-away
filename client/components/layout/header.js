@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { IoIosArrowDown } from 'react-icons/io'
 import { RiMenuSearchLine, RiMenuSearchFill } from 'react-icons/ri'
 import { CiHeart } from 'react-icons/ci'
@@ -13,6 +14,8 @@ import {
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 import { useCart } from '@/context/cartcontext'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,6 +27,7 @@ export default function Header() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  const router = useRouter()
   useEffect(() => {
     // 检查localStorage中的userKey，设置初始状态
     const userKey = localStorage.getItem('userKey')
@@ -36,6 +40,22 @@ export default function Header() {
     // 清除 localStorage 的 userKey
     localStorage.removeItem('userKey')
     setIsLoggedIn(false)
+    // 成功登出並回復初始會員狀態
+    toast.success('已成功登出', {
+      position: 'top-center',
+      autoClose: 600,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: 'dark',
+      transition: Slide,
+    })
+
+    // 跳轉到登陸頁面或首頁
+    // window.location.href = '/'
+    router.push('./')
   }
   return (
     <>
