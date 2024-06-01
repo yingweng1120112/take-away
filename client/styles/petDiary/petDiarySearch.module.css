@@ -9,7 +9,7 @@
   position: absolute;
   z-index: -1;
   height: 500px;
-  top: -75%;
+  top: -60%;
   left: -5%;
   transform: rotate(-4deg);
 }

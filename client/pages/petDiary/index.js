@@ -399,9 +399,7 @@ export default function DiarySearch() {
                 className={styles['bg-1']}
               />
               <h1 className={styles['content-word']}>
-                這裡是大家細心照料的
-                <br />
-                孩子們，要來看看嗎 ?
+                這裡是大家細心照料的孩子們<br />要來看看嗎 ?
               </h1>
               <h1 className={styles['content-word']}>
                 搜尋到{total}本日誌
