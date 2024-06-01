@@ -18,7 +18,7 @@ export default function UserEdit() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
-  const [addressDetail, setAddressDetail] = useState('')
+  const [address_detail, setAddressDetail] = useState('')
   // const router = useRouter()
 
   const userId = localStorage.getItem('userKey') //抓取locasstorage裡面的userKey(值是token)
@@ -349,7 +349,7 @@ export default function UserEdit() {
                       </label>
                     </div>
                   </div>
-                  {/* <div className={styles['bookItem']}>
+                  <div className={styles['bookItem']}>
                     <img src={`/img/user/user-dog.png`} alt="" />
                     <div className={styles['group']}>
                       <input
@@ -366,7 +366,7 @@ export default function UserEdit() {
                         帳號：
                       </label>
                     </div>
-                  </div> */}
+                  </div>
                   <div className={styles['bookItem']}>
                     <img src={`/img/user/user-dog.png`} alt="" />
                     <div className={styles['group']}>
@@ -375,7 +375,7 @@ export default function UserEdit() {
                         type="text"
                         required
                         id="address"
-                        value={addressDetail}
+                        value={address_detail}
                         onChange={(e) => setAddressDetail(e.target.value)}
                       />
                       <span className={styles['highlight']} />

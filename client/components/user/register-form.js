@@ -67,7 +67,18 @@ export default function RegisterForm() {
     const data = await res.json()
 
     if (res.ok) {
-      alert('註冊成功！')
+      // alert('註冊成功！')
+      toast.success('註冊成功！', {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
       setUser({
         name: '',
         email: '',
@@ -76,7 +87,18 @@ export default function RegisterForm() {
         confirmPassword: '',
       })
     } else {
-      alert(`註冊失敗：${data.message}`)
+      // alert(`註冊失敗：${data.message}`)
+      toast.success(`註冊失敗：${data.message}`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
     }
   }
 
