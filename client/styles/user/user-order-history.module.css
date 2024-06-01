@@ -166,6 +166,8 @@
   /* margin-bottom: 25px; */
   padding: 20px;
   font-size: 18px;
+  color: var(--reddish-brown);
+  font-weight: 600;
 }
 .click-product-style {
   display: flex;
@@ -196,6 +198,8 @@
   padding-right: 15px;
   padding-top: 20px;
   font-size: 20px;
+  color: var(--reddish-brown);
+  font-weight: 600;
 }
 
 @keyframes inputHighlighter {
