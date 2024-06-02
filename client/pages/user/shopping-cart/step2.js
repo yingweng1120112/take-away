@@ -67,6 +67,7 @@ export default function Step2() {
     fetchData()
   }, [userID]) // 依赖 userID 状态
 
+  //初始值
   //地址選單狀態
   const [data, setData] = useState({
     country: '',
@@ -81,6 +82,7 @@ export default function Step2() {
     phone: '',
     address: '',
   })
+  
 
   const [sameAsMember, setSameAsMember] = useState(false)
 
@@ -135,6 +137,10 @@ export default function Step2() {
       }))
     }
   }, [setUserInfo, userInfo.delivery_type])
+  useEffect(() => {
+    console.log("Current delivery_type:", userInfo.delivery_type);
+  }, [userInfo.delivery_type]);
+
   //711門市
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
     'http://localhost:3005/api/shipment/711',
@@ -192,7 +198,6 @@ export default function Step2() {
     fetchUserInfo()
   }, [])
 
-  //登入後改這個
   useEffect(() => {
     if (sameAsMember) {
       setRecipientData({
