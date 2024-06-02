@@ -260,7 +260,7 @@ export default function UserEdit() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-myUserInfo">
+                  <Link href="#">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
@@ -280,7 +280,7 @@ export default function UserEdit() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt-history">
+                  <Link href="/user/user-adopt">
                     <p
                       className={`link ${banner['select-title']}
                     ${styles['select-title']}`}

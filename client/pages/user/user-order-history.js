@@ -207,7 +207,6 @@ export default function UserOrderHistory() {
             </div>
           </div>
         </div>
-      </div>
       {/* banner end */}
       <div className={styles['table-container']}>
         <h3 style={{ 'height': '120px' , display:'flex', alignItems: 'center' }}
@@ -312,7 +311,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/">
+                  <Link href="/user/user-favorite">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
@@ -322,7 +321,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-myUserInfo">
+                  <Link href="#">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
@@ -342,7 +341,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt-history">
+                  <Link href="/user/user-adopt">
                     <p
                       className={`link ${banner['select-title']}
                     ${styles['select-title']}`}

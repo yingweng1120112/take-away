@@ -228,40 +228,75 @@ export default function userReserve() {
         >
           <div className={`accordion-body ${banner['accordion-body']}`}>
             <div className={`banner['select']`}>
-              <div className="w-100 d-flex flex-row align-items-start">
+              <div
+                className={`w-100 d-flex flex-row align-items-start ${styles['select-phone']}`}
+              >
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-info">
-                    <p className={`link ${banner['select-title']}`}>個人資料</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      個人資料
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/shopping-cart/step1">
-                    <p className={`link ${banner['select-title']}`}>購物車</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']} `}
+                    >
+                      購物車
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-order-history">
-                    <p className={`link ${banner['select-title']}`}>訂單紀錄</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      訂單紀錄
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-favorite">
-                    <p className={`link ${banner['select-title']}`}>浪浪收藏</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      浪浪收藏
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="#">
-                    <p className={`link ${banner['select-title']}`}>我的寵物</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      我的寵物
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
                   <Link href="/user/user-reserve">
-                    <p className={`link ${banner['select-title']}`}>預約紀錄</p>
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      預約紀錄
+                    </p>
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="http://localhost:3000/user/user-adopt">
-                    <p className={`link ${banner['select-title']}`}>
+                  <Link href="/user/user-adopt">
+                    <p
+                      className={`link ${banner['select-title']}
+                    ${styles['select-title']}`}
+                    >
                       線上認養紀錄
                     </p>
                   </Link>
