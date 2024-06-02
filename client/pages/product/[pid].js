@@ -255,6 +255,10 @@ export default function Information() {
           theme: 'dark',
           transition: Slide,
         })
+        setTimeout(() => {
+          window.scrollTo(0, 0); // 滾動到頂部
+          window.location.reload();
+        }, 1000); // 1秒後重整頁面
       } else {
         console.log('表單送出失敗', data.message)
         toast.success(`表單送出失敗: ${data.message}`, {
@@ -284,7 +288,6 @@ export default function Information() {
       })
     }
   }
-
   return (
     <>
       <Header />
@@ -696,9 +699,10 @@ export default function Information() {
           >
             {products.map((v, i) => (
               <SwiperSlide key={v.product_id}>
-                <Link
+                <a
                   href={`/product/${v.product_id}`}
                   className={styles['related-products-card']}
+                  passHref
                 >
                   <div className={styles['swiper-div']}>
                     <img
@@ -707,7 +711,7 @@ export default function Information() {
                       alt=""
                     />
                   </div>
-                </Link>
+                </a>
               </SwiperSlide>
             ))}
           </Swiper>
