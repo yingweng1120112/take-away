@@ -242,6 +242,7 @@
   .content-word {
     font-size: 4rem;
     line-height: 5rem;
+    padding-right: 2rem;
   }
   .btn-more {
     margin-left: 0;
