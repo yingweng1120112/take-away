@@ -1,5 +1,5 @@
 /* footer */
-/* 添加视差滚动动画 */
+/* 滾動視差 start*/
 @keyframes scrollUp {
   0% {
     transform: translateY(100%);
@@ -8,16 +8,12 @@
     transform: translateY(0);
   }
 }
-/* 初始状态 */
-.footer {
-}
 
-/* 进入视口时的动画状态 */
 .footer.animate {
   opacity: 1;
   transform: translateY(0);
 }
-
+/* 滾動視差 end*/
 .footer {
   animation: scrollUp 1s ease-out;
   position: absolute;
