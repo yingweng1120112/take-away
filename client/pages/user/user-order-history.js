@@ -90,7 +90,128 @@ export default function UserOrderHistory() {
     return (
       <>
         <Header />
-        <p>尚無訂單歷史記錄</p>
+              {/* banner start*/}
+      <div
+        className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
+      ></div>
+      <div className={banner['banner-select']}>
+        <div
+          className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
+        >
+          <div className={banner['left']}>
+            <p className={banner['menu-a']}>ORDER</p>
+            <p className={banner['menu-b']}>訂單紀錄</p>
+          </div>
+          <div className={banner['middle']}>
+            <div
+              className={`accordion ${banner['accordion']}`}
+              id="accordionExample"
+            >
+              <button
+                className={`accordion-button ${banner['accordion-button']}`}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <span className={banner['middle-page-title']}>會員中心</span>
+                <span>功能選單</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="collapseOne"
+          className="accordion-collapse collapse show"
+          data-bs-parent="#accordionExample"
+        >
+          <div className={`accordion-body ${banner['accordion-body']}`}>
+            <div className={`banner['select']`}>
+              <div
+                className={`w-100 d-flex flex-row align-items-start ${styles['select-phone']}`}
+              >
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/user-info">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      個人資料
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/shopping-cart/step1">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']} `}
+                    >
+                      購物車
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/user-order-history">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      訂單紀錄
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      浪浪收藏
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/user-myUserInfo">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      我的寵物
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/user-reserve">
+                    <p
+                      className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                    >
+                      預約紀錄
+                    </p>
+                  </Link>
+                </div>
+                <div className={`banner['select-item-a'] w-100`}>
+                  <Link href="/user/user-adopt-history">
+                    <p
+                      className={`link ${banner['select-title']}
+                    ${styles['select-title']}`}
+                    >
+                      線上認養紀錄
+                    </p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* banner end */}
+      <div className={styles['table-container']}>
+        <h3 style={{ 'height': '120px' , display:'flex', alignItems: 'center' }}
+        >－尚無訂單歷史記錄－</h3>
+      </div>
         <Footer />
       </>
     )
