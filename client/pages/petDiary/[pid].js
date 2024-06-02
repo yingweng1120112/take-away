@@ -181,7 +181,6 @@ export default function PetDiary() {
               {/* span為pc版文字，p為phone版文字 */}
               <span className={banner['middle-page-title']}>日誌列表</span>
               <span>選擇日誌分類</span>
-              <p className={banner['middle-page-title']}>選項</p>
             </div>
           </div>
         </div>
