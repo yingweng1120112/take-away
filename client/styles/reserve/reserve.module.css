@@ -259,14 +259,14 @@ display: none;
     position: absolute;
     width: 10rem;
     top: 18%;
-    left: 72%;
+    left: 76%;
     z-index: 4;
   }
   .reserve .print {
     position: absolute;
     width: 10rem;
     top:71.5%;
-    left:44%;
+    left:48%;
     z-index: 3;
     transform: rotate(0deg);
   }
@@ -298,7 +298,7 @@ display: none;
     position: absolute;
     margin: auto;
     top: 5rem;
-    left: 58rem;
+    left: 52rem;
     line-height: 1.55rem;
     letter-spacing: 0.5rem;
     color: var(--border-color);
@@ -309,7 +309,7 @@ display: none;
     position: absolute;
     margin: auto;
     top: 45rem;
-    left: 19rem;
+    left: 17rem;
     line-height: 1.35rem;
     letter-spacing: 0.3rem;
     color: var(--border-color);

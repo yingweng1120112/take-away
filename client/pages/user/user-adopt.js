@@ -275,11 +275,11 @@ export default function userReserve() {
       <section
         className={`${styles.user} ${styles.celluser} d-flex justify-content-center align-items-center`}
       >
-        <img
+        {/* <img
           className={styles['bgfeet1']}
           src={`/img/user/loading.png`}
           alt=""
-        />
+        /> */}
         <img
           className={styles['bgfeet2']}
           src={`/img/user/loading.png`}
@@ -288,11 +288,11 @@ export default function userReserve() {
         <div className={`${styles.container}`}>
           <div className={`${styles.book}`}>
             <div className={`${styles.bookContainer}`}>
-              <img
+              {/* <img
                 className={styles.feet}
                 src={`/img/user/loadfeet.png`}
                 alt=""
-              />
+              /> */}
               <div className={styles.rope}></div>
               <div className={`${styles['title']}`}>
                 <div className={`${styles['name-input']}`}>

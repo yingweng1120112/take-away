@@ -320,8 +320,8 @@
     height: 46.5rem;
     margin: auto;
   }
-  .celluser {
-    height: 62rem;
+  .celluser{
+    height:auto;
   }
   .container {
     height: 100%;
