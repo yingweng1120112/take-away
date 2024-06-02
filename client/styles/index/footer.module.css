@@ -196,6 +196,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: left;
   }
   .sponsor {
     /* width: 50%; */

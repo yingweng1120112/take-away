@@ -1,34 +1,34 @@
-import React, { useEffect, useRef } from 'react';
-import styles from '@/styles/index/footer.module.css';
+import React, { useEffect, useRef } from 'react'
+import styles from '@/styles/index/footer.module.css'
 
 export default function Footer() {
-  const footerRef = useRef(null);
+  const footerRef = useRef(null)
 
   useEffect(() => {
-    const footer = footerRef.current;
+    const footer = footerRef.current
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            footer.classList.add(styles.animate);
-            observer.unobserve(footer);  // 只触发一次
+            footer.classList.add(styles.animate)
+            observer.unobserve(footer) // 只触发一次
           }
-        });
+        })
       },
-      { threshold: 0.1 }  // 当footer进入视口10%时触发
-    );
+      { threshold: 0.1 } // 当footer进入视口10%时触发
+    )
 
     if (footer) {
-      observer.observe(footer);
+      observer.observe(footer)
     }
 
     return () => {
       if (footer) {
-        observer.unobserve(footer);
+        observer.unobserve(footer)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <>
@@ -136,7 +136,7 @@ export default function Footer() {
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
                     href=""
                   >
-                    營業人名稱:袋寵物走股份有限公司
+                    營業人名稱：袋寵物走股份有限公司
                   </a>
                 </li>
                 <li>
@@ -144,7 +144,7 @@ export default function Footer() {
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
                     href=""
                   >
-                    線上客服:週一~週五 : 08:00 - 17:00
+                    線上客服：週一 ~ 週五 08:00 ~ 17:00
                   </a>
                 </li>
                 <li>
@@ -152,12 +152,12 @@ export default function Footer() {
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
                     href=""
                   >
-                    電話: 06 253 3131
+                    電話： 06 253 3131
                   </a>
                 </li>
                 <li>
                   <a className={`${styles['dropdown-item']} ${styles['desc']}`}>
-                    信箱:xinpetfood@gmail.com
+                    信箱： xinpetfood@gmail.com
                   </a>
                 </li>
                 <li>
@@ -165,7 +165,7 @@ export default function Footer() {
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
                     href=""
                   >
-                    地址:71005 台南市永康區南台街1號
+                    地址： 71005 台南市永康區南台街1號
                   </a>
                 </li>
               </ol>
@@ -229,7 +229,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className={styles.sponDesc}>戶名：Take Pet Away</p>
-                  <p className={styles.sponDesc}>銀行：喵汪銀行-熊熊分行</p>
+                  <p className={styles.sponDesc}>銀行：喵汪銀行 - 熊熊分行</p>
                   <p className={styles.sponDesc}>帳號：059-004-167249</p>
                 </div>
               </div>
@@ -239,13 +239,12 @@ export default function Footer() {
             {/* copyright */}
             <div className={styles.copyright}>
               <h4 className={styles.copyrightDesc}>
-                Copyright © Interno | Designed by Victorflow Templates - Powered
-                by Webflow
+                Copyright © 2024 | Take_Away
               </h4>
             </div>
           </div>
         </div>
       </footer>
     </>
-  );
+  )
 }
