@@ -620,6 +620,7 @@ export default function Menu() {
             商品<span className={styles.emphasize}>Take Away</span>之前
           </p>
           <p className={styles.p}>也可以順路去看看我們令人喜愛的浪浪們</p>
+          <Link href="http://localhost:3000/pets">
           <button className={styles.cta}>
             <span className={styles['hover-underline-animation']}> Go to </span>
             <svg
@@ -637,6 +638,7 @@ export default function Menu() {
               />
             </svg>
           </button>
+          </Link>
         </div>
       </section>
       {/* 推薦浪浪 */}
