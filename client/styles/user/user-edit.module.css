@@ -193,7 +193,7 @@
 .bar {
   position: relative;
   display: block;
-  width: 450px;
+  width: 470px;
 }
 
 .bar::before,
@@ -268,8 +268,8 @@
     margin-top: -65px;
   }
   .rope {
-    width: 9.5%;
-    height: 89%;
+    width: 10%;
+    height: 82%;
     right: 99%;
   }
 
@@ -353,7 +353,7 @@
   }
 
   .bar {
-    width: 164px;
+    width: 205px;
   }
 
   .bgfeet1 {
