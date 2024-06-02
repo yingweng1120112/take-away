@@ -1063,6 +1063,7 @@
   .story-img {
     width: 80%;
     margin-top: 50px;
+    margin-bottom: -50px;
   }
 
   .pet-health {
@@ -1164,6 +1165,7 @@
   .pet-skill > img {
     width: 80%;
     order: 2;
+    margin-top: 50px;
   }
 
   .pet-skill > table {

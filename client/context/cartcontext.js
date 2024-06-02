@@ -1,16 +1,18 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import useLocalStorage from '@/hooks/use-localstorage'
 import { ToastContainer, toast, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Modal, Button } from 'react-bootstrap'
+import  {jwtDecode}  from 'jwt-decode'
+import { useRouter } from 'next/router'
 
 const CartContext = createContext()
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useLocalStorage('cartItems', [])
-  //選擇的商品
+  const [cartItems, setCartItems] = useState([])  
   const [selectedItems, setSelectedItems] = useState([])
+  const [cartItemCount, setCartItemCount] = useState(0); // 购物车数量状态
   const [userInfo, setUserInfo] = useState({
+    delivery_type: '宅配',
     name: '',
     email: '',
     phone: '',
@@ -22,15 +24,66 @@ export function CartProvider({ children }) {
   const [deleteProduct, setDeleteProduct] = useState(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [deleteProductId, setDeleteProductId] = useState(null)
+  const [userID, setUserID] = useState(null)
+
+
+    const initializeUser = async () => {
+    const userId = localStorage.getItem('userKey')
+    if (userId) {
+      try {
+        const user = jwtDecode(userId)
+        const userID = user.user_id
+        if (!userID) throw new Error('Invalid user ID')
+          setUserID(userID)
+          setCartItems(JSON.parse(window.localStorage.getItem(`cartItems_${userID}`)) || [])
+          setSelectedItems(JSON.parse(window.localStorage.getItem(`selectedItems_${userID}`)) || [])
+      } catch (error) {
+        console.error('Invalid user ID:', error)
+      }
+    } else {
+      setUserID(null)    
+      setCartItems([])    
+      setSelectedItems([])    
+    }
+  }   
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedUserInfo = window.localStorage.getItem('userInfo')
-      if (savedUserInfo) {
-        setUserInfo(JSON.parse(savedUserInfo))
-      }
-    }
+    initializeUser()    
+  
   }, [])
+  
+  
+
+  useEffect(() => {
+    if (userID) {
+      window.localStorage.setItem(`cartItems_${userID}`, JSON.stringify(cartItems)) 
+      window.localStorage.setItem(`selectedItems_${userID}`, JSON.stringify(selectedItems))   
+    }
+  }, [cartItems, selectedItems, userID])    
+
+  useEffect(() => {
+    if (userID) {
+      window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+    }
+  }, [userInfo, userID])   
+
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === `cartItems_${userID}`) {
+        setCartItems(JSON.parse(event.newValue))    
+      } else if (event.key === 'userInfo') {
+        setUserInfo(JSON.parse(event.newValue))    
+      }
+    }    
+
+    window.addEventListener('storage', handleStorageChange)    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)    
+    }    
+  }, [userID])
+  const handleLoginSuccess = async () => {
+    initializeUser()
+  }    
 
   const synchronizeSelectedItems = (updatedCartItems) => {
     const nextSelectedItems = updatedCartItems.map((item) => ({
@@ -198,46 +251,51 @@ export function CartProvider({ children }) {
   }
 
   //監聽localStorage變化
+  // useEffect(() => {
+  //   const handleStorageChange = (event) => {
+  //     if (event.key === `cartItems_${userID}`) {
+  //       setCartItems(JSON.parse(event.newValue))
+  //     } else if (event.key === 'userInfo') {
+  //       setUserInfo(JSON.parse(event.newValue))
+  //     }
+  //   }
+
+  //   window.addEventListener('storage', handleStorageChange)
+  //   return () => {
+  //     window.removeEventListener('storage', handleStorageChange)
+  //   }
+  // }, [userID])
+
+  // //將cartItems狀態儲存到localStorage
+  // useEffect(() => {
+  //   if (userID) {
+  //     window.localStorage.setItem(`cartItems_${userID}`, JSON.stringify(cartItems))
+  //   }
+  // }, [cartItems, userID])
+
+  // useEffect(() => {
+  //   if (userID) {
+  //     window.localStorage.setItem(`selectedItems_${userID}`, JSON.stringify(selectedItems))
+  //   }
+  // }, [selectedItems, userID])
+  // useEffect(() => {
+  //   window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+  // }, [userInfo])
+
+  //管理購物車數量
   useEffect(() => {
-    const handleStorageChange = (event) => {
-      if (event.key === 'cartItems') {
-        setCartItems(JSON.parse(event.newValue))
-      } else if (event.key === 'selectedItems') {
-        setSelectedItems(JSON.parse(event.newValue))
-      } else if (event.key === 'userInfo') {
-        setUserInfo(JSON.parse(event.newValue))
-      }
+    // 从 localStorage 加载购物车内容
+    const savedCartItems = localStorage.getItem('cartItems');
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+      setCartItemCount(JSON.parse(savedCartItems).length); // 更新购物车数量
     }
-
-    window.addEventListener('storage', handleStorageChange)
-    return () => {
-      window.removeEventListener('storage', handleStorageChange)
-    }
-  }, [])
-
-  //將cartItems狀態儲存到localStorage
+  }, []);
   useEffect(() => {
-    //在伺服器端渲染（SSR）時，window 物件是不可用的。由於`useEffect` 只在客戶端執行，可以在這個鉤子中安全地使用
-    window.localStorage.setItem('cartItems', JSON.stringify(cartItems))
-  }, [cartItems])
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedSelectedItems = window.localStorage.getItem('selectedItems')
-      if (savedSelectedItems) {
-        setSelectedItems(JSON.parse(savedSelectedItems))
-      }
-    }
-  }, [])
-
-  // 當 selectedItems 改變時，更新本地存儲
-  useEffect(() => {
-    window.localStorage.setItem('selectedItems', JSON.stringify(selectedItems))
-  }, [selectedItems])
-
-  useEffect(() => {
-    window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
-  }, [userInfo])
+    // 在购物车内容变化时更新 localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    setCartItemCount(cartItems.length); // 更新购物车数量
+  }, [cartItems]);
 
   const totalPrice = cartItems.reduce((acc, v) => acc + v.qty * v.price, 0)
   const finalTotalPrice = totalPrice < 899 ? totalPrice + 80 : totalPrice
@@ -251,11 +309,13 @@ export function CartProvider({ children }) {
   //   // 同步更新 selectedItems
   //   synchronizeSelectedItems(updatedCartItems);
   // }
+  
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
+        setCartItems,
         addToCart,
         removeItem,
         increaseItem,
@@ -272,6 +332,9 @@ export function CartProvider({ children }) {
         totalPrice,
         finalTotalPrice,
         extraFee,
+        cartItemCount,
+        setCartItemCount,
+        handleLoginSuccess
       }}
     >
       {children}

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styles from '@/styles/faq/faqreport.module.css'
 import { PiCatBold } from 'react-icons/pi'
 import { FaX } from 'react-icons/fa6'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Faqreport({ open, onClose }) {
   // 表單送出互動
@@ -10,18 +12,13 @@ export default function Faqreport({ open, onClose }) {
     fr_option: '',
     question: '',
   })
-  // const [resetData,setResetData] = useState({
-  //   email: '',
-  //   fr_option: '',
-  //   question: '',
-  // })
   const handleReset = () => {
     setFormData({
       email: '',
       fr_option: '',
       question: '',
-    });
-  };
+    })
+  }
   if (!open) {
     return null
   }
@@ -52,7 +49,7 @@ export default function Faqreport({ open, onClose }) {
       console.log('Response from server:', result)
       if (response.status === 201) {
         console.log('表單已成功送出', result)
-        alert('表單已成功送出')
+        toast.success('表單已成功送出', { position: 'top-center' })
         onClose()
       } else {
         console.log('表單送出失敗', result.message)
@@ -155,7 +152,11 @@ export default function Faqreport({ open, onClose }) {
             </div>
             <br />
             <div className={styles['rf_btn2']}>
-              <button className={styles['rf_btn4']} type="reset" onClick={handleReset}>
+              <button
+                className={styles['rf_btn4']}
+                type="reset"
+                onClick={handleReset}
+              >
                 清除表單
               </button>
               {/* <input

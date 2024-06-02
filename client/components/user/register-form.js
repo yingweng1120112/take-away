@@ -4,6 +4,8 @@ import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
 
 export default function RegisterForm() {
   const [user, setUser] = useState({
@@ -67,7 +69,18 @@ export default function RegisterForm() {
     const data = await res.json()
 
     if (res.ok) {
-      alert('註冊成功！')
+      // alert('註冊成功！')
+      toast.success('註冊成功！', {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
       setUser({
         name: '',
         email: '',
@@ -76,9 +89,61 @@ export default function RegisterForm() {
         confirmPassword: '',
       })
     } else {
-      alert(`註冊失敗：${data.message}`)
+      // alert(`註冊失敗：${data.message}`)
+      toast.success(`註冊失敗：${data.message}`, {
+        position: 'top-center',
+        autoClose: 600,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: 'dark',
+        transition: Slide,
+      })
     }
   }
+
+    // google第三方登入
+    const handleGoogleSuccess = async (response) => {
+      const { credential } = response
+      const decodedToken = jwt_decode(credential)
+  
+      try {
+        const res = await fetch('http://localhost:3005/api/users/google-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: credential }),
+        })
+  
+        if (res.ok) {
+          const result = await res.json()
+          const token = result.token
+          localStorage.setItem('userKey', token)
+          toast.success('已成功登入', {
+            position: 'top-center',
+            autoClose: 600,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: 'dark',
+            transition: Slide,
+          })
+          router.push('./user-info')
+        } else {
+          const data = await res.json()
+          setMessage(data.message)
+        }
+      } catch (error) {
+        console.log('An error occurred', error)
+      }
+    }
+  
+    const handleGoogleFailure = (response) => {
+      console.log('Google Login Failed', response)
+    }
 
   return (
     <>
@@ -201,21 +266,30 @@ export default function RegisterForm() {
                 {errors.confirmPassword}
               </span>
             </label>
+            <div className={`${styles['google']}`}>
+              <GoogleOAuthProvider
+                clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+              >
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onFailure={handleGoogleFailure}
+                  buttonText="Connect with Google"
+                  render={(renderProps) => (
+                    <button
+                      type="button"
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                      className={`${styles['googlebtn']} ${styles['button']} ${styles['submit']}`}
+                    ></button>
+                  )}
+                />
+              </GoogleOAuthProvider>
+            </div>
             <button
               type="submit"
               className={`${styles['button']} ${styles['submit']}`}
             >
               註冊
-            </button>
-
-            <button
-              type="button"
-              className={`${styles['button']} ${styles['fb-btn']}`}
-            >
-              Join with{' '}
-              <span className={`${styles['span']} ${styles['fb-btns']}`}>
-                Google
-              </span>
             </button>
             <button
               className={`${styles['button']} ${styles['fb-btn']}`}

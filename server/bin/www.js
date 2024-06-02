@@ -52,6 +52,11 @@ io.on('connection', (socket) => {
     socket.to(room).emit('addroom','已有新人加入聊天室!')
     io.sockets.in(room).emit('addroom','已加入聊天室')
   })
+  socket.on('join_room', ({ room, username }) => {
+    socket.join(room);
+    console.log(`${username} joined room ${room}`);
+    io.to(room).emit('message', `${username} has joined the room`);
+  });
 })
 
 /**

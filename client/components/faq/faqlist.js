@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { IoPawOutline, IoPawSharp } from 'react-icons/io5'
 import styles from '@/styles/faq/faqshopping.module.css'
 
-export default function Faqlist({ data, currentPage, itemsPerPage }) {
+export default function Faqlist({ data }) {
   const [selected, setSelected] = useState(null)
-  console.log(data);
+  console.log(data)
 
   const toggle = (i) => {
     if (selected === i) {
@@ -12,25 +12,23 @@ export default function Faqlist({ data, currentPage, itemsPerPage }) {
     }
     setSelected(i)
   }
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const currentData = data.slice(startIndex, startIndex + itemsPerPage)
 
   return (
     <>
       <div className={styles['box_ans']}>
         <div className={styles['container_ans']}>
           <div className={styles['accordion']}>
-            {currentData.map((item, i) => (
-              <div className={styles['item']} key={startIndex + i}>
-                <div className={styles['title']} onClick={() => toggle(startIndex + i)}>
+            {data.map((item, i) => (
+              <div className={styles['item']} key={i}>
+                <div className={styles['title']} onClick={() => toggle(i)}>
                   <h4 className={styles['toggle']}>{item.small_question}</h4>
                   <div className={styles['faq_paws']}>
-                    {selected === startIndex + i ? <IoPawOutline /> : <IoPawSharp />}
+                    {selected === i ? <IoPawOutline /> : <IoPawSharp />}
                   </div>
                 </div>
                 <div
                   className={`${styles.content_ans} ${
-                    selected === startIndex + i ? styles.show : ''
+                    selected === i ? styles.show : ''
                   }`}
                 >
                   <img
