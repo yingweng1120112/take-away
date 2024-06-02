@@ -1,0 +1,14 @@
+.container{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+}
+.crcat{
+    display: block;
+    justify-content: center;
+    border: 2px solid black;
+    width: 100%;
+}
+.crcat1{
+    border: 2px solid black;
+}

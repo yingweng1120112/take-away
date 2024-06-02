@@ -1,0 +1,29 @@
+.avatarSelector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f4f4f4; /* 輕灰色背景 */
+  border-radius: 10px;
+  position: relative;
+  bottom: 0px;
+}
+
+.avatarImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* 圓形大頭照 */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatarImage:hover {
+  transform: scale(1.1); /* 鼠標懸停時放大 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加陰影效果 */
+}
+
+.avatarImage.selected {
+  border: 2px solid blue; /* 选中头像时显示蓝色边框 */
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* 添加轻微的阴影效果 */
+}
