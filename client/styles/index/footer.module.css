@@ -12,6 +12,7 @@
 .footer.animate {
   opacity: 1;
   transform: translateY(0);
+  height: 136svh;
 }
 /* 滾動視差 end*/
 .footer {
@@ -164,7 +165,12 @@
     width: 100%;
     justify-content: center;
   }
-
+  
+  .footer.animate {
+    opacity: 1;
+    transform: translateY(0);
+    height: 100svh;
+  }
   .container {
     display: flex;
     flex-direction: column;
