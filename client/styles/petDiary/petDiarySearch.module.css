@@ -9,7 +9,7 @@
   position: absolute;
   z-index: -1;
   height: 500px;
-  top: -75%;
+  top: -60%;
   left: -5%;
   transform: rotate(-4deg);
 }
@@ -114,7 +114,7 @@
   letter-spacing: 4px;
   font-size: 14px;
   text-transform: uppercase;
-  padding-right: 0;
+  padding-right: 10px;
   margin-left: 3px;
 }
 

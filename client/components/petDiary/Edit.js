@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import { useRouter } from 'next/router'
 import styles from '@/styles/petDiary/petDiary.module.css'
 import PrevieImage from '@/components/petDiary/previeImage'
-import { useRouter } from 'next/router'
+import PrevieImageEdit from '@/components/petDiary/previeImageEdit'
+import { loadBlogInfo } from '@/services/getBlog'
 import { AiFillPicture } from 'react-icons/ai'
 
-export default function ImageUpload(data) {
+export default function MyVerticallyCenteredModal(props) {
   const router = useRouter()
+  // console.log(props)
   const [formData, setFormData] = useState({
+    blog_id:'',
     content: '',
     pic1: '',
     pic2: '',
@@ -14,11 +20,8 @@ export default function ImageUpload(data) {
     pic4: '',
     pic5: '',
   })
-
   const handleChange = (e) => {
     const { name, value } = e.target
-    // console.log(formData)
-    // console.log('selectedFile:', selectedFile)
     setFormData({
       ...formData,
       [name]: value,
@@ -35,11 +38,10 @@ export default function ImageUpload(data) {
 
   const handleFileChange = (e) => {
     const fileList = e.target.files
-    console.log('1:fileList', fileList)
     if (fileList.length > 5) {
       alert('最多只能選擇5个文件！')
       setSelectedFile('') // 清空文件輸入
-    } else if (fileList) {
+    } else if (e.target.files) {
       // console.log('fileList:', fileList)
       // console.log('fileList0:', fileList[0])
       setSelectedFile(fileList)
@@ -123,7 +125,7 @@ export default function ImageUpload(data) {
 
       try {
         const res = await fetch(`http://localhost:3005/api/blog/${pid}`, {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -155,71 +157,107 @@ export default function ImageUpload(data) {
       }
     }
   }
-  if (data.data[1] == true) {
-    return (
-      <>
-        <div className={styles['post']}>
-          <img
-            src={`/img/diarySearch/${data.data[0]}`}
-            alt=""
-            className={styles['head-img']}
+  const [blog, setBlog] = useState({
+    content: '',
+  })
+
+  const getBlogInfo = async (pid = '') => {
+    const data = await loadBlogInfo(pid)
+    console.log('data', data)
+    console.log('data.blog_info', data.blog_info)
+    console.log('data.blog_info[0]', data.blog_info[0])
+    if (typeof data === 'object' && data !== null && !Array.isArray(data)) {
+      setBlog(data.blog_info[0])
+    }
+  }
+
+  useEffect(() => {
+    if (props.show == true) {
+      getBlogInfo(props.blog)
+      setFormData({...formData,'blog_id':props.blog})
+      setSelectedFile('')
+      setPreviewURL1('')
+      setPreviewURL2('')
+      setPreviewURL3('')
+      setPreviewURL4('')
+      setPreviewURL5('')
+    }
+  }, [props])
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      backdrop="static"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">貼文編輯</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ backgroundColor: '#FDF7E4' }}>
+        <form name="form2" onSubmit={handleSubmit}>
+          <textarea
+            id="content"
+            name="content"
+            className={styles['content-word']}
+            onChange={handleChange}
+            defaultValue={blog.content}
+            style={{ width: '100%' }}
           />
-          <div className={styles['post-right']} style={{ width: '100%' }}>
-            <form name="form1" onSubmit={handleSubmit}>
-              <textarea
-                id="content"
-                name="content"
-                className={styles['content-word']}
-                placeholder="輸入你想分享的趣事"
-                onChange={handleChange}
-              />
-              <div className={styles['post-upload']}>
-                <div className={styles['post-upload-btn-container']}>
-                  <div>
-                    <label className={styles['button']} htmlFor="previewImage">
-                      <div className={styles['inputFile']}>
-                        <AiFillPicture />
-                        <i>圖片上傳</i>
-                      </div>
-                    </label>
-                    <input
-                      id="previewImage"
-                      type="file"
-                      name="avatar"
-                      accept="image/jpeg,image/png"
-                      className={styles['input-pic']}
-                      onChange={handleFileChange}
-                      multiple
-                    />
+          <div className={styles['post-upload']}>
+            <div className={styles['post-upload-btn-container']}>
+              <div>
+                <label className={styles['button']} htmlFor="previewImage1">
+                  <div className={styles['inputFile']}>
+                    <AiFillPicture />
+                    <i>圖片上傳</i>
                   </div>
-                  <input
-                    type="submit"
-                    acceptf="image/*"
-                    className={`${styles['button']} ${styles['upload-btn-pc']}`}
-                  />
-                </div>
-                <div className={styles['post-upload-pic']}>
-                  <PrevieImage
-                    value={[
-                      previewURL1,
-                      previewURL2,
-                      previewURL3,
-                      previewURL4,
-                      previewURL5,
-                    ]}
-                  />
-                </div>
+                </label>
                 <input
-                  type="submit"
-                  acceptf="image/*"
-                  className={`${styles['button']} ${styles['upload-btn-phone']}`}
+                  id="previewImage1"
+                  type="file"
+                  name="avatar"
+                  accept="image/jpeg,image/png"
+                  className={styles['input-pic']}
+                  onChange={handleFileChange}
+                  multiple
                 />
               </div>
-            </form>
+              <input
+                type="submit"
+                acceptf="image/*"
+                className={`${styles['button']} ${styles['upload-btn-pc']}`}
+              />
+            </div>
+            <p style={{marginTop:'16px',marginBottom:'0px'}}>原始貼文圖片</p>
+            <div className={styles['post-upload-pic']}>
+              <PrevieImageEdit
+                value={[blog.pic1, blog.pic2, blog.pic3, blog.pic4, blog.pic5]}
+              />
+            </div>
+            <p style={{marginTop:'16px',marginBottom:'0px'}}>替換圖片</p>
+            <div className={styles['post-upload-pic']}>
+              <PrevieImage
+                value={[
+                  previewURL1,
+                  previewURL2,
+                  previewURL3,
+                  previewURL4,
+                  previewURL5,
+                ]}
+              />
+            </div>
+            <input
+              type="submit"
+              acceptf="image/*"
+              className={`${styles['button']} ${styles['upload-btn-phone']}`}
+            />
           </div>
-        </div>
-      </>
-    )
-  }
-  return<></>
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  )
 }

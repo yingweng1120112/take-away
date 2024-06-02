@@ -2,23 +2,28 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/petDiary'
 import { loadBlogsInfo } from '@/services/blog'
+import { loadMyPet } from '@/services/mypet'
 import React from 'react'
 import CarouselPetInfo from '@/components/swiper/CarouselPetInfo'
 import CarouselPetLife from '@/components/swiper/CarouselPetLife'
+import MyVerticallyCenteredModal from '@/components/petDiary/Edit'
+import EditIcon from '@/components/petDiary/editIcon'
+import DeleteIcon from '@/components/petDiary/deleteIcon'
 import UpLoad from '@/components/petDiary/upload'
-
 import styles from '@/styles/petDiary/petDiary.module.css'
 import banner from '@/styles/banner/banner.module.css'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import Pages from '@/components/petDiary/pages'
-import { FaTrashAlt } from 'react-icons/fa'
-import { MdEdit } from 'react-icons/md'
+import { jwtDecode } from 'jwt-decode'
 // 資料夾的中的`[pid].js`檔案代表這路由中，除了根路由與靜態路由之外的所有路由，例如 `/product/123` 就是這個檔案
 // 資料來源:
 // https://my-json-server.typicode.com/eyesofkids/json-fake-data/products/${pid}
 
 export default function PetDiary() {
+  const [modalShow, setModalShow] = React.useState(false)
+  const [blog, setBlog] = useState()
+  // const [modalShow, setModalShow] = React.useState(false)
   // 第1步. 宣告能得到動態路由pid的路由器
   // router.query(物件)，其中包含了pid屬性值
   // router.isReady(布林)，如果是true代表頁面已完成水合作用，可以得到pid
@@ -36,13 +41,45 @@ export default function PetDiary() {
   // 總頁數
   const [pageCount, setPageCount] = useState(0)
 
+  // console.log(user_id);
+  const [petMaster, setPetMaster] = useState(false)
+
+  const [myPet, setMyPet] = useState()
+
+  const getMypet = async () => {
+    const data2 = await loadMyPet()
+    setMyPet(data2.myPet_info)
+  }
+
+  // 页面加载时检查用户是否登录并更新 user_id
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // 确保在客户端环境中
+      const userId = localStorage.getItem('userKey')
+      if (userId) {
+        const user = jwtDecode(userId)
+        const userID = user.user_id
+        if (Array.isArray(myPet)) {
+          myPet.map((v, i) => {
+            if (v.user_id == userID && v.pet_id == router.query.pid) {
+              setPetMaster(true)
+            }
+          })
+        }
+      }
+    }
+  }, [myPet])
+
   const handlePageChange = (page) => {
     setPage(page)
   }
-  // const handleEdit=(blogID){
 
-  // }
-  const handleDelete= async(blogID)=>{
+  const handleEdit = (blogID) => {
+    setBlog(blogID)
+    setModalShow(true)
+  }
+
+  const handleDelete = async (blogID) => {
     try {
       const res = await fetch(`http://localhost:3005/api/blog/${blogID}`, {
         method: 'delete',
@@ -61,14 +98,14 @@ export default function PetDiary() {
         // console.log('表單送出失敗', data.message)
         alert(`貼文刪除失敗: ${data.message}`)
       }
-      window.location.reload();
+      window.location.reload()
     } catch (error) {
       // console.log()
       // console.error('貼文刪除錯誤:', error)
       alert(`貼文刪除錯誤:${error.message}`)
     }
   }
-  const getPetInfo = async (pid='') => {
+  const getPetInfo = async (pid = '') => {
     // console.log(`getPetinfo1:data:,${params}`)
     // console.log(`getPetinfo1:data:,${params.pid}`)
     const data1 = await loadPetInfo(pid.pid)
@@ -88,7 +125,7 @@ export default function PetDiary() {
     // console.log('params',params);
     const data = await loadBlogsInfo(params)
     // console.log('data',data);
-    // console.log('getBloginfo1:data:')
+    // console.log('getBloginfo:data:')
     // console.log(data)
     if (data.pageCount && typeof data.pageCount === 'number') {
       setPageCount(data.pageCount)
@@ -106,6 +143,7 @@ export default function PetDiary() {
     // console.log('getPetinfo2:data:')
     // console.log(blogInfo)
   }
+
   // 樣式3: didMount+didUpdate
   // 第2步: 在useEffect中監聽router.isReady為true時，才能得到網址上的pid，之後向伺服器要資料
   useEffect(() => {
@@ -121,6 +159,7 @@ export default function PetDiary() {
 
       getPetInfo(pid)
       getBlogsInfo(params)
+      getMypet()
     }
     // eslint-disable-next-line
   }, [page, router.isReady])
@@ -171,17 +210,9 @@ export default function PetDiary() {
           src="/img/petDiary/catIcon.svg"
           alt=""
         />
+
         {/* 上傳 */}
-        <div className={styles['post']}>
-          <img
-            src={`/img/diarySearch/${petInfo.adopt1}`}
-            alt=""
-            className={styles['head-img']}
-          />
-          <div className={styles['post-right']} style={{ width: '100%' }}>
-            <UpLoad />
-          </div>
-        </div>
+        <UpLoad data={[petInfo.adopt1, petMaster]} />
         {/* 貼文 */}
         {blogInfo.map((v, i) => {
           return (
@@ -201,38 +232,48 @@ export default function PetDiary() {
                   >
                     {v.time}
                   </p>
+                  {/* <EditAndDelete data={[petMaster,v.blog_id]}/> */}
                   <button
                     style={{
                       marginRight: '8px',
                       border: 'none',
                       backgroundColor: 'transparent',
                     }}
-                    // onClick={()=>{handleEdit(v.blog_id)}}
+                    onClick={() => {
+                      handleEdit(v.blog_id)
+                    }}
                   >
-                    <MdEdit style={{ width: '2rem', height: '2rem' }} />
+                    <EditIcon data={petMaster}/>
                   </button>
                   <button
                     style={{
                       marginRight: '8px',
                       border: 'none',
-                      backgroundColor:'transparent'
+                      backgroundColor: 'transparent',
                     }}
-                    onClick={()=>{handleDelete(v.blog_id)}}
+                    onClick={() => {
+                      handleDelete(v.blog_id)
+                    }}
                   >
-                    <FaTrashAlt style={{ width: '2rem', height: '2rem' }} />
+                    <DeleteIcon data={petMaster}/>
                   </button>
                 </div>
               </div>
             </div>
           )
         })}
-
       </div>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        blog={blog}
+      />
+
       <Pages
-          currentPage={page}
-          totalPages={pageCount}
-          onPageChange={handlePageChange}
-        />
+        currentPage={page}
+        totalPages={pageCount}
+        onPageChange={handlePageChange}
+      />
       <Footer />
     </>
   )
