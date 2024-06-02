@@ -160,7 +160,7 @@ export default function UserInfo() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="#">
+                  <Link href="/user/user-favorite">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
