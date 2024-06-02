@@ -3,13 +3,13 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import db from '#configs/mysql.js'
 import { getIdParam } from '##/db-helpers/db-tool.js'
-// import nodemailer from 'nodemailer'
 import forgotPassword from './forgot-password.js'
-// 密碼加密使用
-// import { generateHash } from '##/db-helpers/password-hash.js'
+import { OAuth2Client } from 'google-auth-library'
+
 dotenv.config()
 const router = express.Router()
 const secretKey = process.env.SECRET_KEY
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 // 使用 forgot-password 路由
 router.use('/forgot-password', forgotPassword)
@@ -137,6 +137,57 @@ router.put('/:id', async (req, res) => {
     }
   } catch (err) {
     console.error('Database error:', err)
+    res.status(500).json({ status: 'error', message: '伺服器錯誤' })
+  }
+})
+
+// Google登入
+router.post('/google-login', async (req, res) => {
+  const { token } = req.body
+
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    })
+
+    const payload = ticket.getPayload()
+    const { sub, email, name } = payload
+
+    let [rows] = await db.query('SELECT * FROM user WHERE google_uid = ?', [
+      sub,
+    ])
+
+    if (rows.length === 0) {
+      const [result] = await db.query(
+        'INSERT INTO user (name, email, google_uid) VALUES (?, ?, ?)',
+        [name, email, sub]
+      )
+
+      if (!result.insertId) {
+        return res
+          .status(500)
+          .json({ status: 'error', message: '建立會員失敗' })
+      }
+
+      rows = [{ user_id: result.insertId, name, email }]
+    }
+
+    const userData = rows[0]
+    const jwtToken = jwt.sign(
+      {
+        user_id: userData.user_id,
+        email: userData.email,
+      },
+      secretKey,
+      { expiresIn: '3h' }
+    )
+
+    res
+      .status(200)
+      .json({ status: 'success', message: '驗證成功', token: jwtToken })
+  } catch (error) {
+    console.error(error)
     res.status(500).json({ status: 'error', message: '伺服器錯誤' })
   }
 })

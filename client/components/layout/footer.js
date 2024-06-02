@@ -12,7 +12,7 @@ export default function Footer() {
           <div className={styles['footerInfo']}>
             {/* 認養資訊 */}
             <div className={styles['footerItem']}>
-              <h3>認養資訊</h3>
+              <h3>領養資訊</h3>
               <hr className={styles['footerHr']} />
               <ol>
                 <li>

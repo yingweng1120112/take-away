@@ -1,405 +1,412 @@
 @media screen and (min-width: 1025px) {
-    .tip {
-        font-size: 20px;
-        margin: 30px auto 20px;
-        text-align: center;
-    }
+  .tip {
+    font-size: 20px;
+    margin: 30px auto 20px;
+    text-align: center;
+  }
 
-    .cont {
-        overflow: hidden;
-        position: relative;
-        width: 900px;
-        height: 850px;
-        margin: 0 auto 100px;
-        background: #fff;
-    }
+  .cont {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 850px;
+    margin: 0 auto 100px;
+    background: #fff;
+  }
 
-    .form {
-        position: relative;
-        width: 640px;
-        height: 100%;
-        padding: 30px 30px 0;
-    }
+  .form {
+    position: relative;
+    width: 640px;
+    height: 100%;
+    padding: 30px 30px 0;
+  }
 
-    .sub-cont {
-        overflow: hidden;
-        position: absolute;
-        left: 640px;
-        top: 0;
-        width: 900px;
-        height: 100%;
-        padding-left: 260px;
-        background: #fff;
-    }
+  .sub-cont {
+    overflow: hidden;
+    position: absolute;
+    left: 640px;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    padding-left: 260px;
+    background: #fff;
+  }
 
-    .button {
-        display: block;
-        margin: 5px auto;
-        width: 260px;
-        height: 36px;
-        border-radius: 30px;
-        color: #fff;
-        font-size: 15px;
-        cursor: pointer;
-    }
+  .button {
+    display: block;
+    margin: 5px auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
 
-    .img {
-        overflow: hidden;
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 260px;
-        height: 100%;
-        padding-top: 360px;
-    }
+  .img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 360px;
+  }
 
-    .img:before {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 900px;
-        height: 100%;
-        background-image: url('/img/user/login-bg2.jpg');
-        background-size: cover;
-    }
+  .img:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url('/img/user/login-bg2.jpg');
+    background-size: cover;
+  }
 
-    .img:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-    }
+  .img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
 
-    .img__text {
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 50px;
-        width: 100%;
-        padding: 0 20px;
-        text-align: center;
-        color: #fff;
-    }
+  .img__text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+  }
 
-    .h2text {
-        margin-bottom: 10px;
-        font-weight: normal;
-    }
+  .h2text {
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
 
-    .h6 {
-        font-size: 14px;
-        line-height: 1.5;
-    }
+  .h6 {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 
-    .img__btn {
-        overflow: hidden;
-        z-index: 2;
-        position: relative;
-        width: 100px;
-        height: 36px;
-        margin: 0 auto;
-        background: transparent;
-        color: #fff;
-        font-size: 15px;
-        cursor: pointer;
-        top: 50%;
-    }
+  .img__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 100px;
+    height: 36px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    top: 50%;
+  }
 
-    .img__btn:after {
-        content: '';
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid #fff;
-        border-radius: 30px;
-    }
+  .img__btn:after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+  }
 
-    .spanbtn {
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
+  .spanbtn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 
-    .h2 {
-        width: 100%;
-        font-size: 26px;
-        text-align: center;
-    }
+  .h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+  }
 
-    .label {
-        display: block;
-        width: 260px;
-        margin: 25px auto 0;
-        text-align: center;
-    }
+  .label {
+    display: block;
+    width: 260px;
+    margin: 25px auto 0;
+    text-align: center;
+  }
 
-    .spanl {
-        font-size: 12px;
-        color: #cfcfcf;
-    }
+  .spanl {
+    font-size: 12px;
+    color: #cfcfcf;
+  }
 
-    .input {
-        display: block;
-        width: 100%;
-        margin-top: 5px;
-        padding-bottom: 5px;
-        font-size: 16px;
-        text-align: center;
-        border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    }
+  .input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
 
-    .forgot-pass {
-        margin-top: 15px;
-        text-align: center;
-        font-size: 12px;
-        color: #cfcfcf;
-    }
+  .forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #cfcfcf;
+  }
 
-    .submit {
-        margin-top: 40px;
-        margin-bottom: 20px;
-        background: #d4af7a;
-    }
+  .submit {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #d4af7a;
+  }
 
-    .fb-btn {
-        border: 2px solid #d3dae9;
-        color: #8fa1c7;
-    }
+  .fb-btn {
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
 
-    .fb-btn span {
-        font-weight: bold;
-        color: #455a81;
-    }
+  .fb-btn span {
+    font-weight: bold;
+    color: #455a81;
+  }
 
-    .icon-link {
-        position: absolute;
-        left: 5px;
-        bottom: 5px;
-        width: 32px;
-    }
+  .icon-link {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    width: 32px;
+  }
 
-    .icon-link img {
-        width: 100%;
-        vertical-align: top;
-    }
+  .icon-link img {
+    width: 100%;
+    vertical-align: top;
+  }
 
-    .icon-link--twitter {
-        left: auto;
-        right: 5px;
-    }
+  .icon-link--twitter {
+    left: auto;
+    right: 5px;
+  }
 
-    .link-footer {
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-    }
+  .link-footer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+  }
+  .google {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (min-width: 414px) and (max-width: 828px) {
-    .tip {
-        font-size: 20px;
-        margin: 15px auto 15px;
-        text-align: center;
-    }
+  .tip {
+    font-size: 20px;
+    margin: 15px auto 15px;
+    text-align: center;
+  }
 
-    .cont {
-        overflow: hidden;
-        position: relative;
-        width: 360px;
-        height: 800px;
-        margin: 0 auto 100px;
-        background: #fff;
-    }
+  .cont {
+    overflow: hidden;
+    position: relative;
+    width: 360px;
+    height: 800px;
+    margin: 0 auto 100px;
+    background: #fff;
+  }
 
-    .form {
-        position: relative;
-        width: 256px;
-        height: 100%;
-        padding: 10px 30px 0;
-    }
+  .form {
+    position: relative;
+    width: 256px;
+    height: 100%;
+    padding: 10px 30px 0;
+  }
 
-    .sub-cont {
-        overflow: hidden;
-        position: absolute;
-        left: 256px;
-        top: 0;
-        width: 360px;
-        height: 100%;
-        padding-left: 104px;
-        background: #fff;
-    }
+  .sub-cont {
+    overflow: hidden;
+    position: absolute;
+    left: 256px;
+    top: 0;
+    width: 360px;
+    height: 100%;
+    padding-left: 104px;
+    background: #fff;
+  }
 
-    .button {
-        display: block;
-        margin: 0 auto;
-        width: 170px;
-        height: 36px;
-        border-radius: 30px;
-        color: #fff;
-        font-size: 15px;
-        cursor: pointer;
-    }
+  .button {
+    display: block;
+    margin: 0 auto;
+    width: 170px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
 
-    .img {
-        overflow: hidden;
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 104px;
-        height: 100%;
-        padding-top: 360px;
-    }
+  .img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 104px;
+    height: 100%;
+    padding-top: 360px;
+  }
 
-    .img:before {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 360px;
-        height: 100%;
-        background-image: url('/img/user/login-bg.jpg');
-        background-size: cover;
-    }
+  .img:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 360px;
+    height: 100%;
+    background-image: url('/img/user/login-bg.jpg');
+    background-size: cover;
+  }
 
-    .img:after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-    }
+  .img:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
 
-    .img__text {
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 50px;
-        width: 100%;
-        padding: 0 20px;
-        text-align: center;
-        color: #fff;
-    }
+  .img__text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+  }
 
-    .h2text {
-        font-size: var(--font-size-p);
-        margin-bottom: 10px;
-        font-weight: normal;
-    }
+  .h2text {
+    font-size: var(--font-size-p);
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
 
-    .h6 {
-        font-size: 12px;
-        line-height: 1.5;
-    }
+  .h6 {
+    font-size: 12px;
+    line-height: 1.5;
+  }
 
-    .img__btn {
-        overflow: hidden;
-        z-index: 2;
-        position: relative;
-        width: 80px;
-        height: 36px;
-        margin: 0 auto;
-        background: transparent;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 15px;
-        cursor: pointer;
-        top: 50%;
-    }
+  .img__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 80px;
+    height: 36px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    top: 50%;
+  }
 
-    .img__btn:after {
-        content: '';
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid #fff;
-        border-radius: 30px;
-    }
+  .img__btn:after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    border-radius: 30px;
+  }
 
-    .spanbtn {
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
+  .spanbtn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 
-    .h2 {
-        width: 100%;
-        font-size: 20px;
-        text-align: center;
-    }
+  .h2 {
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+  }
 
-    .label {
-        display: block;
-        width: 170px;
-        margin: 25px auto 0;
-        text-align: center;
-    }
+  .label {
+    display: block;
+    width: 170px;
+    margin: 25px auto 0;
+    text-align: center;
+  }
 
-    .spanl {
-        font-size: 12px;
-        color: #cfcfcf;
-    }
+  .spanl {
+    font-size: 12px;
+    color: #cfcfcf;
+  }
 
-    .input {
-        display: block;
-        width: 100%;
-        margin-top: 5px;
-        padding-bottom: 5px;
-        font-size: 16px;
-        text-align: center;
-        border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    }
+  .input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
 
-    .forgot-pass {
-        margin-top: 15px;
-        text-align: center;
-        font-size: 12px;
-        color: #cfcfcf;
-    }
+  .forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #cfcfcf;
+  }
 
-    .submit {
-        margin-top: 40px;
-        margin-bottom: 20px;
-        background: #d4af7a;
-    }
+  .submit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #d4af7a;
+  }
 
-    .fb-btn {
-        border: 2px solid #d3dae9;
-        color: #8fa1c7;
-    }
+  .fb-btn {
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
 
-    .fb-btns {
-        font-weight: bold;
-        color: #455a81;
-    }
+  .fb-btns {
+    font-weight: bold;
+    color: #455a81;
+  }
 
-    .cont.s--signup .sign-in {
-        transition-timing-function: ease-in-out;
-        transition-duration: 1.2s;
-    }
+  .cont.s--signup .sign-in {
+    transition-timing-function: ease-in-out;
+    transition-duration: 1.2s;
+  }
 }
