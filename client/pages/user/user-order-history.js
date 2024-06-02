@@ -207,15 +207,15 @@ export default function UserOrderHistory() {
             </div>
           </div>
         </div>
-      {/* banner end */}
-      <div className={styles['table-container']}>
-        <h3 style={{ 'height': '120px' , display:'flex', alignItems: 'center' }}
-        >－尚無訂單歷史記錄－</h3>
-      </div>
+        {/* banner end */}
+        <div className={styles['table-container']}>
+          <h3 style={{ height: '120px', display: 'flex', alignItems: 'center' }}>－尚無訂單歷史記錄－</h3>
+        </div>
         <Footer />
       </>
     )
-  }
+  } 
+  
 
   const columnNames = {
     order_id: '訂單編號',
