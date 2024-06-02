@@ -3,13 +3,12 @@
 }
 .life-container {
   width: 100%;
-  margin-top: 74px;
 }
 .bg-1 {
   position: absolute;
   z-index: -1;
   height: 500px;
-  top: -75%;
+  top: -60%;
   left: -5%;
   transform: rotate(-4deg);
 }
@@ -100,7 +99,7 @@
 }
 .wp-pagenavi .previouspostslink,
 .wp-pagenavi .nextpostslink {
-  display: none;
+  margin: 8px;
 }
 .hidden {
   overflow: hidden;
@@ -114,7 +113,7 @@
   letter-spacing: 4px;
   font-size: 14px;
   text-transform: uppercase;
-  padding-right: 0;
+  padding-right: 10px;
   margin-left: 3px;
 }
 
@@ -242,6 +241,7 @@
   .content-word {
     font-size: 4rem;
     line-height: 5rem;
+    padding-right: 2rem;
   }
   .btn-more {
     margin-left: 0;

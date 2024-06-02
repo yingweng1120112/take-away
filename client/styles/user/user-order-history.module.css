@@ -13,12 +13,24 @@
   margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-size: 18px;
 }
 
 .order-detail {
   cursor: pointer;
-  width: 20px;
-  height: 30px;
+  font-size: 30px;
+
+  color: var(--reddish-brown);
+  display: flex;
+  margin: auto;
+}
+.order-detail:hover {
+  color: var(--light-yellow);
+  background-color: gray;
+  border: 5px solid gray;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
 }
 .banner-life-1 {
   background-image: url(/img/user/Banner.jpg);
@@ -147,6 +159,48 @@
 .input:focus ~ .bar:after {
   width: 50%;
 }
+.click-style {
+  display: flex;
+  width: 100%;
+  border-bottom: 8px rgb(255, 227, 190) dotted;
+  /* margin-bottom: 25px; */
+  padding: 20px;
+  font-size: 18px;
+  color: var(--reddish-brown);
+  font-weight: 600;
+}
+.click-product-style {
+  display: flex;
+
+  align-items: center;
+  width: 45%;
+}
+.click-product-style > div:nth-child(1) {
+  border: 8px solid var(--yellow);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+.click-price-style {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+.click-style img {
+  height: 120px;
+}
+.total-price {
+  text-align: end;
+  padding-right: 15px;
+  padding-top: 20px;
+  font-size: 20px;
+  color: var(--reddish-brown);
+  font-weight: 600;
+}
 
 @keyframes inputHighlighter {
   from {
@@ -221,7 +275,11 @@
 .td-btn > a {
   color: var(--reddish-brown);
 }
-
+.tr-header {
+  font-size: 20px;
+  height: 60px;
+  border-bottom: 3px solid var(--deep-gray) !important;
+}
 .th-order_id {
   width: 100px;
 }
@@ -246,7 +304,13 @@
 .th-recipient_address_detail {
   width: 200px;
 }
+.th-Invoice_no {
+  width: 100px;
+}
 .th-status {
+  width: 100px;
+}
+.th-detail {
   width: 100px;
 }
 

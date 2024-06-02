@@ -53,19 +53,6 @@ export default function Faqpages({ currentPage, totalPages, onPageChange }) {
           »
         </a>
       </div>
-      {/* <div className={styles.pagination}>
-        {pages.map((page) => (
-          <button
-            key={page}
-            className={`${styles.pageButton} ${
-              page === currentPage ? styles.active : ''
-            }`}
-            onClick={() => onPageChange(page)}
-          >
-            {page}
-          </button>
-        ))}
-      </div> */}
     </>
   )
 }

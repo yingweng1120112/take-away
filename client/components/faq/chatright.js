@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from '@/styles/faq/chatroom.module.css'
+import styles from '@/styles/faq/chatright.module.css'
 import {
   FaBars,
   FaBookOpen,
@@ -18,9 +18,10 @@ import {
 } from 'react-icons/fa6'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
-export default function Chatright({ socket, username, room }) {
+export default function Chatright({ socket, username, room, avatar }) {
   const [currentMessage, setCurrentMessage] = useState('')
   const [messageList, setMessageList] = useState([])
+  // const [selectedAvatar, setSelectedAvatar] = useState(null)
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -28,11 +29,13 @@ export default function Chatright({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ':' +
-          new Date(Date.now()).getMinutes(),
+        time: new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+        avatarUrl: avatar
       }
+      console.log(messageData)
 
       await socket.emit('send_message', messageData)
       setMessageList((list) => [...list, messageData])
@@ -41,29 +44,39 @@ export default function Chatright({ socket, username, room }) {
   }
 
   useEffect(() => {
-    if (!socket) return
-    socket.on('receive_message', (data) => {
+    const receiveMessage = (data) => {
       setMessageList((list) => [...list, data])
-    })
+    }
+
+    socket.on('receive_message', receiveMessage)
+    return () => socket.off('receive_message', receiveMessage)
   }, [socket])
 
   return (
     <>
       {/* 聊天室右側訊息列 */}
       <div className={styles['chatC']}>
+        {/* 分隔 */}
         <div className={styles['chat_message_title']}>
           <div className={styles['cmt_top']}>
-            <h1>客服中心</h1>
+            <h3>線上客服中心</h3>
           </div>
           <div className={styles['cmt_mid']}>
             <div className={styles['cmt_mid2']}>
-              <div className={styles['cmt_avatar2']}></div>
+              {/* <div className={styles['cmt_avatar2']}></div> */}
+              {/* <span>Online</span> */}
+            </div>
+            <div className={styles['cmt_mid2']}>
               <div>
-                <h5>西薩狗班長</h5>
-                <span>線上客服{room}</span>
+                {' '}
+                <img
+                  src={avatar ? avatar : 'cr_avatar.jpg'}
+                  alt="Avatar"
+                  style={{ width: 70, height: 70 ,borderRadius: '50%'}}
+                />
               </div>
-              {/* <div className={styles['cmt_avatar']}></div>
-              <h5>{username}</h5> */}
+              <h5>{username}</h5>
+              {/* <h5>{room}</h5> */}
             </div>
           </div>
         </div>
@@ -81,11 +94,18 @@ export default function Chatright({ socket, username, room }) {
               >
                 <div>
                   <div className={styles['message-meta']}>
+                    <img
+                      src={messageContent.avatarUrl || 'cr_avatar.jpg'}
+                      alt="Avatar"
+                      style={{ width: 40, height: 40 ,borderRadius: '50%'}}
+                    />
                     <p className={styles['author']}>{messageContent.author}</p>
-                    <p className={styles['time']}>{messageContent.time}</p>
                   </div>
                   <div className={styles['message-content']}>
                     <p>{messageContent.message}</p>
+                  </div>
+                  <div className={styles['message-meta']}>
+                    <p className={styles['time']}>{messageContent.time}</p>
                   </div>
                 </div>
               </div>

@@ -1,19 +1,19 @@
 /* banner */
 .banner {
-  background-size:cover;
+  background-size: cover;
   height: 8rem;
   width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 }
-.banner-select{
-  position: sticky; 
-  /* top: 74px;  */
-  z-index: 100
+.banner-select {
+  position: sticky;
+  top: 60px;
+  z-index: 100;
 }
-.banner-life-1{
-display:none;
+.banner-life-1 {
+  display: none;
 }
 .banner > .left {
   display: flex;
@@ -22,13 +22,13 @@ display:none;
 .left > .menu-a {
   margin: 0;
   color: aliceblue;
-  font-size:48px;
+  font-size: 48px;
   margin: 0 10px;
   line-height: 1.2;
 }
 .left > .menu-b {
   margin: 0;
-  font-size:18px;
+  font-size: 18px;
   color: aliceblue;
 }
 
@@ -41,7 +41,7 @@ display:none;
   border-top-right-radius: 2rem;
   padding: 1rem 1.25rem;
   background-color: white;
-} 
+}
 .middle-page-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -61,21 +61,21 @@ display:none;
   margin: 1rem 0;
   text-align: center;
 }
-.select-item{
-  display:flex;
+.select-item {
+  display: flex;
   flex-direction: column;
 }
 .select-item-a {
   display: flex;
   flex-direction: column;
 }
-.select-left{
+.select-left {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 45%;
 }
-.select-right{
+.select-right {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,30 +84,31 @@ display:none;
 .select-item-b {
   display: flex;
   flex-direction: column;
-  padding:1rem;
-  width:100%;
+  padding: 1rem;
+  width: 100%;
 }
 .select-item-c {
   display: flex;
   flex-direction: column;
-  padding:1rem;
-  width:100%;
+  padding: 1rem;
+  width: 100%;
   align-items: center;
 }
-.shop-select-out{
-  display: flex; justify-content: center
+.shop-select-out {
+  display: flex;
+  justify-content: center;
 }
-.shop-select{
+.shop-select {
   padding-right: 25px;
   background: url(/img/banner/search.svg) no-repeat right;
   background-size: 20px;
 }
-.accordion-button >span{
-  display:none;
+.accordion-button > span {
+  display: none;
 }
 
-.accordion-collapse{
-  width:100%;
+.accordion-collapse {
+  width: 100%;
 }
 .accordion-button {
   display: flex;
@@ -120,8 +121,8 @@ display:none;
   background-color: white;
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
-  width:100%;
-  border: 1px solid  var( --reddish-brown);
+  width: 100%;
+  border: 1px solid var(--reddish-brown);
   /* 搜尋物件的邊線 方便查看 */
 }
 .accordion-button::after {
@@ -134,8 +135,8 @@ display:none;
 .accordion {
   --bs-accordion-btn-icon: url('data:image/svg+xml,<svg width="10" height="10" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.1836 0.442585L29.3367 28.5046C29.6051 29.0367 29.2183 29.6649 28.6224 29.6649L1.29842 29.6649C0.702497 29.6649 0.31577 29.0367 0.584123 28.5046L14.7372 0.442584C14.8296 0.259356 15.0912 0.259357 15.1836 0.442585Z" fill="%234D5053"/></svg>');
   --bs-accordion-btn-active-icon: url('data:image/svg+xml,<svg width="10" height="10" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.1836 0.442585L29.3367 28.5046C29.6051 29.0367 29.2183 29.6649 28.6224 29.6649L1.29842 29.6649C0.702497 29.6649 0.31577 29.0367 0.584123 28.5046L14.7372 0.442584C14.8296 0.259356 15.0912 0.259357 15.1836 0.442585Z" fill="%234D5053"/></svg>');
-  --bs-accordion-btn-padding-x:0.75rem;
-  --bs-accordion-btn-padding-y:0.5rem;
+  --bs-accordion-btn-padding-x: 0.75rem;
+  --bs-accordion-btn-padding-y: 0.5rem;
 }
 /* Styles for the price input container */
 .price-input-container {
@@ -157,7 +158,7 @@ display:none;
   flex: 1;
   height: 35px;
   font-size: 15px;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   border-radius: 9px;
   text-align: center;
   border: 0px;
@@ -170,7 +171,6 @@ display:none;
   font-size: 19px;
   color: #555;
 }
-
 
 .slider-container {
   width: 100%;
@@ -206,7 +206,7 @@ display:none;
   cursor: pointer;
   -webkit-appearance: none;
 }
-.range-input input[type="range"]::-webkit-slider-thumb {
+.range-input input[type='range']::-webkit-slider-thumb {
   height: 18px;
   width: 18px;
   border-radius: 70%;
@@ -216,11 +216,12 @@ display:none;
 }
 /* Styles for the range thumb in WebKit browsers */
 
-.price{
-display: flex; align-items: baseline
+.price {
+  display: flex;
+  align-items: baseline;
 }
-.price > span{
-margin: 0 10px
+.price > span {
+  margin: 0 10px;
 }
 
 .cl-checkbox {
@@ -261,7 +262,7 @@ margin: 0 10px
 
 /* Box */
 .cl-checkbox > span::before {
-  content: "";
+  content: '';
   display: inline-block;
   box-sizing: border-box;
   margin: 3px 11px 3px 1px;
@@ -277,7 +278,7 @@ margin: 0 10px
 
 /* Checkmark */
 .cl-checkbox > span::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 3px;
@@ -363,7 +364,7 @@ margin: 0 10px
 
 @media screen and (min-width: 1025px) {
   .banner {
-    justify-content: flex-start;;
+    justify-content: flex-start;
     height: 20rem;
   }
 
@@ -391,12 +392,12 @@ margin: 0 10px
     flex-direction: row;
     justify-content: center;
   }
-  .select-left{
+  .select-left {
     width: 50%;
     flex-direction: row;
     align-items: flex-start;
   }
-  .select-right{
+  .select-right {
     flex-direction: row;
     align-items: flex-start;
     width: 50%;
@@ -407,31 +408,34 @@ margin: 0 10px
   }
   .select-item-b {
     padding: 0;
-    width:50%;
+    width: 50%;
     margin-right: 10%;
     margin-left: 5%;
   }
   .select-item-c {
     padding: 0;
-    width:50%;
+    width: 50%;
     margin-right: 10%;
     margin-left: 5%;
     align-items: center;
   }
   .accordion {
-    --bs-accordion-btn-padding-x:1.25rem;
-    }
-  .accordion-button >span{
+    --bs-accordion-btn-padding-x: 1.25rem;
+  }
+  .accordion-button > span {
     display: block;
   }
-  .accordion-button >p{
+  .accordion-button > p {
     display: none;
   }
-  .banner-life-1{
+  .banner-life-1 {
     height: 308px;
-    display:flex;
+    display: flex;
   }
-  .banner-life-2{
+  .banner-life-2 {
     height: 150px;
+  }
+  .banner-select {
+    top: 74px;
   }
 }

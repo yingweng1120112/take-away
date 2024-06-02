@@ -9,16 +9,15 @@ import { getIdParam } from '#db-helpers/db-tool.js'
 import db from '#configs/mysql.js'
 
 // GET - 得到id寵物的所有blog資料
-router.get('/:id', async function (req, res) {
+router.get('/:id/', async function (req, res) {
   // 轉為數字
   const id = getIdParam(req)
-
   const page = Number(req.query.page) || 1
   const perpage = Number(req.query.perpage) || 6 // 預設每頁6筆資料
   const offset = (page - 1) * perpage
   const limit = perpage
   const [rows] = await db.query(
-    `SELECT * FROM blog WHERE pet_id=? ORDER BY time DESC LIMIT ${limit}  `,
+    `SELECT * FROM blog WHERE pet_id=? ORDER BY time DESC LIMIT ${limit} OFFSET ${offset} `,
     [id]
   )
   const [rows2] = await db.query(
@@ -71,15 +70,14 @@ router.post('/:id', async function (req, res) {
 
 router.put('/:id', async function (req, res) {
   try {
-    const id = getIdParam(req)
-    const { content, pic1, pic2, pic3, pic4, pic5 } = req.body
+    const { content, pic1, pic2, pic3, pic4, pic5, blog_id } = req.body
 
-    if (!content) {
+    if (!blog_id) {
       return res.status(500).json({ status: 'error', message: `找不到資料` })
     }
     const [result] = await db.query(
-      'UPDATE `blog` SET( `content`,`pic1`, `pic2`, `pic3`, `pic4`, `pic5`) WHERE blog_id =? VALUES ( ?, ?, ?, ?, ?, ?)',
-      [content, pic1, pic2, pic3, pic4, pic5, id]
+      'UPDATE `blog` SET content=?,pic1=?, pic2=?, pic3=?, pic4=?, pic5=? WHERE `blog_id`=?',
+      [content, pic1, pic2, pic3, pic4, pic5, blog_id]
     )
     if (result.affectedRows > 0) {
       res.status(200).json({ status: 'success', message: '資料更新成功' })

@@ -27,33 +27,57 @@ export default function ShopSwiperPC() {
         className={`mySwiper ${styles['swiper']}`}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#1">
-            <img className={styles['img']} src="/img/diarySearch/food.svg" alt="" />
+          <a href={'/product/menu'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food.svg"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#2">
-            <img className={styles['img']} src="/img/diarySearch/food1.webp" alt="" />
+          <a href={'/product/10073'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food1.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#3">
-            <img className={styles['img']} src="/img/diarySearch/food2.webp" alt="" />
+          <a href={'/product/10074'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food2.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#4">
-            <img className={styles['img']} src="/img/diarySearch/food3.webp" alt="" />
+          <a href={'/product/10064'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food3.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#5">
-            <img className={styles['img']} src="/img/diarySearch/food4.webp" alt="" />
+          <a href={'/product/10066'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food4.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="#6">
-            <img className={styles['img']} src="/img/diarySearch/food5.webp" alt="" />
+          <a href={'/product/10062'}>
+            <img
+              className={styles['img']}
+              src="/img/diarySearch/food5.webp"
+              alt=""
+            />
           </a>
         </SwiperSlide>
       </Swiper>
