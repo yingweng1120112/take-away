@@ -78,6 +78,19 @@ body {
   background-color: var(--bg-color) !important;
 }
 
+.scrollToTop{
+  height: 70px !important;
+  width: 70px !important;
+  border-radius: 50px !important;
+  z-index: 5000 !important;
+  background-color: var(--bean-paste) !important;
+}
+
+.scrollToTop svg{
+  stroke-width: 15px !important; /* 設置邊框厚度為 2 */
+  stroke: white !important; /* 設置邊框顏色為黑色，確保能看見邊框 */
+}
+
 .container {
   width: 80%;
   margin: auto;

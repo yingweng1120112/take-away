@@ -17,6 +17,7 @@ import {
 import { useCart } from '@/context/cartcontext'
 import { ToastContainer, toast, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import ScrollToTop from "react-scroll-to-top"
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(false)
@@ -62,6 +63,7 @@ export default function Header() {
   return (
     <>
       {/* 更改容器高度 */}
+      <ScrollToTop smooth className='scrollToTop' color="white" />
       <header className="header">
         <div style={{ position: 'relative' }}>
           <div
