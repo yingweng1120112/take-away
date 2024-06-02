@@ -30,6 +30,26 @@
 .adout .feet{
   display: none;
 }
+.back{
+  display:none;
+}
+.back3{
+  display:none;
+}
+.back5{
+  display:none;
+
+}
+.back2{
+  display:none;
+
+}
+.back4{
+  display:none;
+}
+.back6{
+  display:none;
+}
 .adout .container {
   position: relative;
   width: 100%;
