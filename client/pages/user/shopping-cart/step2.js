@@ -82,7 +82,6 @@ export default function Step2() {
     phone: '',
     address: '',
   })
-  
 
   const [sameAsMember, setSameAsMember] = useState(false)
 
@@ -221,6 +220,7 @@ export default function Step2() {
       addressValue = store711.storename
       addressFieldName = '配送門市'
     }
+    //驗證所需要的欄位
     const requiredFields = [
       { name: '收件人姓名', value: userData.name || recipientData.name },
       { name: '電子郵件', value: userData.email || recipientData.email },
@@ -349,26 +349,41 @@ export default function Step2() {
       }
 
       // 根據付款方式選擇不同的跳轉路徑
-    if (payment_method === '信用卡付款') {
-      const totalAmount = countSelectedFinalTotalPrice(); // 获取总金额
-      toast.warning('即將跳轉到付款頁面', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'colored',
-        transition: Slide,
-      });
+      if (payment_method === '信用卡付款') {
+        const totalAmount = countSelectedFinalTotalPrice() // 获取总金额
+        toast.warning('即將跳轉到付款頁面', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+          transition: Slide,
+        })
 
-      setTimeout(() => {
-        const url = `http://localhost:3005/api/ec?amount=${totalAmount}`;
-        window.location.href = url;
-      }, 2000); // 2秒后跳转
-    } else {
-      toast.success('訂單建立成功', {
+        setTimeout(() => {
+          const url = `http://localhost:3005/api/ec?amount=${totalAmount}`
+          window.location.href = url
+        }, 2000) // 2秒后跳转
+      } else {
+        toast.success('訂單建立成功', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+          transition: Slide,
+        })
+        router.push('/user/shopping-cart/step3')
+      }
+    } catch (error) {
+      console.error('Error creating order:', error)
+      toast.error('訂單建立失敗', {
         position: 'top-center',
         autoClose: 2000,
         hideProgressBar: false,
@@ -378,23 +393,8 @@ export default function Step2() {
         progress: undefined,
         theme: 'colored',
         transition: Slide,
-      });
-      router.push('/user/shopping-cart/step3');
+      })
     }
-  } catch (error) {
-    console.error('Error creating order:', error);
-    toast.error('訂單建立失敗', {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'colored',
-      transition: Slide,
-    });
-  }
 
     // 在這裡存儲資料到 Local Storage 和 Session Storage 中
     // localStorage.setItem('order_history', JSON.stringify(order_history))
