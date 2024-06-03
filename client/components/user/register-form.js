@@ -4,6 +4,8 @@ import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
 

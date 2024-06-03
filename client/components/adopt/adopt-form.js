@@ -117,7 +117,7 @@ export default function AdoptForm(pet) {
       localStorage.setItem('donateInfo', JSON.stringify(donateInfo));
       localStorage.setItem('currentStep', currentStep + 1);
   
-      if (donateInfo.payment === '銀行轉帳' || donateInfo.payment === '超商付款') {
+      if (donateInfo.payment === '信用卡' || donateInfo.payment === '銀行轉帳' || donateInfo.payment === '超商付款') {
         window.location.href = paymentUrl;
       } else {
         localStorage.setItem('currentStep', currentStep + 1);
