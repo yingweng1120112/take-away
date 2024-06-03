@@ -132,8 +132,8 @@ router.get('/', function (req, res, next) {
   <head>
       <title>全方位金流-測試</title>
   </head>
-  <body style="position: relative; height: 100vh;background-color:#faeed1;">
-  <form method="post" action="${APIURL}" style="position: absolute; top: 35vh; left: 70vh; width: 400px; height: 400px; background-color:white; border-radius: 30px;border: 3px solid black; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
+  <body style="position: relative; height: 100%;background-color:#faeed1;">
+  <form method="post" action="${APIURL}" style="position: absolute; top: 26vh; left: 81vh; width: 400px; height: 400px; background-color:white; border-radius: 30px;border: 3px solid black; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
       <div style="display: none;">
           ${inputs}
       </div>
