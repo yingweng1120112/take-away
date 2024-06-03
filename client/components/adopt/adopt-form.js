@@ -27,7 +27,7 @@ export default function AdoptForm(pet) {
     donation_method: '定期定額',
     amount: '',
     customAmount: '',
-    payment: '銀行轉帳',
+    payment: '信用卡',
   })
 
   const [adopt, setAdopt] = useState({
@@ -267,7 +267,7 @@ export default function AdoptForm(pet) {
         donation_method: '定期定額',
         amount: '',
         customAmount: '',
-        payment: '銀行轉帳',
+        payment: '信用卡',
       });
       setAdopt({
         user_id: '',
