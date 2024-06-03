@@ -23,6 +23,7 @@
     "express": "4.19.2",
     "express-fileupload": "^1.5.0",
     "express-session": "^1.18.0",
+    "google-auth-library": "^9.10.0",
     "http-errors": "~2.0.0",
     "jsonwebtoken": "^9.0.2",
     "line-pay-merchant": "^0.9.0",

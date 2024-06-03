@@ -7,9 +7,10 @@ import Footer from '@/components/layout/footer'
 import { useRouter } from 'next/router'
 import { loadPetInfo } from '@/services/pets'
 import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
+// import { useLoader } from '@/hooks/use-loader'
 
 export default function Reserve() {
+  // const{showLoader, hideLoader, loading, delay} = useLoader()
   const router = useRouter()
   const [reserve, setReserve] = useState({
     pet: 'reserve.pet',
@@ -198,16 +199,15 @@ export default function Reserve() {
     if (!reserve.reserveTime) {
       Swal.fire({
         icon: 'error',
-        html: `<h5>請先選擇預約時間</h5>`,
+        html: `<h5>預約格式確實填寫</h5>`,
       });
       return;
     }
-  
     const formattedReserveTime = formatDateTime(reserve.reserveTime);
     if (isNaN(new Date(formattedReserveTime).getTime())) {
       Swal.fire({
         icon: 'error',
-        html: `<h5>預約時間格式錯誤</h5>`,
+        html: `<h5>預約格式確實填寫</h5>`,
       });
       return;
     }

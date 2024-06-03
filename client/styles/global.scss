@@ -78,6 +78,19 @@ body {
   background-color: var(--bg-color) !important;
 }
 
+.scrollToTop{
+  height: 70px !important;
+  width: 70px !important;
+  border-radius: 50px !important;
+  z-index: 5000 !important;
+  background-color: var(--bean-paste) !important;
+}
+
+.scrollToTop svg{
+  stroke-width: 15px !important; /* 設置邊框厚度為 2 */
+  stroke: white !important; /* 設置邊框顏色為黑色，確保能看見邊框 */
+}
+
 .container {
   width: 80%;
   margin: auto;
@@ -85,6 +98,33 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+.nike-loader-bg {
+  content: '';
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* margin-bottom: 40px; */
+  /* margin-top: 56px; */
+  background-color: rgba(173, 181, 184, 0.8);
+  z-index: 9999;
+}
+.nike-loader {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 7.5em);
+  width: auto;
+  height: 8em;
+  font-weight: bold;
+  display: inline-block;
+}
 @media screen and (min-width: 1025px) {
+  .nike-loader {
+    top: calc(50% - 2.5em);
+    left: calc(50% - 4em);
+    width: auto;
+    height: 5em;
+  }
 }

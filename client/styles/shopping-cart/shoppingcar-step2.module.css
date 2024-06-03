@@ -437,7 +437,7 @@
     width: 90% !important;
   }
   .cartbottomstyle > div textarea {
-    height: 100px;
+    height: 65px;
     line-height: 25px;
   }
   .writemessageleft > div:nth-child(3) > div:nth-child(2) {

@@ -242,7 +242,7 @@ export default function ProductModal({ show, onHide, product }) {
       <style jsx>{`
         :global(.custom-modal .modal-content) {
           background-color: var(--bg-color);
-          border-radius: 10px;
+          border-radius: 5px;
           border: 0.1875rem solid var(--reddish-brown);
         }
         :global(.custom-modal .modal-header) {
@@ -252,6 +252,7 @@ export default function ProductModal({ show, onHide, product }) {
           padding: 0.3125rem;
           display: flex;
           justify-content: center;
+          border-radius: 0px;
         }
         :global(.custom-modal .modal-header .modal-title) {
           font-size: 1.3rem;

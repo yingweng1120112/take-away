@@ -30,7 +30,7 @@ router.get('/', async function (req, res) {
   const orderby = `ORDER BY ${sort} ${order}`
 
   const page = Number(req.query.page) || 1
-  const perpage = Number(req.query.perpage) || 10 // 預設每頁5筆資料
+  const perpage = Number(req.query.perpage) || 20 // 預設每頁5筆資料
   const offset = (page - 1) * perpage
   const limit = perpage
 

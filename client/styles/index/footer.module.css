@@ -1,9 +1,31 @@
 /* footer */
+/* 滾動視差 start*/
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.footer.animate {
+  opacity: 1;
+  transform: translateY(0);
+  height: 136svh;
+}
+/* 滾動視差 end*/
 .footer {
+  animation: scrollUp 1s ease-out;
+  position: absolute;
+  z-index: 50;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   background-color: var(--bean-paste);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 2s ease-out, opacity 2s ease-out;
+  height: 90svh;
 }
 
 .container {
@@ -143,7 +165,12 @@
     width: 100%;
     justify-content: center;
   }
-
+  
+  .footer.animate {
+    opacity: 1;
+    transform: translateY(0);
+    height: 100svh;
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -175,6 +202,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: left;
   }
   .sponsor {
     /* width: 50%; */

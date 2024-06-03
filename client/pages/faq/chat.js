@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import styles from '@/styles/faq/app.module.css'
+import styles from '@/styles/faq/chatroom.module.css'
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState('')
@@ -34,7 +34,7 @@ function Chat({ socket, username, room }) {
   return (
     <div className={styles['chat-window']}>
       <div className={styles['chat-header']}>
-        <p>客服中心</p>
+        <p>線上客服中心</p>
       </div>
       <div className={styles['chat-body']}>
         <ScrollToBottom className={styles['message-container']}>

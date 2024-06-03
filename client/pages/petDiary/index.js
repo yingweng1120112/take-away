@@ -356,7 +356,7 @@ export default function DiarySearch() {
                             selected == '男生'
                           ) {
                             setgender({
-                              gender: ['男生', selected],
+                              gender: [selected, '女生'],
                             })
                           } else {
                             setgender({
@@ -384,7 +384,6 @@ export default function DiarySearch() {
                             setNameLike(e.target.value)
                           }}
                         />
-                        <button onClick={handleSearch}>搜尋</button>
                       </div>
                     </div>
                   </div>
@@ -400,9 +399,7 @@ export default function DiarySearch() {
                 className={styles['bg-1']}
               />
               <h1 className={styles['content-word']}>
-                這裡是大家細心照料的
-                <br />
-                孩子們，要來看看嗎 ?
+                這裡是大家細心照料的孩子們<br />要來看看嗎 ?
               </h1>
               <h1 className={styles['content-word']}>
                 搜尋到{total}本日誌
@@ -453,7 +450,7 @@ export default function DiarySearch() {
               <br />
               那是不是就可以買一些他們的東西呢
             </h1>
-            <div>
+            <Link href={'/product/menu'}>
               <button className={`${styles['cta']} ${styles['btn-more']}`}>
                 <span className={styles['hover-underline-animation']}>
                   來去看看
@@ -474,7 +471,7 @@ export default function DiarySearch() {
                   />
                 </svg>
               </button>
-            </div>
+            </Link>
           </div>
         </div>
         <div className={styles['shop-Carousel-pc']}>

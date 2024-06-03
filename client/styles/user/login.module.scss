@@ -170,7 +170,7 @@
   }
 
   .submit {
-    margin-top: 40px;
+    margin-top: 25px;
     margin-bottom: 20px;
     background: #d4af7a;
   }
@@ -215,6 +215,16 @@
     position: absolute;
     left: 50%;
     bottom: 0;
+  }
+  .google {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  .googlebtn{
+    width: 520px;
   }
 }
 
@@ -391,7 +401,7 @@
   }
 
   .submit {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 20px;
     background: #d4af7a;
   }

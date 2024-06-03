@@ -74,9 +74,9 @@ router.post('/reset', async (req, res) => {
         password,
         email,
       ])
-      res.status(200).json({ status: 'success', message: '密碼已重设' })
+      res.status(200).json({ status: 'success', message: '密碼已重設' })
     } else {
-      res.status(400).json({ status: 'error', message: '驗證碼错误' })
+      res.status(400).json({ status: 'error', message: '驗證碼錯誤' })
     }
   } catch (err) {
     console.error(err)

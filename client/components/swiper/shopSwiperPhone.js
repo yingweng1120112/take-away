@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import Link from 'next/link' //Link
 // Import Swiper styles
 
 import 'swiper/css'
@@ -28,7 +28,7 @@ export default function ShopSwiperPhone() {
         className={`mySwiper ${styles['swiper']}`}
       >
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/menu'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food.svg"
@@ -37,7 +37,7 @@ export default function ShopSwiperPhone() {
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/10073'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food1.webp"
@@ -46,7 +46,7 @@ export default function ShopSwiperPhone() {
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/10074'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food2.webp"
@@ -55,7 +55,7 @@ export default function ShopSwiperPhone() {
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/10064'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food3.webp"
@@ -64,7 +64,7 @@ export default function ShopSwiperPhone() {
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/10062'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food4.webp"
@@ -73,7 +73,7 @@ export default function ShopSwiperPhone() {
           </a>
         </SwiperSlide>
         <SwiperSlide className={styles['swiper-slide']}>
-          <a href="">
+          <a href={'/product/10066'}>
             <img
               className={styles['img']}
               src="/img/diarySearch/food5.webp"

@@ -74,7 +74,7 @@ export default function UserOrderHistory() {
       console.warn('資料結構不符', data)
     }
     console.log(data)
-  }  
+  }
 
   const handleIconClick = async (order_id) => {
     const isRowExpanded = expandedRows.includes(order_id)
@@ -90,11 +90,132 @@ export default function UserOrderHistory() {
     return (
       <>
         <Header />
-        <p>尚無訂單歷史記錄</p>
+        {/* banner start*/}
+        <div
+          className={`${banner['banner']} ${banner['banner-life-1']} ${styles['banner-life-1']}`}
+        ></div>
+        <div className={banner['banner-select']}>
+          <div
+            className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
+          >
+            <div className={banner['left']}>
+              <p className={banner['menu-a']}>PROP</p>
+              <p className={banner['menu-b']}>個人資料</p>
+            </div>
+            <div className={banner['middle']}>
+              <div
+                className={`accordion ${banner['accordion']}`}
+                id="accordionExample"
+              >
+                <button
+                  className={`accordion-button ${banner['accordion-button']}`}
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <span className={banner['middle-page-title']}>會員中心</span>
+                  <span>功能選單</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="collapseOne"
+            className="accordion-collapse collapse show"
+            data-bs-parent="#accordionExample"
+          >
+            <div className={`accordion-body ${banner['accordion-body']}`}>
+              <div className={`banner['select']`}>
+                <div
+                  className={`w-100 d-flex flex-row align-items-start ${styles['select-phone']}`}
+                >
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-info">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                      >
+                        個人資料
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/shopping-cart/step1">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']} `}
+                      >
+                        購物車
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-order-history">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                      >
+                        訂單紀錄
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-favorite">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                      >
+                        浪浪收藏
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-myUserInfo">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                      >
+                        我的寵物
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-reserve">
+                      <p
+                        className={`link ${banner['select-title']} 
+                    ${styles['select-title']}`}
+                      >
+                        預約紀錄
+                      </p>
+                    </Link>
+                  </div>
+                  <div className={`banner['select-item-a'] w-100`}>
+                    <Link href="/user/user-adopt-history">
+                      <p
+                        className={`link ${banner['select-title']}
+                    ${styles['select-title']}`}
+                      >
+                        線上認養紀錄
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* banner end */}
+        <div className={styles['table-container']}>
+          <h3 style={{ height: '120px', display: 'flex', alignItems: 'center' }}>－尚無訂單歷史記錄－</h3>
+        </div>
         <Footer />
       </>
     )
-  }
+  } 
+  
 
   const columnNames = {
     order_id: '訂單編號',
@@ -126,8 +247,8 @@ export default function UserOrderHistory() {
           className={`${banner['banner']} ${banner['banner-life-2']} ${styles['banner-life-2']}`}
         >
           <div className={banner['left']}>
-            <p className={banner['menu-a']}>ORDER</p>
-            <p className={banner['menu-b']}>訂單紀錄</p>
+            <p className={banner['menu-a']}>PROP</p>
+            <p className={banner['menu-b']}>個人資料</p>
           </div>
           <div className={banner['middle']}>
             <div
@@ -190,7 +311,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/">
+                  <Link href="/user/user-favorite">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
@@ -200,7 +321,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-myUserInfo">
+                  <Link href="#">
                     <p
                       className={`link ${banner['select-title']} 
                     ${styles['select-title']}`}
@@ -220,7 +341,7 @@ export default function UserOrderHistory() {
                   </Link>
                 </div>
                 <div className={`banner['select-item-a'] w-100`}>
-                  <Link href="/user/user-adopt-history">
+                  <Link href="/user/user-adopt">
                     <p
                       className={`link ${banner['select-title']}
                     ${styles['select-title']}`}
@@ -244,12 +365,14 @@ export default function UserOrderHistory() {
           className={styles['table-content']}
         >
           <thead>
-            <tr>
+            <tr className={styles['tr-header']}>
               <th>#</th>
               {filteredTableHeaders.map((header, index) => (
-                <th key={index} className={styles[`th-${header}`]} >{columnNames[header]}</th>
+                <th key={index} className={styles[`th-${header}`]}>
+                  {columnNames[header]}
+                </th>
               ))}
-              <th>訂單詳情</th>
+              <th className={styles['th-detail']}>訂單詳情</th>
             </tr>
           </thead>
           <tbody>
@@ -285,30 +408,42 @@ export default function UserOrderHistory() {
                             const productName = product
                               ? product.name
                               : '未知產品'
+                            const productPic = product
+                              ? product.pic1
+                              : '未知產品'
                             return (
-                              <div key={`order_detail_${index}`}>
-                                <p>
-                                  <strong>商品：</strong>
-                                  {productName} ({order_detail.product_id})
-                                </p>
-                                <p>
-                                  <strong>單價：</strong>
-                                  {order_detail.unit_price}
-                                </p>
-                                <p>
-                                  <strong>購買數量：</strong>
-                                  {order_detail.amount}
-                                </p>
-                                <p>
-                                  <strong>小計：</strong>
-                                  {order_detail.totail_price}
-                                </p>
+                              <div
+                                key={`order_detail_${index}`}
+                                className={styles['click-style']}
+                              >
+                                <div className={styles['click-product-style']}>
+                                  <div>
+                                    <img src={`/img/product/${productPic}`} />{' '}
+                                  </div>
+                                  <div>
+                                    <div>{productName}</div>
+                                  </div>
+                                </div>
+                                <div className={styles['click-price-style']}>
+                                  <div>
+                                    <strong>單價：</strong>
+                                    {order_detail.unit_price}
+                                  </div>
+                                  <div>
+                                    <strong>購買數量：</strong>
+                                    {order_detail.amount}
+                                  </div>
+                                  <div>
+                                    <strong>小計：</strong>
+                                    {order_detail.totail_price}
+                                  </div>
+                                </div>
                                 <hr />
                               </div>
                             )
                           }
                         )}
-                      <p>
+                      <p className={styles['total-price']}>
                         <strong>總金額：</strong>
                         {orderDetails[order.order_id] &&
                           orderDetails[order.order_id].reduce(

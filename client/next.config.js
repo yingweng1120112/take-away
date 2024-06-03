@@ -4,7 +4,7 @@ const nextConfig = {
   //distDir: 'dist',
   reactStrictMode: false,
   images: {
-    unoptimized: true,
+    unoptimized: false,
     domains: [
       'via.placeholder.com',
       'picsum.photos',
