@@ -31,7 +31,6 @@ export default function Step2() {
     setUserInfo,
   } = useCart()
   const [userID, setUserID] = useState(null)
-  const [userData, setUserData] = useState('')
 
   // 获取 userID
   useEffect(() => {
@@ -74,7 +73,12 @@ export default function Step2() {
     township: '',
     postcode: '',
   })
-
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address_detail: '',
+  });
   //資料同會員
   const [recipientData, setRecipientData] = useState({
     name: '',
@@ -135,7 +139,7 @@ export default function Step2() {
         delivery_method: '宅配',
       }))
     }
-  }, [setUserInfo, userInfo.delivery_type])
+  }, [])
   useEffect(() => {
     console.log("Current delivery_type:", userInfo.delivery_type);
   }, [userInfo.delivery_type]);
@@ -152,35 +156,26 @@ export default function Step2() {
     setInvoiceType(value)
     setUserInfo((prevUserInfo) => ({ ...prevUserInfo, invoice_type: value }))
   }
-  // 更新 userInfo 的其他字段
-  const handleInputChange = (field) => (e) => {
-    const value = e.target.value
-    if (sameAsMember) {
-      setUserInfo((prevUserInfo) => ({
-        ...prevUserInfo,
-        [field]: value,
-      }))
-    } else {
-      setRecipientData((prevData) => ({
-        ...prevData,
-        [field]: value,
-      }))
-    }
-  }
-  //地址合併為完整地址
-  const handleAddressChange = (e) => {
-    const detailedAddress = e.target.value
-    const fullAddress = `${data.country}${data.township}${detailedAddress}`
-    setRecipientData((prevData) => ({
-      ...prevData,
-      address: fullAddress,
-    }))
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
-      address: fullAddress,
-    }))
-  }
-  //提示
+// 处理表单输入变更
+const handleInputChange = (name) => (e) => {
+  const value = e.target.value;
+  setUserInfo((prevUserInfo) => ({
+    ...prevUserInfo,
+    [name]: value,
+  }));
+};
+// 处理地址输入变更
+const handleAddressChange = (e) => {
+  const value = e.target.value;
+  setUserInfo((prevUserInfo) => ({
+    ...prevUserInfo,
+    address_detail: value,
+  }));
+  setRecipientData((prevData) => ({
+    ...prevData,
+    address: value,
+  }));
+};
 
   //登入
   useEffect(() => {
@@ -197,16 +192,18 @@ export default function Step2() {
     fetchUserInfo()
   }, [])
 
-  useEffect(() => {
-    if (sameAsMember) {
-      setRecipientData({
-        name: userInfo.name,
-        email: userInfo.email,
-        phone: userInfo.phone,
-        address: userInfo.address_detail,
-      })
-    }
-  }, [sameAsMember, userInfo])
+// 处理会员资料同用户数据
+useEffect(() => {
+  if (sameAsMember) {
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      name: userData.name,
+      email: userData.email,
+      phone: userData.phone,
+      address_detail: userData.address_detail,
+    }));
+  }
+}, [sameAsMember, userData]);
 
   //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
   //表單驗證
@@ -214,7 +211,7 @@ export default function Step2() {
     let addressValue = '' // 儲存地址值
     let addressFieldName = '' // 儲存地址欄位名稱
     if (userInfo.delivery_type === '宅配') {
-      addressValue = userInfo.address
+      addressValue = userInfo.address + userInfo.address_detail;
       addressFieldName = '寄送地址'
     } else if (userInfo.delivery_type === '超商取貨') {
       addressValue = store711.storename
@@ -222,9 +219,9 @@ export default function Step2() {
     }
     //驗證所需要的欄位
     const requiredFields = [
-      { name: '收件人姓名', value: userData.name || recipientData.name },
-      { name: '電子郵件', value: userData.email || recipientData.email },
-      { name: '電話號碼', value: userData.phone || recipientData.phone },
+      { name: '收件人姓名', value: sameAsMember ? userData.name : recipientData.name },
+      { name: '電子郵件', value: sameAsMember ? userData.email : recipientData.email },
+      { name: '電話號碼', value: sameAsMember ? userData.phone : recipientData.phone },
       { name: addressFieldName, value: addressValue },
       { name: '付款方式', value: userInfo.payment_method },
       { name: '發票類型', value: userInfo.invoice_type },
@@ -236,7 +233,6 @@ export default function Step2() {
         setShowModal(true)
         return false
       }
-
   }
 
     if (!addressValue) {
@@ -251,7 +247,7 @@ export default function Step2() {
     }
     return true
   }
-  //0529 資料格式
+
   // 存储产品信息到localStorage
   function saveToLocalStorage(products) {
     localStorage.setItem('selectedItems', JSON.stringify(products))
@@ -311,7 +307,7 @@ export default function Step2() {
             phone: userData.phone || recipientData.phone,
             order_date: order_date,
             order_remark: order_remark,
-            delivery_method: delivery_method,
+            delivery_method: '超商取貨', // 預設
             payment_method: payment_method,
             recipient_address_detail:
               recipient_address_detail || store711.storename,
@@ -512,7 +508,7 @@ export default function Step2() {
                   type="checkbox"
                   className={styles['checkboxstyle']}
                   checked={sameAsMember}
-                  onChange={handleCheckboxChange}
+                  onChange={() => setSameAsMember((prev) => !prev)}
                 />
                 <span className={styles['spanstyle']}>
                   收件人資料與會員資料相同
@@ -527,11 +523,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
                     value={sameAsMember ? userData.name : recipientData.name}
-                    onChange={
-                      sameAsMember
-                        ? handleInputChange('name')
-                        : handleInputChange('name')
-                    }
+              onChange={handleInputChange('name')}
                   />
                 </div>
               </div>
@@ -544,11 +536,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入信箱"
                     value={sameAsMember ? userData.email : recipientData.email}
-                    onChange={
-                      sameAsMember
-                        ? handleInputChange('email')
-                        : handleInputChange('email')
-                    }
+              onChange={handleInputChange('email')}
                   />
                 </div>
               </div>
@@ -561,11 +549,7 @@ export default function Step2() {
                   <input
                     placeholder="請輸入號碼（0912345678）"
                     value={sameAsMember ? userData.phone : recipientData.phone}
-                    onChange={
-                      sameAsMember
-                        ? handleInputChange('phone')
-                        : handleInputChange('phone')
-                    }
+              onChange={handleInputChange('phone')}
                   />
                 </div>
               </div>
@@ -577,52 +561,28 @@ export default function Step2() {
                   </div>
                   <div>
                     <div className={styles['writeaddressright']}>
-                      <TWZipCode
-                        initPostcode={data.postcode}
-                        onPostcodeChange={(country, township, postcode) => {
-                          setData({
-                            country,
-                            township,
-                            postcode,
-                          })
-                          const fullAddress = `${
-                            country || '' // 添加條件確保 country 存在
-                          }${township || ''}${
-                            recipientData && recipientData.address // 添加條件確保 recipientData 和 recipientData.address 存在
-                              ? recipientData.address.replace(
-                                  `${data.country || ''}${data.township || ''}`, // 添加條件確保 data.country 和 data.township 存在
-                                  ''
-                                )
-                              : ''
-                          }`
-                          setRecipientData((prevData) => ({
-                            ...prevData,
-                            address: fullAddress,
-                          }))
-                          setUserInfo((prevUserInfo) => ({
-                            ...prevUserInfo,
-                            address: fullAddress,
-                          }))
-                        }}
-                      />
+                    <TWZipCode
+                  initPostcode={data.postcode}
+                  onPostcodeChange={(country, township, postcode) => {
+                    setData({ country, township, postcode });
+                    const fullAddress = `${country || ''}${township || ''}${recipientData.address || ''}`;
+                    setRecipientData((prevData) => ({
+                      ...prevData,
+                      address: fullAddress,
+                    }));
+                    setUserInfo((prevUserInfo) => ({
+                      ...prevUserInfo,
+                      address: fullAddress,
+                    }));
+                  }}
+                />
                     </div>
                     <div>
-                      <input
-                        placeholder="請輸入詳細地址"
-                        value={
-                          sameAsMember
-                            ? userData.address_detail || ''
-                            : recipientData && recipientData.address
-                            ? recipientData.address
-                              ? recipientData.address.replace(
-                                  `${data.country || ''}${data.township || ''}`, // 确保 data.country 和 data.township 存在
-                                  ''
-                                )
-                              : '' // 确保 recipientData.address 存在并非空字符串
-                            : ''
-                        }
-                        onChange={handleAddressChange}
-                      />
+                    <input
+                  placeholder="請輸入詳細地址"
+                  value={userInfo.address_detail}
+                  onChange={handleAddressChange}
+                />
                     </div>
                   </div>
                 </div>
@@ -634,10 +594,10 @@ export default function Step2() {
                   <div>
                     <button
                       className={styles['cvsbtn']}
-                      value={userInfo.address || ''}
-                      onChange={(e) =>
-                        setUserInfo({ ...userInfo, address: e.target.value })
-                      }
+                      // value={userInfo.address || ''}
+                      // onChange={(e) =>
+                      //   setUserInfo({ ...userInfo, address: e.target.value })
+                      // }
                       onClick={() => {
                         openWindow()
                       }}
