@@ -314,7 +314,9 @@ export default function Step2() {
     const order_remark = userInfo.order_remark
     const delivery_method = userInfo.delivery_type
     const payment_method = userInfo.payment_method
-    const recipient_address_detail = memeberData.address || userInfo.detailedAddress
+    const recipient_address_detail = userInfo.delivery_type === '超商取貨'
+    ? store711.storename
+    : (sameAsMember ? memeberData.address : userInfo.detailedAddress);
     const Invoice_no = userInfo.Invoice_no
 
     // 訂單成立時間
@@ -354,7 +356,7 @@ export default function Step2() {
             delivery_method: delivery_method,
             payment_method: payment_method,
             recipient_address_detail:
-              recipient_address_detail || store711.storename,
+              recipient_address_detail,
             status: '未出貨', // 預設
             Invoice_no: Invoice_no,
           }),

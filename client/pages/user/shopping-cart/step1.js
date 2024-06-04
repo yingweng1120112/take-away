@@ -280,7 +280,7 @@ export default function Step1() {
 
       {/* 商品推薦 */}
       <section className={styles['commend']}>
-        <h4>相關商品推薦</h4>
+        <h4>商品推薦</h4>
         <div className={styles['carouselstyle']}>
           <Carousel />
         </div>
