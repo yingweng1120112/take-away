@@ -52,6 +52,7 @@
     width: 260px;
     height: 100%;
     padding-top: 360px;
+    background-image: url('/img/user/login-bg2.png');
   }
 
   .img:before {
@@ -61,7 +62,7 @@
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url('/img/user/login-bg2.jpg');
+
     background-size: cover;
   }
 
@@ -178,6 +179,8 @@
   .fb-btn {
     border: 2px solid #d3dae9;
     color: #8fa1c7;
+    margin-top: 25px;
+    margin-bottom: 20px;
   }
 
   .fb-btn span {

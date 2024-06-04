@@ -22,7 +22,7 @@ const parseJwt = (token) => {
 // 登入
 export default function LoginForm() {
   const [userInfo, setUserInfo] = useState(null)
-  const [userData, setUserData] = useState('') // 改成 setUserData
+  const [userData, setUserData] = useState('')
   const [name, setName] = useState('')
   const [userid, setUserId] = useState('')
   const [email, setEmail] = useState('')
@@ -222,7 +222,11 @@ export default function LoginForm() {
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
@@ -247,7 +251,11 @@ export default function LoginForm() {
                 />
                 <span
                   onClick={() => setShowPassword2(!showPassword2)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
                 >
                   {showPassword2 ? <FaEyeSlash /> : <FaEye />}
                 </span>
@@ -285,6 +293,20 @@ export default function LoginForm() {
                 />
               </GoogleOAuthProvider>
             </div>
+            <button
+              type="button"
+              className={`${styles['button']} ${styles['fb-btn']}`}
+              onClick={() => {
+                // 測試帳號 白賢祐
+                setUser({
+                  phone: '0912345678',
+                  password: 'Pa55w.rd02',
+                  password2: 'Pa55w.rd02',
+                })
+              }}
+            >
+              一鍵輸入
+            </button>
             <button
               type="submit"
               className={`${styles['button']} ${styles['submit']}`}
