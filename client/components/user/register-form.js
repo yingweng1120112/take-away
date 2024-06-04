@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -10,6 +11,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
 
 export default function RegisterForm() {
+  const router = useRouter()
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -90,6 +92,7 @@ export default function RegisterForm() {
         password: '',
         confirmPassword: '',
       })
+      router.push('./login')
     } else {
       // alert(`註冊失敗：${data.message}`)
       toast.success(`註冊失敗：${data.message}`, {
