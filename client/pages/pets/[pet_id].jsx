@@ -476,7 +476,7 @@ export default function PetInfo() {
           <h1>綜合評分</h1>
           <ul>
             <li>
-              <span className={styles['score-name']}>活動力</span>
+              <span className={styles['score-name']}>行動力</span>
               <span className={styles['score-bar']}>
                 <ProgressBar
                   completed={action.mobility}
