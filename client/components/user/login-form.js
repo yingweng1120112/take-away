@@ -182,7 +182,7 @@ export default function LoginForm() {
     <>
       <section className={styles['section']}>
         <Header />
-        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
+        {/* <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p> */}
         <div className={styles['cont']}>
           <form
             className={`${styles['form']} ${styles['sign-up']}`}
@@ -237,7 +237,7 @@ export default function LoginForm() {
                 {errors.password}
               </span>
             </label>
-            <label className={styles['label']}>
+            {/* <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 確認密碼:{' '}
               </span>
@@ -265,7 +265,7 @@ export default function LoginForm() {
               >
                 {errors.password2}
               </span>
-            </label>
+            </label> */}
             <div className={`${styles['forgot-pass']}`}>
               <Link
                 href="/user/forget-password"
