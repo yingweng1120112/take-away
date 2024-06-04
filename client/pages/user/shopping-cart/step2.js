@@ -76,7 +76,7 @@ export default function Step2() {
   })
 
   //資料同會員
-  const [memeberData, setMemeberData] = useState({
+  const [recipientData, setRecipientData] = useState({
     name: '',
     email: '',
     phone: '',
@@ -91,40 +91,25 @@ export default function Step2() {
 
   // 更新 LocalStorage
   useEffect(() => {
-    window.localStorage.setItem('memeberData', JSON.stringify(memeberData))
-  }, [memeberData])
+    window.localStorage.setItem('recipientData', JSON.stringify(recipientData))
+  }, [recipientData])
 
   useEffect(() => {
     window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
   }, [userInfo])
 
-  //同會員資料狀態
   useEffect(() => {
     if (sameAsMember) {
-      setUserInfo((prevUserInfo) => ({
-        ...prevUserInfo,
-        name: userData.name,
-        email: userData.email,
-        phone: userData.phone,
-        detailedAddress: userData.address_detail,
-      }));
+      setRecipientData(userInfo)
     } else {
-      setUserInfo((prevUserInfo) => ({
-        ...prevUserInfo,
+      setRecipientData({
         name: '',
         email: '',
         phone: '',
-        detailedAddress: '',
-      }));
-      setMemeberData((prevData) => ({
-        ...prevData,
-        name: '',
-        email: '',
-        phone: '',
-        detailedAddress: '',
-      }));
+        address: '',
+      })
     }
-  }, [sameAsMember,userData]);
+  }, [sameAsMember, userInfo])
 
   const handleCheckboxChange = () => {
     setSameAsMember((prev) => !prev)
@@ -152,8 +137,8 @@ export default function Step2() {
     }
   }, [setUserInfo, userInfo.delivery_type])
   useEffect(() => {
-    console.log('Current delivery_type:', userInfo.delivery_type)
-  }, [userInfo.delivery_type])
+    console.log("Current delivery_type:", userInfo.delivery_type);
+  }, [userInfo.delivery_type]);
 
   //711門市
   const { store711, openWindow, closeWindow } = useShip711StoreOpener(
@@ -168,37 +153,34 @@ export default function Step2() {
     setUserInfo((prevUserInfo) => ({ ...prevUserInfo, invoice_type: value }))
   }
   // 更新 userInfo 的其他字段
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
-      [name]: value,
-    }))
-    setMemeberData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }))
+  const handleInputChange = (field) => (e) => {
+    const value = e.target.value
+    if (sameAsMember) {
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
+        [field]: value,
+      }))
+    } else {
+      setRecipientData((prevData) => ({
+        ...prevData,
+        [field]: value,
+      }))
+    }
   }
-
-  // 用於處理 select 元素變化
-  const handleSelectChange = (name, value) => {
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }))
-  }
-
+  //地址合併為完整地址
   const handleAddressChange = (e) => {
-    const detailedAddress = e.target.value    
-    setMemeberData((prevData) => ({
+    const detailedAddress = e.target.value
+    const fullAddress = `${data.country}${data.township}${detailedAddress}`
+    setRecipientData((prevData) => ({
       ...prevData,
-      detailedAddress,
+      address: fullAddress,
     }))
     setUserInfo((prevUserInfo) => ({
       ...prevUserInfo,
-      detailedAddress: detailedAddress,
+      address: fullAddress,
     }))
   }
+  //提示
 
   //登入
   useEffect(() => {
@@ -217,7 +199,7 @@ export default function Step2() {
 
   useEffect(() => {
     if (sameAsMember) {
-      setMemeberData({
+      setRecipientData({
         name: userInfo.name,
         email: userInfo.email,
         phone: userInfo.phone,
@@ -226,20 +208,13 @@ export default function Step2() {
     }
   }, [sameAsMember, userInfo])
 
-  //  按下成立訂單後從memeberData 和 userInfo 中獲得用戶填寫的資料
+  //  按下成立訂單後從recipientData 和 userInfo 中獲得用戶填寫的資料
   //表單驗證
   const validateForm = () => {
     let addressValue = '' // 儲存地址值
     let addressFieldName = '' // 儲存地址欄位名稱
     if (userInfo.delivery_type === '宅配') {
-      if (sameAsMember) {
-        addressValue = userData.address_detail || '' // 使用會員地址
-      } else {
-        const fullAddress = `${data.country || ''}${data.township || ''}${
-          memeberData?.detailedAddress || ''
-        }`
-        addressValue = fullAddress // 完整地址
-      }
+      addressValue = userInfo.address
       addressFieldName = '寄送地址'
     } else if (userInfo.delivery_type === '超商取貨') {
       addressValue = store711.storename
@@ -247,9 +222,9 @@ export default function Step2() {
     }
     //驗證所需要的欄位
     const requiredFields = [
-      { name: '收件人姓名', value: userInfo.name || memeberData.name },
-      { name: '電子郵件', value: userInfo.email || memeberData.email },
-      { name: '電話號碼', value: userInfo.phone || memeberData.phone },
+      { name: '收件人姓名', value: userData.name || recipientData.name },
+      { name: '電子郵件', value: userData.email || recipientData.email },
+      { name: '電話號碼', value: userData.phone || recipientData.phone },
       { name: addressFieldName, value: addressValue },
       { name: '付款方式', value: userInfo.payment_method },
       { name: '發票類型', value: userInfo.invoice_type },
@@ -261,37 +236,22 @@ export default function Step2() {
         setShowModal(true)
         return false
       }
-    }
+
+  }
 
     if (!addressValue) {
       setModalMessage(`請填寫${addressFieldName}`)
       setShowModal(true)
       return false
     }
-    // 進一步的地址欄位驗證
-    if (userInfo.delivery_type === '宅配' && !sameAsMember) {
-      if (!data.country) {
-        setModalMessage('請選擇縣市')
-        setShowModal(true)
-        return false
-      }
-      if (!data.township) {
-        setModalMessage('請選擇鄉鎮市區')
-        setShowModal(true)
-        return false
-      }
-      if (!userInfo.detailedAddress) {
-        setModalMessage('請填寫詳細地址');
-        setShowModal(true);
-        return false;
-      }
-    }
+    
+    // 手機條碼的驗證只在選擇手機載具時執行
     if (userInfo.invoice_type === 'mobile') {
       requiredFields.push({ name: '手機條碼', value: userInfo.Invoice_no })
     }
     return true
   }
-
+  //0529 資料格式
   // 存储产品信息到localStorage
   function saveToLocalStorage(products) {
     localStorage.setItem('selectedItems', JSON.stringify(products))
@@ -309,14 +269,12 @@ export default function Step2() {
   const handleOrderButtonClick = async (event) => {
     event.preventDefault()
     if (!validateForm()) return
-    const name = memeberData.name || userInfo.name
-    const phone = memeberData.phone || userInfo.phone
+    const name = recipientData.name
+    const phone = recipientData.phone
     const order_remark = userInfo.order_remark
     const delivery_method = userInfo.delivery_type
     const payment_method = userInfo.payment_method
-    const recipient_address_detail = userInfo.delivery_type === '超商取貨'
-    ? store711.storename
-    : (sameAsMember ? memeberData.address : userInfo.detailedAddress);
+    const recipient_address_detail = recipientData.address
     const Invoice_no = userInfo.Invoice_no
 
     // 訂單成立時間
@@ -349,14 +307,14 @@ export default function Step2() {
           },
           body: JSON.stringify({
             user_id: userData.user_id,
-            name: userData.name || memeberData.name,
-            phone: userData.phone || memeberData.phone,
+            name: userData.name || recipientData.name,
+            phone: userData.phone || recipientData.phone,
             order_date: order_date,
             order_remark: order_remark,
             delivery_method: delivery_method,
             payment_method: payment_method,
             recipient_address_detail:
-              recipient_address_detail,
+              recipient_address_detail || store711.storename,
             status: '未出貨', // 預設
             Invoice_no: Invoice_no,
           }),
@@ -411,7 +369,7 @@ export default function Step2() {
         setTimeout(() => {
           const url = `http://localhost:3005/api/ec?amount=${totalAmount}`
           window.location.href = url
-        }, 2000)
+        }, 2000) // 2秒后跳转
       } else {
         toast.success('訂單建立成功', {
           position: 'top-center',
@@ -568,10 +526,12 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入名字（請填入真實姓名以利收件）"
-                    type="text"
-                    name="name"
-                    value={userInfo.name}
-                    onChange={handleInputChange}
+                    value={sameAsMember ? userData.name : recipientData.name}
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('name')
+                        : handleInputChange('name')
+                    }
                   />
                 </div>
               </div>
@@ -583,10 +543,12 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入信箱"
-                    type="email"
-                    name="email"
-                    value={userInfo.email}
-                    onChange={handleInputChange}
+                    value={sameAsMember ? userData.email : recipientData.email}
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('email')
+                        : handleInputChange('email')
+                    }
                   />
                 </div>
               </div>
@@ -598,12 +560,12 @@ export default function Step2() {
                 <div>
                   <input
                     placeholder="請輸入號碼（0912345678）"
-                    type="tel"
-                    name="phone"
-                    value={userInfo.phone}
-
-
-                    onChange={handleInputChange}
+                    value={sameAsMember ? userData.phone : recipientData.phone}
+                    onChange={
+                      sameAsMember
+                        ? handleInputChange('phone')
+                        : handleInputChange('phone')
+                    }
                   />
                 </div>
               </div>
@@ -618,11 +580,28 @@ export default function Step2() {
                       <TWZipCode
                         initPostcode={data.postcode}
                         onPostcodeChange={(country, township, postcode) => {
-                          setData((prevData) => ({
-                            ...prevData,
+                          setData({
                             country,
                             township,
                             postcode,
+                          })
+                          const fullAddress = `${
+                            country || '' // 添加條件確保 country 存在
+                          }${township || ''}${
+                            recipientData && recipientData.address // 添加條件確保 recipientData 和 recipientData.address 存在
+                              ? recipientData.address.replace(
+                                  `${data.country || ''}${data.township || ''}`, // 添加條件確保 data.country 和 data.township 存在
+                                  ''
+                                )
+                              : ''
+                          }`
+                          setRecipientData((prevData) => ({
+                            ...prevData,
+                            address: fullAddress,
+                          }))
+                          setUserInfo((prevUserInfo) => ({
+                            ...prevUserInfo,
+                            address: fullAddress,
                           }))
                         }}
                       />
@@ -630,9 +609,19 @@ export default function Step2() {
                     <div>
                       <input
                         placeholder="請輸入詳細地址"
-                        value={userInfo.detailedAddress}
+                        value={
+                          sameAsMember
+                            ? userData.address_detail || ''
+                            : recipientData && recipientData.address
+                            ? recipientData.address
+                              ? recipientData.address.replace(
+                                  `${data.country || ''}${data.township || ''}`, // 确保 data.country 和 data.township 存在
+                                  ''
+                                )
+                              : '' // 确保 recipientData.address 存在并非空字符串
+                            : ''
+                        }
                         onChange={handleAddressChange}
-                        name="detailedAddress"
                       />
                     </div>
                   </div>
