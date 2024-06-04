@@ -34,11 +34,7 @@ export default function UserInfo() {
           `http://localhost:3005/api/users/user-info/${userID}`
         )
         const result = await response.json()
-
-        // console.log(result.userData);
         const userData = result.userData
-        // console.log(123)
-        // console.log(userData.name)
         setuserData({ ...userData })
         console.log(userData)
       } catch (error) {
