@@ -205,14 +205,12 @@ export default function UserInfo() {
         </div>
       </div>
       {/* banner end */}
-
       <img className={styles['bgfeet1']} src={`/img/user/loading.png`} alt="" />
       <img className={styles['bgfeet2']} src={`/img/user/loading.png`} alt="" />
       <div className={styles['container']}>
         <div className={styles['book']}>
           <div className={styles['bookInfo']}>
             <div className={styles['rope']} />
-
             <div className={styles['bookContainer']}>
               <h2>個人資料</h2>
               <div className={styles['bookItem']}>

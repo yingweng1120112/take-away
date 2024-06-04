@@ -841,7 +841,7 @@
   height: 150px;
   object-fit: contain;
   left: -5%;
-  top: 567%;
+  top: 590%;
 }
 
 @keyframes paws2 {
@@ -898,7 +898,7 @@
   height: 500px;
   object-fit: contain;
   left: -5%;
-  top: 370%;
+  top: 385%;
 }
 
 .background-paws2 {
@@ -908,7 +908,7 @@
   height: 550px;
   object-fit: contain;
   right: 2%;
-  top: 470%;
+  top: 480%;
 }
 
 /* TODO: 手機版 */

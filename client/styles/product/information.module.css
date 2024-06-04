@@ -98,6 +98,7 @@
 }
 .input-group {
   margin-top: 1rem;
+  position: relative;
 }
 .product-info .cta {
   width: 100%;
@@ -261,6 +262,7 @@
   z-index: 3;
   transform: rotate(262deg) scale(0.3);
   animation: information_fade-out__ycJke 1s ease infinite;
+  display: none;
 }
 .dog-palm5 {
   position: absolute;
@@ -480,6 +482,7 @@
     right: 1rem;
     transform: rotate(180deg) scale(1);
     z-index: 1;
+    display: block;
   }
   .dog-palm5 {
     top: 115rem;

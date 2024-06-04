@@ -9,8 +9,8 @@
     overflow: hidden;
     position: relative;
     width: 900px;
-    height: 680px;
-    margin: 0 auto 100px;
+    height: 580px;
+    margin: 100px auto 100px;
     background: #fff;
   }
 
@@ -52,6 +52,7 @@
     width: 260px;
     height: 100%;
     padding-top: 360px;
+    background-image: url('/img/user/login-bg.jpg');
   }
 
   .img:before {
@@ -61,8 +62,6 @@
     top: 0;
     width: 900px;
     height: 100%;
-    background-image: url('/img/user/login-bg2.jpg');
-    background-size: cover;
   }
 
   .img:after {
@@ -178,6 +177,8 @@
   .fb-btn {
     border: 2px solid #d3dae9;
     color: #8fa1c7;
+    margin-top: 25px;
+    margin-bottom: 20px;
   }
 
   .fb-btn span {
@@ -223,7 +224,7 @@
     margin-top: 20px;
     margin-bottom: 0;
   }
-  .googlebtn{
+  .googlebtn {
     width: 520px;
   }
 }

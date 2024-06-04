@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styles from '@/styles/user/register.module.scss'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { ToastContainer, toast, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
 
 export default function RegisterForm() {
+  const router = useRouter()
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -88,6 +92,7 @@ export default function RegisterForm() {
         password: '',
         confirmPassword: '',
       })
+      router.push('./login')
     } else {
       // alert(`註冊失敗：${data.message}`)
       toast.success(`註冊失敗：${data.message}`, {
@@ -104,52 +109,52 @@ export default function RegisterForm() {
     }
   }
 
-    // google第三方登入
-    const handleGoogleSuccess = async (response) => {
-      const { credential } = response
-      const decodedToken = jwt_decode(credential)
-  
-      try {
-        const res = await fetch('http://localhost:3005/api/users/google-login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: credential }),
+  // google第三方登入
+  const handleGoogleSuccess = async (response) => {
+    const { credential } = response
+    const decodedToken = jwt_decode(credential)
+
+    try {
+      const res = await fetch('http://localhost:3005/api/users/google-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: credential }),
+      })
+
+      if (res.ok) {
+        const result = await res.json()
+        const token = result.token
+        localStorage.setItem('userKey', token)
+        toast.success('已成功登入', {
+          position: 'top-center',
+          autoClose: 600,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'dark',
+          transition: Slide,
         })
-  
-        if (res.ok) {
-          const result = await res.json()
-          const token = result.token
-          localStorage.setItem('userKey', token)
-          toast.success('已成功登入', {
-            position: 'top-center',
-            autoClose: 600,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: 'dark',
-            transition: Slide,
-          })
-          router.push('./user-info')
-        } else {
-          const data = await res.json()
-          setMessage(data.message)
-        }
-      } catch (error) {
-        console.log('An error occurred', error)
+        router.push('./user-info')
+      } else {
+        const data = await res.json()
+        setMessage(data.message)
       }
+    } catch (error) {
+      console.log('An error occurred', error)
     }
-  
-    const handleGoogleFailure = (response) => {
-      console.log('Google Login Failed', response)
-    }
+  }
+
+  const handleGoogleFailure = (response) => {
+    console.log('Google Login Failed', response)
+  }
 
   return (
     <>
       <section className={styles['section']}>
         <Header />
-        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
+        {/* <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p> */}
         <div className={styles['cont']}>
           <form
             className={`${styles['form']} ${styles['sign-up']}`}
@@ -229,7 +234,11 @@ export default function RegisterForm() {
                 />
                 <span
                   onClick={() => setShowPassword(!showPassword)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
@@ -255,7 +264,11 @@ export default function RegisterForm() {
                 />
                 <span
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  style={{ cursor: 'pointer' }}
+                  style={{
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
                 >
                   {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                 </span>
@@ -285,6 +298,22 @@ export default function RegisterForm() {
                 />
               </GoogleOAuthProvider>
             </div>
+            <button
+              type="button"
+              className={`${styles['button']} ${styles['fb-btn']}`}
+              onClick={() => {
+                // 測試帳號 白賢祐
+                setUser({
+                  name: 'Joey',
+                  phone: '0916921120',
+                  email: 'joey123@gmail.com',
+                  password: 'Pa55w.rd22',
+                  confirmPassword: 'Pa55w.rd22',
+                })
+              }}
+            >
+              一鍵輸入
+            </button>
             <button
               type="submit"
               className={`${styles['button']} ${styles['submit']}`}

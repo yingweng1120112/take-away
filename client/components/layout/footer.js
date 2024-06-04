@@ -223,12 +223,13 @@ export default function Footer() {
               <h3>贊助方案</h3>
               <hr className={styles.footerHr} />
               <div className={styles.fosponsor}>
-                <div className={styles.sponsor}>
+                {/* <div className={styles.sponsor}>
                   <img src="/img/index/footer_linepay.jpg" alt="" />
                   <img src="/img/index/footer_lineQR.jpg" alt="" />
-                </div>
+                </div> */}
                 <div>
                   <p className={styles.sponDesc}>戶名：Take Pet Away</p>
+                  <p className={styles.sponDesc}>電話：0912356789</p>
                   <p className={styles.sponDesc}>銀行：喵汪銀行 - 熊熊分行</p>
                   <p className={styles.sponDesc}>帳號：059-004-167249</p>
                 </div>

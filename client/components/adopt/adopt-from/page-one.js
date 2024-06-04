@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 export default function PageOne({ donateInfo, setDonateInfo, handleChange ,handleAmount , name}) {
   const donateOptions = ['定期定額', '單筆捐款']
   const giveOptions = ['500', '1000', '2000']
-  const payOptions = ['銀行轉帳', '超商付款']
+  const payOptions = ['信用卡','銀行轉帳', '超商付款']
 
   useEffect(() => {
     const storedData = localStorage.getItem('donateInfo');
