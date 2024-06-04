@@ -382,12 +382,18 @@ background-color: var(--creamy-yellow);
   height: 100%;
   border-radius: 3%;
 }
+.fond-us .place-title{
+    width: 90%;
+    margin: 1rem auto;
+    color:var(--orange);
+    font-weight:bolder;
+}
 
 .fond-us .single-blog-content {
   margin-top: 1rem;
   margin-left: 1rem;
   width: 80%;
-  height: 40%;
+  height: 28%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -877,14 +883,14 @@ background-color: var(--creamy-yellow);
 
   .fond-us .single-blog-content {
     width: 100%;
-    height: 38%;
+    height: 42%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
     line-height: 1.5625rem;
     letter-spacing: 0.1rem;
-    margin: 1rem 1.5rem;
+    margin: 0rem 1.5rem;
   }
   .fond-us .single-blog-content p{
     margin-bottom: 0.5rem;
