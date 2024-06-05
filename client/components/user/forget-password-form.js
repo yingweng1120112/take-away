@@ -91,7 +91,6 @@ export default function ForgetPasswordForm() {
         }
       )
       const result = await response.json()
-      // setMessage(result.message)
       toast.success(result.message, {
         position: 'top-center',
         autoClose: 600,
@@ -104,7 +103,6 @@ export default function ForgetPasswordForm() {
         transition: Slide,
       })
     } catch (error) {
-      // setMessage('重設密碼失敗')
       toast.success('重設密碼失敗', {
         position: 'top-center',
         autoClose: 600,

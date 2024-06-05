@@ -34,15 +34,15 @@ export default function LoginForm() {
   const [user, setUser] = useState({
     phone: '',
     password: '',
-    password2: '',
+    // password2: '',
   })
   const [errors, setErrors] = useState({
     phone: '',
     password: '',
-    password2: '',
+    // password2: '',
   })
   const [showPassword, setShowPassword] = useState(false)
-  const [showPassword2, setShowPassword2] = useState(false)
+  // const [showPassword2, setShowPassword2] = useState(false)
   const [message, setMessage] = useState('')
 
   // 多欄位共用事件處理函式
@@ -54,15 +54,15 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const newErrors = { phone: '', password: '', password2: '' }
+    const newErrors = { phone: '', password: '' }
     if (!user.phone) newErrors.phone = '帳號為必填'
     if (user.password.length < 6) newErrors.password = '密碼至少6個字元'
     if (!user.password) newErrors.password = '密碼為必填'
-    if (!user.password2) newErrors.password2 = '確認密碼為必填'
-    if (user.password !== user.password2) {
-      newErrors.password = '密碼與確認密碼需要相同'
-      newErrors.password2 = '密碼與確認密碼需要相同'
-    }
+    // if (!user.password2) newErrors.password2 = '確認密碼為必填'
+    // if (user.password !== user.password2) {
+    //   newErrors.password = '密碼與確認密碼需要相同'
+    //   newErrors.password2 = '密碼與確認密碼需要相同'
+    // }
 
     setErrors(newErrors)
     if (Object.values(newErrors).some((v) => v)) return
@@ -182,7 +182,7 @@ export default function LoginForm() {
     <>
       <section className={styles['section']}>
         <Header />
-        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
+        {/* <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p> */}
         <div className={styles['cont']}>
           <form
             className={`${styles['form']} ${styles['sign-up']}`}
@@ -237,7 +237,7 @@ export default function LoginForm() {
                 {errors.password}
               </span>
             </label>
-            <label className={styles['label']}>
+            {/* <label className={styles['label']}>
               <span className={`${styles['span']} ${styles['spanl']}`}>
                 確認密碼:{' '}
               </span>
@@ -265,7 +265,7 @@ export default function LoginForm() {
               >
                 {errors.password2}
               </span>
-            </label>
+            </label> */}
             <div className={`${styles['forgot-pass']}`}>
               <Link
                 href="/user/forget-password"
@@ -301,7 +301,7 @@ export default function LoginForm() {
                 setUser({
                   phone: '0912345678',
                   password: 'Pa55w.rd02',
-                  password2: 'Pa55w.rd02',
+                  // password2: 'Pa55w.rd02',
                 })
               }}
             >

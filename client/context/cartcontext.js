@@ -13,6 +13,7 @@ export function CartProvider({ children }) {
   const [cartItemCount, setCartItemCount] = useState(0); // 购物车数量状态
   const [userInfo, setUserInfo] = useState({
     delivery_type: '宅配',
+    delivery_method: '宅配',
     name: '',
     email: '',
     phone: '',

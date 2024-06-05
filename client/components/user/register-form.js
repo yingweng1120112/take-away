@@ -154,7 +154,7 @@ export default function RegisterForm() {
     <>
       <section className={styles['section']}>
         <Header />
-        <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p>
+        {/* <p className={styles['tip']}>點選圖片中的按鈕以切換登入、註冊</p> */}
         <div className={styles['cont']}>
           <form
             className={`${styles['form']} ${styles['sign-up']}`}
@@ -312,13 +312,7 @@ export default function RegisterForm() {
                 })
               }}
             >
-              一鍵輸入
-            </button>
-            <button
-              type="submit"
-              className={`${styles['button']} ${styles['submit']}`}
-            >
-              註冊
+              一鍵填入
             </button>
             <button
               className={`${styles['button']} ${styles['fb-btn']}`}
@@ -337,23 +331,12 @@ export default function RegisterForm() {
             >
               重置
             </button>
-            {/* <button
-              className={`${styles['button']} ${styles['fb-btn']}`}
-              type="button"
-              onClick={() => {
-                // 重置需要自行設定回初始化值
-                setUser({
-                  name: '榮恩',
-                  email: 'ron@test.com',
-                  phone: 'ron',
-                  password: '123456',
-                  confirmPassword: '123456',
-                  agree: true,
-                })
-              }}
+            <button
+              type="submit"
+              className={`${styles['button']} ${styles['submit']}`}
             >
-              一鍵填入
-            </button> */}
+              註冊
+            </button>
           </form>
           <div className={styles['sub-cont']}>
             <div className={styles.img}>
