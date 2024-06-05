@@ -209,7 +209,26 @@ export default function PetDiary() {
           src="/img/petDiary/catIcon.svg"
           alt=""
         />
-
+        <img
+          src="/img/diarySearch/catFoot.svg"
+          alt=""
+          className={styles['catFoot1']}
+        />
+        <img
+          src="/img/diarySearch/catFoot.svg"
+          alt=""
+          className={styles['catFoot2']}
+        />
+        <img
+          src="/img/diarySearch/catFoot.svg"
+          alt=""
+          className={styles['catFoot3']}
+        />
+        <img
+          src="/img/diarySearch/catFoot.svg"
+          alt=""
+          className={styles['catFoot4']}
+        />
         {/* 上傳 */}
         <UpLoad data={[petInfo.adopt1, petMaster]} />
         {/* 貼文 */}
@@ -242,7 +261,7 @@ export default function PetDiary() {
                       handleEdit(v.blog_id)
                     }}
                   >
-                    <EditIcon data={petMaster}/>
+                    <EditIcon data={petMaster} />
                   </button>
                   <button
                     style={{
@@ -254,7 +273,7 @@ export default function PetDiary() {
                       handleDelete(v.blog_id)
                     }}
                   >
-                    <DeleteIcon data={petMaster}/>
+                    <DeleteIcon data={petMaster} />
                   </button>
                 </div>
               </div>
