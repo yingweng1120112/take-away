@@ -363,4 +363,31 @@
   .post-upload-pic {
     justify-content: flex-start;
   }
+  .catFoot1 {
+    display: block;
+    position: absolute;
+    left: -5%;
+    top: 1000px;
+  }
+  .catFoot2 {
+    display: block;
+    position: absolute;
+    right: -5%;
+    rotate: -90deg;
+    top: 1250px;
+  }
+  .catFoot3 {
+    display: block;
+    position: absolute;
+    right: -5%;
+    rotate: -120deg;
+    bottom: 10px;
+  }
+  .catFoot4 {
+    display: block;
+    position: absolute;
+    left: -5%;
+    bottom: 10px; 
+    top: 1750px;
+  }
 }
