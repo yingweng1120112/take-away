@@ -116,7 +116,7 @@
   height: 300px;
 }
 .writemessageleft > div:nth-child(2) > div:nth-child(2) {
-  height: 500px;
+  height: fit-content;
 }
 .writemessageleft > div:nth-child(3) > div:nth-child(2) {
   display: flex;
@@ -127,12 +127,19 @@
 
 .writemessageleft .cartbottomstyle > div {
   width: 95%;
+  margin-bottom: 30px;
+}
+.writemessageleft .cartbottomstyle > div > div:nth-child(1) {
+  width: 20%;
+}
+.writemessageleft .cartbottomstyle > div > div:nth-child(2) {
+  width: 80%;
 }
 
 .cartbottomstyle > div input,
 .cartbottomstyle > div select,
 .cartbottomstyle > div textarea {
-  width: 550px;
+  width: 100%;
   height: 30px;
   font-size: var(--font-size-p);
   color: var(--deep-gray);
@@ -180,10 +187,11 @@
 .writebill > div {
   display: flex;
   justify-content: space-between;
+  width: 100% !important;
 }
 .writebill > div > div:nth-child(2) {
   display: flex;
-  width: 72.5%;
+  width: 80%;
   /* border: pink 2px solid; */
   margin-bottom: 20px;
 }
@@ -194,6 +202,9 @@
 }
 .writebill > div:nth-child(3) {
   justify-content: end;
+}
+.writebill > div:nth-child(3) > input {
+  width: 80%;
 }
 .checklinestyle {
   justify-content: start !important;
@@ -210,6 +221,7 @@
 .itemscroll {
   height: 600px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .itemscroll::-webkit-scrollbar {
   width: 7px;
@@ -330,6 +342,54 @@
   margin: 0;
   width: 100%;
   height: auto;
+}
+@media screen and (max-width: 1280px) {
+  .roof img {
+    max-width: 170%;
+  }
+  .stepbg {
+    width: 80%;
+  }
+  .writemessageleft .cartbottomstyle > div {
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .roof img {
+    height: 90px;
+    max-width: initial;
+    overflow-x: hidden;
+  }
+  .stepbg {
+    background-size: 120%;
+    background-position: right;
+    width: 90%;
+  }
+  .everystep {
+    width: 80%;
+    height: 65%;
+    margin-left: 0%;
+  }
+  .step .nextto:nth-child(1) h2 {
+    font-size: 22px;
+  }
+  .step .nextto:nth-child(n + 2) h2 {
+    font-size: 22px;
+  }
+  /* 按鈕 */
+  .buttonstyle {
+    font-size: 12px;
+    width: 81px;
+    letter-spacing: 0px;
+    padding: 0.4rem;
+  }
+  /* 下花邊 */
+  .wall {
+    overflow: hidden;
+  }
+  .wall img {
+    width: 150%;
+  }
 }
 
 @media screen and (max-width: 414px) {

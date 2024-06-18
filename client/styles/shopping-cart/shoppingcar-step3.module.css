@@ -259,7 +259,130 @@
   width: 100%;
   height: auto;
 }
-
+@media screen and (max-width: 768px) {
+  .roof img {
+    height: 90px;
+    max-width: initial;
+    overflow-x: hidden;
+  }
+  .stepbg {
+    background-size: 120%;
+    background-position: right;
+    width: 90%;
+  }
+  .everystep {
+    width: 80%;
+    height: 65%;
+    margin-left: 0%;
+  }
+  .step .nextto:nth-child(1) h2 {
+    font-size: 22px;
+  }
+  .step .nextto:nth-child(n + 2) h2 {
+    font-size: 22px;
+  }
+  .carttopstyle {
+    font-size: var(--font-size-h4);
+  }
+  .carttopstyle1 {
+    font-size: var(--font-size-h4);
+  }
+  .cartdetail {
+    font-size: 14px;
+  }
+  .cartitemright {
+    width: 52%;
+  }
+  .cartdetailright {
+    width: 60%;
+  }
+  .cartdetailright > div {
+    margin-right: -10px;
+  }
+  .cartitemright > div:nth-child(1) {
+    margin-right: 15px;
+  }
+  .cartitemleft .itemlist .cartimg {
+    height: 70px;
+  }
+  .cartitem {
+    font-size: 13px;
+  }
+  .cartdetailright > div:nth-child(2) {
+    width: 62px !important;
+  }
+  .cartdetailright > div:nth-child(3) {
+    margin-left: -45px;
+    margin-right: 20px;
+  }
+  .cartdetailright > div:nth-child(4) {
+    position: relative !important;
+    left: 53px !important;
+  }
+  .cartitemright > div {
+    width: 15px;
+    margin-right: 8px;
+  }
+  .cartitemleft .itemlist div:nth-child(2) {
+    margin-left: 11px;
+    width: 50px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    white-space: normal;
+    text-overflow: ellipsis;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .roof img {
+    max-width: 170%;
+  }
+  .stepbg {
+    width: 80%;
+  }
+  .cartitemleft {
+    margin-right: 0px;
+  }
+  .cartitemleft .itemlist div:nth-child(2) {
+    margin-left: 11px;
+    width: 80px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    white-space: normal;
+    text-overflow: ellipsis;
+  }
+  .cartdetail {
+    font-size: var(--font-size-p);
+  }
+  .cartdetailright {
+    width: 57%;
+    margin-left: 50px;
+  }
+  .cartdetailright > div {
+    width: 64px;
+    margin-right: 60px;
+  }
+  .cartdetailleft {
+    width: 43%;
+  }
+  .cartitemright {
+    width: 49%;
+  }
+  .cartitemright > div {
+    margin-left: 5px;
+  }
+  .cartdetailright > div:nth-child(3) {
+    position: relative;
+    left: 40px;
+  }
+  .cartdetailright > div:nth-child(4) {
+    position: relative;
+    left: 40px;
+  }
+}
 @media screen and (max-width: 414px) {
   .roof {
     overflow: hidden;
