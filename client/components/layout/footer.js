@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import styles from '@/styles/index/footer.module.css'
+import Link from 'next/link'
 
 export default function Footer() {
   const footerRef = useRef(null)
@@ -44,20 +45,20 @@ export default function Footer() {
               <hr className={styles.footerHr} />
               <ol>
                 <li>
-                  <a
+                  <Link
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
+                    href="/pets/psycological-test/page1"
                   >
                     心理測驗
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
+                    href="/pets/notice"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
                     領養流程
-                  </a>
+                  </Link>
                 </li>
               </ol>
             </div>
@@ -68,20 +69,20 @@ export default function Footer() {
               <hr className={styles.footerHr} />
               <ol>
                 <li>
-                  <a
+                  <Link
+                    href="/pets"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
                     浪浪列表
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
+                    href="/petDiary"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
                     追蹤日誌
-                  </a>
+                  </Link>
                 </li>
               </ol>
             </div>
@@ -92,36 +93,36 @@ export default function Footer() {
               <hr className={styles.footerHr} />
               <ol>
                 <li>
-                  <a
+                  <Link
+                    href="/faq/faqshopping"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
                     常見問題
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
+                    href="/faq/chatroom"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
                     客服中心
-                  </a>
+                  </Link>
                 </li>
               </ol>
             </div>
 
             {/* 隱私政策 */}
             <div className={styles.footerItem + ' flex-sm-column mt-2'}>
-              <h3>隱私政策</h3>
+              <h3>關於我們</h3>
               <hr className={styles.footerHr} />
               <ol>
                 <li>
-                  <a
+                  <Link
+                    href="http://localhost:3000/location/location"
                     className={`${styles['dropdown-item']} ${styles['desc']}`}
-                    href=""
                   >
-                    隱私條款
-                  </a>
+                    關於我們
+                  </Link>
                 </li>
               </ol>
             </div>

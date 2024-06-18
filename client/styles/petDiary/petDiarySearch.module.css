@@ -103,6 +103,7 @@
 }
 .hidden {
   overflow: hidden;
+  position: relative;
 }
 .cta {
   cursor: pointer;
@@ -205,7 +206,15 @@
   background-color: #fecc5f;
   padding: 0 1rem;
 }
-
+.catFoot1 {
+  display: none;
+}
+.catFoot2 {
+  display: none;
+}
+.catFoot3 {
+  display: none;
+}
 @media screen and (min-width: 1025px) {
   .life-container {
     margin: 0;
@@ -265,5 +274,24 @@
   }
   .project-list {
     justify-content: flex-start;
+  }
+  .catFoot1 {
+    display: block;
+    position: absolute;
+    left: -5%;
+    top: 700px;
+  }
+  .catFoot2 {
+    display: block;
+    position: absolute;
+    right: -5%;
+    rotate: -90deg;
+  }
+  .catFoot3 {
+    display: block;
+    position: absolute;
+    right: -5%;
+    rotate: -120deg;
+    bottom: 10px;
   }
 }

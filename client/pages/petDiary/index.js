@@ -405,7 +405,12 @@ export default function DiarySearch() {
                 搜尋到{total}本日誌
               </h1>
             </div>
+            <img src="/img/diarySearch/catFoot.svg" alt="" className={styles['catFoot1']} />
+            <img src="/img/diarySearch/catFoot.svg" alt="" className={styles['catFoot2']} />
+            <img src="/img/diarySearch/catFoot.svg" alt="" className={styles['catFoot3']}/>
+          
             <div className={styles['container-a']}>
+            
               <div className={styles['project-list']}>
                 {petsInfo.map((v, i) => {
                   return (

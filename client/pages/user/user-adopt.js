@@ -152,7 +152,7 @@ export default function userReserve() {
       if (result.isConfirmed) {
         Swal.fire({
           title: '已刪除!',
-          text: `${petName} 已從預約紀錄中刪除`,
+          text: `${petName} 已從線上認養紀錄中刪除`,
           icon: 'success',
         });
         removeItem(adopt_id);

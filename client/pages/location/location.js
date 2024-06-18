@@ -85,33 +85,27 @@ export default function Location() {
           <img src={`/img/print.png`} alt="" className={styles['print']} />
           <img src={`/img/foot.png`} alt="" className={styles['foot']} />
           <div className={styles['address-left']}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.9585094222593!2d120.22379571188887!3d23.025295579085018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e771f2995cba5%3A0x3bfd449f1e46ffef!2z5Y2X6Ie656eR5oqA5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1713363284909!5m2!1szh-TW!2stw"
-              width={800}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7345.618434845458!2d120.19920548696741!3d22.994042025303322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e77bed08fea73%3A0xad019f26d842dd8c!2z56S-5ZyY5rOV5Lq65Y-w5Y2X5biC5rWB5rWq5YuV54mp5oSb6K235Y2U5pyD!5e0!3m2!1szh-TW!2stw!4v1717470941475!5m2!1szh-TW!2stw"  width={800}
               height={400}
-              style={{ border: 0, borderRadius: '5%' }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google 地图"
-            />
+              style={{ border: 0, borderRadius: '5%' }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="TAKE_AWAY"/>
           </div>
           <div className={styles['address-right']}>
-            <h1> 聯繫我們 </h1>
+            <h1 style={{ fontWeight: 'bolder' }}>聯繫我們</h1>
             <div className={styles['tainan']}>
               <h2>臺南總部 </h2>
               <h4>台南市東區裕農路375號</h4>
               <p>TEL:(06)236-1111</p>
               <p>FAX:(06)236-1111</p>
-              <br />
+              <br style={{display:'none' }}/>
               <div className={styles['socail']}>
-                <a>
-                  <img src={`/img/location/facebook.jpg`} alt="" />
+                <a  href="https://zh-tw.facebook.com/">
+                  <img src={`/img/location/facebook.png`} alt=""/>
                 </a>
-                <a>
-                  <img src={`/img/location/ig.jpg`} alt="" />
+                <a href="https://www.instagram.com/">
+                  <img src={`/img/location/ig.png`} alt="" />
                 </a>
-                <a>
-                  <img src={`/img/location/gmail.jpg`} alt="" />
+                <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F%3Fhl%3Dzh-TW&emr=1&hl=zh-TW&ifkv=AS5LTAT7iCtkk_01_1GKGhgosD28tSC2AjFgDXTbtZ72B_U9rpgiPFde5QQCWoR06ChD12IogQuKpw&ltmpl=default&ltmplcache=2&osid=1&passive=true&rm=false&scc=1&service=mail&ss=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1791277697%3A1717470844394857&ddm=0">
+                  <img src={`/img/location/gmail.png`} alt="" />
                 </a>
               </div>
             </div>
@@ -128,8 +122,8 @@ export default function Location() {
               <div className={styles['single-blog-thumbnail']}>
                 <img src={`/img/location/location1.jpg`} alt="" />
               </div>
+                <h4 className={styles['place-title']}>臺北分布</h4>
               <div className={styles['single-blog-content']}>
-                <h4>臺北分布</h4>
                 <p>臺北市信義區信義路63號</p>
                 <p>TEL:(02)581-1111</p>
                 <p>FAX:(02)581-1111</p>
@@ -139,8 +133,8 @@ export default function Location() {
               <div className={styles['single-blog-thumbnail']}>
                 <img src={`/img/location/location2.jpg`} alt="" />
               </div>
+                <h4 className={styles['place-title']}>新北分布</h4>
               <div className={styles['single-blog-content']}>
-                <h4>新北分布</h4>
                 <p>新北市板橋區忠孝路忠義巷9弄63號</p>
                 <p>TEL:(03)236-3333</p>
                 <p>FAX:(03)236-3333</p>
@@ -150,8 +144,8 @@ export default function Location() {
               <div className={styles['single-blog-thumbnail']}>
                 <img src={`/img/location/location3.jpg`} alt="" />
               </div>
+                <h4 className={styles['place-title']}>臺中分布</h4>
               <div className={styles['single-blog-content']}>
-                <h4>臺中分布</h4>
                 <p>臺中市北區中清路一段79號</p>
                 <p>TEL:(05)236-3333</p>
                 <p>FAX:(05)236-3333</p>

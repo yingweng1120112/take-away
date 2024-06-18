@@ -23,7 +23,7 @@
     "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
-    "firebase": "^10.1.0",
+    "firebase": "^10.12.2",
     "fortawesome": "^0.0.1-security",
     "html2canvas": "^1.4.1",
     "install": "^0.13.0",

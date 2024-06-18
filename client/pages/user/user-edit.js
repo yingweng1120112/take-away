@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function UserEdit() {
   const [userEdit, setUserEdit] = useState(null) // 使用 useState 钩子来保存用户信息
-  const [userData,setuserData] = useState('')
+  const [userData, setuserData] = useState('')
   // const [startDate, setStartDate] = useState(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -29,76 +29,59 @@ export default function UserEdit() {
   //   setStartDate(date)
   // }
 
-
   useEffect(() => {
-    const fetchUserData = async () => {
-      const userId = localStorage.getItem('userKey')
+    const fetchData = async () => {
       if (userId) {
-        const token = jwtDecode(userId)
-        const userID = token.user_id
         try {
           const response = await fetch(
-            `http://localhost:3005/api/users/${userID}`
+            `http://localhost:3005/api/users/user-edit/${userID}`
           )
           const result = await response.json()
-          if (response.status === 200) {
-            setName(result.userData.name)
-            setPhone(result.userData.phone)
-            setEmail(result.userData.email)
-            setAddressDetail(result.userData.address_detail)
-            // setStartDate(new Date(result.userData.birthday))
-          } else {
-            console.error('Failed to fetch user data')
-          }
+          const userData = result.userData
+          setuserData({ ...userData })
+          console.log(userData)
         } catch (error) {
-          console.error('Error fetching user data:', error)
+          console.error('Error fetching data:', error)
         }
       }
     }
-    fetchUserData()
+    fetchData()
   }, [])
 
-    // 抓取user name的初始值
-    useEffect(() => {
-      if(userData.name){
-        setName(userData.name)
-      }
-      
-    }, [userData.name]);
-  
-    // 抓取user id的初始值
-    useEffect(() => {
-      if(userData.user_id){
-        setUserId(userData.user_id)
-      }
-      
-    }, [userData.user_id
-    ]);
-  
-    // 抓取user email的初始值
-    useEffect(() => {
-      if(userData.email){
-        setEmail(userData.email)
-      }
-      
-    }, [userData.email]);
-  
-    // 抓取user phone的初始值
-    useEffect(() => {
-      if(userData.phone){
-        setPhone(userData.phone)
-      }
-      
-    }, [userData.phone]);
-  
-    // 抓取user addressDetail的初始值
-    useEffect(() => {
-      if(userData.address_detail){
-        setAddressDetail(userData.address_detail)
-      }
-      
-    }, [userData.address_detail]);
-  
+  // 抓取user name的初始值
+  useEffect(() => {
+    if (userData.name) {
+      setName(userData.name)
+    }
+  }, [userData.name])
+
+  // 抓取user id的初始值
+  useEffect(() => {
+    if (userData.user_id) {
+      setUserId(userData.user_id)
+    }
+  }, [userData.user_id])
+
+  // 抓取user email的初始值
+  useEffect(() => {
+    if (userData.email) {
+      setEmail(userData.email)
+    }
+  }, [userData.email])
+
+  // 抓取user phone的初始值
+  useEffect(() => {
+    if (userData.phone) {
+      setPhone(userData.phone)
+    }
+  }, [userData.phone])
+
+  // 抓取user addressDetail的初始值
+  useEffect(() => {
+    if (userData.address_detail) {
+      setAddressDetail(userData.address_detail)
+    }
+  }, [userData.address_detail])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -111,7 +94,6 @@ export default function UserEdit() {
       phone,
       email,
       address_detail,
-      // birthday: startDate.toISOString().split('T')[0], // 格式化日期
     }
 
     console.log(updatedData)
